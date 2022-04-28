@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.5.0-rc1
+  version: 1.4.1
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -62,6 +62,7 @@ tags:
   - name: Master Data
     description: >-
       resources to get master data
+
 paths:
   /places:
     get:
@@ -90,19 +91,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/PlaceResponse"
         "400":
-          description: bad input parameter
+          $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: no place information found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
     post:
       tags:
         - Places
@@ -129,19 +136,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/PlaceResponse"
         "400":
-          description: bad input parameter
+          $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: no place information found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /places/{placeId}:
     get:
@@ -176,19 +189,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/PlaceResponse"
         "400":
-          description: bad input parameter
+          $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: no place information found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /trips/{tripId}:
     get:
@@ -253,17 +272,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /trips-collection:
     post:
@@ -292,23 +317,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/TripsCollectionResponse"
         "400":
-          description: bad input parameter
+          $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: no trips found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
-          description: internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: "#/components/schemas/Problem"
+          $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /trips-collection/{tripsCollectionId}:
     get:
@@ -359,17 +386,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /trip-offers-collection:
     post:
@@ -403,19 +436,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /trip-offers-collection/{tripOffersCollectionId}:
     get:
@@ -469,17 +506,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /trip-offers/{tripOfferId}:
     get:
@@ -531,17 +574,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /offers-collection:
     post:
@@ -574,19 +623,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /offers-collection/{offersCollectionId}:
     get:
@@ -636,17 +689,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /offers/{offerId}:
     get:
@@ -698,17 +757,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   "/offers/{offerId}/reservations/{reservationId}/available-preferences":
     get:
@@ -767,17 +832,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   "/offers/{offerId}/reservations/{reservationId}/nearby":
     get:
@@ -851,17 +922,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   "/offers/{offerId}/reservations/{reservationId}/place-map":
     get:
@@ -921,17 +998,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   "/offers/{offerId}/fares/{fareId}/available-preferences":
     get:
@@ -991,17 +1074,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   "/offers/{offerId}/fares/{fareId}/nearby":
     get:
@@ -1075,17 +1164,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   "/offers/{offerId}/fares/{fareId}/place-map":
     get:
@@ -1145,17 +1240,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /bookings/{bookingId}/passengers/{passengerId}:
     get:
@@ -1195,17 +1296,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
     patch:
       tags:
@@ -1250,19 +1357,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /bookings/{bookingId}/purchaser:
     get:
@@ -1296,17 +1407,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
     patch:
       tags:
@@ -1345,19 +1462,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /products:
     get:
@@ -1392,17 +1513,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /products/{productId}:
     get:
@@ -1444,17 +1571,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /bookings:
     post:
@@ -1489,19 +1622,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /bookings/{bookingId}:
     get:
@@ -1555,17 +1692,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
     delete:
       tags:
@@ -1589,23 +1732,27 @@ paths:
           description: id of the booking to delete.
       responses:
         "204":
-          description: No Content
+          $ref: "#/components/responses/NoContentResponse"
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
     patch:
       tags:
@@ -1638,19 +1785,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /bookings/{bookingId}/fulfillments:
     post:
@@ -1690,25 +1841,29 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
     patch:
       tags:
         - Fulfillments
       summary: Finalizes the fulfillments and returns the documents.
-      operationId: patchFulfillments
+      operationId: patchFulfillment
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
@@ -1746,19 +1901,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /fulfillments/{fulfillmentId}:
     get:
@@ -1792,75 +1951,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
-          
-    patch:
-      tags:
-        - Fulfillments
-      summary: Finalizes the fulfillment for usage and returns the documents.
-      operationId: patchFulfillment
-      parameters:
-        - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/idempotencyKey"
-        - $ref: "#/components/parameters/traceParent"
-        - $ref: "#/components/parameters/traceState"
-        - in: path
-          name: fulfillmentId
-          schema:
-            type: string
-          required: true
-          description: id of the fulfillment to get.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/FulfillmentPatch"
-      responses:
-        "200":
-          description: >-
-            Fulfillment successfully completed
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/FulfillmentsResponse"
-        "202":
-          description: >-
-            Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: "#/components/schemas/WarningCollection"
-        "400":
-          $ref: "#/components/responses/BadRequestResponse"
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
-        "500":
-          $ref: "#/components/responses/InternalServerErrorResponse"
-        "501":
-          description: Not implemented
-        "503":
-          $ref: "#/components/responses/ServiceUnavailableResponse"          
-          
-          
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /bookings/{bookingId}/refundOffers:
     post:
@@ -1897,19 +2004,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /bookings/{bookingId}/refundOffers/{refundOfferId}:
     get:
@@ -1949,17 +2060,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
     patch:
       tags:
@@ -2004,19 +2121,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
     delete:
       tags:
@@ -2040,23 +2161,27 @@ paths:
           description: id of the refund offer
       responses:
         "204":
-          description: No Content
+          $ref: "#/components/responses/NoContentResponse"
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /bookings/{bookingId}/exchangeOperations/{exchangeOperationId}:
     get:
@@ -2115,17 +2240,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
     patch:
       tags:
@@ -2171,19 +2302,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
     delete:
       tags:
@@ -2208,23 +2343,27 @@ paths:
           description: id of the exchangeOperation to delete.
       responses:
         "204":
-          description: No Content
+          $ref: "#/components/responses/NoContentResponse"
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /exchange-trip-offers-collection:
     post:
@@ -2260,19 +2399,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /exchange-trip-offers-collection/{exchangeTripOffersCollectionId}:
     get:
@@ -2327,17 +2470,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /exchange-trip-offers/{exchangeTripOfferId}:
     get:
@@ -2391,17 +2540,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /complaints:
     post:
@@ -2426,19 +2581,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /complaints/{complaintId}:
     get:
@@ -2514,19 +2673,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /coachLayouts:
     get:
@@ -2557,17 +2720,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /coachLayouts/{layoutId}:
     get:
@@ -2603,17 +2772,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
   /reductionCards:
     get:
@@ -2640,54 +2815,23 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
-          description: Unauthorized
+          $ref: "#/components/responses/UnauthorizedResponse"
         "403":
-          description: Forbidden
+          $ref: "#/components/responses/ForbiddenResponse"
         "404":
-          description: Not Found
+          $ref: "#/components/responses/NotFoundResponse"
+        "406":
+          $ref: "#/components/responses/NotAcceptableResponse"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaTypeResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
-          description: Not implemented
+          $ref: "#/components/responses/NotImplementedResponse"
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
-
-  /zones:
-    get:
-      tags:
-        - Master Data
-      summary: Returns a collection of zone definitions.
-      operationId: getZones
-      parameters:
-        - $ref: "#/components/parameters/traceParent"
-        - $ref: "#/components/parameters/traceState"
-      responses:
-        "200":
-          description: zone definitions provided
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ZoneCollectionResponse"
-          headers:
-            Expires:
-              schema:
-                type: string
-                description: >-
-                  Gives the date/time after which the response is considered stale (in "HTTP-date" format as defined by RFC 7231).
-        "400":
-          $ref: "#/components/responses/BadRequestResponse"
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          $ref: "#/components/responses/InternalServerErrorResponse"
-        "501":
-          description: Not implemented
-        "503":
-          $ref: "#/components/responses/ServiceUnavailableResponse"
+        "default":
+          $ref: "#/components/responses/DefaultErrorResponse"
 
 security:
   - oAuth2ClientCredentials: []
@@ -2699,8 +2843,8 @@ components:
       description: See https://swagger.io/docs/specification/authentication/oauth2/
       flows:
         clientCredentials:
-          # The token endpoint of the authorization server, needs to be specified here
           tokenUrl: "https://login.microsoftonline.com/tbd"
+          refreshUrl: "https://required.refresh.url/tbd"
           scopes: {} # The scopes are not being used yet
 
   parameters:
@@ -2746,10 +2890,49 @@ components:
       required: false
 
   responses:
+    NoContentResponse:
+      description: No Content (204)
+      content:
+        "application/problem+json":
+          schema:
+            $ref: "#/components/schemas/Problem"
+
     BadRequestResponse:
       description: Bad Request (400)
       content:
         "application/problem+json":
+          schema:
+            $ref: "#/components/schemas/Problem"
+
+    UnauthorizedResponse:
+      description: >-
+        Unauthorized (401)
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
+
+    ForbiddenResponse:
+      description: >-
+        Forbidden (403)
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
+
+    NotFoundResponse:
+      description: >-
+        Not Found (404)
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
+
+    NotAcceptableResponse:
+      description: >-
+        Not Acceptable (406)
+      content:
+        application/problem+json:
           schema:
             $ref: "#/components/schemas/Problem"
 
@@ -2760,17 +2943,43 @@ components:
           schema:
             $ref: "#/components/schemas/Problem"
 
-    InternalServerErrorResponse:
-      description: Internal Server Error (500)
+    UnsupportedMediaTypeResponse:
+      description: >-
+        Unsupported Media Type (415)
       content:
-        "application/problem+json":
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
+
+    InternalServerErrorResponse:
+      description: >-
+        Internal Server Error (500)
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
+
+    NotImplementedResponse:
+      description: >-
+        Not Implemented (501)
+      content:
+        application/problem+json:
           schema:
             $ref: "#/components/schemas/Problem"
 
     ServiceUnavailableResponse:
-      description: Service Unavailable (503)
+      description: >-
+        Service Unavailable (503)
       content:
-        "application/problem+json":
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
+
+    DefaultErrorResponse:
+      description: >-
+        Default error reponse
+      content:
+        application/problem+json:
           schema:
             $ref: "#/components/schemas/Problem"
 
@@ -2814,6 +3023,7 @@ components:
           description: >-
             An absolute URI that identifies the specific occurrence of the warning.
             example: offers/offer1234
+
     PlaceResponse:
       type: object
       required:
@@ -2972,7 +3182,7 @@ components:
           $ref: "#/components/schemas/TripParam"
         embed:
           description: >-
-            Influences whether referenced resources are returned in full or as references only.
+            Influences whether referenced resources are returned in full or as references only. Proposed default ALL
           type: array
           items:
             type: string
@@ -2981,7 +3191,6 @@ components:
               - TRIPS.PLACES
               - NONE
               - ALL
-          default: [ALL]
 
     TripVia: ## OJP
       type: object
@@ -3226,7 +3435,9 @@ components:
           items:
             $ref: "#/components/schemas/Trip"
         _links:
-          $ref: "#/components/schemas/Link"
+          type: array
+          items:
+            $ref: "#/components/schemas/Link"
 
     Trip: ## OJP # Reduced scope
       type: object
@@ -3294,7 +3505,9 @@ components:
         tripStatus:
           $ref: "#/components/schemas/TripStatus"
         _links:
-          $ref: "#/components/schemas/Link"
+          type: array
+          items:
+            $ref: "#/components/schemas/Link"
 
     TripStatus:
       type: object
@@ -3363,6 +3576,7 @@ components:
             The length of the pattern is equal to the number of days from 
             start date to end date. A bit value of "1" indicates that an event
             actually happens on the day that is represented by the bit position.
+
     TripLeg: ## OJP
       type: object
       description: >-
@@ -3409,13 +3623,13 @@ components:
         - service
       properties:
         start:
-          $ref: "#/components/schemas/LegBoard"
+          $ref: "#/components/schemas/Board"
         intermediates:
           type: array
           items:
-            $ref: "#/components/schemas/LegIntermediate"
+            $ref: "#/components/schemas/Intermediate"
         end:
-          $ref: "#/components/schemas/LegAlight"
+          $ref: "#/components/schemas/Alight"
         service:
           $ref: "#/components/schemas/DatedJourney"
         # legAttribute:  # Out of scope
@@ -3446,13 +3660,13 @@ components:
         - service
       properties:
         start:
-          $ref: "#/components/schemas/LegBoardSpecification"
+          $ref: "#/components/schemas/BoardSpecification"
         intermediates:
           type: array
           items:
-            $ref: "#/components/schemas/LegIntermediateSpecification"
+            $ref: "#/components/schemas/IntermediateSpecification"
         end:
-          $ref: "#/components/schemas/LegAlightSpecification"
+          $ref: "#/components/schemas/AlightSpecification"
         service:
           $ref: "#/components/schemas/DatedJourney"
 
@@ -3508,7 +3722,7 @@ components:
         #   minimum: 0
         # pathGuidance:  # Out of scope
         #   $ref: "#/components/schemas/PathGuidance"
-        situationFullRef:
+        situationFullRefs:
           type: array
           items:
             $ref: "#/components/schemas/SituationFullRef"
@@ -3613,7 +3827,6 @@ components:
         - CAR_SHARING
         - CYCLE_SHARING
         - SCOOTER_SHARING
-      default: WALK
 
     TransferMode: ## OJP
       type: string
@@ -3630,7 +3843,6 @@ components:
         - CHANGE_WITHIN_VEHICLE
         - CHECK_IN
         - CHECK_OUT
-      default: WALK
 
     StopCallStatus: ## OJP
       type: object
@@ -3662,7 +3874,7 @@ components:
           type: boolean
           default: false
 
-    LegBoard: ## OJP
+    Board: ## OJP
       type: object
       description: >-
         Describes the the situation at a stop or station at which the passenger boards a Leg
@@ -3697,29 +3909,26 @@ components:
         status:
           $ref: "#/components/schemas/StopCallStatus"
 
-    LegBoardSpecification:
+    BoardSpecification:
       type: object
-      description: Minimal leg board specification.
+      description: Minimal board specification.
       required:
         - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
         - serviceDeparture
       properties:
         stopPlaceRef:
           $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        stopPlaceName:
-          type: string
-          example: Luzern
         serviceDeparture:
           description: >-
             Describes the departure situation at this leg board stop point (group of attributes
             of timetabled passing time, estimated passing time, observed passing time).
           $ref: "#/components/schemas/ServiceTime"
 
-    LegIntermediate: ## OJP
+    Intermediate: ## OJP
       type: object
       description: >-
-        Describes the situation at a stop or station that lies between the LegBoard and 
-        LegAlight stop or station including time-related information. Provided by OJP.
+        Describes the situation at a stop or station that lies between the Board and 
+        Alight stop or station including time-related information. Provided by OJP.
       #allOf:
       required:
         - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
@@ -3756,9 +3965,9 @@ components:
         status:
           $ref: "#/components/schemas/StopCallStatus"
 
-    LegIntermediateSpecification:
+    IntermediateSpecification:
       type: object
-      description: Minimal leg intermediate specification.
+      description: Minimal intermediate specification.
       required:
         - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
         - serviceArrival
@@ -3766,9 +3975,6 @@ components:
       properties:
         stopPlaceRef:
           $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        stopPlaceName:
-          type: string
-          example: Luzern
         serviceArrival:
           description: >-
             Describes the arrival situation at this leg board stop point (group of attributes
@@ -3780,7 +3986,7 @@ components:
             of timetabled passing time, estimated passing time, observed passing time).
           $ref: "#/components/schemas/ServiceTime"
 
-    LegAlight: ## OJP
+    Alight: ## OJP
       type: object
       description: >-
         Describes the situation at a stop or station at which the passenger alights from a Leg 
@@ -3815,18 +4021,15 @@ components:
         status:
           $ref: "#/components/schemas/StopCallStatus"
 
-    LegAlightSpecification:
+    AlightSpecification:
       type: object
-      description: Minimal leg alight specification
+      description: Minimal alight specification
       required:
         - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
         - serviceArrival
       properties:
         stopPlaceRef:
           $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        stopPlaceName:
-          type: string
-          example: Luzern
         serviceArrival:
           description: >-
             Describes the arrival situation at this leg board stop point (group of attributes
@@ -3890,6 +4093,7 @@ components:
           description: >-
             Reference to transport operators.
             For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
+
             As a leg can be operated by more than operator we model it as an array here.
           type: array
           items:
@@ -3994,6 +4198,7 @@ components:
             Passenger load status on vehicle. If omitted, not known. 
             Equivalent to siri:OccupancyEnumeration which describes three values: 
             "full", "seatingAvailable" and "standingAvailable".
+
     Place: ## OJP # Reduced scope
       type: object
       description: >-
@@ -4035,7 +4240,9 @@ components:
         geoPosition:
           $ref: "#/components/schemas/GeoPosition"
         _links:
-          $ref: "#/components/schemas/Link"
+          type: array
+          items:
+            $ref: "#/components/schemas/Link"
 
     Address: ## OJP # Reduced scope
       type: object
@@ -4210,80 +4417,74 @@ components:
         # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
     PlaceRef: ### OJP
-      oneOf:
-        - $ref: "#/components/schemas/StopPlaceRef"
-        - $ref: "#/components/schemas/PointOfInterestRef"
-        - $ref: "#/components/schemas/AddressRef"
-        - $ref: "#/components/schemas/FareConnectionPointRef"
-        - $ref: "#/components/schemas/GeoPosition"
+      type: object
+      additionalProperties: false
       discriminator:
-        propertyName: placeRefType
+        propertyName: objectType
+      required:
+        - objectType
+      properties:
+        objectType:
+          description: Attribute is used as discriminator for inheritance between data types.
+          type: string
 
     StopPlaceRef: ## OJP
-      type: object
       description: >-
         Reference to a Stop Place using URNs to define code.
         For UIC see UIC MERITS/TAP-TSI station codes. Provided by OJP.
-      required:
-        - stopPlaceRef
-      properties:
-        placeRefType:
-          type: string
-          enum:
+      allOf:
+        - $ref: "#/components/schemas/PlaceRef"
+        - type: object
+          properties:
+            stopPlaceRef:
+              type: string
+              example: urn:uic:stn:8503000
+            name:
+              type: string
+          required:
             - stopPlaceRef
-        stopPlaceRef:
-          type: string
-          example: urn:uic:stn:8503000
-        name:
-          type: string
 
     PointOfInterestRef: ## OJP
-      type: object
       description: >-
         Reference to a Point of Interest. Provided by OJP.
-      required:
-        - pointOfInterestRef
-      properties:
-        placeRefType:
-          type: string
-          enum:
-            - pointOfInterestRef
-        pointOfInterestRef:
-          type: string
-        name:
-          type: string
+      allOf:
+        - $ref: "#/components/schemas/PlaceRef"
+        - type: object
+          properties:
+            pointOfInterestRef:
+              type: string
+            name:
+              type: string
+          required:
+           - pointOfInterestRef
 
     AddressRef: ## OJP
-      type: object
       description: >-
         Reference to an Address.
-      required:
-        - addressRef
-      properties:
-        placeRefType:
-          type: string
-          enum:
-            - addressRef
-        addressRef:
-          type: string
-        name:
-          type: string
+      allOf:
+        - $ref: "#/components/schemas/PlaceRef"
+        - type: object
+          properties:
+            addressRef:
+              type: string
+            name:
+              type: string
+          required:
+           - addressRef
 
     FareConnectionPointRef:
-      type: object
       description: >-
         Reference to a Fare Connection Point.
-      required:
-        - fareConnectionPoint
-      properties:
-        placeRefType:
-          type: string
-          enum:
-            - fareConnectionPointRef
-        fareConnectionPoint:
-          $ref: "#/components/schemas/FareConnectionPoint"
-        name:
-          type: string
+      allOf:
+        - $ref: "#/components/schemas/PlaceRef"
+        - type: object
+          properties:
+            fareConnectionPoint:
+              $ref: "#/components/schemas/FareConnectionPoint"
+            name:
+              type: string
+          required:
+           - fareConnectionPoint
 
     ProductCategoryRef: ## OJP
       description: >-
@@ -4309,6 +4510,7 @@ components:
       description: >-
         Reference to situation message. Message details might be found in response 
         context or through other communication channels. Provided by OJP.
+
     VehicleNumber:
       type: string
       description: >-
@@ -4432,15 +4634,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PromotionCode"
-        corporateCodes:
-          type: array
-          items:
-            $ref: "#/components/schemas/CorporateCode"
         offerSearchCriteria:
           $ref: "#/components/schemas/OfferSearchCriteria"
         embed:
           description: >-
-            Influences whether referenced resources are returned in full or as references only.
+            Influences whether referenced resources are returned in full or as references only. Proposed default ALL
           type: array
           items:
             type: string
@@ -4453,7 +4651,6 @@ components:
               - TRIPOFFERS.OFFERS.OFFERPARTS
               - TRIPOFFERS.PASSENGERS
               - NONE
-          default: [ALL]
           maxItems: 5
 
     TripOffersCollectionResponse:
@@ -4493,7 +4690,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the trip offer.
           example: Trip offer for Bruxelles-Midi 2022-07-01 10:05 CET, 44 €, full flexible
@@ -4526,6 +4723,7 @@ components:
       description: >-
         Boolean-expression indicating the data that must be set in the data
         model in order to proceed to next step of the process.
+
     OfferSummary:
       type: object
       required:
@@ -4567,6 +4765,8 @@ components:
           oneOf:
             - $ref: "#/components/schemas/Offer"
             - $ref: "#/components/schemas/NonTripOffer"
+          discriminator:
+            propertyName: offerType
 
     Offer:
       description: >-
@@ -4582,7 +4782,7 @@ components:
           type: string
           enum:
             - Offer
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the Offer.
           example: Bruxelles-Midi - Paris-Nord 2022-07-01 10:05 CET, Normal Fare, 50 €
@@ -4693,7 +4893,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the booked offer.
           example: Bruxelles-Midi - Paris-Nord 2022-07-01 10:05 CET, Normal Fare, 50 €
@@ -4759,10 +4959,10 @@ components:
           $ref: "#/components/schemas/Price"
         pricingMode:
           type: string
+          description: Proposed default INDIVIDUAL
           enum:
             - COLLECTIVE
             - INDIVIDUAL
-          default: INDIVIDUAL
         appliedReductions:
           type: array
           items:
@@ -4771,10 +4971,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PromotionCode"
-        appliedCoporateCodes:
-          type: array
-          items:
-            $ref: "#/components/schemas/CorporateCode"
         passengerIds:
           type: array
           items:
@@ -4847,6 +5043,7 @@ components:
                   type: string
       required:
         - price
+        - passengerIds
         - validFrom
         - refundable
         - exchangeable
@@ -4902,7 +5099,7 @@ components:
         id:
           type: string
           description: id of the product
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the product.
           example: TGV Lyria Loisir 2
@@ -5132,7 +5329,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the fee.
           example: Reservierungsentgelt, 5 €
@@ -5169,9 +5366,6 @@ components:
 
     PromotionCode:
       type: object
-      required:
-        - code
-        - issuer
       description: >-
         The promotion code is a token that reduces the price at POST booking time OR
         Token that reduces the price at POST trip-offer-collection time OR
@@ -5186,30 +5380,6 @@ components:
           description: >-
             The party that issues the promotion code, in case of a railway it's its RICS code
           type: string
-          
-     CorporateCode:
-      type: object
-      description: >-
-        The corporate code is a token that reduces the price that reduces the price at POST trip-offer-collection time OR
-        trip-offer-request or Token to receive offers that are not available without it, associated with an agreement
-        between allocator/carrier and a corporate client
-      required:
-        - code
-        - issuer
-      properties:
-        code:
-          description: >-
-            The code issued by the referenced company
-          type: string
-          example: 123456
-        issuer:
-          $ref: "#/components/schemas/Company"
-        beneficiary:
-          description: >-
-            The name of the party that benefits from the corporate code, intended to be used to present to the end user
-          type: string
-          example: Siemens
-          $ref: "#/components/schemas/Company"
 
     OfferPartReference:
       type: object
@@ -5221,7 +5391,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the offer part reference.
           example: ICE Wifi on Board of train ICE 3, 2022-07-11
@@ -5249,10 +5419,11 @@ components:
             $ref: "#/components/schemas/PromotionCode"
         embed:
           description: >-
-            Influences whether referenced resources are returned in full or as references only.
+            Influences whether referenced resources are returned in full or as references only. 
           type: array
           items:
             type: string
+            description: Proposed default ALL
             enum:
               - ALL
               - BOOKEDOFFERS
@@ -5262,7 +5433,6 @@ components:
               - PASSENGERS
               - REFUND_PROPOSITIONS
               - NONE
-          default: [ALL]
           maxItems: 6
 
     OfferSelection:
@@ -5338,7 +5508,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the booking.
           example: Booking 2345 for Clemens Gantert
@@ -5391,10 +5561,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ExchangeOperation"
-        paymentMethods:
-          type: array
-          items: 
-            $ref: "#/components/schemas/PaymentMethod"
         _links:
           type: array
           items:
@@ -5425,6 +5591,8 @@ components:
         Allows setting the required fulfillment type, e.g. value paper
         or e-ticket and preferred fulfillment media. 
         The latter is optional and relevant in some cases only.
+      required:
+        - exchangeOffers
       properties:
         promotionCodes:
           type: array
@@ -5438,13 +5606,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/OfferSelection"
-        paymentMethods:
-          description: >-
-            Methods of payment used by the customer to the distributor. In case of voucher payment, 
-            the amount of the voucher is not required in input.
-          type: array
-          items:
-             $ref: "#/components/schemas/PaymentMethod"
 
     FulfillmentOption:
       type: object
@@ -5470,34 +5631,6 @@ components:
             properties:
               fulfilledFulfillmentId:
                 type: string
-
-    FulfillmentPatch:
-      type: object
-      description: >-
-         an available fulfillment to status USABLE.
-      properties:
-        usage:
-          $ref: "#/components/schemas/FulfillmentUsage"
-                
-    FulfillmentUsage:             
-      type: object
-      description: >-
-         change an available fulfillment by adding the parameters for the usage to status FULFILLED.    
-      properties:
-        startOfUsage:
-          type: string
-          format: date-time
-        travelDates:
-          type: array
-          items:
-            type: string
-            format: date
-        fromPlace:
-          $ref: "#/components/schemas/PlaceRef"
-        selectedZoneIds:
-          type: array
-          items:
-            type: string
 
     FulfillmentsResponse:
       type: object
@@ -5530,14 +5663,12 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the fulfillment.
           example: e-ticket 12345
         status:
           $ref: "#/components/schemas/FulfillmentStatus"
-        availableUsage:
-          $ref: "#/components/schemas/AvailableFulfillmentUsage"
         controlNumber:
           type: string
           description: Ticket Control Number.
@@ -5560,67 +5691,10 @@ components:
           items:
             $ref: "#/components/schemas/Link"
 
-    AvailableFulfillmentUsage:
-        description: >- 
-          parameters to be used to change the status of a fulfillment in status AVAILABLE to FULFILLED so it can be used by the passenger.
-        type: object
-        properties:
-          travelValidityRanges:
-            description:  >- 
-               ranges for the start of validity to be used in a patch for available fufillments. (e.g. a 1 hour ticket not available during peak hours in the morning and afternoon)
-            type: array
-            items:  
-              type: object
-              properties:
-                from: 
-                  type: string
-                  format: date-time
-                until:
-                  type: string
-                  format: date-time
-          travelDates:
-            description:  >- 
-               travel dates that can be selected. Note: date only is used to cover properly the case of passes including multiple time zones.
-            type: array
-            items:
-               type: string
-               format: date 
-          fromPlaceRequired:
-            description: >-
-              indication whether a starting place for the ticket must be provided.
-            type: boolean
-            default: false
-          maxAvailableZones:
-            description: >-
-              upper limit to the numver of selected zones.          
-            type: integer
-            format: int32
-          availableZones:
-            description: >-
-              zones that can be selected for the fulfillment. Zone ids are defined in the context of a fare provider. TODO: add masterdata service on ZoneDefinition (ZoneDefinition is included in OSDM offline data)
-            type: array
-            items:
-              type: object
-              properties:
-                provider:
-                  $ref: "#/components/schemas/Company"
-                id: 
-                  type: string
-                name: 
-                  type: string
-              required:
-                - provider
-                - id
-
     FulfillmentStatus:
-      description: >-
-        Individual fulfillments of a multi journey booking need an separate patch to create the usable fulfilment in status FULFILLED before they are in an intermediate state AVAILABLE where they don't provide a document for travel. Fulfillments can be ON_HOLD in case they are booked but not yet available (e.g. a booking providing 2 journey per week) or passed in case the fulfillment was not patched for usage within the required time.
       type: string
       enum:
         - CONFIRMED
-        - AVAILABLE
-        - ON_HOLD
-        - EXPIRED
         - FULFILLED
         - CHECKEDIN
         - REFUNDED
@@ -5660,6 +5734,7 @@ components:
           description: >-
             Physical format of the document provided in the content field in Mime-Type format, e.g. 
             application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
+
     FulfillmentItem:
       type: object
       description: >-
@@ -5754,7 +5829,7 @@ components:
         id:
           type: string
           description: id of the refund offer
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the refund offer.
           example: Refund Offer for Paris-Barcelona Andre Dupont 2022-07-23
@@ -5813,6 +5888,7 @@ components:
           description: >-
             Indicates for passes the date taken as reference to compute possible partial refund. It is also the date taken
             as reference to invalidate the pass partially refunded.
+
     RefundOfferConfirm:
       type: object
       description: >-
@@ -5897,7 +5973,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the exchange offer
           example: Exchange offer for Bruxelles-Midi 2022-07-01 10:05 CET
@@ -6032,10 +6108,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PromotionCode"
-        corporateCodes:
-          type: array
-          items:
-            $ref: "#/components/schemas/CorporateCode"
         requestedFulfillmentOptions:
           type: array
           items:
@@ -6048,11 +6120,11 @@ components:
           type: array
           items:
             type: string
+            description: Proposed default ALL
             enum:
               - OFFERPARTS
               - NONE
               - ALL
-          default: [ALL]
           maxItems: 1
 
     OffersCollectionResponse:
@@ -6088,7 +6160,7 @@ components:
           type: string
           enum:
             - NonTripOffer
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the offer.
           example: Super Saver One Day Pass
@@ -6185,7 +6257,7 @@ components:
         id:
           type: string
           description: id of this coachLayout on this server
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the coach layout.
           example: Coach 3 in train T-122
@@ -6364,6 +6436,7 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
+
     PlacePreferencesBundle:
       type: object
       description: >-
@@ -6474,6 +6547,7 @@ components:
           description: >-
             Physical format of the document provided in the content field in Mime-Type format, e.g. 
             application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
+
     ClaimedJourneyDetails:
       type: object
       properties:
@@ -6573,7 +6647,7 @@ components:
           x-extensible-enum:
             - INITIATED
             - EVALUATING
-            - DECidED
+            - DECIDED
             - SETTLED
         customerComplaint:
           $ref: "#/components/schemas/CustomerComplaint"
@@ -6586,7 +6660,9 @@ components:
         decision:
           $ref: "#/components/schemas/ComplaintDecision"
         _links:
-          $ref: "#/components/schemas/Link"
+          type: array
+          items:
+            $ref: "#/components/schemas/Link"
 
     ComplaintDecision:
       type: object
@@ -6660,59 +6736,9 @@ components:
           type: boolean
           default: false
         _links:
-          $ref: "#/components/schemas/Link"
-
-    ZoneCollectionResponse:
-      type: object
-      properties:
-        warnings:
-          $ref: "#/components/schemas/WarningCollection"
-        zoneDelivery:
-          $ref: "#/components/schemas/ZonesDelivery"
-
-    ZonesDelivery:
-      type: object
-      description: Delivery of a list of reduction cards.
-      properties:
-        deliveryDate:
-          description: date of the assembly of the zone data set
-          type: string
-          format: date-time
-        reductionCards:
           type: array
           items:
-            $ref: "#/components/schemas/ZoneDefinition"
-
-    ZoneDefinition:
-      description: >-
-        definition of a zone used to define regional validity. The area of the zone can be defined via a geo-polygon, a complete list of all contained stations or area codes from the NUTS code list. The carrier is either the carrier or transport authority responsible for the definition.
-      type: object 
-      properties:
-        carrier: 
-          $ref: "#/components/schemas/Company"
-        id: 
-          type: string
-        name: 
-          type: string
-        polygon: 
-          $ref: "#/components/schemas/Polygon"
-        places: 
-          type: array
-          items: 
-            $ref: "#/components/schemas/PlaceRef"
-        nutsCodes: 
-          type: array
-          items:
-            type: string
-      required: 
-         - carrier
-         - id
-         
-         
-         
-         
-         
-         
+            $ref: "#/components/schemas/Link"
 
     #### Fare-specific elements begin
 
@@ -7074,6 +7100,7 @@ components:
       description: >-
         Unit to allocate trips in a multi-trip fare. Trips can be allocated per day (e.g. Eurail) or per 
         duration (e.g. multiples of a duration unit to cover the trip) or as single trips (e.g. carnet))
+
         NONE: Individual trips don't need to be allocated. 
         TRIP: allocation per individual trip. 
         DAY: The allocation is per travel day.
@@ -7319,22 +7346,41 @@ components:
           items:
             $ref: "#/components/schemas/GeoPosition"
 
+    ViaStations:
+      type: object
+      properties:
+        alternativeRoute:
+          type: array
+          items:
+            $ref: "#/components/schemas/ViaStations"
+        carrierConstraint:
+          $ref: "#/components/schemas/CarrierConstraint"
+        route:
+          type: array
+          items:
+            $ref: "#/components/schemas/ViaStations"
+        serviceConstraint:
+          $ref: "#/components/schemas/ServiceConstraint"
+        station:
+          $ref: "#/components/schemas/StopPlace" # EXT Changed from StopPoint
+        fareReferenceStation:
+          $ref: "#/components/schemas/FareReferenceStation"
+
     Route:
       description: >-
-        route description including the first and last real stopPoint
+        Route description including the first and last real stopPoint
       properties:  
         routeItem:
            $ref: "#/components/schemas/RouteItem"
         routeItemList:
-          description: >-
-            list of route items referenced within the 
+          description: list of route items referenced within the list
           type: array
           items: 
             $ref: "#/components/schemas/RouteItem"
 
     RouteItem:
       description: >-
-        items to compose routes (Note - replaced viaStation, content compliant with viaStation in IRS 90918-4 and 90918-9)
+        Items to compose routes (Note - replaced viaStation, content compliant with viaStation in IRS 90918-4 and 90918-9)
       type: object
       properties:
         alternativeRouteItemIndices:
@@ -7468,13 +7514,15 @@ components:
 
     FareConnectionPoint:
       type: object
+      additionalProperties: false
       description: >-
         Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
-        A legacy border point code (id) might be provided as an additional code within the stations (code list BORDER_POINT provided in URN). 
-        In case the connection point is a real station this station is indicated. 
-        In case the connection point is between stations for each side of the border real stations must be provided. 
+        A legacy border point code (id) might be provided as an additional code within the stations (code list BORDER_POINT provided in URN).
+        In case the connection point is a real station this station is indicated.
+        In case the connection point is between stations for each side of the border real stations must be provided.
         Multiple sets of station can be provided in the rare case that the connection point connects more than two station (A-B and A-C).
         Multiple stations within a set at one side of the border might be provided in case of changes (new stations build near the border). 
+        
         Providing the UIC code for the station is mandatory.
       required:
         - stationSets
@@ -7484,9 +7532,20 @@ components:
         stationSets:
           type: array
           items:
-            type: array
-            items:
-              $ref: "#/components/schemas/StopPlaceRef" # EXT Changed from StopPoint
+            $ref: "#/components/schemas/StationSet"
+          minItems: 1
+
+    StationSet:
+      type: object
+      additionalProperties: false
+      required:
+        - stations
+      properties:
+        stations:
+          type: array
+          items:
+            $ref: "#/components/schemas/StopPlaceRef"
+          minItems: 1
 
     TrainValidity:
       type: object
@@ -7522,10 +7581,10 @@ components:
             $ref: "#/components/schemas/ServiceBrandCode"
         scope:
           type: string
+          description: Proposed default BOARDING
           enum:
             - BOARDING
             - ARRIVAL
-          default: BOARDING
       additionalProperties: false
 
     ##### Fare-specific elements end
@@ -7534,25 +7593,23 @@ components:
     ## Referenced by distributor as well as allocator part
 
     GeoPosition:
-      type: object
       description: >-
         WGS84 coordinates position. Provided by OJP.
-      required:
-        - latitude
-        - longitude
-      properties:
-        placeRefType:
-          type: string
-          enum:
-            - stopPlaceRef
-        longitude:
-          $ref: "#/components/schemas/Longitude"
-        latitude:
-          $ref: "#/components/schemas/Latitude"
-        # altitude:   # Out of scope
-        #   $ref: "#/components/schemas/Altitude"
-        # precision:   # Out of scope
-        #   $ref: "#/components/schemas/Precision"
+      allOf:
+        - $ref: "#/components/schemas/PlaceRef"
+        - type: object
+          properties:
+            longitude:
+              $ref: "#/components/schemas/Longitude"
+            latitude:
+              $ref: "#/components/schemas/Latitude"
+#           altitude:   # Out of scope
+#             $ref: "#/components/schemas/Altitude"
+#           precision:   # Out of scope
+#             $ref: "#/components/schemas/Precision"
+          required:
+            - latitude
+            - longitude
 
     Longitude:
       type: number
@@ -7587,29 +7644,30 @@ components:
 
     Link:
       type: object
+      additionalProperties: false
       description: >-
         The underlying system may provide links for pagination of links pointing on 
         further information (such as HTML download links, web sites or extended APIs).
         Mechanism to add flexible extensions specific to an underlying system. Implemented
         the JSON-HAL specification.
-      additionalProperties:
-        $ref: "#/components/schemas/LinkObject"
-
-    LinkObject:
-      type: object
       required:
+        - rel
         - href
       properties:
-        type:
+        rel:
           type: string
-          description: >-
-            Hint to indicate the media type expected when dereferencing the target resource.
-          example: application/json
+          description: the "rel" field in HATEOAS navigation.
+          example: "self"
         href:
           type: string
           format: uri
           description: A URI
           example: "https://api.osdm.com/trips-collections/12345?cursor=2"
+        type:
+          type: string
+          description: >-
+            Hint to indicate the media type expected when dereferencing the target resource.
+          example: application/json
 
     Translation:
       type: object
@@ -7876,6 +7934,7 @@ components:
       type: string
       description: >-
         Accommodation type definition out of the Accommodation Sub Type Code List
+
     SelectedPlaceOption:
       type: object
       description: >-
@@ -8133,7 +8192,9 @@ components:
         details:
           $ref: "#/components/schemas/PersonDetail"
         _links:
-          $ref: "#/components/schemas/Link"
+          type: array
+          items:
+            $ref: "#/components/schemas/Link"
     
     PurchaserSpecification:
       type: object
@@ -8169,7 +8230,7 @@ components:
           type: string
           description: >-
             Id of the passenger resource in case service to patch a single passenger is provided.
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the passenger.
           example: Andreas Schlapbach
@@ -8248,6 +8309,7 @@ components:
       description: >-
         Passenger type according to UIC passenger, i.e. passenger type list.
         See https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
+        Proposed default PERSON
       x-extensible-enum:
         - DOG
         - PET
@@ -8263,7 +8325,6 @@ components:
         - FAMILY_CHILD
         - WHEELCHAIR
       example: PERSON
-      default: PERSON
 
     PRMNeedType:
       type: string
@@ -8286,7 +8347,7 @@ components:
         preferredLanguage:
           type: string
           description: ISO-639-1 language code
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the person.
           example: Andreas Schlapbach, Riedweg 4, 3074 Bern, schlpbch@gmail.com
@@ -8498,47 +8559,11 @@ components:
 
     CardType:
       type: string
+      description: Proposed default REDUCTION_CARD
       x-extensible-enum:
         - REDUCTION_CARD
         - LOYALTY_CARD
         - CHIP_CARD
         - PASS
-      default: REDUCTION_CARD
-    
-    PaymentType:
-      type: string
-      x-extensible-enum:
-        - CASH
-        - INVOICE
-        - VOUCHER
-        - CARD
-        - E_PAYMENT
-        - DIRECT_DEBIT
-    
-    VoucherInformation:
-      type: object
-      required:
-        - code
-        - issuer
-      properties:
-        code: 
-          description: voucher code provided by the issuer
-          type: string
-        issuer: 
-          $ref: "#/components/schemas/Company"
-
-    PaymentMethod:
-      type: object
-      description: >-
-        Method of payment used by the customer to the distributor. On input of voucher the money attribute will not be present
-      required:
-        - type
-      properties:
-        type:
-          $ref: "#/components/schemas/PaymentType"
-        voucherInformation:
-          $ref: "#/components/schemas/VoucherInformation"
-        money:
-          $ref: "#/components/schemas/Price"
 
     #### Common elements end
