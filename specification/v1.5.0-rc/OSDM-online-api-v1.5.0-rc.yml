@@ -4432,6 +4432,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PromotionCode"
+        corporateCodes:
+          type: array
+          items:
+            $ref: "#/components/schemas/CorporateCode"
         offerSearchCriteria:
           $ref: "#/components/schemas/OfferSearchCriteria"
         embed:
@@ -4767,6 +4771,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PromotionCode"
+        appliedCoporateCodes:
+          type: array
+          items:
+            $ref: "#/components/schemas/CorporateCode"
         passengerIds:
           type: array
           items:
@@ -5177,6 +5185,30 @@ components:
         issuer:
           description: >-
             The party that issues the promotion code, in case of a railway it's its RICS code
+          type: string
+          
+     CorporateCode:
+      type: object
+      description: >-
+        The corporate code is a token that reduces the price that reduces the price at POST trip-offer-collection time OR
+        trip-offer-request or Token to receive offers that are not available without it, associated with an agreement
+        between allocator/carrier and a corporate client
+      required:
+        - code
+        - issuer
+      properties:
+        code:
+          description: >-
+            The code issued by the referenced company
+          type: string
+          example: 123456
+        issuer:
+          $ref: "#/components/schemas/Company"
+        beneficiary:
+          description: >-
+            The name of the party that benefits from the corporate code, intended to be used to present to the end user
+          type: string
+          example: Siemens
           $ref: "#/components/schemas/Company"
 
     OfferPartReference:
@@ -6000,6 +6032,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PromotionCode"
+        corporateCodes:
+          type: array
+          items:
+            $ref: "#/components/schemas/CorporateCode"
         requestedFulfillmentOptions:
           type: array
           items:
