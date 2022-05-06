@@ -941,7 +941,6 @@ Additional codelists can be defined by implementers. The codelist name should th
  |`RESERVATION_RESTRICTED`	 | 	Reservation allowed for some classes or products	 | 	B.4.7037	 | 	22	 | 
  |`RESERVATION_SECOND`	 | 	Reservation in second class only	 | 	B.4.7037	 | 	23	 | 
  |`NOT_AVAILABLE`	 | 	Not available	 | 	B.4.7037	 | 	24	 | 
- |`NO_BOOKING`	 | 	The product is not bookable	 | 	B.4.7037	 | 	25	 | 
  |`BOOKABLE_INT`	 | 	Bookable through an international reservation system	 | 	B.4.7037	 | 	26	 | 
  |`BOOKABLE_NAT`	 | 	Bookable through a national reservation system	 | 	B.4.7037	 | 	27	 | 
  |`BOOKABLE_LOCAL`	 | 	Bookable manually at Rus selling point	 | 	B.4.7037	 | 	28	 | 
@@ -953,25 +952,16 @@ Additional codelists can be defined by implementers. The codelist name should th
  |`LUNCH`	 | 	Lunch	 | 	B.4.7161	 | 	8	 | 
  |`UNLOADING`	 | 	Unloading of vehicles from a train of accompanied motorcars	 | 	B.4.7161	 | 	9	 | 
  |`CHILDREN_SERVICE`	 | 	Services for children	 | 	B.4.7161	 | 	11	 | 
- |`COLD_BUFFET`	 | 	Cold buffet service	 | 	B.4.7161	 | 	21	 | 
- |`RESTAURANT_FIRST`	 | 	Restaurant service in 1st class only	 | 	B.4.7161	 | 	22	 | 
- |`HOT_BUFFET`	 | 	Hot buffet service	 | 	B.4.7161	 | 	23	 | 
- |`MEAL_INCLUDED_FIRST`	 | 	Meal service included for 1st class passengers	 | 	B.4.7161	 | 	24	 | 
- |`TROLLEY_FOOD_SERVICE`	 | 	Trolley service (beverage and food cart)	 | 	B.4.7161	 | 	25	 | 
- |`SNACK`	 | 	Snack	 | 	B.4.7161	 | 	26	 | 
  |`DISABLED_SERVICES`	 | 	Services for disabled persons	 | 	B.4.7161	 | 	27	 | 
  |`MOVIES`	 | 	Movies	 | 	B.4.7161	 | 	28	 | 
  |`BUSINESS_SERVICES`	 | 	Services for business people	 | 	B.4.7161	 | 	29	 | 
  |`NURSERY_SERVICE`	 | 	Nursery service	 | 	B.4.7161	 | 	30	 | 
- |`BUFFET`	 | 	Buffet	 | 	B.4.7161	 | 	31	 | 
  |`ARMY_FAMILY_SERVICES`	 | 	Special services for army families	 | 	B.4.7161	 | 	32	 | 
  |`BOARDING_POSSIBLE_2H`	 | 	Boarding is possible 2 hours before departure	 | 	B.4.7161	 | 	33	 | 
  |`ALIGHTING_POSSIBLE_2H`	 | 	Alighting is possible up to 2 hours after arrival	 | 	B.4.7161	 | 	34	 | 
  |`BOARDING_POSSIBLE_30M`	 | 	Boarding is possible 30 minutes before departure	 | 	B.4.7161	 | 	35	 | 
  |`ALIGHTING_POSSIBLE_30M`	 | 	Alighting is possible up to 30 minutes after arrival	 | 	B.4.7161	 | 	36	 | 
  |`POSTAL_SERVICES`	 | 	Postal services available	 | 	B.4.7161	 | 	37	 | 
- |`MEAL_AT_SEAT`	 | 	Meal is provided at the seat	 | 	B.4.7161	 | 	38	 | 
- |`MEAL_SELF_SERVICE`	 | 	Self service meals	 | 	B.4.7161	 | 	39	 | 
  |`OVERNIGHT_STAY_ALLOWED`	 | 	Overnight stay possible on board	 | 	B.4.7161	 | 	40	 | 
  |`LUGGAGE_TRANSFER_OFFERED`	 | 	Luggage transport offered	 | 	B.4.7161	 | 	41	 | 
  |`LUGGAGE_TRANSFER_NOT_OFFERED`	 | 	Luggage transport is not offered 	 | 	B.4.7161	 | 	42	 | 
@@ -981,23 +971,40 @@ Additional codelists can be defined by implementers. The codelist name should th
  |`WIFI_FREE`	 | 	Free WiFi service on board available	 | 	B.4.7161	 | 	46	 | 
  |`WIFI_OFFERED`	 | 	WiFi service on board available	 | 	B.4.7161	 | 	47	 | 
  |`WARNING_STRIKE`	 | 	Warning! Service may be affected by strike action	 | 	B.4.7161	 | 	48	 | 
- | 	N/A	 | 	First-class sleepers	 | 	B.4.9039	 | 	2	 | 
- | 	N/A	 | 	Standard class (second class) sleepers	 | 	B.4.9039	 | 	3	 | 
- | 	N/A	 | 	First-class seats	 | 	B.4.9039	 | 	4	 | 
- | 	N/A	 | 	Second-class seats Also: standard, etc.	 | 	B.4.9039	 | 	5	 | 
- | 	N/A	 | 	First-class couchettes	 | 	B.4.9039	 | 	6	 | 
- | 	N/A	 | 	Second-class couchettes	 | 	B.4.9039	 | 	7	 | 
- | 	N/A	 | 	Sleeperette Sleeperette or reclining seat	 | 	B.4.9039	 | 	8	 | 
- |`RESTAURANT`	 | 	Restaurant facility	 | 	B.4.9039	 | 	9	 | 
- | 	N/A	 | 	First-class sleeper, single	 | 	B.4.9039	 | 	11	 | 
- | 	N/A	 | 	First-class sleeper, special	 | 	B.4.9039	 | 	12	 | 
- | 	N/A	 | 	First-class sleeper, double	 | 	B.4.9039	 | 	13	 | 
- |`VEHICLE_TRAINSPORT`	 | 	Facilities for vehicle transport etc. Not bicycles. Cars, boats, trailers, motorbikes	 | 	B.4.9039	 | 	14	 | 
- | 	N/A	 | 	Second-class sleeper, T2 (two-bed compartment) 0	 | 	B.4.9039	 | 	15	 | 
- | 	N/A	 | 	Second-class sleeper, T3 Second-class sleeper, T3 (three-bed compartment) 0	 | 	B.4.9039	 | 	16	 | 
- | 	N/A	 | 	Second-class sleeper T4 Second-class sleeper, T4 (four-bed compartment) 0	 | 	B.4.9039	 | 	17	 | 
- | 	N/A	 | 	First-class sleeper, single with shower 0	 | 	B.4.9039	 | 	18	 | 
- | N/A	 | 	First-class sleeper, double with shower 0	 | 	B.4.9039	 | 	19	 | 
+ |`SLEEPER_FIRST` | 	First-class sleepers	 | 	B.4.9039	 | 	2	 | 
+ |`SLEEPER_STANDARD' | 	Standard class (second class) sleepers	 | 	B.4.9039	 | 	3	 | 
+ |`SLEEPER`|sleepers | 	| 		 | 
+ |`SEAT_FIRST`| 	First-class seats	 | 	B.4.9039	 | 	4	 | 
+ |`SEAT_SECOND`	 | 	Second-class seats Also: standard, etc.	 | 	B.4.9039	 | 	5	 | 
+ |`SEAT` | seats ||| 
+ |`SLEEPERETTE` | 	Sleeperette Sleeperette or reclining seat	 | 	B.4.9039	 | 	8	 | 
+ |`SLEEPER_SINGLE` | 	sleeper, single	 | 	| 		 | 
+ |`SLEEPER_SPECIAL` | 	sleeper, special	 | | 	 | 
+ |`SLEEPER_DOUBLE`| 	sleeper, double	 | 	| 	 | 
+ | N/A | 	First-class sleeper, single	 | 	B.4.9039	 | 	11	 | 
+ | N/A | 	First-class sleeper, special	 | 	B.4.9039	 | 	12	 | 
+ | N/A | 	First-class sleeper, double	 | 	B.4.9039	 | 	13	 | 
+ |`SLEEPER_T2` | Sleeper, T2 (two-bed compartment) 0	 | 	 | 	 |
+ |`SLEEPER_T3` | Sleeper, T3 (three bedcompartment) 0	 | 	|  | 
+ |`SLEEPER_T4` | Sleeper, T4 (four-bed compartment) 0	 | 	|  | 
+ | N/A | Sleeper, T3 Second-class sleeper, T3 (three-bed compartment) 0	 | 	B.4.9039	 | 	16	 | 
+ | N/A | Sleeper T4 Second-class sleeper, T4 (four-bed compartment) 0	 | 	B.4.9039	 | 	17	 | 
+ | N/A | 	Second class sleeper for two	 | 	B.4.9039	 | 	60	 | 
+ | N/A | 	Second-class sleeper, T2 (two-bed compartment) 0	 | 	B.4.9039	 | 	15	 |
+ | N/A	| 	First-class sleeper, single with shower 0	 | 	B.4.9039	 | 	18	 | 
+ | N/A	| 	First-class sleeper, double with shower 0	 | 	B.4.9039	 | 	19	 | 
+ |`SLEEPER_SINGLE_SHOWER_WC`	 | 	First-class sleeper, single with shower and WC 	 | 	B.4.9039	 | 	57	 | 
+ |`SLEEPER_DOUBLE_SHOWER_WC`	 | 	First-class sleeper, double with shower and WC 	 | 	B.4.9039	 | 	58	 | 
+ |`SLEEPER_T2_SHOWER_WC` | 	Second class sleeper for two with shower and toilets	 | 	B.4.9039	 | 	61	 | 
+ |`SLEEPER_T3_SHOWER_WC` | 	Second class sleeper, T3, shower, WC	 | 	B.4.9039	 | 	59	 | 
+ |`COUCHETTE` | 	 | 	| 		 | 
+ | N/A | 	First-class couchettes	 | 	B.4.9039	 | 	6	 | 
+ | N/A | 	Second-class couchettes	 | 	B.4.9039	 | 	7	 | 
+ |`COUCHETTE_2` | 	Second class compartment with 2 couchettes	 | 	B.4.9039	 | 	62	 | 
+ |`COUCHETTE_4` | 	Second class compartment with 4 couchettes 	 | 	B.4.9039	 | 	63	 | 
+ |`COUCHETTE_6` | 	Second class compartment with 6 couchettes 	 | 	B.4.9039	 | 	64	 | 
+ |`COUCHETTE_WHEELCHAIR` | 	Second class couchette with wheelchair space 	 | 	B.4.9039	 | 	65	 | 
+ |`VEHICLE_TRAINSPORT`	| 	Facilities for vehicle transport etc. Not bicycles. Cars,|`SEAT` | seats ||| boats, trailers, motorbikes	 | 	B.4.9039	 | 	14	 | 
  |`NON_SMOKER`	 | 	The travel service is non-smoking	 | 	B.4.9039	 | 	20	 | 
  |`DISABLED_FACILITIES`	 | 	Facilities for heavily disabled persons available	 | 	B.4.9039	 | 	21	 | 
  |`BABY_ROOM`	 | 	Baby care facilities available	 | 	B.4.9039	 | 	24	 | 
@@ -1009,25 +1016,27 @@ Additional codelists can be defined by implementers. The codelist name should th
  |`TELEPHONE`	 | 	Telephone service is available	 | 	B.4.9039	 | 	44	 | 
  |`POWER`	 | 	Service provides power supply sockets	 | 	B.4.9039	 | 	45	 | 
  |`PULLMAN`	 | 	Pullman car seats	 | 	B.4.9039	 | 	46	 | 
- |`BAR`	 | 	A bar is available	 | 	B.4.9039	 | 	47	 | 
  |`FAMILY_COMPARTMENTS`	 | 	Family compartment(s) available	 | 	B.4.9039	 | 	48	 | 
  |`BUFFET_MACHINE`	 | 	Buffet machine available	 | 	B.4.9039	 | 	50	 | 
- | 	N/A	 | 	Premium class A class with comfort level higher than first class Business, etc Includes Comfort, Club, Pullman	 | 	B.4.9039	 | 	54	 | 
- | 	N/A	 | 	Preferente Spanish first class on long distance trains RENFE	 | 	B.4.9039	 | 	55	 | 
- | 	N/A	 | 	Turista Spanish second class on long distance trains RENFE	 | 	B.4.9039	 | 	56	 | 
- | 	N/A	 | 	First-class sleeper, single with shower and WC RENFE	 | 	B.4.9039	 | 	57	 | 
- | 	N/A	 | 	First-class sleeper, double with shower and WC RENFE	 | 	B.4.9039	 | 	58	 | 
- | 	N/A	 | 	Second class sleeper, T3, shower, WC	 | 	B.4.9039	 | 	59	 | 
- | 	N/A	 | 	Second class sleeper for two	 | 	B.4.9039	 | 	60	 | 
- | 	N/A	 | 	Second class sleeper for two with shower and toilets	 | 	B.4.9039	 | 	61	 | 
- | 	N/A	 | 	Second class compartment with 2 couchettes	 | 	B.4.9039	 | 	62	 | 
- | 	N/A	 | 	Second class compartment with 4 couchettes 	 | 	B.4.9039	 | 	63	 | 
- | 	N/A	 | 	Second class compartment with 6 couchettes 	 | 	B.4.9039	 | 	64	 | 
- | 	N/A	 | 	Second class couchette with wheelchair space 	 | 	B.4.9039	 | 	65	 | 
- | 	N/A	 | 	Executive class A class with comfort level higher than first class Trenitalia 	 | 	B.4.9039	 | 	66	 | 
- | 	N/A	 | 	Business class First class Trenitalia 	 | 	B.4.9039	 | 	67	 | 
- | 	N/A	 | 	Premium class A second class with comfort level higher than normal second class Trenitalia 	 | 	B.4.9039	 | 	68	 | 
- | 	N/A	 | 	Standard class Trenitalia’s normal second class Trenitalia 	 | 	B.4.9039	 | 	69	 | 
+ |`PREMIUM` | 	Premium class A class with comfort level higher than first class Business, etc Includes Comfort, Club, Pullman	 | 	B.4.9039	 | 	54	 | 
+ |`PREFERENTE`	 | 	Preferente Spanish first class on long distance trains  | 	B.4.9039	 | 	55	 | 
+ |`TURISTA` | 	Turista Spanish second class on long distance trains | 	B.4.9039	 | 	56	 | 
+ |`EXECUTIVE` | 	Executive class A class with comfort level higher than first class Trenitalia 	 | 	B.4.9039	 | 	66	 | 
+ |`BUSINESS` | 	Business class First class Trenitalia 	 | 	B.4.9039	 | 	67	 | 
+ |`PREMIUM`	| 	Premium class A second class with comfort level higher than normal second class Trenitalia 	 | 	B.4.9039	 | 	68	 | 
+ |`STANDARD` | 	Standard class Trenitalia’s normal second class Trenitalia 	 | 	B.4.9039	 | 	69	 | 
+ |`RESTAURANT`	 | 	Restaurant facility	 | 	 | 	 | 
+ |`BAR`	 | 	A bar is available	 | 	B.4.9039	 | 	47	 | 
+ | N/A  | 	Restaurant service in 1st class only	 | 	B.4.7161	 | 	22	 | 
+ |`COLD_BUFFET`	 | 	Cold buffet service	 | 	B.4.7161	 | 	21	 | 
+ |`HOT_BUFFET`	 | 	Hot buffet service	 | 	B.4.7161	 | 	23	 | 
+ |`MEAL_INCLUDED`	 | 	Meal service included  | 	 | 	 | 
+ |`BUFFET` | 	Buffet	 | 	B.4.7161	 | 	31	 | 
+ |`MEAL_AT_SEAT`	| 	Meal is provided at the seat	 | 	B.4.7161	 | 	38	 | 
+ |`MEAL_SELF_SERVICE` | 	Self service meals	 | 	B.4.7161	 | 	39	 | 
+ |`TROLLEY_FOOD_SERVICE`	| 	Trolley service (beverage and food cart)	 | 	B.4.7161	 | 	25	 | 
+ |`SNACK`	 | 	Snack	 | 	B.4.7161	 | 	26	 | 
+ | N/A | 	Meal service included for 1st class passengers	 | 	B.4.7161	 | 	24	 | 
  |`NO_CLASS`	 | 	Unified class For services with no class differentiation. A service with only one class UIC 	 | 	B.4.9039	 | 	70	 | 
  |`MASK_MEDI_GRADE`	 | 	Medical-grade masks must be worn 	 | 	B.4.9039	 | 	71	 | 
  |`MASK`	 | 	Mask obligation according to legal regulation Mask obligation according to legal regulation 	 | 	B.4.9039	 | 	72	 | 
@@ -1036,6 +1045,11 @@ Additional codelists can be defined by implementers. The codelist name should th
  | 	N/A	 | 	Bus connection Bus connections available Used only in TSDUPD 	 | 	B.4.9039	 | 	103	 | 
  | 	N/A	 | 	Tram connection Tram connections available Used only in TSDUPD 	 | 	B.4.9039	 | 	104	 | 
  | 	N/A	 | 	2nd Class couchette five beds C5 2nd Class couchette five beds C5 DB Nachtzug 	 | 	B.4.9039	 | 	105	 | 
+ |`NO_BOOKING`	 | 	The product is not bookable	 | 	B.4.7037	 | 	25	 | 
+ |`BOOKING_ON_BOARD_ONLY` | Booking is possible on board of the vehicle only		 |  | 	 | 
+ |`BOOKING_ON_LOCAL_STATION_ONLY` | Booking is possible at the local station / stop only		 |  | 	 |
+ |`BOOKING_ON_LOCALLY_ONLY` | Booking is possible locally only  |  | 	 | 
+  
 
 
 
