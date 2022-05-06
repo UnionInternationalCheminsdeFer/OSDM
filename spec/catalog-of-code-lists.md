@@ -988,16 +988,23 @@ Additional codelists can be defined by implementers. The codelist name should th
  | N/A | 	Second-class sleeper, T2 (two-bed compartment) 0	 | 	B.4.9039	 | 	15	 |
  | N/A	| 	First-class sleeper, single with shower 0	 | 	B.4.9039	 | 	18	 | 
  | N/A	| 	First-class sleeper, double with shower 0	 | 	B.4.9039	 | 	19	 | 
- |`SLEEPER_SINGLE_SHOWER_WC`	 | 	First-class sleeper, single with shower and WC 	 | 	B.4.9039	 | 	57	 | 
- |`SLEEPER_DOUBLE_SHOWER_WC`	 | 	First-class sleeper, double with shower and WC 	 | 	B.4.9039	 | 	58	 | 
- |`SLEEPER_T2_SHOWER_WC` | 	Second class sleeper for two with shower and toilets	 | 	B.4.9039	 | 	61	 | 
- |`SLEEPER_T3_SHOWER_WC` | 	Second class sleeper, T3, shower, WC	 | 	B.4.9039	 | 	59	 | 
+ |`SLEEPER_SINGLE_SHOWER_WC`	 | 	sleeper, single with shower and WC 	 | 	| 	 | 
+ |`SLEEPER_DOUBLE_SHOWER_WC`	 | 	sleeper, double with shower and WC 	 | 	| 		 | 
+ |`SLEEPER_T2_SHOWER_WC` | 	sleeper for two with shower and toilets	 | 	| 	 | 
+ |`SLEEPER_T3_SHOWER_WC` | 	sleeper, T3, shower, WC	 |  | 	 | 
+ | N/A | 	First-class sleeper, single with shower and WC 	 | 	B.4.9039	 | 	57	 | 
+ | N/A | 	First-class sleeper, double with shower and WC 	 | 	B.4.9039	 | 	58	 | 
+ | N/A | 	Second class sleeper for two with shower and toilets	 | 	B.4.9039	 | 	61	 | 
+ | N/A | 	Second class sleeper, T3, shower, WC	 | 	B.4.9039	 | 	59	 | 
  |`COUCHETTE` | 	 | 	| 		 | 
  | N/A | 	First-class couchettes	 | 	B.4.9039	 | 	6	 | 
  | N/A | 	Second-class couchettes	 | 	B.4.9039	 | 	7	 | 
- |`COUCHETTE_2` | 	Second class compartment with 2 couchettes	 | 	B.4.9039	 | 	62	 | 
- |`COUCHETTE_4` | 	Second class compartment with 4 couchettes 	 | 	B.4.9039	 | 	63	 | 
- |`COUCHETTE_6` | 	Second class compartment with 6 couchettes 	 | 	B.4.9039	 | 	64	 | 
+ |`COUCHETTE_2` | 	compartment with 2 couchettes	 | | 	62	 | 
+ |`COUCHETTE_4` | 	compartment with 4 couchettes 	 | | 	63	 | 
+ |`COUCHETTE_6` | 	compartment with 6 couchettes 	 | | 	64	 | 
+ | N/A | 	Second class compartment with 2 couchettes	 | 	B.4.9039	 | 	62	 | 
+ | N/A | 	Second class compartment with 4 couchettes 	 | 	B.4.9039	 | 	63	 | 
+ | N/A | 	Second class compartment with 6 couchettes 	 | 	B.4.9039	 | 	64	 | 
  |`COUCHETTE_WHEELCHAIR` | 	Second class couchette with wheelchair space 	 | 	B.4.9039	 | 	65	 | 
  |`VEHICLE_TRAINSPORT`	| 	Facilities for vehicle transport etc. Not bicycles. Cars,|`SEAT` | seats ||| boats, trailers, motorbikes	 | 	B.4.9039	 | 	14	 | 
  | | - food - | | |
@@ -1040,8 +1047,8 @@ Additional codelists can be defined by implementers. The codelist name should th
  |`BOOKING_ON_BOARD_ONLY` | Booking is possible on board of the vehicle only		 |  | 	 | 
  |`BOOKING_ON_LOCAL_STATION_ONLY` | Booking is possible at the local station / stop only		 |  | 	 |
  |`BOOKING_ON_LOCALLY_ONLY` | Booking is possible locally only  |  | 	 | 
- |`WITH_RESERVATION`	 | 	Reservation possible	 | 	B.4.7037	 | 	11	 | 
- |`WITH_SUPPLEMENT`	 | 	A supplement is charged	 | 	B.4.7037	 | 	12	 | 
+ |`RESERVATION`	 | 	Reservation possible	 | 	B.4.7037	 | 	11	 | 
+ |`SUPPLEMENT`	 | 	A supplement is charged	 | 	B.4.7037	 | 	12	 | 
  |`RESERVATION_MANDATORY`	 | 	Reservation is compulsory 	 | 	B.4.7037	 | 	13	 | 
  |`RESERVATION_RECOMMENDED`	 | 	Reservation is recommended	 | 	B.4.7037	 | 	14	 | 
  |`RESERVATION_MANDATORY_PAR`	 | 	Reservation is compulsory for parties	 | 	B.4.7037	 | 	15	 | 
