@@ -135,7 +135,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`PRODUCT_ACCESS`     | Access to retrieve a product (e.g. electronic newspaper,..)          |
 |`MERCHANDISE_PRODUCT`|                                                                      |
 |`LUGGAGE`            | Allowance for extra luggage                                          |
-|`LUGGAGE_TRANSFER    | Service for luggage transport                                        |
+|`LUGGAGE_TRANSFER`   | Service for luggage transport                                        |
 |`ON_BOARD_SERVICE`   | Access to service on board                                           |
 |`STATION_SERVICE`    | Access to some station service, Lounge access,...                    |
 |`FOOD_ON_BOARD`      |                                                                      |
