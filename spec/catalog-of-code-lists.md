@@ -972,7 +972,7 @@ Additional codelists can be defined by implementers. The codelist name should th
  |`WIFI_OFFERED`	 | 	WiFi service on board available	 | 	B.4.7161	 | 	47	 | 
  |`WARNING_STRIKE`	 | 	Warning! Service may be affected by strike action	 | 	B.4.7161	 | 	48	 | 
  |`SLEEPER_FIRST` | 	First-class sleepers	 | 	B.4.9039	 | 	2	 | 
- |`SLEEPER_STANDARD' | 	Standard class (second class) sleepers	 | 	B.4.9039	 | 	3	 | 
+ |`SLEEPER_STANDARD` | 	Standard class (second class) sleepers	 | 	B.4.9039	 | 	3	 | 
  |`SLEEPER`|sleepers | 	| 		 | 
  |`SEAT_FIRST`| 	First-class seats	 | 	B.4.9039	 | 	4	 | 
  |`SEAT_SECOND`	 | 	Second-class seats Also: standard, etc.	 | 	B.4.9039	 | 	5	 | 
