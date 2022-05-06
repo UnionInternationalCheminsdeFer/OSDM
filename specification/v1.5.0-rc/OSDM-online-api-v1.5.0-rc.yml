@@ -7869,13 +7869,16 @@ components:
     AccommodationType:
       type: string
       description: >-
-        Accommodation type definition out of the Accommodation Type Code List
+        Accommodation type definition out of the Accommodation Type Code List.
       default: SEAT
 
     AccommodationSubType:
       type: string
       description: >-
-        Accommodation type definition out of the Accommodation Sub Type Code List
+        Accommodation type definition out of the Accommodation Sub Type Code List. If no 
+        sub type is specified use ANY_SEAT.
+      default: ANY_SEAT
+    
     SelectedPlaceOption:
       type: object
       description: >-
