@@ -129,8 +129,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 
 ## Ancilliary category
 
-
-| Code                | Description                                                          |
+| Code | Description |
 |---------------------|----------------------------------------------------------------------|
 |`PAYMENT_VOUCHER`    | Payment voucher to be used to pay                                    |
 |`PRODUCT_ACCESS`     | Access to retrieve a product (e.g. electronic newspaper,..)          |
@@ -143,7 +142,6 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`DRINKS_ON_BOARD`    |                                                                      |
 |`WIFI`               | Access to WiFi                                                       |
 |`PARKING`            | parking of cars                                                      |
-
 
 ## BarcodeType
 
