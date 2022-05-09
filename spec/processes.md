@@ -871,3 +871,16 @@ if the time line would otherwise can not be held.
 Requesting an exchange offer is almost identical to requesting a standard offer.
 The only difference in the request is that the fulfillment that the API consumer
 wants to exchange, and an overrule code if relevant, are also provided.
+
+### Replacement of lost tickets and cards
+
+The replacement is used to replace physical cards and tickets. There is no replacement for electronic tickets or anonymous tickets.
+
+#### Requesting a replacement for a lost ticket
+
+The replacement is requested similar to the request for a non-trip based offer (post:offers-collection). The search tags must include the key word CARD_LOST or TICKET_LOST. The provider will ask for the required data of the lost card or ticket to be provided with the passengers card data (card number).
+
+The offer for a replacement returned might include a fee. The replacement offer needs to be accepted and booked the same way as a usual offer.
+
+
+
