@@ -7074,7 +7074,7 @@ components:
           type: integer
           format: int32
         registrationIds:
-          description: registrationIda to be included a bar code on the fulfillment (UIC IRS 90918-4)
+          description: registrationIds to be included in a bar code on the fulfillment (UIC IRS 90918-4) (e.g. on a luggage tag)
           type: array
           items:
             type: string  
