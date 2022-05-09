@@ -7046,6 +7046,70 @@ components:
             - travelClass
             - serviceLevelCode
             - serviceCode
+        luggageConstraint:
+            $ref: "#/components/schemas/LuggageConstraint" 
+
+    LuggageConstraint:
+      type: object
+      description: constraints on luggage
+      properties:
+        maxHandLuggage: 
+          description: Standard hand luggage pieces
+          type: integer
+          format: int32
+        maxLargeLuggage:
+          description: Standard non-hand luggage pieces
+          type: integer
+          format: int32
+        restrictedLuggageItems:
+          type: array
+          items:
+            $ref:  "#/components/schemas/LuggageRestriction"  
+          
+    LuggageRestriction:
+      type: object
+      properties:
+        numberOfItems:
+          description: number of luggage  items allowed with this restriction
+          type: integer
+          format: int32
+        registrationIds:
+          description: registrationIda to be included a bar code on the fulfillment (UIC IRS 90918-4)
+          type: array
+          items:
+            type: string  
+        restrictions: 
+          description: all listed dimensions apply to the luggage items as upper limits
+          type: array
+          minItems: 1
+          items: 
+              $ref:  "#/components/schemas/LuggageDimension"
+      required:
+        - numberOfItems
+        - restrictions
+
+    LuggageDimension:
+      description: luggage dimension to be used in luggage restrictions
+      type: object
+      properties:
+        dimension: 
+          description: >-
+            type of the restriction. weight in kg, length in cm, volume in liter. Combined sizes are the summ of the sizes  WIDTH_HEIGHT_LENGTH = sum of width, hight and length in cm (= linear equivalent).
+          type: string
+          x-extensible-enum:
+             - WIDTH
+             - HEIGHT
+             - LENGTH
+             - WIDTH_HEIGHT
+             - WIDTH_HEIGHT_LENGTH
+             - WEIGHT
+             - VOLUME
+        value:
+          type: integer
+          format: int32
+      required:
+        - dimenstion
+        - value
 
     TripInterruptionProcess:
       description: >-
