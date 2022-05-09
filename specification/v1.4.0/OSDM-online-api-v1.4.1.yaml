@@ -8257,7 +8257,7 @@ components:
           $ref: "#/components/schemas/PersonDetail"
         passport:
           $ref: "#/components/schemas/IdentificationDocument"
-        transportableDetails:
+        transportable:
           $ref: "#/components/schemas/Transportable"
         prmNeeds:
           type: array
@@ -8378,8 +8378,8 @@ components:
     Transportable:
       type: object
       description: >-
-        Transportables which are handled similar to passengers like dogs, bicycles, car transport.
-        These transportables might need a ticket or reservation.
+        Transportables are handled similar to passengers and might need a ticket or 
+        reservation.
       required:
         - type
       properties:
@@ -8402,67 +8402,9 @@ components:
 
     Car:
       type: object
-      required:
-        - weight
-        - length
-        - width
-        - height
-        - model
-      properties:
-        weight:
-          type: integer
-          format: int32
-          minimum: 0
-        length:
-          type: integer
-          format: int32
-          minimum: 0
-        width:
-          type: integer
-          format: int32
-          minimum: 0
-        height:
-          type: integer
-          format: int32
-          minimum: 0
-        model:
-          type: string
-          description: Free text description of the model (e.g. BMW X5)
-        attachedItems:
-          description: Indication of items attached to the car
-          type: array
-          items:
-            type: string
-            x-extensible-enum:
-              - ROOF_RACK
-              - BICYCLE_STAND
-        plate:
-          description: >-
-            The trailer plate is a personal data item and must not be provided in an offer request. 
-            It must be patched into the offer after the customer accepted the offer for booking.
-          type: string
-
-    MotorCycle:
-      type: object
-      required:
-        - isSideCarIncluded
-      properties:
-        isSideCarIncluded:
-          type: boolean
-          default: false
-        plate:
-          description: >-
-            The trailer plate is a personal data item and must not be provided in an offer request. 
-            It must be patched into the offer after the customer accepted the offer for booking
-          type: string
-
-    Trailer:
-      type: object
-      required:
-        - weight
-        - length
-        - width
-        - height
+      description: >-
+        For an auto car reservation the required attributes weight, length, width and height are required.
+        For a parking reservation the license plate might be required.
       properties:
         weight:
           description: weight in kg
@@ -8480,10 +8422,66 @@ components:
           format: int32
           minimum: 0
         height:
+          description: height in cm
+          type: integer
+          format: int32
+          minimum: 0
+        model:
+          type: string
+          description: Free text description of the model.
+          example: BMW X5
+        attachedItems:
+          description: Indication of items attached to the car.
+          type: array
+          items:
+            type: string
+            x-extensible-enum:
+              - ROOF_RACK
+              - BICYCLE_STAND
+        licensePlate:
+          type: string
+          description: >-
+            The license plate is a personal data item and must not be requested in an offer request. 
+
+    MotorCycle:
+      type: object
+      required:
+        - isSideCarIncluded
+      properties:
+        isSideCarIncluded:
+          type: boolean
+          default: false
+        licensePlate:
+          type: string
+          description: >-
+            The license plate is a personal data item and must not be requested in an offer request. 
+
+    Trailer:
+      type: object
+      description: >-
+        For an auto car reservation the required attributes weight, length, width and height are required.
+        For a parking reservation the license plate might be required.
+      properties:
+        weight:
+          description: weight in kg
+          type: integer
+          format: int32
+          minimum: 0
+        length:
           description: length in cm
           type: integer
           format: int32
-        plate:
+          minimum: 0
+        width:
+          description: width in cm
+          type: integer
+          format: int32
+          minimum: 0
+        height:
+          description: height in cm
+          type: integer
+          format: int32
+        licensePlate:
           description: >-
             The trailer plate is a personal data item and must not be provided in an offer request. 
             It must be patched into the offer after the customer accepted the offer for booking
