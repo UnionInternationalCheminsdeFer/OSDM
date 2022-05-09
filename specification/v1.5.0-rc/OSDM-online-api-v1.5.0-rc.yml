@@ -7051,7 +7051,7 @@ components:
 
     LuggageConstraint:
       type: object
-      description: constraints on luggage
+      description: constraint on luggage
       properties:
         maxHandLuggage: 
           description: Standard hand luggage pieces
@@ -7094,7 +7094,7 @@ components:
       properties:
         dimension: 
           description: >-
-            type of the restriction. weight in kg, length in cm, volume in liter. Combined sizes are the summ of the sizes  WIDTH_HEIGHT_LENGTH = sum of width, hight and length in cm (= linear equivalent).
+            type of the dimension. Combined sizes are the summ of the sizes  WIDTH_HEIGHT_LENGTH = sum of width, hight and length in cm (= linear equivalent).
           type: string
           x-extensible-enum:
              - WIDTH
@@ -7105,10 +7105,11 @@ components:
              - WEIGHT
              - VOLUME
         value:
+          description: value of the dimension, weight in kg, length in cm, volume in liter.
           type: integer
           format: int32
       required:
-        - dimenstion
+        - dimension
         - value
 
     TripInterruptionProcess:
