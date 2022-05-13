@@ -3418,10 +3418,10 @@ components:
           $ref: "#/components/schemas/LegAlight"
         service:
           $ref: "#/components/schemas/DatedJourney"
-        # legAttribute:  # Out of scope
-        #   type: array
-        #   items:
-        #     $ref: "#/components/schemas/LegAttribute"
+        attribute: 
+          type: array
+          items:
+             $ref: "#/components/schemas/ServiceAttribute"
         operatingDays:
           $ref: "#/components/schemas/OperatingDays"
         operatingDaysDescription:
@@ -3581,12 +3581,25 @@ components:
         mode: # Ask Stefan
           type: string
           example: "Ask Stefan"
+        attributes:
+          type: array
+          items:
+            $ref: "#/components/schemas/ServiceAttribute"
         publishedServiceName:
           type: string
           example: "Circle Line"
         originText:
           type: string
         destinationText:
+          type: string
+
+    ServiceAttribute:
+      type: object
+      properties:
+        code: 
+          description: codes from the service facilities code list   
+          type: string
+        name:
           type: string
 
     ContinuousMode: ## OJP
@@ -5187,7 +5200,7 @@ components:
             The party that issues the promotion code, in case of a railway it's its RICS code
           type: string
           
-     CorporateCode:
+    CorporateCode:
       type: object
       description: >-
         The corporate code is a token that reduces the price that reduces the price at POST trip-offer-collection time OR
@@ -5209,7 +5222,6 @@ components:
             The name of the party that benefits from the corporate code, intended to be used to present to the end user
           type: string
           example: Siemens
-          $ref: "#/components/schemas/Company"
 
     OfferPartReference:
       type: object
