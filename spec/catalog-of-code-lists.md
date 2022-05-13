@@ -18,6 +18,13 @@ provided within the schema or within the IRS90918-10 specification.
 | countries  | `urn:iso` | `std:iso:3166` | ISO Country Codes  | `urn:iso:std:iso:3166:CH`  |  `urn:iso:std:iso:3166:` |
 | currencies | `urn:iso` | `std:iso:4217` | ISO Currency Codes | `urn:iso:std:iso:4217:CFR` |  `urn:iso:std:iso:4217:` |
 
+## Proprietary values
+Be it to represent specific places, or any other type of reference data, some OSDM providers may need to extend a code set with proprietary values in order to support their use cases, while these values are unlikely to be relevant to the rest of the OSDM community. To do so, an OSDM provider should then use the following format for the proprietary values it wishes to extend the code set with :
+
+urn: X_<3 letters code for the provider>:<codetype identifier>:<value>
+
+For example: urn: x_zoo:paxtype:OLIPHANT
+
 ## Accommodation Type
 
 | Code | Description |
@@ -669,9 +676,6 @@ This is a sensible subset of SIRI modes.
 
 POICodeList: By default the code list is set to UIC.
 
-Additional code lists can be defined by implementers. The code list name should then be prefixed
-by "X_<3 letters code for the provider>". Example: "X_PAO_POIS"
-
 POICode: Values are depending on code list and set is too large to be reproduced
 
 ## Reduction cards
@@ -887,41 +891,7 @@ Snapshot version, for the actual code list see [UIC Service Brand Code List](htt
 | `STANDARD` |  |
 | `BASIC` | Standard second class |
 
-## Stations
-
-codeList = UIC, ERA, HAFAS
-
-Additional codelists can be defined by implementers. The codelist name should then be prefixed by "X_<3 letters code for the provider>". Example: "X_PAO_STATIONS"
-
-*StationCode*: Values are depending on codelist and set is too large to be reproduced.
-
-## Supported Online Services
-
-| Code |Description |
-|-----|-----------------|
-|`OFFER` | Offer service (without after sales offers)|
-|`BOOKING` | Preliminary booking, confirm booking and cancellation|
-|`RESERVATION_LEGACY_918_1` | Services according to the 90918-1 XML or binary specification|
-|`RESERVATION_PREF`| Place allocation using preferences|
-|`RESERVATION_GRAPH`| Place allocation using graphical place display|
-|`UPGRADE` | Upgrade to an existing booking|
-|`INCREASE`| Exchange with an increase of the number of passengers|
-|`DECREASE`| Exchange with an decrease of the number of passengers|
-|`EXCHANGE`| Exchange with the same number of passengers|
-|`FULFILLMENT`| Provides an entire tickets|
-|`FULFILLMENT_ITEMS` | Providing security items for a ticket (e.g. additional bar codes)|
-
-## TaxScope
-
-|Code |Description |
-|-----|-----------------|
-|`INTERNATIONAL`|VAT applies in international tickets only. This needs to be applied in case the fare is integrated into an international ticket|
-|`NATIONAL`|VAT applies in national tickets only|
-|`SHORT_DISTANCE`|VAT applies in short distance tickets only|
-|`LONG_DISTANCE`|VAT applies in long distance tickets only. This needs to be applied in case the fare is integrated in a longer journey. |
-
-
-## Train Facilities
+## Service Facilities
 
  | 	OSDM code	 | 	Description	 | 	TAP-TSI code list	 | 	TAP-TSI code	 | 
  |-----------|--------------|---------------------|-----------------|
@@ -1064,7 +1034,40 @@ Additional codelists can be defined by implementers. The codelist name should th
  |`NOT_AVAILABLE`	 | 	Not available	 | 	B.4.7037	 | 	24	 | 
  |`BOOKABLE_INT`	 | 	Bookable through an international reservation system	 | 	B.4.7037	 | 	26	 | 
  |`BOOKABLE_NAT`	 | 	Bookable through a national reservation system	 | 	B.4.7037	 | 	27	 | 
- |`BOOKABLE_LOCAL`	 | 	Bookable manually at Rus selling point	 | 	B.4.7037	 | 	28	 |  
+ |`BOOKABLE_LOCAL`	 | 	Bookable manually at Rus selling point	 | 	B.4.7037	 | 	28	 |   
+ 
+## Stations
+
+codeList = UIC, ERA, HAFAS
+
+Additional codelists can be defined by implementers. The codelist name should then be prefixed by "X_<3 letters code for the provider>". Example: "X_PAO_STATIONS"
+
+*StationCode*: Values are depending on codelist and set is too large to be reproduced.
+
+## Supported Online Services
+
+| Code |Description |
+|-----|-----------------|
+|`OFFER` | Offer service (without after sales offers)|
+|`BOOKING` | Preliminary booking, confirm booking and cancellation|
+|`RESERVATION_LEGACY_918_1` | Services according to the 90918-1 XML or binary specification|
+|`RESERVATION_PREF`| Place allocation using preferences|
+|`RESERVATION_GRAPH`| Place allocation using graphical place display|
+|`UPGRADE` | Upgrade to an existing booking|
+|`INCREASE`| Exchange with an increase of the number of passengers|
+|`DECREASE`| Exchange with an decrease of the number of passengers|
+|`EXCHANGE`| Exchange with the same number of passengers|
+|`FULFILLMENT`| Provides an entire tickets|
+|`FULFILLMENT_ITEMS` | Providing security items for a ticket (e.g. additional bar codes)|
+
+## TaxScope
+
+|Code |Description |
+|-----|-----------------|
+|`INTERNATIONAL`|VAT applies in international tickets only. This needs to be applied in case the fare is integrated into an international ticket|
+|`NATIONAL`|VAT applies in national tickets only|
+|`SHORT_DISTANCE`|VAT applies in short distance tickets only|
+|`LONG_DISTANCE`|VAT applies in long distance tickets only. This needs to be applied in case the fare is integrated in a longer journey. |
 
 
 
