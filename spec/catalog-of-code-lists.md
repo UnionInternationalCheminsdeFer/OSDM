@@ -18,6 +18,13 @@ provided within the schema or within the IRS90918-10 specification.
 | countries  | `urn:iso` | `std:iso:3166` | ISO Country Codes  | `urn:iso:std:iso:3166:CH`  |  `urn:iso:std:iso:3166:` |
 | currencies | `urn:iso` | `std:iso:4217` | ISO Currency Codes | `urn:iso:std:iso:4217:CFR` |  `urn:iso:std:iso:4217:` |
 
+## Proprietary values
+Be it to represent specific places, or any other type of reference data, some OSDM providers may need to extend a code set with proprietary values in order to support their use cases, while these values are unlikely to be relevant to the rest of the OSDM community. To do so, an OSDM provider should then use the following format for the proprietary values it wishes to extend the code set with :
+
+urn: X_<3 letters code for the provider>:<codetype identifier>:<value>
+
+For example: urn: x_zoo:paxtype:OLIPHANT
+
 ## Accommodation Type
 
 | Code | Description |
@@ -668,9 +675,6 @@ This is a sensible subset of SIRI modes.
 ## Point of Interest (POI)
 
 POICodeList: By default the code list is set to UIC.
-
-Additional code lists can be defined by implementers. The code list name should then be prefixed
-by "X_<3 letters code for the provider>". Example: "X_PAO_POIS"
 
 POICode: Values are depending on code list and set is too large to be reproduced
 
