@@ -3244,6 +3244,10 @@ components:
           description: >-
             Id of this trip for referencing purposes. Unique within a trip.
           type: string
+        externalRef:
+          description: >-
+            External reference of this trip for referencing purposes. Unique within a trip specification.
+          type: string
         duration:
           description: Overall duration of the trip
           type: string
