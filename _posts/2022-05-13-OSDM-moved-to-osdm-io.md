@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "OSDM has moved to osdm.io"
+title: "OSDM moved to osdm.io"
 author: Andreas Schlapbach
 date: 2022-05-13 09:20:33 +0100
 categories: osdm update
