@@ -2351,7 +2351,10 @@
 				},
 				"defaultRegulatoryConditions": {
 					"$ref": "#/definitions/RegulatoryConditionsDef"
-				}
+				},
+				"defaultLuggageConstraint": {
+					"$ref": "#/definitions/LuggageConstraint"
+				}				
 			},
 			"required": [
 				"id",
@@ -2361,8 +2364,7 @@
 				"defaultFareType"
 			],
 			"additionalProperties": false
-		}
-
+		},
 		"LuggageConstraint": {
 			"type": "object",
 			"description": "constraints on luggage",
