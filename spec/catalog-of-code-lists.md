@@ -558,15 +558,15 @@ provides codes for different levels of geographical/political units. E.g.:
 
 | Code | Description |
 |------|-------------|
-| `CONNECTION_BROKEN`  |  |
-| `PAYMENT_ERROR` |  |
-| `PRM_SUPPORT_UNAVAILABLE` | |
-| `STRIKE` |  |
-| `SALES_STAFF_ERROR` |  |
-| `TECHNICAL_FAILURE` |  |
-| `TICKET_UNUSED` |  |
-
-Refund because of breakage of a vehicle is handled in a separate process.
+| `CONNECTION_BROKEN` | The next leg can not be reached by passenger as previous leg failed. |
+| `EQUIPMENT_FAILURE` | Vehicle can no longer be operated. |
+| `PAYMENT_ERROR`     | Payment error. |
+| `PRM_SUPPORT_UNAVAILABLE` | A PRM has booked a trip which is not available to him/her. |
+| `SALES_STAFF_ERROR` | Sale staff error. |
+| `STOP_NO_SERVED`    | Vehicle did not serve the stop place. |
+| `STRIKE`            | Strike. |
+| `TECHNICAL_FAILURE` | Technical failure on the distribution channel. |
+| `TICKET_UNUSED`     | Ticket not (fully) used by passenger. |
 
 ## Passenger Type (aka. Traveler Type)
 
@@ -720,13 +720,6 @@ The following code lists defines the commonly used cards which are not provided 
 
 Other cards should start with the RICS code of the issuer.
 
-## Refund Overrule Codes
-
-| Code | Description |
-|------|-------------|
-| `STRIKE` |   |
-| `SALES_STAFF_ERROR` | Error made by sales staff |
-| `PAYMENT-FAILURE` | Cancellation made by the allocator due to a failed payment |
 
 ## Reservation Preference Group
 
