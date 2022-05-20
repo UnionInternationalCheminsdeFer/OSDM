@@ -554,13 +554,17 @@ provides codes for different levels of geographical/political units. E.g.:
 | `BE21` | Prov. (2) Antwerpen |
 | `BE211` | Arr. Antwerpen
 
-## OverRule Code
+## Overrule Code
 
 | Code | Description |
 |------|-------------|
-| `SALES_STAFF_ERROR` |  |
+| `CONNECTION_BROKEN`  |  |
 | `PAYMENT_ERROR` |  |
+| `PRM_SUPPORT_UNAVAILABLE` | |
 | `STRIKE` |  |
+| `SALES_STAFF_ERROR` |  |
+| `TECHNICAL_FAILURE` |  |
+| `TICKET_UNUSED` |  |
 
 Refund because of breakage of a vehicle is handled in a separate process.
 
