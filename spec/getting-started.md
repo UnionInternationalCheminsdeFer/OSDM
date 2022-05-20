@@ -527,7 +527,7 @@ This feature is optional to support by implementors, some railways decide not gi
 
 ### When to pass in which passenger attributes?
 
-We take special care not to violate passenger personal rights and build in privacy by design. Thus we collect as few information as possible at every step, i.e. only the attributes absolutely necessary to fulfill the operation are gathered. To indicate which information is needed there is a `requestedInformation` attribute which express the information needed expressed in small DSL for [requested information](https://unioninternationalcheminsdefer.github.io/OSDM/spec/requested-information-grammar.html).
+We take special care not to violate passenger personal rights and build in privacy by design. Thus we collect as few information as possible at every step, i.e. only the attributes absolutely necessary to fulfill the operation are gathered. To indicate which information is needed there is a `requestedInformation` attribute which express the information needed expressed in small DSL for [requested information](https://osdm.io/OSDM/spec/requested-information-grammar.html).
 
 ## Advanced Topics
 

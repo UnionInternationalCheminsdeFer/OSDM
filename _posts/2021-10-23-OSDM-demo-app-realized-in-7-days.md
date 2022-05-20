@@ -8,13 +8,13 @@ categories: osdm update
 
 UIC member [SBB](https://www.sbb.ch), has built an **OSDM application in seven days** only using the [OSDM API](https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/) to show simulations of routes and services within the system and the capabilities of real time railway ticket distribution.
 
-The application is connected to the [OSDM sandbox](https://unioninternationalcheminsdefer.github.io/OSDM/tools/sandbox/) environment developed by [Sqills](https://sqills.com), which is powered by the Sqills S3 Passenger inventory, reservation and ticketing SaaS. The sandbox is a working prototype which enables the study of the behaviour and semantics of the OSDM API and is open to any party interested in implementing OSDM.  
+The application is connected to the [OSDM sandbox](https://osdm.io/OSDM/tools/sandbox/) environment developed by [Sqills](https://sqills.com), which is powered by the Sqills S3 Passenger inventory, reservation and ticketing SaaS. The sandbox is a working prototype which enables the study of the behaviour and semantics of the OSDM API and is open to any party interested in implementing OSDM.  
 
 Within this context, SBB presented one of its developers with the challenge of developing an application within seven days.  [Hoang Tran](https://www.linkedin.com/in/hoang-tran-388200195/), a front-end developer at SBB’s [AppBakery](https://appbakery.medium.com/), took on the challenge – and without any prior knowledge about online distribution – started to work on the app.
 
 The results is impressive; the app covers the complete booking flow, including the reservation of seats and ancillary services, and supports trains, buses or other means of public transport.
 
-![App flow](https://unioninternationalcheminsdefer.github.io/OSDM/images/blog/osdm-app-flow.gif)
+![App flow](https://osdm.io/OSDM/images/blog/osdm-app-flow.gif)
 
 Interestingly, the app is developed without any backend, thus directly consuming the API. Last but not least, the app is multi-platform and runs natively on Android, iOS or the web (thanks to [Flutter](https://flutter.dev/)).
 
@@ -36,7 +36,7 @@ This development follows the release in July of a factsheet and a short video ex
 
 For further information please consult [Andreas Schlapbach](https://www.linkedin.com/in/andreas-schlapbach/), Senior Architect, or [David Sarfatti](https://www.linkedin.com/in/dsarfatti/), Senior Passenger Advisor.
 
-![SBB](https://unioninternationalcheminsdefer.github.io/OSDM/images/logo/SBB-logo.png)
+![SBB](https://osdm.io/OSDM/images/logo/SBB-logo.png)
 
 
 (Source: [https://uic.org/com/enews/article/osdm-demo-app-developed-in-seven-days?var_recherche=osdm](https://uic.org/com/enews/article/osdm-demo-app-developed-in-seven-days?var_recherche=osdm))
