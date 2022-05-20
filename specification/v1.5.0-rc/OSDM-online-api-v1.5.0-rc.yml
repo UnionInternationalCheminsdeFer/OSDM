@@ -5852,11 +5852,15 @@ components:
         The PRM_SUPPORT_UNAVAILABLE overrule code shall only be used by
         the UIC PRM ABT tool.
       x-extensible-enum:
+        - CONNECTION_BROKEN
+        - EQUIPMENT_FAILURE
         - PAYMENT_FAILURE
         - PRM_SUPPORT_UNAVAILABLE
         - SALES_STAFF_ERROR
+        - STOP_NOT_SERVED
         - STRIKE
         - TECHNICAL_FAILURE
+        - TICKET_NOT_USED
 
     ExchangeTripOfferRequest:
       type: object
