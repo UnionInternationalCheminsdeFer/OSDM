@@ -6,7 +6,7 @@ permalink: /tools/
 
 ## OSDM Converter
 
-The [OSDM Converter](https://osdm.io/OSDM-Converter/) allows to convert between old fare data according to UIC IRS-10108-1 (TAP-TSI B.1) into the [OSDM Offline Model](https://osdm.io/OSDM/spec/common-data-structures/) of UIC IRS-90918-10.
+The [OSDM Converter](https://osdm.io/OSDM-Converter/) allows to convert between old fare data according to UIC IRS-10108-1 (TAP-TSI B.1) into the [OSDM Offline Model](https://osdm.io/spec/common-data-structures/) of UIC IRS-90918-10.
 
 ## OSDM Offline Platform
 

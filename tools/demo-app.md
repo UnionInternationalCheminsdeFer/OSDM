@@ -12,7 +12,7 @@ implementing their apps and clients.
 The app covers the complete booking flow, including the reservation of seats and ancillary
 services, and supports trains, buses or other means of public transport.
 
-![App flow](https://osdm.io/OSDM/images/blog/osdm-app-flow.gif)
+![App flow](https://osdm.io/images/blog/osdm-app-flow.gif)
 
 The demo app is kindly provided by [SBB](https://www.sbb.ch) and is open to *any party*
 interested in implementing OSDM.
