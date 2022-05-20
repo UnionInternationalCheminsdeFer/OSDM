@@ -560,7 +560,7 @@ provides codes for different levels of geographical/political units. E.g.:
 |------|-------------|
 | `CONNECTION_BROKEN` | The next leg can not be reached by passenger as previous leg failed. |
 | `EQUIPMENT_FAILURE` | Vehicle can no longer be operated. |
-| `PAYMENT_ERROR`     | Payment error. |
+| `PAYMENT_FAILURE`   | Payment failure. |
 | `PRM_SUPPORT_UNAVAILABLE` | A PRM has booked a trip which is not available to him/her. |
 | `SALES_STAFF_ERROR` | Sale staff error. |
 | `STOP_NO_SERVED`    | Vehicle did not serve the stop place. |
