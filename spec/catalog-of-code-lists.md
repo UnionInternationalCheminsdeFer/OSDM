@@ -925,6 +925,7 @@ Snapshot version, for the actual code list see [UIC Service Brand Code List](htt
  |`DISABLED_SERVICES`	 | 	Services for disabled persons	 | 	B.4.7161	 | 	27	 | 
  |`DISABLED_FACILITIES`	 | 	Facilities for heavily disabled persons available	 | 	B.4.9039	 | 	21	 | 
  |`WHEELCHAIR_ACCESS`	 | 	Access for wheelchairs possible	 | 	B.4.9039	 | 	28	 | 
+ |`WHEELCHAIR_TOILET`	 | 	Dedicated toilet together with dedicated space for wheelchair	 | 	B.4.9039	 | 	107	 | 
  |`POSTAL_SERVICES`	 | 	Postal services available	 | 	B.4.7161	 | 	37	 | 
  |`LUGGAGE_TRANSFER_OFFERED`	 | 	Luggage transport offered	 | 	B.4.7161	 | 	41	 | 
  |`LUGGAGE_TRANSFER_NOT_OFFERED`	 | 	Luggage transport is not offered 	 | 	B.4.7161	 | 	42	 | 
@@ -998,6 +999,7 @@ Snapshot version, for the actual code list see [UIC Service Brand Code List](htt
  | | - other - | | |
  |`MASK_MEDI_GRADE`	 | 	Medical-grade masks must be worn 	 | 	B.4.9039	 | 	71	 | 
  |`MASK`	 | 	Mask obligation according to legal regulation Mask obligation according to legal regulation 	 | 	B.4.9039	 | 	72	 | 
+ |`VACCINATION`	 | Vaccinated, tested, recovered rule applies on trains, valid proof must be presented 	 | 	B.4.9039	 |  106	 | 
  | 	N/A	 | 	Metro connection Metro, subway, underground connection Only used in TSDUPD 	 | 	B.4.9039	 | 	101	 | 
  | 	N/A	 | 	Taxi connection Taxi connection Only used in TSDUPD 	 | 	B.4.9039	 | 	102	 | 
  | 	N/A	 | 	Bus connection Bus connections available Used only in TSDUPD 	 | 	B.4.9039	 | 	103	 | 
@@ -1032,6 +1034,7 @@ Snapshot version, for the actual code list see [UIC Service Brand Code List](htt
  |`BOOKABLE_INT`	 | 	Bookable through an international reservation system	 | 	B.4.7037	 | 	26	 | 
  |`BOOKABLE_NAT`	 | 	Bookable through a national reservation system	 | 	B.4.7037	 | 	27	 | 
  |`BOOKABLE_LOCAL`	 | 	Bookable manually at Rus selling point	 | 	B.4.7037	 | 	28	 |   
+
  
 ## Stations
 
