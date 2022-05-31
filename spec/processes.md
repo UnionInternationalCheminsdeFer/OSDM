@@ -353,18 +353,17 @@ Proposed trip by timetable system:
 
 ![Creating a Booking Based on Offers](../images/processes/seq-creating-a-booking-based-on-offers.png)
 
-Once the offer has been selected, the API consumer can proceed to the booking of that offer.
-Along with the offer, optional or mandatory reservations, or ancillaries could be
-booked as well. those optional offer parts can be identified easily in the
+Once the offer has been selected, the API consumer can proceed to the booking of
+that offer. Along with the offer, optional or mandatory reservations or ancillaries
+can be booked as well. The optional offer parts can be identified easily in the
 offers as they will always be linked with an admission product (in
-admission.reservations or admission.ancillaries). The link contains the
-relationType property, which indicates whether the pointed reservation is
-included (in which case it is not needed to explicitly add it in the booking
-request) , mandatory (the reservation must be added in the booking request) or
-optional (the reservation can be added in the booking request. Ancillaries are
-never mandatory (only included or optional). Adding optional or mandatory
-elements is simply done by adding the respective offer part in the booking
-request (cf YAML specifications) `POST /bookings`.
+`admission.reservations` or `admission.ancillaries`). The link contains the
+relationType property, which indicates whether the pointed reservation or ancillary is included (in which case it is not needed to explicitly
+add it in the booking request), mandatory (the reservation or ancillary must be
+added in the booking request) or optional (the reservation or ancillary can be added in the booking request.
+
+Adding optional or mandatory elements is simply done by adding the respective offer
+part in the booking request (cf YAML specifications) `POST /bookings`.
 
 It is also possible to book several offers in one operation to the same
 booking. This is especially relevant to support return trips, where in most
@@ -376,21 +375,19 @@ passenger party must remain the same from one offer to the other.
 
 If the booking succeeds, a new booking resource is created. In this booking,
 the booked offers can be found and should look a lot like the offers as they
-were in the offer responses, with the exception that for reservations and fares, 
-the reservedPlaces element will now be populated
-with the places that have actually be assigned to the passengers for
-this offer part.
-
+were in the offer responses, with the exception that for reservations and fares,
+the reservedPlaces element will now be populated with the places that have
+actually be assigned to the passengers for this offer part.
 
 ### Additional availability information before provisional booking step
 
-In most cases the offer will not contain information on specific place properties for 
-reservations. the reservation resource in the offer provides information on the availability of 
-places with the selected offer:
+In most cases the offer will not contain information on specific place properties
+for  reservations. the reservation resource in the offer provides information on the
+availability of places with the selected offer:
 
- - Places with specific properties
- - Places nearby another place
- - A graphical display of available places.
+- Places with specific properties
+- Places nearby another place
+- A graphical display of available places.
 
 ![Graphical reservation](../images/processes/seq-graphical-reservation_puml.png)
 
@@ -666,7 +663,7 @@ integrated by the allocator in the combined fulfillment.
 
 #### Fulfillment Process of Multi-Journey Products
 
-Multi-Journey products provide the right for mutliple journes. These can be defined in the product as a specific number travel days or jounrney. In order to use the travel right the fulfillment has to be enhanced with additional information on the intended use. e.g.:
+Multi-Journey products provide the right for multiple journeys. These can be defined in the product as a specific number travel days or journey. In order to use the travel right the fulfillment has to be enhanced with additional information on the intended use. e.g.:
 
 | Travel right | required information |
 |---|---|
