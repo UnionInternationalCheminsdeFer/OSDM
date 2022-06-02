@@ -3501,6 +3501,8 @@ components:
         duration: # EXT add attribute for consistency
           type: string
           format: duration
+        co2Emissions:
+          $ref: "#/components/schemas/Co2Emissions"
 
     TimedLegSpecification:
       type: object
@@ -3521,6 +3523,7 @@ components:
           $ref: "#/components/schemas/LegAlightSpecification"
         service:
           $ref: "#/components/schemas/DatedJourney"
+        
 
     TransferLeg: ## OJP # Reduced scope
       type: object
@@ -3578,6 +3581,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SituationFullRef"
+        co2Emissions:
+          $ref: "#/components/schemas/Co2Emissions"
 
     ContinuousLeg: ## OJP # Reduced scope
       type: object
@@ -3621,6 +3626,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SituationFullRef"
+        co2Emissions:
+          $ref: "#/components/schemas/Co2Emissions"
 
     ContinuousService: ## OJP
       type: object
@@ -5719,6 +5726,7 @@ components:
             - BOARDING_PASS
             - INFORMATION
             - VOUCHER
+            - CO2_REPORT
         downloadLink:
           type: string
           format: uri
@@ -8684,5 +8692,26 @@ components:
           $ref: "#/components/schemas/VoucherInformation"
         money:
           $ref: "#/components/schemas/Price"
+    Quantity:
+      type: object
+      required:
+        - value
+        - unit
+      properties:
+        value:
+          type: number
+          format: float
+        unit:
+          description: Unit of the mesured quantity
+          type: string
+          example: "Kg"
+    Co2Emissions:
+      type: object
+      description: Estimation of CO2 emmitted
+      properties:
+        quantity:
+          $ref: "#/components/schemas/Quantity"
+
+
 
     #### Common elements end
