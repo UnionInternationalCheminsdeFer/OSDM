@@ -16,21 +16,18 @@ URL to `next` and `previous` pages are provided if pagination shall be supported
   "trips": [],
   "_links": [
     {
-      "self": {
-        "href": "https://api.odsm.com/bookings/123124"
-      }
+      "rel": "self",
+      "href": "https://api.osdm.com/bookings/123124"
     },
     {
-      "next": {
-        "href": "https://api.odsm.com/bookings/123124?query=next"
-      }
+      "rel": "next",
+      "href": "https://api.osdm.com/bookings/123124?query=next"
     },
     {
-      "previous": {
-        "href": "https://api.odsm.com/bookings/123124?query=previous"
-      }
+      "rel": "previous",
+      "href": "https://api.osdm.com/bookings/123124?query=previous"
     }
-    ,..
+    ...
   ]
 }
 ```
