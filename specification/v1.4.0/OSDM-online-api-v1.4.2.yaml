@@ -3459,6 +3459,10 @@ components:
             Id of this trip for referencing purposes. Unique within a trip.
           type: string
           nullable: false
+        externalRef:
+          description: >-
+            External reference of this trip for referencing purposes. Unique within a trip specification.
+          type: string
         duration:
           description: >-
             Overall duration of the trip
@@ -3555,14 +3559,12 @@ components:
       description: >-
         A minimal trip specification from origin to destination.
       required:
-        - externalRef
         - legs
       properties:
         externalRef:
           description: >-
             External reference of this trip for referencing purposes. Unique within a trip specification.
           type: string
-          nullable: false
         legs:
           type: array
           items:
