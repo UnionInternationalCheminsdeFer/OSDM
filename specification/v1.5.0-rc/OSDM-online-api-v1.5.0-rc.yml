@@ -3965,6 +3965,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/LineNumber"
+        operatorName:
+          description: >-
+            Textual representation of the operator to be displayed unless the application is able to show the name by the operator references.
+          type: string
+          example: ACME Corp.
         operatorRefs:
           description: >-
             Reference to transport operators.
