@@ -82,7 +82,7 @@ A trip is composed of one or more `tripLegs` and can be of one the following typ
   public transport
 - **TransferLeg**: A type of leg that links two legs such as walking from
   one stop to another
-- **ContinousLeg**: A type of leg that is not bound to a timetable. This
+- **ContinuosLeg**: A type of leg that is not bound to a timetable. This
   leg is mainly aimed at new modes such as scooter, taxis,..
 
 A tripLeg represents a subsection of a trip that is realized with the
@@ -140,8 +140,9 @@ reservations
 A reservation provides the right to sit or lay on dedicated place in a
 vehicle
 
-A reservation has a price. A reservation can be **OPTIONAL, MANDATORY,
-INCLUDED** to an admission.
+A reservation has a price.
+
+A reservation can be **OPTIONAL, MANDATORY,INCLUDED** to an admission.
 
 A reservation offer is valid for a given time. An admission offer shows
 which reductions have been applied.
@@ -161,6 +162,8 @@ An ancillary is a service that can be offered to a customer. Examples for
 ancillary services: Wifi access or on-board meal.
 
 An ancillary has a price.
+
+An ancillary can be **OPTIONAL, MANDATORY,INCLUDED** to an admission or reservation.
 
 An ancillary offer is valid for a given time.
 
@@ -189,13 +192,12 @@ The state of a fee depends on the state of the associated product.
 
 ### Requirements on Offer Combination
 
-Offers from different providers might have a restriction to be sold in combination only. 
+Offers from different providers might have a restriction to be sold in combination only.
 
-The combination might not be be required by all offers. E.g. an offer from provider A might only be sold if offer B of 
-another provider is sold but offer B can be sold stand alone. 
+The combination might not be be required by all offers. E.g. an offer from provider A might
+only be sold if offer B of another provider is sold but offer B can be sold stand alone.
 
 The combination logic needs to be fast (<20ms).
-
 
 ### Requirements on Round Trips
 
@@ -231,9 +233,12 @@ A product must contain the following information:
 
 - `id`: an id uniquely identifying the product, e.g. "Sparschiene"
 - `description`: A textual description of the product
-- `conditions`: A structured description of the sales or after-sales conditions which can be machine interpreted.
-- `refundable`: Indicates whether a product is refundable, refundable with conditions or not refundable
-- `exchangeable`: Indicates whether a product is exchangeable, exchangeable with conditions or not exchangeable
+- `conditions`: A structured description of the sales or after-sales conditions which
+   can be machine interpreted.
+- `refundable`: Indicates whether a product is refundable, refundable with conditions
+   or not refundable
+- `exchangeable`: Indicates whether a product is exchangeable, exchangeable with conditions
+   or not exchangeable
 - `serviceClass`: The service class describing the level of comfort.
 
 Other attributes may define the supported fulfillment media types of the
@@ -279,29 +284,39 @@ Partial refund as well as exchange may be supported by all parties.
 
 It must be possible to manage a complaint according to (EU) **2021/782**.
 
-It must be possible that the claim is managed by a separate person on behalf of the passenger.
+It must be possible that the claim is managed by a separate person on behalf
+of the passenger.
 
-It must be possible to Ticket Vendors and / or Allocators to submit a claim for a booking or parts of it (e.g. in case of a return trip) where the service has not been provided as promised. This includes:
+It must be possible to Ticket Vendors and / or Allocators to submit a claim
+for a booking or parts of it (e.g. in case of a return trip) where the service
+has not been provided as promised. This includes:
 
-* Delays of trains
-  * In case the train was not restricted to specific trains this includes also trains which were not mentioned in the trip of the booking
-  * A description of the cause is needed delayed trains incl. the delay, missed connections, Cancelled trains,...
-  * Abandoned travel (e.g. in case of a return, subsequent trains,..)
-* Service derogation (e.g. first class not available, ...)
+- Delays of trains
+  - In case the train was not restricted to specific trains this includes also
+    trains which were not mentioned in the trip of the booking
+  - A description of the cause is needed delayed trains incl. the delay, missed
+    connections, cancelled trains,...
+  - Abandoned travel (e.g. in case of a return, subsequent trains,..)
+- Service derogation (e.g. first class not available, ...)
 
-It must be possible to provide documentation to support the claim (e.g. scanned manual remark of train staff) (Alternatively require exchange via **UIC 90918-4**).
+It must be possible to provide documentation to support the claim (e.g. scanned
+manual remark of train staff) (Alternatively require exchange via **UIC 90918-4**).
 
-It must be possible to demand the that the claimed amount is issued as a voucher or transferred to a bank account.
+It must be possible to demand the that the claimed amount is issued as a voucher
+or transferred to a bank account.
 
 It must be possible to lookup the status of the claim made.
 
-In case a claim is accepted or rejected the actor that made the request must be informed. The accepted or rejected claim must provide an explanation for the decision especially if the amount covers the ticket price only partially.
+In case a claim is accepted or rejected the actor that made the request must be
+informed. The accepted or rejected claim must provide an explanation for the decision
+especially if the amount covers the ticket price only partially.
 
-It must be possible to inform the allocator / fare provider that the payment way made and the claim is settled.
+It must be possible to inform the allocator / fare provider that the payment
+way made and the claim is settled.
 
-It must be possible for an allocator to inform the fare provider that the claim was accepted because the fare provider missed a legal time line to handling the claim.
-
-
+It must be possible for an allocator to inform the fare provider that the claim
+was accepted because the fare provider missed a legal time line to handling the
+claim.
 
 ## Functional Requirements Allocation
 
@@ -350,13 +365,12 @@ A route can split into optional routes indicated in the human readable
 route by “/”.
 
 The end of a route of one carrier when combined to another route of
-another carrier might be indicated with an additional text (e.g. FR or GR) in the human
-readable form if it is not at a “real” station.
+another carrier might be indicated with an additional text (e.g. FR or GR)
+in the human readable form if it is not at a “real” station.
 
 ##### Are routes used as line routes or as bubble routes?
 
-![Line- vs. Buble Route interpretation](../images/business-capabilities/line-vs-buble-route.png)
-
+![Line- vs. Bubble Route interpretation](../images/business-capabilities/line-vs-buble-route.png)
 
 `A*B/D*C` as line routes: `A-E-C` is not allowed
 
@@ -500,7 +514,7 @@ Real examples
   - 30 days of validity (validity for usage)
 
 - Available for purchase 180 to 0 days before departure day, valid for
-    2 consecutive days
+  two consecutive days
 
 The following rules can be defined (and combined):
 
@@ -570,13 +584,13 @@ use a fare. To define this time there is a need to:
   - Indication that the ticket is a pass
   - Start and end of validity in UTC
   - Number of allowed trips or days
-  - The validity might depend on the toime of Boarding or De-Boarding of a train. E.g. a pass might be valid on the train if the the passneger boards the train during the validity of the pass.
+  - The validity might depend on the time of Boarding or De-Boarding of a train.
+    E.g. a pass might be valid on the train if the the passenger boards the train during
+    the validity of the pass.
 
 - Examples:
   - Valid Monday – Friday if work day from 09:00 until 03:00 the following day
-  - Valid Saturday – Sunday and public holidays from 00:00 until 03:00 the
-    following day   
-    
+  - Valid Saturday – Sunday and public holidays from 00:00 until 03:00 the following day
 
 ### Requirements on validity for passengers / transportables
 
@@ -584,7 +598,7 @@ Transportables can be different types of passengers, animals or other
 items carried by a passenger.
 
 - A passenger might have an upper and / or lower age limit.
-- A passenger might have an additional age limit for travelling alone.
+- A passenger might have an additional age limit for traveling alone.
 - There might be a limit on the number of accompanying passengers of
   one type a passenger of another type can accompany. (e.g. not more
   than 8 children with one adult)
@@ -617,14 +631,15 @@ reductions to a fare.
   In this case an NRT is created up to the final station the customer goes with
   the price to the border of the area. The ticket indicates that the ticket has
   a reduction of 100% within the area and an indication that it is valid only
-  together with the card. Pricing data are needed for the free travel area to 
+  together with the card. Pricing data are needed for the free travel area to
   get the route description.
 
 ### Requirements on prices
 
 Prices might be needed in more than one currency.
 
-- Currency (local currency might be required additionally due to local legislation for two carriers in one country)
+- Currency (local currency might be required additionally due to local legislation
+  for two carriers in one country)
 - Amount
 
 Value Added Tax (VAT) details must be given to the customer to enable a business
@@ -637,7 +652,7 @@ customer to claim a refund. The VAT details include:
 
 The VAT given is the VAT the carrier pays for this fare to the countries
 where he is providing his service. The VAT might depend additionally on
-whether the fare is issued as national ticket, international ticket or integrated 
+whether the fare is issued as national ticket, international ticket or integrated
 in an international ticket. Also, the VAT might depend on whether the fare is
 used for short distance or integrated in a long-distance ticket.
 
@@ -647,7 +662,8 @@ are not considered here.
 
 Possible Price formats are:
 
-- Fixed prices attached to a route (and fare) including VAT details (country, percentage, amount, VAT id)
+- Fixed prices attached to a route (and fare) including VAT details (country, percentage,
+  amount, VAT id)
 - Prices depending on an intermediate distance (“fare kilometer”)
 - Price depending of other prices.
 
@@ -710,9 +726,7 @@ The Required personal data might depend on the fulfillment:
 
 - Data might be required for ticket holders only or for all passengers
 
-
-Fares should provide the incolved TCOs that need to have access to the ticket data for control of fulfillments.
-
+Fares should provide the involved TCOs that need to have access to the ticket data for control of fulfillments.
 
 ### Requirements on dynamic fares and train linked tickets
 
@@ -736,7 +750,8 @@ restriction:
 
 - DB solution: The train information replaces the corresponding route part
 
-- ÖBB solution: The route description is identical to the ticket without train link and the trains are added in the condition description
+- ÖBB solution: The route description is identical to the ticket without train link and the trains
+  are added in the condition description
 
 *Decision*: in case of a train bound ticket the route of the train
 should replace the route description for the part of the train bound*
@@ -968,20 +983,20 @@ supported.
 
 ### Requirements on Trip Interruptions
 
-Restrictions oon allowed trip interruptions must be indicated in a fare. 
+Restrictions oon allowed trip interruptions must be indicated in a fare.
 
 Restrictions on interruptions can specify the maximal number of interruptions and the maximal duration of interruptions.
 
-The fare must provide information wheter the interruption has to be confiremd by staff of by deactivation of the electronic ticket.
+The fare must provide information whether the interruption has to be confirmed by staff of by deactivation of the electronic ticket.
 
-### Requirements on Multi-Journes Tickets
+### Requirements on Multi-Journeys Tickets
 
 The restrictions on the use of a multi-journey ticket for individual trips must be described in the fare.
 
-REstrictions can specifyy the number of das, trips or time units to be used.
+Restrictions can specify the number of das, trips or time units to be used.
 
 The process to use an individual trip with a multi journey ticket must be indicated. These  
-include separate fulfillments per individual tris or activation for a trip. 
+include separate fulfillments per individual trips or activation for a trip.
 
 ### Requirements on Fare Exchange
 
@@ -1019,7 +1034,7 @@ The specification must be extendible in various dimensions:
 
 - Support of new products on the fare as well as on the offer level
 - Support of new processes, e.g. product-based distribution
-- Support of new modes of transportations, e.g. scooters or rail
+- Support of new modes of transportation, e.g. scooters or rail
 
 ### Requirements on security
 
@@ -1036,13 +1051,13 @@ This regulation must be fulfilled.
 
 ### GDPR: Regulation (EU) 2016/679 on data protection
 
-- The traveller must be informed on the use of his data and on passing his data
+- The passenger must be informed on the use of his data and on passing his data
   to the carrier and TCO
-- The traveller must be informed which data are stored including data passed to
+- The passenger must be informed which data are stored including data passed to
   the carrier and TCO
-- The traveller has the right to ask to delete the data in case the data are not
+- The passenger has the right to ask to delete the data in case the data are not
   required to fulfil the contract of carriage
-- The traveller has the right to ask for data correction in case the data are wrong
+- The passenger has the right to ask for data correction in case the data are wrong
 - Legal basis for processing of personal data with a view of black listing
 
   Although the exchange of blacklists is not in the scope of the
