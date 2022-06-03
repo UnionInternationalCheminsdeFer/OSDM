@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.2-rc1
+  version: 1.4.2-rc2
   description: >-
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in
@@ -246,26 +246,19 @@ paths:
             Influences what stops are to be returned in response
             (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
             REAL_BOARDING_ALIGHTING returns all stops except virtual stops).
+            Default value: ORIGIN_DESTINATION_ONLY
           schema:
-            type: string
-            default: ORIGIN_DESTINATION_ONLY
-            enum:
-              - ORIGIN_DESTINATION_ONLY
-              - REAL_BOARDING_ALIGHTING
+            $ref: '#/components/schemas/StopBehavior' 
         - name: embed
           in: query
           description: >-
             Influences whether referenced resources are returned in full or as references only.
+            Default value: ALL
           schema:
             type: array
-            default: [ALL]
             maxItems: 1
             items:
-              type: string
-              enum:
-                - ALL
-                - PLACES
-                - NONE
+              $ref: '#/components/schemas/TripResponseContent'
       responses:
         '200':
           description: >-
@@ -373,17 +366,12 @@ paths:
           in: query
           description: >-
             Influences whether referenced resources are returned in full or as references only.
+            Default value: ALL
           schema:
             type: array
-            default: [ALL]
             maxItems: 2
             items:
-              type: string
-              enum:
-                - TRIPS
-                - TRIPS_PLACES
-                - NONE
-                - ALL
+              $ref: '#/components/schemas/TripsCollectionResponseContent'
       responses:
         '200':
           description: >-
@@ -493,21 +481,12 @@ paths:
           in: query
           description: >-
             Influences whether referenced resources are returned in full or as references only.
+            Default value: ALL
           schema:
             type: array
-            default: [ALL]
             maxItems: 5
             items:
-              type: string
-              enum:
-                - ALL
-                - TRIPOFFERS
-                - TRIPOFFERS_TRIP
-                - TRIPOFFERS_TRIP_PLACES
-                - TRIPOFFERS_OFFERS
-                - TRIPOFFERS_OFFERS_OFFERPARTS
-                - TRIPOFFERS_PASSENGERS
-                - NONE
+              $ref: '#/components/schemas/TripOffersCollectionResponseContent'
       responses:
         '200':
           description: >-
@@ -564,20 +543,12 @@ paths:
           in: query
           description: >-
             Influences whether referenced resources are returned in full or as references only.
+            Default value: ALL
           schema:
             type: array
-            default: [ALL]
             maxItems: 5
             items:
-              type: string
-              enum:
-                - ALL
-                - TRIPS
-                - TRIPS_PLACES
-                - OFFERS
-                - OFFERS_OFFERPARTS
-                - PASSENGERS
-                - NONE
+              $ref: '#/components/schemas/TripOfferResponseContent'
       responses:
         '200':
           description: >-
@@ -685,18 +656,12 @@ paths:
           in: query
           description: >-
             Influences whether referenced resources are returned in full or as references only.
+            Default value: ALL
           schema:
             type: array
-            default: [ALL]
             maxItems: 3
             items:
-              type: string
-              enum:
-                - ALL
-                - OFFERS
-                - OFFERS_OFFERRPARTS
-                - OFFERS_PASSENGERS
-                - NONE
+              $ref: '#/components/schemas/OffersCollectionResponseContent'
       responses:
         '200':
           description: >-
@@ -755,18 +720,12 @@ paths:
           in: query
           description: >-
             Influences whether referenced resources are returned in full or as references only.
+            Default value: ALL
           schema:
             type: array
-            default: [ALL]
             maxItems: 3
             items:
-              type: string
-              enum:
-                - ALL
-                - OFFERPARTS
-                - TRIP
-                - TRIP_PLACES
-                - NONE
+              $ref: '#/components/schemas/OfferResponseContent'
       responses:
         '200':
           description: >-
@@ -1718,22 +1677,12 @@ paths:
           in: query
           description: >-
             Influences whether referenced resources are returned in full or as references only.
+            Default value: ALL
           schema:
             type: array
-            default: [ALL]
             maxItems: 7
             items:
-              type: string
-              enum:
-                - ALL
-                - BOOKEDOFFERS_TRIP
-                - BOOKEDOFFERS_TRIP_PLACES
-                - BOOKEDOFFERS
-                - BOOKEDOFFERS_OFFERPARTS
-                - PASSENGERS
-                - TICKETS
-                - REFUND_PROPOSITIONS
-                - NONE
+              $ref: '#/components/schemas/BookingResponseContent'
       responses:
         '200':
           description: >-
@@ -2275,21 +2224,12 @@ paths:
           in: query
           description: >-
             Influences whether referenced resources are returned in full or as references only.
+            Default value: ALL
           schema:
             type: array
-            default: [ALL]
             maxItems: 5
             items:
-              type: string
-              enum:
-                - ALL
-                - TRIPS
-                - TRIPS_PLACES
-                - OFFERS
-                - OFFERS_OFFERPARTS
-                - OFFERS_OFFERPARTS_PRODUCTS
-                - PASSENGERS
-                - NONE
+              $ref: '#/components/schemas/ExchangeTripOffersResponseContent'
       responses:
         '200':
           description: >-
@@ -2509,22 +2449,12 @@ paths:
           in: query
           description: >-
             Influences whether referenced resources are returned in full or as references only.
+            Default value: ALL
           schema:
             type: array
-            default: [ALL]
             maxItems: 7
             items:
-              type: string
-              enum:
-                - ALL
-                - TRIPOFFERS
-                - TRIPOFFERS_TRIPS
-                - TRIPOFFERS_TRIPS_PLACES
-                - TRIPOFFERS_OFFERS
-                - TRIPOFFERS_OFFERS_OFFERPARTS
-                - TRIPOFFERS_OFFERS_OFFERPARTS_PRODUCTS
-                - TRIPOFFERS_PASSENGERS
-                - NONE
+              $ref: '#/components/schemas/ExchangeTripOffersCollectionResponseContent'
       responses:
         '200':
           description: >-
@@ -2582,21 +2512,12 @@ paths:
           description: >-
             Influences whether referenced resources are returned in full or as references
             only.
+            Default value: ALL
           schema:
             type: array
-            default: [ALL]
             maxItems: 6
             items:
-              type: string
-              enum:
-                - ALL
-                - TRIPS
-                - TRIPS_PLACES
-                - OFFERS
-                - OFFERS_OFFERPARTS
-                - OFFERS_OFFERPARTS_PRODUCTS
-                - PASSENGERS
-                - NONE
+              $ref: '#/components/schemas/ExchangeTripOffersResponseContent'
       responses:
         '200':
           description: >-
@@ -5568,7 +5489,6 @@ components:
             by a combinationTag, this flag must be set to true to indicate to the provider that after-sale must be done
             on the totality of the distributor's booking. Only after-sale requests triggered by the distributor can be
             safely processed on this offer. When the flag is not set, standard provider logic applies.
-            
           type: boolean
           default: false
         throughTicketTag:
@@ -8915,19 +8835,6 @@ components:
         - LOYALTY_CARD
         - CHIP_CARD
         - PASS
-
-    Booking2ResponseContent:
-      type: string
-      enum:
-        - ALL
-        - BOOKEDOFFERS_TRIP
-        - BOOKEDOFFERS_TRIP_PLACES
-        - BOOKEDOFFERS
-        - BOOKEDOFFERS_OFFERPARTS
-        - PASSENGERS
-        - TICKETS
-        - REFUND_PROPOSITIONS
-        - NONE
 
     CoachLayoutGridSize:
       type: object
