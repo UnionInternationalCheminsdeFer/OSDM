@@ -7287,6 +7287,7 @@ components:
          - CIV: terms and conditions according to COTIV regulation
          - MD:  terms and conditions according to SMPS regulation
          - EU-PRR: terms and conditions according to EU-PRR regulation
+         - RESPLUS: terms and conditions according to RESPLUS agreement
       type: array
       items:
         type: string
@@ -7294,6 +7295,7 @@ components:
           - CIV
           - MD
           - EU-PRR
+          - RESPLUS
 
     CalendarOnline:
       type: object
