@@ -7144,7 +7144,7 @@ components:
         luggageRules:
           type: array
           items: 
-             $ref: "#/components/schemas/LuggageRestriction"
+             $ref: "#/components/schemas/LuggageRestrictionRule"
           	
     LuggageRestrictionRule:
       description: >-
