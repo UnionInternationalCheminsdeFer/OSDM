@@ -4442,6 +4442,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/OfferPartType"
+        regulatoryConditions:
+          type: array
+          items:
+            $ref: "#/components/schemas/RegulatoryConditions"            
         currency:
           $ref: "#/components/schemas/Currency"
           description: The currency returned might be different from the one requested.
