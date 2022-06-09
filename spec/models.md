@@ -347,8 +347,6 @@ used in the FCB bar code data and the IRS 90918-4 ticket data exchange for contr
 The data model makes use of recursive definitions to simplify implementations but the message contains a non-recursive 
 representation of the data where recursive links have been replaced by a reference to an index in a list.
 
-############
-
 ![Route data model](../images/models/OSDM-model-Routes-online.png)
 
 
@@ -356,9 +354,9 @@ For the following example object models are shown for the message representation
 
 ![Route example](../images/fare-data-structure/viaExample.PNG)
 
-![Route example recursive](../images/models/OSDM-model-route-object model.png)
+![Route example recursive](../images/models/OSDM model route object model.png)
 
-![Route example non-recursive](../images/models/OSDM-model-route-message-object model.png)
+![Route example non-recursive](../images/models/OSDM-model-route-message-object-model.png)
 
 
 
