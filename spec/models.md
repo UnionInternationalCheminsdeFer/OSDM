@@ -356,7 +356,7 @@ For the following example object models are shown for the message representation
 
 ![Route example recursive](../images/models/OSDM-model-route-object-model.png)
 
-![Route example non-recursive](../images/models/OSDM-model-route-message-object model.png)
+![Route example non-recursive](../images/models/OSDM-model-route-message-object-model.png)
 
 
 
