@@ -7148,7 +7148,18 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/LuggageRestriction"
-
+        luggageRules:
+          type: array
+          items: 
+             $ref: "#/components/schemas/LuggageRestrictionRule"
+          	
+    LuggageRestrictionRule:
+      description: >-
+          named luggage restriction rule: CAN_CARRY = weight is ok if you can carry it yourself
+      type: string
+      x-extensible-enum:
+         - CAN_CARRY
+      
     LuggageRestriction:
       type: object
       properties:
