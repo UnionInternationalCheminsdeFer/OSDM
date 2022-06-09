@@ -84,6 +84,9 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`LADIES`|  N | Y | Y | Ladies compartment | |
 |`LADIES_CHOUCHETTE_4` | Y | N | Y | Ladies compartment, 4-couchettes |  |
 |`LADIES_CHOUCHETTE_6` | Y | N | Y | Ladies compartment, 6-couchettes | |
+|`MEN`|  N | Y | Y | Men compartment | |
+|`MEN_CHOUCHETTE_4` | Y | N | Y | Men compartment, 4-couchettes |  |
+|`MEN_CHOUCHETTE_6` | Y | N | Y | Men compartment, 6-couchettes | | 
 |`LOWER_BED`| N | Y | Y | Lower bed or couchette | `BERTH_LOCATION` |
 |`LOWER_DECK`| N | Y | Y | Lower deck in a double deck train | `LEVEL` |
 |`MIDDLE_BED` | N | Y | Y | Middle bed or couchette | `BERTH_LOCATION` |
