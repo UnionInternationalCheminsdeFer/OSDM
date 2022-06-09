@@ -3965,23 +3965,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/LineNumber"
-        operatorName:
-          description: >-
-            Textual representation of the operator to be displayed unless the application is able to show the name by the operator references.
-          type: string
-          example: ACME Corp.
         operatorRefs:
           description: >-
-            Reference to transport operators.
+            Reference to transport operators including their textual representation.
             For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
             As a leg can be operated by more than operator we model it as an array here.
           type: array
           items:
-            type: string
-            example:
-              - "urn:uic:rics:1185:11"
-              - "urn:uic:rics:1185:72"
-              - "urn:uic:rics:1185:48"
+            $ref: "#/components/schemas/NamedCompany"
         serviceStatus:
           $ref: "#/components/schemas/ServiceStatus"
         situationFullRefs:
@@ -7860,6 +7851,22 @@ components:
       description: >-
         Identifies a company. For rail, a RICS company code or compatible ERA company code are used.
       example: "urn:uic:rics:1185"
+
+    NamedCompany:
+      type: object
+      description: >-
+        Identifies a company and provides textual representation. For rail, a RICS company code or compatible ERA company code are used.
+      required:
+       - ref
+       - name
+      properties:
+        ref:
+          $ref: "#/components/schemas/Company"
+        name:
+          description: >-
+            Textual representation of the operator to be displayed unless the application is able to show the name by the operator references.
+          type: string
+          example: ACME Corp.
 
     ServiceBrandCode:
       type: string
