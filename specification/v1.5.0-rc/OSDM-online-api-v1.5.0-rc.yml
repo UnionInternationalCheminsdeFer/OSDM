@@ -3939,7 +3939,7 @@ components:
         # - mode
         # - publishedServiceName # EXT
         # - privateMode # EXT
-        - operatorRefs
+        - operators # EXT replaces operatorRefs
         # - originText
         # - destinationText
       properties:
@@ -3965,7 +3965,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/LineNumber"
-        operatorRefs:
+        operators:
           description: >-
             Reference to transport operators including their textual representation.
             For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
