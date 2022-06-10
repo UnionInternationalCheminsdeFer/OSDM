@@ -68,7 +68,7 @@ components:
       type: object
       required:
         - objectType
-        - abstract
+        - summary
         - type
         - revision
         - bookingId
@@ -79,7 +79,7 @@ components:
           enum:
             - BookingEvent
           default: BookingEvent
-        abstract:
+        summary:
           type: string
           description: >-
             Human readable description of what has changed on the booking. e.g.
@@ -122,7 +122,7 @@ components:
       type: object
       required:
         - objectType
-        - abstract
+        - summary
         - type
         - revision
         - complaintId
@@ -133,7 +133,7 @@ components:
           enum:
             - ComplaintEvent
           default: ComplaintEvent
-        abstract:
+        summary:
           type: string
           description: >-
             Human readable description of what has changed on the complaint
