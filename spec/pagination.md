@@ -7,7 +7,7 @@ permalink: /spec/pagination/
 
 ## Pagination
 
-OSDM uses cursor based pagination and the `_links` concept of **HATEOAS** for pagination. Thus in a response
+OSDM uses cursor based pagination and the `_links` concept of **HATEOAS** for pagination. Thus, for responses where pagination is relevant, pagination links will be added, following 
 URL to `next` and `previous` pages are provided if pagination shall be supported.
 
 ```json
@@ -35,9 +35,6 @@ URL to `next` and `previous` pages are provided if pagination shall be supported
 Where semantically valid, additional links to the `first`and `last` pages can be provided, i.e., the
 `/bookings` resource.
 
-For further details, see [Pagination Guidelines](https://opensource.zalando.com/restful-api-guidelines/#160)
-of the [Zalando RESTful API and Event Guidelines](https://opensource.zalando.com/restful-api-guidelines/).
-
 ## Resources Supporting Pagination
 
 With this version of the specification, the following resources should support pagination:
@@ -47,3 +44,7 @@ With this version of the specification, the following resources should support p
 - **GET** `/offers-collections/{offerCollectionId}`
 - **GET** `/exchange-offers-collections/{exchangeOfferCollectionId}`
 - **GET** `/bookings/`
+- **GET** `/products/`
+- **GET** `/coachLayouts/`
+- **GET** `/places/`
+- **GET** `/zones/`
