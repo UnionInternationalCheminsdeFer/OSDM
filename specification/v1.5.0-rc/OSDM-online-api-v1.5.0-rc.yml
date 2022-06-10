@@ -72,6 +72,12 @@ paths:
         Returns all places
       operationId: getPlaces
       parameters:
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - $ref: "#/components/parameters/requestor"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
@@ -335,6 +341,12 @@ paths:
             type: string
           required: true
         - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
+        - in: query
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -443,6 +455,12 @@ paths:
             type: string
           required: true
           description: id of the trip offers
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - in: query
           name: embed
           description: >-
@@ -616,6 +634,12 @@ paths:
             type: string
           required: true
           description: id of the trip offers
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - in: query
           name: embed
           description: >-
@@ -1389,6 +1413,12 @@ paths:
       summary: Returns all products available to the caller.
       operationId: getProducts
       parameters:
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - $ref: "#/components/parameters/requestor"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
@@ -2329,6 +2359,12 @@ paths:
           required: true
           description: id of the trip to get.
         - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
+        - in: query
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -2585,10 +2621,22 @@ paths:
         layouts can either be retrieved as a complete list or specificity for a train identified via offerId and reservationId or fareId
       operationId: getCoachLayouts
       parameters:
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - $ref: "#/components/parameters/requestor"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
       responses:
         "200":
           description: coach layouts
@@ -2671,6 +2719,12 @@ paths:
       summary: Returns a collection of reduction card definitions.
       operationId: getReductionCards
       parameters:
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
       responses:
@@ -2708,6 +2762,12 @@ paths:
       summary: Returns a collection of zone definitions.
       operationId: getZones
       parameters:
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
       responses:
