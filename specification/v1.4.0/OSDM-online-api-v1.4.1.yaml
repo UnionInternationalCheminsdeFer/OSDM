@@ -3364,7 +3364,7 @@ components:
           $ref: "#/components/schemas/ServiceBrandFilter"
         # privateModeFilter:  # Out of scope
         #   $ref: "#/components/schemas/PrivateModeFilter"
-        vehicleFilter:
+        vehicleFilter: # EXT
           $ref: "#/components/schemas/VehicleFilter"
 
     TripParam: ## OJP # Reduced scope
