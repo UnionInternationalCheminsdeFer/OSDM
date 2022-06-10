@@ -6815,21 +6815,26 @@ components:
 
     ZonesDelivery:
       type: object
-      description: Delivery of a list of reduction cards.
+      description: Delivery of a list of zones.
       properties:
         deliveryDate:
           description: date of the assembly of the zone data set
           type: string
           format: date-time
-        reductionCards:
+        zones:
           type: array
           items:
             $ref: "#/components/schemas/ZoneDefinition"
 
     ZoneDefinition:
-      description: >-
-        definition of a zone used to define regional validity. The area of the zone can be defined via a geo-polygon, a complete list of all contained stations or area codes from the NUTS code list. The carrier is either the carrier or transport authority responsible for the definition.
       type: object
+      description: >-
+        Definition of a zone used to define regional validity. The area of the zone can be defined via a geo-polygon, 
+        a complete list of all contained stations or area codes from the NUTS code list. The carrier is either the carrier
+        or transport authority responsible for the definition.
+      required:
+        - carrier
+        - id
       properties:
         carrier:
           $ref: "#/components/schemas/Company"
@@ -6847,9 +6852,6 @@ components:
           type: array
           items:
             type: string
-      required:
-        - carrier
-        - id
 
     #### Fare-specific elements begin
 
