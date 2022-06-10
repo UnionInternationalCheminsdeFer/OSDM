@@ -261,7 +261,8 @@
 				"enum": [
 					"CIV",
 					"MC",
-					"EU_PRR"
+					"EU_PRR",
+					"RESPLUS"
 				]
 			}
 		},
