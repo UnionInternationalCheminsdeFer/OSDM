@@ -6,7 +6,7 @@ date: 2021-10-23 10:20:33 +0100
 categories: osdm update
 ---
 
-UIC member [SBB](https://www.sbb.ch), has built an **OSDM application in seven days** only using the [OSDM API](https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/) to show simulations of routes and services within the system and the capabilities of real time railway ticket distribution.
+UIC member [SBB](https://www.sbb.ch), has built an **OSDM application in seven days** only using the **OSDM API** to show simulations of routes and services within the system and the capabilities of real time railway ticket distribution.
 
 The application is connected to the [OSDM sandbox](https://osdm.io/tools/sandbox/) environment developed by [Sqills](https://sqills.com), which is powered by the Sqills S3 Passenger inventory, reservation and ticketing SaaS. The sandbox is a working prototype which enables the study of the behaviour and semantics of the OSDM API and is open to any party interested in implementing OSDM.  
 

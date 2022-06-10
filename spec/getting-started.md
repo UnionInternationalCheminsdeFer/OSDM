@@ -495,7 +495,7 @@ This short introduction should help you getting started and assure you that OSDM
 
 To fully understand OSDM we recommend you to have a look at the [specification](../spec/), especially the [model](../spec/models) and the [processes](../spec/processes) pages, especially state model of a `booking` and a `fulfillment`.
 
-Another good start is to study the [API](https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/1.3.0-rc1) itself. Or you can ask the OSDM technical group for an introduction.
+Another good start is to study the **API** itself. Or you can ask the OSDM technical group for an introduction.
 
 ## FAQ
 
