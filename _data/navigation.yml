@@ -1,5 +1,9 @@
-- name: Online API
-  link: https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/
+- name: OSDM Online APIs
+  dropdown:
+    - name: OSDM Online API
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v1.5.0-rc/OSDM-online-api-v1.5.0-rc.yml&nocors
+    - name: OSDM Webhook API
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v1.5.0-rc/OSDM-online-webhook-v1.5.0-rc.yml&nocors
 - name: Specification
   link: spec/
   dropdown:
