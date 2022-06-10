@@ -3391,7 +3391,6 @@ components:
       description: >-
         A minimal trip specification from origin to destination.
       required:
-        - externalRef
         - legs # EXT replaces tripLegs, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/179
       properties:
         externalRef:
