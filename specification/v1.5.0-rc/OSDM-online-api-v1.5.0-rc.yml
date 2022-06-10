@@ -3502,7 +3502,7 @@ components:
           type: string
           format: duration
         co2Emission:
-          $ref: "#/components/schemas/Co2Emission"
+          $ref: "#/components/schemas/Quantity"
 
     TimedLegSpecification:
       type: object
@@ -3581,7 +3581,7 @@ components:
           items:
             $ref: "#/components/schemas/SituationFullRef"
         co2Emission:
-          $ref: "#/components/schemas/Co2Emission"
+          $ref: "#/components/schemas/Quantity"
 
     ContinuousLeg: ## OJP # Reduced scope
       type: object
@@ -3626,7 +3626,7 @@ components:
           items:
             $ref: "#/components/schemas/SituationFullRef"
         co2Emission:
-          $ref: "#/components/schemas/Co2Emission"
+          $ref: "#/components/schemas/Quantity"
 
     ContinuousService: ## OJP
       type: object
@@ -6792,18 +6792,6 @@ components:
         - carrier
         - id
 
-    Co2Emission:
-      type: object
-      description: Estimation of CO2 emitted
-      properties:
-        value:
-          type: number
-          format: float
-        unit:
-          description: Unit of the mesured quantity
-          type: string
-          example: "kg"
-
     #### Fare-specific elements begin
 
     FareOnline:
@@ -8726,6 +8714,16 @@ components:
         money:
           $ref: "#/components/schemas/Price"
 
-
+    Quantity:
+      type: object
+      description: Generic quantity entity
+      properties:
+        value:
+          type: number
+          format: float
+        unit:
+          description: Unit of the measured quantity
+          type: string
+          example: "kg"
 
     #### Common elements end
