@@ -338,6 +338,28 @@ control data to the TCOs). This especially includes the temporal and regional va
 for travel. The rules on how to combine the fares (combination constraints) 
 must also be included in the fare. 
 
+#### Regional Validity Route model
+
+The route in fares is modeled as a structural modelto allow additional functionalities including automated 
+ticket control or validation of new trips with the described route. The model is copliant with the route model 
+used in the FCB bar code data and the IRS 90918-4 ticket data exchange for control.
+
+The data model makes use of recursive definitions to simplify implementations but the message contains a non-recursive 
+representation of the data where recursive links have been replaced by a reference to an index in a list.
+
+![Route data model](../images/models/OSDM-model-Routes-online.png)
+
+
+For the following example object models are shown for the message representation and the recursive model:
+
+![Route example](../images/fare-data-structure/viaExample.PNG)
+
+![Route example recursive](../images/models/OSDM-model-route-object-model.png)
+
+![Route example non-recursive](../images/models/OSDM-model-route-message-object-model.png)
+
+
+
 ### Passengers
 
 As the name suggests, passenger resources represent the passengers for whom the
