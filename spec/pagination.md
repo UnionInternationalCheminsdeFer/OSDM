@@ -21,19 +21,23 @@ URL to `next` and `previous` pages are provided if pagination shall be supported
     },
     {
       "rel": "next",
-      "href": "https://api.osdm.com/bookings/123124?query=next"
+      "href": "https://api.osdm.com/bookings/123124?page=next"
     },
     {
       "rel": "previous",
-      "href": "https://api.osdm.com/bookings/123124?query=previous"
+      "href": "https://api.osdm.com/bookings/123124?page=previous"
     }
     ...
   ]
 }
-```
+
+The nature of the link is indicated by the "rel" attribute.
 
 Where semantically valid, additional links to the `first`and `last` pages can be provided, i.e., the
 `/bookings` resource.
+
+Note that while a "page" parameter is provided for verbs supporting pagination, it is not mandatory to use it: One implementator might use the page query parameter to scroll with a fixed collectionId, while another  could prefer consider scrolling  the retrieval of previous and next collections, thus ignoring the page parameter and linking to collections with a different id.
+
 
 ## Resources Supporting Pagination
 
