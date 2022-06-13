@@ -4400,7 +4400,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the trip offer.
           example: Trip offer for Bruxelles-Midi 2022-07-01 10:05 CET, 44 €, full flexible
@@ -4490,7 +4490,7 @@ components:
           type: string
           enum:
             - Offer
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the Offer.
           example: Bruxelles-Midi - Paris-Nord 2022-07-01 10:05 CET, Normal Fare, 50 €
@@ -4601,7 +4601,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the booked offer.
           example: Bruxelles-Midi - Paris-Nord 2022-07-01 10:05 CET, Normal Fare, 50 €
@@ -4807,7 +4807,7 @@ components:
         id:
           type: string
           description: id of the product
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the product.
           example: TGV Lyria Loisir 2
@@ -5037,7 +5037,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the fee.
           example: Reservierungsentgelt, 5 €
@@ -5099,7 +5099,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the offer part reference.
           example: ICE Wifi on Board of train ICE 3, 2022-07-11
@@ -5216,7 +5216,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the booking.
           example: Booking 2345 for Clemens Gantert
@@ -5371,7 +5371,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the fulfillment.
           example: e-ticket 12345
@@ -5537,7 +5537,7 @@ components:
         id:
           type: string
           description: id of the refund offer
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the refund offer.
           example: Refund Offer for Paris-Barcelona Andre Dupont 2022-07-23
@@ -5681,7 +5681,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the exchange offer
           example: Exchange offer for Bruxelles-Midi 2022-07-01 10:05 CET
@@ -5868,7 +5868,7 @@ components:
           type: string
           enum:
             - NonTripOffer
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the offer.
           example: Super Saver One Day Pass
@@ -5965,7 +5965,7 @@ components:
         id:
           type: string
           description: id of this coachLayout on this server
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the coach layout.
           example: Coach 3 in train T-122
@@ -7866,7 +7866,7 @@ components:
           type: string
           description: >-
             Id of the passenger resource in case service to patch a single passenger is provided.
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the passenger.
           example: Andreas Schlapbach
@@ -7983,7 +7983,7 @@ components:
         preferredLanguage:
           type: string
           description: ISO-639-1 language code
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the person.
           example: Andreas Schlapbach, Riedweg 4, 3074 Bern, schlpbch@gmail.com

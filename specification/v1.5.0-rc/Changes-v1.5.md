@@ -1,0 +1,28 @@
+# Changes in V.1.5 (aka. V2.0)
+
+- add luggage Constraints
+- fix to `GeoPosition`
+- add pagination control
+- `abstract` to `summary`
+- add quantity class
+- add support for CO2 emission
+- `operatorRefs` to `operators`
+- add RESPLUS to conditory conditions
+- add mandatory relationship to ancillary
+- add requestor
+- add overrule code
+- add service facilities
+- add `externalRef` to `Trip`
+- `plate`--> `licensePlate`
+- add `CorporateCode`
+- `PaymentMethod` to `PaymentType`
+- add `PaymentMethod`, `VoucherInformation` and `Payment`
+- change `refreshUrl: "https://required.refresh.url/tbd"`
+- `Purchaser`--> `PurchaserSpecification`
+- `ViaStations`--> `Route`
+- `ANY_SEAT`as accommodation type
+- add support for `zones`
+- `FulfillmentPatch`  / `FulfillmentUsage`
+- `geoCoordinate` --> `geoPosition`
+- rm `PassengerSpecification.id`
+- file ending: `*.yaml` -> `*.yml`

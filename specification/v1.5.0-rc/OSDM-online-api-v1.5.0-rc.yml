@@ -72,6 +72,12 @@ paths:
         Returns all places
       operationId: getPlaces
       parameters:
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - $ref: "#/components/parameters/requestor"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
@@ -335,6 +341,12 @@ paths:
             type: string
           required: true
         - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
+        - in: query
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -443,6 +455,12 @@ paths:
             type: string
           required: true
           description: id of the trip offers
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - in: query
           name: embed
           description: >-
@@ -616,6 +634,12 @@ paths:
             type: string
           required: true
           description: id of the trip offers
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - in: query
           name: embed
           description: >-
@@ -1389,6 +1413,12 @@ paths:
       summary: Returns all products available to the caller.
       operationId: getProducts
       parameters:
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - $ref: "#/components/parameters/requestor"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
@@ -2329,6 +2359,12 @@ paths:
           required: true
           description: id of the trip to get.
         - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
+        - in: query
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -2585,10 +2621,22 @@ paths:
         layouts can either be retrieved as a complete list or specificity for a train identified via offerId and reservationId or fareId
       operationId: getCoachLayouts
       parameters:
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - $ref: "#/components/parameters/requestor"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
       responses:
         "200":
           description: coach layouts
@@ -2671,6 +2719,12 @@ paths:
       summary: Returns a collection of reduction card definitions.
       operationId: getReductionCards
       parameters:
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
       responses:
@@ -2708,6 +2762,12 @@ paths:
       summary: Returns a collection of zone definitions.
       operationId: getZones
       parameters:
+        - in: query
+          name: page
+          description: >-
+            can be used for pagination control
+          schema:
+            type: string
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
       responses:
@@ -3391,7 +3451,6 @@ components:
       description: >-
         A minimal trip specification from origin to destination.
       required:
-        - externalRef
         - legs # EXT replaces tripLegs, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/179
       properties:
         externalRef:
@@ -3501,6 +3560,8 @@ components:
         duration: # EXT add attribute for consistency
           type: string
           format: duration
+        co2Emission:
+          $ref: "#/components/schemas/Quantity"
 
     TimedLegSpecification:
       type: object
@@ -3578,6 +3639,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SituationFullRef"
+        co2Emission:
+          $ref: "#/components/schemas/Quantity"
 
     ContinuousLeg: ## OJP # Reduced scope
       type: object
@@ -3621,6 +3684,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SituationFullRef"
+        co2Emission:
+          $ref: "#/components/schemas/Quantity"
 
     ContinuousService: ## OJP
       type: object
@@ -3939,7 +4004,7 @@ components:
         # - mode
         # - publishedServiceName # EXT
         # - privateMode # EXT
-        - operatorRefs
+        - operators # EXT replaces operatorRefs
         # - originText
         # - destinationText
       properties:
@@ -3965,18 +4030,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/LineNumber"
-        operatorRefs:
+        operators:
           description: >-
-            Reference to transport operators.
+            Reference to transport operators including their textual representation.
             For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
             As a leg can be operated by more than operator we model it as an array here.
           type: array
           items:
-            type: string
-            example:
-              - "urn:uic:rics:1185:11"
-              - "urn:uic:rics:1185:72"
-              - "urn:uic:rics:1185:48"
+            $ref: "#/components/schemas/NamedCompany"
         serviceStatus:
           $ref: "#/components/schemas/ServiceStatus"
         situationFullRefs:
@@ -4576,7 +4637,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the trip offer.
           example: Trip offer for Bruxelles-Midi 2022-07-01 10:05 CET, 44 €, full flexible
@@ -4665,7 +4726,7 @@ components:
           type: string
           enum:
             - Offer
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the Offer.
           example: Bruxelles-Midi - Paris-Nord 2022-07-01 10:05 CET, Normal Fare, 50 €
@@ -4776,7 +4837,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the booked offer.
           example: Bruxelles-Midi - Paris-Nord 2022-07-01 10:05 CET, Normal Fare, 50 €
@@ -4985,7 +5046,7 @@ components:
         id:
           type: string
           description: id of the product
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the product.
           example: TGV Lyria Loisir 2
@@ -5215,7 +5276,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the fee.
           example: Reservierungsentgelt, 5 €
@@ -5303,7 +5364,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the offer part reference.
           example: ICE Wifi on Board of train ICE 3, 2022-07-11
@@ -5420,7 +5481,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the booking.
           example: Booking 2345 for Clemens Gantert
@@ -5612,7 +5673,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the fulfillment.
           example: e-ticket 12345
@@ -5836,7 +5897,7 @@ components:
         id:
           type: string
           description: id of the refund offer
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the refund offer.
           example: Refund Offer for Paris-Barcelona Andre Dupont 2022-07-23
@@ -5983,7 +6044,7 @@ components:
       properties:
         id:
           type: string
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the exchange offer
           example: Exchange offer for Bruxelles-Midi 2022-07-01 10:05 CET
@@ -6174,7 +6235,7 @@ components:
           type: string
           enum:
             - NonTripOffer
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the offer.
           example: Super Saver One Day Pass
@@ -6271,7 +6332,7 @@ components:
         id:
           type: string
           description: id of this coachLayout on this server
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the coach layout.
           example: Coach 3 in train T-122
@@ -7145,6 +7206,17 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/LuggageRestriction"
+        luggageRules:
+          type: array
+          items:
+            $ref: "#/components/schemas/LuggageRestrictionRule"
+
+    LuggageRestrictionRule:
+      description: >-
+        named luggage restriction rule: CAN_CARRY = weight is ok if you can carry it yourself
+      type: string
+      x-extensible-enum:
+        - CAN_CARRY
 
     LuggageRestriction:
       type: object
@@ -7862,6 +7934,22 @@ components:
         Identifies a company. For rail, a RICS company code or compatible ERA company code are used.
       example: "urn:uic:rics:1185"
 
+    NamedCompany:
+      type: object
+      description: >-
+        Identifies a company and provides textual representation. For rail, a RICS company code or compatible ERA company code are used.
+      required:
+        - ref
+        - name
+      properties:
+        ref:
+          $ref: "#/components/schemas/Company"
+        name:
+          description: >-
+            Textual representation of the operator to be displayed unless the application is able to show the name by the operator references.
+          type: string
+          example: ACME Corp.
+
     ServiceBrandCode:
       type: string
       description: >-
@@ -8319,7 +8407,7 @@ components:
           type: string
           description: >-
             Id of the passenger resource in case service to patch a single passenger is provided.
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the passenger.
           example: Andreas Schlapbach
@@ -8436,7 +8524,7 @@ components:
         preferredLanguage:
           type: string
           description: ISO-639-1 language code
-        abstract:
+        summary:
           type: string
           description: A human-readable description of the person.
           example: Andreas Schlapbach, Riedweg 4, 3074 Bern, schlpbch@gmail.com
@@ -8690,5 +8778,17 @@ components:
           $ref: "#/components/schemas/VoucherInformation"
         money:
           $ref: "#/components/schemas/Price"
+
+    Quantity:
+      type: object
+      description: Generic quantity entity
+      properties:
+        value:
+          type: number
+          format: float
+        unit:
+          description: Unit of the measured quantity
+          type: string
+          example: "kg"
 
     #### Common elements end
