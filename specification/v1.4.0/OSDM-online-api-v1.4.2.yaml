@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.2-rc2
+  version: 1.4.2
   description: >-
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in
@@ -3459,10 +3459,6 @@ components:
             Id of this trip for referencing purposes. Unique within a trip.
           type: string
           nullable: false
-        externalRef:
-          description: >-
-            External reference of this trip for referencing purposes. Unique within a trip specification.
-          type: string
         duration:
           description: >-
             Overall duration of the trip
@@ -3629,14 +3625,11 @@ components:
       additionalProperties: false
       description: >-
         A minimal trip leg specification.
-      required:
-        - externalRef
       properties:
         externalRef:
           description: >-
             External reference of this trip leg. Unique within trip result.
           type: string
-          nullable: false
         timedLeg:
           $ref: '#/components/schemas/TimedLegSpecification'
         transferLeg:
@@ -4463,6 +4456,22 @@ components:
               $ref: '#/components/schemas/FareConnectionPoint'
             name:
               type: string
+
+    GeoPositionRef:
+      description: >-
+        Reference to a GeoPosition consisting of latitude and longitude.
+      allOf:
+        - $ref: '#/components/schemas/PlaceRef'
+        - type: object
+          additionalProperties: false
+          required:
+            - latitude
+            - longitude
+          properties:
+            latitude:
+              $ref: '#/components/schemas/Latitude'
+            longitude:
+              $ref: '#/components/schemas/Longitude'
 
     ProductCategoryRef:
       type: string
@@ -7712,20 +7721,18 @@ components:
         - ARRIVAL
 
     GeoPosition:
+      type: object
+      additionalProperties: false
       description: >-
         WGS84 coordinates position. Provided by OJP.
-      allOf:
-        - $ref: '#/components/schemas/PlaceRef'
-        - type: object
-          additionalProperties: false
-          required:
-            - longitude
-            - latitude
-          properties:
-            longitude:
-              $ref: '#/components/schemas/Longitude'
-            latitude:
-              $ref: '#/components/schemas/Latitude'
+      required:
+        - longitude
+        - latitude
+      properties:
+        longitude:
+          $ref: '#/components/schemas/Longitude'
+        latitude:
+          $ref: '#/components/schemas/Latitude'
 
     Longitude:
       type: number
