@@ -104,8 +104,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -136,8 +136,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -254,8 +254,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -286,8 +286,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -415,8 +415,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -554,8 +554,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -678,8 +678,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -817,8 +817,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -956,8 +956,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -1093,8 +1093,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -1230,8 +1230,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -1350,8 +1350,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -1476,8 +1476,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -1538,8 +1538,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -1590,8 +1590,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -1764,8 +1764,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -1821,8 +1821,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -1879,8 +1879,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -2064,8 +2064,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -2125,8 +2125,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -2183,8 +2183,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -2244,8 +2244,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -2428,8 +2428,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -2489,8 +2489,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -2547,8 +2547,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -2608,8 +2608,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -2792,8 +2792,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -2856,8 +2856,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -2902,8 +2902,8 @@
 						"method": "PATCH",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -2963,8 +2963,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -3024,8 +3024,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -3206,8 +3206,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -3261,8 +3261,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -3381,8 +3381,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -3563,8 +3563,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -3624,8 +3624,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -3682,8 +3682,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -3755,8 +3755,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -3958,8 +3958,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -4022,8 +4022,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -4067,8 +4067,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -4243,8 +4243,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -4307,8 +4307,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -4353,8 +4353,8 @@
 						"method": "PATCH",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -4402,8 +4402,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -4578,8 +4578,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -4642,8 +4642,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -4688,8 +4688,8 @@
 						"method": "PATCH",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -4737,8 +4737,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -4913,8 +4913,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -4977,8 +4977,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -5037,8 +5037,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -5115,8 +5115,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -5187,8 +5187,8 @@
 						"method": "PATCH",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -5244,8 +5244,8 @@
 						"method": "PATCH",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -5296,8 +5296,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -5496,8 +5496,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -5560,8 +5560,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -5619,8 +5619,8 @@
 						"method": "PATCH",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -5670,8 +5670,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -5722,8 +5722,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Access-Token",
-								"value": "{{access_token}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
