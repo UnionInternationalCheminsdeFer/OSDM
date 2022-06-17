@@ -4506,7 +4506,7 @@ components:
         regulatoryConditions:
           type: array
           items:
-            $ref: "#/components/schemas/RegulatoryConditions"            
+            $ref: "#/components/schemas/RegulatoryConditions"
         currency:
           $ref: "#/components/schemas/Currency"
           description: The currency returned might be different from the one requested.
@@ -7824,6 +7824,16 @@ components:
           description: >-
             Hint to indicate the media type expected when dereferencing the target resource.
           example: application/json
+        rel:
+          type: string
+          description: >-
+            Allows to specify the relation the link is representing. see also RFC 5988
+          example: "next"
+        value:
+          type: string
+          description: >-
+            Allows to provide a value to the link, for example id of the targeted resource or displayable representation for the link
+          example: "urn:uic:sbc:43"
         href:
           type: string
           format: uri
