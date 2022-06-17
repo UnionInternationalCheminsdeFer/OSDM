@@ -3543,7 +3543,7 @@ components:
           $ref: "#/components/schemas/LegAlight"
         service:
           $ref: "#/components/schemas/DatedJourney"
-        attribute:
+        attributes:
           type: array
           items:
             $ref: "#/components/schemas/ServiceAttribute"
