@@ -232,20 +232,6 @@ paths:
             enum:
               - ORIGIN_DESTINATION_ONLY
               - REAL_BOARDING_ALIGHTING
-        - in: query
-          name: embed
-          description: >-
-            Influences whether referenced resources are returned in full or as references only.
-          schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - ALL
-                - PLACES
-                - NONE
-            default: [ALL]
-            maxItems: 1
       responses:
         "200":
           description: the requested trip
@@ -357,7 +343,6 @@ paths:
               enum:
                 - ALL
                 - TRIPS
-                - TRIPS.PLACES
                 - NONE
             default: [ALL]
             maxItems: 2
@@ -473,7 +458,6 @@ paths:
                 - ALL
                 - TRIPOFFERS
                 - TRIPOFFERS.TRIPS
-                - TRIPOFFERS.TRIPS.PLACES
                 - TRIPOFFERS.OFFERS
                 - TRIPOFFERS.OFFERS.OFFERPARTS
                 - TRIPOFFERS.PASSENGERS
@@ -536,7 +520,6 @@ paths:
               enum:
                 - ALL
                 - TRIPS
-                - TRIPS.PLACES
                 - OFFERS
                 - OFFERS.OFFERPARTS
                 - PASSENGERS
@@ -715,7 +698,6 @@ paths:
                 - ALL
                 - OFFERPARTS
                 - TRIP
-                - TRIP.PLACES
                 - NONE
             default: [ALL]
             maxItems: 3
@@ -1587,7 +1569,6 @@ paths:
               enum:
                 - ALL
                 - BOOKEDOFFERS.TRIP
-                - BOOKEDOFFERS.TRIP.PLACES
                 - BOOKEDOFFERS
                 - BOOKEDOFFERS.OFFERPARTS
                 - PASSENGERS
@@ -2156,7 +2137,6 @@ paths:
               enum:
                 - ALL
                 - TRIP
-                - TRIP.PLACES
                 - OFFERS
                 - OFFERS.OFFERPARTS
                 - OFFERS.OFFERPARTS.PRODUCTS
@@ -2376,7 +2356,6 @@ paths:
                 - ALL
                 - TRIPOFFERS
                 - TRIPOFFERS.TRIPS
-                - TRIPOFFERS.TRIPS.PLACES
                 - TRIPOFFERS.OFFERS
                 - TRIPOFFERS.OFFERS.OFFERPARTS
                 - TRIPOFFERS.OFFERS.OFFERPARTS.PRODUCTS
@@ -2441,7 +2420,6 @@ paths:
               enum:
                 - ALL
                 - TRIPS
-                - TRIPS.PLACES
                 - OFFERS
                 - OFFERS.OFFERPARTS
                 - OFFERS.OFFERPARTS.PRODUCTS
@@ -3100,7 +3078,6 @@ components:
             type: string
             enum:
               - TRIPS
-              - TRIPS.PLACES
               - NONE
               - ALL
           default: [ALL]
@@ -4372,11 +4349,8 @@ components:
           enum:
             - stopPlaceRef
         stopPlaceRef:
-          type: string
-          example: urn:uic:stn:8503000
-        name:
-          type: string
-
+          $ref: "#/components/schemas/LinkObject"
+        
     PointOfInterestRef: ## OJP
       type: object
       description: >-
@@ -4389,9 +4363,7 @@ components:
           enum:
             - pointOfInterestRef
         pointOfInterestRef:
-          type: string
-        name:
-          type: string
+          $ref: "#/components/schemas/LinkObject"
 
     AddressRef: ## OJP
       type: object
@@ -4405,9 +4377,7 @@ components:
           enum:
             - addressRef
         addressRef:
-          type: string
-        name:
-          type: string
+          $ref: "#/components/schemas/LinkObject"
 
     FareConnectionPointRef:
       type: object
@@ -4420,10 +4390,8 @@ components:
           type: string
           enum:
             - fareConnectionPointRef
-        fareConnectionPoint:
-          $ref: "#/components/schemas/FareConnectionPoint"
-        name:
-          type: string
+        fareConnectionPointRef:
+          $ref: "#/components/schemas/LinkObject"
 
     ProductCategoryRef: ## OJP
       description: >-
@@ -4592,7 +4560,6 @@ components:
               - ALL
               - TRIPOFFERS
               - TRIPOFFERS.TRIP
-              - TRIPOFFERS.TRIP.PLACES
               - TRIPOFFERS.OFFERS
               - TRIPOFFERS.OFFERS.OFFERPARTS
               - TRIPOFFERS.PASSENGERS
@@ -5400,7 +5367,6 @@ components:
               - ALL
               - BOOKEDOFFERS
               - BOOKEDOFFERS.TRIPS
-              - BOOKEDOFFERS.TRIPS.PLACES
               - BOOKEDOFFERS.OFFERPARTS
               - PASSENGERS
               - REFUND_PROPOSITIONS
@@ -6128,7 +6094,6 @@ components:
             enum:
               - ALL
               - TRIP
-              - TRIP.PLACES
               - OFFERS
               - OFFERS.OFFERPARTS
               - OFFERS.OFFERPARTS.PRODUCTS
