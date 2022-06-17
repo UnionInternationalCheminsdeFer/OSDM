@@ -7818,6 +7818,16 @@ components:
           description: >-
             Hint to indicate the media type expected when dereferencing the target resource.
           example: application/json
+        rel:
+          type: string
+          description: >-
+            Used to specify the kind of relation the link represents. , "previous", "parent" etc. Check also RFC5988
+          example: "next"  
+        value:
+          type: string
+          description: >-
+            Can be used to give assign a value to the link, to pass the id of the targeted resource or give the link a displayable representation
+          example: "next"                    
         href:
           type: string
           format: uri
