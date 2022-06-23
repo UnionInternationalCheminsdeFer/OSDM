@@ -2621,16 +2621,16 @@ paths:
         layouts can either be retrieved as a complete list or specificity for a train identified via offerId and reservationId or fareId
       operationId: getCoachLayouts
       parameters:
+        - $ref: "#/components/parameters/requestor"
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
         - in: query
           name: page
           description: >-
             can be used for pagination control
           schema:
             type: string
-        - $ref: "#/components/parameters/requestor"
-        - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/traceParent"
-        - $ref: "#/components/parameters/traceState"
       responses:
         "200":
           description: coach layouts
