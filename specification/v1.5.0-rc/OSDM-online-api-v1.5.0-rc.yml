@@ -2631,12 +2631,6 @@ paths:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
-        - in: query
-          name: page
-          description: >-
-            can be used for pagination control
-          schema:
-            type: string
       responses:
         "200":
           description: coach layouts
