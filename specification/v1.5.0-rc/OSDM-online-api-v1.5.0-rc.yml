@@ -357,7 +357,6 @@ paths:
               enum:
                 - ALL
                 - TRIPS
-                - TRIPS.PLACES
                 - NONE
             default: [ALL]
             maxItems: 2
@@ -473,7 +472,6 @@ paths:
                 - ALL
                 - TRIPOFFERS
                 - TRIPOFFERS.TRIPS
-                - TRIPOFFERS.TRIPS.PLACES
                 - TRIPOFFERS.OFFERS
                 - TRIPOFFERS.OFFERS.OFFERPARTS
                 - TRIPOFFERS.PASSENGERS
@@ -536,7 +534,6 @@ paths:
               enum:
                 - ALL
                 - TRIPS
-                - TRIPS.PLACES
                 - OFFERS
                 - OFFERS.OFFERPARTS
                 - PASSENGERS
@@ -715,7 +712,6 @@ paths:
                 - ALL
                 - OFFERPARTS
                 - TRIP
-                - TRIP.PLACES
                 - NONE
             default: [ALL]
             maxItems: 3
@@ -1587,7 +1583,6 @@ paths:
               enum:
                 - ALL
                 - BOOKEDOFFERS.TRIP
-                - BOOKEDOFFERS.TRIP.PLACES
                 - BOOKEDOFFERS
                 - BOOKEDOFFERS.OFFERPARTS
                 - PASSENGERS
@@ -2156,7 +2151,6 @@ paths:
               enum:
                 - ALL
                 - TRIP
-                - TRIP.PLACES
                 - OFFERS
                 - OFFERS.OFFERPARTS
                 - OFFERS.OFFERPARTS.PRODUCTS
@@ -2376,7 +2370,6 @@ paths:
                 - ALL
                 - TRIPOFFERS
                 - TRIPOFFERS.TRIPS
-                - TRIPOFFERS.TRIPS.PLACES
                 - TRIPOFFERS.OFFERS
                 - TRIPOFFERS.OFFERS.OFFERPARTS
                 - TRIPOFFERS.OFFERS.OFFERPARTS.PRODUCTS
@@ -2441,7 +2434,6 @@ paths:
               enum:
                 - ALL
                 - TRIPS
-                - TRIPS.PLACES
                 - OFFERS
                 - OFFERS.OFFERPARTS
                 - OFFERS.OFFERPARTS.PRODUCTS
@@ -3052,11 +3044,11 @@ components:
         origin: # EXT Array out of Scope
           description: >-
             Specifies the origin situation from where the user wants to start.
-          $ref: "#/components/schemas/PlaceRef"
+          $ref: "#/components/schemas/PlaceInput"
         destination: # EXT Array out of Scope
           description: >-
             Specifies the destination situation where the user is heading to.
-          $ref: "#/components/schemas/PlaceRef"
+          $ref: "#/components/schemas/PlaceInput"
         requestedSection: # EXT Indicates sub part of trip that is requested to price.
           $ref: "#/components/schemas/Section"
         via:
@@ -3094,7 +3086,6 @@ components:
             type: string
             enum:
               - TRIPS
-              - TRIPS.PLACES
               - NONE
               - ALL
           default: [ALL]
@@ -3514,7 +3505,7 @@ components:
         timedLeg:
           $ref: "#/components/schemas/TimedLegSpecification"
         transferLeg:
-          $ref: "#/components/schemas/TransferLeg"
+          $ref: "#/components/schemas/TransferLegSpecification"
         # continuousLeg:
         #   $ref: "#/components/schemas/ContinuousLeg"
 
@@ -3574,6 +3565,26 @@ components:
             $ref: "#/components/schemas/LegIntermediateSpecification"
         end:
           $ref: "#/components/schemas/LegAlightSpecification"
+        service:
+          $ref: "#/components/schemas/DatedJourney"
+
+    TransferLegSpecification:
+      type: object
+      description: >-
+        A minimal timed leg specification.
+      required:
+        - start # EXT legBoard renamed to start
+        - end # EXT legAlight renamed to board
+        - service
+      properties:
+        start:
+          $ref: "#/components/schemas/PlaceInput"
+        intermediates:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlaceInput"
+        end:
+          $ref: "#/components/schemas/PlaceInput"
         service:
           $ref: "#/components/schemas/DatedJourney"
 
@@ -3839,14 +3850,11 @@ components:
       type: object
       description: Minimal leg board specification.
       required:
-        - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
+        - placeInput ## EXT stopPlaceRef instead of stopPointRef
         - serviceDeparture
       properties:
-        stopPlaceRef:
-          $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        stopPlaceName:
-          type: string
-          example: Luzern
+        placeInput:
+          $ref: "#/components/schemas/PlaceInput" ## EXT stopPlaceRef instead of stopPointRef
         serviceDeparture:
           description: >-
             Describes the departure situation at this leg board stop point (group of attributes
@@ -3902,11 +3910,8 @@ components:
         - serviceArrival
         - serviceDeparture
       properties:
-        stopPlaceRef:
-          $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        stopPlaceName:
-          type: string
-          example: Luzern
+        placeInput:
+          $ref: "#/components/schemas/PlaceInput" ## EXT stopPlaceRef instead of stopPointRef
         serviceArrival:
           description: >-
             Describes the arrival situation at this leg board stop point (group of attributes
@@ -3957,14 +3962,11 @@ components:
       type: object
       description: Minimal leg alight specification
       required:
-        - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
+        - placeInput ## EXT stopPlaceRef instead of stopPointRef
         - serviceArrival
       properties:
-        stopPlaceRef:
-          $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        stopPlaceName:
-          type: string
-          example: Luzern
+        stopPlaceInput:
+          $ref: "#/components/schemas/GenericPlaceInput" ## EXT stopPlaceRef instead of stopPointRef
         serviceArrival:
           description: >-
             Describes the arrival situation at this leg board stop point (group of attributes
@@ -4343,6 +4345,59 @@ components:
         #   $ref: "#/components/schemas/TopographicPlaceRef"
         # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
+    PlaceInput:
+      type: object
+      description: structure used to specify places in requests
+      oneOf:
+        - $ref: "#/components/schemas/GenericPlaceInput"
+        - $ref: "#/components/schemas/FareConnectionPointInput"
+        - $ref: "#/components/schemas/GeoPositionInput"
+      discriminator:
+        propertyName: placeInputType
+
+    GenericPlaceInput:
+      type: object
+      description: referencing an OSDM place by its URN
+      properties:
+        placeInputType:
+            type: string
+            enum:
+            - genericPlaceInput
+        placeInput:
+          type: string
+          example: "urn:uic:stn:8500000"
+    
+    FareConnectionPointInput:
+      type: object
+      description: referencing an OSDM fareconnection point by actyally repeating its entire structure 
+      properties:
+        placeInputType:
+          type: string
+          enum:
+            - fareConnectionPointInput
+        stationSets:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+              example: "urn:uic:stn:8500000"
+
+    GeoPositionInput:
+      type: object
+      description: for providing geocoordinates as input criteria 
+      properties:
+        placeInputType:
+          type: string
+          enum:
+            - geoPositionInput
+        longitude:
+          $ref: "#/components/schemas/Longitude"
+        latitude:
+          $ref: "#/components/schemas/Latitude"
+
+        
+    
     PlaceRef: ### OJP
       oneOf:
         - $ref: "#/components/schemas/StopPlaceRef"
@@ -4366,10 +4421,7 @@ components:
           enum:
             - stopPlaceRef
         stopPlaceRef:
-          type: string
-          example: urn:uic:stn:8503000
-        name:
-          type: string
+          $ref: "#/components/schemas/Link"
 
     PointOfInterestRef: ## OJP
       type: object
@@ -4383,9 +4435,7 @@ components:
           enum:
             - pointOfInterestRef
         pointOfInterestRef:
-          type: string
-        name:
-          type: string
+          $ref: "#/components/schemas/Link"
 
     AddressRef: ## OJP
       type: object
@@ -4399,9 +4449,7 @@ components:
           enum:
             - addressRef
         addressRef:
-          type: string
-        name:
-          type: string
+          $ref: "#/components/schemas/Link"
 
     FareConnectionPointRef:
       type: object
@@ -4414,10 +4462,8 @@ components:
           type: string
           enum:
             - fareConnectionPointRef
-        fareConnectionPoint:
-          $ref: "#/components/schemas/FareConnectionPoint"
-        name:
-          type: string
+        fareConnectionPointRef:
+          $ref: "#/components/schemas/Link"
 
     ProductCategoryRef: ## OJP
       description: >-
@@ -4586,7 +4632,6 @@ components:
               - ALL
               - TRIPOFFERS
               - TRIPOFFERS.TRIP
-              - TRIPOFFERS.TRIP.PLACES
               - TRIPOFFERS.OFFERS
               - TRIPOFFERS.OFFERS.OFFERPARTS
               - TRIPOFFERS.PASSENGERS
@@ -5394,7 +5439,6 @@ components:
               - ALL
               - BOOKEDOFFERS
               - BOOKEDOFFERS.TRIPS
-              - BOOKEDOFFERS.TRIPS.PLACES
               - BOOKEDOFFERS.OFFERPARTS
               - PASSENGERS
               - REFUND_PROPOSITIONS
@@ -6122,7 +6166,6 @@ components:
             enum:
               - ALL
               - TRIP
-              - TRIP.PLACES
               - OFFERS
               - OFFERS.OFFERPARTS
               - OFFERS.OFFERPARTS.PRODUCTS
@@ -6157,9 +6200,9 @@ components:
           items:
             type: string
         origin:
-          $ref: "#/components/schemas/PlaceRef"
+          $ref: "#/components/schemas/PlaceInput"
         destination:
-          $ref: "#/components/schemas/PlaceRef"
+          $ref: "#/components/schemas/PlaceInput"
         travelPeriods:
           type: array
           items:
