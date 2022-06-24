@@ -3819,14 +3819,10 @@ components:
       #allOf:
       required:
         - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
-        - stopPlaceName ## EXT stopPlaceName instead of stopPointRef
         - serviceDeparture
       properties:
         stopPlaceRef:
-          $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        stopPlaceName:
-          type: string
-          example: Luzern
+          $ref: "#/components/schemas/PlaceRef" ## EXT stopPlaceRef instead of stopPointRef
         plannedStopPointName:
           description: >-
             Name of the bay/quay/terminal where to board/alight from the vehicle. According to 
@@ -3868,16 +3864,12 @@ components:
         LegAlight stop or station including time-related information. Provided by OJP.
       #allOf:
       required:
-        - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
-        - stopPlaceName ## EXT stopPlaceName instead of stopPointName
+        - PlaceRef ## EXT stopPlaceRef instead of stopPointRef
         - serviceArrival
         - serviceDeparture
       properties:
         stopPlaceRef:
-          $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        stopPlaceName: ## EXT stopPlaceName instead of stopPointName
-          type: string
-          example: Luzern
+          $ref: "#/components/schemas/PlaceRef" ## EXT stopPlaceRef instead of stopPointRef
         plannedStopPointName:
           description: >-
             Name of the bay/quay/terminal where to board/alight from the vehicle. According to 
@@ -3935,7 +3927,7 @@ components:
         - serviceArrival
       properties:
         stopPlaceRef:
-          $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
+          $ref: "#/components/schemas/PlaceRef" ## EXT stopPlaceRef instead of stopPointRef
         stopPlaceName:
           type: string
           example: Luzern
@@ -3966,7 +3958,7 @@ components:
         - serviceArrival
       properties:
         stopPlaceInput:
-          $ref: "#/components/schemas/GenericPlaceInput" ## EXT stopPlaceRef instead of stopPointRef
+          $ref: "#/components/schemas/PlaceInput" ## EXT stopPlaceRef instead of stopPointRef
         serviceArrival:
           description: >-
             Describes the arrival situation at this leg board stop point (group of attributes
@@ -4328,7 +4320,7 @@ components:
       properties:
         ref:
           description: Reference to a Stop Place
-          $ref: "#/components/schemas/StopPlaceRef"
+          $ref: "#/components/schemas/PlaceRef"
         name:
           description: Name of this stop place for use in passenger information.
           type: string
@@ -4348,123 +4340,21 @@ components:
     PlaceInput:
       type: object
       description: structure used to specify places in requests
-      oneOf:
-        - $ref: "#/components/schemas/GenericPlaceInput"
-        - $ref: "#/components/schemas/FareConnectionPointInput"
-        - $ref: "#/components/schemas/GeoPositionInput"
-      discriminator:
-        propertyName: placeInputType
-
-    GenericPlaceInput:
-      type: object
-      description: referencing an OSDM place by its URN
       properties:
-        placeInputType:
-            type: string
-            enum:
-            - genericPlaceInput
         placeInput:
           type: string
           example: "urn:uic:stn:8500000"
-    
-    FareConnectionPointInput:
-      type: object
-      description: referencing an OSDM fareconnection point by actyally repeating its entire structure 
-      properties:
-        placeInputType:
-          type: string
-          enum:
-            - fareConnectionPointInput
-        stationSets:
-          type: array
-          items:
-            type: array
-            items:
-              type: string
-              example: "urn:uic:stn:8500000"
-
-    GeoPositionInput:
-      type: object
-      description: for providing geocoordinates as input criteria 
-      properties:
-        placeInputType:
-          type: string
-          enum:
-            - geoPositionInput
-        longitude:
-          $ref: "#/components/schemas/Longitude"
-        latitude:
-          $ref: "#/components/schemas/Latitude"
-
-        
+        geoPosition:
+          $ref: "#/components/schemas/GeoPosition"
     
     PlaceRef: ### OJP
-      oneOf:
-        - $ref: "#/components/schemas/StopPlaceRef"
-        - $ref: "#/components/schemas/PointOfInterestRef"
-        - $ref: "#/components/schemas/AddressRef"
-        - $ref: "#/components/schemas/FareConnectionPointRef"
-        - $ref: "#/components/schemas/GeoPosition"
-      discriminator:
-        propertyName: placeRefType
-
-    StopPlaceRef: ## OJP
       type: object
-      description: >-
-        Reference to a Stop Place using URNs to define code.
-        For UIC see UIC MERITS/TAP-TSI station codes. Provided by OJP.
-      required:
-        - stopPlaceRef
       properties:
-        placeRefType:
-          type: string
-          enum:
-            - stopPlaceRef
-        stopPlaceRef:
+        placeRef:
           $ref: "#/components/schemas/Link"
-
-    PointOfInterestRef: ## OJP
-      type: object
-      description: >-
-        Reference to a Point of Interest. Provided by OJP.
-      required:
-        - pointOfInterestRef
-      properties:
-        placeRefType:
-          type: string
-          enum:
-            - pointOfInterestRef
-        pointOfInterestRef:
-          $ref: "#/components/schemas/Link"
-
-    AddressRef: ## OJP
-      type: object
-      description: >-
-        Reference to an Address.
-      required:
-        - addressRef
-      properties:
-        placeRefType:
-          type: string
-          enum:
-            - addressRef
-        addressRef:
-          $ref: "#/components/schemas/Link"
-
-    FareConnectionPointRef:
-      type: object
-      description: >-
-        Reference to a Fare Connection Point.
-      required:
-        - fareConnectionPoint
-      properties:
-        placeRefType:
-          type: string
-          enum:
-            - fareConnectionPointRef
-        fareConnectionPointRef:
-          $ref: "#/components/schemas/Link"
-
+        geoPosition:
+          $ref: "#/components/schemas/GeoPosition"
+        
     ProductCategoryRef: ## OJP
       description: >-
         Reference to a product category. Product categories should be defined once and used
@@ -7640,7 +7530,7 @@ components:
         stations:
           type: array
           items:
-            $ref: "#/components/schemas/StopPlaceRef"
+            $ref: "#/components/schemas/PlaceRef"
           minItems: 1
 
     CarrierConstraint:
@@ -7744,7 +7634,7 @@ components:
           items:
             type: array
             items:
-              $ref: "#/components/schemas/StopPlaceRef" # EXT Changed from StopPoint
+              $ref: "#/components/schemas/PlaceRef" # EXT Changed from StopPoint
 
     TrainValidity:
       type: object
@@ -7799,10 +7689,6 @@ components:
         - latitude
         - longitude
       properties:
-        placeRefType:
-          type: string
-          enum:
-            - stopPlaceRef
         longitude:
           $ref: "#/components/schemas/Longitude"
         latitude:
