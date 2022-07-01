@@ -1744,7 +1744,9 @@ paths:
                     - INFORMATION
                     - CO2_REPORT
                 scope:
-                  description: specify whether the document should be generated per passenger or global to the booking
+                  description: >- 
+                    specify whether the document should be generated per passenger or global to the booking. 
+                    In case the requested scope is not available the system generates the document for the supported scope.
                   type: string 
                   x-extensible-enum:
                     - BOOKING
@@ -5879,6 +5881,8 @@ components:
       description: >-
         Non travel Document created. Either downloadLink + downloadExpiry or content + format must
         be provided.
+      required:
+        - id
       properties:
         id:
           type: string
@@ -5888,6 +5892,7 @@ components:
             - BOOKING_RECEIPT
             - INFORMATION
             - CO2_REPORT
+            - COMPLAINT_EXPLANATION
         scope:
           type: string 
           x-extensible-enum:
@@ -6866,7 +6871,7 @@ components:
         refundVoucher:
           $ref: "#/components/schemas/FulfillmentDocument"
         explanation:
-          $ref: "#/components/schemas/FulfillmentDocument"
+          $ref: "#/components/schemas/Document"
         shortExplanation:
           type: string
         delayedJourney:
