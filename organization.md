@@ -57,9 +57,9 @@ in the [SAFe](https://www.scaledagileframework.com/) framework as follows:
 - **Owner**: Name of the owner
 
 - **Description**
-  "For *customers* who *do something* the *solution*  is a *improvement*
-  that *provides this value* unlike *current solution or non-existing solution*
-  our solution *does something better*."
+  "For _customers_ who _do something_ the _solution_ is a _improvement_
+  that _provides this value_ unlike _current solution or non-existing solution_
+  our solution _does something better_."
 
 - **Business Value**: The business value which is generated after the improvement
   has been implemented (low/middle/high).
@@ -74,7 +74,7 @@ in the [SAFe](https://www.scaledagileframework.com/) framework as follows:
   constraints they should be noted here.
 
 - **Specification Effort**: An assessment of the effort to specify the improvement
-  (*EXTRA_SMALL*, *SMALL*, *MEDIUM*, *LARGE*, *EXTRA_LARGE*).
+  (_EXTRA_SMALL_, _SMALL_, _MEDIUM_, _LARGE_, _EXTRA_LARGE_).
 
 ### State of an Improvement
 
@@ -85,13 +85,13 @@ An improvement takes the following steps:
   business value → state **accepted for analysis**.
 - The technical experts then analyses the improvement and determine its
   complexity (low/middle/high). After their work the improvement is in state
-**analyzed**.
+  **analyzed**.
 - The steering board decides which improvements are to be implemented based on
   a **transparent** prioritization model (e.g. Weighted Shortest Job First) →
-state **accepted for design**.
+  state **accepted for design**.
 - The technical experts then design the solution, thus the API, the
   documentation and the test sets. After their work the improvement is in state
-**designed**.
+  **designed**.
 - The steering board releases **major, i.e. breaking changes** → the
   improvement is **published**.
 
@@ -112,11 +112,12 @@ in the [SAFe](https://www.scaledagileframework.com/) framework.
 
 The following increments are planned:
 
-| Product Increment | End Date | State |
-|--------|:----------:|------------|
-| `PI-0` | 17.12.2020 | *delivered with ODSM v.1.0*  |
-| `PI-1` | 11.02.2021 | *delivered with OSDM v.1.1*  |
-| `PI-2` | 24.06.2021 | *delivered with OSDM v.1.2*, see [Release Notes 1.2](https://osdm.io/releases/OSDM-release-notes-v1.2/) |
-| `PI-3` | 28.10.2021 | *delivered with OSDM v.1.3*, see [Release Notes 1.3](https://osdm.io/releases/OSDM-release-notes-v1.3/) |
-| `PI-4` | 14.02.2022 | *delivered with OSDM v.1.4*, see [Release Notes 1.4](https://osdm.io/releases/OSDM-release-notes-v1.4/) |
-| `PI-5` | 24.06.2022 | *specification on OSDM v.1.5 ongoing* |
+| Product Increment |  End Date  | State                                                                                                   |
+| ----------------- | :--------: | ------------------------------------------------------------------------------------------------------- |
+| `PI-0`            | 17.12.2020 | _delivered with ODSM v.1.0_                                                                             |
+| `PI-1`            | 11.02.2021 | _delivered with OSDM v.1.1_                                                                             |
+| `PI-2`            | 24.06.2021 | _delivered with OSDM v.1.2_, see [Release Notes 1.2](https://osdm.io/releases/OSDM-release-notes-v1.2/) |
+| `PI-3`            | 28.10.2021 | _delivered with OSDM v.1.3_, see [Release Notes 1.3](https://osdm.io/releases/OSDM-release-notes-v1.3/) |
+| `PI-4`            | 14.02.2022 | _delivered with OSDM v.1.4_, see [Release Notes 1.4](https://osdm.io/releases/OSDM-release-notes-v1.4/) |
+| `PI-5`            | 24.06.2022 | _OSDM v.1.5 is being bundled_                                                                           |
+| `PI-6`            | 28.10.2022 | _specification on OSDM v.1.6 ongoing_                                                                   |
