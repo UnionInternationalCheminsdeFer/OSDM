@@ -5851,10 +5851,8 @@ components:
         type:
           type: string
           x-extensible-enum:
-            - BOOKING_RECEIPT
             - TICKET
             - BOARDING_PASS
-            - INFORMATION
             - VOUCHER
         downloadLink:
           type: string
