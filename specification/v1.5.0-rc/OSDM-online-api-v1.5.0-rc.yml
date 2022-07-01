@@ -1531,7 +1531,7 @@ paths:
       responses:
         "200":
           description: >-
-            Booking prebooked
+            Booking pre-booked
           content:
             application/json:
               schema:
@@ -4272,7 +4272,7 @@ components:
     PointOfInterestCategory: ## OJP
       type: object
       description: >-
-        A categorisation of points of interest in respect of the activities undertaken at them 
+        A categorization of points of interest in respect of the activities undertaken at them 
         (defined by key-value-pairs). Provided by OJP.
       # oneOf:
       #  required:
@@ -4909,7 +4909,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PromotionCode"
-        appliedCoporateCodes:
+        appliedCorporateCodes:
           type: array
           items:
             $ref: "#/components/schemas/CorporateCode"
@@ -5704,7 +5704,8 @@ components:
       properties:
         travelValidityRanges:
           description: >-
-            ranges for the start of validity to be used in a patch for available fufillments. (e.g. a 1 hour ticket not available during peak hours in the morning and afternoon)
+            Ranges for the start of validity to be used in a patch for available fulfillments. (e.g. a 1 hour ticket not available during 
+            peak hours in the morning and afternoon).
           type: array
           items:
             type: object
@@ -5751,7 +5752,10 @@ components:
 
     FulfillmentStatus:
       description: >-
-        Individual fulfillments of a multi journey booking need an separate patch to create the usable fulfilment in status FULFILLED before they are in an intermediate state AVAILABLE where they don't provide a document for travel. Fulfillments can be ON_HOLD in case they are booked but not yet available (e.g. a booking providing 2 journey per week) or passed in case the fulfillment was not patched for usage within the required time.
+        Individual fulfillments of a multi journey booking need an separate patch to create the usable fulfillment in
+        status FULFILLED before they are in an intermediate state AVAILABLE where they don't provide a document for travel. 
+        Fulfillments can be ON_HOLD in case they are booked but not yet available (e.g. a booking providing two journeys per week) 
+        or passed in case the fulfillment was not patched for usage within the required time.
       type: string
       enum:
         - CONFIRMED
