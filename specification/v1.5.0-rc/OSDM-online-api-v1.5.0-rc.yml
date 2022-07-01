@@ -5762,7 +5762,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/OfferPartReference"
-        fulfillmentdocuments:
+        fulfillmentDocuments:
           description: Final document created for fulfillment.
           type: array
           items:
@@ -5879,7 +5879,7 @@ components:
     Document:
       type: object
       description: >-
-        Non travel Document created. Either downloadLink + downloadExpiry or content + format must
+        Non travel document created. Either downloadLink + downloadExpiry or content + format must
         be provided.
       required:
         - id
