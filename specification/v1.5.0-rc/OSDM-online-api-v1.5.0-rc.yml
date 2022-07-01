@@ -1747,7 +1747,7 @@ paths:
                   description: specify whether the document should be generated per passenger or global to the booking
                   type: string 
                   x-extensible-enum:
-                    - ALL_PASSENGERS
+                    - BOOKING
                     - PER_PASSENGER
       responses:
         "200":
@@ -5893,7 +5893,7 @@ components:
         scope:
           type: string 
           x-extensible-enum:
-            - ALL_PASSENGERS
+            - BOOKING
             - PER_PASSENGER
         passengerReference:
           description: reference to a passenger, to be specified when the document related to an individual passenger
