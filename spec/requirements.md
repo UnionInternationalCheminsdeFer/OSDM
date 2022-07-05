@@ -274,7 +274,9 @@ Total refund must be supported by all parties.
 
 ### Requirements on partial refund or exchange
 
-Partial refund is regarded as special form of exchange
+Partial refund is regarded as special form of exchange. 
+
+Partial refund is the exchange of a part of the fulfillments of a booking where the remaining fulfillments remain valid for traveling.
 
 Partial refund as well as exchange may be supported by all parties.
 
