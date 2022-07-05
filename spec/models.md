@@ -425,8 +425,8 @@ offer modelings for pure-OSDM offers.
 
 ### Booking
 
-The booking represents the local (to the OSDM provider) booking for the offers
-that have been selected. It contains a set of sub resources, most of which were
+The booking represents the offers that have been selected and turned into a booking on request to the provider of the offers. 
+It contains a set of sub resources, most of which were
 encountered in the offer stage. but also adds a few specific attributes and
 information, the most important undoubtedly being the booking status (see for
 the state model below). The booking will indeed evolve over time based on API
