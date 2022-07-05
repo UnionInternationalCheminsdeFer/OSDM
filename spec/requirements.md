@@ -473,16 +473,6 @@ In case NRT and Reservation needs to be combined, rules are needed which
 service levels of the reservation are allowed in combination with a
 fare.
 
-**SalesAvailability**  defines the constraints on the
-time when a sale of a fare can start or end. The sales availability is
-used in the offline data exchange only. A constraint is provided as a
-list of salesRestrictions that have to be applied.
-
-Sales restrictions can define a start and end of the sale relative to
-the date of sale or the date of travel.
-
-A reference to a calendar can be provided to indicate all sales dates.
-
 ### Requirements on availability for purchase
 
 An offer is available a specific time range before the start of travel
@@ -496,6 +486,17 @@ departure station.
 An offer might be available from a specific time onwards or in a time
 range or time ranges (either in UTC or alternatively in the time zone of
 the ticket vendor).
+
+**SalesAvailability**  defines the constraints on the
+time when a sale of a fare can start or end. The sales availability is
+used in the offline data exchange only. A constraint is provided as a
+list of salesRestrictions that have to be applied.
+
+Sales restrictions can define a start and end of the sale relative to
+the date of sale or the date of travel.
+
+A reference to a calendar can be provided to indicate all sales dates.
+
 
 *Example:*
 
@@ -583,6 +584,7 @@ use a fare. To define this time there is a need to:
 
   - Indication that the ticket is a pass
   - Start and end of validity in UTC
+  - Start and end date of validity in local dates (e.g. for passes that cover more than one time zone)
   - Number of allowed trips or days
   - The validity might depend on the time of Boarding or De-Boarding of a train.
     E.g. a pass might be valid on the train if the the passenger boards the train during
