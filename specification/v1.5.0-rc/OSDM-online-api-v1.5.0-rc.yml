@@ -1737,17 +1737,17 @@ paths:
             schema:
               type: object
               properties:
-                documentType: 
+                documentType:
                   type: string
                   x-extensible-enum:
                     - BOOKING_RECEIPT
                     - INFORMATION
                     - CO2_REPORT
                 scope:
-                  description: >- 
+                  description: >-
                     specify whether the document should be generated per passenger or global to the booking. 
                     In case the requested scope is not available the system generates the document for the supported scope.
-                  type: string 
+                  type: string
                   x-extensible-enum:
                     - BOOKING
                     - PER_PASSENGER
@@ -5580,6 +5580,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PromotionCode"
+        appliedCorporateCodes:
+          type: array
+          items:
+            $ref: "#/components/schemas/CorporateCode"
         purchaser:
           description: >-
             Some caller do want to provide information about the purchaser, thus this attribute 
@@ -5879,7 +5883,7 @@ components:
           description: >-
             Physical format of the document provided in the content field in Mime-Type format, e.g. 
             application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
-    
+
     Document:
       type: object
       description: >-
@@ -5898,7 +5902,7 @@ components:
             - CO2_REPORT
             - COMPLAINT_EXPLANATION
         scope:
-          type: string 
+          type: string
           x-extensible-enum:
             - BOOKING
             - PER_PASSENGER
@@ -5924,7 +5928,7 @@ components:
           description: >-
             Physical format of the document provided in the content field in Mime-Type format, e.g. 
             application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
-    
+
     DocumentsResponse:
       type: object
       properties:
