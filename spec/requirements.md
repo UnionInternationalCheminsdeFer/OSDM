@@ -417,16 +417,16 @@ Route for dynamic fares:
 
 Regions (routes) of different carriers can be connected at defined
 connection points. The old concept of a central predefined list of
-border points (as part of TAP-TSI) is replaced by the concept of
+points (as part of TAP-TSI) is replaced by the concept of
 “connection points” which can be defined by each carrier independently
-using the station codes.
+using the station codes. 
 
-Connection points will include a border point code to support existing
-implementations where the border point code is compared with the
-timetable data. As in principle every station can become a connection
+ConnectionPoints provide information on the points where two fares of 
+different provides can be glued together.
+
+As in principle every station can become a connection
 point (e.g. all stops from Aachen to Brussels are connection points from
-DB to SNCB) implementations based on border point codes cannot cover all
-connections.
+DB to SNCB as the train is a DB train also inside of Belgium).
 
 ![Connection point](../images/business-capabilities/connection-point.png)
 
