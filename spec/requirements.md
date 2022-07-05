@@ -252,10 +252,8 @@ must reference the offer parts covered by the fulfillment.
 
 A fulfillment must reference fulfillment documents (aka. tickets).
 Fulfillment documents in form of a UIC PDF ticket most be supported by
-all parties. Other media types such as **RCT2, RCCST, UIC_PDF, PDF_A4,
-PKPASS, TICKETLESS, ALLOCATOR_APP, SOCIAL_MEDIA_ACCOUNTS** can be
-supported. Especially the support ticketless is encouraged to be
-supported by all parties.
+all parties. A fulfillment is provided for a specific FulfillmentType (e.g. CIT_PAPER) 
+and FulfillmentMedia specifying the format (e.g. RCT2).
 
 **In allocator mode only:** A fulfillment may reference fulfillment
 items such as visual security elements, additional bar codes or control
