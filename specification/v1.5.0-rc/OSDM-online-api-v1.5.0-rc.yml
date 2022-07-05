@@ -5748,6 +5748,7 @@ components:
         A fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
       required:
         - id
+        - status
       properties:
         id:
           type: string
