@@ -6056,9 +6056,7 @@ components:
           type: string
           format: date-time
         appliedOverruleCode:
-          description: >-
-            Reason for and type of an after sale, Code list in IRS 90918-10.
-          type: string
+          $ref: "#/components/schemas/OverruleCode"
         fulfillments:
           type: array
           items:
