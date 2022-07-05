@@ -5659,7 +5659,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/OfferSelection"
-        paymentMethods:
+        usedPaymentMethods:
           description: >-
             Methods of payment used by the customer to the distributor. In case of voucher payment, 
             the amount of the voucher is not required in input.
@@ -8893,12 +8893,12 @@ components:
     PaymentType:
       type: string
       x-extensible-enum:
+        - CARD
         - CASH
+        - DIRECT_DEBIT
+        - ELECTRONIC_PAYMENT
         - INVOICE
         - VOUCHER
-        - CARD
-        - E_PAYMENT
-        - DIRECT_DEBIT
 
     VoucherInformation:
       type: object
