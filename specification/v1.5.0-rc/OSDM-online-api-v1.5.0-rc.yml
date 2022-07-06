@@ -4580,6 +4580,9 @@ components:
         currency:
           $ref: "#/components/schemas/Currency"
           description: The currency returned might be different from the one requested.
+        offerMode:
+          type: object
+          $ref: "#/components/schemas/OfferMode"
 
     OfferPartType:
       type: string
@@ -4959,6 +4962,7 @@ components:
       x-extensible-enum:
         - FIRST
         - SECOND
+
     Flexibility:
       type: string
       x-extensible-enum:
@@ -4966,17 +4970,27 @@ components:
         - SEMI_FLEXIBLE
         - NON_FLEXIBLE
 
+    OfferMode:
+      type: string
+      description: >-
+        Offer Mode applied to provide Offers for given criteria.
+        Distributor may specify which Offer Mode is preferred though
+        the allocator, if not supporting given mode, reverts back to 
+        the other mode and provides warning instead. Individual Offer Mode 
+        means that each Passenger is given individual Admissions and Reservations
+        in order to allow to refund individual Passengers booked in single Booking.
+      enum:
+        - COLLECTIVE
+        - INDIVIDUAL
+
     CommonOfferPartAttributes:
       type: object
       properties:
         price:
           $ref: "#/components/schemas/Price"
-        pricingMode:
-          type: string
-          enum:
-            - COLLECTIVE
-            - INDIVIDUAL
-          default: INDIVIDUAL
+        offerMode:
+          type: object
+          $ref: "#/components/schemas/OfferMode"
         appliedReductions:
           type: array
           items:
