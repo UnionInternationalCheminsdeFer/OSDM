@@ -7339,11 +7339,11 @@ components:
           description: Standard non-hand luggage pieces
           type: integer
           format: int32
-        restrictedLuggageItems:
+        restrictions:
           type: array
           items:
             $ref: "#/components/schemas/LuggageRestriction"
-        luggageRules:
+        restrictionRules:
           type: array
           items:
             $ref: "#/components/schemas/LuggageRestrictionRule"
@@ -7357,6 +7357,9 @@ components:
 
     LuggageRestriction:
       type: object
+      required:
+        - numberOfItems
+        - restrictions
       properties:
         numberOfItems:
           description: number of luggage  items allowed with this restriction
@@ -7367,23 +7370,20 @@ components:
           type: array
           items:
             type: string
-        restrictions:
+        dimensionRestrictions:
           description: all listed dimensions apply to the luggage items as upper limits
           type: array
           minItems: 1
           items:
             $ref: "#/components/schemas/LuggageDimension"
-      required:
-        - numberOfItems
-        - restrictions
 
     LuggageDimension:
-      description: luggage dimension to be used in luggage restrictions
       type: object
+      description: luggage dimension to be used in luggage restrictions
       properties:
         dimension:
           description: >-
-            type of the dimension. Combined sizes are the summ of the sizes  WIDTH_HEIGHT_LENGTH = sum of width, hight and length in cm (= linear equivalent).
+            Type of the dimension. Combined sizes are the sum of the sizes  WIDTH_HEIGHT_LENGTH = sum of width, hight and length in cm (= linear equivalent).
           type: string
           x-extensible-enum:
             - WIDTH
@@ -7397,27 +7397,24 @@ components:
           description: value of the dimension, weight in kg, length in cm, volume in liter.
           type: integer
           format: int32
-      required:
-        - dimension
-        - value
 
     TripInterruptionProcess:
+      type: string
       description: >-
         MANUAL: passenger needs manual confirmation of train or station staff to interrupt the trip. 
         ACTIVATION: Passenger needs to deactivate the ticket during the interruption (via an app).
-      type: string
       x-extensible-enum:
         - NONE
         - MANUAL
         - ACTIVATION
 
     TripAllocationProcess:
+      type: string
       description: >-
         NONE: Individual trips don't need to be allocated. 
         MANUAL: The passenger has to allocate a trip manually (This should not be used as it is by design non-interoperable). 
         ACTIVATION: Individual trips can be allocated by activation of the ticket. 
         FULFILLMENT: A new fulfillment needs to be created to allocate a trip.
-      type: string
       x-extensible-enum:
         - NONE
         - MANUAL
