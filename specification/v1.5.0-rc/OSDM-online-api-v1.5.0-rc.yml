@@ -4959,6 +4959,7 @@ components:
       x-extensible-enum:
         - FIRST
         - SECOND
+
     Flexibility:
       type: string
       x-extensible-enum:
