@@ -4580,6 +4580,9 @@ components:
         currency:
           $ref: "#/components/schemas/Currency"
           description: The currency returned might be different from the one requested.
+        pricingMode:
+          type: object
+          $ref: "#/components/schemas/PricingMode"
 
     OfferPartType:
       type: string
@@ -4967,17 +4970,25 @@ components:
         - SEMI_FLEXIBLE
         - NON_FLEXIBLE
 
+    PricingMode:
+      type: string
+      description: >-
+        Pricing mode applied to provide Offers for given criteria.
+        Distributor may specify which Pricing Mode is preferred though
+        the allocator, if not supporting given mode, reverts back to 
+        the other mode and provides warning instead.
+      enum:
+        - COLLECTIVE
+        - INDIVIDUAL
+
     CommonOfferPartAttributes:
       type: object
       properties:
         price:
           $ref: "#/components/schemas/Price"
         pricingMode:
-          type: string
-          enum:
-            - COLLECTIVE
-            - INDIVIDUAL
-          default: INDIVIDUAL
+          type: object
+          $ref: "#/components/schemas/PricingMode"
         appliedReductions:
           type: array
           items:
