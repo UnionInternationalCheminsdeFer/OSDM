@@ -1962,7 +1962,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/FulfillmentPatch"
+              $ref: "#/components/schemas/FulfillmentActivationPatchRequest"
       responses:
         "200":
           description: >-
@@ -5528,12 +5528,9 @@ components:
           description: >-
             If needed (cf requiredInformation) or desired, this array allows providing the required details on some or all passengers
         placeSelections:
-          type: object
-          properties:
-            reservationId:
-              type: string
-            placeSelection:
-              $ref: "#/components/schemas/SelectedPlaceOption"
+          type: array
+          items:
+            $ref: "#/components/schemas/PlaceSelection"
         afterSaleByDistributorOnly:
           description: >-
             in case the distributor has proposed this offer in conjunction with an offer of another provider constrained
@@ -5547,6 +5544,15 @@ components:
             in case the carriage contracts represented by this offer have been grouped with carriage contracts from other
             providers by the distributor. The same throughTicketTag that was used to perform the grouping can be specified here.
           type: string
+    
+    PlaceSelection:
+      type: object
+      additionalProperties: false
+      properties:
+        reservationId:
+          type: string
+        placeSelection:
+          $ref: "#/components/schemas/SelectedPlaceOption"
 
     BookingResponse:
       type: object
@@ -5706,7 +5712,7 @@ components:
               fulfilledFulfillmentId:
                 type: string
 
-    FulfillmentPatch:
+    FulfillmentActivationPatchRequest:
       type: object
       description: >-
         Changes the fulfillment to status AVAILABLE. In the case of multi-journey
@@ -5830,7 +5836,7 @@ components:
           default: false
         maxAvailableZones:
           description: >-
-            upper limit to the number of selected zones.
+            upper limit to the number of selected zones
           type: integer
           format: int32
         availableZones:

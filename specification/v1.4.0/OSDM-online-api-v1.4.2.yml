@@ -5489,7 +5489,9 @@ components:
           items:
             $ref: '#/components/schemas/Passenger'
         placeSelections:
-          $ref: '#/components/schemas/PlaceSelection'
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceSelection'
         afterSaleByDistributorOnly:
           description: >-
             in case the distributor has proposed this offer in conjunction with an offer of another provider constrained
