@@ -125,9 +125,7 @@
       "properties": {
         "country": {
           "$ref": "#/definitions/CountryDef",
-          "description": "by default of the scale the amount in cents",
-          "type": "integer",
-          "format": "int32"
+          "description": "by default of the scale the amount in cents"
         },
         "amount": {
           "description": "by default of the scale the amount in cents",
