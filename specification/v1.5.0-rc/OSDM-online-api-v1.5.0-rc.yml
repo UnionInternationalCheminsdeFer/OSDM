@@ -7776,15 +7776,14 @@ components:
       required:
         - carrier
       properties:
+        name:
+          type: string
         binaryZoneId:
           type: string
           format: base64
           description: Id to support local traffic standards (e.g. VDV,...)
         carrier:
           $ref: "#/components/schemas/Company"
-        city:
-          type: integer
-          format: int32
         entryStation:
           $ref: "#/components/schemas/StopPlace" # EXT Changed from StopPoint
         terminalStation:
@@ -8926,7 +8925,7 @@ components:
     PaymentMethod:
       type: object
       description: >-
-        Method of payment used by the customer to the distributor. On input of voucher the money attribute will not be present
+        Method of payment used by the customer to the distributor. On input of voucher the sum attribute will not be present
       required:
         - type
       properties:
@@ -8934,7 +8933,7 @@ components:
           $ref: "#/components/schemas/PaymentType"
         voucherInformation:
           $ref: "#/components/schemas/VoucherInformation"
-        money:
+        sum:
           $ref: "#/components/schemas/Price"
 
     Quantity:
