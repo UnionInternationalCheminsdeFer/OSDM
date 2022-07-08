@@ -1,10 +1,11 @@
-
-[*] --> confirmed: POST /Bookings/id/fulfillments
-[*] --> fulfilled: POST /Bookings/id/fulfillments
-confirmed --> fulfilled: PATCH /Bookings/id/fulfillments 
+@startuml
+[*] --> confirmed: POST /bookings/{id}/fulfillments
+[*] --> fulfilled: POST /bookings/{id}/fulfillments
+confirmed --> fulfilled: PATCH /bookings/{id}/fulfillments 
 fulfilled --> checkedin: passenger check-in communicated 
-confirmed --> refunded: PATCH /bookings/id/refundOffer
-fulfilled --> refunded: PATCH /bookings/id/refundOffer
+confirmed --> refunded: PATCH /bookings/{id}/refundOffer
+fulfilled --> refunded: PATCH /bookings/{id}/refundOffer
 checkedin --> [*]
-fulfilled --> [*]: passenger never checked ind
+fulfilled --> [*]: passenger never checked in
 refunded --> [*] 
+@enduml
