@@ -5709,7 +5709,8 @@ components:
     FulfillmentPatch:
       type: object
       description: >-
-        an available fulfillment to status USABLE.
+        Changes the fulfillment to status AVAILABLE. In the case of multi-journey
+        product, one of the fulfillment is now "activated" and can be used to travel.
       properties:
         usage:
           $ref: "#/components/schemas/FulfillmentUsage"
@@ -5829,7 +5830,7 @@ components:
           default: false
         maxAvailableZones:
           description: >-
-            upper limit to the numver of selected zones.
+            upper limit to the number of selected zones.
           type: integer
           format: int32
         availableZones:
