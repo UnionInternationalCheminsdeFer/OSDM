@@ -252,10 +252,8 @@ must reference the offer parts covered by the fulfillment.
 
 A fulfillment must reference fulfillment documents (aka. tickets).
 Fulfillment documents in form of a UIC PDF ticket most be supported by
-all parties. Other media types such as **RCT2, RCCST, UIC_PDF, PDF_A4,
-PKPASS, TICKETLESS, ALLOCATOR_APP, SOCIAL_MEDIA_ACCOUNTS** can be
-supported. Especially the support ticketless is encouraged to be
-supported by all parties.
+all parties. A fulfillment is provided for a specific FulfillmentType (e.g. CIT_PAPER) 
+and FulfillmentMedia specifying the format (e.g. RCT2).
 
 **In allocator mode only:** A fulfillment may reference fulfillment
 items such as visual security elements, additional bar codes or control
@@ -276,7 +274,9 @@ Total refund must be supported by all parties.
 
 ### Requirements on partial refund or exchange
 
-Partial refund is regarded as special form of exchange
+Partial refund is regarded as special form of exchange. 
+
+Partial refund is the exchange of a part of the fulfillments of a booking where the remaining fulfillments remain valid for traveling.
 
 Partial refund as well as exchange may be supported by all parties.
 
@@ -417,16 +417,16 @@ Route for dynamic fares:
 
 Regions (routes) of different carriers can be connected at defined
 connection points. The old concept of a central predefined list of
-border points (as part of TAP-TSI) is replaced by the concept of
+points (as part of TAP-TSI) is replaced by the concept of
 “connection points” which can be defined by each carrier independently
-using the station codes.
+using the station codes. 
 
-Connection points will include a border point code to support existing
-implementations where the border point code is compared with the
-timetable data. As in principle every station can become a connection
+ConnectionPoints provide information on the points where two fares of 
+different provides can be glued together.
+
+As in principle every station can become a connection
 point (e.g. all stops from Aachen to Brussels are connection points from
-DB to SNCB) implementations based on border point codes cannot cover all
-connections.
+DB to SNCB as the train is a DB train also inside of Belgium).
 
 ![Connection point](../images/business-capabilities/connection-point.png)
 
@@ -473,16 +473,6 @@ In case NRT and Reservation needs to be combined, rules are needed which
 service levels of the reservation are allowed in combination with a
 fare.
 
-**SalesAvailability**  defines the constraints on the
-time when a sale of a fare can start or end. The sales availability is
-used in the offline data exchange only. A constraint is provided as a
-list of salesRestrictions that have to be applied.
-
-Sales restrictions can define a start and end of the sale relative to
-the date of sale or the date of travel.
-
-A reference to a calendar can be provided to indicate all sales dates.
-
 ### Requirements on availability for purchase
 
 An offer is available a specific time range before the start of travel
@@ -496,6 +486,17 @@ departure station.
 An offer might be available from a specific time onwards or in a time
 range or time ranges (either in UTC or alternatively in the time zone of
 the ticket vendor).
+
+**SalesAvailability**  defines the constraints on the
+time when a sale of a fare can start or end. The sales availability is
+used in the offline data exchange only. A constraint is provided as a
+list of salesRestrictions that have to be applied.
+
+Sales restrictions can define a start and end of the sale relative to
+the date of sale or the date of travel.
+
+A reference to a calendar can be provided to indicate all sales dates.
+
 
 *Example:*
 
@@ -583,6 +584,7 @@ use a fare. To define this time there is a need to:
 
   - Indication that the ticket is a pass
   - Start and end of validity in UTC
+  - Start and end date of validity in local dates (e.g. for passes that cover more than one time zone)
   - Number of allowed trips or days
   - The validity might depend on the time of Boarding or De-Boarding of a train.
     E.g. a pass might be valid on the train if the the passenger boards the train during

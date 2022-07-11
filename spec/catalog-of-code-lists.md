@@ -417,6 +417,17 @@ Legacy reservation code defined in UIC 90918-1.
 | `PASS_CHIP`   | Fulfillment loaded on pass |
 | `PASS_REFERENCE` | Reference to booking loaded on pass |
 
+## FulfillmentMediaType
+
+| Code         | Description |
+|--------------|-------------| 
+| `RCT2`         | RCT2 secure paper format (including compressed format) |
+| `RCCST`        | Credit Card Size format |
+| `UIC_PDF`      | PDF according to UIC Standard |
+| `PDF_A4`       | proprietary A4 pdf format|
+| `PKPASS`       | pkpass file format|
+| `TICKETLESS`   | no ticket |
+ 
 ## Gender
 
 | Code | Description |

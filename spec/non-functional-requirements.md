@@ -67,31 +67,6 @@ application) but not the network in-between the sender and receiver.
 |`/bookings/{id}/refundOffers` | 0,5:1 | 1000 | 2000 | |
 |`/bookings/{id}/exchangeOffers` | 0.01:1 | 1000 | 2000 | |
 
-### Non-Functional Requirements for a "Pricing Engine"
-
-Mandatory service level requirements to be fulfilled by a pricing engine.
-
-The Look-2-Book rate relates to the number of bookings created by the type of offer request.
-The expected response time in milliseconds that a service must provide includes the
-infrastructure of the provider of the server (firewalls, load balancer, circuit breaker and
-application) but not the network in-between the sender and receiver.
-
-| Resources | Look to Book Rate | 95% Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
-|-----------|----|----|----|----|
-|`/places` | - | 50 | 75 |  |
-|`/trips` | - | 300 | 500 |  |
-|`/trip-offers-collection` | 1000:1 | 800 | 1600 | |
-|`/offers` | 100:1 | 800 | 1600 | |
-|`/offers/{offerId}/...` | 5:1 | 600 | 1200 | |
-|`/bookings` | 1:1 | 400 | 600 | Retry of the booking request followed by a `DELETE /booking/{bookingId}` in case the booking is not needed any more. The error handling must be repeated for three days but no further than the train departure or until an appropriate reply was received indicating that the booking was not made.|
-|`/bookings/{id}/passengers` | 0.01:1 | 400 | 800 | retry |
-|`/bookings/{id}/fulfillments` | 1:1 | 600 | 1200 | |
-|`/fulfillments`| 1.1:1 | 400 | 800 | |
-|`/bookings/{id}/refundOffers` | 0,5:1 | 800 | 1600 | |
-|`/bookings/{id}/exchangeOffers` | 0.01:1 | 800 | 1600 | |
-|`/coachLayouts` | Once per day | 10000 | 12000 | |
-|`/coachLayouts/{layoutId}` | 2:1 | 300 | 450  | |
-
 ### Non-Functional Requirements for the role "Fare Provider"
 
 Mandatory service level requirements to be fulfilled by a fare provider / carrier.
