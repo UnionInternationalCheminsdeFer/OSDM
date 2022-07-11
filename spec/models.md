@@ -572,7 +572,7 @@ purchaser can be informed using the webhook API.
 ### Fulfillment State Model with Activation
 
 In case of multi-journey products, a fulfillment needs to be activated before, thus
-it changes from `AVAILABLE` to `ACTIVATED`.
+it changes from `AVAILABLE` to `FULFILLED`.
 
 ![Fulfillment State Model](../images/models/fulfillment-state-model-with-activation.png)
 

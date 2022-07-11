@@ -1,8 +1,8 @@
-@startuml 
+@startuml
 title "Fullfillment State Diagram With Activation"
-[*] --> available: POST /Bookings/id/fulfillments
-[*] --> onHold: POST /Bookings/id/fulfillments
-available --> fulfilled: PATCH /Bookings/id/fulfillments
+[*] --> available: POST /bookings/id/fulfillments
+[*] --> onHold: POST /bookings/id/fulfillments
+available --> fulfilled: PATCH /bookings/id/fulfillments
 available --> expired: timer 1 expired
 onHold --> available: timer 2 expired
 fulfilled --> checkedin: passenger check-in communicated 
