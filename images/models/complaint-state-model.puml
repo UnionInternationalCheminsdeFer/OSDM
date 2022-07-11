@@ -1,5 +1,7 @@
 @startuml
 
+title "Complaint State Model"
+
 [*] --> initiated
 initiated --> decided
 decided --> settled

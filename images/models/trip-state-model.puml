@@ -1,5 +1,7 @@
 @startuml
 
+title "Trip State Model"
+
 [*] --> planned
 [*] --> confirmed
 planned --> confirmed

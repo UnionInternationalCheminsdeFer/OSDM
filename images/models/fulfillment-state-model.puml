@@ -1,4 +1,5 @@
 @startuml
+title "Fulfillment State Model"
 [*] --> confirmed: POST /bookings/{id}/fulfillments
 [*] --> fulfilled: POST /bookings/{id}/fulfillments
 confirmed --> fulfilled: PATCH /bookings/{id}/fulfillments 

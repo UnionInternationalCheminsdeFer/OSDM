@@ -1,6 +1,8 @@
 @startuml
-[*] --> prebooked : POST /bookings with offer ids, optional accommodation / ancillariy ids
 
+title "Booking State Model"
+
+[*] --> prebooked : POST /bookings with offer ids, optional accommodation / ancillariy ids
 prebooked --> confirmed: POST /bookings/{id}/fulfillments \n where at least 1 fulfillment is confirmed
 prebooked --> [*]: DELETE /bookings/{id}
 prebooked --> [*]: ticket-time-limit reached
@@ -11,4 +13,5 @@ confirmed --> error: unrecoverable error at fulfillment \n of a confirmed bookin
 fulfilled --> [*] : archiving
 error --> [*] : DELETE /booking \nin a cleanup context
 error --> [*] : archiving
+
 @enduml

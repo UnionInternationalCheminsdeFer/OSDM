@@ -84,7 +84,7 @@ using specific trains at a specific moment in time.
 Trips can be retrieved with or without details of all intermediate stops on the
 way between departure and arrival of each `tripLeg`.
 
-A trip can be in states *planned*, *confirmed*, *changed* or *cancelled*.
+A trip can be in states _planned_, _confirmed_, _changed_ or _cancelled_.
 
 ## Offers
 
@@ -105,7 +105,7 @@ of is already known to the API consumer
 
 Some of these elements can be optional (see further).
 
-In the **Allocator Mode**, an offer will not contain offer parts but it will 
+In the **Allocator Mode**, an offer will not contain offer parts but it will
 contain a fare element, that the allocator can use to build the final product to be
 distributed to travellers. There can also be hybrid situations where offers will
 contain both offer parts and fares if the provider offers product in the two
@@ -149,16 +149,17 @@ under specific conditions:
 
 - the tripLegs covered by a given offer are indicated through the `coveredTripLegIndexes`
   property
-- all offers covering the same set of tripLegs belong to the same  `offerCluster`. All offers related to the same `offerCluster` therefore have an identical set of `coveredTripLegIndexes`
+- all offers covering the same set of tripLegs belong to the same `offerCluster`. All
+  offers related to the same `offerCluster` therefore have an identical set of `coveredTripLegIndexes`
 - a `tripLeg` can only be covered in one `offerCluster` within a `tripOffer` (no overlap)
 - each `tripLeg` of the `trip` must be covered by at least one `offer` in each `TripOffer`
   (no gap)
 
-*Example with no overlap*
+_Example with no overlap_
 
 ![Clusters-no-overlap](../images/models/clusters1.png)
 
-*Example with no gap*
+_Example with no gap_
 
 ![Clusters-no-gap](../images/models/clusters2.png)
 
@@ -169,16 +170,16 @@ section in order to for the reader to clearly understand the data model design.
 The idea is that `OfferParts` represent an instantiation of a product that can
 be sold.
 
-*Example*:
+_Example_
 
 - A carrier proposes an "Early bird Holiday Fare" product for all its
   high-speed trains riding towards the seaside of the country, offered when
-sales date is at least 15 days prior to travel.
+  sales date is at least 15 days prior to travel.
 
 - Whenever an offer request is received and this fare can apply, an offer part
   is created and proposed, specifically to the date, origin and destination of
-that specific request, and referencing this product. As such it is therefore
-the offer part that for example will carry the actual price.
+  that specific request, and referencing this product. As such it is therefore
+  the offer part that for example will carry the actual price.
 
 These offer parts can be of different type, depending on what they represent:
 
@@ -249,12 +250,13 @@ compared to admission products:
 - Place selection Details: contains several elements related to the selection
   of places:
 
-  - `placeSelection/ReservationOptions` show, at offer retrieval stage which options are
-    available for this reservation.
+  - `placeSelection/ReservationOptions` show, at offer retrieval stage which
+    options are available for this reservation.
 
   - `SelectedOptions` allows the API consumer to specify desired options.
 
-  - `SelectedPlaces` indicates selection of specific places (probably only relevant in case of graphical place selection.
+  - `SelectedPlaces` indicates selection of specific places (probably only
+    relevant in case of graphical place selection.
 
 #### Modelling Lump Sum Reservations
 
@@ -266,18 +268,18 @@ with the current model, two approaches are proposed to implementers:
 
 - Generate two distinct offers: one with all (available) reservations proposed as
   included, the lump sum for the reservations being integrated in the admission
-price. In this approach it is assumed that a passenger will always book all
-available reservation, since the price is the same anyway. This approach also
-allows to not propose a reservation if there is none available on one of the
-tripLeg, while still offering the offer for the complete trip with reservations
-on all tripLegs where it is available
+  price. In this approach it is assumed that a passenger will always book all
+  available reservation, since the price is the same anyway. This approach also
+  allows to not propose a reservation if there is none available on one of the
+  tripLeg, while still offering the offer for the complete trip with reservations
+  on all tripLegs where it is available
 
 - Propose all reservations as optional reservations with an identical unit
   price equals to 0 or to the reservation lump sum, associated with specific
-information in the product conditions or the offer messages. At booking time, a
-price update (increase or decrease) is then applied so that the lump sum is
-counted once and only once, associated with a booking message warning that the
-price update took place.
+  information in the product conditions or the offer messages. At booking time, a
+  price update (increase or decrease) is then applied so that the lump sum is
+  counted once and only once, associated with a booking message warning that the
+  price update took place.
 
 ### Offer Parts - Ancillaries
 
@@ -332,23 +334,23 @@ For distribution systems also able and allowed to act as allocators,
 encapsulating both fares and offer product in offers allows to have a similar
 flow of interactions regardless of the type of provider.
 
-Fares provide all information needed to be combined by an allocator and to allow an 
-allocator to create fulfillments and support of control processes (e.g. providing combined 
-control data to the TCOs). This especially includes the temporal and regional validity 
-for travel. The rules on how to combine the fares (combination constraints) 
-must also be included in the fare. 
+Fares provide all information needed to be combined by an allocator and to allow an
+allocator to create fulfillments and support of control processes (e.g. providing combined
+control data to the TCOs). This especially includes the temporal and regional validity
+for travel. The rules on how to combine the fares (combination constraints)
+must also be included in the fare.
 
 #### Regional Validity Route model
 
-The route in fares is modeled as a structural modelto allow additional functionalities including automated 
-ticket control or validation of new trips with the described route. The model is copliant with the route model 
-used in the FCB bar code data and the IRS 90918-4 ticket data exchange for control.
+The route in fares is modeled as a structural model to allow additional functionalities including automated ticket control or validation of new trips with the described route.
+The model is compliant with the route model used in the FCB bar code data and the
+IRS 90918-4 ticket data exchange for control.
 
-The data model makes use of recursive definitions to simplify implementations but the message contains a non-recursive 
-representation of the data where recursive links have been replaced by a reference to an index in a list.
+The data model makes use of recursive definitions to simplify implementations but the
+message contains a non-recursive representation of the data where recursive links have
+been replaced by a reference to an index in a list.
 
 ![Route data model](../images/models/OSDM-model-Routes-online.png)
-
 
 For the following example object models are shown for the message representation and the recursive model:
 
@@ -357,8 +359,6 @@ For the following example object models are shown for the message representation
 ![Route example recursive](../images/models/OSDM-model-route-object-model.png)
 
 ![Route example non-recursive](../images/models/OSDM-model-route-message-object-model.png)
-
-
 
 ### Passengers
 
@@ -403,7 +403,7 @@ elements above to two kinds of attributes:
 
 - Passenger birth date, modelled as-is in the API. Note it could be a dummy
   birth date. Each implementer is then free to map this value to the age-related
-passenger types he is using internally
+  passenger types he is using internally
 
 - Some attributes related to passengers disabilities (for accommodation
   purposes mainly)
@@ -413,7 +413,6 @@ passenger types he is using internally
 
 The presentation hereunder provides some additional examples of high-level
 offer modelings for pure-OSDM offers.
-
 
 ## Booking
 
@@ -425,12 +424,13 @@ offer modelings for pure-OSDM offers.
 
 ### Booking
 
-The booking represents the offers that have been selected and turned into a booking on request to the provider of the offers. 
-It contains a set of sub resources, most of which were
-encountered in the offer stage. but also adds a few specific attributes and
-information, the most important undoubtedly being the booking status (see for
-the state model below). The booking will indeed evolve over time based on API
-consumer actions, time elapsed or other business events.
+The booking represents the offers that have been selected and turned into a
+booking on request to the provider of the offers.It contains a set of sub
+resources, most of which were encountered in the offer stage. but also adds a
+few specific attributes and information, the most important undoubtedly being
+the booking status (see for the state model below). The booking will indeed
+evolve over time based on API consumer actions, time elapsed or other business
+events.
 
 The booking also contains additional attributes that are needed to manage and
 control the confirmation of the booking when it is in provisional state, such
@@ -494,14 +494,14 @@ in scope, the details of how to produce or control fulfillment are not covered.
 From a distribution standpoint, the only needs are
 
 The possibility to point at a fulfillment representing an offer part (= the id)
-for after sales operations.  The capability to link this fulfillment to that
-associated offer part they relate to.  A business identifier that can be used
+for after sales operations. The capability to link this fulfillment to that
+associated offer part they relate to. A business identifier that can be used
 in associated processes. For railways, that would be the Ticket Control Number
 (TCN).
 
 Links to the documents or other security features that can be used to
 represent and control fulfillment status. In most case it is a PDF document
-and/or a barcode.  These are all provided in the fulfillment sub resource.
+and/or a barcode. These are all provided in the fulfillment sub resource.
 
 ### Passengers
 
@@ -537,10 +537,10 @@ similar to their offer counterpart, with the difference that ExchangeOffers
 also have a link to the fulfillments involved in the exchange operation, and
 also have 2 additional attributes for the exchange fee and exchange balance
 (= the difference between the value that can be returned form the fulfillment
-and the value of the current offers + the exchange fees =  the total amount
+and the value of the current offers + the exchange fees = the total amount
 to be paid or refunded if/when confirming the exchange)
 
-## Complaint (new in v.1.4)
+## Complaint
 
 A complaint can be filed by a passenger in case of delay/disruption or service
 derogation for a booking or parts of it (e.g. in case of a return trip).
@@ -555,6 +555,10 @@ decision especially if the amount covers the ticket price only partially.
 
 ### Trip State Model
 
+The state `PLANNED` is relevant for trips on touristic trains or if trains only run
+if a certain amount of bookings have been made. If the the trip is confirmed, the
+purchaser can be informed using the webhook API.
+
 ![Trip State Model](../images/models/trip-state-model.png)
 
 ### Booking State Model
@@ -565,13 +569,20 @@ decision especially if the amount covers the ticket price only partially.
 
 ![Fulfillment State Model](../images/models/fulfillment-state-model.png)
 
+### Fulfillment State Model with Activation
+
+In case of multi-journey products, a fulfillment needs to be activated before, thus
+it changes from `AVAILABLE` to `ACTIVATED`.
+
+![Fulfillment State Model](../images/models/fulfillment-state-model-with-activation.png)
+
 ### Refund State Model
 
 ![Refund State Data Model](../images/models/refund-state-model.png)
 
 ### Exchange State Model
 
-Values are a subset of the booking status values
+Values are a subset of the booking status values (see before).
 ![Exchange State Data Model](../images/models/exchangeOperation-state-model.png)
 
 ### Complaint State Model
