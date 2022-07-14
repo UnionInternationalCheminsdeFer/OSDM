@@ -1,7 +1,7 @@
 - name: OSDM Online APIs
   dropdown:
     - name: OSDM Online API
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v1.5.0-rc/OSDM-online-api-v1.5.0-rc.yml&nocors
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v1.5.0-rc/OSDM-online-api-generated-v1.5.0-rc.yml&nocors
     - name: OSDM Webhook API
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v1.5.0-rc/OSDM-online-webhook-v1.5.0-rc.yml&nocors
 - name: Specification
@@ -24,7 +24,7 @@
     - name: Processes
       link: spec/processes/
     - name: Pagination
-      link: spec/pagination/ 
+      link: spec/pagination/
     - name: Synchronization
       link: spec/synchronization/
     - name: Errors & Warnings
@@ -32,7 +32,7 @@
     - name: Catalog of Code Lists
       link: spec/catalog-of-code-lists/
     - name: Non-Functional Requirements
-      link: spec/non-functional-requirements/  
+      link: spec/non-functional-requirements/
     - name: Compliance
       link: spec/compliance/
 - name: Tools
