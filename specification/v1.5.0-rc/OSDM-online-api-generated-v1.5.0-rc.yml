@@ -3559,7 +3559,7 @@ components:
             Reference to carrier
           type: array
           items:
-            $ref: '#/components/schemas/Company'
+            $ref: '#/components/schemas/CompanyRef'
 
     ServiceBrandFilter:
       type: object
@@ -3840,7 +3840,7 @@ components:
           description: >-
             Start date of period
           type: string
-          format: date
+          format: date-time
           nullable: false
         until:
           description: >-
@@ -5696,7 +5696,7 @@ components:
           nullable: false
           example: Siemens
         issuer:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyRef'
 
     OfferPartReference:
       type: object
@@ -7245,7 +7245,7 @@ components:
         - name
       properties:
         issuer:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyRef'
         id:
           description: >-
             id of the card type within the issue
@@ -7295,7 +7295,7 @@ components:
         name:
           type: string
         carrier:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyRef'
         polygon:
           $ref: '#/components/schemas/Polygon'
         nutsCodes:
@@ -7386,7 +7386,7 @@ components:
         involvedTCOs:
           type: array
           items:
-            $ref: '#/components/schemas/Company'
+            $ref: '#/components/schemas/CompanyRef'
         legacyAccountingIdentifier:
           $ref: '#/components/schemas/LegacyAccountingIdentifier'
         legacyReservationParameter:
@@ -7749,10 +7749,10 @@ components:
       type: object
       additionalProperties: false
       properties:
-        fromDate:
+        from:
           type: string
           format: date-time
-        untilDate:
+        until:
           type: string
           format: date-time
         dates:
@@ -7786,7 +7786,7 @@ components:
             all combinations are allowed.
           type: array
           items:
-            $ref: '#/components/schemas/Company'
+            $ref: '#/components/schemas/CompanyRef'
         isValidOnlyWhenCombined:
           description: >-
             This combination model applies only in case the fare is combined with another carrier
@@ -7807,7 +7807,7 @@ components:
             List of carriers where a common contract with separate fulfillments are allowed.
           type: array
           items:
-            $ref: '#/components/schemas/Company'
+            $ref: '#/components/schemas/CompanyRef'
 
     ServiceConstraint:
       type: object
@@ -7867,7 +7867,7 @@ components:
           type: string
           format: byte
         carrier:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyRef'
         city:
           type: integer
           format: int32
@@ -7985,7 +7985,7 @@ components:
           type: string
           nullable: false
         carrier:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyRef'
         stations:
           type: array
           items:
@@ -8025,7 +8025,7 @@ components:
           type: string
           format: byte
         carrier:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyRef'
         name:
           type: string
         entryStation:
@@ -8143,7 +8143,7 @@ components:
         carriers:
           type: array
           items:
-            $ref: '#/components/schemas/Company'
+            $ref: '#/components/schemas/CompanyRef'
           minItems: 1
         excludedServiceBrands:
           type: array
@@ -8360,7 +8360,7 @@ components:
         - SHORT_DISTANCE
         - LONG_DISTANCE
 
-    Company:
+    CompanyRef:
       type: string
       description: >-
         Identifies a company. For rail, a RICS company code or compatible ERA company code are used.
@@ -8727,7 +8727,7 @@ components:
         direction:
           $ref: '#/components/schemas/TravelDirectionType'
         owner:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyRef'
         specialCoach:
           $ref: '#/components/schemas/SpecialCoachType'
 
@@ -9283,7 +9283,7 @@ components:
             Unique number identifying the card.
           type: string
         issuer:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyRef'
 
     CardType:
       description: >-
@@ -9591,20 +9591,16 @@ components:
       type: object
       additionalProperties: false
       description: >-
-        Identifies a company and provides textual representation.
-        
-        For rail, a RICS company code or compatible ERA company code are used.
+        Provides the reference and name of a company.
       required:
         - ref
-        - name
       properties:
         ref:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyRef'
         name:
           description: >-
-            Textual representation of the operator to be displayed unless the application is able to show the name by the operator references.
+            Textual representation of the operator to be displayed unless the application is able to indicate the name by the operator references.
           type: string
-          nullable: false
           example: RhB
 
     OfferMode:
@@ -9774,7 +9770,7 @@ components:
         - code
       properties:
         issuer:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyRef'
         code:
           description: >-
             voucher code provided by the issuer
