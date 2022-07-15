@@ -2050,7 +2050,8 @@
           "$ref": "#/definitions/RegulatoryConditionsDef"
         },
         "serviceClassRef": {
-          "type": "string"
+          "type": "string",
+          "default": "ANY_CLASS"          
         },
         "serviceLevelRef": {
           "type": "string"
@@ -2099,8 +2100,7 @@
       "required": [
         "id",
         "bundleRef",
-        "fareType",
-        "serviceClassRef"
+        "fareType"
       ],
       "additionalProperties": false
     },
