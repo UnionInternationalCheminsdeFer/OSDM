@@ -215,7 +215,8 @@
       "type": "string",
       "enum": [
         "FIRST",
-        "SECOND"
+        "SECOND",
+        "ANY_CLASS"
       ]
     },
     "FulfillmentMediaTypeDef": {
@@ -1278,7 +1279,8 @@
         "BEST",
         "HIGH",
         "STANDARD",
-        "BASIC"
+        "BASIC",
+        "ANY_CLASS"
       ]
     },
     "ServiceLevelDef": {
@@ -2097,7 +2099,8 @@
       "required": [
         "id",
         "bundleRef",
-        "fareType"
+        "fareType",
+        "serviceClassRef"
       ],
       "additionalProperties": false
     },
