@@ -2050,8 +2050,7 @@
           "$ref": "#/definitions/RegulatoryConditionsDef"
         },
         "serviceClassRef": {
-          "type": "string",
-          "default": "ANY_CLASS"          
+          "type": "string"         
         },
         "serviceLevelRef": {
           "type": "string"
