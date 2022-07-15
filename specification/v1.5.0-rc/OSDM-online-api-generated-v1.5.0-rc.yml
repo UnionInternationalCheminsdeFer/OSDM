@@ -71,6 +71,9 @@ tags:
   - name: Document
     description: >-
       resources to get documents
+  - name: Reimbursement Management
+    description: >-
+      resources to manage reimbursements
 
 paths:
   /places:
@@ -3097,6 +3100,146 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
+  /bookings/{bookingId}/reimbursements:
+    post:
+      tags:
+        - Reimbursement Management
+      operationId: createReimbursement
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      responses:
+        '200':
+          description: >-
+            TODO: Please add comment for response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReimbursementResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
+  /bookings/{bookingId}/reimbursements/{reimbursementId}:
+    get:
+      tags:
+        - Reimbursement Management
+      operationId: getReimbursement
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      responses:
+        '200':
+          description: >-
+            TODO: Please add comment for response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReimbursementResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
+    patch:
+      tags:
+        - Reimbursement Management
+      operationId: updateReimbursement
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReimbursementPatchRequest'
+      responses:
+        '200':
+          description: >-
+            TODO: Please add comment for response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReimbursementResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
 
 security:
   - oAuth2ClientCredentials: []
@@ -5229,6 +5372,7 @@ components:
       x-extensible-enum:
         - FIRST
         - SECOND
+        - ANY_CLASS
 
     Flexibility:
       type: string
@@ -6083,6 +6227,10 @@ components:
       description: >-
         Document created for fulfillment. Either downloadLink + downloadExpiry or content + format must
         be provided.
+      required:
+        - medium
+        - type
+        - format
       properties:
         medium:
           $ref: '#/components/schemas/FulfillmentMediaType'
@@ -6107,6 +6255,7 @@ components:
             Physical format of the document provided in the content field in Mime-Type format, e.g.
             application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
           type: string
+          nullable: false
           example: application/pdf
 
     FulfillmentDocumentType:
@@ -6923,11 +7072,13 @@ components:
     ComplaintResponse:
       type: object
       additionalProperties: false
+      required:
+        - complaint
       properties:
-        warnings:
-          $ref: '#/components/schemas/WarningCollection'
         complaint:
           $ref: '#/components/schemas/Complaint'
+        warnings:
+          $ref: '#/components/schemas/WarningCollection'
 
     CustomerComplaint:
       type: object
@@ -7011,10 +7162,16 @@ components:
       type: object
       additionalProperties: false
       description: >-
-        The supporting document helps to support the claim issued by the passenger.
+        The supporting document helps to support the request.
+      required:
+        - title
+        - format
       properties:
         title:
+          description: >-
+            title of the document
           type: string
+          nullable: false
           example: delay confirmation written by staff on board
         content:
           description: >-
@@ -7026,6 +7183,7 @@ components:
             Physical format of the document provided in the content field in Mime-Type format, e.g. 
             application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
           type: string
+          nullable: false
           example: application/pdf
 
     ClaimedJourneyDetails:
@@ -7139,11 +7297,15 @@ components:
     Complaint:
       type: object
       additionalProperties: false
+      required:
+        - id
+        - status
       properties:
         id:
           type: string
+          nullable: false
         status:
-          $ref: '#/components/schemas/ComplaintStatus'
+          $ref: '#/components/schemas/BackOfficeStatus'
         customerComplaint:
           $ref: '#/components/schemas/CustomerComplaint'
         missingInformation:
@@ -7159,7 +7321,9 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    ComplaintStatus:
+    BackOfficeStatus:
+      description: >-
+        Status of the request sent to the back office.
       type: string
       enum:
         - INITIATED
@@ -7176,7 +7340,7 @@ components:
         refundVoucher:
           $ref: '#/components/schemas/FulfillmentDocument'
         explanation:
-          $ref: '#/components/schemas/Document'
+          $ref: '#/components/schemas/SupportingDocument'
         shortExplanation:
           type: string
         delayedJourney:
@@ -7317,6 +7481,7 @@ components:
         - type
         - prices
         - regionalConstraint
+        - comfortClass
         - afterSalesCondition
         - combinationConstraint
         - travelValidityConstraint
@@ -7998,11 +8163,11 @@ components:
       description: >-
         Either excluded or included carriers can be set.
       properties:
-        includedCarrier:
+        includedCarriers:
           type: array
           items:
             type: string
-        excludedCarrier:
+        excludedCarriers:
           type: array
           items:
             type: string
@@ -8401,6 +8566,7 @@ components:
         - HIGH
         - STANDARD
         - BASIC
+        - ANY_CLASS
 
     Condition:
       type: object
@@ -9655,6 +9821,111 @@ components:
           nullable: false
           example: kg
 
+    Reimbursement:
+      type: object
+      additionalProperties: false
+      required:
+        - status
+        - id
+        - request
+      properties:
+        status:
+          $ref: '#/components/schemas/BackOfficeStatus'
+        id:
+          type: string
+          nullable: false
+        missingInformation:
+          type: array
+          items:
+            type: string
+        decision:
+          $ref: '#/components/schemas/ReimbursementDecision'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        request:
+          $ref: '#/components/schemas/ReimbursementRequest'
+
+    ReimbursementDecision:
+      type: object
+      additionalProperties: false
+      properties:
+        amount:
+          $ref: '#/components/schemas/Price'
+        voucher:
+          $ref: '#/components/schemas/FulfillmentDocument'
+        explanation:
+          $ref: '#/components/schemas/SupportingDocument'
+        shortExplanation:
+          type: string
+
+    ReimbursementPatchRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - additionalDocuments
+        - updatedStatus
+      properties:
+        additionalDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportingDocument'
+          minItems: 1
+        updatedStatus:
+          $ref: '#/components/schemas/BackOfficeStatus'
+
+    ReimbursementReason:
+      type: string
+      enum:
+        - STRIKE
+        - TICKET_NOT_USED
+
+    ReimbursementRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - reimbursementReason
+        - fuflimentIds
+        - reimbursedPassengerIds
+      properties:
+        reimbursementReason:
+          $ref: '#/components/schemas/ReimbursementReason'
+        fuflimentIds:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          nullable: false
+        reimbursementDate:
+          type: string
+          format: date-time
+        tripSections:
+          type: array
+          items:
+            $ref: '#/components/schemas/TripSection'
+        reimbursedPassengerIds:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          nullable: false
+        supportingDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportingDocument'
+
+    ReimbursementResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - reimbursement
+      properties:
+        reimbursement:
+          $ref: '#/components/schemas/Reimbursement'
+        warnings:
+          $ref: '#/components/schemas/WarningCollection'
+
     ReturnConstraint:
       type: object
       additionalProperties: false
@@ -9732,6 +10003,18 @@ components:
         - ALL
         - PLACES
         - NONE
+
+    TripSection:
+      type: object
+      additionalProperties: false
+      required:
+        - tripId
+      properties:
+        tripId:
+          type: string
+          nullable: false
+        coveredSection:
+          $ref: '#/components/schemas/Section'
 
     ValidityRange:
       type: object
