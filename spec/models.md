@@ -228,9 +228,9 @@ true.
 
 ### Offer Parts - Reservations
 
-Reservation offer parts represent a seat (or other accommodation) reservation
-on the transportation. In contrast with admissions, a reservation is in essence
-bound to a specific train, although it normally does not include the
+Reservation offer parts represent seat or other accommodation type reservation
+on the transportation. It might contain multiple seats/places. In contrast with admissions, a reservation is in essence
+bound to a specific train, although it does not include the
 entitlement to board the train. Travellers therefore typically need an a
 associated admission offer part or other entitlement (such as a pass)  in order
 to actually travel.
