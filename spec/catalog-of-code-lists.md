@@ -81,7 +81,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`DOUBLE_SWC_DB`| Y | N | Y |  Double sleeper compartment with shower & WC & double bed |  |
 |`DOUBLE_S`| Y | N | Y |  Double sleeper compartment with shower | |
 |`EASY_ACCESS`|  N | Y | Y | Place with easy access for PRMs| |
-|`FACE_2_FACE`| N | Y | Y |  places face to face (2 seats facing) | |
+|`FACE_2_FACE`| N | Y | Y |  places face to face (2 seats facing) | `PLACE_POSITIONING` |
 |`EXCELLENCE`| N | Y | Y |  Special Excellence Places (RhB) | |
 |`FAMILY`|  N | Y | Y | Places in family area |'FAMILY' |
 |`FRONT_VIEW`| N | Y | Y | Seat with front-view | |
@@ -128,7 +128,6 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`UPPER_BED`| N | Y | Y | Upper bed or couchette | `BERTH_LOCATION` | |
 |`UPPER_DECK`| N | Y | Y | Upper deck in a double deck train |  `LEVEL` |
 |`VIDEO`| N | Y | Y | Place with video entertainment| |
-|`VIS-A-VIS`|  N | Y | Y | places opposite to each other | `PLACE_POSITIONING` | 
 |`WHEELCHAIR`| Y | Y | Y | Wheel chair place | |
 |`WHEELCHAIR_AND_SEAT`| N | Y | Y | Wheelchair place with additional seat |  |
 |`WHEELCHAIR_NO_SEAT`| N | Y | Y | Wheelchair space without additional seat|  |
