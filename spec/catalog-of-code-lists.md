@@ -32,7 +32,8 @@ For example: urn: x_zoo:paxtype:OLIPHANT
 | `SEAT` |  |
 | `COUCHETTE` | Night trains only |
 | `BERTH` | Night trains only  |
-| `VEHICLE` |  |
+| `VEHICLE` | Place for vehicles, e.g. in car carriage trains |
+| `STORAGE` | Storage place for items, e.g. a hook for bicyles or space for a pram  | 
 
 ## Accommodation Sub Type, Place Property, Reservation Place Preference
 
@@ -57,7 +58,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`CAR_SMALL`| Y | N | Y | Vehicle parking place category 1-3 |  |
 |`CAR_LARGE`| Y | N | Y | Vehicle parking place category 6-8 |  |
 |`CARRE`| N | Y | Y | Carré (4 seats facing normally 2nd Class)| |
-|`CHILDREN_AREA`|  N | Y | Y | Places in children area |`FAMILY` |
+|`CHILDREN_AREA`|  N | Y | Y | Places in children area | `FAMILY` |
 |`CLUB`| Y | N | Y | Club Category (RENFE)| |
 |`CLUB_2`|  N | Y | Y | Club Duo (2 seats facing in a separate compartment)| |
 |`CLUB_4`|  N | Y | Y | Club 4 (4 seats facing)| |
