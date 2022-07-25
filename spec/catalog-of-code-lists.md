@@ -43,13 +43,13 @@ The Accommodation Sub Type defines the characteristics of a place for an offer. 
 
 Depending on the commercial decisions some codes might be used in accommodation sub type with one carrier whereas another carrier might alow them in the place preferences (e.g. Bicycle and Tandem Bicycle might have the same price (Place Preference) of different prices (Accommodation Sub Type). There might be place properties that indicate characteristics of a place to the traveller which are not selectable (e.g. Place without Window)). Therefore the shown usage for the different types are an indication but not mandatory.
 
-Place Preference Group collects Place preferences where only one can be chosen of.
+Place Preference Group collects Place preferences where only one can be chosen of by the customer.
 
 | Code | Accommodation Sub Type | Place Preference | Place Property | Description | Place Preference Group |
 |------|------------------------|----------------|------------------|-------------|------------------------|
 |`AISLE`| N | Y | Y | Place at the aisle | `PLACE_LOCATION` |
 |`AIR-CONDITIONED`| N | Y | Y | Place in air conditioned area | |
-|`ANY_SEAT` | Y | N | N | Indicates that any seat within a vehicle is ok | |
+|`ANY` | Y | N | Y | Indicates within a place preference group explicitely that the selection is optional | |
 |`BISTRO` | N | Y | Y | Places in a coach with self-service bistro | |
 |`BICYCLE`| Y | Y | Y | Bicycle hook | |
 |`BUSINESS`| Y | Y | Y | Manager compartment/business| |
@@ -63,12 +63,19 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`CLUB_2`|  N | Y | Y | Club Duo (2 seats facing in a separate compartment)| |
 |`CLUB_4`|  N | Y | Y | Club 4 (4 seats facing)| |
 |`COMPARTMENT`|  N | N | Y |  places in a compartment | `PLACE_GROUPING` |
+|`COMPLETE`|  Y | N | N | all places in a compartment are included, no other passengers will be located in the compartment | | 
 |`CONFERENCE`|  Y | N | Y |  Conference compartment| |
 |`CONNECTING_DOOR`| N | Y | Y |  Compartments with connecting Door (in Sleepers)| |
 |`COUCHETTE_2`| Y | N | Y | Two person couchette cabin | |
 |`COUCHETTE_4`| Y | N | Y | Couchette Four-berth |  |
 |`COUCHETTE_5`| Y | N | Y | Couchette Five-berth | |
 |`COUCHETTE_6`| Y | N | Y | Couchette Six-berth | |
+|`COUCHETTE_COMFORT_4`| Y | N | Y | Couchette higher quality Four-berth | |
+|`COUCHETTE_COMFORT_5`| Y | N | Y | Couchette higher quality Five-berth | |
+|`COUCHETTE_COMFORT_6`| Y | N | Y | Couchette higher quality Six-berth | |
+|`COUCHETTE_PRM_2`| Y | N | Y | Couchette suitable for PRMs Two-berth |  |
+|`COUCHETTE_PRM_3`| Y | N | Y | Couchette suitable for PRMs Three-berth | |
+|`COUCHETTE_PRM_4`| Y | N | Y | Couchette suitable for PRMs Four-berth | |
 |`DOUBLE`| Y | N | Y | Two person sleeper compartment |  |
 |`DOUBLE_SWC`| Y | N | Y |  Double sleeper compartment with shower & WC |  |
 |`DOUBLE_SWC_DB`| Y | N | Y |  Double sleeper compartment with shower & WC & double bed |  |
@@ -83,11 +90,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`INCLUDING_DRINK`| Y | Y | Y | A drink is included at the place |  |
 |`KIOSQUE`| N | Y | Y |  Kiosque (special seats in edge area of a TGV) | |
 |`LADIES`|  N | Y | Y | Ladies compartment | |
-|`LADIES_CHOUCHETTE_4` | Y | N | Y | Ladies compartment, 4-couchettes |  |
-|`LADIES_CHOUCHETTE_6` | Y | N | Y | Ladies compartment, 6-couchettes | |
 |`MEN`|  N | Y | Y | Men compartment | |
-|`MEN_CHOUCHETTE_4` | Y | N | Y | Men compartment, 4-couchettes |  |
-|`MEN_CHOUCHETTE_6` | Y | N | Y | Men compartment, 6-couchettes | | 
 |`LOWER_BED`| N | Y | Y | Lower bed or couchette | `BERTH_LOCATION` |
 |`LOWER_DECK`| N | Y | Y | Lower deck in a double deck train | `LEVEL` |
 |`MIDDLE_BED` | N | Y | Y | Middle bed or couchette | `BERTH_LOCATION` |
@@ -104,20 +107,16 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`POWER`|  N | Y | Y | Place with power socket| |
 |`PRAM`|  Y | N | Y | Place for a Pram| |
 |`PRAM_WITH_SEAT`|  Y | N | Y | Seat with space for a pram | |
-|`PRIVATE_COMP`| Y | N | Y | Private compartment seats, compartment not to be shared with other passengers |  |
-|`PRIVATE_COUCHETTE`| Y | N | Y| Private compartment couchettes, compartment not to be shared with other passengers, usually a 6 Person compartment |  |
-|`PRIVATE_COUCHETTE_4`| Y | N | Y |  Private compartment four couchettes, compartment not to be shared with other passengers | |
-|`PRIVATE_SLEEPER`| Y | N | Y | Private compartment berth, compartment not to be shared with other passengers | |
-|`PRIVATE_SLEEPER_DELUXE`| Y | N | Y | Private compartment berth deluxe, compartment not to be shared with other passengers |  |
 |`RESTAURANT`| Y | Y | Y | Restaurant (places in a dining car) |  |
 |`SEPARATE_COMPARTMENT`| Y | Y | N |Seat in separate Compartment, compartment not to be shared with other passengers  |  |
 |`SILENCE`| Y | Y | Y | Quiet Compartment (Seat) | |
 |`SINGLE`| Y | N | Y | Single sleeper compartment|  |
 |`SINGLE_SWC`| Y | N | Y | Single sleeper compartment with shower & WC |  |
 |`SINGLE_SWC_DOUBLE` |  Y | N | Y |  Single compartment with shower & WC & double bed |  |
-|`SIDE_BY_SIDE`|  N | Y | Y | places side by side (2 seats side by side) | |
+|`SIDE_BY_SIDE`|  N | Y | Y | places side by side (2 seats side by side) | `PLACE_POSITIONING` |
 |`SALON`| N | Y | Y | Salon (6 seats facing in a separate compartment)| |
 |`SLEEPERETTE`| Y | N | Y | Sleeperette (reclining seat) | |
+|`SLEEPER_DELUXE`| Y | N | Y | berth deluxe |  |
 |`SOLO`|  N | Y | Y | Separate place without neighbor seat | `PLACE_LOCATION` |
 |`SPECIAL_SLEEPER`| Y | N | Y | Special Sleeper Compartment, one Person sleeper compartment smaller than a Single |  |
 |`TABLE`| N | Y | Y | Places at a table| |
@@ -125,10 +124,11 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`TOURIST_SLEEPER_2`| Y | N | Y | T2 sleeper compartment | |
 |`TOURIST_SLEEPER_3`| Y | N | Y | T3 sleeper compartment | |
 |`TOURIST_SLEEPER_4`| Y | N | Y | T4 sleeper compartment | |
-|`TOURIST_SLEEPER_3_WC`| Y | N | Y |  T3 sleeper compartment with shower & WC |  |
+|`TOURIST_SLEEPER_3_SWC`| Y | N | Y |  T3 sleeper compartment with shower & WC |  |
 |`UPPER_BED`| N | Y | Y | Upper bed or couchette | `BERTH_LOCATION` | |
 |`UPPER_DECK`| N | Y | Y | Upper deck in a double deck train |  `LEVEL` |
 |`VIDEO`| N | Y | Y | Place with video entertainment| |
+|`VIS-A-VIS`|  N | Y | Y | places opposite to each other | `PLACE_POSITIONING` | 
 |`WHEELCHAIR`| Y | Y | Y | Wheel chair place | |
 |`WHEELCHAIR_AND_SEAT`| N | Y | Y | Wheelchair place with additional seat |  |
 |`WHEELCHAIR_NO_SEAT`| N | Y | Y | Wheelchair space without additional seat|  |
