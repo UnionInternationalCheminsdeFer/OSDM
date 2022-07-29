@@ -5207,6 +5207,7 @@ components:
         - PDF_A4
         - PKPASS
         - TICKETLESS
+        - ALLOCATOR_APP
 
     Admission:
       type: object
