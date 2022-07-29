@@ -81,7 +81,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`DOUBLE_SWC_DB`| Y | N | Y |  Double sleeper compartment with shower & WC & double bed |  |
 |`DOUBLE_S`| Y | N | Y |  Double sleeper compartment with shower | |
 |`EASY_ACCESS`|  N | Y | Y | Place with easy access for PRMs| |
-|`FACE_2_FACE`| N | Y | Y |  places face to face (2 seats facing) | `PLACE_POSITIONING` |
+|`FACE_2_FACE`| N | Y | Y |  places face to face (2 seats facing) | `PLACE_ALIGNMENT` |
 |`EXCELLENCE`| N | Y | Y |  Special Excellence Places (RhB) | |
 |`FAMILY`|  N | Y | Y | Places in family area |'FAMILY' |
 |`FRONT_VIEW`| N | Y | Y | Seat with front-view | |
@@ -91,9 +91,9 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`KIOSQUE`| N | Y | Y |  Kiosque (special seats in edge area of a TGV) | |
 |`LADIES`|  N | Y | Y | Ladies compartment | |
 |`MEN`|  N | Y | Y | Men compartment | |
-|`LOWER_BED`| N | Y | Y | Lower bed or couchette | `BERTH_LOCATION` |
-|`LOWER_DECK`| N | Y | Y | Lower deck in a double deck train | `LEVEL` |
-|`MIDDLE_BED` | N | Y | Y | Middle bed or couchette | `BERTH_LOCATION` |
+|`LOWER_BED`| N | Y | Y | Lower bed or couchette | `PLACE_LOCATION` |
+|`LOWER_DECK`| N | Y | Y | Lower deck in a double deck train | `DECK` |
+|`MIDDLE_BED` | N | Y | Y | Middle bed or couchette | `PLACE_LOCATION` |
 |`MINI_SUITE`| Y | N | Y |  Mini Suite - single person couchette compartment (Capsule)  |  |
 |`MOTOR_CYCLE`| Y | N | Y | Motorcycle |  |
 |`MOTOR_CYCLE_SC`| Y | N | Y | Motorcycle with sidecar  |  |
@@ -101,6 +101,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`NEAR_DINING`|  N | Y | Y | Places near the dining car| |
 |`NEAR_PLAY_AREA`|  N | Y | Y | Places near a child play area| `FAMILY` |
 |`NEAR_BICYCLE_AREA`|  N | Y | Y | Places near the bicycle storage space |  |
+|`NEAR_WHEELCHAIR`|  N | Y | N | used to indicate places near the wheelchair when booked by an accompagning person  |  |
 |`OPEN_SPACE`|  N | Y | Y | Places in open space area | `PLACE_GROUPING` |
 |`PANORAMA`|  N | Y | Y | Places in a panorama coach| |
 |`PHONE`|  N | Y | Y | Places in an area with mobile phone amplifier| |
@@ -108,12 +109,11 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`PRAM`|  Y | N | Y | Place for a Pram| |
 |`PRAM_WITH_SEAT`|  Y | N | Y | Seat with space for a pram | |
 |`RESTAURANT`| Y | Y | Y | Restaurant (places in a dining car) |  |
-|`SEPARATE_COMPARTMENT`| Y | Y | N |Seat in separate Compartment, compartment not to be shared with other passengers  |  |
 |`SILENCE`| Y | Y | Y | Quiet Compartment (Seat) | |
 |`SINGLE`| Y | N | Y | Single sleeper compartment|  |
 |`SINGLE_SWC`| Y | N | Y | Single sleeper compartment with shower & WC |  |
 |`SINGLE_SWC_DOUBLE` |  Y | N | Y |  Single compartment with shower & WC & double bed |  |
-|`SIDE_BY_SIDE`|  N | Y | Y | places side by side (2 seats side by side) | `PLACE_POSITIONING` |
+|`SIDE_BY_SIDE`|  N | Y | Y | places side by side (2 seats side by side) | `PLACE_ALIGNMENT` |
 |`SALON`| N | Y | Y | Salon (6 seats facing in a separate compartment)| |
 |`SLEEPERETTE`| Y | N | Y | Sleeperette (reclining seat) | |
 |`SLEEPER_DELUXE`| Y | N | Y | berth deluxe |  |
@@ -125,8 +125,8 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`TOURIST_SLEEPER_3`| Y | N | Y | T3 sleeper compartment | |
 |`TOURIST_SLEEPER_4`| Y | N | Y | T4 sleeper compartment | |
 |`TOURIST_SLEEPER_3_SWC`| Y | N | Y |  T3 sleeper compartment with shower & WC |  |
-|`UPPER_BED`| N | Y | Y | Upper bed or couchette | `BERTH_LOCATION` | |
-|`UPPER_DECK`| N | Y | Y | Upper deck in a double deck train |  `LEVEL` |
+|`UPPER_BED`| N | Y | Y | Upper bed or couchette | `PLACE_LOCATION` | |
+|`UPPER_DECK`| N | Y | Y | Upper deck in a double deck train |  `DECK` |
 |`VIDEO`| N | Y | Y | Place with video entertainment| |
 |`WHEELCHAIR`| Y | Y | Y | Wheel chair place | |
 |`WHEELCHAIR_AND_SEAT`| N | Y | Y | Wheelchair place with additional seat |  |
@@ -134,7 +134,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`WIFI`| N | Y | Y | Places with WiFi access point| |
 |`WINDOW`| N | Y | Y | place at the window | `PLACE_LOCATION` |
 |`WITH_ANIMALS`| Y | Y | Y | Place with animals (animals allowed)| |
-|`WITH_SMALL_CHILDREN`| N | Y | Y | Places for passengers with small children| 'FAMILY' |
+|`WITH_SMALL_CHILDREN`| N | Y | Y | Places for passengers with small children| `FAMILY` |
 |`WITHOUT_ANIMALS`| N | Y | Y | Place in an area where animals are not allowed | |
 
 ## Ancilliary category
