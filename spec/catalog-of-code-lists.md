@@ -419,14 +419,15 @@ Legacy reservation code defined in UIC 90918-1.
 
 ## FulfillmentMediaType
 
-| Code         | Description |
-|--------------|-------------| 
-| `RCT2`         | RCT2 secure paper format (including compressed format) |
-| `RCCST`        | Credit Card Size format |
-| `UIC_PDF`      | PDF according to UIC Standard |
-| `PDF_A4`       | proprietary A4 pdf format|
-| `PKPASS`       | pkpass file format|
-| `TICKETLESS`   | no ticket |
+| Code            | Description |
+|-----------------|-------------| 
+| `RCT2`          | RCT2 secure paper format (including compressed format) |
+| `RCCST`         | Credit Card Size format |
+| `UIC_PDF`       | PDF according to UIC Standard |
+| `PDF_A4`        | proprietary A4 pdf format|
+| `PKPASS`        | pkpass file format |
+| `ALLOCATOR_APP` | mobile ticket in allocator specific format to be loaded into mobile app |
+| `TICKETLESS`    | no ticket |
  
 ## Gender
 
