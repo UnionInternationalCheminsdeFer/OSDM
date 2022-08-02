@@ -3110,6 +3110,17 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReimbursementRequest'
       responses:
         '200':
           description: >-
@@ -3580,8 +3591,6 @@ components:
           $ref: '#/components/schemas/PlaceRef'
         destination:
           $ref: '#/components/schemas/PlaceRef'
-        requestedSection:
-          $ref: '#/components/schemas/Section'
         via:
           description: >-
             Ordered series of points where the journey must pass through. If more
@@ -4985,9 +4994,10 @@ components:
       description: >-
         Defines the parameters needed to request an offer. Either a tripSearchCriteria
         or a list of trip specifications can be passed in to request trip offer.
+        
         If you are searching for fares you pass in the complete trip and the use the
-        returnSearchCriteria to define which part you need fares (including virtual
-        border points).
+        requestedSections attribute within the trip specifications to define which part(s)
+        you need fares (including virtual border points).
       properties:
         tripSpecifications:
           type: array
@@ -4995,6 +5005,10 @@ components:
             $ref: '#/components/schemas/TripSpecification'
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
+        requestedSections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Section'
         offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
         passengerSpecifications:
@@ -5638,11 +5652,12 @@ components:
         Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
       type: string
       x-extensible-enum:
-        - RCT2
-        - RCCST
-        - UIC_PDF
+        - ALLOCATOR_APP
         - PDF_A4
         - PKPASS
+        - RCCST
+        - RCT2
+        - UIC_PDF
         - TICKETLESS
 
     Admission:
@@ -8710,7 +8725,7 @@ components:
       type: string
       description: >-
         Accommodation sub type definition out of the Accommodation Sub Type Code List
-      default: ANY_SEAT
+      default: 'ANY_SEAT'
       nullable: false
 
     SelectedPlaceOption:
