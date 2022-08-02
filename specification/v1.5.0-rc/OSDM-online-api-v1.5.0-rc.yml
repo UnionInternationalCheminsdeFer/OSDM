@@ -3133,8 +3133,6 @@ components:
           description: >-
             Specifies the destination situation where the user is heading to.
           $ref: "#/components/schemas/PlaceRef"
-        requestedSection: # EXT Indicates sub part of trip that is requested to price.
-          $ref: "#/components/schemas/Section"
         via:
           description: >-
             Ordered series of points where the journey must pass through. If more
@@ -3522,6 +3520,11 @@ components:
           items:
             $ref: "#/components/schemas/TripLegSpecification"
           minItems: 1
+        requestedSections: # EXT Indicates sub part of trip that is requested to price.
+          type: array
+          items:
+            $ref: "#/components/schemas/Section"
+
 
     OperatingDays:
       type: object
@@ -4594,8 +4597,8 @@ components:
         Defines the parameters needed to request an offer. Either a tripSearchCriteria
         or a list of trip specifications can be passed in to request trip offer.
         If you are searching for fares you pass in the complete trip and the use the 
-        returnSearchCriteria to define which part you need fares (including virtual 
-        border points).
+        requestedSections attribute within the trip specifications to define which part(s)
+        you need fares (including virtual border points).
       properties:
         tripSpecifications:
           type: array
@@ -5207,6 +5210,7 @@ components:
         - PDF_A4
         - PKPASS
         - TICKETLESS
+        - ALLOCATOR_APP
 
     Admission:
       type: object
