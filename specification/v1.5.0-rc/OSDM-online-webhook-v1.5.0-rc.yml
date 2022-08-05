@@ -4,12 +4,11 @@ servers:
     url: https://localhost:8080
 info:
   title: UIC 90918-10 - OSDM webhooks
-  version: 1.5.0-rc1
+  version: 1.5.0
   description: |
-    Specifications for the OSDM API standard. The OSDM webhook specification allows
-    an allocator to inform a distributor about changes to a booking or a complaint. 
+    Specifications for the OSDM API standard. The OSDM webhook specification allows an allocator to inform a distributor about changes to a booking or a complaint.
   contact:
-    name: Nicolas Selleslagh, Roland Klapwik and Andreas Schlapbach
+    name: Ralf Bayer, Roland Klapwik and Andreas Schlapbach
     url: https://unioninternationalcheminsdefer.github.io/OSDM/
     email: osdm@uic.org
   license:
@@ -40,6 +39,7 @@ webhooks:
               oneOf:
                 - $ref: "#/components/schemas/BookingEvent"
                 - $ref: "#/components/schemas/ComplaintEvent"
+                - $ref: "#/components/schemas/ReimbursementEvent"
             discriminator:
               propertyName: objectType
       responses:
@@ -66,6 +66,7 @@ components:
   schemas:
     BookingEvent:
       type: object
+      description: An event that has occurred on a booking.
       required:
         - objectType
         - summary
@@ -121,6 +122,8 @@ components:
 
     ComplaintEvent:
       type: object
+      description: >-
+        An event that has occurred on a complaint.
       required:
         - objectType
         - summary
@@ -137,10 +140,9 @@ components:
         summary:
           type: string
           description: >-
-            Human readable description of what has changed on the complaint
-            "Complaint 123456 has been settled".
+            Human readable description of what has changed on the complaint. E.g. "Complaint 123456 has been settled".
         type:
-          $ref: "#/components/schemas/ComplaintChangeType"
+          $ref: "#/components/schemas/BackOfficeChangeType"
         revision:
           $ref: "#/components/schemas/Revision"
         complaintId:
@@ -153,12 +155,47 @@ components:
           items:
             $ref: "#/components/schemas/Resource"
 
-    ComplaintChangeType:
+    ReimbursementEvent:
+      type: object
+      description: >-
+        An event that has occurred on a reimbursement.
+      required:
+        - objectType
+        - summary
+        - type
+        - revision
+        - reimbursementId
+        - resources
+      properties:
+        objectType:
+          type: string
+          enum:
+            - ReimbursementEvent
+          default: ReimbursementEvent
+        summary:
+          type: string
+          description: >-
+            Human readable description of what has changed on the reimbursement. E.g. "Reimbursement 456-xyz has been settled".
+        type:
+          $ref: "#/components/schemas/BackOfficeChangeType"
+        revision:
+          $ref: "#/components/schemas/Revision"
+        reimbursementId:
+          type: string
+          description: The ID of the reimbursement.
+        resources:
+          description: >-
+            Resources to be called by receiver to update a reimbursement.
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
+
+    BackOfficeChangeType:
       type: string
-      description:
-        The type of change that has occurred on the complaint.
+      description: The type of change that has occurred.
       enum:
         - INITIATED
+        - EVALUATING
         - DECIDED
         - SETTLED
         - INFORMATION_MISSING
@@ -169,8 +206,7 @@ components:
 
     Revision:
       type: object
-      description:
-        The revision of the event.
+      description: The revision of the event.
       required:
         - name
         - timestamp
@@ -185,7 +221,7 @@ components:
     Resource:
       type: object
       description: >-
-        The resource to be called by receiver to update a booking or a complaint.
+        The resource to be called by receiver to update a booking, a complaint or a reimbursement.
       required:
         - href
       properties:
