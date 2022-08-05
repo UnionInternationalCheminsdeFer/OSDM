@@ -4391,8 +4391,6 @@ components:
         objectType:
           description: Attribute is used as discriminator for inheritance between data types.
           type: string
-        name:
-          type: string
 
     StopPlaceRef:
       description: >-
@@ -4409,6 +4407,8 @@ components:
               type: string
               nullable: false
               example: urn:uic:stn:8503000
+            name:
+              type: string
 
     PointOfInterestRef:
       description: >-
@@ -4423,7 +4423,9 @@ components:
             pointOfInterestRef:
               type: string
               nullable: false
-           
+            name:
+              type: string
+
     AddressRef:
       description: >-
         Reference to an Address.
@@ -4437,7 +4439,9 @@ components:
             addressRef:
               type: string
               nullable: false
-           
+            name:
+              type: string
+
     FareConnectionPointRef:
       description: >-
         Reference to a Fare Connection Point.
@@ -5056,11 +5060,12 @@ components:
     ExchangeableType:
       description: >-
         If set to YES the offerpart is exchangeable without a fee before the day of departure. 
-        NO when not exchangeable or exchangeable with 100% fee, WITH_CONDITIONS in all other cases.
+        NO when not exchangeable or exchangeable with 100% fee, WITH_CONDITION in all other cases.
       type: string
       enum:
         - YES
         - NO
+        - WITH_CONDITION
 
     ProductLegAssociation:
       type: object
@@ -5489,9 +5494,7 @@ components:
           items:
             $ref: '#/components/schemas/Passenger'
         placeSelections:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlaceSelection'
+          $ref: '#/components/schemas/PlaceSelection'
         afterSaleByDistributorOnly:
           description: >-
             in case the distributor has proposed this offer in conjunction with an offer of another provider constrained
@@ -7787,6 +7790,8 @@ components:
           nullable: false
           example: self
         href:
+          description: >-
+            Allows to provide a value to the link, for example id of the targeted resource or displayable representation for the link.
           type: string
           format: uri
           nullable: false
