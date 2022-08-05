@@ -2033,10 +2033,9 @@ paths:
     patch:
       tags:
         - Fulfillments
-      summary: Acitivates a fulfillment, i.e. changes it to status AVAILABLE.
+      summary: Activates a fulfillment, i.e. changes the status to AVAILABLE.
       description: >-
-        Changes the fulfillment to status AVAILABLE. In the case of multi-journey product, one of the fulfillment is
-        now "activated" and can be used to travel.
+        Changes the fulfillment to status AVAILABLE. In the case of multi-journey product, one of the fulfillment is now "activated" and can be used to travel.
       operationId: patchFulfillment
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -2683,6 +2682,8 @@ paths:
       tags:
         - Complaint Management
       summary: Allows adding a complaint.
+      description: >-
+        Create a complaint request for part of a booking.
       operationId: createComplaint
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
@@ -2729,6 +2730,8 @@ paths:
       tags:
         - Complaint Management
       summary: Returns a complaint.
+      description: >-
+        Get a complaint including its current state.
       operationId: getComplaint
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -2782,6 +2785,8 @@ paths:
       tags:
         - Complaint Management
       summary: Allows updating a complaint.
+      description: >-
+        Update a complaint request, i.e add missing documents or change state.
       operationId: patchComplaint
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
@@ -3104,6 +3109,8 @@ paths:
     post:
       tags:
         - Reimbursement Management
+      description: >-
+        Create a reimbursement request for part of a booking.
       operationId: createReimbursement
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -3160,6 +3167,8 @@ paths:
     get:
       tags:
         - Reimbursement Management
+      description: >-
+        Get reimbursement including its current state.
       operationId: getReimbursement
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -3204,6 +3213,8 @@ paths:
     patch:
       tags:
         - Reimbursement Management
+      description: >-
+        Update a reimbursement request, i.e add missing documents or change state.
       operationId: updateReimbursement
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -4998,6 +5009,7 @@ components:
         If you are searching for fares you pass in the complete trip and the use the
         requestedSections attribute within the trip specifications to define which part(s)
         you need fares (including virtual border points).
+        
       properties:
         tripSpecifications:
           type: array
@@ -7345,6 +7357,7 @@ components:
         - EVALUATING
         - DECIDED
         - SETTLED
+        - INFORMATION_MISSING
 
     ComplaintDecision:
       type: object
@@ -8073,11 +8086,13 @@ components:
         - toStation
         - train
         - travelDate
+        - serviceBrandCode
+        - serviceBrandAbbreviation
       properties:
         fromStation:
-          $ref: '#/components/schemas/StopPlace'
+          $ref: '#/components/schemas/StopPlaceRef'
         toStation:
-          $ref: '#/components/schemas/StopPlace'
+          $ref: '#/components/schemas/StopPlaceRef'
         train:
           type: string
           nullable: false
@@ -8086,6 +8101,13 @@ components:
             date and time of the departure where the train link starts
           type: string
           format: date-time
+          nullable: false
+        serviceBrandCode:
+          $ref: '#/components/schemas/ServiceBrandCode'
+        serviceBrandAbbreviation:
+          description: >-
+            Abbreviation of the service brand, e.g. "IC", "TGV". See the OSDM code list. Needs to match the service brand code.
+          type: string
           nullable: false
 
     Polygon:
@@ -8550,8 +8572,7 @@ components:
     ServiceBrandCode:
       type: string
       description: >-
-        Service brand codes. For public transport, a code list can be found in OSDM's catalog of code list.
-        For example, '163' denotes TGV Lyria and '175' denotes Glacier Express.
+        Service brand codes. For public transport, a code list can be found in OSDM's code list. E.g., '163' denotes TGV Lyria and '175' denotes Glacier Express.
       nullable: false
       example: 163, 175
 
@@ -9840,31 +9861,33 @@ components:
       type: object
       additionalProperties: false
       required:
-        - status
         - id
         - request
+        - status
       properties:
-        status:
-          $ref: '#/components/schemas/BackOfficeStatus'
         id:
           type: string
           nullable: false
+        request:
+          $ref: '#/components/schemas/ReimbursementRequest'
+        status:
+          $ref: '#/components/schemas/BackOfficeStatus'
         missingInformation:
           type: array
           items:
             type: string
         decision:
           $ref: '#/components/schemas/ReimbursementDecision'
-        links:
+        _links:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-        request:
-          $ref: '#/components/schemas/ReimbursementRequest'
 
     ReimbursementDecision:
       type: object
       additionalProperties: false
+      description: >-
+        Decision whether or not the reimbursement is granted. Contains information on the amount reimbursed.
       properties:
         amount:
           $ref: '#/components/schemas/Price'
@@ -9891,35 +9914,39 @@ components:
           $ref: '#/components/schemas/BackOfficeStatus'
 
     ReimbursementReason:
+      description: >-
+        Reason why the booking should be reimbursed.
       type: string
-      enum:
+      x-extensible-enum:
         - STRIKE
         - TICKET_NOT_USED
 
     ReimbursementRequest:
       type: object
       additionalProperties: false
+      description: >-
+        The reimbursement process is used to support refunds which are not covered by the online refund/exchange processes, e.g.: Partial refund of a trip (Trip was Hamburg - Munich, but only Hamburg - Kassel was used), Refund outside of rules due to good will. This is a manual back office process within the provider's organization which is triggered by this request. State changes can be signaled by web hook events.
       required:
         - reimbursementReason
-        - fuflimentIds
         - reimbursedPassengerIds
+        - fulfillmentIds
       properties:
         reimbursementReason:
           $ref: '#/components/schemas/ReimbursementReason'
-        fuflimentIds:
+        reimbursementDate:
+          type: string
+          format: date-time
+        reimbursedPassengerIds:
           type: array
           items:
             type: string
           minItems: 1
           nullable: false
-        reimbursementDate:
-          type: string
-          format: date-time
         tripSections:
           type: array
           items:
             $ref: '#/components/schemas/TripSection'
-        reimbursedPassengerIds:
+        fulfillmentIds:
           type: array
           items:
             type: string
@@ -9933,6 +9960,8 @@ components:
     ReimbursementResponse:
       type: object
       additionalProperties: false
+      description: >-
+        Response to a reimbursement request, containing a state and a decision.
       required:
         - reimbursement
       properties:
@@ -10022,6 +10051,8 @@ components:
     TripSection:
       type: object
       additionalProperties: false
+      description: >-
+        Part of a trip.
       required:
         - tripId
       properties:
