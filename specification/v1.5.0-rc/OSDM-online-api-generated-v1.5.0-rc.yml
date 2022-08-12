@@ -3878,7 +3878,7 @@ components:
           nullable: false
         externalRef:
           description: >-
-            External reference of this trip for referencing purposes. Unique within a trip specification.
+            External reference of this trip for referencing purposes.
           type: string
         duration:
           description: >-
@@ -4034,6 +4034,10 @@ components:
             Id of this trip leg. Unique within trip result. A seqId is a leg id.
           type: string
           nullable: false
+        externalRef:
+          description: >-
+            External reference of this tripLeg for referencing purposes.
+          type: string
         timedLeg:
           $ref: '#/components/schemas/TimedLeg'
         transferLeg:
@@ -5936,21 +5940,22 @@ components:
     OfferSelection:
       type: object
       additionalProperties: false
+      description: >-
+        The Ids of the offers to be booked need to be passed in.
       required:
         - id
+        - passengers
       properties:
         id:
           description: >-
             id of the selected offer or exchangeOffer
           type: string
           nullable: false
-        optionalReservationIds:
-          description: >-
-            If relevant, ids of the selected optional reservations.
+        reservationIds:
           type: array
           items:
-            type: string
-        optionalAncillaryIds:
+            $ref: '#/components/schemas/ReservationId'
+        ancillaryIds:
           type: array
           items:
             $ref: '#/components/schemas/AncillaryId'
@@ -5960,6 +5965,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
+          minItems: 1
         placeSelections:
           $ref: '#/components/schemas/PlaceSelection'
         afterSaleByDistributorOnly:
@@ -5980,11 +5986,14 @@ components:
     AncillaryId:
       type: object
       additionalProperties: false
+      required:
+        - ancillaryId
       properties:
         ancillaryId:
           description: >-
             If relevant, ids of the selected optional ancillaries.
           type: string
+          nullable: false
         passengerIds:
           description: >-
             Id of the passengers the selected optional ancillaries are for.
@@ -9969,6 +9978,20 @@ components:
           $ref: '#/components/schemas/Reimbursement'
         warnings:
           $ref: '#/components/schemas/WarningCollection'
+
+    ReservationId:
+      type: object
+      additionalProperties: false
+      required:
+        - reservationId
+      properties:
+        reservationId:
+          type: string
+          nullable: false
+        passengerIds:
+          type: array
+          items:
+            type: string
 
     ReturnConstraint:
       type: object
