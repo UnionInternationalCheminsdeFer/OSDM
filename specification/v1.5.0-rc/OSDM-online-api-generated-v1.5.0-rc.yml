@@ -5652,9 +5652,12 @@ components:
         with product(s) from another provider using the same tag. At least one, not all,
         combinationTags must be in common to allow combination. No combinationTags indicate
         that there are no combination constraints on the product.
+      required:
+        - id
       properties:
         id:
           type: string
+          nullable: false
         needsToBeCombined:
           description: >-
             If false it means that this product can be sold also when not in conjunction with
@@ -5709,11 +5712,30 @@ components:
     AncillaryRelation:
       type: object
       additionalProperties: false
+      required:
+        - minItems
+        - maxItems
+        - ancillaryCategory
       properties:
         relationType:
           $ref: '#/components/schemas/OptionalityType'
         ancillary:
           $ref: '#/components/schemas/OfferPartReference'
+        minItems:
+          type: integer
+          format: int32
+          nullable: false
+        maxItems:
+          type: integer
+          format: int32
+          nullable: false
+        ancillaryCategory:
+          description: >-
+            Filters ancillary by Ancillary.category. 
+            
+            Example: Only ancillary of category "meal" are considered. 
+          type: string
+          nullable: false
 
     OptionalityType:
       description: >-
@@ -5737,16 +5759,16 @@ components:
       required:
         - id
         - commonOfferPartAttributes
-        - reservationDetail
+        - placeAllocation
       properties:
         id:
           type: string
           nullable: false
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
-        reservationDetail:
-          $ref: '#/components/schemas/ReservationDetail'
-        placeSelection:
+        placeAllocation:
+          $ref: '#/components/schemas/PlaceAllocation'
+        selectedPlaceOption:
           $ref: '#/components/schemas/SelectedPlaceOption'
         optionality:
           $ref: '#/components/schemas/OptionalityType'
@@ -5758,6 +5780,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OfferPartReference'
+        availablePlaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailablePlace'
 
     Ancillary:
       type: object
@@ -5771,10 +5797,9 @@ components:
           nullable: false
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
-        optionality:
-          $ref: '#/components/schemas/OptionalityType'
         category:
           type: string
+          example: Meal
         fees:
           type: array
           items:
@@ -7573,10 +7598,10 @@ components:
             $ref: '#/components/schemas/AvailablePlace'
         selectedPlaceOption:
           $ref: '#/components/schemas/SelectedPlaceOption'
-        reservationDetails:
+        placeAllocation:
           type: array
           items:
-            $ref: '#/components/schemas/ReservationDetail'
+            $ref: '#/components/schemas/PlaceAllocation'
         coveredSection:
           $ref: '#/components/schemas/Section'
         passengerConstraints:
@@ -8628,6 +8653,7 @@ components:
           $ref: '#/components/schemas/ConditionType'
         description:
           type: string
+          minLength: 1
           nullable: false
 
     ConditionType:
@@ -8656,19 +8682,12 @@ components:
         placeProperties:
           type: array
           items:
-            $ref: '#/components/schemas/AvailablePlaceProperty'
-
-    AvailablePlaceProperty:
-      type: object
-      additionalProperties: false
-      properties:
-        placeProperty:
-          $ref: '#/components/schemas/PlaceProperty'
+            type: string
         numericAvailability:
           type: integer
           format: int32
 
-    ReservationDetail:
+    PlaceAllocation:
       type: object
       additionalProperties: false
       description: >-
