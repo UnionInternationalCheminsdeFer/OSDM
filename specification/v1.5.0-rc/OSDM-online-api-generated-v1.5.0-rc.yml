@@ -2,16 +2,13 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.5.0-rc1
+  version: 1.5.0-rc2
   description: >-
-    Specifications for the OSDM API standard. The OSDM specification supports two
-    modes of operation: Distributor Mode and Allocator Mode. The API works the same in
-    both mode, except that in allocator mode the API also returns fare information.
-    The OSDM specification combines the allocator and distributor modes into one aligned
-    API interface.
+    Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Distributor Mode and Allocator Mode. The API works the same in both modes, except that in allocator mode the API also returns fare information.
+    The OSDM specification combines the allocator and distributor modes into one aligned API interface.
   contact:
-    name: Nicolas Selleslagh, Clemens Gantert and Andreas Schlapbach
-    url: 'https://unioninternationalcheminsdefer.github.io/OSDM/'
+    name: OSDM Working Group
+    url: 'https://osdm.io'
     email: osdm@uic.org
   license:
     name: Apache 2.0
@@ -3568,15 +3565,12 @@ components:
       description: >-
         Initial input for the place information request. This input defines what is originally looked for.
         Provided by OJP.
-      required:
-        - name
       properties:
         name:
           description: >-
             Name of the place object which is looked after. This is usually the user's input. If not given,
             the name of the resulting place objects is not relevant.
           type: string
-          nullable: false
           example: Bern Bärengraben
         geoPosition:
           $ref: '#/components/schemas/GeoPosition'
@@ -4649,6 +4643,13 @@ components:
           type: string
           nullable: false
           example: urn:uic:stn:8500000
+        alternativeIds:
+          description: >-
+            For a place with ids in different reference systems, the alternative ids can be returned. 
+            The reference system is encoded in the string. E.g.: "urn:uic:std:80000", "x_swe:stn:10000", "ch:1:sloid:343434"
+          type: array
+          items:
+            type: string
         name:
           type: string
           example: Zürich HB
@@ -5007,12 +5008,9 @@ components:
       type: object
       additionalProperties: false
       description: >-
-        Defines the parameters needed to request an offer. Either a tripSearchCriteria
-        or a list of trip specifications can be passed in to request trip offer.
+        Defines the parameters needed to request an offer. Either a tripSearchCriteria, a list of trip specifications, or a list of tripIds can be passed in to request trip offer.
         
-        If you are searching for fares you pass in the complete trip and the use the
-        requestedSections attribute within the trip specifications to define which part(s)
-        you need fares (including virtual border points).
+        If you are searching for fares you pass in the complete trip and the use the requestedSections attribute to define which part(s) you need fares (including virtual border points).
         
       properties:
         tripSpecifications:
@@ -5021,6 +5019,11 @@ components:
             $ref: '#/components/schemas/TripSpecification'
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
+        tripIds:
+          type: array
+          items:
+            type: string
+          nullable: false
         requestedSections:
           type: array
           items:
@@ -5699,12 +5702,12 @@ components:
         reservations:
           type: array
           items:
-            $ref: '#/components/schemas/OfferPartReference'
+            $ref: '#/components/schemas/ReservationRelation'
         ancillaries:
           type: array
           items:
             $ref: '#/components/schemas/AncillaryRelation'
-        fees:
+        feeRefs:
           type: array
           items:
             $ref: '#/components/schemas/OfferPartReference'
@@ -5713,41 +5716,18 @@ components:
       type: object
       additionalProperties: false
       required:
-        - minItems
-        - maxItems
-        - ancillaryCategory
+        - minGroupItemsToBeBooked
+        - ancillaryGroup
       properties:
-        relationType:
-          $ref: '#/components/schemas/OptionalityType'
-        ancillary:
-          $ref: '#/components/schemas/OfferPartReference'
-        minItems:
+        minGroupItemsToBeBooked:
           type: integer
           format: int32
           nullable: false
-        maxItems:
+        maxGroupItemsToBeBooked:
           type: integer
           format: int32
-          nullable: false
-        ancillaryCategory:
-          description: >-
-            Filters ancillary by Ancillary.category. 
-            
-            Example: Only ancillary of category "meal" are considered. 
-          type: string
-          nullable: false
-
-    OptionalityType:
-      description: >-
-        Valid Values:
-        - OPTIONAL: the object  is not included but can be optionally added
-        - INCLUDED: the object  is included in the offer but is not mandatory
-        - MANDATORY: the object is mandatory for the booking
-      type: string
-      enum:
-        - OPTIONAL
-        - INCLUDED
-        - MANDATORY
+        ancillaryGroup:
+          $ref: '#/components/schemas/AncillaryGroup'
 
     Reservation:
       type: object
@@ -5766,24 +5746,25 @@ components:
           nullable: false
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
-        placeAllocation:
-          $ref: '#/components/schemas/PlaceAllocation'
-        selectedPlaceOption:
-          $ref: '#/components/schemas/SelectedPlaceOption'
-        optionality:
-          $ref: '#/components/schemas/OptionalityType'
-        ancillaries:
-          type: array
-          items:
-            $ref: '#/components/schemas/AncillaryRelation'
-        fees:
-          type: array
-          items:
-            $ref: '#/components/schemas/OfferPartReference'
         availablePlaces:
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlace'
+        selectedPlaceOption:
+          $ref: '#/components/schemas/SelectedPlaceOption'
+        placeAllocation:
+          $ref: '#/components/schemas/PlaceAllocation'
+        ancillaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/AncillaryRelation'
+        feeRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferPartReference'
+        category:
+          type: string
+          example: Bike
 
     Ancillary:
       type: object
@@ -5800,7 +5781,7 @@ components:
         category:
           type: string
           example: Meal
-        fees:
+        feeRefs:
           type: array
           items:
             $ref: '#/components/schemas/OfferPartReference'
@@ -9183,6 +9164,8 @@ components:
       additionalProperties: false
       description: >-
         Minimal specification of a passenger to request offers.
+        
+        Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
       required:
         - type
       properties:
@@ -9201,6 +9184,13 @@ components:
             and wheelchair.
           type: string
           format: date
+        age:
+          description: >-
+            Age of the passenger  at the date of travel. Less stable than the state of birth.
+          type: integer
+          format: int32
+          minimum: 0
+          exclusiveMinimum: true
         cards:
           description: >-
             reduction or loyalty cards owned by the passenger
@@ -9524,6 +9514,26 @@ components:
         - LOYALTY_CARD
         - CHIP_CARD
         - PASS
+
+    AncillaryGroup:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - name
+        - ancillaryRefs
+      properties:
+        id:
+          type: string
+          nullable: false
+        name:
+          type: string
+          nullable: false
+        ancillaryRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferPartReference'
+          minItems: 1
 
     CoachLayoutGridSize:
       type: object
@@ -9998,6 +10008,26 @@ components:
         warnings:
           $ref: '#/components/schemas/WarningCollection'
 
+    ReservationGroup:
+      type: object
+      additionalProperties: false
+      required:
+        - reservationRefs
+        - id
+        - name
+      properties:
+        reservationRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferPartReference'
+          minItems: 1
+        id:
+          type: string
+          nullable: false
+        name:
+          type: string
+          nullable: false
+
     ReservationId:
       type: object
       additionalProperties: false
@@ -10011,6 +10041,23 @@ components:
           type: array
           items:
             type: string
+
+    ReservationRelation:
+      type: object
+      additionalProperties: false
+      required:
+        - minGroupItemsToBeBooked
+        - reservationGroup
+      properties:
+        minGroupItemsToBeBooked:
+          type: integer
+          format: int32
+          nullable: false
+        maxGroupItemsToBeBooked:
+          type: integer
+          format: int32
+        reservationGroup:
+          $ref: '#/components/schemas/ReservationGroup'
 
     ReturnConstraint:
       type: object
