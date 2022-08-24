@@ -18,30 +18,30 @@ are not represented or simplified in the data models.
 
 ## Overview of Services
 
-|Resources | Description |
-| --- | --- |
-| `/places` | Resources to search for places |
-| `/trips` | Resources to search for trips|
-| `/trip-offers-collection` | Resources to get bookable offers|
-| `/trip-offers/{tripOfferId}` | *dito*|
-| `/offers/{offerId}` | *dito*|
-| `/offer-collections` | Resources to get offers for non-journey based products|
-| `/bookings` | Resources to manipulate bookings|
-| `/offers/{id}/passengers` | Resources to manipulate a passenger's information at every stage of the flow|
-| `/bookings/{bookingId}/passengers/{passengerId}` | *dito*|
-| `/bookings/{bookingId}/reservations/{reservationId}` | resource to retrieve availability information on places (seats,..)|
-| `/products` | Resources to retrieve products information on one or more products|
-| `/bookings/{bookingId}/fulfillments`| Resources to retrieve fulfillments, e.g. tickets|
-| `/fulfillments` | *dito*|
-| `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer|
-| `/bookings/{bookingId}/refundOffers/{refundOfferId}` | *dito*|
-| `/bookings/{bookingId}/exchangeOperations/{exchangerOperationId}` | Resources to get and accept a exchange offer|
-| `/bookings/{bookingId}/exchange-trip-offers-collection` | *dito*|
-| `/bookings/{bookingId}/exchange-trip-offers` | *dito*|
-| `/coachLayouts` | Returns all coach layouts.|
-| `/coachLayouts/{layoutId}` | Returns a coach layout for layout id|
-| `/complaints` | resources to create and manipulate complaints|
-| `/masterdata/reductioncards` | retrieve reduction card types|
+| Resources                                                         | Description                                                                  |
+| ----------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `/places`                                                         | Resources to search for places                                               |
+| `/trips`                                                          | Resources to search for trips                                                |
+| `/trip-offers-collection`                                         | Resources to get bookable offers                                             |
+| `/trip-offers/{tripOfferId}`                                      | _dito_                                                                       |
+| `/offers/{offerId}`                                               | _dito_                                                                       |
+| `/offer-collections`                                              | Resources to get offers for non-journey based products                       |
+| `/bookings`                                                       | Resources to manipulate bookings                                             |
+| `/offers/{id}/passengers`                                         | Resources to manipulate a passenger's information at every stage of the flow |
+| `/bookings/{bookingId}/passengers/{passengerId}`                  | _dito_                                                                       |
+| `/bookings/{bookingId}/reservations/{reservationId}`              | resource to retrieve availability information on places (seats,..)           |
+| `/products`                                                       | Resources to retrieve products information on one or more products           |
+| `/bookings/{bookingId}/fulfillments`                              | Resources to retrieve fulfillments, e.g. tickets                             |
+| `/fulfillments`                                                   | _dito_                                                                       |
+| `/bookings/{bookingId}/refundOffers`                              | Resources to get and accept a refund offer                                   |
+| `/bookings/{bookingId}/refundOffers/{refundOfferId}`              | _dito_                                                                       |
+| `/bookings/{bookingId}/exchangeOperations/{exchangerOperationId}` | Resources to get and accept a exchange offer                                 |
+| `/bookings/{bookingId}/exchange-trip-offers-collection`           | _dito_                                                                       |
+| `/bookings/{bookingId}/exchange-trip-offers`                      | _dito_                                                                       |
+| `/coachLayouts`                                                   | Returns all coach layouts.                                                   |
+| `/coachLayouts/{layoutId}`                                        | Returns a coach layout for layout id                                         |
+| `/complaints`                                                     | resources to create and manipulate complaints                                |
+| `/masterdata/reductioncards`                                      | retrieve reduction card types                                                |
 
 ## Process Flow
 
@@ -108,7 +108,7 @@ limitations together with the publishing of its OSDM endpoints. In all cases,
 at least `origin`, `destination` and `travelDateTime` must be supported
 
 Based on an initially returned trips collection, it is then possible to
-retrieve  earlier or later trips using `GET the trip-collection` by specifying
+retrieve earlier or later trips using `GET the trip-collection` by specifying
 the appropriate scrolling-tokens. As with all cases where nested resources can
 be returned, individually or in list, the embed feature allows specifying
 whether complete trips should be returned or only a title and a link. A GET
@@ -134,7 +134,7 @@ following cases are to be considered:
 - A search criteria value contains invalid value or invalid characters
 - A search criteria lies outside accepted boundaries: it could be the date in
   the past, or too far in the future, or value outside bounds for the max
-number of changes
+  number of changes
 - The origin or destination is not known
 - The search did not return any result
 - Unknown error on server side
@@ -166,7 +166,10 @@ one or several trips. It is actually the only way to go for a request to a fare
 provider working according to nTM rules. In this case, the trips provided may
 be larger than the part for which fares are requested. For this reason, the
 requested section must then be provided so that the provider knows which
-portion to work on. When this method is used, the API consumer can provide a "tripkey" together with the trip specification, which will be echoed in the tripoffer element matching that specific trip, for an explicit reconciliation between requested trips and provided offers.
+portion to work on. When this method is used, the API consumer can provide a
+"tripkey" together with the trip specification, which will be echoed in the
+tripoffer element matching that specific trip, for an explicit reconciliation
+between requested trips and provided offers.
 
 An offer request to an **Allocator**, **provider** or **fare provider** can lead to
 offers with multiple `OfferParts`, potentially coming from different sub-providers
@@ -176,7 +179,7 @@ for the API consumer, the **Distributors** must follow the following rules:
 - The POST `/trip-offers-collection` only generates complete offers covering the
   complete trip (or complete section) requested.
 - While the combination logic is left to the **Distributor**, it is recommended to
-  only build and retain offers that are *homogeneous* (as much as possible) in
+  only build and retain offers that are _homogeneous_ (as much as possible) in
   terms of flexibility and comfort.
 - As with the trips, it must remain possible to scroll forward or backwards over
   tripOffers based on their id and the scrollToken.
@@ -184,7 +187,7 @@ for the API consumer, the **Distributors** must follow the following rules:
 As described further on, any additional information required for
 the provisional booking can be provided in the booking operation itself
 
-The resources used at offer steps optionally offer various *levels of embedding*
+The resources used at offer steps optionally offer various _levels of embedding_
 (returning complete structure is the only mechanism made mandatory by
 the working group at the moment) and multiple granularity for the retrieval of
 information, so each implementing party can fine-tune the queries in order to get
@@ -203,7 +206,7 @@ and relevant to this section
 
 ### Round trip handling
 
-We define a round trip as a mirrored couple of trips *(A-B B-A)*, each made of
+We define a round trip as a mirrored couple of trips _(A-B B-A)_, each made of
 one or more segments.
 
 The construction of a round trip in OSDM is always a two-step process, where the
@@ -220,7 +223,7 @@ offers will have a `offerTag`. Usage of it is described further below.
 
 To get offer for the inward travel, the API consumer will have to provide:
 
-- The id of the outward `tripCollectionID` (allows knowing the context in which
+- The id of the outward `tripCollectionId` (allows knowing the context in which
   the outward offers are made)
 
 - Depending on the targeted fare provider, the `offerTag` for the selected
@@ -301,7 +304,7 @@ the return.
 - A search criteria value contains invalid value or invalid characters
 - A search criteria lies outside accepted boundaries: it could be the date in
   the past, or too far in the future, or value outside bounds for the max
-number of changes
+  number of changes
 - The origin or destination is not known
 - The trip search did not return any result
 - No offer could be built for any of the discovered trips
@@ -327,25 +330,25 @@ I want to go from Rotterdam to Wien Stephansplatz via Antwerp.
 
 Proposed trip by timetable system:
 
-| Origin - Destination| Train Number |
-| --- | --- |
-| Rotterdam → Antwerp | Thalys 9324 (mandatory reservation) |
-| Antwerp → Liège | IC 2345 + IR 5567 |
-| Liège → Frankfurt | ICE 122 (mandatory reservation) |
-| Frankfurt → Wien Hbf | RailJet RJ 23 (optional reservation) |
-| Wien Hbf → Wien Stephansplatz | Metro |
+| Origin - Destination          | Train Number                         |
+| ----------------------------- | ------------------------------------ |
+| Rotterdam → Antwerp           | Thalys 9324 (mandatory reservation)  |
+| Antwerp → Liège               | IC 2345 + IR 5567                    |
+| Liège → Frankfurt             | ICE 122 (mandatory reservation)      |
+| Frankfurt → Wien Hbf          | RailJet RJ 23 (optional reservation) |
+| Wien Hbf → Wien Stephansplatz | Metro                                |
 
 ### Fare Provider Resolution returns
 
-| Origin - Destination | Train Number | Fare Provider | Consolidated |
-| --- | --- | --- | --- |
-| Rotterdam → Antwerp | Thalys 9324 (mandatory reservation) | PAO | PAO |
-| Antwerp → Liège | IC 2345 + IR 5567 | Fare SNCB | Fare SNCB |
-| Liège → Frankfurt | ICE 122 (mandatory reservation)|  GUS | GUS
-| Frankfurt → Wien Hbf | RailJet RJ 23 (optional reservation) | Frankfurt → Salzburg (Border) | Fare DB |
-| | | Salzburg (Border) → WienHbf | Fare ÖBB| |
-| | | Frankfurt → Wien Hbf (reservation) | Fare ÖBB |
-| Wien Hbf → Wien Stephansplatz|  Metro | Fare ÖBB |
+| Origin - Destination          | Train Number                         | Fare Provider                      | Consolidated |
+| ----------------------------- | ------------------------------------ | ---------------------------------- | ------------ | --- |
+| Rotterdam → Antwerp           | Thalys 9324 (mandatory reservation)  | PAO                                | PAO          |
+| Antwerp → Liège               | IC 2345 + IR 5567                    | Fare SNCB                          | Fare SNCB    |
+| Liège → Frankfurt             | ICE 122 (mandatory reservation)      | GUS                                | GUS          |
+| Frankfurt → Wien Hbf          | RailJet RJ 23 (optional reservation) | Frankfurt → Salzburg (Border)      | Fare DB      |
+|                               |                                      | Salzburg (Border) → WienHbf        | Fare ÖBB     |     |
+|                               |                                      | Frankfurt → Wien Hbf (reservation) | Fare ÖBB     |
+| Wien Hbf → Wien Stephansplatz | Metro                                | Fare ÖBB                           |
 
 ## Booking Processes
 
@@ -382,7 +385,7 @@ actually be assigned to the passengers for this offer part.
 ### Additional availability information before provisional booking step
 
 In most cases the offer will not contain information on specific place properties
-for  reservations. the reservation resource in the offer provides information on the
+for reservations. the reservation resource in the offer provides information on the
 availability of places with the selected offer:
 
 - Places with specific properties
@@ -399,21 +402,20 @@ in order to be taken into account, such as:
 - Additional passenger identity information
 - Additional accommodation preferences regarding the accommodation, or its exact location.
 
-While providing accommodation preferences is often optional, some information (usually on passengers) may be mandatory in order to proceed
-with the booking. The `RequestedInformation` property will provide the details of
-what needs to be specified in order to book a given offer. These details are
-provided under the form of a boolean expression, referring to the passenger
-model elements using dot notation (with the `TripOffer` as the root). For
-example, if it is required that name and first name are set to proceed
-`RequestedInformation` would be :
+While providing accommodation preferences is often optional, some information
+(usually on passengers) may be mandatory in order to proceed with the booking. The
+`RequestedInformation` property will provide the details of what needs to be specified
+in order to book a given offer. These details are provided under the form of a boolean
+expression, referring to the passenger model elements using dot notation (with the
+`TripOffer` as the root). For example, if it is required that name and first name are
+set to proceed`RequestedInformation` would be :
 
 `passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name`
 
 Another example, if on top of first and last names, at least one email or one
 phone number is needed:
 
-`(passenger[0].details.firstName AND passenger[0].details.name AND
-(passenger[0].details.eMail OR passenger[0].details.phone))`
+`(passenger[0].details.firstName AND passenger[0].details.name AND (passenger[0].details.eMail OR passenger[0].details.phone))`
 
 By parsing this structure, the API consumer is able to identify the elements
 that need to be filled-in to proceed. An initial version the [grammar for required
@@ -436,7 +438,7 @@ In case of:
 
 - booking a reusable offer for a new set of passengers, all passengers' attributes need to be be fully specified in
   the `POST /booking` body, except the `id` that is always generated by the server.
-- booking an offer, reusable or not, for the same set of passengers of the offer request,  all properties are updatable except:
+- booking an offer, reusable or not, for the same set of passengers of the offer request, all properties are updatable except:
   - `id`
   - `externalReference`
 
@@ -523,15 +525,15 @@ events and situations can be communicated through the `Warning` messages:
 
 - Booking an offer will not book the reservations in the offer unless they
   have an "included" relationship with an admission of that offer. In order to
-add a non-included reservation to a booking, the reservation ids will have to
-be passed additionally or it will not be booked.
+  add a non-included reservation to a booking, the reservation ids will have to
+  be passed additionally or it will not be booked.
 - It is up to the OSDM API implementing party to decide whether booked offers
   can have the same resource ids as the offers in the shopping stage. However,
-it is assumed in the specifications that this is not the case, and the API
-Consumer should not rely on this possibility.
+  it is assumed in the specifications that this is not the case, and the API
+  Consumer should not rely on this possibility.
 - In case the passengers details are different in the different offers added
   together in a booking, the passenger information of the first offer will be
-copied in the booking, and those of the following offers will be ignored.
+  copied in the booking, and those of the following offers will be ignored.
 
 ### Completing Booking for Confirmation and Fulfillment
 
@@ -541,21 +543,21 @@ When the booking has been successfully created, some additional changes may be
 desired or even required before the booking can be confirmed.
 
 - As with offers, some passenger information may be required. If this is the
-case, the mechanism used is exactly the same as for offers: the
-`requestedInformation` property at booking level will indicate which information
-is needed to confirm using boolean expressions and dot notation. Updating the
-values is done via  a PATCH on passenger sub-resources of the booking (as for
-the offer). Even if all the required data is already present, it could still be
-relevant to update these values. For example a dummy date of birth might, due
-to the selected fulfillment type now be requested to be the exact date and
-require an update, even though the property is already filled-in.
+  case, the mechanism used is exactly the same as for offers: the
+  `requestedInformation` property at booking level will indicate which information
+  is needed to confirm using boolean expressions and dot notation. Updating the
+  values is done via a PATCH on passenger sub-resources of the booking (as for
+  the offer). Even if all the required data is already present, it could still be
+  relevant to update these values. For example a dummy date of birth might, due
+  to the selected fulfillment type now be requested to be the exact date and
+  require an update, even though the property is already filled-in.
 
 - It may be needed or desired to change or set fulfillment type and options. It is
-however recommended to the **Distributor** implementers to set a default value
-for these properties (especially if only one value is possible). Note that the
-choice of the fulfillment type & options may impact the requestedInformation.
-This property should therefore be re-evaluated whenever the fulfillment type is
-modified (both on the provider and on the consumer side).
+  however recommended to the **Distributor** implementers to set a default value
+  for these properties (especially if only one value is possible). Note that the
+  choice of the fulfillment type & options may impact the requestedInformation.
+  This property should therefore be re-evaluated whenever the fulfillment type is
+  modified (both on the provider and on the consumer side).
 
 #### Notes
 
@@ -606,7 +608,7 @@ grace period is left to the implementor.
 OSDM does not currently handle the payment process directly, which means that
 payment from the customer has to be taken by the distributor outside of this API.
 
-It is however necessary for the allocator / provider to know about certain aspects 
+It is however necessary for the allocator / provider to know about certain aspects
 of the payment, e.g. the method of payment (e.g. Invoice, Cash, Non-Cash methods like
 Credit/Debit cards or Direct Debit).
 
@@ -619,15 +621,15 @@ As a Payment Voucher is a kind of payment, the handling of these goes together i
 The process for a booking which uses one or more Payment Vouchers, and that specifies the
 means of payment, is as follows:
 
-1. Create the prelimiary booking by using the POST /bookings endpoint
-2. Add any Payment Vouchers by using the PATCH /bookings endpoint and filling out the 
-payments information only for the Payment Vouchers presented
-3. This will return a preliminary booking structure which has the payment information for 
-these vouchers added, including the value of the vouchers. Should the value of the vouchers
-exceed the value of the booking, an Ancilliary Offer will have been added to the booking
-which represents a new voucher covering the overpayment.
+1. Create the preliminary booking by using the `POST /bookings` endpoint
+2. Add any Payment Vouchers by using the `PATCH /bookings` endpoint and filling out the
+   payments information only for the Payment Vouchers presented
+3. This will return a preliminary booking structure which has the payment information for
+   these vouchers added, including the value of the vouchers. Should the value of the vouchers
+   exceed the value of the booking, an Ancillary Offer will have been added to the booking
+   which represents a new voucher covering the overpayment.
 4. Add the payment information for the balance of the booking (should there be any) in another
-PATCH /bookings call
+   `PATCH /bookings` call
 5. The booking is now "balanced", i.e. the sum of all payments equals the sum of all offers
 
 ## Confirmation and Fulfillment Processes
@@ -648,7 +650,7 @@ will be confirmed and fulfilled in one step from the API consumer standpoint:
 
 However, in case the **Distributor** acts as a distributor for products or
 fares actually hosted in sub-provider systems (OSDM compliant or not), a lot
-more takes place  behind the scene. Indeed, the **Distributor** will have to
+more takes place behind the scene. Indeed, the **Distributor** will have to
 
 - confirm or fulfill the bookings towards all the sub-providers
 - retrieve the fulfillment details to populate its own booking responses
@@ -656,25 +658,32 @@ more takes place  behind the scene. Indeed, the **Distributor** will have to
 - build the fulfillments elements
 - update relevant booking properties as described above.
 
-A fare provider will rarely provide real fulfillments as in the allocator 
-is responsible to create the fulfillments of the combined offers. However the fare provider 
-has the option to provide fulfillment parts (e.g. visual security elements,..) to be 
+A fare provider will rarely provide real fulfillments as in the allocator
+is responsible to create the fulfillments of the combined offers. However the fare provider
+has the option to provide fulfillment parts (e.g. visual security elements,..) to be
 integrated by the allocator in the combined fulfillment.
 
 #### Fulfillment Process of Multi-Journey Products
 
-Multi-Journey products provide the right for multiple journeys. These can be defined in the product as a specific number travel days or journey. In order to use the travel right the fulfillment has to be enhanced with additional information on the intended use. e.g.:
+Multi-journey products provide the right to travel on multiple journeys. These can be defined
+in the product as a specific number of travel days or of journeys. In order to use the travel right the
+fulfillment has to be enhanced with additional information on the intended use. e.g.:
 
-| Travel right | required information |
-|---|---|
-| Pass for a number of travel days | The day of travel is provided and as a result the fulfillment for that selected day becomes fulfilled. |
-| Travel right a number of journeys | The day or start time is provided and as result the fulfillment for one journey becomes fulfilled. |
-| Travel right for a number of trips of a limited range | The time when the journey starts and the starting place needs to be added |
-| Tickets for a selectable number of zones | the selected zones need to be provided |
+| Travel right                                          | Required information                                                                                   |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Pass for a number of travel days                      | The day of travel is provided and as a result the fulfillment for that selected day becomes fulfilled. |
+| Travel right a number of journeys                     | The day or start time is provided and as result the fulfillment for one journey becomes fulfilled.     |
+| Travel right for a number of trips of a limited range | The time when the journey starts and the starting place needs to be added                              |
+| Tickets for a selectable number of zones              | the selected zones need to be provided                                                                 |
 
-After the booking confirmation the fulfillment will be in state of AVAILABLE in case the fulfillment just requires additional selections to be come fulfilled. To fulfill it the patch endpoint of the api on the fulfillment needs to be used to select more options like travel date or zones. The fulfillment in the state available provides information on the selections to be made.
+After the booking confirmation the fulfillment will be in state of `available` in case the fulfillment
+just requires additional selections to be come fulfilled. To fulfill it the patch endpoint of the API
+on the fulfillment needs to be used to select more options like travel date or zones. The fulfillment
+in the state available provides information on the selections to be made.
 
-A fulfillment acn be in state on hold it it is not jet available to be fulfilled. This could be the case for tickets providing a limited number of trips per time (e.g. 5 trips per week) and the number has already been used for the current time range. 
+A fulfillment can be in state `on hold` if it is not yet available to be fulfilled. This corner
+case exists tickets providing a limited number of trips per time (e.g. 5 trips per week)
+and the number has already been used for the current time range.
 
 Fulfillment can be in state expired if they had been available but were not requested in time.
 
@@ -712,7 +721,7 @@ In this case, the specific error handling remains concealed for the API
 consumer, who only will be informed of the final result, being the the booking
 has failed and been completely cancelled.
 
-The second option is to expose  the situation to the API Consumer and let it
+The second option is to expose the situation to the API Consumer and let it
 decide of the course to be taken. In this case, the resulting partial booking
 is returned to the API consumer with an error state
 
@@ -726,16 +735,16 @@ If this strategy is chosen, the partial booking will then be returned with the
 following specific characteristics:
 
 - the returned booking has an `ERROR` status
-- fulfillment is available/fulfilled  only for some of the `OfferParts`
+- fulfillment is available/fulfilled only for some of the `OfferParts`
 - the confirmed balance amount only totals offer parts where the confirmation
   actually succeeded, while the provisional balance amounts to the total of
-the offer parts where the error occurred (or where the confirmation was never
-attempted because the error came too soon)
+  the offer parts where the error occurred (or where the confirmation was never
+  attempted because the error came too soon)
 
 The following options are then available to the API Consumer:
 
 - Explicitly request a retry on the confirmation, by re-triggering a POST or
-  PATCH /  Fulfillment. The **Distributor** will then re-attempt to
+  PATCH / Fulfillment. The **Distributor** will then re-attempt to
   confirm the not-yet confirmed content in the booking, while leaving the
   confirmed unchanged.
 - Either directly, or after a few attempts on re-confirming, the booking
@@ -743,9 +752,9 @@ The following options are then available to the API Consumer:
   the totality of the content is confirmed). To do so:
 
   - The API consumer must start by cancelling the non-confirmed content. He
-    can do so  by sending a PATCH on the booking where the `cleanupPartialBooking`
+    can do so by sending a PATCH on the booking where the `cleanupPartialBooking`
     property set on TRUE. This will result in
-    - the cancellation of all  non confirmed content,
+    - the cancellation of all non confirmed content,
     - adaptation of the balance values (provisional balance = 0, confirm
       balance = sum of confirmed products)
     - a reset of the booking status to `FULFILLED` (or `CONFIRMED`,
@@ -775,8 +784,8 @@ fulfillments can later get PATCHed in order to trigger the actual fulfillment.
 When a confirmation request is received by the **Distributor**, it should
 first ensure that the operation is indeed supported for all offer parts in the
 booking (whether the **Distributor** is hosting those or they are coming from
-sub-providers). Indeed, OSDM (in MVP phase at least) will not support partial
-confirmation or partial fulfillment.
+sub-providers). Indeed, OSDM does not support partial confirmation or partial
+fulfillment.
 
 If this check is successful, then the execution of the confirm can start:
 
@@ -798,15 +807,16 @@ information)
 
 These are the required information needed per process step for major parties
 
-| Distributor | Pre-booking Step | Booking Step | Fulfillment Step |
-|---|---|---|---|
-| **Bene** | | `firstName` and `lastName` ||
-| **DB** | In general one `firstName` and `name`, regardless of the number of passengers. In case of regional trains, however, all names and sur names are needed, unless printed on security paper. ||
-| **öBB** | Both `firstName` and `lastName` are needed. Birth date may be needed. Some reduction cards require the number to be provided at pre-booking time, in order to be pre-checked. In other cases, the cards are simply checked on-board `phoneNumber` or `eMail` (once per order - as contact information) | `phoneNumber` or `eMail` (once per order - as contact information)|
-| **RENFE** | Per passenger: `firstName`, `lastName`, surname document type and identity document (DNI, NIE or passport). A `phoneNumber` or  `eMail`. | Per passenger: `firstName`, `lastName`, surname document type and Identity document.  (DNI, NIE or passport) A `phoneNumber` or `eMail`. |
-| **SBB** | Per passenger: `name` and `first name` date of birth. Additional sales parameters for some, additional products || `eMail` |
-| **SNCF** | `dateOfBirth` is mandatory, a fake date can be used at offer time, but the real one must be provided at pre-booking time | |
-| **Eurostar/Thalys** | `firstName` and `lastName` | Thalys loyalty card number |
+| Distributor         | Pre-booking Step                                                                                                                                                                                                                                                                                               | Booking Step                                                                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **Bene**            |                                                                                                                                                                                                                                                                                                                | `firstName` and `lastName`                                                                                                              |
+| **DB**              | In general one `firstName` and `name`, regardless of the number of passengers. In case of regional trains, however, all names and sur names are needed, unless printed on security paper.                                                                                                                      |
+| **öBB**             | Both `firstName` and `lastName` are needed. `dateOfBirth` date may be needed. Some reduction cards require the number to be provided at pre-booking time, in order to be pre-checked. In other cases, the cards are simply checked on-board `phoneNumber` or `eMail` (once per order - as contact information) | `phoneNumber` or `eMail` (once per order - as contact information)                                                                      |
+| **RENFE**           | Per passenger: `firstName`, `lastName`, surname document type and identity document (DNI, NIE or passport). A `phoneNumber` or `eMail`.                                                                                                                                                                        | Per passenger: `firstName`, `lastName`, surname document type and Identity document. (DNI, NIE or passport) A `phoneNumber` or `eMail`. |
+| **SBB**             | Per passenger: `name` and `first name` and `dateOfBirth. Additional sales parameters for some products such as `phoneNumber`or`eMail` for reservations                                                                                                                                                         |                                                                                                                                         |
+| **SJ**              | Todo                                                                                                                                                                                                                                                                                                           |                                                                                                                                         |
+| **SNCF**            | `dateOfBirth` is mandatory, a fake date can be used at offer time, but the real one must be provided at pre-booking time                                                                                                                                                                                       |
+| **Eurostar/Thalys** | `firstName` and `lastName`                                                                                                                                                                                                                                                                                     | Thalys loyalty card number                                                                                                              |
 
 ## After Sales Processes
 
@@ -838,25 +848,6 @@ potential refund fee, etc (see the model for more details).
 
 ![Confirm a Refund Offer](../images/processes/seq-fulfillment-process.png)
 
-### Complaints
-
-Complaints can be provided on behalf of a passenger. Complaints might concern a delay
-of a train or a service degradation on the journey. The handling of complaints is subject
-to the EU PRR and COTIV where minimal compensation amounts and time lines for the decision
-of a claim are defined. According to PRR the customer can decide whether he wants to
-be compensated by money or would accept vouchers.  
-
-The handling of a claim is an asynchronous process, where the claim is placed and decided
-by the carriers/fare provides involved later-on.
-  
-![Complaint](../images/processes/seq-complaintManagement1_puml.png)
-
-As the allocator is usually involved as a carrier and then responsible to keep the legal
-time lines he can decide to compensate and inform the fare provides/carriers on his decision
-if the time line would otherwise can not be held.
-
-![Complaint](../images/processes/seq-complaintManagement2_puml.png)
-
 ## Example End-to-end Interaction
 
 ![Example End to End Interaction](../images/processes/seq-end-to-end-interaction.png)
@@ -865,19 +856,58 @@ if the time line would otherwise can not be held.
 
 #### Requesting an exchange offer
 
-Requesting an exchange offer is almost identical to requesting a standard offer.
-The only difference in the request is that the fulfillment that the API consumer
-wants to exchange, and an overrule code if relevant, are also provided.
+Requesting an exchange offer is almost identical to requesting a standard offer. The only
+difference in the request is that the fulfillment that the API consumer wants to exchange,
+and an overrule code if relevant, are also provided.
 
 ### Replacement of lost tickets and cards
 
-The replacement is used to replace physical cards and tickets. There is no replacement for electronic tickets or anonymous tickets.
+The replacement is used to replace physical cards and tickets. There is no replacement for
+electronic tickets or anonymous tickets.
 
 #### Requesting a replacement for a lost ticket
 
-The replacement is requested similar to the request for a non-trip based offer (post:offers-collection). The search tags must include the key word CARD_LOST or TICKET_LOST. The provider will ask for the required data of the lost card or ticket to be provided with the passengers card data (card number).
+The replacement is requested similar to the request for a non-trip based offer (post:offers-collection).
+The search tags must include the key word CARD_LOST or TICKET_LOST. The provider will ask for the
+required data of the lost card or ticket to be provided with the passengers card data (card number).
 
-The offer for a replacement returned might include a fee. The replacement offer needs to be accepted and booked the same way as a usual offer.
+The offer for a replacement returned might include a fee. The replacement offer needs to be accepted
+and booked the same way as a usual offer.
 
+### Complaints
 
+Complaints can be provided on behalf of a passenger. Complaints might concern a delay
+of a train or a service degradation on the journey. The handling of complaints is subject
+to the EU PRR and COTIV where minimal compensation amounts and time lines for the decision
+of a claim are defined. According to PRR the customer can decide whether he wants to
+be compensated by money or would accept vouchers.
 
+The handling of a claim is an asynchronous process, where the claim is placed and decided
+by the carriers/fare provides involved later-on.
+
+![Complaint](../images/processes/seq-complaintManagement1_puml.png)
+
+As the allocator is usually involved as a carrier and then responsible to keep the legal
+time lines he can decide to compensate and inform the fare provides/carriers on his decision
+if the time line would otherwise can not be held.
+
+![Complaint](../images/processes/seq-complaintManagement2_puml.png)
+
+### Reimbursement
+
+Customers who have bought a ticket which allows reimbursement and which have not traveled
+or traveled partially only can claim to be reimbursed. The customer must prove that he has
+not or only partially used the ticket. A partial use might be a only a part of the trip was
+traveled or only some of the travelers were traveling or a combination of both.
+
+The non use of a ticket might be proven by documents that were provided to the passenger on a
+train or at a station. This prove can also be provided in electronic form by a carrier or TCO
+(UIC IRS 909181-4).
+
+The customer must be able to make the reimbursement claim via a ticket vendor to the allocator
+which needs to request the reimbursement from the involved carriers.
+
+The reimbursemnt process is very similar to the complaint process where instead of a complaint
+a reimbursement request is created. If the reimbursement request is valid the special overrule
+code `TICKET_UNUSED` can be used in the refund process to refund otherwise non-refundable
+bookings.
