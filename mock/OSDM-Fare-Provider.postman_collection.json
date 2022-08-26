@@ -1,0 +1,1264 @@
+{
+	"info": {
+		"_postman_id": "2b642983-5c4a-4cbe-b803-0d78b24c5bd6",
+		"name": "OSDM - Fare Provider",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9765191"
+	},
+	"item": [
+		{
+			"name": "Fare Offers Without card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Test scenario 1\", ()=> {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var tripOffers = jsonData.tripOffers;\r",
+							"    pm.test(\"Only 1 tripOffer expected\", function (){\r",
+							"        pm.expect(tripOffers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var offers = jsonData.tripOffers[0].offers;\r",
+							"    pm.test(\"Only 1 offer expected\", function (){\r",
+							"        pm.expect(offers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var fares = jsonData.tripOffers[0].offers[0].fares;\r",
+							"    pm.test(\"Only 4 fares expected\", function (){\r",
+							"        pm.expect(fares.length).to.eql(4);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "55f45ff9812f4e507fae5f3695174ec4",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "8d2f870d",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "fff",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8505307\"\r\n    },\r\n    \"destination\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8501008\"\r\n    }\r\n  },\r\n  \"offerSearchCriteria\": {\r\n    \"comfortClasses\": [\r\n    \r\n    ],\r\n    \"serviceClassTypes\": [\r\n\r\n    ]\r\n  },\r\n  \"passengerSpecifications\": [\r\n    {\r\n      \"externalRef\": \"TK-ID-1\",\r\n      \"type\": \"PERSON\",\r\n      \"dateOfBirth\": \"1988-02-12\",\r\n      \"cards\": [\r\n          \r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/trip-offers-collection",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trip-offers-collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fare Offers Without CC FIRST SC HIGH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Test scenario 1\", ()=> {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var tripOffers = jsonData.tripOffers;\r",
+							"    pm.test(\"Only 1 tripOffer expected\", function (){\r",
+							"        pm.expect(tripOffers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var offers = jsonData.tripOffers[0].offers;\r",
+							"    pm.test(\"Only 1 offer expected\", function (){\r",
+							"        pm.expect(offers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var fares = jsonData.tripOffers[0].offers[0].fares;\r",
+							"    pm.test(\"Only 4 fares expected\", function (){\r",
+							"        pm.expect(fares.length).to.eql(2);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "55f45ff9812f4e507fae5f3695174ec4",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "8d2f870d",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "fff",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8505307\"\r\n    },\r\n    \"destination\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8501008\"\r\n    }\r\n  },\r\n  \"offerSearchCriteria\": {\r\n    \"comfortClasses\": [\r\n        \"FIRST\"\r\n    ],\r\n    \"serviceClassTypes\": [\r\n        \"HIGH\"\r\n    ]\r\n  },\r\n  \"passengerSpecifications\": [\r\n    {\r\n      \"externalRef\": \"TK-ID-1\",\r\n      \"type\": \"PERSON\",\r\n      \"dateOfBirth\": \"1988-02-12\",\r\n      \"cards\": [\r\n          \r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/trip-offers-collection",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trip-offers-collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fare Offers Without SC HIGH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Test scenario 1\", ()=> {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var tripOffers = jsonData.tripOffers;\r",
+							"    pm.test(\"Only 1 tripOffer expected\", function (){\r",
+							"        pm.expect(tripOffers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var offers = jsonData.tripOffers[0].offers;\r",
+							"    pm.test(\"Only 1 offer expected\", function (){\r",
+							"        pm.expect(offers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var fares = jsonData.tripOffers[0].offers[0].fares;\r",
+							"    pm.test(\"Only 4 fares expected\", function (){\r",
+							"        pm.expect(fares.length).to.eql(2);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "55f45ff9812f4e507fae5f3695174ec4",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "8d2f870d",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "fff",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8505307\"\r\n    },\r\n    \"destination\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8501008\"\r\n    }\r\n  },\r\n  \"offerSearchCriteria\": {\r\n    \"serviceClassTypes\": [\r\n        \"HIGH\"\r\n    ]\r\n  },\r\n  \"passengerSpecifications\": [\r\n    {\r\n      \"externalRef\": \"TK-ID-1\",\r\n      \"type\": \"PERSON\",\r\n      \"dateOfBirth\": \"1988-02-12\",\r\n      \"cards\": [\r\n          \r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/trip-offers-collection",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trip-offers-collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fare Offers Without CC FIRST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Test scenario 1\", ()=> {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var tripOffers = jsonData.tripOffers;\r",
+							"    pm.test(\"Only 1 tripOffer expected\", function (){\r",
+							"        pm.expect(tripOffers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var offers = jsonData.tripOffers[0].offers;\r",
+							"    pm.test(\"Only 1 offer expected\", function (){\r",
+							"        pm.expect(offers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var fares = jsonData.tripOffers[0].offers[0].fares;\r",
+							"    pm.test(\"Only 4 fares expected\", function (){\r",
+							"        pm.expect(fares.length).to.eql(2);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "55f45ff9812f4e507fae5f3695174ec4",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "8d2f870d",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "fff",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8505307\"\r\n    },\r\n    \"destination\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8501008\"\r\n    }\r\n  },\r\n  \"offerSearchCriteria\": {\r\n    \"comfortClasses\": [\r\n        \"FIRST\"\r\n    ]\r\n  },\r\n  \"passengerSpecifications\": [\r\n    {\r\n      \"externalRef\": \"TK-ID-1\",\r\n      \"type\": \"PERSON\",\r\n      \"dateOfBirth\": \"1988-02-12\",\r\n      \"cards\": [\r\n          \r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/trip-offers-collection",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trip-offers-collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fare Offers Without CC SECOND SC BASIC",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Test scenario 1\", ()=> {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var tripOffers = jsonData.tripOffers;\r",
+							"    pm.test(\"Only 1 tripOffer expected\", function (){\r",
+							"        pm.expect(tripOffers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var offers = jsonData.tripOffers[0].offers;\r",
+							"    pm.test(\"Only 1 offer expected\", function (){\r",
+							"        pm.expect(offers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var fares = jsonData.tripOffers[0].offers[0].fares;\r",
+							"    pm.test(\"Only 4 fares expected\", function (){\r",
+							"        pm.expect(fares.length).to.eql(2);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "55f45ff9812f4e507fae5f3695174ec4",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "8d2f870d",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "fff",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8505307\"\r\n    },\r\n    \"destination\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8501008\"\r\n    }\r\n  },\r\n  \"offerSearchCriteria\": {\r\n    \"comfortClasses\": [\r\n        \"SECOND\"\r\n    ],\r\n    \"serviceClassTypes\": [\r\n        \"BASIC\"\r\n    ]\r\n  },\r\n  \"passengerSpecifications\": [\r\n    {\r\n      \"externalRef\": \"TK-ID-1\",\r\n      \"type\": \"PERSON\",\r\n      \"dateOfBirth\": \"1988-02-12\",\r\n      \"cards\": [\r\n          \r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/trip-offers-collection",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trip-offers-collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fare Offers Railplus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Test scenario 1\", ()=> {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var tripOffers = jsonData.tripOffers;\r",
+							"    pm.test(\"Only 1 tripOffer expected\", function (){\r",
+							"        pm.expect(tripOffers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var offers = jsonData.tripOffers[0].offers;\r",
+							"    pm.test(\"Only 1 offer expected\", function (){\r",
+							"        pm.expect(offers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var fares = jsonData.tripOffers[0].offers[0].fares;\r",
+							"    pm.test(\"Only 2 fares expected\", function (){\r",
+							"        pm.expect(fares.length).to.eql(2);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "55f45ff9812f4e507fae5f3695174ec4",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "8d2f870d",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "fff",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8505307\"\r\n    },\r\n    \"destination\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8501008\"\r\n    }\r\n  },\r\n  \"offerSearchCriteria\": {\r\n    \"comfortClasses\": [\r\n    \r\n    ],\r\n    \"serviceClassTypes\": [\r\n\r\n    ]\r\n  },\r\n  \"passengerSpecifications\": [\r\n    {\r\n      \"externalRef\": \"TK-ID-1\",\r\n      \"type\": \"PERSON\",\r\n      \"dateOfBirth\": \"1988-02-12\",\r\n      \"cards\": [\r\n          {\r\n              \"name\":\"RailPlus\",\r\n              \"code\":\"\",\r\n              \"types\":[]\r\n          }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/trip-offers-collection",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trip-offers-collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fare Offers Railplus CC FIRST SC HIGH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Test scenario 1\", ()=> {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var tripOffers = jsonData.tripOffers;\r",
+							"    pm.test(\"Only 1 tripOffer expected\", function (){\r",
+							"        pm.expect(tripOffers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var offers = jsonData.tripOffers[0].offers;\r",
+							"    pm.test(\"Only 1 offer expected\", function (){\r",
+							"        pm.expect(offers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var fares = jsonData.tripOffers[0].offers[0].fares;\r",
+							"    pm.test(\"Only 2 fares expected\", function (){\r",
+							"        pm.expect(fares.length).to.eql(1);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "55f45ff9812f4e507fae5f3695174ec4",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "8d2f870d",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "fff",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8505307\"\r\n    },\r\n    \"destination\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8501008\"\r\n    }\r\n  },\r\n  \"offerSearchCriteria\": {\r\n    \"comfortClasses\": [\r\n        \"FIRST\"\r\n    ],\r\n    \"serviceClassTypes\": [\r\n        \"HIGH\"\r\n    ]\r\n  },\r\n  \"passengerSpecifications\": [\r\n    {\r\n      \"externalRef\": \"TK-ID-1\",\r\n      \"type\": \"PERSON\",\r\n      \"dateOfBirth\": \"1988-02-12\",\r\n      \"cards\": [\r\n          {\r\n              \"name\":\"RailPlus\",\r\n              \"code\":\"\",\r\n              \"types\":[]\r\n          }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/trip-offers-collection",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trip-offers-collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fare Offers Railplus CC SECOND SC BASIC",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Test scenario 1\", ()=> {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var tripOffers = jsonData.tripOffers;\r",
+							"    pm.test(\"Only 1 tripOffer expected\", function (){\r",
+							"        pm.expect(tripOffers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var offers = jsonData.tripOffers[0].offers;\r",
+							"    pm.test(\"Only 1 offer expected\", function (){\r",
+							"        pm.expect(offers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var fares = jsonData.tripOffers[0].offers[0].fares;\r",
+							"    pm.test(\"Only 2 fares expected\", function (){\r",
+							"        pm.expect(fares.length).to.eql(1);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "55f45ff9812f4e507fae5f3695174ec4",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "8d2f870d",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "fff",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8505307\"\r\n    },\r\n    \"destination\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8501008\"\r\n    }\r\n  },\r\n  \"offerSearchCriteria\": {\r\n    \"comfortClasses\": [\r\n        \"SECOND\"\r\n    ],\r\n    \"serviceClassTypes\": [\r\n        \"BASIC\"\r\n    ]\r\n  },\r\n  \"passengerSpecifications\": [\r\n    {\r\n      \"externalRef\": \"TK-ID-1\",\r\n      \"type\": \"PERSON\",\r\n      \"dateOfBirth\": \"1988-02-12\",\r\n      \"cards\": [\r\n          {\r\n              \"name\":\"RailPlus\",\r\n              \"code\":\"\",\r\n              \"types\":[]\r\n          }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/trip-offers-collection",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trip-offers-collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fare Offers Halbtax",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Test scenario 1\", ()=> {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var tripOffers = jsonData.tripOffers;\r",
+							"    pm.test(\"Only 1 tripOffer expected\", function (){\r",
+							"        pm.expect(tripOffers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var offers = jsonData.tripOffers[0].offers;\r",
+							"    pm.test(\"Only 1 offer expected\", function (){\r",
+							"        pm.expect(offers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var fares = jsonData.tripOffers[0].offers[0].fares;\r",
+							"    pm.test(\"Only 4 fares expected\", function (){\r",
+							"        pm.expect(fares.length).to.eql(2);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "55f45ff9812f4e507fae5f3695174ec4",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "8d2f870d",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "fff",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8505307\"\r\n    },\r\n    \"destination\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8501008\"\r\n    }\r\n  },\r\n  \"offerSearchCriteria\": {\r\n    \"comfortClasses\": [\r\n    \r\n    ],\r\n    \"serviceClassTypes\": [\r\n\r\n    ]\r\n  },\r\n  \"passengerSpecifications\": [\r\n    {\r\n      \"externalRef\": \"TK-ID-1\",\r\n      \"type\": \"PERSON\",\r\n      \"dateOfBirth\": \"1988-02-12\",\r\n      \"cards\": [\r\n          {\r\n              \"name\":\"Halbtax\",\r\n              \"code\":\"\",\r\n              \"types\":[]\r\n          }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/trip-offers-collection",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trip-offers-collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fare Offers Halbtax CC FIRST SC HIGH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Test scenario 1\", ()=> {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var tripOffers = jsonData.tripOffers;\r",
+							"    pm.test(\"Only 1 tripOffer expected\", function (){\r",
+							"        pm.expect(tripOffers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var offers = jsonData.tripOffers[0].offers;\r",
+							"    pm.test(\"Only 1 offer expected\", function (){\r",
+							"        pm.expect(offers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var fares = jsonData.tripOffers[0].offers[0].fares;\r",
+							"    pm.test(\"Only 4 fares expected\", function (){\r",
+							"        pm.expect(fares.length).to.eql(1);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "55f45ff9812f4e507fae5f3695174ec4",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "8d2f870d",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "fff",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8505307\"\r\n    },\r\n    \"destination\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8501008\"\r\n    }\r\n  },\r\n  \"offerSearchCriteria\": {\r\n    \"comfortClasses\": [\r\n        \"FIRST\"\r\n    ],\r\n    \"serviceClassTypes\": [\r\n        \"HIGH\"\r\n    ]\r\n  },\r\n  \"passengerSpecifications\": [\r\n    {\r\n      \"externalRef\": \"TK-ID-1\",\r\n      \"type\": \"PERSON\",\r\n      \"dateOfBirth\": \"1988-02-12\",\r\n      \"cards\": [\r\n          {\r\n              \"name\":\"Halbtax\",\r\n              \"code\":\"\",\r\n              \"types\":[]\r\n          }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/trip-offers-collection",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trip-offers-collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fare Offers Halbtax CC SECOND SC BASIC",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Test scenario 1\", ()=> {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var tripOffers = jsonData.tripOffers;\r",
+							"    pm.test(\"Only 1 tripOffer expected\", function (){\r",
+							"        pm.expect(tripOffers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var offers = jsonData.tripOffers[0].offers;\r",
+							"    pm.test(\"Only 1 offer expected\", function (){\r",
+							"        pm.expect(offers.length).to.eql(1);\r",
+							"    });\r",
+							"\r",
+							"    var fares = jsonData.tripOffers[0].offers[0].fares;\r",
+							"    pm.test(\"Only 4 fares expected\", function (){\r",
+							"        pm.expect(fares.length).to.eql(1);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "55f45ff9812f4e507fae5f3695174ec4",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "8d2f870d",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "fff",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8505307\"\r\n    },\r\n    \"destination\": {\r\n      \"placeRefType\": \"stopPlaceRef\",\r\n      \"stopPlaceRef\": \"8501008\"\r\n    }\r\n  },\r\n  \"offerSearchCriteria\": {\r\n    \"comfortClasses\": [\r\n        \"SECOND\"\r\n    ],\r\n    \"serviceClassTypes\": [\r\n        \"BASIC\"\r\n    ]\r\n  },\r\n  \"passengerSpecifications\": [\r\n    {\r\n      \"externalRef\": \"TK-ID-1\",\r\n      \"type\": \"PERSON\",\r\n      \"dateOfBirth\": \"1988-02-12\",\r\n      \"cards\": [\r\n          {\r\n              \"name\":\"Halbtax\",\r\n              \"code\":\"\",\r\n              \"types\":[]\r\n          }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/trip-offers-collection",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trip-offers-collection"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
