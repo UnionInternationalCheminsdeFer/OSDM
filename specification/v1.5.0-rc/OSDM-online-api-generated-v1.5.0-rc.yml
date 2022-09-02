@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.5.0-rc2
+  version: 1.5.0-rc4
   description: >-
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Distributor Mode and Allocator Mode. The API works the same in both modes, except that in allocator mode the API also returns fare information.
     The OSDM specification combines the allocator and distributor modes into one aligned API interface.
@@ -35,6 +35,9 @@ tags:
   - name: Offers
     description: >-
       resources to get bookable offers
+  - name: Availabilities
+    description: >-
+      resources to query availabilities before or after pre-booking
   - name: Bookings
     description: >-
       resources to manipulate bookings
@@ -88,9 +91,9 @@ paths:
           in: query
           description: >-
             can be used for pagination
-          required: true
           schema:
             type: string
+            default: 1
       responses:
         '200':
           description: >-
@@ -376,9 +379,9 @@ paths:
             type: string
         - name: page
           in: query
-          required: true
           schema:
             type: string
+            default: 1
         - name: embed
           in: query
           description: >-
@@ -498,9 +501,9 @@ paths:
             type: string
         - name: page
           in: query
-          required: true
           schema:
             type: string
+            default: 1
         - name: embed
           in: query
           description: >-
@@ -681,9 +684,9 @@ paths:
             type: string
         - name: page
           in: query
-          required: true
           schema:
             type: string
+            default: 1
         - name: embed
           in: query
           description: >-
@@ -1552,9 +1555,9 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - name: page
           in: query
-          required: true
           schema:
             type: string
+            default: 1
       responses:
         '200':
           description: >-
@@ -1924,7 +1927,7 @@ paths:
       tags:
         - Fulfillments
       summary: Finalizes the fulfillments and returns the documents.
-      operationId: patchFulfillment
+      operationId: finalizeFulfillment
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - $ref: '#/components/parameters/requestor'
@@ -2849,9 +2852,9 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - name: page
           in: query
-          required: true
           schema:
             type: string
+            default: 1
       responses:
         '200':
           description: >-
@@ -2957,9 +2960,9 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - name: page
           in: query
-          required: true
           schema:
             type: string
+            default: 1
       responses:
         '200':
           description: >-
@@ -2969,11 +2972,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ReductionCardCollectionResponse'
           headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
             Expires:
               schema:
                 type: string
@@ -3013,9 +3011,9 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - name: page
           in: query
-          required: true
           schema:
             type: string
+            default: 1
       responses:
         '200':
           description: >-
@@ -3024,12 +3022,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ZoneCollectionResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3055,12 +3047,18 @@ paths:
     post:
       tags:
         - Document
+      summary: Allows adding a document to a booking.
       operationId: createDocuments
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -3106,6 +3104,7 @@ paths:
     post:
       tags:
         - Reimbursement Management
+      summary: Create reimbursement for a booking.
       description: >-
         Create a reimbursement request for part of a booking.
       operationId: createReimbursement
@@ -3164,6 +3163,7 @@ paths:
     get:
       tags:
         - Reimbursement Management
+      summary: Get reimbursement of a booking.
       description: >-
         Get reimbursement including its current state.
       operationId: getReimbursement
@@ -3172,6 +3172,16 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: reimbursementId
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: >-
@@ -3210,6 +3220,7 @@ paths:
     patch:
       tags:
         - Reimbursement Management
+      summary: Update reimbursement of a booking.
       description: >-
         Update a reimbursement request, i.e add missing documents or change state.
       operationId: updateReimbursement
@@ -3232,6 +3243,210 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReimbursementResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
+  /availabilities/placeMap:
+    get:
+      tags:
+        - Availabilities
+      summary: Get place map including availabilities.
+      description: >-
+        Get place map including availabilities.
+      operationId: getAvailabilitiesPlaceMap
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: contextId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: contextType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ContextType' 
+        - name: resourceId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: resourceType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ResourceType' 
+      responses:
+        '200':
+          description: >-
+            TODO: Please add comment for response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceAvailabilityResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
+  /availabilities/nearby:
+    get:
+      tags:
+        - Availabilities
+      summary: Get availabilities nearby a given place.
+      description: >-
+        Get availabilities nearby a given place.
+      operationId: getAvailabilitiesNearby
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: contextId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: contextType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ContextType' 
+        - name: resourceId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: resourceType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ResourceType' 
+      responses:
+        '200':
+          description: >-
+            TODO: Please add comment for response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceAvailabilitiesResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
+  /availabilities/preferences:
+    get:
+      tags:
+        - Availabilities
+      summary: Get availabilities for a set of preferences.
+      description: >-
+        Get availabilities for a set of preferences.
+      operationId: getAvailabilitiesPreferences
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: contextId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: contextType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ContextType' 
+        - name: resourceId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: resourceType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ResourceType' 
+      responses:
+        '200':
+          description: >-
+            TODO: Please add comment for response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceAvailabilitiesResponse'
           headers:
             Content-Language:
               schema:
@@ -5210,6 +5425,79 @@ components:
         offer:
           $ref: '#/components/schemas/AbstractOffer'
 
+    AbstractBooking:
+      type: object
+      additionalProperties: false
+      description: >-
+        Generic offer object that contains all common information about an offer.
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          nullable: false
+        summary:
+          description: >-
+            A human-readable description of the Offer.
+          type: string
+          example: Bruxelles-Midi - Paris-Nord 2022-07-01 10:05 CET, Normal Fare, 50 €
+        offerSummary:
+          $ref: '#/components/schemas/OfferSummary'
+        priceGuaranteedUntil:
+          description: >-
+            Indicates until when the price for the given offer is guaranteed.
+          type: string
+          format: date-time
+        isReusable:
+          description: >-
+            Indicates whether the offerId can be used in more than one booking.
+          type: boolean
+          default: false
+        offerTag:
+          $ref: '#/components/schemas/OfferTag'
+        requestedInformation:
+          $ref: '#/components/schemas/RequestedInformation'
+        availableFulfillmentTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentType'
+        validFrom:
+          description: >-
+            Defines the minimum validity period of the trip booked, meaning the period
+            during which it will be possible to travel with the fulfillments for this offer.
+          type: string
+          format: date-time
+        validUntil:
+          description: >-
+            Defines the minimum validity period of the trip booked, meaning the period
+            during which it will be possible to travel with the fulfillments for this offer.
+          type: string
+          format: date-time
+        _links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        admissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Admission'
+        ancillaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ancillary'
+        reservations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reservation'
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fee'
+        fares:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fare'
+
     AbstractOffer:
       type: object
       additionalProperties: false
@@ -5264,14 +5552,6 @@ components:
             during which it will be possible to travel with the fulfillments for this offer.
           type: string
           format: date-time
-        admissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Admission'
-        ancillaries:
-          type: array
-          items:
-            $ref: '#/components/schemas/Ancillary'
         fees:
           type: array
           items:
@@ -5284,6 +5564,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+        ancillaryOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AncillaryOffer'
+        admissionOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdmissionOffer'
 
     OfferTag:
       type: object
@@ -5340,10 +5628,10 @@ components:
                 type: string
             trip:
               $ref: '#/components/schemas/Trip'
-            reservations:
+            reservationOffers:
               type: array
               items:
-                $ref: '#/components/schemas/Reservation'
+                $ref: '#/components/schemas/ReservationOffer'
 
     BookedOffer:
       type: object
@@ -5699,6 +5987,34 @@ components:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         isReservationRequired:
           type: boolean
+        feeRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'
+        reservationRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'
+        ancillaryRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'
+
+    AdmissionOffer:
+      type: object
+      additionalProperties: false
+      description: >-
+        An admission represents a travel right, or the entitlement to travel onboard a train between
+        the given origin and destination, following the given route. It does not include a seat reservation.
+      required:
+        - id
+        - commonOfferPartAttributes
+      properties:
+        id:
+          type: string
+          nullable: false
+        isReservationRequired:
+          type: boolean
         reservations:
           type: array
           items:
@@ -5711,6 +6027,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OfferPartReference'
+        commonOfferPartAttributes:
+          $ref: '#/components/schemas/CommonOfferPartAttributes'
 
     AncillaryRelation:
       type: object
@@ -5739,32 +6057,57 @@ components:
       required:
         - id
         - commonOfferPartAttributes
-        - placeAllocation
       properties:
         id:
           type: string
           nullable: false
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
-        availablePlaces:
-          type: array
-          items:
-            $ref: '#/components/schemas/AvailablePlace'
-        selectedPlaceOption:
-          $ref: '#/components/schemas/SelectedPlaceOption'
+        placeSelection:
+          $ref: '#/components/schemas/PlaceSelection'
         placeAllocation:
           $ref: '#/components/schemas/PlaceAllocation'
+        feeRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'
+        ancillayRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'
+
+    ReservationOffer:
+      type: object
+      additionalProperties: false
+      description: >-
+        Reservation includes the reference to the in the initial offer.
+        The offer needs to be updated with the selected places before the confirmation
+        which creates the reservation details including the reserved places.
+      required:
+        - id
+        - commonOfferPartAttributes
+      properties:
+        id:
+          type: string
+          nullable: false
         ancillaries:
           type: array
           items:
             $ref: '#/components/schemas/AncillaryRelation'
+        availablePlaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailablePlace'
+        availablePlacePreferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailablePlacePreferences'
         feeRefs:
           type: array
           items:
             $ref: '#/components/schemas/OfferPartReference'
-        category:
-          type: string
-          example: Bike
+        commonOfferPartAttributes:
+          $ref: '#/components/schemas/CommonOfferPartAttributes'
 
     Ancillary:
       type: object
@@ -5778,13 +6121,27 @@ components:
           nullable: false
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
-        category:
+        feeRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'
+
+    AncillaryOffer:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - commonOfferPartAttributes
+      properties:
+        id:
           type: string
-          example: Meal
+          nullable: false
         feeRefs:
           type: array
           items:
             $ref: '#/components/schemas/OfferPartReference'
+        commonOfferPartAttributes:
+          $ref: '#/components/schemas/CommonOfferPartAttributes'
 
     Fee:
       type: object
@@ -5851,6 +6208,28 @@ components:
           description: >-
             The party that issues the promotion code, in case of a railway it's its RICS code
           type: string
+
+    BookingPartReference:
+      type: object
+      additionalProperties: false
+      description: >-
+        References all the offer part elements in an uniform format.
+        In its part, an OfferPartReference can refer to reservation, admission, ancillary or fee.
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          nullable: false
+        summary:
+          description: >-
+            A human-readable description of the offer part reference.
+          type: string
+          example: ICE Wifi on Board of train ICE 3, 2022-07-11
+        _links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     CorporateCode:
       type: object
@@ -5949,22 +6328,24 @@ components:
       description: >-
         The Ids of the offers to be booked need to be passed in.
       required:
-        - id
+        - offerId
         - passengers
       properties:
-        id:
+        offerId:
           description: >-
             id of the selected offer or exchangeOffer
           type: string
           nullable: false
-        reservationIds:
+        reservationSelection:
           type: array
           items:
-            $ref: '#/components/schemas/ReservationId'
-        ancillaryIds:
+            $ref: '#/components/schemas/ReservationSelection'
+        ancillarySelection:
           type: array
           items:
-            $ref: '#/components/schemas/AncillaryId'
+            $ref: '#/components/schemas/AncillarySelection'
+        placeSelection:
+          $ref: '#/components/schemas/PlaceSelection'
         passengers:
           description: >-
             If needed (cf requiredInformation) or desired, this array allows providing the required details on some or all passengers
@@ -5972,8 +6353,6 @@ components:
           items:
             $ref: '#/components/schemas/Passenger'
           minItems: 1
-        placeSelections:
-          $ref: '#/components/schemas/PlaceSelection'
         afterSaleByDistributorOnly:
           description: >-
             in case the distributor has proposed this offer in conjunction with an offer of another provider constrained
@@ -5989,32 +6368,22 @@ components:
             
           type: string
 
-    AncillaryId:
+    AncillarySelection:
       type: object
       additionalProperties: false
       required:
         - ancillaryId
+        - passengerId
       properties:
         ancillaryId:
-          description: >-
-            If relevant, ids of the selected optional ancillaries.
           type: string
           nullable: false
-        passengerIds:
-          description: >-
-            Id of the passengers the selected optional ancillaries are for.
+        passengerId:
           type: array
           items:
             type: string
-
-    PlaceSelection:
-      type: object
-      additionalProperties: false
-      properties:
-        reservationId:
-          type: string
-        placeSelection:
-          $ref: '#/components/schemas/SelectedPlaceOption'
+          minItems: 1
+          nullable: false
 
     BookingResponse:
       type: object
@@ -7577,8 +7946,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlace'
-        selectedPlaceOption:
-          $ref: '#/components/schemas/SelectedPlaceOption'
+        placeSelection:
+          $ref: '#/components/schemas/PlaceSelection'
         placeAllocation:
           type: array
           items:
@@ -7608,6 +7977,10 @@ components:
           minItems: 1
         luggageConstraint:
           $ref: '#/components/schemas/LuggageConstraint'
+        availablePreferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailablePlacePreferences'
 
     RegionalConstraint:
       type: object
@@ -8676,6 +9049,7 @@ components:
       required:
         - accommodationType
         - accommodationSubType
+        - reservedPlaces
       properties:
         accommodationType:
           $ref: '#/components/schemas/AccommodationType'
@@ -8688,6 +9062,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReservedPlace'
+          minItems: 1
 
     ReservedPlace:
       type: object
@@ -8698,8 +9073,8 @@ components:
       required:
         - id
         - passengerIds
-        - vehicle
-        - coach
+        - vehicleNumber
+        - coachNumber
       properties:
         id:
           type: string
@@ -8712,19 +9087,19 @@ components:
             type: string
           minItems: 1
           nullable: false
-        vehicle:
+        vehicleNumber:
           description: >-
             vehicle number (e.g. train number)
           type: string
           nullable: false
-        coach:
+        coachNumber:
           type: string
           nullable: false
-        places:
+        placeDescription:
           description: >-
-            descriptive string of the places (e.g. 11-35,51)
+            description of the places (e.g. 11-35,51)
           type: string
-        placeIds:
+        placeNumbers:
           description: >-
             list of individual place numbers
           type: array
@@ -8758,7 +9133,7 @@ components:
       default: 'ANY_SEAT'
       nullable: false
 
-    SelectedPlaceOption:
+    PlaceSelection:
       type: object
       additionalProperties: false
       description: >-
@@ -8766,40 +9141,41 @@ components:
         - reference place for adjacent reservation
         - selected optional place properties
         - selected places from a graphical place selection
+      required:
+        - vehicleNumber
       properties:
-        reservationOptions:
-          $ref: '#/components/schemas/ReservationOption'
-        vehicle:
+        vehicleNumber:
           description: >-
             Vehicle / train number is necessary in case of train parts with different train numbers
           type: string
+          nullable: false
         referencePlace:
           $ref: '#/components/schemas/SelectedReferencePlace'
-        options:
+        accommodations:
           type: array
           items:
-            $ref: '#/components/schemas/SelectedOption'
-        coaches:
+            $ref: '#/components/schemas/SelectedAccommodation'
+        places:
           type: array
           items:
-            $ref: '#/components/schemas/SelectedCoach'
+            $ref: '#/components/schemas/SelectedPlace'
 
-    ReservationOption:
+    AvailablePlacePreferences:
       type: object
       additionalProperties: false
       properties:
-        preferences:
+        preferenceGroups:
           description: >-
             possible preferences to be requested in reservation without changing the fare
           type: array
           items:
-            $ref: '#/components/schemas/ReservationOptionGroup'
+            $ref: '#/components/schemas/PlacePreferenceGroup'
         graphicalReservation:
           description: >-
             graphical reservation is supported, interface type 'NO','UIC_918',..
           type: string
 
-    ReservationOptionGroup:
+    PlacePreferenceGroup:
       type: object
       additionalProperties: false
       required:
@@ -8823,13 +9199,18 @@ components:
       additionalProperties: false
       description: >-
         reference place for an adjacent reservation
+      required:
+        - coachNumber
+        - placeNumber
       properties:
         coachNumber:
           type: string
+          nullable: false
         placeNumber:
           type: string
+          nullable: false
 
-    SelectedOption:
+    SelectedAccommodation:
       type: object
       additionalProperties: false
       description: >-
@@ -9016,31 +9397,27 @@ components:
         - RESTRICTED
       default: FREE
 
-    SelectedCoach:
-      type: object
-      additionalProperties: false
-      properties:
-        coachNumber:
-          description: >-
-            selected coach in case of graphical booking
-          type: string
-        places:
-          type: array
-          items:
-            $ref: '#/components/schemas/SelectedPlace'
-
     SelectedPlace:
       type: object
       additionalProperties: false
       description: >-
         selected place in case of graphical booking
+      required:
+        - coachNumber
+        - placeNumber
+        - passengerId
       properties:
+        coachNumber:
+          type: string
+          nullable: false
+        placeNumber:
+          type: string
+          nullable: false
         passengerId:
           description: >-
             Id of the passenger
           type: string
-        placeNumber:
-          type: string
+          nullable: false
 
     PurchaserResponse:
       type: object
@@ -9106,7 +9483,9 @@ components:
       type: object
       additionalProperties: false
       description: >-
-        passenger information needed at offering step
+        Information about a passenger.
+        
+        Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
       required:
         - id
         - type
@@ -9158,6 +9537,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+        age:
+          type: integer
+          format: int32
+          minimum: 0
+          exclusiveMinimum: true
 
     PassengerSpecification:
       type: object
@@ -9550,6 +9934,12 @@ components:
           type: integer
           format: int32
           nullable: false
+
+    ContextType:
+      type: string
+      enum:
+        - OFFER
+        - BOOKING
 
     Document:
       type: object
@@ -10028,20 +10418,6 @@ components:
           type: string
           nullable: false
 
-    ReservationId:
-      type: object
-      additionalProperties: false
-      required:
-        - reservationId
-      properties:
-        reservationId:
-          type: string
-          nullable: false
-        passengerIds:
-          type: array
-          items:
-            type: string
-
     ReservationRelation:
       type: object
       additionalProperties: false
@@ -10058,6 +10434,22 @@ components:
           format: int32
         reservationGroup:
           $ref: '#/components/schemas/ReservationGroup'
+
+    ReservationSelection:
+      type: object
+      additionalProperties: false
+      required:
+        - reservationId
+      properties:
+        reservationId:
+          type: string
+          nullable: false
+
+    ResourceType:
+      type: string
+      enum:
+        - FARE
+        - RESERVATION
 
     ReturnConstraint:
       type: object
