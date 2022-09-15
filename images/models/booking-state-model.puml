@@ -2,12 +2,20 @@
 
 title "Booking State Model"
 
+state onhold #pink
+
 [*] --> prebooked : POST /bookings with offer ids, optional accommodation / ancillariy ids
 prebooked --> confirmed: POST /bookings/{id}/fulfillments \n where at least 1 fulfillment is confirmed
 prebooked --> [*]: DELETE /bookings/{id}
-prebooked --> [*]: ticket-time-limit reached
+prebooked --> [*]: ttl reached
 prebooked --> error: unrecoverable error \nat confirmation/fulfillment
 prebooked --> fulfilled: POST /bookings/{id}/fulfillments \n where all fulfillments are fulfilled
+prebooked --> onhold: PATCH /bookings/{id}/onhold-offer
+onhold --> confirmed: PATCH /bookings/{id}/fulfillments
+onhold --> cancelled: extended ttl reached
+cancelled --> [*]
+onhold --> error: onrecoverable error 
+expired --> [*]
 confirmed --> fulfilled: PATCH /bookings/{id}/fulfillments \n all fulfillments are now fulfilled
 confirmed --> error: unrecoverable error at fulfillment \n of a confirmed booking
 fulfilled --> [*] : archiving
