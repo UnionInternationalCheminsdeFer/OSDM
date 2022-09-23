@@ -138,7 +138,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 | `WITH_SMALL_CHILDREN`   | N                      | Y                | Y              | Places for passengers with small children                                                        | `FAMILY`               |
 | `WITHOUT_ANIMALS`       | N                      | Y                | Y              | Place in an area where animals are not allowed                                                   |                        |
 
-## Ancilliary category
+## Ancillary category
 
 | Code                  | Description                                                 |
 | --------------------- | ----------------------------------------------------------- |
