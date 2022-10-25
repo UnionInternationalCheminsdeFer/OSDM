@@ -13,8 +13,8 @@ provided within the schema or within the IRS90918-10 specification.
 | Code List                 | Name Space and domain | CodeList       | Description                                                      | example                    | base path for relative references |
 | ------------------------- | --------------------- | -------------- | ---------------------------------------------------------------- | -------------------------- | --------------------------------- |
 | stations                  | `urn:uic`             | `stn`          | UIC station codes (TAP-TSI)                                      | `urn:uic:stn:8512345`      | `urn:uic:stn:`                    |
-| service brands , products | `urn:uic`             | `sbc`          | UIC service brand code (TAP-TSI)                                 | `urn:uic:sbc:17`           | `urn:uic:sbc:`                    |
-| companies                 | `urn:uic`             | `rics:ac`      | UIC company code (TAP-TSI) and optional administration code (AC) | `urn:uic:rics:1080:000011` | `urn:uic:rics:`                   |
+| service brands , products | `urn:uic`             | `sbc`          | UIC service brand code (TAP-TSI B.4.7009 / https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)                        | `urn:uic:sbc:17`           | `urn:uic:sbc:`                    |
+| companies                 | `urn:uic`             | `rics:ac`      | company code (TAP-TSI https://www.era.europa.eu/registers/ocr_en / https://uic.org/support-activities/it/rics) and optional administration code (AC) | `urn:uic:rics:1080:000011` | `urn:uic:rics:`                   |
 | countries                 | `urn:iso`             | `std:iso:3166` | ISO Country Codes                                                | `urn:iso:std:iso:3166:CH`  | `urn:iso:std:iso:3166:`           |
 | currencies                | `urn:iso`             | `std:iso:4217` | ISO Currency Codes                                               | `urn:iso:std:iso:4217:CFR` | `urn:iso:std:iso:4217:`           |
 
@@ -46,16 +46,16 @@ Depending on the commercial decisions some codes might be used in accommodation 
 
 Place Preference Group collects Place preferences where only one can be chosen of by the customer.
 
-| Code                    | Accommodation Sub Type | Place Preference | Place Property | Description                                                                                      | Place Preference Group |
-| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- | --- |
-| `AISLE`                 | N                      | Y                | Y              | Place at the aisle                                                                               | `PLACE_LOCATION`       |
-| `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area                                                                    |                        |
+| Code                    | Accommodation Sub Type | Place Preference | Place Property | Description         | Place Preference Group |
+| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- | 
+| `AISLE`                 | N                      | Y                | Y              | Place at the aisle             | `PLACE_LOCATION`       |
+| `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area  |                        |
 | `ANY`                   | Y                      | N                | Y              | Indicates within a place preference group explicitely that the selection is optional             |                        |
-| `BISTRO`                | N                      | Y                | Y              | Places in a coach with self-service bistro                                                       |                        |
-| `BICYCLE`               | Y                      | Y                | Y              | Bicycle hook                                                                                     |                        |
-| `BUSINESS`              | Y                      | Y                | Y              | Manager compartment/business                                                                     |                        |
-| `BUSINESS_COMFORT`      | Y                      | Y                | N              | Business Comfort – business seat with reduced service                                            |                        |
-| `CABIN8`                | N                      | Y                | Y              | Special place group in TGV                                                                       |                        |
+| `BISTRO`                | N                      | Y                | Y              | Places in a coach with self-service bistro   |                        |
+| `BICYCLE`               | Y                      | Y                | Y              | Bicycle hook                   |                        |
+| `BUSINESS`              | Y                      | Y                | Y              | Manager compartment/business   |                        |
+| `BUSINESS_COMFORT`      | Y                      | Y                | N              | Business Comfort – business seat with reduced service   |       |
+| `CABIN8`                | N                      | Y                | Y              | Special place group in TGV  |                        |
 | `CAR_SMALL`             | Y                      | N                | Y              | Vehicle parking place category 1-3                                                               |                        |
 | `CAR_LARGE`             | Y                      | N                | Y              | Vehicle parking place category 6-8                                                               |                        |
 | `CARRE`                 | N                      | Y                | Y              | Carré (4 seats facing normally 2nd Class)                                                        |                        |
@@ -172,9 +172,9 @@ Place Preference Group collects Place preferences where only one can be chosen o
 | `CHIP_CARD`      | Chip card to load bookings/references onto it                                        |
 | `PASS`           | A pass providing full or partial reduction within the region where the pass is valid |
 
-## CarrierCode
+## Company Code
 
-See code [RICS code list](https://uic.org/support-activities/it/rics?recherche=RICS%20code).
+See code [Company code list](https://www.era.europa.eu/registers/ocr_en).
 
 | Country | Carrier Code | Short Name                   | Full Name                                                                                     |
 | ------- | ------------ | ---------------------------- | --------------------------------------------------------------------------------------------- |
@@ -1092,7 +1092,7 @@ _StationCode_: Values are depending on codelist and set is too large to be repro
 
 ## Transport Mode
 
-Corresponding to numerical codes in TAP-TSI / MERITS
+Corresponding to numerical codes in TAP-TSI (B.2.3) / UIC (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
 
 | Code               | Description                                                    | TAP-TSI Code B.2.3 (MERITS) |
 | ------------------ | -------------------------------------------------------------- | --------------------------- |
