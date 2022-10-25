@@ -16,7 +16,7 @@ The data structure definitions are used in the bulk data exchange and the online
 The following general data types shall be used:
 
 - DateTime Formats: Date time values must be encoded according to  RFC 3339, section 5.6.
-- Station Codes: Station codes must be taken from the MERITS code list.
+- Station Codes: Station codes must be taken from the TAP TSI retail station code list (MERITS).
 - Station Names: Station names should not include ”/”,”*”. These characters are used to define routes and alternative routes in route descriptions.
 
 ### Versioning
@@ -72,8 +72,8 @@ An after sales condition applies for a set of after sales transactions and speci
 
 - the fee to be applied
 - the time when the fee needs to be applied
-- whether the fee needs to be given to the carrier or can be kept by the allocator
-- The data include the amount to be refunded. The amount is given to avoid any calculations with complex rules (percentage + minimum / maximum value) at the allocator side.:
+- whether the fee needs to be given to the carrier or can be kept by the distributor
+- The data include the amount to be refunded. The amount is given to avoid any calculations with complex rules (percentage + minimum / maximum value) at the distributor side.:
 - The value and currency to be applied
 - A percentage for customer information. Due to rounding errors a calculated percentage could result in strange numbers (e.g. 9.99% instead of 10%)
 - The unit on which the value is calculated (travellers or bookings)
@@ -93,7 +93,7 @@ In case multiple rules apply to the same after sales transaction the rule with t
 | Code | Description |
 |---|---|
 | `fee/feeRef` | In online services a fee is included directly, in bulk data exchange a fee must be included in the list of prices and referenced by an id. The fee provided must include the currency € if not agreed bilaterally otherwise. |
-| `applicationTime` / `applicationTimeStamp` | An application time stamp can be used in online services only. If an application time stamp is provided the allocation Time as relative time must not be included.
+| `applicationTime` / `applicationTimeStamp` | An application time stamp can be used in online services only. If an application time stamp is provided the application time as relative time must not be included.
 
 ### Calendar
 
@@ -186,9 +186,9 @@ An elementary fare to create an offer linking all constraints to one price.
 | `serviceClass` | Class the passenger can use.
 | `serviceLevel` | Mode detailed category of places the passenger can use.
 | `passengerConstraint` | Rules and restrictions on the passenger types allowed to use the fare and rules on combining passengers.
-| `afterSalesRules` | After sales rules for the fare. In case the allocator is responsible for the after sales rules this is almost empty.
+| `afterSalesRules` | After sales rules for the fare. In case the distributor is responsible for the after sales rules this is almost empty.
 | `combinationConstraint` | Rules on the model of combination of this fare with fares of other carriers.
-| `fulfillmentConstraint` | Restrictions and requirements on the fulfillment and security to be applied by the allocator.
+| `fulfillmentConstraint` | Restrictions and requirements on the fulfillment and security to be applied by the distributor.
 | `reductionConstraint` | Rules on reduction cards necessary to apply the fare.
 | `reservationParameter` | Information on parameters for reservation via the *IRS 90918-1* interface and reservation options.
 | `regulatoryConditions` | Legal regimes to be applied to the fate (e.g. `COTIV`, `SMPS` regulations).
@@ -196,6 +196,7 @@ An elementary fare to create an offer linking all constraints to one price.
 | `legacyAccountingIdentifier` | Data to be included in the current *IRS 30301* accounting data format.
 | `salesAvailabilityConstraint` | Rules on the allowed sates dates for the fare.
 | `travelValidityConstraint` | Rules on the validity for travel of this fare.
+| `luggageConstraint` | Rules on the luggage to be taken with this fare.
 | `legacyConversion` | Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules (`YES`, `NO`, `ONLY` (this fare is provided for conversion only)).
 
 <!-- Figure 9 Fare element data structure (online) -->
@@ -214,7 +215,7 @@ An elementary fare to create an offer linking all constraints to one price.
 
 ### FareCombinationConstraint
 
-The fare combination constraint defines the rules of combining fares from different carriers. It provides a list of combination models the allocator can choose of.
+The fare combination constraint defines the rules of combining fares from different carriers. It provides a list of combination models the distributor can choose of.
 
 | Content | Description |
 |---|---|
@@ -223,13 +224,13 @@ The fare combination constraint defines the rules of combining fares from differ
 | `onlyWhenCombined` | Indicates that this fare can be used only if it is combined with another fare of another carrier.
 | `referenceCluster` | Cluster within the clustering model to which this fare belongs
 | `allowedClusters` | List of clusters with which this fare can be combined
-| `allowedAllocators` | List of allocators which can combine this fare. . . If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes. Allowed allocators is not present in the online data. |
-| `allowedCommonContracts` | List of Carriers with which the allocator can for a common contract. If empty, there is no restriction in indicating common contracts to the passenger except for the `SEPARATE_CONTRACT` model. Carriers are listed by their RICS company codes.|
+| `allowedAllocators` | List of distributors which can combine this fare. . . If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes. This is not present in the online data. |
+| `allowedCommonContracts` | List of Carriers with which the distributor can combine for a common contract. If empty, there is no restriction in indicating common contracts to the passenger except for the `SEPARATE_CONTRACT` model. Carriers are listed by their RICS company codes.|
 
 <!-- Figure 10 fare combination constraint data structure -->
 ![Fare Combination Model](../images/common-data-structures/fare-combination-model.png)
 
-<!-- Figure 11 fare combination constraint data structure -->
+<!-- Figure 11 fare combination constraint data structure -->
 ![Fare Combination Constraint](../images/common-data-structures/fare-combination-constraint.png)
 
 #### Combination Model
@@ -240,7 +241,7 @@ This `SEPARATE_CONTRACT` model is the model for not combining the fares in one t
 the integration in one contract. The rules applied for this ticket are exactly the rules defined by the
 carrier in the fare data.
 
-The allocator must ensure that it is clear for the customer that no common contract was established.
+The distributor must ensure that it is clear for the customer that no common contract was established.
 
 ##### CLUSTERING Model
 
@@ -248,7 +249,7 @@ The `CLUSTERING` model tries to simplify conditions and fares for the customer b
 the control of the carrier on his fares.
 
 Similar types of fares are defined to belong to the same cluster. The after sales conditions for a cluster
-are defined by the allocator. However, the after sales conditions must basic rules on after sales for that cluster.
+are defined by the distributor. However, the after sales conditions must basic rules on after sales for that cluster.
 
 The clusters correspond to the flexibility a passenger receives to change the booked train. This corresponds directly
 to the after sales conditions. Hereby the fees to be paid for such an exchange are essential for the definition of
@@ -259,7 +260,7 @@ The after sales fees can be demanded by the carrier.
 
 The other conditions might either be listed per carrier or combined by rules.
 
-The customer buying products from one allocator has a simple unique view on after sales conditions.
+The customer buying products from one distributor has a simple unique view on after sales conditions.
 
 The basic parameters defining the price must be obeyed individually within separately on the combined fare/offer:
 
@@ -296,7 +297,7 @@ Fare clusters reflect the flexibility a fare provides to the customer. Flexibili
 |---|---|
 | `BUSINESS` | Refundable/Exchangeable after the departure or last day of validity |
 | `FULL_FLEX` | Refundable/Exchangeable before the departure or last day of validity |
-| `SEMI_FLEX` | Refundable/Exchangeable with fee depending on conditions of the allocator. Minimum validity applies |
+| `SEMI_FLEX` | Refundable/Exchangeable with fee depending on conditions of the distributor. Minimum validity applies |
 | `NON_FLEX` | Non refundable. Non exchangeable. Minimum validity applies|
 | `PROMO` | Used on a bilateral basis only. Non refundable. Non exchangeable. Minimum validity applies|
 
@@ -328,7 +329,7 @@ it should not be shown to the customer:
 - `NON_FLEX` (Carrier 1 `SEMI_FLEX` + Carrier 2 `FULL_FLEX`)
 
 Other combinations would also be formally allowed by the data but suppressed as they
-would only offer a higher price. These should be suppressed by the allocator. E.g.:
+would only offer a higher price. These should be suppressed by the distributor. E.g.:
 
 - `FULL_FLEX` (Carrier 1 `BUSINESS` + Carrier 2 `BUSINESS`)
 
@@ -390,7 +391,7 @@ The fare reference station set defines a set of stations where the fare is valid
 all included stations.  This set can be used in the regionalValidity description.
 
 The corresponding bar code ab ticket control data will only contain the code of the
-station set, but the allocator needs the complete list of station to link the fare to
+station set, but the distributor needs the complete list of station to link the fare to
 the train routes.
 
 A name can be provided.
@@ -558,7 +559,7 @@ E.g.:
 - Carrier 2: RegionalConstraint  {Entry (A,B), RegionalValidity B – C/D – E}
 - *Result*:  X*Y/Z*A*B*C/D*E
 
-The allocator might need to remove doubled stations in routes in case the connection point is a real station used in both regional validity descriptions in case it is displayed as one combined text:
+The distributor might need to remove doubled stations in routes in case the connection point is a real station used in both regional validity descriptions in case it is displayed as one combined text:
 
 - Carrier 1: RegionalConstraint  {Exit (A), RegionalValidity X – Y/Z- A}
 - Carrier 2: RegionalConstraint  {Entry (A), RegionalValidity A – C/D – E}
@@ -713,4 +714,4 @@ The area of a zone can be defined by either a list of stations, geographical pol
 codes. Multiple definitions are allowed in case they define the same area.
 
 <!-- Figure 51 zone definition -->
-![Zone Definition](../images/common-data-structures/zone-definition.png)
+![Zone Definition](../images/common-data-structures/zone-definition.png).

@@ -19,6 +19,7 @@ All members of the International Union of Railways
 - **2021 February** Version 1.1 OSDM released
 - **2021 June** Version 1.2 OSDM released
 --**2021 October** Version 1.3 OSDM released
+--**2022 October** Version 2.0 OSDM released
 
 ### Licencing
 
@@ -98,7 +99,7 @@ The main objectives guiding this specification were:
   offer customer-friendly and competitive prices for international
   travel, preferably based on timetables.
 
-- Enable the allocating carrier/operator to offer through-tickets
+- Enable the allocating distributor to offer through-tickets
   based on different conditions-ranges (e.g. fully flexible, semi
   flexible, non-flex, others).
 
@@ -120,7 +121,7 @@ The main objectives guiding this specification were:
   and after sale.
 
 - To define unified messages that are support the distributor, the
-  allocator as well as the fare provider role.
+  distributor as well as the fare provider role.
 
 - To provide a specification that can be supported by existing or
   upcoming systems without major investments to secure existing
@@ -233,18 +234,18 @@ cost.
 | Complaint | Complaint of a customer due to a service not provided as contracted. The handling of complaints in case of delays is subject to EU PRR and COTIV defining minimal refund amounts and time-line for decisions.|
 | Conditions | Conditions that limit the use of a travel contract or the changes of a travel contract. |
 | e-Ticket | The electronic representation of the travel contract on a data base. The home print ticket (A4RT or FST) where the contract of travel is represented in a printed or displayed bar code is not an e-ticket according to this definition. Synonym: dematerialized ticket. |
-| Fare | Proposal to purchase a transport service for specific passenger subject to specific conditions for a specific price. Handling fees by the allocator or ticket vendor are not included. |
+| Fare | Proposal to purchase a transport service for specific passenger subject to specific conditions for a specific price. Handling fees by the distributor or retailer are not included. |
 | Fare structure | A fare is the fee paid by a passenger for use of a public transport system: rail, bus, taxi, etc. In the case of air transport, the term airfare is often used. Fare structure is the system set up to determine how much is to be paid by various passengers using a transit vehicle at any given time. |
 | Fulfillment| A fulfillment is a document (either for paper printing or electronically) provided to the passenger to prove his travel right,facilitate access to trains and stations (e.g. via gates), provide further information on the travel and provide access to services either directly or via exchange (voucher). |
 | Individual ticketing | A separate ticket is created per passenger. |
 | Individual contracts |A separate ticket is created per passenger and these tickets can be treated as individual contracts of carriage. After sales transactions can be applied independently per passenger and ticket. |
-| Integrated Reservation Ticket (IRT) | Ticket for a specific train on a travel day usually including the seats. All tickets for a train are managed in one central system of the allocator. The ticket is valid on that train on a certain day only. |
-| Non-integrated Reservation Ticket (NRT) | A ticket not including an integrated reservation. Multiple allocators can create tickets for the same route independently. The allocator of the ticket is usually the same company that issues the ticket. The ticket might be applicable to a route with many trains or a zone or a list of trains or combinations of these. The validity might be more than one day. Some conditions allow a partial refund on unused parts of the ticket route. Refund can be done via the ticket vendor. These conditions depend on the fare providers and the allocator (i.e. providing the option of reducing the number of passengers or to interrupt the journey). NRTs not linked to a train might be reused in case the use is not tracked.
+| Integrated Reservation Ticket (IRT) | Ticket for a specific train on a travel day usually including the seats. All tickets for a train are managed in one central system of the distributor. The ticket is valid on that train on a certain day only. |
+| Non-integrated Reservation Ticket (NRT) | A ticket not including an integrated reservation. Multiple distributors can create tickets for the same route independently. The distributor of the ticket is usually the same company that issues the ticket. The ticket might be applicable to a route with many trains or a zone or a list of trains or combinations of these. The validity might be more than one day. Some conditions allow a partial refund on unused parts of the ticket route. Refund can be done via the retailer. These conditions depend on the fare providers and the distributors (i.e. providing the option of reducing the number of passengers or to interrupt the journey). NRTs not linked to a train might be reused in case the use is not tracked.
 | Offer Part | An abstraction of things that can be offered. Can be of type Admission, Reservation or Ancillary.
 | Reimbursement Claim | Special customer request for refund after the ticket validity has started where the customer needs to provide proof for not using a ticket. |
 | Tariff | A schedule of prices and conditions for the sale or rental of a product or service. In UIC context the term “tariff” is used for fare structure. |
-| Ticket | Medium of the passenger to prove a travel contract. Contains a description or a reference to the travel contract. The ticket might provide direct proof of the travel contract via its security features or via a link to the contract. The tickets are sold by ticket vendors. The assembling of the ticket is done by the allocator(s). The allocator holds the master ticket data/contract of the sold ticket. A ticket can include multiple fare providers in the travel contract. The control of one ticket is done by one or many Ticket Controlling Organizations (TCO) 1. Other means of ticket checking (e.g. gates) will also be named TCOs. |
-| Sales fee | Sales fees are fees added by the allocator or a ticket vendor to the price provided by the fare provider. Sales fees are not part of the fare provider offers defined in the scope of this document. |
+| Ticket | Medium of the passenger to prove a travel contract. Contains a description or a reference to the travel contract. The ticket might provide direct proof of the travel contract via its security features or via a link to the contract. The tickets are sold by retailers. The assembling of the ticket is done by the distributors(s). The distributor holds the master ticket data/contract of the sold ticket. A ticket can include multiple fare providers in the travel contract. The control of one ticket is done by one or many Ticket Controlling Organizations (TCO) 1. Other means of ticket checking (e.g. gates) will also be named TCOs. |
+| Sales fee | Sales fees are fees added by the distributor or retailer to the price provided by the fare provider. Sales fees are not part of the fare provider offers defined in the scope of this document. |
 | Station fee | A station fee is a fee for the use of a station by a passenger. It might be included in the fare provider offer. |
 | Station | A station is a is a location where trains or busses regularly stop to load or unload passengers. |
 

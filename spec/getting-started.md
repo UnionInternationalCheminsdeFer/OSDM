@@ -69,7 +69,7 @@ A segment has all the stops as well as information on the vehicle running on thi
     Next, the simplest way to receive offers is to pass in *origin*, *destination*, *departureTime* as well as the *passenger's* date of birth by calling. The birth date
     is necessary to return e.g. senior fares where sensible.
 
-    `POST /trips-offers-collection`
+    `POST /offers-collection`
 
     with a body
 
@@ -105,7 +105,7 @@ A segment has all the stops as well as information on the vehicle running on thi
                 ],
                 "offers": [..
                 ],
-                "passengers": [
+                "passengerSpecification": [
                     {
                         "id": "passenger_1",
                         "dateOfBirth": "1970-01-01",
@@ -147,53 +147,50 @@ A segment has all the stops as well as information on the vehicle running on thi
         "admissions": [
             {
                 "id": "P_oLA..",
-                "commonOfferPartAttributes": {
-                    "price": {
-                        "currency": "CHF",
-                        "amount": 6800,
-                        "scale": 2
-                    },
-                    "passengers": [
-                        {
-                            "id": "<passenger_id>"
-                        }
-                    ],
-                    "validFrom": "2021-08-30T00:00:00+00:00",
-                    "validUntil": "2021-08-31T00:00:00+00:00",
-                    "refundable": "YES",
-                    "exchangeable": "YES",
-                    "products": [
+                "price": {
+                    "currency": "CHF",
+                    "amount": 6800,
+                    "scale": 2
+                 },
+                 "passengerSpecification": [
+                  {
+                     "id": "<passenger_id>"
+                  }
+                  ],
+                  "validFrom": "2021-08-30T00:00:00+00:00",
+                  "validUntil": "2021-08-31T00:00:00+00:00",
+                  "refundable": "YES",
+                  "exchangeable": "YES",
+                  "products": [
                         {
                             "id": "SBB_POINT_TO_POINT",
                             "abstract": "Point-to-point Ticket, Second Class",
                             "code": "125",
                             "isTrainBound": false
                         }
-                    ]
-                },
+                   ]
                 "isReservationRequired": false
             },..
         ],
         "reservations": [
             {
                 "id": "P_WD1..",
-                "commonOfferPartAttributes": {
-                    "price": {
-                        "currency": "CHF",
-                        "amount": 500,
-                        "scale": 2
-                    },
-                    "passengers": [
-                        {
-                            "id": "<passenger_id>"
-                        }
-                    ],
-                    "validFrom": "2021-08-30T00:00:00+00:00",
-                    "validUntil": "2021-08-31T00:00:00+00:00",
-                    "numericAvailability": 20,
-                    "refundable": "NO",
-                    "exchangeable": "NO",
-                    "products": [
+                "price": {
+                    "currency": "CHF",
+                    "amount": 500,
+                    "scale": 2
+                 },
+                 "passengers": [
+                     {
+                        "id": "<passenger_id>"
+                     }
+                  ],
+                  "validFrom": "2021-08-30T00:00:00+00:00",
+                  "validUntil": "2021-08-31T00:00:00+00:00",
+                  "numericAvailability": 20,
+                  "refundable": "NO",
+                  "exchangeable": "NO",
+                  "products": [
                         {
                             "id": "SBB_SEAT_RESERVATION",
                             "abstract": "Seat Reservation",
@@ -201,43 +198,40 @@ A segment has all the stops as well as information on the vehicle running on thi
                             "isTrainBound": true
                         }
                     ]
-                },
-                "optionality": "OPTIONAL"
+                    "optionality": "OPTIONAL"
             },
             {
                 "id": "P_WD1..",
-                "commonOfferPartAttributes": {
-                    "price": {
+                "price": {
                         "currency": "CHF",
                         "amount": 500,
                         "scale": 2
-                    },
-                    "passengers": [
+                 },
+                 "passengers": [
                         {
                             "id": "<passenger_id>"
                         }
-                    ],
-                    "validFrom": "2021-08-30T00:00:00+00:00",
-                    "validUntil": "2021-08-31T00:00:00+00:00",
-                    "numericAvailability": 4,
-                    "refundable": "NO",
-                    "exchangeable": "NO",
-                    "products": [
+                 ],
+                 "validFrom": "2021-08-30T00:00:00+00:00",
+                 "validUntil": "2021-08-31T00:00:00+00:00",
+                 "numericAvailability": 4,
+                 "refundable": "NO",
+                 "exchangeable": "NO",
+                 "products": [
                         {
                             "id": "SBB_BIKE_RESERVATION",
                             "abstract": "Bike Reservation",
                             "code": "PRODUCT_10001",
                             "isTrainBound": true
                         }
-                    ]
-                },
+                ]
                 "optionality": "OPTIONAL"
             }
         ]
     }
     ```
 
-    The number of available seat or bike place is bound to the offers and expressed by the `"numericAvailability"` attribute.
+    The number of available seat or bike place can be included in offers and expressed by the `"numericAvailability"` attribute.
 
     If your overwhelmed by the numbers of offers you are getting, you can filter them by setting `flexibilities`, `comfortClasses`, `offerPartType`.
 
@@ -256,7 +250,7 @@ A segment has all the stops as well as information on the vehicle running on thi
         "offers": [
             {
                 "id": "<selected_offer_id>",
-                "passengers": [
+                "passengerSpecification": [
                     {
                      "id": "<passenger_id>"
                     }
@@ -309,11 +303,6 @@ A segment has all the stops as well as information on the vehicle running on thi
               {
                 "id": "28OD7DVM-001",
                 "status": "CONFIRMED",
-                "price": {
-                    "currency": "CHF",
-                    "amount": 500,
-                    "scale": 2
-                },
                 "controlNumber": "28OD7DVM-001",
                 "offerParts": [
                 "P_jekG6PnHWpW6dL8GPXLICWURJT9nh5ch5kRAjpMElgCvT8LTTNkWM6lOJsTaAUsq"
@@ -340,11 +329,6 @@ A segment has all the stops as well as information on the vehicle running on thi
             {
                 "id": "4ES36OIU-001",
                 "status": "FULFILLED",
-                "price": {
-                    "currency": "CHF",
-                    "amount": 500,
-                    "scale": 2
-                },
                 "controlNumber": "4ES36OIU-001",
                 "offerParts": [
                     "P_jekG6..."
@@ -445,7 +429,7 @@ Additionally, on this train there are ancillary services available. You can choo
             "optionalAncillaryIds": [
                 "<selected_ancillary_id>"
             ],
-            "passengers": [
+            "passengerSpecification": [
                 "<passengers_id>"
             ]
         }
@@ -543,7 +527,7 @@ The easiest option is to book a place near to a given place:
             "optionalReservationIds": [
                 "<selected_reservation_id>"
             ],
-            "passengers": [
+            "passengerSpecifications": [
                 "<passenger_id>"
             ],
             "placeSelection": {
@@ -569,7 +553,7 @@ Another option is to express seating wishes of a passenger such as at the window
             "optionalReservationIds": [
                 "<selected_reservation_id>"
             ],
-            "passengers": [
+            "passengerSpecifications": [
                 "<passenger_id>"
             ],
             "placeSelections": [
@@ -596,7 +580,7 @@ Or if you have unique seat chosen via a graphical seat reservation (see below) y
             "optionalReservationIds": [
                 "<selected_reservation_id>"
             ],
-            "passengers": [
+            "passengerSpecifications": [
                 "<passenger_id>"
             ],
             "coaches": [
@@ -619,4 +603,4 @@ To be able to build a graphical seat reservation, you first need information of 
 
 ### What are fares?
 
-Fares are priced segments which can be used to create offers for a given trips constrained by fare combination constraints. In the role as a distributor you don't need to care about them.
+Fares are priced segments which can be used to create offers for a given trips constrained by fare combination constraints. In the role as a retailer you don't need to care about them.

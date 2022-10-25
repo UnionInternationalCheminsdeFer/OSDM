@@ -26,8 +26,8 @@ assume the fare providers and pricing engines can be called in parallel.
 | Response time | Description |
 |---------------|-------------|
 | Fare Provider Response Time  | Time to calculate/fares
-| Allocator Response Time      | Time to calculate an offer from (remote) fare provider(s) |
-| Distributor Response Time    | Time to combine offers from  |
+| Distributor Response Time      | Time to calculate an offer from (remote) fare provider(s) |
+| Retailer Response Time    | Time to combine offers from  |
 | Pricing Engine Response Time | `Allocator Response Time + max(Fare Provider Response Times 1..m) + Communication Time 1` |
 | Channel Response Time        | `Distributor Response Time + max(Pricing Engine Response Time 1..n) + Communication Time 2` |
 
@@ -57,10 +57,10 @@ application) but not the network in-between the sender and receiver.
 |-----------|----|----|----|----|
 |`/places` | - | 60 | 80 |  |
 |`/trips` | - | 400 | 600 |  |
-|`/trip-offers-collection` | 1000:1 | 1000 | 2000 | |
+|`/offers-collection` | 1000:1 | 1000 | 2000 | |
 |`/offers` | 100:1 | 1000 | 2000 | |
-|`/offers/{offerId}/...` | 5:1 | 800 | 1600 | |
 |`/bookings` | 1:1 | 400 | 600 | Retry of the booking request followed by a `DELETE /booking/{bookingId}` in case the booking is not needed any more. The error handling must be repeated for three days but no further than the train departure or until an appropriate reply was received indicating that the booking was not made.|
+|`/bookings/{id}/...` | 5:1 | 800 | 1600 | |
 |`/bookings/{id}/passengers` | 0.01:1 | 600 | 900 | retry |
 |`/bookings/{id}/fulfillments` | 1:1 | 600 | 1200 | |
 |`/fulfillments`| 1.1:1 | 600 | 1000 | |
@@ -79,11 +79,10 @@ application) but not the network in-between the sender and receiver.
 | Resources | Look to Book Rate | 95% Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
 |-----------|----|----|----|----|
 |`/places` | - | 50 | 75 | |
-|`/trip-offers-collection` | 1000:1 | 400 | | |
+|`/offers-collection` | 1000:1 | 400 | | |
 |`/offers` | 100:1 | 400 | | |
-|`/offers/{offerId}/...` | 5:1 | 400 | | |
-|`/offers/{offerId}/fares/{fareId}` | 5:1 | 300 | | |
 |`/bookings` | 1:1 | 200  | | Retry of the booking request followed by a `DELETE /booking/{bookingId}` in case the booking is not needed any more. The error handling must be repeated for three days but no further than the train departure or until an appropriate reply was received indicating that the booking was not made.|
+|`/bookings/{id}/...` | 5:1 | 400 | | |
 |`/bookings/{id}/passengers` | 0.01:1 | 200 | | retry|
 |`/bookings/{id}/fulfillments` | 1:1 | 200 | | |
 |`/fulfillments`| 1.1:1 | 400 | | |

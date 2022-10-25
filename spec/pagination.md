@@ -39,10 +39,9 @@ Where semantically valid, additional links to the `first`and `last` pages can be
 
 With this version of the specification, the following resources should support pagination:
 
-- **GET** `/trip-collections/{tripCollectionId}`
-- **GET** `/trip-offers-collections/{tripOfferCollectionId}`
-- **GET** `/offers-collections/{offerCollectionId}`
-- **GET** `/exchange-offers-collections/{exchangeOfferCollectionId}`
+- **GET** `/trip-collections/`
+- **GET** `/offers-collections/`
+- **GET** `/exchange-offers/`
 - **GET** `/bookings/`
 - **GET** `/products/`
 - **GET** `/coachLayouts/`

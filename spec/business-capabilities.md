@@ -21,35 +21,33 @@ The following diagram shows the actors and principal use cases involved in rail 
 
 | **Actor**   | **Description** | Motivation / Distinction to other roles |
 |-------------|-----------------|-----------------------------------------|
-| Allocator   | The **allocator** manages the lifecycle of a product sold (the travel contract). He therefore needs to establish information exchange with the ticket **vendor**, **carriers** and **TCOs** involved. The **allocator** makes products available to the **ticket vendor**. The allocator could provide direct services to the **passenger** to modify the ticket status (e.g. activate / check in on a ticket). The allocator combines fares defined by the carriers according to their rules.The allocator creates the ticket fulfillment data (e.g. pdf, pkpass, ...). *Note*: To avoid confusion due to usage differences (see the CIT term bank as well as the European TAP-TSI regulation), the terms “Issuer” and “Attributor” have been avoided in this IRS. | The allocator is introduced to separate the role of just selling tickets along a route (Ticket Vendor) from the role of creating the ticket content and providing it to vendors for sale.
+| Distributor | The **distributor** manages the lifecycle of a product sold (the travel contract). He therefore needs to establish information exchange with the **retailer**, **carriers** and **TCOs** involved. The **distributor** makes products available to the **retailer**. The distributor could provide direct services to the **passenger** to modify the ticket status (e.g. activate / check in on a ticket). The distributor combines fares defined by the carriers according to their rules.The distributor creates the ticket fulfillment data (e.g. pdf, pkpass, ...). The distributor is introduced to separate the role of just selling tickets along a route (retailer) from the role of creating the ticket content and providing it to retailers for sale.
 | Carrier     | The **carrier** provides the transport service to the **traveller himself or via a substitute carrier**. The travel contract provided to the customer establishes a contract between the traveller and each carrier participating in the service. Carriers include Railway undertaking, Bus companies, Maritime companies. Unless some intermeta fare provider organizes the fare the carrier is the owner of the fare.|
-| Customer    | The **customer** purchases a travel contract for one or more traveller. *Note*: **The customer** is entitled to receive refund payments.
-| Distributor | The **distributor** is the company selling the ticket provided and managed by the allocator to the customer. | Alias: **Ticket Vendor**
-| Fare Provider | The **fare provider** manages fares on behalf of a carrier or a local transport authority.
+| Customer    | The **customer** purchases a travel contract for one or more traveller. *Note*: **The customer** is entitled to receive refund payments. | 
+| Retailer    | The **retailer** is the company selling the ticket provided and managed by the distributor to the customer. | 
+| Fare Provider | The **fare provider** manages fares on behalf of a carrier or a local transport authority. | 
 | Local Transport Authority | The **local transport authority** organizes the local traffic within an area a behalf of the government or is itself a governmental organization. It defines a fare structure for the local transport which all carriers included must apply.
 | Passenger   | The **passenger** is the person who travels using a travel contract. | The passenger and the customer can be to distinct person, e.g., if a mom buys a ticket for her daughter.
-| Ticket Controller | Person (train staff) or machine (e.g. gates) responsible for controling the ticket. The ticket controler is always part of a **ticket controlling organization** (**TCO**) acting on behalf ot the carrier. | Alias: **Train Agent**
-| Ticket Vendor | The **ticket vendor** is the company selling the ticket provided and managed by the allocator to the customer. The ticket vendor does not combine fare into one ticket. | Alias: **Distributor** |
-| Train agent | A **train agent** controls whether the passenger has a valid travel contract. The train agent is part of a **ticket controlling organization**. | Alias: **Ticket Controller** |
+| Ticket Controller | Person (train staff) or machine (e.g. gates) responsible for controling the ticket. The ticket controler is always part of a **ticket controlling organization** (**TCO**) acting on behalf ot the carrier. | 
 
 ## Common Business Capabilities
 
 ### Powerful Fare Combination
 
 It must be possible to combine fare according to existing fare
-combinations (e.g. NRT-style PRIFIS) as well as new fare combination
+combinations (e.g. NRT) as well as new fare combination
 models.
 
-### Simple Distribution
+### Simple Sales
 
-It must be easily possible to distribute existing and new products.
+It must be easily possible to sell existing and new products.
 Easily possible means two things: Firstly, for a customer it must be
 easily possible to find and book and – if needed – refund a booking.
 Secondly, for the rail sector as a whole the complexity of distribution
 must be reduced to save costs both for development as well as
 distribution.
 
-## Business Capabilities for Distribution
+## Business Capabilities for Retailers
 
 ### Lookup Location
 
@@ -74,12 +72,15 @@ The overall offer should be “homogenous”, i.e. consisting of offers of
 the same service class if possible. For the Italian market, non-homogenous offers
 need to be supported. Some trains of the trip might not support all service classes.
 
-Searching for non-trip based offers is supported by a dedicated service. Search criteria can 
+Searching for non-trip based offers is supported by the same service. Search criteria can 
 be tags, regions, geo-coordiantes.
 
 ### Offer combination
 
-Offers can provide tags to indicate that some products from a provider can be sold only when in conjunction with product(s) from another provider using the same tag. At least one, not all, combinationTags must be in common to allow combination. No combinationTags indicate that there are no combination constraints on the product. The comination might be mandatory or optional.
+Offers can provide tags to indicate that some products from a provider can be sold only when in conjunction 
+with product(s) from another provider using the same tag. At least one, not all, combinationTags must be in 
+common to allow combination. No combinationTags indicate that there are no combination constraints on the product. 
+The comination might be mandatory or optional.
 
 The combination tags must be unique across all partners involved on a given trip.
 
@@ -89,7 +90,7 @@ secure the tariff validity.
 
 ### Pre-book Offers
 
-If a customer puts an offer into a basket on a distributor channel, it
+If a customer puts an offer into a basket on a retail channel, it
 most be possible to retain this offer for a given time using a prebook
 service. In our design this service creates a booking in the created in
 the status “pre-booked”. If the pre-booked booking is not booked after a
@@ -140,16 +141,12 @@ needed. Conceptually it takes the existing booking and a new trip and
 calculates an exchange-offer. This exchange-offer can be booked and
 fulfilled similarly to refund-offer.
 
-**Scope:** This capability is optional to support in this version of the
-specification.
 
 ### Graphical Seat Reservation
 
 In order to display the layout of a train to a customer a service to
 access coach layout data and availability pf places is needed.
 
-**Scope**: This capability is optional to support in this version of the
-specification.
 
 ### Edit Passenger Information
 
@@ -166,7 +163,7 @@ booking and is included there by default.
 ### Retrieve Stored Personal Data
 
 A customer can request information on the stored personal data. This
-includes also information on personal data passed on to allocators. The
+includes also information on personal data passed on to distributors. The
 booking data can be used to show the stored personal data.
 
 There is no specific service to retrieve the stored personal data. The booking can be retrieved 
@@ -175,33 +172,37 @@ This will provide all stored personal data.
 
 ### Manage complaints
 
-Complaints can be created on behalf of the passenger by Ticket Vendors. The Allocator can request additional documents to proof the complaint. The passenger can add documents to prove the claim and change his data (e.g. bank account). The Ticket Vendor is informed on changes on the claim.
+Complaints can be created on behalf of the passenger by Retailers. The distributor can request 
+additional documents to proof the complaint. The passenger can add documents to prove the claim and 
+change his data (e.g. bank account). The Retailer is informed on changes on the claim.
 
 
 ### Provide Masterdata
 
 #### Reduction Card Definitions
 
-The Definitions of reduction cards are provided as Master Data. The reduction card definitions can be used by the Distributors for selection lists in the sales process or in customer accounts.
+The Definitions of reduction cards are provided as Master Data. 
+The reduction card definitions can be used by the Retailers for selection 
+lists in the sales process or in customer accounts.
 
 
 ## Business Capabilities for Fare Allocation
 
 ### Combine Fares
 
-The allocator combines fares from different carriers into one offer. The
+The distributor combines fares from different carriers into one offer. The
 rules on how to combine fares are part of the fare data.
 
 ### Service Resource Location  (Locate Dynamic Fares)
 
-Dynamic fares must be requested online. The allocator needs to find the
+Dynamic fares must be requested online. The distributor needs to find the
 online resource where to request the offer and book. The fare data
 provide information on how to find the online service.
 
 ### Provide Bulk Fare Data
 
 The carrier provides bulk data on his static fares and additional data
-for locating online services to the allocators.
+for locating online services to the distributors.
 
 ### Provide Dynamic Fare
 
@@ -210,14 +211,13 @@ The carrier provides an online service to retrieve dynamic fares.
 ### Book Offer
 
 The carrier provides online services to book fares and cancel or
-exchange fares. These can be either as defined in the specification
-herein or via the interface defined in IRS 90918-1.
+exchange fares. 
 
 ### Fulfillment
 
-All necessary information for an allocator to build a valid a ticket
+All necessary information for an distributor to build a valid a ticket
 including necessary attributes and control elements most be included by
-the fare provider.
+the provider of the fare.
 
 ### Reservation
 
@@ -225,20 +225,20 @@ Reservation has been included in the online services and the inventory
 resolution data for fare or reservation are included in the bulk data
 (see FareResourceLocation).
 
-#### Option/Step 1: Using 90918-1 messages for reservation
+#### Option/Step 1: Using old messages for reservation
 
-1. offer (90918-10 REST service) à parameters for 90918-1 soap services are delivered
-2. reservation as-if (90918-1 soap service) / graphical place display (90918-1 soap service)
-3. reservation (90918-1 soap service) / specific place reservation (90918-1 soap service)
-4. pre-booking NRT (90918-10 REST service)
-5. confirm booking NRT (90918-10 REST service)
+1. offer (REST service) à parameters for 90918-1 soap services are delivered
+2. reservation as-if (old soap service) / graphical place display (old soap service)
+3. reservation (old soap service) / specific place reservation (old soap service)
+4. pre-booking NRT (REST service)
+5. confirm booking NRT (REST service)
 
-#### Option/Step 2: Using REST services 90918-10 for all services
+#### Option/Step 2: Using REST services for all services
 
-1. offer (90918-10 REST service)
-2. checkPreferences (90918-10 REST service) / graphical place display (90918-10 REST service)
-3. pre-booking NRT / reservation (90918-10 REST service)
-4. confirm booking of reservation / NRT (90918-10 REST service)
+1. offer (REST service)
+2. checkPreferences (REST service) / graphical place display (REST service)
+3. pre-booking NRT / reservation (REST service)
+4. confirm booking of reservation / NRT (REST service)
 
 ### Get Booking
 
@@ -258,9 +258,6 @@ booking with no penalties.
 By design, the refund process is modelled similarly to the offer/booking
 process.
 
-**Scope**: Only support for total refund is mandatory in this version of
-the specification.
-
 ### Exchange booking
 
 If a customer wants to exchange a booking a service to exchange is
@@ -268,8 +265,6 @@ needed. Conceptually it takes the existing booking and a new trip and
 calculates an exchange-offer. This exchange-offer can be booked and
 fulfilled similarly to refund-offer.
 
-**Scope:** This capability is optional to support in this version of the
-specification.
 
 ### Accounting
 
@@ -280,22 +275,20 @@ included in the accounting data.
 The accounting data of a booking should include:
 
 - The identification of the entire ticket sold (unique id within the
-  context of the allocator for at least 2 years)
+  context of the distributor for at least 2 years)
 
 - The booking id provided by the carriers in case of online fares (unique
   id within the context of the carrier for at least 2 years)
 
 - The identification of each fare included in the ticket (unique id e.g. UUID)
 
-- The identification of individual tickets of the allocator (unique id within
-  the context of the allocator for at least 2 years)
+- The identification of individual tickets of the distributor (unique id within
+  the context of the distributor for at least 2 years)
 
 - The identification of individual tickets of the carriers (unique id within
   the context of the carrier for at least 2 years)
 
 - The price for each fare and carrier included in the ticket
-
-- The VAT does not need to be included in the accounting data (to be verified in RCF-1)
 
 When using the existing 301 data file structure the ids cannot be
 included. Until the accounting data structures have not been extended
@@ -321,7 +314,7 @@ Accounting data flow:
 
 - In case of NRT fares used from a bulk data exchange:
 
-The allocator is responsible for the accounting. The data structure for
+The distributor is responsible for the accounting. The data structure for
 NRT is used.
 
 - In case of fares (IRT or NRT) used with an online booking service:
@@ -330,10 +323,10 @@ The carrier is responsible for the accounting. The data structure for
 IRT is used.
 
 - In case of fares (IRT or NRT) used with an online booking service
-  but with carrier fees defined by the allocator:
+  but with carrier fees defined by the distributor:
 
 The carrier is responsible for the accounting. The data structure for
-IRT is used. The allocator will inform the carrier on the applied fees
+IRT is used. The distributor will inform the carrier on the applied fees
 in the cancellation confirmation.
 
 ### Graphical seat reservation
@@ -341,8 +334,6 @@ in the cancellation confirmation.
 In order to display the layout of a train to a customer a service to
 access coach layout data and availability pf places is needed.
 
-**Scope**: This capability is optional to support in this version of the
-specification.
 
 ### Edit passenger information
 
@@ -358,4 +349,18 @@ This will provide all stored personal data.
 
 ### Manage complaints
 
-Complaints can be created on behalf of the passenger by Allocators. The fare provider can request additional documents to proof the complaint. The passenger can add documents to prove the claim and change his data (e.g. bank account). The allocator can decide on a claim himself in case the fare provider has not kept the legal time line.
+Complaints can be created on behalf of the passenger by the reteiler. The distributor and the carrier 
+can request additional documents to proof the complaint. The passenger can add documents to 
+prove the claim and change his data (e.g. bank account). The distributor can decide on a claim 
+himself in case the carrier has not kept the legal time line.
+
+### Manage reimbourcements
+
+Reimbourcements can be requested by the retailer to the distributor in case 
+the fare allows the reimbourcement of unused tickets. The distributor can forward the request to fare providers.
+
+
+
+
+
+
