@@ -96,7 +96,7 @@ A trip can be in states _planned_, _confirmed_, _changed_ or _cancelled_.
 
 ### Offers
 
-In the **Distributor Mode**, offers represent a collection of `OfferParts`,
+In the **Retail Mode**, offers represent a collection of `OfferParts`,
 representing bookable elements that covers exactly one a specific trip (or the
 requested section of a trip in case of allocator request to an nTM Provider).
 Note that the offer contains a reference to the trip resource it is built for,
@@ -105,9 +105,9 @@ of is already known to the API consumer
 
 Some of these elements can be optional (see further).
 
-In the **Allocator Mode**, an offer will not contain offer parts but it will
+In the **Fare Mode**, an offer will not contain offer parts but it will
 contain a fare element, that the allocator can use to build the final product to be
-distributed to travellers. There can also be hybrid situations where offers will
+sold to travellers. There can also be hybrid situations where offers will
 contain both offer parts and fares if the provider offers product in the two
 flavors.
 
@@ -304,9 +304,7 @@ products by the provider system.
 
 ### Products
 
-Products are the products actually offered by the OSDM provider, either directly
-or either as distributor if the OSDM provider itself retrieves the products  (or
-constitutive fares) from another provider. Products resources contain all the
+Products are the products actually offered by the distributor. Products resources contain all the
 conditions and attributes of the product, regardless of the actual sale case.
 Typically this matches commercial products having the same name and
 recognizable common sales & after sales characteristics.
@@ -325,16 +323,16 @@ Fares should be seen as the counter part of `OfferParts` in case of interactions
 between an allocator and a fare provider. The key difference here
 is that where offer parts are products defined by the provider and fulfilled by
 it as well, the fares do not constitute a distributable product. It is up to
-the allocator to build the distributable product (that he could then distribute
-as an offer part via an OSDM API), based on one single fare or by combining
+the distributor to build the distributable product (that he could then sell
+as an offer part to a retailer), based on one single fare or by combining
 fares coming from different providers. In consequence, the fulfillment of the
 resulting product is the responsibility of the allocator as well.
 
-For distribution systems also able and allowed to act as allocators,
-encapsulating both fares and offer product in offers allows to have a similar
+Distriution systems which also act as retilers might 
+encapsulating both fares and offer parts in offers allowing to have a similar
 flow of interactions regardless of the type of provider.
 
-Fares provide all information needed to be combined by an allocator and to allow an
+Fares provide all information needed to be combined by an distributor and to allow an
 allocator to create fulfillments and support of control processes (e.g. providing combined
 control data to the TCOs). This especially includes the temporal and regional validity
 for travel. The rules on how to combine the fares (combination constraints)
@@ -441,8 +439,8 @@ booking time. Basically, it is the time given to the API consumer to perform
 all updates needed to confirm the booking, and trigger that confirmation.
 
 At the root of the booking structure, two balance elements are provided to
-clarify the state of the financial exchange between an API consumer and the
-OSDM:Distributor:
+clarify the state of the financial exchange between a Retailer and the
+Distributor:
 
 - conditional balance is the balance of the booking that is not confirmed. It
   is the amount that will be due to the provider if the booking is further
@@ -489,7 +487,7 @@ system where the transport product is hosted.
 `Fulfillments` could once have been called tickets. But the evolutions in the
 industry have led this to be a limitative naming, as various kinds of
 ticketless onboard controls are rapidly taking over and become the norm rather
-than the exception. Since in OSDM only the distribution part of the process is
+than the exception. Since in OSDM only the sales part of the process is
 in scope, the details of how to produce or control fulfillment are not covered.
 From a distribution standpoint, the only needs are
 
@@ -550,6 +548,29 @@ remark of train staff) and it must able to lookup the status of the claim made.
 If a claim is accepted or rejected the system that made the request must be
 informed. The accepted or rejected claim must provide an explanation for the
 decision especially if the amount covers the ticket price only partially.
+
+## Reimbourcement
+
+A reimbourcement can be filed by a passenger in case his booked tariffs allows for a refund on unused or partially unused tickets.
+A passenger can provide documentation to support the request (e.g. scanned manual
+remark of train staff) and he must able to lookup the status of the request made.
+
+If a request is accepted or rejected the system that made the request must be
+informed. The accepted or rejected request must provide an explanation for the
+decision especially if the amount covers the ticket price only partially.
+
+## Release
+
+A release of a booking is an intermediate step toward a refund. It invalidates tickets and 
+frees booked resources (e.g. reserved places on a train). The release does not 
+refund money to the customer and thus can be made by another party involved. The 
+refund is then completed by the original retailer. The benefit for the customer is that the time 
+of the release is used to calculate the refund amount.
+
+## Putting bookings on Hold
+
+An unconfirmed booking expires after the time limit of the preebooking. It is possible to ask for an extension 
+of the time limit and the provider might grant the extension. He has the option to add a fee for this extension.
 
 ## State Models
 
