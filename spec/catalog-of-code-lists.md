@@ -174,7 +174,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 
 ## Company Code
 
-See code [Company code list](https://www.era.europa.eu/registers/ocr_en).
+See code [TAP-TSI Company code list](https://www.era.europa.eu/registers/ocr_en).
 
 | Country | Carrier Code | Short Name                   | Full Name                                                                                     |
 | ------- | ------------ | ---------------------------- | --------------------------------------------------------------------------------------------- |
