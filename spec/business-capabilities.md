@@ -290,8 +290,6 @@ The accounting data of a booking should include:
 
 - The price for each fare and carrier included in the ticket
 
-- The VAT does not need to be included in the accounting data (to be verified in RCF-1)
-
 When using the existing 301 data file structure the ids cannot be
 included. Until the accounting data structures have not been extended
 the following intermediate solution is included:
