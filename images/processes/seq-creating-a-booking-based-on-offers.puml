@@ -1,14 +1,14 @@
 hide footbox
 
-actor API_Consumer 
+actor Retailer 
 
 == Creating a booking based on one or more offer(s) ==
-API_Consumer -> OSDM_Provider: POST /bookings/ <offerId(s) of selected offer(s), reservation id(s) of selected optional reservation(s) if relevant>
-OSDM_Provider -> OSDM_Provider : create local booking 
+Retailer -> Distributor: POST /bookings/ <offerId(s) of selected offer(s),\n selected optional reservation(s)/ancilliaries>
+Distributor -> Distributor : create local booking 
 loop for each offerPart in selected offer and optional offerpart
-    OSDM_Provider -> FareProvider: provisionally book offerpart 
+    Distributor -> FareProvider: provisionally book offerpart 
 	FareProvider -> FareProvider: create FareProvider booking
-	FareProvider --> OSDM_Provider : OK response (can vary per FareProvider)
-	OSDM_Provider -> OSDM_Provider : add FareProvider booking to local booking
+	FareProvider --> Distributor : OK response (can vary per FareProvider)
+	Distributor -> Distributor : add FareProvider booking to local booking
 end
-OSDM_Provider --> API_Consumer: <Created Booking with references to Trips, booked offfers, passengers>
+Distributor --> Retailer: <Created Booking>

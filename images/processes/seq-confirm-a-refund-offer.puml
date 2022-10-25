@@ -1,14 +1,17 @@
 hide footbox
+
+actor Retailer
+
 == Confirm a refund offer ==
-API_Consumer -> OSDM_Provider: GET /Bookings/5678?embed="BOOKEDOFFERS, TRIPS,FULFILLMENTS, REFUNDOFFERS"
-OSDM_Provider --> API_Consumer: <Booking with BookedOffers, Trips,Fulfillments and Refund Offers resources>
-API_Consumer -> OSDM_Provider: PATCH /Bookings/5678/exchangeOffers/23 <setting statuts to confirmed
+Retailer -> Distributor: GET /bookings/5678
+Distributor --> Retailer: <Booking>
+Retailer -> Distributor: PATCH /bookings/5678/refundOffers/23 <setting statuts to confirmed
 loop for each fulfillment in the refund offer request
-      OSDM_Provider -> FareProvider: apply refund
-	  FareProvider --> OSDM_Provider : OK
-	  OSDM_Provider -> OSDM_Provider : update local statuses
+      Distributor -> FareProvider: apply refund
+	  FareProvider --> Distributor : OK
+	  Distributor -> Distributor : update local status
 end
 alt all fulfillments cancelled or refunded
-    OSDM_Provider -> OSDM_Provider : update global booking status
+    Distributor -> Distributor : update global booking status
 end
-OSDM_Provider --> API_Consumer: 200 OK
+Distributor --> Retailer: 200 OK

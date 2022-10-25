@@ -1,15 +1,11 @@
 hide footbox
 
-actor API_Consumer 
+actor Retailer
 
-== Searching for place & retrieving references only ==
-API_Consumer -> OSDM_Provider: GET /places/
-OSDM_Provider --> API_Consumer: <Places List>
-
-== Searching for place & retrieving full resources ==
-API_Consumer -> OSDM_Provider: GET /places/?embed="LOCATIONS"
-OSDM_Provider --> API_Consumer: <Places List>
+== Searching for places, to be used to import master data ==
+Retailer -> Distributor: GET /places/
+Distributor --> Retailer: <Places List>
 
 == Retrieving one specific place resource ==
-API_Consumer -> OSDM_Provider: GET /places/12345
-OSDM_Provider --> API_Consumer: <Place 12345>
+Retailer -> Distributor: GET /places/12345
+Distributor --> Retailer: <Place 12345>

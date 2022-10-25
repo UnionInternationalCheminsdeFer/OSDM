@@ -1,75 +1,65 @@
 
 hide footbox
 
-actor API_Consumer 
+actor Retailer 
 
 == Creating the trip collection & getting the initial set of trips ==
-API_Consumer -> OSDM_Provider: POST /Trips-offers-collection <MUNCHEN-PARIS, 23/10/2021, 2 pax, dob, ...>
-OSDM_Provider -> Journey_Planner : <retrieve trips information based on API Consumer request>
-Journey_Planner --> OSDM_Provider : <trips information>
+Retailer -> Distributor: POST /trips-collection\n <MUNCHEN-PARIS, 23/10/2021, 2 pax, dob, ...>
+Distributor -> Journey_Planner : <retrieve trips information based on API Consumer request>
+Journey_Planner --> Distributor : <trips information>
 loop for each trip    
     loop for each segment
-        OSDM_Provider -> OSDM_Provider: determine FareProvider
+        Distributor -> Distributor: determine FareProvider
     end
 end
-OSDM_Provider -> OSDM_Provider : create offer requests
-OSDM_Provider -> FareProvider1: get offers 
+Distributor -> Distributor : create offer requests
+
+== Retrieving offers collection ==
+
+Distributor -> FareProvider1: POST /offers-collection
 FareProvider1 -> FareProvider1: calculate offers
-FareProvider1 --> OSDM_Provider : request with trips
-OSDM_Provider -> FareProvider2: get offers 
+FareProvider1 --> Distributor : request with trips
+Distributor -> FareProvider2: POST /offers-collection 
 FareProvider2 -> FareProvider2: calculate offers
-FareProvider2 --> OSDM_Provider : request with trips
-OSDM_Provider -> OSDM_Provider : reconcile trips and \nconstruct global offers
-OSDM_Provider --> API_Consumer: <Trips-offers-Collection with list of references to tripOffers and scrolling tokens>
-
-== Retrieving an offer & setting seat selection options, starting with tripoffer overview==
-API_Consumer -> OSDM_Provider: GET /Trips-offers/5678?embed="TRIPOFFERS.OFFERS, TRIPOFFERS.PASSENGERS "
-OSDM_Provider --> API_Consumer: <Trip-offer 5678 with its offers and passengers>
-API_Consumer -> OSDM_Provider: GET /offers/8765?embed="OFFERS.OFFERPARTS"
-OSDM_Provider --> API_Consumer: <offer 8765 with its offerparts>
-API_Consumer -> OSDM_Provider: PATCH /Offers/8765/reservations/7654/ \n<reservation with selectedPlaces or selectedOptions set with desired seating option>
-OSDM_Provider --> API_Consumer: <updated reservation 7654 with desired reservation options>
-
-== setting additional passenger information that may be required for provisional booking, starting from the tripoffer overview ==
-API_Consumer -> API_Consumer: check offer RequestedInformation
-API_Consumer -> OSDM_Provider: PATCH /Offers/8765/passengers/123 < additional information for passenger 123>
-OSDM_Provider --> API_Consumer: <passenger updated with the added information>
+FareProvider2 --> Distributor : request with trips
+Distributor -> Distributor : reconcile trips and \nconstruct global offers
+Distributor --> Retailer: <Offers-Collection with list of references to offers>
 
 == Creating a booking based on one or more offer(s) ==
-API_Consumer -> OSDM_Provider: POST /bookings/ <offerId= 8765>
-OSDM_Provider -> OSDM_Provider : create local booking 5678
-OSDM_Provider -> FareProvider1: provisionally book offerpart1 
+Retailer -> Distributor: POST /bookings/ <offerId= 8765> with place selection
+Distributor -> Distributor : create local booking 5678
+Distributor -> FareProvider1: provisionally book offerpart1 
 FareProvider1 -> FareProvider1: create FareProvider booking
-FareProvider1 --> OSDM_Provider : OK response (can vary per FareProvider)
-OSDM_Provider -> OSDM_Provider : add FareProvider booking to local booking
-OSDM_Provider -> FareProvider2: provisionally book offerpart2 
+FareProvider1 --> Distributor : OK response (can vary per FareProvider)
+Distributor -> Distributor : add FareProvider booking to local booking
+Distributor -> FareProvider2: provisionally book offerpart2 
 FareProvider2 -> FareProvider2: create FareProvider booking
-FareProvider2 --> OSDM_Provider : OK response (can vary per FareProvider)
-OSDM_Provider -> OSDM_Provider : add FareProvider booking to local booking
-OSDM_Provider --> API_Consumer: <Created Booking 5678 with references to Trips, booked offers, passengers>
+FareProvider2 --> Distributor : OK response (can vary per FareProvider)
+Distributor -> Distributor : add FareProvider booking to local booking
+Distributor --> Retailer: <Created Booking 5678>
 
-== setting additional passenger information that may be required to confirm the booking, starting from the booking overview ==
-API_Consumer -> OSDM_Provider: GET /Bookings/5678?embed="BOOKEDOFFERS,BOOKEDOFFERS.PASSENGERS"
-OSDM_Provider --> API_Consumer: <Booking with booked offers and passengers resources>
-API_Consumer -> API_Consumer: check booking RequestedInformation
-API_Consumer -> OSDM_Provider: PATCH /Bookings/5678/passengers/123/ < additional information for passenger>
-OSDM_Provider -> FareProvider1: update passenger data 
-FareProvider1 --> OSDM_Provider : OK response (can vary per FareProvider)
-OSDM_Provider -> FareProvider2: update passenger data 
-FareProvider2 --> OSDM_Provider : OK response (can vary per FareProvider)
-OSDM_Provider -> OSDM_Provider : update local booking 5678
-OSDM_Provider --> API_Consumer: <passenger 123 updated with the added information>
+== Setting additional passenger information that may be required to confirm the booking, starting from the booking overview ==
+Retailer -> Distributor: GET /bookings/5678
+Distributor --> Retailer: <Booking with booked offers and passengers resources>
+Retailer -> Retailer: check booking RequestedInformation
+Retailer -> Distributor: PATCH /bookings/5678/passengers/123/ < additional information for passenger>
+Distributor -> FareProvider1: update passenger data 
+FareProvider1 --> Distributor : OK response (can vary per FareProvider)
+Distributor -> FareProvider2: update passenger data 
+FareProvider2 --> Distributor : OK response (can vary per FareProvider)
+Distributor -> Distributor : update local booking 5678
+Distributor --> Retailer: <passenger 123 updated with the added information>
 
-== setting fulfillment type for the booking ==
-OSDM_Provider --> API_Consumer: <Booking with only references to embedded resources>
-API_Consumer -> OSDM_Provider: PATCH /Bookings/5678 <setting the fulfillmentOptions>
-OSDM_Provider --> API_Consumer: <Booking resource with updated fulfillmentOptions>
+== Setting fulfillment type for the booking ==
+Distributor --> Retailer: <Booking with only references to embedded resources>
+Retailer -> Distributor: PATCH /bookings/5678 <setting the fulfillmentOptions>
+Distributor --> Retailer: <Booking resource with updated fulfillmentOptions>
 
-== confirming booking & triggering fulfillment ==
-API_Consumer -> OSDM_Provider: POST /Bookings/5678/Fulfillments
-OSDM_Provider -> FareProvider1: confirm & fulfill booking 
-FareProvider1 --> OSDM_Provider : OK response (can vary per FareProvider)
-OSDM_Provider -> FareProvider2: confirm & fulfill booking 
-FareProvider2 --> OSDM_Provider : OK response (can vary per FareProvider)
-OSDM_Provider -> OSDM_Provider: update local statuses & create fulfillment resources
-OSDM_Provider --> API_Consumer: <Fulfillments created in the booking 5678>
+== Confirming booking & triggering fulfillment ==
+Retailer -> Distributor: POST /bookings/5678/fulfillments
+Distributor -> FareProvider1: confirm & fulfill booking 
+FareProvider1 --> Distributor : OK response (can vary per FareProvider)
+Distributor -> FareProvider2: confirm & fulfill booking 
+FareProvider2 --> Distributor : OK response (can vary per FareProvider)
+Distributor -> Distributor: update local statuses & create fulfillment resources
+Distributor --> Retailer: <Fulfillments created in the booking 5678>

@@ -1,47 +1,46 @@
 hide footbox
 
-actor API_Consumer 
-
+actor Retailer
 == Creating the outward tripOffers collection & getting the initial set of outward trips ==
-API_Consumer -> OSDM_Provider: POST /Trips-offers-collection <MUNCHEN-PARIS, 23/10/2021, return 25/10/2021, 2 pax, dob, ...>
-OSDM_Provider -> Journey_Planner : <retrieve trips information based on API Consumer request>
-Journey_Planner --> OSDM_Provider : <trips information>
-OSDM_Provider -> OSDM_Provider: determine FareProvider for each segment
-OSDM_Provider -> OSDM_Provider : create offer requests
+Retailer -> Distributor: POST /offers-collection <MUNCHEN-PARIS, 23/10/2023, return 25/10/2023, 2 pax, dob, ...>
+Distributor -> JourneyPlanner : <retrieve trips information based on API Consumer request>
+JourneyPlanner --> Distributor : <trips information>
+Distributor -> Distributor: determine FareProvider for each segment
+Distributor -> Distributor : create offer requests
 loop for each request
-    OSDM_Provider -> FareProvider: get offers 
-    FareProvider --> OSDM_Provider : request with trips
+    Distributor -> FareProvider: get offers 
+    FareProvider --> Distributor : request with trips
 end
-OSDM_Provider -> OSDM_Provider : reconcile trips and \nconstruct global offers
-OSDM_Provider --> API_Consumer: <Trips-offers-Collection with list of TripOffers scrolling tokens offerTags returnTags>
+Distributor -> Distributor : reconcile trips and \nconstruct global offers
+Distributor --> Retailer: <Offers-Collection with list of Offers scrolling tokens offerTags returnTags>
 
 == Getting the inward tripOffers collection ==
 opt working with offerTag to only get compatible inward offers
-API_Consumer -> API_Consumer: <select outward offer or group of offers with the same offerTag>
-API_Consumer -> OSDM_Provider: POST /Trips-offers-collection <MUNCHEN-PARIS, 23/10/2021, outwardOfferTag, 2 pax, dob, ...>
-OSDM_Provider -> Journey_Planner : <retrieve trips information based on API Consumer request>
-Journey_Planner --> OSDM_Provider : <trips information>
-OSDM_Provider -> OSDM_Provider: determine FareProvider for each segment
-OSDM_Provider -> OSDM_Provider : create offer requests
+Retailer -> Retailer: <select outward offer or group of offers with the same offerTag>
+Retailer -> Distributor: POST /offers-collection <MUNCHEN-PARIS, 23/10/2023, outwardOfferTag, 2 pax, dob, ...>
+Distributor -> JourneyPlanner : <retrieve trips information based on API Consumer request>
+JourneyPlanner --> Distributor : <trips information>
+Distributor -> Distributor: determine FareProvider for each segment
+Distributor -> Distributor : create offer requests
 loop for each request
-    OSDM_Provider -> FareProvider: get offers 
-    FareProvider --> OSDM_Provider : request with trips
+    Distributor -> FareProvider: get offers 
+    FareProvider --> Distributor : request with trips
 end
-OSDM_Provider -> OSDM_Provider : reconcile trips and \nconstruct global offers
-OSDM_Provider --> API_Consumer: <Trips-offers-Collection with list of TripOffers compatible with (set of) indicated outward Offer(s) scrolling tokens offerTags returnTags>
+Distributor -> Distributor : reconcile trips and \nconstruct global offers
+Distributor --> Retailer: <Offers-Collection with list of Offers\n compatible with (set of) indicated outward Offer(s) scrolling tokens offerTags returnTags>
 end
 
-opt working with returnTags to determine compatible offers on API_Consumer side
-API_Consumer -> OSDM_Provider: POST /Trips-offers-collection <MUNCHEN-PARIS, 23/10/2021, 2 pax, dob, ...>
-OSDM_Provider -> Journey_Planner : <retrieve trips information based on API Consumer request>
-Journey_Planner --> OSDM_Provider : <trips information>
-OSDM_Provider -> OSDM_Provider: determine FareProvider for each segment
-OSDM_Provider -> OSDM_Provider : create offer requests
+opt working with returnTags to determine compatible offers on Retailer side
+Retailer -> Distributor: POST /offers-collection <MUNCHEN-PARIS, 23/10/2023, 2 pax, dob, ...>
+Distributor -> JourneyPlanner : <retrieve trips information based on API Consumer request>
+JourneyPlanner --> Distributor : <trips information>
+Distributor -> Distributor: determine FareProvider for each segment
+Distributor -> Distributor : create offer requests
 loop for each request
-    OSDM_Provider -> FareProvider: get offers 
-    FareProvider --> OSDM_Provider : request with trips
+    Distributor -> FareProvider: get offers 
+    FareProvider --> Distributor : request with trips
 end
-OSDM_Provider -> OSDM_Provider : reconcile trips and \nconstruct global offers
-OSDM_Provider --> API_Consumer: <Trips-offers-Collection with list of TripOffers compatible with (set of) indicated outward Offer(s) scrolling tokens offerTags returnTags>
-API_Consumer -> API_Consumer: <select compatible outward-inward offer pairs based on returnTags>
+Distributor -> Distributor : reconcile trips and \nconstruct global offers
+Distributor --> Retailer: <Offers-Collection with list of Offers\n compatible with (set of) indicated outward Offer(s) scrolling tokens offerTags returnTags>
+Retailer -> Retailer: <select compatible outward-inward offer pairs based on returnTags>
 end

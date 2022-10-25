@@ -1,9 +1,11 @@
 hide footbox
 
+actor Retailer
+
 == setting fulfillment type for the booking ==
-API_Consumer -> OSDM_Provider: POST /Bookings/5678/Fulfillments
-loop for each offerPart or FareProvider booking in bookedOffers
-    OSDM_Provider -> FareProvider: fulfill booking 
-	FareProvider --> OSDM_Provider : OK response (can vary per FareProvider)
+Retailer -> Distributor: POST /bookings/5678/fulfillments
+loop for each offerPart  bookedOffers
+    Distributor -> FareProvider: fulfill booking 
+	FareProvider --> Distributor : OK response (can vary per FareProvider)
 end
-OSDM_Provider --> API_Consumer: <Fulfillments created in the booking>
+Distributor --> Retailer: <Fulfillments created in the booking>

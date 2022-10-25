@@ -1,15 +1,17 @@
 hide footbox
 
+actor Retailer
+
 == Creating a refund offer ==
-API_Consumer -> OSDM_Provider: GET /Bookings/5678?embed="BOOKEDOFFERS, TRIPS, FULFILLMENTS"
-OSDM_Provider --> API_Consumer: <Booking with BookedOffers, Trips and Fulfillments resources>
-API_Consumer -> OSDM_Provider: POST /Bookings/5678/refundOffers <tickets to be refunded,  optionally overrule code>
+Retailer -> Distributor: GET /Bookings/5678
+Distributor --> Retailer: <Booking>
+Retailer -> Distributor: POST /Bookings/5678/refundOffers <tickets to be refunded,  optionally overrule code>
 loop for each fulfillment in the refund offer request
     alt FareProvider supports refund offers 
-      OSDM_Provider -> FareProvider: request refund offer
-	  FareProvider --> OSDM_Provider : refund offer
+      Distributor -> FareProvider: request refund offer
+	  FareProvider --> Distributor : refund offer
     else refund only supports direct refund
-      OSDM_Provider -> OSDM_Provider: calculate refund offer
+      Distributor -> Distributor: calculate refund offer
     end
 end
-OSDM_Provider --> API_Consumer: <RefundOffer for the provided tickets or passengers>
+Distributor --> Retailer: <RefundOffer for the provided tickets or passengers>

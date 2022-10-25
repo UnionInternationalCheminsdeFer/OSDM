@@ -1,21 +1,21 @@
 hide footbox
 
-actor API_Consumer 
+actor Retailer 
 
 == setting additional passenger information that may be required to confirm the booking, starting from the booking overview ==
-API_Consumer -> OSDM_Provider: GET /Bookings/5678?embed="BOOKEDOFFERS,BOOKEDOFFERS.PASSENGERS"
-OSDM_Provider --> API_Consumer: <Booking with booked offers and passengers resources>
-API_Consumer -> API_Consumer: check booking RequestedInformation
-API_Consumer -> OSDM_Provider: PATCH /Bookings/5678/passengers/123/ < additional information for passenger>
+Retailer -> Distributor: GET /bookings/5678
+Distributor --> Retailer: <Booking with booked offers and passengers resources>
+Retailer -> Retailer: check booking RequestedInformation
+Retailer -> Distributor: PATCH /bookings/5678/passengers/123/ < additional information for passenger>
 loop for each offerPart in bookedOffers
-    OSDM_Provider -> FareProvider: update passenger data 
-	FareProvider --> OSDM_Provider : OK response (can vary per FareProvider)
+    Distributor -> FareProvider: update passenger data 
+	FareProvider --> Distributor : OK response (can vary per FareProvider)
 end
-OSDM_Provider -> OSDM_Provider : update local booking
-OSDM_Provider --> API_Consumer: <passenger updated with the added information>
+Distributor -> Distributor : update local booking
+Distributor --> Retailer: <passenger updated with the added information>
 
 == setting fulfillment type for the booking ==
-API_Consumer -> OSDM_Provider: GET /Bookings/5678
-OSDM_Provider --> API_Consumer: <Booking with only references to embedded resources>
-API_Consumer -> OSDM_Provider: PATCH /Bookings/5678 <setting the fulfillmentOptions>
-OSDM_Provider --> API_Consumer: <Booking resource with updated fulfillmentOptions>
+Retailer -> Distributor: GET /bookings/5678
+Distributor --> Retailer: <Booking with only references to embedded resources>
+Retailer -> Distributor: PATCH /bookings/5678 <setting the fulfillmentOptions>
+Distributor --> Retailer: <Booking resource with updated fulfillmentOptions>

@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="ZLZfCiEsqjgsJMsm-EMW" name="Seite-1">
-        <mxGraphModel dx="986" dy="554" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="1139" dy="609" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -24,7 +24,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="T_qjF7rZvj77sfwshJCq-2" value="OSDM v1&lt;br&gt;Adapter" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                <mxCell id="T_qjF7rZvj77sfwshJCq-2" value="OSDM v2&lt;br&gt;Adapter" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
                     <mxGeometry x="490" y="390" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="T_qjF7rZvj77sfwshJCq-12" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="T_qjF7rZvj77sfwshJCq-3" target="T_qjF7rZvj77sfwshJCq-11" edge="1">
@@ -33,7 +33,7 @@
                 <mxCell id="T_qjF7rZvj77sfwshJCq-18" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="T_qjF7rZvj77sfwshJCq-3" target="T_qjF7rZvj77sfwshJCq-17" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="T_qjF7rZvj77sfwshJCq-3" value="OSDM v1&lt;br&gt;Aapter" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                <mxCell id="T_qjF7rZvj77sfwshJCq-3" value="OSDM v1&lt;br&gt;Adapter" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
                     <mxGeometry x="490" y="200" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="T_qjF7rZvj77sfwshJCq-6" value="/v2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -48,7 +48,7 @@
                         <mxPoint x="590" y="420" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="T_qjF7rZvj77sfwshJCq-9" value="distributor" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                <mxCell id="T_qjF7rZvj77sfwshJCq-9" value="Requestor" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
                     <mxGeometry x="40" y="290" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="T_qjF7rZvj77sfwshJCq-11" value="Core&amp;nbsp;&amp;nbsp;&lt;br&gt;Priciing" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
