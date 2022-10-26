@@ -173,10 +173,10 @@ of by the customer.
 
 | Code      | Description                                                                                                      |
 | --------- | ---------------------------------------------------------------------------------------------------------------- |
-| `FCB`     | Flexible Content Barcode - See IRS 90918-9                                                                       |
-| `TLB`     | Ticket Layout Barcode - See IRS 90918-9                                                                          |
-| `SSB`     | Small Structured Barcode - See IRS 90918-9                                                                       |
-| `DOSIPAS` | Double Signed Dynamic Barcode (static part (FCB) and dynamic part created at the control time) - See IRS 90918-9 |
+| `FCB`     | Flexible Content Barcode - See IRS 90918-9 / TAP TSI B.12                                                                       |
+| `TLB`     | Ticket Layout Barcode - See IRS 90918-9 / TAP TSI B.12                                                                          |
+| `SSB`     | Small Structured Barcode - See IRS 90918-9 / TAP TSI B.12                                                                       |
+| `DOSIPAS` | Double Signed Dynamic Barcode (static part (FCB) and dynamic part created at the control time) - See IRS 90918-9 / TAP TSI B.12 |
 
 ## CardType
 
@@ -393,8 +393,8 @@ See code
 
 | Code        | Description                                             |
 | ----------- | ------------------------------------------------------- |
-| `REGISTRY`  | See IRS 90918-4, data are delivered to the UIC registry |
-| `PEER2PEER` | See IRS 90918-4, data are exchange peer 2 peer          |
+| `REGISTRY`  | See IRS 90918-4 / TAP TSI B.14, data are delivered to the UIC registry |
+| `PEER2PEER` | See IRS 90918-4 / TAP TSI B.14, data are exchange peer 2 peer          |
 
 ## ControlSecurityType
 
@@ -562,8 +562,8 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
 | Code                            | Description                                                         |
 | ------------------------------- | ------------------------------------------------------------------- |
-| `IRS90918_1_RESERVATION_BINARY` | Reservation interface according to IRS90918-1 binary message format |
-| `IRS90918_1_RESERVATION_XML`    | Reservation interface according to IRS90918-1 XML message format    |
+| `IRS90918_1_RESERVATION_BINARY` | Reservation interface according to IRS90918-1 binary message format / TAP TSI B.1 binary |
+| `IRS90918_1_RESERVATION_XML`    | Reservation interface according to IRS90918-1 XML message format    / TAP TSI B.5 soap |
 | `OSDM`                          | OSDM API                                                            |
 
 ## Language
