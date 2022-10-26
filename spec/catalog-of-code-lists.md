@@ -173,10 +173,10 @@ of by the customer.
 
 | Code      | Description                                                                                                      |
 | --------- | ---------------------------------------------------------------------------------------------------------------- |
-| `FCB`     | Flexible Content Barcode - See IRS 90918-9                                                                       |
-| `TLB`     | Ticket Layout Barcode - See IRS 90918-9                                                                          |
-| `SSB`     | Small Structured Barcode - See IRS 90918-9                                                                       |
-| `DOSIPAS` | Double Signed Dynamic Barcode (static part (FCB) and dynamic part created at the control time) - See IRS 90918-9 |
+| `FCB`     | Flexible Content Barcode - See IRS 90918-9 / TAP TSI B.12                                                                       |
+| `TLB`     | Ticket Layout Barcode - See IRS 90918-9 / TAP TSI B.12                                                                          |
+| `SSB`     | Small Structured Barcode - See IRS 90918-9 / TAP TSI B.12                                                                       |
+| `DOSIPAS` | Double Signed Dynamic Barcode (static part (FCB) and dynamic part created at the control time) - See IRS 90918-9 / TAP TSI B.12 |
 
 ## CardType
 
@@ -393,8 +393,8 @@ See code
 
 | Code        | Description                                             |
 | ----------- | ------------------------------------------------------- |
-| `REGISTRY`  | See IRS 90918-4, data are delivered to the UIC registry |
-| `PEER2PEER` | See IRS 90918-4, data are exchange peer 2 peer          |
+| `REGISTRY`  | See IRS 90918-4 / TAP TSI B.14, data are delivered to the UIC registry |
+| `PEER2PEER` | See IRS 90918-4 / TAP TSI B.14, data are exchange peer 2 peer          |
 
 ## ControlSecurityType
 
@@ -413,18 +413,17 @@ Currency codes used in OSDM are based on the
 
 | Code        | Description                      |
 | ----------- | -------------------------------- |
-| `NRT`       | NRT                              |
-| `IRT`       | IRT                              |
-| `RES`       | RES (with or without supplement) |
-| `ANCILLARY` | Ancillary                        |
+| `ADMISSION`   | transport contract             |
+| `RESERVATION` | seat allocation might include a supplement     |
+| `ANCILLARY` | ancillary                        |
 
 ## Fare CoachType
 
-Legacy reservation code defined in UIC 90918-1.
+Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.1 .
 
 ## Fare CompartementTypeCode
 
-Legacy reservation code defined in UIC 90918-1.
+Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
 ## FulfillmentType
 
@@ -563,8 +562,8 @@ Legacy reservation code defined in UIC 90918-1.
 
 | Code                            | Description                                                         |
 | ------------------------------- | ------------------------------------------------------------------- |
-| `IRS90918_1_RESERVATION_BINARY` | Reservation interface according to IRS90918-1 binary message format |
-| `IRS90918_1_RESERVATION_XML`    | Reservation interface according to IRS90918-1 XML message format    |
+| `IRS90918_1_RESERVATION_BINARY` | Reservation interface according to IRS90918-1 binary message format / TAP TSI B.1 binary |
+| `IRS90918_1_RESERVATION_XML`    | Reservation interface according to IRS90918-1 XML message format    / TAP TSI B.5 soap |
 | `OSDM`                          | OSDM API                                                            |
 
 ## Language
@@ -692,25 +691,8 @@ required.
 
 ## Public Transportation Modes (ptMode)
 
-| PT Mode            | TAP TSI B.2.3 |
-| ------------------ | ------------- |
-| `BUS`              | 32            |
-| `COACH_GROUP`      | 31            |
-| `HIGH_SPEED_TRAIN` | 8             |
-| `HISTORIC_TRAIN`   | 16            |
-| `INTERCITY`        | 9             |
-| `REGIONAL`         | 11            |
-| `INTERREGIONAL`    | 10            |
-| `URBAN`            | 12            |
-| `TRAM`             | 35            |
-| `UNDERGROUND`      | 36            |
-| `NIGHT_TRAIN`      | 13            |
-| `SHARED_TAXI`      | 34            |
-| `MOTOR_RAIL`       | 14            |
-| `MOUNTAIN_TRAIN`   | 15            |
-| `PLANE`            | 3             |
-| `SHIP`             | 33            |
-| `TRAIN`            | 37            |
+ see Transport Modes
+
 
 ## Point of Interest (POI)
 
@@ -1120,7 +1102,7 @@ reproduced.
 Corresponding to numerical codes in TAP-TSI (B.2.3) / UIC
 (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
 
-| Code               | Description                                                    | TAP-TSI Code B.2.3 (MERITS) |
+| Code               | Description                                                    | TAP-TSI Code B.2.3          |
 | ------------------ | -------------------------------------------------------------- | --------------------------- |
 | `HIGH_SPEED_TRAIN` |                                                                | 8                           |
 | `HISTORIC_TRAIN`   |                                                                | 16                          |
