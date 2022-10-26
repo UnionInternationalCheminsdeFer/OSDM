@@ -22,7 +22,7 @@ This border points are thus called `virtual border points` which can be modelled
 by `ConnectionPoints`. Fares are combined following a `fare combination model`
 to an offer.
 
-![Relationships between Offers, OfferParts, Products and Fares](../images/models/relationship-offer-offerpart-product-fare.svg)
+![Relationships between Offers, OfferParts, Products and Fares](../images/models/relationship-offer-offerpart-product-fare.png)
 
 _Note_: This example assumes that the complete trip can be priced.
 

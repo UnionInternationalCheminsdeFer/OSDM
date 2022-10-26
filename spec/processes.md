@@ -392,7 +392,7 @@ information on the availability of places with the selected offer:
 - Places nearby another place
 - A graphical display of available places.
 
-![Graphical reservation](../images/processes/seq-graphical-reservation_puml.png)
+![Graphical reservation](../images/processes/seq-graphical-reservation.png)
 
 ### Additional information in provisional booking step
 
