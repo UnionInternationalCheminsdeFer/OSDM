@@ -10,17 +10,22 @@ provided within the schema or within the IRS90918-10 specification.
 
 ## URNs for code lists
 
-| Code List                 | Name Space and domain | CodeList       | Description                                                      | example                    | base path for relative references |
-| ------------------------- | --------------------- | -------------- | ---------------------------------------------------------------- | -------------------------- | --------------------------------- |
-| stations                  | `urn:uic`             | `stn`          | UIC station codes (TAP-TSI)                                      | `urn:uic:stn:8512345`      | `urn:uic:stn:`                    |
-| service brands , products | `urn:uic`             | `sbc`          | UIC service brand code (TAP-TSI B.4.7009 / https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)                        | `urn:uic:sbc:17`           | `urn:uic:sbc:`                    |
+| Code List                 | Name Space and domain | CodeList       | Description                                                                                                                                          | example                    | base path for relative references |
+| ------------------------- | --------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | --------------------------------- |
+| stations                  | `urn:uic`             | `stn`          | UIC station codes (TAP-TSI)                                                                                                                          | `urn:uic:stn:8512345`      | `urn:uic:stn:`                    |
+| service brands , products | `urn:uic`             | `sbc`          | UIC service brand code (TAP-TSI B.4.7009 / https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)                       | `urn:uic:sbc:17`           | `urn:uic:sbc:`                    |
 | companies                 | `urn:uic`             | `rics:ac`      | company code (TAP-TSI https://www.era.europa.eu/registers/ocr_en / https://uic.org/support-activities/it/rics) and optional administration code (AC) | `urn:uic:rics:1080:000011` | `urn:uic:rics:`                   |
-| countries                 | `urn:iso`             | `std:iso:3166` | ISO Country Codes                                                | `urn:iso:std:iso:3166:CH`  | `urn:iso:std:iso:3166:`           |
-| currencies                | `urn:iso`             | `std:iso:4217` | ISO Currency Codes                                               | `urn:iso:std:iso:4217:CFR` | `urn:iso:std:iso:4217:`           |
+| countries                 | `urn:iso`             | `std:iso:3166` | ISO Country Codes                                                                                                                                    | `urn:iso:std:iso:3166:CH`  | `urn:iso:std:iso:3166:`           |
+| currencies                | `urn:iso`             | `std:iso:4217` | ISO Currency Codes                                                                                                                                   | `urn:iso:std:iso:4217:CFR` | `urn:iso:std:iso:4217:`           |
 
 ## Proprietary values
 
-Be it to represent specific places, or any other type of reference data, some OSDM providers may need to extend a code set with proprietary values in order to support their use cases, while these values are unlikely to be relevant to the rest of the OSDM community. To do so, an OSDM provider should then use the following format for the proprietary values it wishes to extend the code set with :
+Be it to represent specific places, or any other type of reference data, some
+OSDM providers may need to extend a code set with proprietary values in order to
+support their use cases, while these values are unlikely to be relevant to the
+rest of the OSDM community. To do so, an OSDM provider should then use the
+following format for the proprietary values it wishes to extend the code set
+with :
 
 urn: X\_<3 letters code for the provider>:<codetype identifier>:<value>
 
@@ -38,24 +43,34 @@ For example: urn: x_zoo:paxtype:OLIPHANT
 
 ## Accommodation Sub Type, Place Property, Reservation Place Preference
 
-The Accommodation Sub Type defines the characteristics of a place for an offer. It can not be changed within the offer.
+The Accommodation Sub Type defines the characteristics of a place for an offer.
+It can not be changed within the offer.
 
-(Reservation) Place Preferences define the options that can be selected within the offer when requesting a reservation. Place Properties define the place characteristics for the places in a reservation.
+(Reservation) Place Preferences define the options that can be selected within
+the offer when requesting a reservation. Place Properties define the place
+characteristics for the places in a reservation.
 
-Depending on the commercial decisions some codes might be used in accommodation sub type with one carrier whereas another carrier might alow them in the place preferences (e.g. Bicycle and Tandem Bicycle might have the same price (Place Preference) of different prices (Accommodation Sub Type). There might be place properties that indicate characteristics of a place to the traveller which are not selectable (e.g. Place without Window)). Therefore the shown usage for the different types are an indication but not mandatory.
+Depending on the commercial decisions some codes might be used in accommodation
+sub type with one carrier whereas another carrier might alow them in the place
+preferences (e.g. Bicycle and Tandem Bicycle might have the same price (Place
+Preference) of different prices (Accommodation Sub Type). There might be place
+properties that indicate characteristics of a place to the traveller which are
+not selectable (e.g. Place without Window)). Therefore the shown usage for the
+different types are an indication but not mandatory.
 
-Place Preference Group collects Place preferences where only one can be chosen of by the customer.
+Place Preference Group collects Place preferences where only one can be chosen
+of by the customer.
 
-| Code                    | Accommodation Sub Type | Place Preference | Place Property | Description         | Place Preference Group |
-| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- | 
-| `AISLE`                 | N                      | Y                | Y              | Place at the aisle             | `PLACE_LOCATION`       |
-| `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area  |                        |
+| Code                    | Accommodation Sub Type | Place Preference | Place Property | Description                                                                                      | Place Preference Group |
+| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- | --- |
+| `AISLE`                 | N                      | Y                | Y              | Place at the aisle                                                                               | `PLACE_LOCATION`       |
+| `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area                                                                    |                        |
 | `ANY`                   | Y                      | N                | Y              | Indicates within a place preference group explicitely that the selection is optional             |                        |
-| `BISTRO`                | N                      | Y                | Y              | Places in a coach with self-service bistro   |                        |
-| `BICYCLE`               | Y                      | Y                | Y              | Bicycle hook                   |                        |
-| `BUSINESS`              | Y                      | Y                | Y              | Manager compartment/business   |                        |
-| `BUSINESS_COMFORT`      | Y                      | Y                | N              | Business Comfort – business seat with reduced service   |       |
-| `CABIN8`                | N                      | Y                | Y              | Special place group in TGV  |                        |
+| `BISTRO`                | N                      | Y                | Y              | Places in a coach with self-service bistro                                                       |                        |
+| `BICYCLE`               | Y                      | Y                | Y              | Bicycle hook                                                                                     |                        |
+| `BUSINESS`              | Y                      | Y                | Y              | Manager compartment/business                                                                     |                        |
+| `BUSINESS_COMFORT`      | Y                      | Y                | N              | Business Comfort – business seat with reduced service                                            |                        |
+| `CABIN8`                | N                      | Y                | Y              | Special place group in TGV                                                                       |                        |
 | `CAR_SMALL`             | Y                      | N                | Y              | Vehicle parking place category 1-3                                                               |                        |
 | `CAR_LARGE`             | Y                      | N                | Y              | Vehicle parking place category 6-8                                                               |                        |
 | `CARRE`                 | N                      | Y                | Y              | Carré (4 seats facing normally 2nd Class)                                                        |                        |
@@ -174,7 +189,8 @@ Place Preference Group collects Place preferences where only one can be chosen o
 
 ## Company Code
 
-See code [TAP-TSI Company code list](https://www.era.europa.eu/registers/ocr_en).
+See code
+[TAP-TSI Company code list](https://www.era.europa.eu/registers/ocr_en).
 
 | Country | Carrier Code | Short Name                   | Full Name                                                                                     |
 | ------- | ------------ | ---------------------------- | --------------------------------------------------------------------------------------------- |
@@ -390,7 +406,8 @@ See code [TAP-TSI Company code list](https://www.era.europa.eu/registers/ocr_en)
 
 ## Currency
 
-Currency codes used in OSDM are based on the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) standard.
+Currency codes used in OSDM are based on the
+[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) standard.
 
 ## FareType
 
@@ -420,15 +437,15 @@ Legacy reservation code defined in UIC 90918-1.
 
 ## FulfillmentMediaType
 
-| Code            | Description                                                             |
-| --------------- | ----------------------------------------------------------------------- |
-| `RCT2`          | RCT2 secure paper format (including compressed format)                  |
-| `RCCST`         | Credit Card Size format                                                 |
-| `UIC_PDF`       | PDF according to UIC Standard                                           |
-| `PDF_A4`        | proprietary A4 pdf format                                               |
-| `PKPASS`        | pkpass file format                                                      |
-| `ALLOCATOR_APP` | mobile ticket in allocator specific format to be loaded into mobile app |
-| `TICKETLESS`    | no ticket                                                               |
+| Code           | Description                                                            |
+| -------------- | ---------------------------------------------------------------------- |
+| `RCT2`         | RCT2 secure paper format (including compressed format)                 |
+| `RCCST`        | Credit Card Size format                                                |
+| `UIC_PDF`      | PDF according to UIC Standard                                          |
+| `PDF_A4`       | proprietary A4 pdf format                                              |
+| `PKPASS`       | pkpass file format                                                     |
+| `RETAILOR_APP` | mobile ticket in retailor specific format to be loaded into mobile app |
+| `TICKETLESS`   | no ticket                                                              |
 
 ## Gender
 
@@ -552,16 +569,19 @@ Legacy reservation code defined in UIC 90918-1.
 
 ## Language
 
-Language codes used in OSDM are based on the [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
+Language codes used in OSDM are based on the
+[ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
 
 ## Nationality
 
-Language codes used in OSDM are based on the [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
+Language codes used in OSDM are based on the
+[ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
 
 ## NUTS codes
 
-The common classification of territorial units in the EU (COMMISSION REGULATION (EU) 2016/2066)
-provides codes for different levels of geographical/political units. E.g.:
+The common classification of territorial units in the EU (COMMISSION REGULATION
+(EU) 2016/2066) provides codes for different levels of geographical/political
+units. E.g.:
 
 | Code    | Description         |
 | ------- | ------------------- |
@@ -621,7 +641,8 @@ provides codes for different levels of geographical/political units. E.g.:
 
 ## Personal data items
 
-Codes for personal data items that might be transferred to the carrier if required.
+Codes for personal data items that might be transferred to the carrier if
+required.
 
 | Code                       | Description                                              |
 | -------------------------- | -------------------------------------------------------- |
@@ -700,7 +721,8 @@ POICode: Values are depending on code list and set is too large to be reproduced
 
 ## Reduction cards
 
-The following code lists defines the commonly used cards which are not provided by a specific carrier:
+The following code lists defines the commonly used cards which are not provided
+by a specific carrier:
 
 | Predefined Card-Ids       | Issuer | Description                                  | Type           | Included Cards         |
 | ------------------------- | ------ | -------------------------------------------- | -------------- | ---------------------- |
@@ -751,7 +773,8 @@ Other cards should start with the RICS code of the issuer.
 
 ## Service Brands
 
-Snapshot version, for the actual code list see [UIC Service Brand Code List](https://uic.org/passenger/passenger-services-group/article/service-brand-code-list).
+Snapshot version, for the actual code list see
+[UIC Service Brand Code List](https://uic.org/passenger/passenger-services-group/article/service-brand-code-list).
 
 | Service Brand Code | Abbreviation | Reservation Ticket Text              | MERITS Description                          |
 | ------------------ | ------------ | ------------------------------------ | ------------------------------------------- |
@@ -1054,9 +1077,12 @@ Snapshot version, for the actual code list see [UIC Service Brand Code List](htt
 
 codeList = UIC, ERA, HAFAS
 
-Additional codelists can be defined by implementers. The codelist name should then be prefixed by "X\_<3 letters code for the provider>". Example: "X_PAO_STATIONS"
+Additional codelists can be defined by implementers. The codelist name should
+then be prefixed by "X\_<3 letters code for the provider>". Example:
+"X_PAO_STATIONS"
 
-_StationCode_: Values are depending on codelist and set is too large to be reproduced.
+_StationCode_: Values are depending on codelist and set is too large to be
+reproduced.
 
 ## Supported Online Services
 
@@ -1092,7 +1118,8 @@ _StationCode_: Values are depending on codelist and set is too large to be repro
 
 ## Transport Mode
 
-Corresponding to numerical codes in TAP-TSI (B.2.3) / UIC (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
+Corresponding to numerical codes in TAP-TSI (B.2.3) / UIC
+(https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
 
 | Code               | Description                                                    | TAP-TSI Code B.2.3 (MERITS) |
 | ------------------ | -------------------------------------------------------------- | --------------------------- |
@@ -1157,7 +1184,8 @@ Type of the travel validity of a fare.
 
 ## TripAllocationProcess
 
-Trip allocation process indicated the type of process a passenger needs to follow to make use of a multi journey ticket with restrictions.
+Trip allocation process indicated the type of process a passenger needs to
+follow to make use of a multi journey ticket with restrictions.
 
 | Code          | Description                                                                              |
 | ------------- | ---------------------------------------------------------------------------------------- |
@@ -1168,7 +1196,8 @@ Trip allocation process indicated the type of process a passenger needs to follo
 
 ## TripAllocationUnit
 
-Trip allocation unit indicates the unit that can be allocatoed on a multi journey ticket with restrictions.
+Trip allocation unit indicates the unit that can be allocatoed on a multi
+journey ticket with restrictions.
 
 | Code          | Description                                                     |
 | ------------- | --------------------------------------------------------------- |
@@ -1179,7 +1208,8 @@ Trip allocation unit indicates the unit that can be allocatoed on a multi journe
 
 ## TripInterruptionProcess
 
-Trip interruption process indicates the type of process to be followed by the passenger to interrupt a trip.
+Trip interruption process indicates the type of process to be followed by the
+passenger to interrupt a trip.
 
 | Code         | Description                                                                                                 |
 | ------------ | ----------------------------------------------------------------------------------------------------------- |
