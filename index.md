@@ -13,7 +13,8 @@ The aims of the **Open Sales and Distribution Model (OSDM)** are twofold:
 
 1. to substantially **simplify and improve the booking process for customers**
    of public transport trips and,
-2. to **lower complexity and distribution costs** for distributors and carriers.
+2. to **lower complexity and distribution costs** for retailers, distributor and
+   carriers.
 
 OSDM **strengthens rail and public transport** as a convenient and ecological
 means of transportation by simplifying distribution. Finally, it lays a **solid
@@ -22,10 +23,10 @@ transportation.
 
 The OSDM Online API and specification essentially consists of two parts:
 **Offline Model** and **Online API**. The Online API works in two modes:
-**Distributor Mode** and **Allocator Mode**. The Allocator Mode differs from the
-Distributor Mode only in that additionally to **Admissions (aka. tickets)**,
-**Reservations**, **Integrated reservations**, or **Ancillaries** also **Fares
-(priced segments)** are offered and can be booked.
+**Retailer Mode** and **Distributor Mode**. The Distributor Mode differs from
+the Retailer Mode only in that additionally to **Admissions (aka. tickets)**,
+**Reservations**, or **Ancillaries** also **Fares (a.k.a priced segments)** are
+offered and can be booked.
 
 The OSDM API and documents are **Open Source** and freely available to all
 parties interested. The OSDM-Online API is modelled in `YAML`, fully supporting
@@ -41,7 +42,7 @@ The Open Sales and Distribution Model has emerged from the **new Tariff Model
   standard for the exchange of priced segments (formerly: **PRIFIS series**) and
   on the other hand a new online standard for the purchase of dynamically priced
   segments. The priced segments are calculated and provided by so-called fare
-  providers. The priced segments are fetched by an allocator which combines
+  providers. The priced segments are fetched by an distributor which combines
   these priced segments into a consistent offer and later into a booking and
   ticket. Essentially, this process allows the vision of _"one trip - one ticket
   within Europe"_ to materialize.
@@ -62,13 +63,14 @@ the [UIC](https://uic.org) as
 The OSDM Model is split between roles participants can take:
 
 - **Fare Provider** – defining the fare and combination rules and providing them
-  to allocators offline or online.
-- **Allocator** – combining fares, defining after sales rules within the frames
-  set by the fare provider, providing combined offers and managing the booking
-  transaction, managing the ticket security (barcode, control processes),
-  managing compensations processes, managing the stock control process.
-- **Distributor** – selling tickets from one or more allocators to the customer.
-  Selecting the allocators and joining multiple independent bookings.
+  to distributors offline or online.
+- **Distributor** – combining fares, defining after sales rules within the
+  frames set by the fare provider, providing combined offers and managing the
+  booking transaction, managing the ticket security (barcode, control
+  processes), managing compensations processes, managing the stock control
+  process.
+- **Retailer** – selling tickets from one or more distributors to the customer.
+  Selecting the distributors and joining multiple independent bookings.
 
 A railway or a system provider can support more than one role.
 
@@ -130,10 +132,10 @@ upcoming commercial products and can be implemented and supported at reasonable
 cost.
 
 To address the third goal we took an **end-to-end approach** to the call chain
-from **Distributor** to **Allocator** to **Fare Provider (aka. carrier)** and
+from **Retailer** to **Distributor** to **Fare Provider (aka. carrier)** and
 aligned the interfaces by modelling them the same. Thus calling a provider, an
-allocator or a fare provider is exactly the same from an API perspective. The
-only difference is that in allocator mode you get fare specific information.
+distributor or a fare provider is exactly the same from an API perspective. The
+only difference is that in distributor mode you get fare specific information.
 
 ## Access to the Specification
 
