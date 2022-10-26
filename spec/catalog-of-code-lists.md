@@ -5,7 +5,7 @@ hide_hero: true
 permalink: /spec/catalog-of-code-lists/
 ---
 
-The mandatory code lists on enums and extemsible enums are provided within the schema files.
+The mandatory code lists on enums and extensible enums are provided within the schema files.
 
 ## URNs for code lists
 
