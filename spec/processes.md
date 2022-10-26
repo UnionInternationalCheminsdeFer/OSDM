@@ -933,7 +933,7 @@ train or at a station. This prove can also be provided in electronic form by a c
 The customer must be able to make the reimbursement claim via a retailer to the distributor
 which needs to request the reimbursement from the involved fare providers / carriers.
 
-The reimbursemnt process is very similar to the complaint process where instead of a complaint
+The reimbursement process is very similar to the complaint process where instead of a complaint
 a reimbursement request is created. If the reimbursement request is valid the special overrule
 code `TICKET_UNUSED` can be used in the refund process to refund otherwise non-refundable
 bookings.
