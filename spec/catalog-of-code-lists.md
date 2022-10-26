@@ -5,14 +5,13 @@ hide_hero: true
 permalink: /spec/catalog-of-code-lists/
 ---
 
-This code lists are provided for convenience only. The mandatory code lists are
-provided within the schema or within the IRS90918-10 specification.
+The mandatory code lists on enums and extensible enums are provided within the schema files.
 
 ## URNs for code lists
 
 | Code List                 | Name Space and domain | CodeList       | Description                                                                                                                                          | example                    | base path for relative references |
 | ------------------------- | --------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | --------------------------------- |
-| stations                  | `urn:uic`             | `stn`          | UIC station codes (TAP-TSI)                                                                                                                          | `urn:uic:stn:8512345`      | `urn:uic:stn:`                    |
+| stations                  | `urn:uic`             | `stn`          | UIC station codes (TAP-TSI retail station codes)                                                                                                                          | `urn:uic:stn:8512345`      | `urn:uic:stn:`                    |
 | service brands , products | `urn:uic`             | `sbc`          | UIC service brand code (TAP-TSI B.4.7009 / https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)                       | `urn:uic:sbc:17`           | `urn:uic:sbc:`                    |
 | companies                 | `urn:uic`             | `rics:ac`      | company code (TAP-TSI https://www.era.europa.eu/registers/ocr_en / https://uic.org/support-activities/it/rics) and optional administration code (AC) | `urn:uic:rics:1080:000011` | `urn:uic:rics:`                   |
 | countries                 | `urn:iso`             | `std:iso:3166` | ISO Country Codes                                                                                                                                    | `urn:iso:std:iso:3166:CH`  | `urn:iso:std:iso:3166:`           |
@@ -1056,7 +1055,7 @@ Snapshot version, for the actual code list see
 
 ## Stations
 
-codeList = UIC, ERA, HAFAS
+codeList = UIC, ERA
 
 Additional codelists can be defined by implementers. The codelist name should
 then be prefixed by "X\_<3 letters code for the provider>". Example:
