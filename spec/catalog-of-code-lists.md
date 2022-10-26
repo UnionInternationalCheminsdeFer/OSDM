@@ -1055,7 +1055,7 @@ Snapshot version, for the actual code list see
 
 ## Stations
 
-codeList = UIC, ERA, HAFAS
+codeList = UIC, ERA
 
 Additional codelists can be defined by implementers. The codelist name should
 then be prefixed by "X\_<3 letters code for the provider>". Example:
