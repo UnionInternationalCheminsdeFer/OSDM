@@ -5,8 +5,7 @@ hide_hero: true
 permalink: /spec/catalog-of-code-lists/
 ---
 
-This code lists are provided for convenience only. The mandatory code lists are
-provided within the schema or within the IRS90918-10 specification.
+The mandatory code lists on enums and extemsible enums are provided within the schema files.
 
 ## URNs for code lists
 
