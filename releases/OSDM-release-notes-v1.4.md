@@ -12,8 +12,8 @@ The following features have been added with version 1.4 of OSDM.
 ### Booking Synchronization
 
 If there is change in a trip or a booking, we have added an API that a carrier
-or distributor system can inform a retailor about that fact, that a trip or a
-booking has changed. The retailor can then itself inform a passenger or the
+or distributor system can inform a retailer about that fact, that a trip or a
+booking has changed. The retailer can then itself inform a passenger or the
 purchaser e.g. a travel agency about changes to its booking.
 
 The API consists of a set of **webhooks** that allow to send **events** about
@@ -39,7 +39,7 @@ promised. This includes delays of trains as well as service derogation (e.g.
 first class not available, ...).
 
 OSDM now provides an online API to submit a complaint for a booking which can be
-implemented by any retailor to digitize this process. See the `/complaints`
+implemented by any retailer to digitize this process. See the `/complaints`
 resources for details.
 
 ### Differentiate Between Passenger and Purchaser

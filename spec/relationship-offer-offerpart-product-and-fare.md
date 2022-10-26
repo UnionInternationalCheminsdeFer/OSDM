@@ -28,11 +28,11 @@ _Note_: This example assumes that the complete trip can be priced.
 
 ## Ways to Access Fares
 
-There are three ways for a retailor to access fares.
+There are three ways for a retailer to access fares.
 
 ### First Scenario: Complete Offline Import of Fares
 
-A retailor imports all fares of a given railway using a batch import from the
+A retailer imports all fares of a given railway using a batch import from the
 OSDM-Offline platform.
 
 The fares contain all relevant information to create offers, bookings and
@@ -41,8 +41,8 @@ fare sold using UIC 301.
 
 ### Second Scenario: Import of Relevant Fares at Offer Step
 
-At offer time, a retailor looks up the fares for a given origin/destination in
-its database. If it doesn't find it the retailor imports the relevant fares
+At offer time, a retailer looks up the fares for a given origin/destination in
+its database. If it doesn't find it the retailer imports the relevant fares
 online. If a booking occurs the RU informs the RU of the fare sold using
 UIC 301.
 
@@ -52,7 +52,7 @@ For a given origin/destination and date of travel the relevant fares are
 returned as part of the `Offer`.
 
 If the fare is sold as part of an offer then the fare is booked online at the
-offering retailor.
+offering retailer.
 
 ## Attributes of an Online Fare
 
@@ -60,7 +60,7 @@ offering retailor.
 
 ## Roles of Fare Attributes in the Booking and After Sales Processes
 
-The fare contains all information so that a retailor can calculate correct
+The fare contains all information so that a retailer can calculate correct
 prizes, render a valid fulfillment and account correctly.
 
 The following sections describe which fare attributes are used at which step:
@@ -75,19 +75,19 @@ Relevant fare attributes for the offer creation step are:
 
   Examples: a list of stations, a list of zones or a list of train link,...
 
-  A retailor needs to guarantee that the whole trip is covered by fares.
+  A retailer needs to guarantee that the whole trip is covered by fares.
 
 - `serviceConstraint`
 
   Examples: `IC`, `TGV`, `BEX`, ...
 
-  A retailor can create offers only if the trip/segment is run by the service.
+  A retailer can create offers only if the trip/segment is run by the service.
 
 - `carrierConstraint`
 
   Examples: Thalys, Eurostar, ...
 
-  A retailor can create offers only if the trip/segment is run by the carrier.
+  A retailer can create offers only if the trip/segment is run by the carrier.
 
 - `regulatoryConditions`
 
@@ -100,7 +100,7 @@ Relevant fare attributes for the offer creation step are:
 
   Examples: `HIGH`, `BEST`, `STANDARD` or `BASIC`
 
-  A retailor needs to consider `serviceClass` depending on the
+  A retailer needs to consider `serviceClass` depending on the
   `FareCombinationModel` applied.
 
   The service class needs to be indicated in the offer to inform the customer.
@@ -122,7 +122,7 @@ Relevant fare attributes for the offer creation step are:
 
   Example: Non-refundable after departure.
 
-  A retailor needs to consider `afterSalesCondition` depending on the
+  A retailer needs to consider `afterSalesCondition` depending on the
   `FareCombinationModel`applied.
 
   The refund/exchange conditions need to be indicated in the offer to inform the
@@ -133,13 +133,13 @@ Relevant fare attributes for the offer creation step are:
   Examples: `SEPARATE_CONTRACTS` model, `SEPARATE_TICKETS` model, `CLUSTERING`
   model or `COMBINATION` model
 
-  A retailor can only combine fares respecting the combination models.
+  A retailer can only combine fares respecting the combination models.
 
 - `fulfillmentConstraint`
 
   Examples: `SIP`, `SID` or `SIS`
 
-  A retailor can only create offers which respect the constraints concerning the
+  A retailer can only create offers which respect the constraints concerning the
   ticket control. If `fulfillmentConstraint` are mixed, then all constraints
   need to be served.
 
@@ -148,7 +148,7 @@ Relevant fare attributes for the offer creation step are:
   Example: `1085_GA` where 1085 denotes SBB, `1080_Bahncard50`, where 1080
   denotes DB, ...
 
-  A retailor can create offers only if the passenger(s) own(s) the reduction(s).
+  A retailer can create offers only if the passenger(s) own(s) the reduction(s).
 
 - `travelValidityConstraint`
 
@@ -162,14 +162,14 @@ Relevant fare attributes for the offer creation step are:
   Example: Selected places in a graphical seat map, reference place for adjacent
   reservation or place preferences
 
-  A retailor most respect the selected places. The other types are optional to
-  be respected by the retailor.
+  A retailer most respect the selected places. The other types are optional to
+  be respected by the retailer.
 
 - `coveredSection`
 
   Example: Start and end location
 
-  A retailor has to create an offer that covers the whole trip from start
+  A retailer has to create an offer that covers the whole trip from start
   location to end location.
 
 ### Booking Step
@@ -251,7 +251,7 @@ Relevant fare attributes for the creation of a refund offer are:
 
 - `afterSaleConditions`
 
-  A retailor can create offers only if the after sale condition support its
+  A retailer can create offers only if the after sale condition support its
   creation.
 
 ### Exchange Offer Creation Step

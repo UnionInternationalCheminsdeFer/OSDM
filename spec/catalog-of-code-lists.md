@@ -61,10 +61,10 @@ different types are an indication but not mandatory.
 Place Preference Group collects Place preferences where only one can be chosen
 of by the customer.
 
-| Code                    | Accommodation Sub Type | Place Preference | Place Property | Description         | Place Preference Group |
-| ----------------------- | ---------------------- | ---------------- | -------------- | ----------------------------------------------------------------------------------------------- | ---------------------- |
-| `AISLE`                 | N                      | Y                | Y              | Place at the aisle          | `PLACE_LOCATION`       |
-| `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area       |                        |
+| Code                    | Accommodation Sub Type | Place Preference | Place Property | Description                                                                                      | Place Preference Group |
+| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- | --- |
+| `AISLE`                 | N                      | Y                | Y              | Place at the aisle                                                                               | `PLACE_LOCATION`       |
+| `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area                                                                    |                        |
 | `ANY`                   | Y                      | N                | Y              | Indicates within a place preference group explicitely that the selection is optional             |                        |
 | `BISTRO`                | N                      | Y                | Y              | Places in a coach with self-service bistro                                                       |                        |
 | `BICYCLE`               | Y                      | Y                | Y              | Bicycle hook                                                                                     |                        |
@@ -444,7 +444,7 @@ Legacy reservation code defined in UIC 90918-1.
 | `UIC_PDF`      | PDF according to UIC Standard                                          |
 | `PDF_A4`       | proprietary A4 pdf format                                              |
 | `PKPASS`       | pkpass file format                                                     |
-| `RETAILOR_APP` | mobile ticket in retailor specific format to be loaded into mobile app |
+| `RETAILER_APP` | mobile ticket in retailer specific format to be loaded into mobile app |
 | `TICKETLESS`   | no ticket                                                              |
 
 ## Gender
@@ -458,8 +458,8 @@ Legacy reservation code defined in UIC 90918-1.
 ## Graphics Items
 
 | icon                                                             | description                                                           | icon code | orientation used | mounting used |
-| ---------------------------------------------------------------- | --------------------------------------------------------------------- | --------- | ---------------- | --- |
-| ![](../images/catalog-of-code-lists/graphics-icons/image001.png) | seat                                                                  | 1         | to right         | -             |  |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------- | --------- | ---------------- | ------------- | --- |
+| ![](../images/catalog-of-code-lists/graphics-icons/image001.png) | seat                                                                  | 1         | to right         | -             |     |
 | ![](../images/catalog-of-code-lists/graphics-icons/image002.png) | seat                                                                  | 1         | to left          | -             |     |
 | ![](../images/catalog-of-code-lists/graphics-icons/image003.png) | seat                                                                  | 1         | up               | -             |     |
 | ![](../images/catalog-of-code-lists/graphics-icons/image004.png) | seat                                                                  | 1         | bottom           | -             |     |
@@ -692,28 +692,25 @@ required.
 
 ## Public Transportation Modes (ptMode)
 
-  
-
 | PT Mode            | TAP TSI B.2.3 |
 | ------------------ | ------------- |
-| `BUS`              | 32 |
-| `COACH_GROUP`      | 31 |
-| `HIGH_SPEED_TRAIN` | 8 |
-| `HISTORIC_TRAIN`   | 16 |
-| `INTERCITY`        | 9 |
-| `REGIONAL`         | 11 |
-| `INTERREGIONAL`    | 10 |
-| `URBAN`            | 12 |
-| `TRAM`             | 35 |
-| `UNDERGROUND`      | 36 |
-| `NIGHT_TRAIN`      | 13 |
-| `SHARED_TAXI`      | 34 |
-| `MOTOR_RAIL`       | 14 |
-| `MOUNTAIN_TRAIN`   | 15 |
-| `PLANE`            | 3 |
-| `SHIP`             | 33 |
-| `TRAIN`            | 37 |
-  
+| `BUS`              | 32            |
+| `COACH_GROUP`      | 31            |
+| `HIGH_SPEED_TRAIN` | 8             |
+| `HISTORIC_TRAIN`   | 16            |
+| `INTERCITY`        | 9             |
+| `REGIONAL`         | 11            |
+| `INTERREGIONAL`    | 10            |
+| `URBAN`            | 12            |
+| `TRAM`             | 35            |
+| `UNDERGROUND`      | 36            |
+| `NIGHT_TRAIN`      | 13            |
+| `SHARED_TAXI`      | 34            |
+| `MOTOR_RAIL`       | 14            |
+| `MOUNTAIN_TRAIN`   | 15            |
+| `PLANE`            | 3             |
+| `SHIP`             | 33            |
+| `TRAIN`            | 37            |
 
 ## Point of Interest (POI)
 
@@ -931,7 +928,7 @@ Snapshot version, for the actual code list see
 ## Service Facilities
 
 | OSDM code                       | Description                                                                                                    | TAP-TSI code list | TAP-TSI code |
-| ------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------- | ---- |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------- | ------------ | --- | --- | --------------------------- | -------- | --- |
 |                                 | - classes -                                                                                                    |                   |              |
 | `FIRST_CLASS`                   | First class accommodation                                                                                      | B.4.7037          | 6            |
 | `SECOND_CLASS`                  | Second class accommodation                                                                                     | B.4.7037          | 7            |

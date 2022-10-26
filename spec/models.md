@@ -11,8 +11,8 @@ This page shows a representation of the data models underlying the API
 specifications. It is therefore not a strict representation of the resources
 themselves (those are self-represented in the OpenAPI specifications.)
 
-As such, some of the details of how the information is structured in the API
-are not represented or simplified in the data models. The main purpose of this data
+As such, some of the details of how the information is structured in the API are
+not represented or simplified in the data models. The main purpose of this data
 model is therefore to help a quicker understanding of the API and its underlying
 concepts.
 
@@ -63,14 +63,15 @@ to destination station.
 - **origin**: departure location of the tripLeg
 - **destination**: arrival location of the tripLeg
 
-A trip is composed of one or more `tripLegs` and can be of one the following type:
+A trip is composed of one or more `tripLegs` and can be of one the following
+type:
 
 - **TimedLeg**: A type of leg with a timetable schedule such a provided by
   public transport
-- **TransferLeg**: A type of leg that links two legs such as walking from
-  one stop to another
-- **ContinousLeg**: A type of leg that is not bound to a timetable. This
-  leg is mainly aimed at new modes such as scooter, taxis,..
+- **TransferLeg**: A type of leg that links two legs such as walking from one
+  stop to another
+- **ContinousLeg**: A type of leg that is not bound to a timetable. This leg is
+  mainly aimed at new modes such as scooter, taxis,..
 
 Each `tripLeg` (also sometimes called leg) represents a connection between two
 places where the traveller will either step in a transport or step out of a
@@ -96,18 +97,18 @@ A trip can be in states _planned_, _confirmed_, _changed_ or _cancelled_.
 
 ### Offers
 
-In the **Retail Mode**, offers represent a collection of `OfferParts`,
+In **Retailer Mode**, offers represent a collection of `OfferParts`,
 representing bookable elements that covers exactly one a specific trip (or the
-requested section of a trip in case of allocator request to an nTM Provider).
-Note that the offer contains a reference to the trip resource it is built for,
-although this reference can be redundant when the `TripOffer` the offer is part
-of is already known to the API consumer
+requested section of a trip in case of request to a FareProvider). Note that the
+offer contains a reference to the trip resource it is built for, although this
+reference can be redundant when the `TripOffer` the offer is part of is already
+known to the API consumer
 
 Some of these elements can be optional (see further).
 
-In the **Fare Mode**, an offer will not contain offer parts but it will
-contain a fare element, that the allocator can use to build the final product to be
-sold to travellers. There can also be hybrid situations where offers will
+In **Distributor Mode**, an offer will not contain offer parts but it will
+contain a fare element, that the distributor can use to build the final product
+to be sold to passengers. There can also be hybrid situations where offers will
 contain both offer parts and fares if the provider offers product in the two
 flavors.
 
@@ -117,19 +118,19 @@ information needed will be specified in the `requestedInformation` element using
 a notation akin to regular expressions.
 
 Offers should always contain a `minimalPrice` (= the price of the offer without
-any of the optional offer parts), a global service class and
-flexibility. Although the calculation rules for these global values are up to
-the OSDM provider, the following rules are recommended:
+any of the optional offer parts), a global service class and flexibility.
+Although the calculation rules for these global values are up to the OSDM
+provider, the following rules are recommended:
 
 - `ServiceClass`: the lowest class of a significant offer part should be the
   service class of the offer (1st class + 2nd class = 2nd class)
 
-- `Flexibility`: the lowest flexibility of a significant offer part should be the
-  service class of the offer (full flex + mid flex = mid flex)
+- `Flexibility`: the lowest flexibility of a significant offer part should be
+  the service class of the offer (full flex + mid flex = mid flex)
 
 Offers usually have a validity period, that is the period over which, from the
-fare conditions, the offer is likely to be proposed. It is not a guarantee
-that the offer remains available for that period
+fare conditions, the offer is likely to be proposed. It is not a guarantee that
+the offer remains available for that period
 
 Offer resources and all related resources (`TripOffers` and all sub resources)
 should have a limited lifetime (recommended value 30 minutes) and be discarded
@@ -137,23 +138,26 @@ when expired or at booking time.
 
 ### TripOffers
 
-`TripOffers` are the resources grouping all the offers relating to one same trip.
-Indeed, in most cases the **Allocator** provider will propose several offers of
-different comfort and flexibility levels. In this resources, the trip resource
-representing the trip the offers are for and the passengers for the trip.
+`TripOffers` are the resources grouping all the offers relating to one same
+trip. Indeed, in most cases the **Distributor** provider will propose several
+offers of different comfort and flexibility levels. In this resources, the trip
+resource representing the trip the offers are for and the passengers for the
+trip.
 
 #### Offers with Partial Coverage
 
-It is possible in OSDM to propose offers covering only a subset of the requested trip
-under specific conditions:
+It is possible in OSDM to propose offers covering only a subset of the requested
+trip under specific conditions:
 
-- the tripLegs covered by a given offer are indicated through the `coveredTripLegIndexes`
-  property
-- all offers covering the same set of tripLegs belong to the same `offerCluster`. All
-  offers related to the same `offerCluster` therefore have an identical set of `coveredTripLegIndexes`
-- a `tripLeg` can only be covered in one `offerCluster` within a `tripOffer` (no overlap)
-- each `tripLeg` of the `trip` must be covered by at least one `offer` in each `TripOffer`
-  (no gap)
+- the tripLegs covered by a given offer are indicated through the
+  `coveredTripLegIndexes` property
+- all offers covering the same set of tripLegs belong to the same
+  `offerCluster`. All offers related to the same `offerCluster` therefore have
+  an identical set of `coveredTripLegIndexes`
+- a `tripLeg` can only be covered in one `offerCluster` within a `tripOffer` (no
+  overlap)
+- each `tripLeg` of the `trip` must be covered by at least one `offer` in each
+  `TripOffer` (no gap)
 
 _Example with no overlap_
 
@@ -172,9 +176,9 @@ be sold.
 
 _Example_
 
-- A carrier proposes an "Early bird Holiday Fare" product for all its
-  high-speed trains riding towards the seaside of the country, offered when
-  sales date is at least 15 days prior to travel.
+- A carrier proposes an "Early bird Holiday Fare" product for all its high-speed
+  trains riding towards the seaside of the country, offered when sales date is
+  at least 15 days prior to travel.
 
 - Whenever an offer request is received and this fare can apply, an offer part
   is created and proposed, specifically to the date, origin and destination of
@@ -188,11 +192,11 @@ These offer parts can be of different type, depending on what they represent:
 - **Ancillaries**
 - **Fees**
 
-However, all these different type share a significant amount of
-characteristics: they all apply to a defined set of passengers, have a price
-(calculated individually or collectively), and a few additional attributes.
-They also fill in the same fundamental role in the offer, which is why they are
-represented here as an abstract parent class.
+However, all these different type share a significant amount of characteristics:
+they all apply to a defined set of passengers, have a price (calculated
+individually or collectively), and a few additional attributes. They also fill
+in the same fundamental role in the offer, which is why they are represented
+here as an abstract parent class.
 
 #### Multiplicity
 
@@ -201,12 +205,12 @@ products generated. This means that one offer part will almost always equal one
 fulfillment in the resulting booking, should it be completely realized and
 confirmed.
 
-So, two passengers travelling together happen to get exactly the same product
-(because their profile is identical in terms of age, reductions etc), will
-still get two individual offer parts (one per passenger) if the product covered
-has individual pricing and fulfillment, while they would be grouped in one
-offer part in case of collective pricing and fulfillment. (see examples at the
-end of the offer section)
+So, two passengers traveling together happen to get exactly the same product
+(because their profile is identical in terms of age, reductions etc), will still
+get two individual offer parts (one per passenger) if the product covered has
+individual pricing and fulfillment, while they would be grouped in one offer
+part in case of collective pricing and fulfillment. (see examples at the end of
+the offer section)
 
 ### Offer Parts - Admissions
 
@@ -215,40 +219,39 @@ onboard a train between the given origin and destination, following the given
 route, without a seat reservation. In most cases, these train products will not
 be train-bound either.
 
-In some vehicles, seat reservations or an ancillary products (such as a
-WIFI connection or a meal onboard) can  be associated with the admission for
-one or more of the tripLegs. A link will in this case point from the admission
-to the reservations or ancillaries, and the link will be qualified. Ancillaries
-can be either included or optional, while reservation can also be mandatory to
-travel. Finally there can be a cases where all reservations associated are
-optional while it is mandatory to pick at least one (it can be the case for
-night trains for example). In this case the reservations will all be qualified
-as optional, but the reservationRequired flag of the admission will be set to
-true.
+In some vehicles, seat reservations or an ancillary products (such as a WIFI
+connection or a meal onboard) can  be associated with the admission for one or
+more of the tripLegs. A link will in this case point from the admission to the
+reservations or ancillaries, and the link will be qualified. Ancillaries can be
+either included or optional, while reservation can also be mandatory to travel.
+Finally there can be a cases where all reservations associated are optional
+while it is mandatory to pick at least one (it can be the case for night trains
+for example). In this case the reservations will all be qualified as optional,
+but the reservationRequired flag of the admission will be set to true.
 
 ### Offer Parts - Reservations
 
 Reservation offer parts represent seat or other accommodation type reservation
-on the transportation. It might contain multiple seats/places. In contrast with admissions, a reservation is in essence
-bound to a specific train, although it does not include the
-entitlement to board the train. Travellers therefore typically need an a
-associated admission offer part or other entitlement (such as a pass)  in order
-to actually travel.
+on the transportation. It might contain multiple seats/places. In contrast with
+admissions, a reservation is in essence bound to a specific train, although it
+does not include the entitlement to board the train. Passengers therefore
+typically need an a associated admission offer part or other entitlement (such
+as a pass)  in order to actually travel.
 
 Note booking an offer will not book the reservations in the offer unless they
-have an `included` relationship with an admission of that offer. In order to
-add a non-included reservation to a booking, the reservation ids will have to
-be passed in.
+have an `included` relationship with an admission of that offer. In order to add
+a non-included reservation to a booking, the reservation ids will have to be
+passed in.
 
 Reservations have several additional attributes due to their specificities
 compared to admission products:
 
-- Reservation Details provide additional information on the accommodation type and,
-  once the offer will have been booked, the exact reserved places, with their
-  properties and links to the concerned passengers
+- Reservation Details provide additional information on the accommodation type
+  and, once the offer will have been booked, the exact reserved places, with
+  their properties and links to the concerned passengers
 
-- Place selection Details: contains several elements related to the selection
-  of places:
+- Place selection Details: contains several elements related to the selection of
+  places:
 
   - `placeSelection/ReservationOptions` show, at offer retrieval stage which
     options are available for this reservation.
@@ -266,18 +269,18 @@ mandatory (but not free) reservation remains the same regardless of the number
 of reservations actually booked. In order to represent this type of reservation
 with the current model, two approaches are proposed to implementers:
 
-- Generate two distinct offers: one with all (available) reservations proposed as
-  included, the lump sum for the reservations being integrated in the admission
-  price. In this approach it is assumed that a passenger will always book all
-  available reservation, since the price is the same anyway. This approach also
-  allows to not propose a reservation if there is none available on one of the
-  tripLeg, while still offering the offer for the complete trip with reservations
-  on all tripLegs where it is available
+- Generate two distinct offers: one with all (available) reservations proposed
+  as included, the lump sum for the reservations being integrated in the
+  admission price. In this approach it is assumed that a passenger will always
+  book all available reservation, since the price is the same anyway. This
+  approach also allows to not propose a reservation if there is none available
+  on one of the tripLeg, while still offering the offer for the complete trip
+  with reservations on all tripLegs where it is available
 
-- Propose all reservations as optional reservations with an identical unit
-  price equals to 0 or to the reservation lump sum, associated with specific
-  information in the product conditions or the offer messages. At booking time, a
-  price update (increase or decrease) is then applied so that the lump sum is
+- Propose all reservations as optional reservations with an identical unit price
+  equals to 0 or to the reservation lump sum, associated with specific
+  information in the product conditions or the offer messages. At booking time,
+  a price update (increase or decrease) is then applied so that the lump sum is
   counted once and only once, associated with a booking message warning that the
   price update took place.
 
@@ -298,16 +301,16 @@ Fees are used to represent additional costs for services or products. Offer
 parts of type "fee" can be applied to the booking process (e.g. a service fee),
 the trip (e.g. a reservation fee which is applied to all reservations in trains
 running in the same direction, namely outward or inward travel) or other offer
-parts. In contrast to other offer parts in OSDM, the customer is not free whether
-to choose a fee or not: fees are generated and applied to other services or
-products by the provider system.
+parts. In contrast to other offer parts in OSDM, the customer is not free
+whether to choose a fee or not: fees are generated and applied to other services
+or products by the provider system.
 
 ### Products
 
-Products are the products actually offered by the distributor. Products resources contain all the
-conditions and attributes of the product, regardless of the actual sale case.
-Typically this matches commercial products having the same name and
-recognizable common sales & after sales characteristics.
+Products are the products actually offered by the distributor. Products
+resources contain all the conditions and attributes of the product, regardless
+of the actual sale case. Typically this matches commercial products having the
+same name and recognizable common sales & after sales characteristics.
 
 Although no manipulation is performed on products, it is nevertheless proposed
 as a resource mainly to allow caching of the information. Indeed, since product
@@ -320,37 +323,39 @@ that.
 ### Fares
 
 Fares should be seen as the counter part of `OfferParts` in case of interactions
-between an allocator and a fare provider. The key difference here
-is that where offer parts are products defined by the provider and fulfilled by
-it as well, the fares do not constitute a distributable product. It is up to
-the distributor to build the distributable product (that he could then sell
-as an offer part to a retailer), based on one single fare or by combining
-fares coming from different providers. In consequence, the fulfillment of the
-resulting product is the responsibility of the allocator as well.
+between an distributor and a fare provider. The key difference here is that
+where offer parts are products defined by the provider and fulfilled by it as
+well, the fares do not constitute a distributable product. It is up to the
+distributor to build the distributable product (that he could then sell as an
+offer part to a retailer), based on one single fare or by combining fares coming
+from different providers. In consequence, the fulfillment of the resulting
+product is the responsibility of the distributor as well.
 
-Distriution systems which also act as retilers might 
-encapsulating both fares and offer parts in offers allowing to have a similar
-flow of interactions regardless of the type of provider.
+Distribution systems which also act as retailers might encapsulating both fares
+and offer parts in offers allowing to have a similar flow of interactions
+regardless of the type of provider.
 
-Fares provide all information needed to be combined by an distributor and to allow an
-allocator to create fulfillments and support of control processes (e.g. providing combined
-control data to the TCOs). This especially includes the temporal and regional validity
-for travel. The rules on how to combine the fares (combination constraints)
-must also be included in the fare.
+Fares provide all information needed to be combined by an distributor and to
+allow an distributor to create fulfillments and support of control processes
+(e.g. providing combined control data to the TCOs). This especially includes the
+temporal and regional validity for travel. The rules on how to combine the fares
+(combination constraints) must also be included in the fare.
 
 #### Regional Validity Route model
 
-The route in fares is modeled as a structural model to allow additional functionalities including automated ticket control or validation of new trips with the described route.
-The model is compliant with the route model used in the FCB bar code data and the
-IRS 90918-4 ticket data exchange for control.
+The route in fares is modeled as a structural model to allow additional
+functionalities including automated ticket control or validation of new trips
+with the described route. The model is compliant with the route model used in
+the FCB bar code data and the IRS 90918-4 ticket data exchange for control.
 
-The data model makes use of recursive definitions to simplify implementations but the
-message contains a non-recursive representation of the data where recursive links have
-been replaced by a reference to an index in a list.
+The data model makes use of recursive definitions to simplify implementations
+but the message contains a non-recursive representation of the data where
+recursive links have been replaced by a reference to an index in a list.
 
 ![Route data model](../images/models/OSDM-model-Routes-online.png)
 
-For the following example object models are shown for the message representation and the recursive model:
+For the following example object models are shown for the message representation
+and the recursive model:
 
 ![Route example](../images/fare-data-structure/viaExample.PNG)
 
@@ -390,11 +395,12 @@ In the railway world, several elements are used to define a passenger profile
 - the passenger's age
 - the reduction cards the passenger owns
 - whether the passenger is a reduced-mobility or otherwise disabled passenger
-- other specific status entitling to specific fares (military, senator, journalist...)
+- other specific status entitling to specific fares (military, senator,
+  journalist...)
 
-While in some systems, all the notions above are mixed into one "passenger
-type" notion, this approach is much more difficult, and cumbersome, to apply
-when multiple providers are involved, which is highly likely with OSDM. Indeed,
+While in some systems, all the notions above are mixed into one "passenger type"
+notion, this approach is much more difficult, and cumbersome, to apply when
+multiple providers are involved, which is highly likely with OSDM. Indeed,
 different systems often have different age limits for types, and different ways
 to represent the other elements. For this reason, in OSDM we decide to map the
 elements above to two kinds of attributes:
@@ -403,14 +409,14 @@ elements above to two kinds of attributes:
   birth date. Each implementer is then free to map this value to the age-related
   passenger types he is using internally
 
-- Some attributes related to passengers disabilities (for accommodation
-  purposes mainly)
+- Some attributes related to passengers disabilities (for accommodation purposes
+  mainly)
 
 - All other notions are modelled as reductions. Again, each implementer can map
   internally this clearly defined notion to the internal representation.
 
-The presentation hereunder provides some additional examples of high-level
-offer modelings for pure-OSDM offers.
+The presentation hereunder provides some additional examples of high-level offer
+modelings for pure-OSDM offers.
 
 ## Booking
 
@@ -431,29 +437,29 @@ evolve over time based on API consumer actions, time elapsed or other business
 events.
 
 The booking also contains additional attributes that are needed to manage and
-control the confirmation of the booking when it is in provisional state, such
-as the ticket time limit or the fulfillment options.The ticket time limit is
-the time during which the booking is guaranteed to remain available for
-confirmation for the price and possible reservations assigned at provisional
-booking time. Basically, it is the time given to the API consumer to perform
-all updates needed to confirm the booking, and trigger that confirmation.
+control the confirmation of the booking when it is in provisional state, such as
+the ticket time limit or the fulfillment options.The ticket time limit is the
+time during which the booking is guaranteed to remain available for confirmation
+for the price and possible reservations assigned at provisional booking time.
+Basically, it is the time given to the API consumer to perform all updates
+needed to confirm the booking, and trigger that confirmation.
 
 At the root of the booking structure, two balance elements are provided to
 clarify the state of the financial exchange between a Retailer and the
 Distributor:
 
-- conditional balance is the balance of the booking that is not confirmed. It
-  is the amount that will be due to the provider if the booking is further
+- conditional balance is the balance of the booking that is not confirmed. It is
+  the amount that will be due to the provider if the booking is further
   confirmed.
 
 - confirmed balance: is the balance of the booking that is confirmed. Unless
   after sales takes place on one or more fulfillments in the booking, this
   amount now must be paid to the provider.
 
-Also located at the root of the booking structure is the ticket time limit.
-This is the time for which the provider will hold a booking in pre-booked
-state, waiting for the confirmation while guaranteeing the booking for the
-given products, spaces at the announced price. Obviously, this value only has a
+Also located at the root of the booking structure is the ticket time limit. This
+is the time for which the provider will hold a booking in pre-booked state,
+waiting for the confirmation while guaranteeing the booking for the given
+products, spaces at the announced price. Obviously, this value only has a
 meaning for a booking in pre-booked state. A commonly accepted value would be
 around 30 minutes, which is normally sufficient to allow finalizing the
 booking,while not monopolizing resources too long in case the booking is
@@ -471,35 +477,36 @@ contact in case of changes to the booking primary.
 
 A purchaser does not need to travel thus is not necessary a passenger.
 
-Common attributes of a passenger and a passenger are factored in the person entity.
+Common attributes of a passenger and a passenger are factored in the person
+entity.
 
 ### BookedOffers
 
-`BookedOffers` are actually the same resources as the offers except that they are
-now booked. Most of the resource remains unchanged, except for the sections on
-reservation details (either in reservation `Offerpart`s, or in fares), where
-but the sections related to the reserved places (in reservationDetails) will
-now be populated with the references to the space allocated by the provider
-system where the transport product is hosted.
+`BookedOffers` are actually the same resources as the offers except that they
+are now booked. Most of the resource remains unchanged, except for the sections
+on reservation details (either in reservation `Offerpart`s, or in fares), where
+but the sections related to the reserved places (in reservationDetails) will now
+be populated with the references to the space allocated by the provider system
+where the transport product is hosted.
 
 ### Fulfillments
 
 `Fulfillments` could once have been called tickets. But the evolutions in the
-industry have led this to be a limitative naming, as various kinds of
-ticketless onboard controls are rapidly taking over and become the norm rather
-than the exception. Since in OSDM only the sales part of the process is
-in scope, the details of how to produce or control fulfillment are not covered.
-From a distribution standpoint, the only needs are
+industry have led this to be a limitative naming, as various kinds of ticketless
+onboard controls are rapidly taking over and become the norm rather than the
+exception. Since in OSDM only the sales part of the process is in scope, the
+details of how to produce or control fulfillment are not covered. From a
+distribution standpoint, the only needs are
 
 The possibility to point at a fulfillment representing an offer part (= the id)
 for after sales operations. The capability to link this fulfillment to that
-associated offer part they relate to. A business identifier that can be used
-in associated processes. For railways, that would be the Ticket Control Number
+associated offer part they relate to. A business identifier that can be used in
+associated processes. For railways, that would be the Ticket Control Number
 (TCN).
 
-Links to the documents or other security features that can be used to
-represent and control fulfillment status. In most case it is a PDF document
-and/or a barcode. These are all provided in the fulfillment sub resource.
+Links to the documents or other security features that can be used to represent
+and control fulfillment status. In most case it is a PDF document and/or a
+barcode. These are all provided in the fulfillment sub resource.
 
 ### Passengers
 
@@ -518,42 +525,43 @@ subset of the fulfillments contained in a booking.
 
 ### ExchangeOperations
 
-An exchange operations represent an ongoing exchange process, either in provisional
-state of in confirmed state (depending on its status). Much like a provisional booking,
-a provisional exchange contains the provisionally selected (new) Exchange Offer, a
-status and a ticket-time-limit. In addition, it also contains a reference to the
-fulfillments that are involved in the exchange, and will be cancelled as a result
-of its confirmation. Confirmed exchange operations are very similar, except for
-their status that will change, obviously, and the fact that the exchangeOffer is
-then transformed into a booked Offer in the booking and only referenced in the
-exchangeOperation
+An exchange operations represent an ongoing exchange process, either in
+provisional state of in confirmed state (depending on its status). Much like a
+provisional booking, a provisional exchange contains the provisionally selected
+(new) Exchange Offer, a status and a ticket-time-limit. In addition, it also
+contains a reference to the fulfillments that are involved in the exchange, and
+will be cancelled as a result of its confirmation. Confirmed exchange operations
+are very similar, except for their status that will change, obviously, and the
+fact that the exchangeOffer is then transformed into a booked Offer in the
+booking and only referenced in the exchangeOperation
 
 ## Exchange Offers
 
 The exchange offers (and related models such as exchangeTripOffers) are totally
-similar to their offer counterpart, with the difference that ExchangeOffers
-also have a link to the fulfillments involved in the exchange operation, and
-also have 2 additional attributes for the exchange fee and exchange balance
-(= the difference between the value that can be returned form the fulfillment
-and the value of the current offers + the exchange fees = the total amount
-to be paid or refunded if/when confirming the exchange)
+similar to their offer counterpart, with the difference that ExchangeOffers also
+have a link to the fulfillments involved in the exchange operation, and also
+have 2 additional attributes for the exchange fee and exchange balance (= the
+difference between the value that can be returned form the fulfillment and the
+value of the current offers + the exchange fees = the total amount to be paid or
+refunded if/when confirming the exchange)
 
 ## Complaint
 
 A complaint can be filed by a passenger in case of delay/disruption or service
-derogation for a booking or parts of it (e.g. in case of a return trip).
-A passenger can provide documentation to support the claim (e.g. scanned manual
+derogation for a booking or parts of it (e.g. in case of a return trip). A
+passenger can provide documentation to support the claim (e.g. scanned manual
 remark of train staff) and it must able to lookup the status of the claim made.
 
 If a claim is accepted or rejected the system that made the request must be
 informed. The accepted or rejected claim must provide an explanation for the
 decision especially if the amount covers the ticket price only partially.
 
-## Reimbourcement
+## Reimbursement
 
-A reimbourcement can be filed by a passenger in case his booked tariffs allows for a refund on unused or partially unused tickets.
-A passenger can provide documentation to support the request (e.g. scanned manual
-remark of train staff) and he must able to lookup the status of the request made.
+A reimbursement can be filed by a passenger in case his booked tariffs allows
+for a refund on unused or partially unused tickets. A passenger can provide
+documentation to support the request (e.g. scanned manual remark of train staff)
+and he must able to lookup the status of the request made.
 
 If a request is accepted or rejected the system that made the request must be
 informed. The accepted or rejected request must provide an explanation for the
@@ -561,24 +569,26 @@ decision especially if the amount covers the ticket price only partially.
 
 ## Release
 
-A release of a booking is an intermediate step toward a refund. It invalidates tickets and 
-frees booked resources (e.g. reserved places on a train). The release does not 
-refund money to the customer and thus can be made by another party involved. The 
-refund is then completed by the original retailer. The benefit for the customer is that the time 
-of the release is used to calculate the refund amount.
+A release of a booking is an intermediate step toward a refund. It invalidates
+tickets and frees booked resources (e.g. reserved places on a train). The
+release does not refund money to the customer and thus can be made by another
+party involved. The refund is then completed by the original retailer. The
+benefit for the customer is that the time of the release is used to calculate
+the refund amount.
 
 ## Putting bookings on Hold
 
-An unconfirmed booking expires after the time limit of the preebooking. It is possible to ask for an extension 
-of the time limit and the provider might grant the extension. He has the option to add a fee for this extension.
+An unconfirmed booking expires after the time limit of the pre-booking. It is
+possible to ask for an extension of the time limit and the provider might grant
+the extension. He has the option to add a fee for this extension.
 
 ## State Models
 
 ### Trip State Model
 
-The state `PLANNED` is relevant for trips on touristic trains or if trains only run
-if a certain amount of bookings have been made. If the the trip is confirmed, the
-purchaser can be informed using the webhook API.
+The state `PLANNED` is relevant for trips on touristic trains or if trains only
+run if a certain amount of bookings have been made. If the the trip is
+confirmed, the purchaser can be informed using the webhook API.
 
 ![Trip State Model](../images/models/trip-state-model.png)
 
@@ -592,8 +602,8 @@ purchaser can be informed using the webhook API.
 
 ### Fulfillment State Model with Activation
 
-In case of multi-journey products, a fulfillment needs to be activated before, thus
-it changes from `AVAILABLE` to `FULFILLED`.
+In case of multi-journey products, a fulfillment needs to be activated before,
+thus it changes from `AVAILABLE` to `FULFILLED`.
 
 ![Fulfillment State Model](../images/models/fulfillment-state-model-with-activation.png)
 

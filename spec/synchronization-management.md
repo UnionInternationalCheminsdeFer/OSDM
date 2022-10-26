@@ -9,7 +9,7 @@ permalink: /spec/synchronization/
 
 For carriers or distributors to inform retailers about changes in a trip or a
 booking, we have added an API that a carrier or distributor system can inform a
-retailer about that fact, that a trip or a booking has changed. The retailor can
+retailer about that fact, that a trip or a booking has changed. The retailer can
 then itself inform a passenger or the purchaser e.g. a travel agency about
 changes to the trip, the booking or the complaint.
 

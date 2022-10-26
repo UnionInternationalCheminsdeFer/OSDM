@@ -1,13 +1,13 @@
 <mxfile host="65bd71144e">
     <diagram id="e1bqsqc4w4gOOXVEwcEt" name="Seite-1">
-        <mxGraphModel dx="1019" dy="609" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="1040" dy="530" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="MhyNpJ7-BG37_3553kRq-2" value="Client" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
                     <mxGeometry x="120" y="325" width="30" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="MhyNpJ7-BG37_3553kRq-3" value="Retailor" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                <mxCell id="MhyNpJ7-BG37_3553kRq-3" value="Retailer" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
                     <mxGeometry x="240" y="320" width="120" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="MhyNpJ7-BG37_3553kRq-5" value="Distributor A" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
@@ -19,7 +19,7 @@
                 <mxCell id="MhyNpJ7-BG37_3553kRq-8" value="Client" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
                     <mxGeometry x="120" y="570" width="30" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="MhyNpJ7-BG37_3553kRq-9" value="Retailor" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                <mxCell id="MhyNpJ7-BG37_3553kRq-9" value="Retailer" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
                     <mxGeometry x="240" y="560" width="120" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="MhyNpJ7-BG37_3553kRq-10" value="Distributor A" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
@@ -31,7 +31,7 @@
                 <mxCell id="MhyNpJ7-BG37_3553kRq-13" value="Cleint" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
                     <mxGeometry x="120" y="930" width="30" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="MhyNpJ7-BG37_3553kRq-14" value="Retailor" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                <mxCell id="MhyNpJ7-BG37_3553kRq-14" value="Retailer" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
                     <mxGeometry x="240" y="920" width="120" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="MhyNpJ7-BG37_3553kRq-15" value="Distributor A" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#b85450;fillColor=#f8cecc;" parent="1" vertex="1">
@@ -64,7 +64,7 @@
                         <mxPoint x="560" y="1200" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="MhyNpJ7-BG37_3553kRq-26" value="Response Time&lt;br&gt;Retaitor" style="endArrow=classic;startArrow=classic;html=1;" parent="1" edge="1">
+                <mxCell id="MhyNpJ7-BG37_3553kRq-26" value="Response Time&lt;br&gt;Retaiter" style="endArrow=classic;startArrow=classic;html=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="240" y="1200" as="sourcePoint"/>
                         <mxPoint x="360" y="1200" as="targetPoint"/>
@@ -88,7 +88,7 @@
                 <mxCell id="MhyNpJ7-BG37_3553kRq-32" value="Scenario One Distributor - Multiple Fare Providers" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontStyle=1;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="80" y="460" width="360" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="MhyNpJ7-BG37_3553kRq-34" value="Scenario Multiple Distributors - Multiple Fare Provider" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                <mxCell id="MhyNpJ7-BG37_3553kRq-34" value="Scenario Multiple Distributors - Multiple Fare Providers" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontStyle=1;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="80" y="740" width="400" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="MhyNpJ7-BG37_3553kRq-35" value="E.g:. öBB sells Garnisch-Partenkirchen - Innsbruck" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" parent="1" vertex="1">
