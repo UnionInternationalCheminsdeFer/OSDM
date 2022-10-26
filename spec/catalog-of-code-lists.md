@@ -5,13 +5,14 @@ hide_hero: true
 permalink: /spec/catalog-of-code-lists/
 ---
 
-The mandatory code lists on enums and extensible enums are provided within the schema files.
+The mandatory code lists on enums and extensible enums are provided within the
+schema files.
 
 ## URNs for code lists
 
 | Code List                 | Name Space and domain | CodeList       | Description                                                                                                                                          | example                    | base path for relative references |
 | ------------------------- | --------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | --------------------------------- |
-| stations                  | `urn:uic`             | `stn`          | UIC station codes (TAP-TSI retail station codes)                                                                                                                          | `urn:uic:stn:8512345`      | `urn:uic:stn:`                    |
+| stations                  | `urn:uic`             | `stn`          | UIC station codes (TAP-TSI retail station codes)                                                                                                     | `urn:uic:stn:8512345`      | `urn:uic:stn:`                    |
 | service brands , products | `urn:uic`             | `sbc`          | UIC service brand code (TAP-TSI B.4.7009 / https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)                       | `urn:uic:sbc:17`           | `urn:uic:sbc:`                    |
 | companies                 | `urn:uic`             | `rics:ac`      | company code (TAP-TSI https://www.era.europa.eu/registers/ocr_en / https://uic.org/support-activities/it/rics) and optional administration code (AC) | `urn:uic:rics:1080:000011` | `urn:uic:rics:`                   |
 | countries                 | `urn:iso`             | `std:iso:3166` | ISO Country Codes                                                                                                                                    | `urn:iso:std:iso:3166:CH`  | `urn:iso:std:iso:3166:`           |
@@ -170,8 +171,8 @@ of by the customer.
 
 ## BarcodeType
 
-| Code      | Description                                                                                                      |
-| --------- | ---------------------------------------------------------------------------------------------------------------- |
+| Code      | Description                                                                                                                     |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `FCB`     | Flexible Content Barcode - See IRS 90918-9 / TAP TSI B.12                                                                       |
 | `TLB`     | Ticket Layout Barcode - See IRS 90918-9 / TAP TSI B.12                                                                          |
 | `SSB`     | Small Structured Barcode - See IRS 90918-9 / TAP TSI B.12                                                                       |
@@ -390,8 +391,8 @@ See code
 
 ## ControlDataExchangeType
 
-| Code        | Description                                             |
-| ----------- | ------------------------------------------------------- |
+| Code        | Description                                                            |
+| ----------- | ---------------------------------------------------------------------- |
 | `REGISTRY`  | See IRS 90918-4 / TAP TSI B.14, data are delivered to the UIC registry |
 | `PEER2PEER` | See IRS 90918-4 / TAP TSI B.14, data are exchange peer 2 peer          |
 
@@ -410,11 +411,11 @@ Currency codes used in OSDM are based on the
 
 ## FareType
 
-| Code        | Description                      |
-| ----------- | -------------------------------- |
-| `ADMISSION`   | transport contract             |
-| `RESERVATION` | seat allocation might include a supplement     |
-| `ANCILLARY` | ancillary                        |
+| Code          | Description                                |
+| ------------- | ------------------------------------------ |
+| `ADMISSION`   | transport contract                         |
+| `RESERVATION` | seat allocation might include a supplement |
+| `ANCILLARY`   | ancillary                                  |
 
 ## Fare CoachType
 
@@ -559,11 +560,11 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
 ## Interface Type
 
-| Code                            | Description                                                         |
-| ------------------------------- | ------------------------------------------------------------------- |
+| Code                            | Description                                                                              |
+| ------------------------------- | ---------------------------------------------------------------------------------------- |
 | `IRS90918_1_RESERVATION_BINARY` | Reservation interface according to IRS90918-1 binary message format / TAP TSI B.1 binary |
-| `IRS90918_1_RESERVATION_XML`    | Reservation interface according to IRS90918-1 XML message format    / TAP TSI B.5 soap |
-| `OSDM`                          | OSDM API                                                            |
+| `IRS90918_1_RESERVATION_XML`    | Reservation interface according to IRS90918-1 XML message format / TAP TSI B.5 soap      |
+| `OSDM`                          | OSDM API                                                                                 |
 
 ## Language
 
@@ -690,8 +691,7 @@ required.
 
 ## Public Transportation Modes (ptMode)
 
- see Transport Modes
-
+see Transport Modes
 
 ## Point of Interest (POI)
 
@@ -1101,25 +1101,25 @@ reproduced.
 Corresponding to numerical codes in TAP-TSI (B.2.3) / UIC
 (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
 
-| Code               | Description                                                    | TAP-TSI Code B.2.3          |
-| ------------------ | -------------------------------------------------------------- | --------------------------- |
-| `HIGH_SPEED_TRAIN` |                                                                | 8                           |
-| `HISTORIC_TRAIN`   |                                                                | 16                          |
-| `INTERCITY`        |                                                                | 9                           |
-| `REGIONAL`         |                                                                | 11                          |
-| `INTERREGIONAL`    |                                                                | 10                          |
-| `TRAIN`            |                                                                | 37                          |
-| `URBAN`            |                                                                | 12                          |
-| `TRAM`             |                                                                | 35                          |
-| `UNDERGROUND`      |                                                                | 36                          |
-| `NIGHT_TRAIN`      |                                                                | 13                          |
-| `SHARED_TAXI`      |                                                                | 34                          |
-| `MOTOR_RAIL`       | Car carriage trains                                            | 13                          |
-| `MOUNTAIN_TRAIN`   |                                                                | 15                          |
-| `PLANE`            |                                                                | 3                           |
-| `COACH_GROUP`      | Group of coaches included in multiple trains (through coaches) | 31                          |
-| `SHIP`             |                                                                | 33                          |
-| `BUS`              |                                                                | 32                          |
+| Code               | Description                                                    | TAP-TSI Code B.2.3 |
+| ------------------ | -------------------------------------------------------------- | ------------------ |
+| `HIGH_SPEED_TRAIN` |                                                                | 8                  |
+| `HISTORIC_TRAIN`   |                                                                | 16                 |
+| `INTERCITY`        |                                                                | 9                  |
+| `REGIONAL`         |                                                                | 11                 |
+| `INTERREGIONAL`    |                                                                | 10                 |
+| `TRAIN`            |                                                                | 37                 |
+| `URBAN`            |                                                                | 12                 |
+| `TRAM`             |                                                                | 35                 |
+| `UNDERGROUND`      |                                                                | 36                 |
+| `NIGHT_TRAIN`      |                                                                | 13                 |
+| `SHARED_TAXI`      |                                                                | 34                 |
+| `MOTOR_RAIL`       | Car carriage trains                                            | 13                 |
+| `MOUNTAIN_TRAIN`   |                                                                | 15                 |
+| `PLANE`            |                                                                | 3                  |
+| `COACH_GROUP`      | Group of coaches included in multiple trains (through coaches) | 31                 |
+| `SHIP`             |                                                                | 33                 |
+| `BUS`              |                                                                | 32                 |
 
 ## TimeReference
 
