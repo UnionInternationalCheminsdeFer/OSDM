@@ -9,87 +9,50 @@ permalink: /releases/OSDM-release-notes-v2.0/
 
 The following features have been added with version 2.0 of OSDM.
 
-...
+- Unified resource for trip based offers and non-trip based offers
+- Separate resource to retrieve availabilities for seats, couchettes,... 
+- Change of seat, couchette,..  in the booked offer
+- Option to extend the booking time limit (OnHold)
+- Option to release tickets as an intermediate step for a refund
+- Option to cancel a fulfillemnt
+- Reimbourcement of unused tickets
+- Booking Search
 
-### Booking Synchronization
 
-If there is change in a trip or a booking, we have added an API that a carrier
-or distributor system can inform a retailor about that fact, that a trip or a
-booking has changed. The retailor can then itself inform a passenger or the
-purchaser e.g. a travel agency about changes to its booking.
+### Unified Trip-Offer and Non-Trip-Offer Search
 
-The API consists of a set of **webhooks** that allow to send **events** about
-changes which involve e.g. _trip cancelled_, _booking cancelled_ or _seat
-changed_. See [Booking Synchronization](../../spec/synchronization) for details.
+The resource to request offers is now the same fr trip-based offers and non-trip-based offers.
 
-### Added A Getting Started Tutorial
+### New resource to retrieve availabilities for reservations
 
-The OSDM API is feature rich. The reason for its richness is that OSDM aims to
-cover all possible public transportation products and distribution processes
-within Europe and beyond.
+The resource to retrieve availilities for reservations (free seats, available seat type,..) is now separate from the booking. 
+The bookingId is a parameter that limits the available seats to thiose compliant with the booking.
 
-Nevertheless the complete booking flow consist of **three simple REST calls**
-only, same for refund. To help you getting started we have added a
-[Getting Started Tutorial](../../spec/getting-started) that gets you up to speed
-in no time.
+### Change of seats
 
-### Added Support for Paperless Complaint Management
+Changing the seat in a reservation has been made possible within a reservation in a booking. 
 
-For a customer it must be possible to submit a claim for a booking or parts of
-it (e.g. in case of a return trip) where the service has not been provided as
-promised. This includes delays of trains as well as service derogation (e.g.
-first class not available, ...).
+### Extending the booking time limit
 
-OSDM now provides an online API to submit a complaint for a booking which can be
-implemented by any retailor to digitize this process. See the `/complaints`
-resources for details.
+It is now possible to offer an extension of the bookiung time limit for an unconfirmed booking. This offer might come with a fee.
 
-### Differentiate Between Passenger and Purchaser
+### Release bookings
 
-Especially for travel agencies or the B2B business center it's important to
-distinguish between _purchaser_ and _passenger_. I.e., a purchaser is not always
-a passenger. Thus, we have added the `purchaser` the API.
+It is now possible to release bookings as a preliminary step to a refund. This step invaliadtes the tickets and frees resources such as seats. 
+It fixes the time stamp used to calculate refund fees. The refund of money to the customer is not part of the release step.
 
-### Add Constraints on Allowed Journey Interruptions
+### Cancel fulfillment
 
-If an open ticket has constraints on how often a journey can be interrupted this
-fact can now be expressed in the Offline as well as Online Fare data.
+It is now possible to cancel and redo a fulfillment.
 
-### Add Constraints on Multi-Journey Products
+### Reimbourcement
 
-With this version, multi-journey products can be expressed.
+The reimbourcement of unused tickets has been added implementing a similar work flow as for claims.
 
-### Improved OJP Support
+### Booking Search
 
-The `LegBoard`, `LegIntermediates` and `LegBoard` entities have been added
-according to the
-[Open Journey Planning (OJP)](https://www.transmodel-cen.eu/ojp-standard/)
-specification.
+A seach for bookings was added.
 
-### Reduction Cards are Available to Ticket Vendors
-
-Reduction cards are now available to ticket vendors to be used for selecting the
-cards for requests and in customer profiles. See `/masterdata/reductionCards`
-for details.
-
-### Add the Responsible TCOs in the Booking Data
-
-New we can support cases where the ticket control organization (TCO) to control
-tickets is different from the fare provider.
-
-### Option to Indicate CarrierConstraints at the Level of `RegionalValidity` and `ViaStation`
-
-This feature on the OSDM offline part of the specification allow to indicate
-CarrierConstraints at the level of RegionalValidity and ViaStation in the fare.
-
-### Travel Validity Depending on Boarding Time Only
-
-Some special tickets define a travel validity based on the boarding time only.
-These tickets are the valid on that train until the passenger leaves the train.
-
-E.g. Eurail tickets on specific night trains where the Eurail ticket must be
-valid at boarding time only and the passenger can stay on the train until his
-destination on the next day.
 
 Other work addressed includes:
 
