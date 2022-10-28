@@ -567,6 +567,7 @@ paths:
     post:
       tags:
         - On Hold
+      summary: Creates an on hold offer.
       operationId: createOnHoldOffer
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -620,6 +621,7 @@ paths:
     patch:
       tags:
         - On Hold
+      summary: Confirms an on hold offer.
       operationId: confirmOnHoldOffer
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -922,6 +924,7 @@ paths:
     patch:
       tags:
         - BookingPart
+      summary: Adds an optional reservation to a  prebooked booking.
       operationId: patchBookingBookedOfferReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -990,6 +993,7 @@ paths:
     delete:
       tags:
         - BookingPart
+      summary: Removes an optional reservation from pre-booked booking.
       operationId: deleteBookingBookedOfferReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1042,6 +1046,7 @@ paths:
     patch:
       tags:
         - BookingPart
+      summary: Adds an ancillary to a pre-booked booking.
       operationId: patchBookingBookedOfferAncillaries
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1110,6 +1115,7 @@ paths:
     delete:
       tags:
         - BookingPart
+      summary: Removes an ancillary from pre-booked booking.
       operationId: deleteBookingBookedOfferAncillary
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1162,7 +1168,7 @@ paths:
     post:
       tags:
         - Bookings
-      summary: Allows to create a booking based on a previously requested offer.
+      summary: Creates a booking based on a previously requested offer.
       operationId: postBookings
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1217,7 +1223,7 @@ paths:
     get:
       tags:
         - Bookings
-      summary: Returns a booking with the id provided.
+      summary: Returns a booking.
       operationId: getBookingsId
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1281,7 +1287,7 @@ paths:
     patch:
       tags:
         - Bookings
-      summary: Allows updating the fulfillment type of the booking.
+      summary: Confirms a booking.
       operationId: confirmBooking
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1336,7 +1342,7 @@ paths:
     delete:
       tags:
         - Bookings
-      summary: Deletes the booking with the id provided.
+      summary: Deletes the booking.
       description: >-
         It is only possible before the booking is confirmed or in case of a technical problem in confirming multiple
         independent bookings within a sales transaction. Deletes on a confirmed booking must be documented
@@ -1387,6 +1393,7 @@ paths:
     get:
       tags:
         - Bookings
+      summary: Get booked offer for a given booking.
       operationId: getBookingBookedOffer
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1439,6 +1446,7 @@ paths:
     post:
       tags:
         - Bookings Search
+      summary: Search for bookings based on search parameters.
       operationId: searchBookings
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -2022,7 +2030,7 @@ paths:
       tags:
         - Release
       summary: Returns the release offer for the ids provided.
-      operationId: getReleaseOffers
+      operationId: getReleaseOffer
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -2035,7 +2043,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: refundOfferId
+        - name: releaseOfferId
           in: path
           description: >-
             id of the refund offer to get.
@@ -2091,7 +2099,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: refundOfferId
+        - name: releaseOfferId
           in: path
           description: >-
             id of the refund offer
@@ -2159,7 +2167,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: refundOfferId
+        - name: releaseOfferId
           in: path
           description: >-
             id of the refund offer
@@ -2271,10 +2279,8 @@ paths:
           required: true
           schema:
             type: string
-        - name: refundOfferId
+        - name: cancelFulfillmentsOfferId
           in: path
-          description: >-
-            id of the refund offer to get.
           required: true
           schema:
             type: string
@@ -2333,7 +2339,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: refundOfferId
+        - name: cancelFulfillmentsOfferId
           in: path
           description: >-
             id of the refund offer
@@ -2401,10 +2407,8 @@ paths:
           required: true
           schema:
             type: string
-        - name: refundOfferId
+        - name: cancelFulfillmentsOfferId
           in: path
-          description: >-
-            id of the refund offer
           required: true
           schema:
             type: string
@@ -2626,18 +2630,23 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-  /exchange-offer-collection:
+  /exchange-offers-collection:
     post:
       tags:
         - Exchange
       summary: Returns exchange offers for a specified fulfillments submitted given requested new trip characteristics.
-      operationId: postExchangeOfferCollection
+      operationId: postExchangeOffersCollection
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - name: pEmbed
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ExchangeOffersCollectionResponseContent' 
       requestBody:
         required: true
         content:
@@ -2692,10 +2701,8 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - name: exchangeTripOfferId
+        - name: exchangeOfferId
           in: path
-          description: >-
-            id of the trip to get.
           required: true
           schema:
             type: string
@@ -3203,6 +3210,63 @@ paths:
           $ref: '#/components/responses/DefaultErrorResponse'
 
   /bookings/{bookingId}/documents/{documentId}:
+    get:
+      tags:
+        - Document
+      summary: returns a document from a booking
+      operationId: getDocument
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: >-
+            TODO: Please add comment for response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+    
+    
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
     delete:
       tags:
         - Document
@@ -4187,6 +4251,9 @@ components:
           type: string
           format: duration
           example: 0S
+        minimalTransferTime:
+          type: string
+          format: duration
 
     ModeFilter:
       type: object
@@ -5586,7 +5653,7 @@ components:
         propertyName: objectType
       required:
         - objectType
-        - passengerSpecifications
+        - anonymousPassengerSpecifications
       properties:
         objectType:
           description: Attribute is used as discriminator for inheritance between data types.
@@ -5608,10 +5675,10 @@ components:
             $ref: '#/components/schemas/Section'
         offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
-        passengerSpecifications:
+        anonymousPassengerSpecifications:
           type: array
           items:
-            $ref: '#/components/schemas/PassengerSpecification'
+            $ref: '#/components/schemas/AnonymousPassengerSpecification'
           minItems: 1
         corporateCodes:
           type: array
@@ -5670,10 +5737,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Offer'
-        passengerSpecifications:
+        anonymousPassengerSpecifications:
           type: array
           items:
-            $ref: '#/components/schemas/PassengerSpecification'
+            $ref: '#/components/schemas/AnonymousPassengerSpecification'
         trips:
           type: array
           items:
@@ -5785,10 +5852,10 @@ components:
           $ref: '#/components/schemas/WarningCollection'
         offer:
           $ref: '#/components/schemas/Offer'
-        passengerSpecifications:
+        anonymousPassengerSpecifications:
           type: array
           items:
-            $ref: '#/components/schemas/PassengerSpecification'
+            $ref: '#/components/schemas/AnonymousPassengerSpecification'
         trips:
           type: array
           items:
@@ -5811,7 +5878,7 @@ components:
         - exchangeable
         - validFrom
         - products
-        - availableFullfilmentOptions
+        - availableFulfillmentOptions
       properties:
         objectType:
           description: Attribute is used as discriminator for inheritance between data types.
@@ -5889,7 +5956,7 @@ components:
           items:
             $ref: '#/components/schemas/ProductLegAssociation'
           minItems: 1
-        availableFullfilmentOptions:
+        availableFulfillmentOptions:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentOption'
@@ -6373,7 +6440,7 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/BookingPartReference'
-            ancillayRefs:
+            ancillaryRefs:
               type: array
               items:
                 $ref: '#/components/schemas/BookingPartReference'
@@ -6578,6 +6645,7 @@ components:
       required:
         - offers
         - passengerSpecifications
+        - externalRef
       properties:
         offers:
           description: >-
@@ -6605,6 +6673,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BookingResponseContent'
+        externalRef:
+          type: string
+          nullable: false
 
     OfferSelection:
       type: object
@@ -7316,6 +7387,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Trip'
+        passengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Passenger'
 
     ExchangeOperationResponse:
       type: object
@@ -7630,21 +7705,6 @@ components:
             An absolute URI that identifies the specific occurrence of the problem.
           type: string
           format: uri
-
-    PlacePreferencesBundle:
-      type: object
-      additionalProperties: false
-      description: >-
-        Place preferences per passenger.
-      properties:
-        passengerId:
-          type: string
-        preferences:
-          description: >-
-            Place preferences (see code list Reservation Place Preferences) the customer wants to have
-          type: array
-          items:
-            type: string
 
     PlaceAvailabilityCollectionResponse:
       type: object
@@ -9430,7 +9490,7 @@ components:
       properties:
         warnings:
           $ref: '#/components/schemas/WarningCollection'
-        vehicleAvailabitliy:
+        vehicleAvailability:
           $ref: '#/components/schemas/PlaceAvailability'
 
     PlaceAvailability:
@@ -9748,6 +9808,49 @@ components:
           format: int32
           minimum: 0
           exclusiveMinimum: true
+
+    AnonymousPassengerSpecification:
+      type: object
+      additionalProperties: false
+      description: >-
+        Minimal specification of a passenger to request offers.
+        
+        Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
+      required:
+        - externalRef
+        - type
+      properties:
+        externalRef:
+          description: >-
+            A stable reference to a passenger from other elements, or from caller system.
+            When received in input of a trip-offers-collection request, it must be echoed back in the
+            response.
+          type: string
+          nullable: false
+          example: TK-id-12345
+        dateOfBirth:
+          description: >-
+            Date of birth of the passenger. Only needed for passengers of type persons, family child, PRM
+            and wheelchair.
+          type: string
+          format: date
+        age:
+          description: >-
+            Age of the passenger  at the date of travel. Less stable than the state of birth.
+          type: integer
+          format: int32
+          minimum: 0
+          exclusiveMinimum: true
+        type:
+          $ref: '#/components/schemas/PassengerType'
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardReference'
+        prmNeeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/PRMNeedType'
 
     PassengerSpecification:
       type: object
@@ -10219,8 +10322,10 @@ components:
         - BOOKING_TRIPS
         - BOOKING_BOOKEDOFFERS
         - BOOKING_FULFILLMENTS
-        - BOOKING_REFUNDOFFERS
         - BOOKING_DOCUMENTS
+        - BOOKING_REFUNDOFFERS
+        - BOOKING_RELEASEOFFERS
+        - BOOKING_CANCELFULFILLMENTSOFFER
         - BOOKING_EXCHANGEOPERATIONS
         - NONE
       default: ALL
@@ -10509,19 +10614,53 @@ components:
       type: object
       additionalProperties: false
       required:
-        - type
-        - scope
+        - document
       properties:
-        type:
-          $ref: '#/components/schemas/DocumentType'
-        scope:
-          $ref: '#/components/schemas/DocumentScope'
+        document:
+          $ref: '#/components/schemas/DocumentSpecification'
+
+    DocumentResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningCollection'
+        document:
+          $ref: '#/components/schemas/Document'
 
     DocumentScope:
       type: string
       enum:
         - BOOKING
-        - PER_REFERENCE
+        - PASSENGER
+
+    DocumentSpecification:
+      type: object
+      additionalProperties: false
+      description: >-
+        Non travel document created. Either downloadLink + downloadExpiry or content + format must be provided.
+      required:
+        - scope
+        - type
+      properties:
+        passengerReference:
+          description: >-
+            Reference to a passenger, to be specified when the document related to an individual passenger.
+          type: string
+        content:
+          description: >-
+            base64 encoded binary of the actual fulfillment document
+          type: string
+          format: byte
+        format:
+          description: >-
+            Physical format of the document provided in the content field in Mime-Type format, e.g. application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
+          type: string
+          example: application/pdf
+        scope:
+          $ref: '#/components/schemas/DocumentScope'
+        type:
+          $ref: '#/components/schemas/DocumentType'
 
     DocumentType:
       type: string
@@ -10734,7 +10873,6 @@ components:
         - ALL
         - OFFERS
         - TRIPS
-        - PASSENGERSPECFICATIONS
         - NONE
       default: ALL
 
@@ -10752,7 +10890,6 @@ components:
         - ALL
         - OFFER
         - TRIPS
-        - PASSENGERSPECIFICATIONS
         - NONE
       default: ALL
 
