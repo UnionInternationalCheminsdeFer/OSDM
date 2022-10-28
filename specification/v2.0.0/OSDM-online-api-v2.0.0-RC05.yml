@@ -446,7 +446,7 @@ paths:
     post:
       tags:
         - Offers
-      summary: Returns offers for a travel wish.
+      summary: Returns offers for trips or trip search criteria.
       operationId: createOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -9538,9 +9538,7 @@ components:
           nullable: false
         externalRef:
           description: >-
-            A stable reference to a purchaser from other elements, or from caller system.
-            When received in input of a trip-offers-collection request, it must be echoed back in the
-            response.
+            A stable reference to a purchaser from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
           type: string
         detail:
           $ref: '#/components/schemas/PersonDetail'
@@ -9561,9 +9559,7 @@ components:
       properties:
         externalRef:
           description: >-
-            A stable reference to a purchaser from other elements, or from caller system.
-            When received in input of a trip-offers-collection request, it must be echoed back in the
-            response.
+            A stable reference to a purchaser from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
           type: string
         detail:
           $ref: '#/components/schemas/PersonDetail'
@@ -9646,7 +9642,7 @@ components:
       type: object
       additionalProperties: false
       description: >-
-        Minimal specification of a passenger to request offers.
+        Minimal specification of a passenger to request offers without any GDPR relevant attributes such as name or address.
         
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
       required:
@@ -9655,9 +9651,7 @@ components:
       properties:
         externalRef:
           description: >-
-            A stable reference to a passenger from other elements, or from caller system.
-            When received in input of a trip-offers-collection request, it must be echoed back in the
-            response.
+            A stable reference to a passenger from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
           type: string
           nullable: false
           example: TK-id-12345
@@ -9698,9 +9692,7 @@ components:
       properties:
         externalRef:
           description: >-
-            A stable reference to a passenger from other elements, or from caller system.
-            When received in input of a trip-offers-collection request, it must be echoed back in the
-            response.
+            A stable reference to a passenger from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
           type: string
           nullable: false
           example: TK-id-12345
