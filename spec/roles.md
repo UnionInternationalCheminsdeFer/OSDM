@@ -21,7 +21,8 @@ A participant can play the following roles:
 
 A RU or system provider can support more than one role.
 
-In the following sections, five scenario from the point of view of the different are high lighted.
+In the following sections, five scenario from the point of view of the different
+are high lighted.
 
 ## Fare Provider Role
 
@@ -187,7 +188,7 @@ To retrieve the stored personal data the booking has to be requested.
 
 #### Timetable search
 
-The distributor makes a time table search himself or retrieves the trip from a
+The distributor makes a timetable search himself or retrieves the trip from a
 retailer. The distributor must specify additionally for which part of the trip
 he requests the fares.
 
@@ -352,7 +353,7 @@ To retrieve the stored personal data the booking has to be requested.
 
 #### Timetable search
 
-The retailer makes a time table search himself or retrieves the trip from an
+The retailer makes a timetable search himself or retrieves the trip from a
 distributor.
 
 #### Offer
