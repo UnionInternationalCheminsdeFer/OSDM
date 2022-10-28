@@ -2,7 +2,7 @@ hide footbox
 
 actor Retailer
 == Creating the outward tripOffers collection & getting the initial set of outward trips ==
-Retailer -> Distributor: POST /offers-collection <MUNCHEN-PARIS, 23/10/2023, return 25/10/2023, 2 pax, dob, ...>
+Retailer -> Distributor: POST /offers <MUNCHEN-PARIS, 23/10/2023, return 25/10/2023, 2 pax, dob, ...>
 Distributor -> JourneyPlanner : <retrieve trips information based on API Consumer request>
 JourneyPlanner --> Distributor : <trips information>
 Distributor -> Distributor: determine FareProvider for each segment
@@ -12,12 +12,12 @@ loop for each request
     FareProvider --> Distributor : request with trips
 end
 Distributor -> Distributor : reconcile trips and \nconstruct global offers
-Distributor --> Retailer: <Offers-Collection with list of Offers scrolling tokens offerTags returnTags>
+Distributor --> Retailer: <List of Offers scrolling tokens offerTags returnTags>
 
 == Getting the inward tripOffers collection ==
 opt working with offerTag to only get compatible inward offers
 Retailer -> Retailer: <select outward offer or group of offers with the same offerTag>
-Retailer -> Distributor: POST /offers-collection <MUNCHEN-PARIS, 23/10/2023, outwardOfferTag, 2 pax, dob, ...>
+Retailer -> Distributor: POST /offers <MUNCHEN-PARIS, 23/10/2023, outwardOfferTag, 2 pax, dob, ...>
 Distributor -> JourneyPlanner : <retrieve trips information based on API Consumer request>
 JourneyPlanner --> Distributor : <trips information>
 Distributor -> Distributor: determine FareProvider for each segment
@@ -27,11 +27,11 @@ loop for each request
     FareProvider --> Distributor : request with trips
 end
 Distributor -> Distributor : reconcile trips and \nconstruct global offers
-Distributor --> Retailer: <Offers-Collection with list of Offers\n compatible with (set of) indicated outward Offer(s) scrolling tokens offerTags returnTags>
+Distributor --> Retailer: <List of Offers\n compatible with (set of) indicated outward Offer(s) scrolling tokens offerTags returnTags>
 end
 
 opt working with returnTags to determine compatible offers on Retailer side
-Retailer -> Distributor: POST /offers-collection <MUNCHEN-PARIS, 23/10/2023, 2 pax, dob, ...>
+Retailer -> Distributor: POST /offers <MUNCHEN-PARIS, 23/10/2023, 2 pax, dob, ...>
 Distributor -> JourneyPlanner : <retrieve trips information based on API Consumer request>
 JourneyPlanner --> Distributor : <trips information>
 Distributor -> Distributor: determine FareProvider for each segment
@@ -41,6 +41,6 @@ loop for each request
     FareProvider --> Distributor : request with trips
 end
 Distributor -> Distributor : reconcile trips and \nconstruct global offers
-Distributor --> Retailer: <Offers-Collection with list of Offers\n compatible with (set of) indicated outward Offer(s) scrolling tokens offerTags returnTags>
+Distributor --> Retailer: <List of Offers\n compatible with (set of) indicated outward Offer(s) scrolling tokens offerTags returnTags>
 Retailer -> Retailer: <select compatible outward-inward offer pairs based on returnTags>
 end

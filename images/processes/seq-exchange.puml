@@ -4,8 +4,8 @@ hide footbox
 actor Retailer
 
 == Requesting an exchange for the two known passengers ==
-Retailer -> Distributor: POST /exchange-offers-collection <MUNCHEN-PARIS, 25/10/2021, pax1, pax2, fulfilment1, fulfilment2, ...>
-Distributor --> Retailer: <Exchange-Offers-Collection with list of references to ExchangetripOffers and scrolling tokens>
+Retailer -> Distributor: POST /exchange-offers <MUNCHEN-PARIS, 25/10/2021, pax1, pax2, fulfilment1, fulfilment2, ...>
+Distributor --> Retailer: <List of Exchange-Offers>
 
 == Retrieving a specific exchange Offer ==
 Retailer -> Distributor: GET /exchange-offers/5678

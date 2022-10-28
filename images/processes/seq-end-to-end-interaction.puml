@@ -16,14 +16,14 @@ Distributor -> Distributor : create offer requests
 
 == Retrieving offers collection ==
 
-Distributor -> FareProvider1: POST /offers-collection
+Distributor -> FareProvider1: POST /offers
 FareProvider1 -> FareProvider1: calculate offers
 FareProvider1 --> Distributor : request with trips
-Distributor -> FareProvider2: POST /offers-collection 
+Distributor -> FareProvider2: POST /offers 
 FareProvider2 -> FareProvider2: calculate offers
 FareProvider2 --> Distributor : request with trips
 Distributor -> Distributor : reconcile trips and \nconstruct global offers
-Distributor --> Retailer: <Offers-Collection with list of references to offers>
+Distributor --> Retailer: <List of Offers>
 
 == Creating a booking based on one or more offer(s) ==
 Retailer -> Distributor: POST /bookings/ <offerId= 8765> with place selection

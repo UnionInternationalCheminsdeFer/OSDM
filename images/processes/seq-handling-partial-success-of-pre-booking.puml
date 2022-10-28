@@ -3,7 +3,7 @@ hide footbox
 actor Retailer
 
 == Creating the offers collection & getting the initial set of trips ==
-Retailer -> Distributor: POST /offers-collection <MUNCHEN-PARIS, 23/10/2021, 2 pax, dob, ...>
+Retailer -> Distributor: POST /offers <MUNCHEN-PARIS, 23/10/2021, 2 pax, dob, ...>
 Distributor -> JourneyPlanner : <retrieve trips information based on API Consumer request>
 JourneyPlanner --> Distributor : <trips information>
 Distributor -> Distributor: determine FareProvider for each segment
@@ -13,7 +13,7 @@ FareProvider1 --> Distributor : request with trips
 Distributor -> FareProvider2: get offers 
 FareProvider2 --> Distributor : request with trips
 Distributor -> Distributor : reconcile trips and \nconstruct global offers
-Distributor --> Retailer: <Offers-Collection with list of references to offers and scrolling tokens>
+Distributor --> Retailer: <List of Offers>
 
 == Creating a booking based on one of the received offers ==
 Retailer -> Distributor: POST /bookings/ <offerId= 8765>

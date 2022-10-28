@@ -69,7 +69,7 @@ A segment has all the stops as well as information on the vehicle running on thi
     Next, the simplest way to receive offers is to pass in *origin*, *destination*, *departureTime* as well as the *passenger's* date of birth by calling. The birth date
     is necessary to return e.g. senior fares where sensible.
 
-    `POST /offers-collection`
+    `POST /offers`
 
     with a body
 

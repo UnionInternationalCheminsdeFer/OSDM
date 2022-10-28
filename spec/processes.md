@@ -18,31 +18,30 @@ data models.
 
 ## Overview of Services
 
-| Resources                                            | Description                                                           |
-| ---------------------------------------------------- | --------------------------------------------------------------------- |
-| `/places`                                            | Resources to search for places                                        |
-| `/trips`                                             | Resources to search for trips                                         |
-| `/offers-collection`                                 | Resources to get bookable offers                                      |
-| `/offers/{offerId}`                                  | _dito_                                                                |
-| `/availabilities`                                    | resources to retrieve availability information on places (seats,..)   |
-| `/bookings`                                          | Resources to manipulate bookings                                      |
-| `/bookings/{bookingId}/passengers/{passengerId}`     | Resources to change passengers                                        |
-| `/bookings/{bookingId}/bookedOffer/...`              | resources to change prebooked bookings, e.g. provide place selections |
-| `/bookings/{bookingId}/reimbourcements`              | resources to reimbource unused tickets                                |
-| `/bookings/{bookingId}/releaseOffers`                | resources to release tickets                                          |
-| `/products`                                          | retrieve products information on one or more products                 |
-| `/bookings/{bookingId}/fulfillments`                 | retrieve fulfillments, e.g. tickets                                   |
-| `/fulfillments`                                      | confirm a booking and retrieve fulfillments                           |
-| `/bookings/{bookingId}/refundOffers`                 | Resources to get and accept a refund offer                            |
-| `/bookings/{bookingId}/refundOffers/{refundOfferId}` | _dito_                                                                |
-| `/bookings/{bookingId}/exchangeOperations`           | Resources to get and accept a exchange offer                          |
-| `/bookings/{bookingId}/exchange-offers-collection`   | _dito_                                                                |
-| `/bookings/{bookingId}/exchange-offers`              | _dito_                                                                |
-| `/coachLayouts`                                      | Returns all coach layouts.                                            |
-| `/coachLayouts/{layoutId}`                           | Returns a coach layout for layout id                                  |
-| `/complaints`                                        | resources to create and manipulate complaints                         |
-| `/reductionCards`                                    | retrieve reduction card types                                         |
-| `/coachLayouts`                                      | retrieve coach layouts                                                |
+| Resources                                            | Description                                                            |
+| ---------------------------------------------------- | ---------------------------------------------------------------------- |
+| `/places`                                            | Resources to search for places                                         |
+| `/trips`                                             | Resources to search for trips                                          |
+| `/offers`                                            | Resources to get bookable offers                                       |
+| `/availabilities`                                    | resources to retrieve availability information on places (seats,..)    |
+| `/bookings`                                          | Resources to manipulate bookings                                       |
+| `/bookings/{bookingId}/passengers/{passengerId}`     | Resources to change passengers                                         |
+| `/bookings/{bookingId}/bookedOffer/...`              | resources to change pre-booked bookings, e.g. provide place selections |
+| `/bookings/{bookingId}/reimbursements`               | resources to reimburse unused tickets                                  |
+| `/bookings/{bookingId}/releaseOffers`                | resources to release tickets                                           |
+| `/bookings/{bookingId}/cancelFulfillmentsOffers`     | resources to cancel fulfillments                                       |
+| `/products`                                          | retrieve products information on one or more products                  |
+| `/bookings/{bookingId}/fulfillments`                 | retrieve fulfillments, e.g. tickets                                    |
+| `/fulfillments`                                      | confirm a booking and retrieve fulfillments                            |
+| `/bookings/{bookingId}/refundOffers`                 | Resources to get and accept a refund offer                             |
+| `/bookings/{bookingId}/refundOffers/{refundOfferId}` | _dito_                                                                 |
+| `/bookings/{bookingId}/exchangeOperations`           | Resources to get and accept a exchange offer                           |
+| `/bookings/{bookingId}/exchange-offers`              | _dito_                                                                 |
+| `/coachLayouts`                                      | Returns all coach layouts.                                             |
+| `/coachLayouts/{layoutId}`                           | Returns a coach layout for layout id                                   |
+| `/complaints`                                        | resources to create and manipulate complaints                          |
+| `/reductionCards`                                    | retrieve reduction card types                                          |
+| `/coachLayouts`                                      | retrieve coach layouts                                                 |
 
 ## Process Flow
 
@@ -187,7 +186,7 @@ As described further on, any additional information required for the provisional
 booking can be provided in the booking operation itself
 
 The resources used at offer steps optionally offer various levels of embedding
-(returning complete structure is the only mechanism manatory to be implemented)
+(returning complete structure is the only mechanism mandatory to be implemented)
 and multiple granularity for the retrieval of information, so each implementing
 party can fine-tune the queries in order to get all the information needed for
 the processing at hand, and only that information.
@@ -455,11 +454,11 @@ offer (such as date of birth or reduction cards) may lead to the booking being
 rejected in case of incoherence.
 
 It is the choice of the OSDM provider to declare offers as reusable, or not, in
-the reply to `POST /trip-offers-collection`. Reusable offers however should be
-favored whenever possible: while the OSDM provider retains control, it allows
-implementation of powerful business use-cases (e.g. a ticket machine at the
-station that could continue selling reusable offers while experiencing network
-issues and would then synchronize the sales upon connection re-establishement).
+the reply to `POST /offers`. Reusable offers however should be favored whenever
+possible: while the OSDM provider retains control, it allows implementation of
+powerful business use-cases (e.g. a ticket machine at the station that could
+continue selling reusable offers while experiencing network issues and would
+then synchronize the sales upon connection re-establishement).
 
 Reminder: the accommodation preferences can be found in the `reservationOptions`
 elements
@@ -512,8 +511,8 @@ pre-booking operations are either fully successful or not executed at all.
 
 However, a **Distributor** system may be configured in such ways that it is able
 to combine offers from different fare providers (via an OSDM-compliant API or
-not) and propose them in turn as one offer to its API to consumers, as one
-undividable product or as a bundled pack.
+not) and propose them in turn as one offer to its API to consumers, as one non
+dividable product or as a bundled pack.
 
 Unfortunately, when the booking is attempted, the process may encounter errors
 leading to the booking failing with some of the sub-providers, while it will
@@ -912,10 +911,10 @@ replacement for electronic tickets or anonymous tickets.
 
 #### Requesting a replacement for a lost ticket
 
-The replacement is requested similar to the request for a non-trip based offer
-(post:offers-collection). The search tags must include the key word CARD_LOST or
-TICKET_LOST. The provider will ask for the required data of the lost card or
-ticket to be provided with the passengers card data (card number).
+The replacement is requested similar to the request for a non-trip based offer.
+The search tags must include the key word CARD_LOST or TICKET_LOST. The provider
+will ask for the required data of the lost card or ticket to be provided with
+the passengers card data (card number).
 
 The offer for a replacement returned might include a fee. The replacement offer
 needs to be accepted and booked the same way as a usual offer.

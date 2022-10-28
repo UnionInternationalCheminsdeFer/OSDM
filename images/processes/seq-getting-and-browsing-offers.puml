@@ -18,26 +18,4 @@ loop for each request
     FareProvider --> Distributor : request with trips
 end
 Distributor -> Distributor : reconcile trips and \nconstruct global offers
-Distributor --> Retailer: <Offers-Collection with list of Offer Refs scrolling tokens>
-
-== Scrolling to the (chronologically) next set of trips in the offer collection, returning trips, offers and passengers  ==
-Retailer -> Distributor: GET /offers-collection/5678?page="next""
-Distributor -> JourneyPlanner : <retrieve next trips information based on page OR computed new params>
-JourneyPlanner --> Distributor : <trips information>
-loop for each trip    
-    loop for each segment
-        Distributor -> Distributor: determine FareProvider
-    end
-end
-Distributor -> Distributor : create offer requests
-loop for each request
-    Distributor -> FareProvider: get offers 
-    FareProvider -> FareProvider: calculate offers
-    FareProvider --> Distributor : response with offers
-end
-Distributor -> Distributor : reconcile trips and \nconstruct global offers
-Distributor --> Retailer: <Offers-Collection with \nlist of trip resources, offers, passengers & scrolling tokens>
-
-== Retrieving the details of one offer, with full details of all included resources ==
-Retailer -> Distributor: GET /offers/3456
-Distributor --> Retailer: <Offer 3456>
+Distributor --> Retailer: <List of Offers>
