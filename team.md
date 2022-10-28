@@ -12,16 +12,22 @@ The [OSDM specification](../spec) effort has been driven by
 - [Gantert Clemens](https://www.linkedin.com/in/clemens-g-88783725/) (DB)
 - [Klapwijk Roland](https://www.linkedin.com/in/rolandklapwijk/) (Sqills)
 - [Koffi-Frédéric Konan](https://www.linkedin.com/in/frederic-konan/) (Amadeus)
+- [Kovar Klaus](https://www.linkedin.com/in/klaus-kovar-860b08229/) (Klaus)
 - [Johan Nieuwerth](https://www.linkedin.com/in/johannieuwerth/) (Sqills)
-- [Olsson Anders](https://www.linkedin.com/in/anders-olsson-5712a32a/) (SilverRail)
-- [Parmigiani Elisa](https://www.linkedin.com/in/elisa-parmigiani-186b5745/) (Amadeus)
-- [Schlapbach Andreas](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/) (SBB)
+- [Olsson Anders](https://www.linkedin.com/in/anders-olsson-5712a32a/)
+  (SilverRail)
+- [Petrák Josef](https://www.linkedin.com/in/jspetrak/) (Bileto)
+- [Parmigiani Elisa](https://www.linkedin.com/in/elisa-parmigiani-186b5745/)
+  (Amadeus)
+- [Schlapbach Andreas](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/)
+  (SBB)
 - [Selleslagh Nicolas](https://linkedin.com/in/nicolasselleslagh) (BENE)
 - [Sören Meyer](https://www.xing.com/profile/Soeren_Meyer17/cv) (DB)
 
 ## Contributors
 
-The following experts from distributors and railways have contributed to the [OSDM specification](../spec).
+The following experts from distributors and railways have contributed to the
+[OSDM specification](../spec).
 
 ### Business Experts
 
@@ -56,6 +62,7 @@ The following experts from distributors and railways have contributed to the [OS
 - Mariorenzi Luca (Trenitalia)
 - Nieuwerth Johan (Sqills)
 - Nyman Henrik (SilverRail)
+- Josef Petrák (Bileto)
 - Quemerais Manuel (SNCF)
 - Reumer Mike (BENE)
 - Ruiz Enrique (Hitrail)

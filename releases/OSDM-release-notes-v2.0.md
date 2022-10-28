@@ -9,6 +9,7 @@ permalink: /releases/OSDM-release-notes-v2.0/
 
 The following features have been added with version 2.0 of OSDM.
 
+- Terminology aligned with TAP-TSI
 - Unified resource for trip based offers and non-trip based offers
 - Separate resource to retrieve availabilities for seats, couchettes,...
 - Change of seat, couchette,.. in the booked offer
@@ -69,11 +70,11 @@ A search for bookings was added.
 ### Support for Vouchers as Payment Method
 
 As voucher can be issued as part of the complaint management process, they can
-newely be used to pay for a booking.
+newly be used to pay for a booking.
 
 ### Various improvements to support the Swedish market
 
-As the Swedish market has choosen OSDM to be the standard for retailers and
+As the Swedish market has chosen OSDM to be the standard for retailers and
 distributors, various improvements have been added to fully cover their needs.
 
 Other work addressed includes:
