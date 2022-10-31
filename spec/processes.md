@@ -37,6 +37,8 @@ data models.
 | `/bookings/{bookingId}/refundOffers/{refundOfferId}` | _dito_                                                                 |
 | `/bookings/{bookingId}/exchangeOperations`           | Resources to get and accept a exchange offer                           |
 | `/bookings/{bookingId}/exchange-offers`              | _dito_                                                                 |
+| `/bookings/{bookingId}/releaseOffers`                | Resources to get, accept or delete a release offer                     |
+| `/bookings/{bookingId}/cancelFulfillmentOffers`      | Resources to get, accept or delete a cancelFulfillment offer           |
 | `/coachLayouts`                                      | Returns all coach layouts.                                             |
 | `/coachLayouts/{layoutId}`                           | Returns a coach layout for layout id                                   |
 | `/complaints`                                        | resources to create and manipulate complaints                          |
@@ -862,9 +864,12 @@ potential refund fee, etc (see the model for more details).
 
 #### Confirm a Refund Offer
 
-![Confirm a Refund Offer](../images/processes/seq-fulfillment-process.png)
+![Confirm a Refund Offer](../images/processes/seq-confirm-a-refund-offer.png)
 
 ### Release a Booking
+#### Request a release Offer
+
+![Request a Release Offer](../images/processes/seq-request-a-release-offer.png)
 
 The release of a ticket is an intermediate step towards a refund. The release
 invalidates the admission and frees resources such as reserved seats. It does
@@ -876,7 +881,19 @@ as the time for calculating the refund amount wll be the time of the release.
 The process of releasing a ticket is similar to the refund process. A release
 offer is requested and needs to be confirmed to be applied.
 
+#### Cancel a Release Offer
+
+![Cancel a Release Offer](../images/processes/seq-cancel-a-release-offer.png)
+
+#### Confirm a Release Offer
+
+![Confirm a Release Offer](../images/processes/seq-confirm-a-release-offer.png)
+
 ### Cancel Fulfillment
+
+#### Cancel Fulfillment request
+
+![Request a cancelFulfillment Offer](../images/processes/seq-request-a-cancelFulfillment-offer.png)
 
 A fulfillment can be cancelled and regenerated. This might be necessary in case
 of fulfillments linked to physical items (secure paper, phones or cards). The
@@ -884,6 +901,14 @@ cancelled fulfillment can be recreated later on.
 
 To cancel a fulfillment a cancel fulfillment offer needs to be requested. This
 offer can be confirmed to delete the fulfillment.
+
+#### Cancel a CancelFulfillment Offer
+
+![Cancel a Cancel a cancelFulfillment Offer](../images/processes/seq-cancel-a-cancelFulfilment-offer.png)
+
+#### Confirm a CancelFulfillment Offer
+
+![Confirm a CancelFulfillment Offer](../images/processes/seq-confirm-a-cancelFulfillment-offer.png)
 
 ### On Hold Bookings
 
