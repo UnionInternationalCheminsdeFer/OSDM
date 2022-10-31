@@ -1,0 +1,17 @@
+hide footbox
+
+actor Retailer
+
+== Confirm a release offer ==
+Retailer -> Distributor: GET /bookings/5678
+Distributor --> Retailer: <Booking>
+Retailer -> Distributor: PATCH /bookings/5678/releaseOffers/23 <setting statuts to confirmed
+loop for each fulfillment in the refund offer request
+      Distributor -> FareProvider: apply release operation
+	  FareProvider --> Distributor : OK
+	  Distributor -> Distributor : update local fulfilment status
+end
+alt all BookingPart status
+    Distributor -> Distributor : update booking Part (Admission, and/or Reservation, and/or Ancillary) status
+end
+Distributor --> Retailer: 200 OK
