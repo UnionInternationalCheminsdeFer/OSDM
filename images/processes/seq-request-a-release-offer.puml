@@ -1,0 +1,17 @@
+hide footbox
+
+actor Retailer
+
+== Creating release offers ==
+Retailer -> Distributor: GET /Bookings/5678
+Distributor --> Retailer: <Booking>
+Retailer -> Distributor: POST /Bookings/5678/releaseOffers <tickets to be released>
+loop for each fulfillment in the release offer request
+    alt FareProvider supports release offers 
+      Distributor -> FareProvider: request release offer
+	  FareProvider --> Distributor : release offer
+    else Distributor only supports direct release
+      Distributor -> Distributor: calculate release offer
+    end 
+end
+Distributor --> Retailer: <ReleaseOffers for the provided tickets>

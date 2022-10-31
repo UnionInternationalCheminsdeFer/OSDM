@@ -1,0 +1,15 @@
+hide footbox
+
+actor Retailer
+
+== Confirm a cancel fulfillment offer ==
+Retailer -> Distributor: GET /bookings/5678
+Distributor --> Retailer: <Booking>
+Retailer -> Distributor: PATCH /bookings/5678/cancelFulfillmentOffers/23 <setting statuts to confirmed
+loop for each fulfillment in the refund offer request
+      Distributor -> FareProvider: apply cancel fulfillment operation
+	  FareProvider --> Distributor : OK
+	  Distributor -> Distributor : update local fulfilment status
+end
+
+Distributor --> Retailer: 200 OK

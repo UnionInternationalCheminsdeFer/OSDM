@@ -1,0 +1,17 @@
+
+hide footbox
+
+actor Retailer 
+
+== Cancelling a fulfillment cancel offer ==
+Retailer -> Distributor: GET /bookings/5678
+Distributor --> Retailer: <Booking>
+Retailer -> Distributor: DELETE /bookings/5678/cancelFulfillmentOffers/23
+loop for each fulfillment in the cancel fulfillment offer
+    alt FareProvider supports cancel fulfillment offers 
+      Distributor -> FareProvider: cancel CancelFulfillment offer
+	  FareProvider --> Distributor : OK
+   
+    end
+end
+Distributor --> Retailer: 200 OK

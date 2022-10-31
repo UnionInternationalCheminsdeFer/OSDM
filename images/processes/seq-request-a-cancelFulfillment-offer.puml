@@ -1,0 +1,17 @@
+hide footbox
+
+actor Retailer
+
+== Creating cancel fulfillment offers ==
+Retailer -> Distributor: GET /Bookings/5678
+Distributor --> Retailer: <Booking>
+Retailer -> Distributor: POST /Bookings/5678/cancelFulfillmentOffers <fulfilment to be cancelled>
+loop for each fulfillment in the cancelFulfillment offer request
+    alt FareProvider supports cancel fulfillment offers 
+      Distributor -> FareProvider: request cancelFulfillment offer
+	  FareProvider --> Distributor : cancel fulfillment offer
+    else Distributor only supports direct cancelFulfillment
+      Distributor -> Distributor: calculate cancel fulfillment offer
+    end 
+end
+Distributor --> Retailer: <cancelFulfillmentOffers for the provided fulfilments>
