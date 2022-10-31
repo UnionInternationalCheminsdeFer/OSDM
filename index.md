@@ -3,7 +3,7 @@ title: OSDM
 subtitle: Open Sales and Distribution Model
 layout: page
 show_sidebar: true
-hero_link: https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v1.4.0/IRS-90918-10-v1.4.0.pdf
+hero_link: https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v2.0.0/IRS-90918-10-v2.0.0.pdf
 hero_link_text: Download Specification
 ---
 
@@ -56,7 +56,7 @@ The Open Sales and Distribution Model has emerged from the **new Tariff Model
 To join forces and represent the **rail sector as a whole** the two initiatives
 have been merged into this initiative. The specification will be supported by
 the [UIC](https://uic.org) as
-[IRS-90918-10 Leaflet](https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v1.4.0/IRS-90918-10-v1.4.0.pdf).
+[IRS-90918-10 Leaflet](https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v2.0.0/IRS-90918-10-v2.0.0.pdf).
 
 ## Roles
 
