@@ -6690,6 +6690,7 @@ components:
         - CONFIRMED
         - FULFILLED
         - CANCELLED
+        - RELEASED
         - REFUNDED
         - EXCHANGE_ONGOING
         - ERROR
@@ -6832,9 +6833,11 @@ components:
       enum:
         - AVAILABLE
         - ON_HOLD
-        - FULFILLED
         - CONFIRMED
+        - FULFILLED
         - CHECKEDIN
+        - CANCELLED
+        - RELEASED
         - REFUNDED
         - EXPIRED
 
@@ -6845,9 +6848,11 @@ components:
       enum:
         - AVAILABLE
         - ON_HOLD
-        - FULFILLED
         - CONFIRMED
+        - FULFILLED
         - CHECKEDIN
+        - CANCELLED
+        - RELEASED
         - REFUNDED
         - EXPIRED
 
