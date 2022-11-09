@@ -6,8 +6,6 @@ permalink: /spec/getting-started/
 
 # A Gentle Introduction to OSDM
 
-(Todo: revise after the release of V1.3)
-
 ## Introduction
 
 The OSDM API is rich and can be overwhelming at start. Reason for its feature richness (leading to its complexity) is the fact that it aims to cover all possible public transportation products and distribution processes within Europe and beyond.
@@ -47,18 +45,19 @@ A segment has all the stops as well as information on the vehicle running on thi
     ```json
     {
     "places": [
-        {
-        "id": "place-1",
-        "name": "Basel SBB",
-        "stopPlace": {
-            "ref": "urn:uic:stn:8503000",
-            "name": "Basel SBB"
-        },
-        "geoPosition": {
-            "latitude": 47.547408,
-            "longitude": 7.589548
-        }
-     ]
+            {
+                "id": "place-1",
+                "name": "Basel SBB",
+                "stopPlace": {
+                    "ref": "urn:uic:stn:8503000",
+                    "name": "Basel SBB"
+                },
+                "geoPosition": {
+                    "latitude": 47.547408,
+                    "longitude": 7.589548
+                }
+            }
+        ]
     }
     ```
 
@@ -80,8 +79,9 @@ A segment has all the stops as well as information on the vehicle running on thi
             "destination": "urn:uic:stn:8503000",
             "departureTime": "<departure_timestamp>",
         },
-        "passengerSpecification": [
+        "anonymousPassengerSpecifications": [
             {
+                "externalRef": "<external-passenger-ref>",
                 "type": "PERSON",
                 "dateOfBirth": "1970-01-01"
             }
@@ -96,21 +96,15 @@ A segment has all the stops as well as information on the vehicle running on thi
 
     ```json
     {
-       "id": "C_0KK..",
-        "tripOffers": [
+        "id": "C_0KK..",
+        "offers": [..
+        ],
+        "trips": [..
+        ],
+        "anonymousPassengerSpecifications": [
             {
-                "id": "T_0KK--",
-                "abstract": "Basel SBB - Chur",
-                "trip": [..
-                ],
-                "offers": [..
-                ],
-                "passengerSpecification": [
-                    {
-                        "id": "passenger_1",
-                        "dateOfBirth": "1970-01-01",
-                   }
-                ]
+                "id": "passenger_1",
+                "dateOfBirth": "1970-01-01",
             }
         ]
     }
@@ -164,7 +158,7 @@ A segment has all the stops as well as information on the vehicle running on thi
                   "products": [
                         {
                             "id": "SBB_POINT_TO_POINT",
-                            "abstract": "Point-to-point Ticket, Second Class",
+                            "summary": "Point-to-point Ticket, Second Class",
                             "code": "125",
                             "isTrainBound": false
                         }
@@ -193,7 +187,7 @@ A segment has all the stops as well as information on the vehicle running on thi
                   "products": [
                         {
                             "id": "SBB_SEAT_RESERVATION",
-                            "abstract": "Seat Reservation",
+                            "summary": "Seat Reservation",
                             "code": "PRODUCT_10000",
                             "isTrainBound": true
                         }
@@ -220,7 +214,7 @@ A segment has all the stops as well as information on the vehicle running on thi
                  "products": [
                         {
                             "id": "SBB_BIKE_RESERVATION",
-                            "abstract": "Bike Reservation",
+                            "summary": "Bike Reservation",
                             "code": "PRODUCT_10001",
                             "isTrainBound": true
                         }
@@ -249,12 +243,16 @@ A segment has all the stops as well as information on the vehicle running on thi
     {
         "offers": [
             {
-                "id": "<selected_offer_id>",
-                "passengerSpecification": [
-                    {
-                     "id": "<passenger_id>"
-                    }
-                ]
+                "offerId": "<selected_offer_id>",
+                "passengerRefs": ["<passengerRefs>"]
+                
+            }
+        ],
+        "passengerSpecifications": [
+            {
+                "externalRef": "<ext-person-ref>",
+                "dateOfBirth": "1945-11-02",
+                "type": "PERSON"
             }
         ]
     }
@@ -266,8 +264,7 @@ A segment has all the stops as well as information on the vehicle running on thi
     {
         "booking": {
             "id": "28OD7DVM",
-            "abstract": "Booking number 28OD7DVM",
-            "status": "PREBOOKED",
+            "summary": "Booking number 28OD7DVM",
             "provisionalPrice": {..
             },
             "confirmedPrice": {..
@@ -298,7 +295,6 @@ A segment has all the stops as well as information on the vehicle running on thi
                 "ancillaries": []
               }
             ],
-            "passengers": [..],
             "fulfillments": [
               {
                 "id": "28OD7DVM-001",
@@ -325,7 +321,7 @@ A segment has all the stops as well as information on the vehicle running on thi
 
     ```json
     {
-        "fulfillments": [
+        "fulfillment": [
             {
                 "id": "4ES36OIU-001",
                 "status": "FULFILLED",
@@ -333,14 +329,16 @@ A segment has all the stops as well as information on the vehicle running on thi
                 "offerParts": [
                     "P_jekG6..."
                 ],
-                "documents": [
+                "fulfillmentDocuments": [
                     {
-                    "type": "TICKET",
-                    "downloadLink": "https://ticket.osdm-demo-test.cloud.sqills.com/ticket/4ES36OIU-001_210823145615241.png"
+                        "medium": "PDF_A4",
+                        "type": "TICKET",
+                        "downloadLink": "https://ticket.osdm-demo-test.cloud.sqills.com/ticket/4ES36OIU-001_210823145615241.png"
                     },
                     {
-                    "type": "TICKET",
-                    "downloadLink": "https://ticket.osdm-demo-test.cloud.sqills.com/ticket/4ES36OIU_PASSENGERS1_210823145615245.pdf"
+                        "medium": "PDF_A4",
+                        "type": "TICKET",
+                        "downloadLink": "https://ticket.osdm-demo-test.cloud.sqills.com/ticket/4ES36OIU_PASSENGERS1_210823145615245.pdf"
                     }
                 ]
             }
@@ -348,7 +346,7 @@ A segment has all the stops as well as information on the vehicle running on thi
     }
     ```
 
-    **Thats it**.
+    **That's it**.
 
 ### What is in a Booking?
 
@@ -374,11 +372,9 @@ with a body of
             "optionalReservationIds": [
                 "<selected_reservation_id>"
             ],
-            "passengers": [
-                "<passenger_id>"
-            ]
         }
-    ]
+    ],
+    "passengerSpecifications": {...}
 }
 ```
 
@@ -387,25 +383,27 @@ As you can see, in the most simple case you just have to add the id of the selec
 ```json
 {
     "booking": {
-      "bookedOffers": {
-        "id": "offer-1",
-        "reservations": [
-            {
-                "reservationDetails": {
-                "accommodationType": "SEAT",
-                "reservedPlaces": [
-                    {
-                    "id": "S_7H5nJ5IEwipH4dvV2UNBRQ==",
-                    "vehicle": "IC 565",
-                    "coach": "3",
-                    "places": "25"
+        "bookedOffers": {
+            "offerId": "offer-1",
+            "reservations": [
+                {
+                    ..
+                    "status": "BOOKED",    
+                    "placeAllocation": {
+                        "reservedPlaces": [
+                            {
+                                "id": "S_7H5nJ5IEwipH4dvV2UNBRQ==",
+                                "passengerId": "<passenger-id>",
+                                "vehicleNumber": "IC 565",
+                                "coachNumber": "3",
+                                "placeNumbers": "25"
+                            }
+                        ]
                     }
-                ]
                 }
-            }
-        ]
-        ..
-      }
+            ]
+            ..
+        }
     }
 }
 ```
@@ -428,12 +426,10 @@ Additionally, on this train there are ancillary services available. You can choo
             ],
             "optionalAncillaryIds": [
                 "<selected_ancillary_id>"
-            ],
-            "passengerSpecification": [
-                "<passengers_id>"
             ]
         }
-    ]
+    ],
+    "passengerSpecifications": {...}
 }
 ```
 
@@ -467,7 +463,7 @@ If a customer wants to refund its ticket, the flow is a two step process analogo
 
     ```json
     {
-        "confirmedRefundOfferId": "<offer_id>"
+        "status": "CONFIRMED"
     }
     ```
 
@@ -524,21 +520,29 @@ The easiest option is to book a place near to a given place:
     "offers": [
         {
             "offerId": "<selected_offer_id>",
-            "optionalReservationIds": [
-                "<selected_reservation_id>"
-            ],
-            "passengerSpecifications": [
-                "<passenger_id>"
-            ],
-            "placeSelection": {
-              "referencePlace": {
-                "coachNumber": "string",
-                "placeNumber": "string"
+            "optionalReservationSelections": [
+                {
+                    "reservationId": "<selected_reservation_id>"
                 }
-            }
+            ],
+            "placeSelections": [
+                {
+                    "reservationId": "<selected_reservation_id>",
+                    "referencePlace": {
+                        "coachNumber": "string",
+                        "placeNumber": "string"
+                    }
+                }
+            ]
         }
         ..
-    ]
+    ],
+    "passengerSpecifications": [
+        {
+            "externalRef": "<passenger_id>",
+            "type": "PERSON"
+        }
+    ],
 }
 
 ```
@@ -550,24 +554,35 @@ Another option is to express seating wishes of a passenger such as at the window
     "offers": [
         {
             "offerId": "<selected_offer_id>",
-            "optionalReservationIds": [
-                "<selected_reservation_id>"
-            ],
-            "passengerSpecifications": [
-                "<passenger_id>"
+            "optionalReservationSelections": [
+                {
+                    "reservationId": "<selected_reservation_id>"
+                }
             ],
             "placeSelections": [
                 {
-                    "passengerId": "<passenger_id>", 
-                    "placeProperties": [ 
-                        "WINDOW", 
-                        "FAMILY"
+                    "reservationId": "<selected_reservation_id>",
+                    "accommodations": [
+                        {
+                            "passengerRefs": "string",
+                            "placeProperties": [
+                                "WINDOW"
+                            ]
+                        }
                     ]
                 }
             ]
         }
-    ]
+        ..
+    ],
+    "passengerSpecifications": [
+        {
+            "externalRef": "<passenger_id>",
+            "type": "PERSON"
+        }
+    ],
 }
+
 ```
 
 Or if you have unique seat chosen via a graphical seat reservation (see below) you just pass in a coach and seat number in the `POST /bookings` request:
@@ -577,26 +592,34 @@ Or if you have unique seat chosen via a graphical seat reservation (see below) y
     "offers": [
         {
             "offerId": "<selected_offer_id>",
-            "optionalReservationIds": [
-                "<selected_reservation_id>"
-            ],
-            "passengerSpecifications": [
-                "<passenger_id>"
-            ],
-            "coaches": [
+            "optionalReservationSelections": [
                 {
-                    "coachNumber": "2",
+                    "reservationId": "<selected_reservation_id>"
+                }
+            ],
+            "placeSelections": [
+                {
+                    "reservationId": "<selected_reservation_id>",
                     "places": [
                         {
-                            "passengerId": "<passenger_id>",
-                            "placeNumber": "2"
+                            "coachNumber": "5",
+                            "placeNumber": "21",
+                            "passengerRef": "<passenger-id>"
                         }
                     ]
                 }
             ]
         }
-    ]
+        ..
+    ],
+    "passengerSpecifications": [
+        {
+            "externalRef": "<passenger_id>",
+            "type": "PERSON"
+        }
+    ],
 }
+
 ```
 
 To be able to build a graphical seat reservation, you first need information of the layout of the vehicles. The service `GET /coachLayouts/{layoutId}` allows you to download the layout. As a distributor you can now use this information to build a slick reservation UI that allows your customer to choose the seat or bed.
