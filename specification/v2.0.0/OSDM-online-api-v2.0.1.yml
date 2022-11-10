@@ -1005,7 +1005,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BookedOfferAncilliaryPatchRequest'
+              $ref: '#/components/schemas/BookedOfferAncillaryPatchRequest'
       responses:
         '200':
           description: >-
@@ -10061,15 +10061,19 @@ components:
       x-extensible-enum:
         - MEAL
         - BEVERAGE
-
+        
     BookedOfferAncillaryPatchResponse:
       type: object
       additionalProperties: false
       properties:
         warnings:
           $ref: '#/components/schemas/WarningCollection'
+        bookedOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookedOffer'
 
-    BookedOfferAncilliaryPatchRequest:
+    BookedOfferAncillaryPatchRequest:
       type: object
       additionalProperties: false
       required:
@@ -10315,7 +10319,7 @@ components:
       properties:
         warnings:
           $ref: '#/components/schemas/WarningCollection'
-        cancelFulfillmensOffer:
+        cancelFulfillmentsOffer:
           $ref: '#/components/schemas/CancelFulfillmentsOffer'
 
     CoachLayoutGridSize:
