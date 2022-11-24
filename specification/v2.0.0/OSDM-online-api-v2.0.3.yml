@@ -11249,4 +11249,3 @@ components:
             voucher code provided by the issuer
           type: string
           nullable: false
-
