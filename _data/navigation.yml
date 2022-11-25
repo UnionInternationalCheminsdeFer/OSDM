@@ -1,12 +1,12 @@
 - name: OSDM Online APIs
   dropdown:
-    - name: Online API - 2.0.3 (stable)
+    - name: Online API - v2.0.3 (stable)
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v2.0.0/OSDM-online-api-v2.0.3.yml&nocors
     - name: Online API - v2.0.3 (stable)
       link: https://app.swaggerhub.com/apis/schlpbch/uic-90918_10_osdm/2.0.3
     - name: Webhook API - v2.0.0 (stable)
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v2.0.0/OSDM-online-webhook-v2.0.0.yml&nocors
-    - name: Online API - 2.1.pre (next version)
+    - name: Online API - v2.1.pre (next version)
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v2.1.0/OSDM-online-api-v2.1.pre.yml&nocors
     - name: Online API - v2.1.pre (next version)
       link: https://app.swaggerhub.com/apis/schlpbch/uic-90918_10_osdm/2.1.pre
