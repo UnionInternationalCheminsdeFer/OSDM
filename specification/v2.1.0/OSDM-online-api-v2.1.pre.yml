@@ -494,6 +494,64 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
+  /bookings/{bookingId}/bookedOffers/{bookedOfferId}/additionalOffers:
+    get:
+      tags:
+        - Offers
+      summary: Get additional offers of booked offer for a given booking.
+      operationId: getBookingBookedOffersAdditionalOffers
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: bookedOfferId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: >-
+            TODO: Please add comment for response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdditionalOfferCollectionResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+    
+    
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
   /booking/{bookingId}/onHoldOffer:
     post:
       tags:
@@ -924,7 +982,7 @@ paths:
     patch:
       tags:
         - BookingPart
-      summary: Adds an optional reservation to a  prebooked booking.
+      summary: Adds an optional reservation to a pre-booked booking.
       operationId: patchBookingBookedOfferReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1523,60 +1581,6 @@ paths:
         - Bookings
       summary: Get booked offer for a given booking.
       operationId: getBookingBookedOffer
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: >-
-            TODO: Please add comment for response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BookedOfferResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-    
-    
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-
-  /bookings/{bookingId}/bookedOffer/unbookedOffers:
-    get:
-      tags:
-        - Bookings
-        - Bookings
-      summary: Get bookable offers of  booked offer for a given booking.
-      operationId: getBookingBookedOfferUnbookedOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -5852,6 +5856,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Offer'
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
         anonymousPassengerSpecifications:
           type: array
           items:
@@ -6358,7 +6366,6 @@ components:
           description: >-
             Textual description of the product.
           type: string
-          example: Loisir Non-flex Adult Fare
         owner:
           type: string
           nullable: false
@@ -6886,6 +6893,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BookedOffer'
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
         trips:
           description: >-
             This trip will be included in the offer if the offer is part of the booking.
@@ -10286,6 +10297,17 @@ components:
         - LOYALTY_CARD
         - CHIP_CARD
         - PASS
+
+    AdditionalOfferCollectionResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningCollection'
+        offers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
 
     AncillaryGroup:
       type: object
