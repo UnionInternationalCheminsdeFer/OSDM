@@ -62,10 +62,10 @@ Place Preference Group collects Place preferences where only one can be chosen
 of by the customer.
 
 | Code                    | Accommodation Sub Type | Place Preference | Place Property | Description                                                                                      | Place Preference Group |
-| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- | 
+| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- | --- |
 | `AISLE`                 | N                      | Y                | Y              | Place at the aisle                                                                               | `PLACE_LOCATION`       |
 | `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area                                                                    |                        |
-| `ANY`                   | Y                      | N                | Y              | Indicates within a place preference group explicitely that the selection is optional             |                        |
+| `ANY_SEAT`              | Y                      | N                | Y              | Indicates within a place preference group explicitly that the selection is optional              |                        |
 | `BISTRO`                | N                      | Y                | Y              | Places in a coach with self-service bistro                                                       |                        |
 | `BICYCLE`               | Y                      | Y                | Y              | Bicycle hook                                                                                     |                        |
 | `BUSINESS`              | Y                      | Y                | Y              | Manager compartment/business                                                                     |                        |
@@ -268,7 +268,7 @@ See code
 | DE      | 3396         | DB Fernverkehr               | DB Fernverkehr AG                                                                             |
 | DE      | 3426         | BVGHT                        | B.Verkehrsbetriebe HT                                                                         |
 | DE      | 3453         | MVB                          | Magdeburger Verkehrsbetriebe GmbH & Co. KG                                                    |
-| DE      | 3469         | Naldo                        | Verkehrsverbund Neckar-Alb-Donau GmbH (naldo)                                                 |
+| DE      | 3469         | Naldo                        | Verkehrsverbund Neckar-Alb-Donau GmbH (Naldo)                                                 |
 | DE      | 3493         | WEG                          | Werra-Eisenbahnverkehrsgesellschaft mbH                                                       |
 | DE      | 3496         | VIASP                        | VIAS Passenger                                                                                |
 | DE      | 3510         | BTE                          | BTE BahnTouristikExpress GmbH                                                                 |
@@ -457,7 +457,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 ## Graphics Items
 
 | icon                                                             | description                                                           | icon code | orientation used | mounting used |
-| ---------------------------------------------------------------- | --------------------------------------------------------------------- | --------- | ---------------- | ------------- | 
+| ---------------------------------------------------------------- | --------------------------------------------------------------------- | --------- | ---------------- | ------------- | --- |
 | ![](../images/catalog-of-code-lists/graphics-icons/image001.png) | seat                                                                  | 1         | to right         | -             |     |
 | ![](../images/catalog-of-code-lists/graphics-icons/image002.png) | seat                                                                  | 1         | to left          | -             |     |
 | ![](../images/catalog-of-code-lists/graphics-icons/image003.png) | seat                                                                  | 1         | up               | -             |     |
@@ -909,7 +909,7 @@ Snapshot version, for the actual code list see
 ## Service Facilities
 
 | OSDM code                       | Description                                                                                                    | TAP-TSI code list | TAP-TSI code |
-| ------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------- | ------------ | 
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------- | ------------ | --- | --- | --------------------------- | -------- | --- |
 |                                 | - classes -                                                                                                    |                   |              |
 | `FIRST_CLASS`                   | First class accommodation                                                                                      | B.4.7037          | 6            |
 | `SECOND_CLASS`                  | Second class accommodation                                                                                     | B.4.7037          | 7            |
