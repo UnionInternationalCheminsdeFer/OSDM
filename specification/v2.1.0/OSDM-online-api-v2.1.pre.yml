@@ -38,9 +38,6 @@ tags:
   - name: Bookings
     description: >-
       resources to manipulate bookings
-  - name: On Hold
-    description: >-
-      resources to put a pre-booking on hold for a given time limit
   - name: Bookings Search
     description: >-
       resources to search for bookings
@@ -59,24 +56,27 @@ tags:
   - name: Exchange
     description: >-
       resources to get exchange offers and book it
+  - name: On Hold
+    description: >-
+      resources to put a pre-booking on hold for a given time limit
   - name: Release
     description: >-
       resources to release 
   - name: Complaint Management
     description: >-
       resources to manage complaints
-  - name: Master Data
-    description: >-
-      resources to get master data
   - name: Cancel Fulfillments
     description: >-
       resources to cancel fulfillments
-  - name: Document
+  - name: Booking Documents
     description: >-
       resources to get documents
   - name: Reimbursement Management
     description: >-
       resources to manage reimbursements
+  - name: Master Data
+    description: >-
+      resources to get master data
 
 paths:
   /places:
@@ -909,12 +909,12 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-  /bookings/{bookingId}/bookedOffer/{bookedOfferId}/reservations/{reservationId}:
+  /bookings/{bookingId}/bookedOffers/{bookedOfferId}/reservations:
     post:
       tags:
         - BookingPart
       summary: Adds an optional reservation to a  prebooked booking.
-      operationId: createBookingBookedOfferReservations
+      operationId: createBookingBookedOffersReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -927,11 +927,6 @@ paths:
           schema:
             type: string
         - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: reservationId
           in: path
           required: true
           schema:
@@ -979,80 +974,12 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-    patch:
-      tags:
-        - BookingPart
-      summary: Adds an optional reservation to a pre-booked booking.
-      operationId: patchBookingBookedOfferReservations
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: reservationId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BookedOfferReservationPatchRequest'
-      responses:
-        '200':
-          description: >-
-            TODO: Please add comment for response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BookedOfferReservationPatchResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-    
-    
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-
+  /bookings/{bookingId}/bookedOffers/{bookedOfferId}/reservations/{reservationId}:
     delete:
       tags:
         - BookingPart
       summary: Removes an optional reservation from pre-booked booking.
-      operationId: deleteBookingBookedOfferReservations
+      operationId: deleteBookingBookedOffersReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -1100,12 +1027,12 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-  /bookings/{bookingId}/bookedOffer/{bookedOfferId}/ancillaries/{ancillaryId}:
+  /bookings/{bookingId}/bookedOffers/{bookedOfferId}/ancillaries:
     post:
       tags:
         - BookingPart
       summary: Adds an ancillary to a pre-booked booking.
-      operationId: createBookingBookedOfferAncillaries
+      operationId: createBookingBookedOffersAncillaries
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -1118,11 +1045,6 @@ paths:
           schema:
             type: string
         - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: ancillaryId
           in: path
           required: true
           schema:
@@ -1170,80 +1092,12 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-    patch:
-      tags:
-        - BookingPart
-      summary: Adds an ancillary to a pre-booked booking.
-      operationId: patchBookingBookedOfferAncillaries
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: ancillaryId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BookedOfferAncillaryPatchRequest'
-      responses:
-        '200':
-          description: >-
-            TODO: Please add comment for response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BookedOfferAncillaryPatchResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-    
-    
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-
+  /bookings/{bookingId}/bookedOffers/{bookedOfferId}/ancillaries/{ancillaryId}:
     delete:
       tags:
         - BookingPart
       summary: Removes an ancillary from pre-booked booking.
-      operationId: deleteBookingBookedOfferAncillary
+      operationId: deleteBookingBookedOffersAncillary
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -1516,12 +1370,12 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-  /bookings/{bookingId}/bookedOffer:
+  /bookings/{bookingId}/bookedOffers:
     post:
       tags:
         - Bookings
-      summary: Adds a bookedOffer in a booking
-      operationId: postBookingBookedOffer
+      summary: Adds a bookedOffer in a booking.
+      operationId: postBookingBookedOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -1579,8 +1433,8 @@ paths:
     get:
       tags:
         - Bookings
-      summary: Get booked offer for a given booking.
-      operationId: getBookingBookedOffer
+      summary: Get booked offers of a booking.
+      operationId: getBookingBookedOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -1606,6 +1460,53 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see RFC2616-sec14.12).
     
+    
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
+  /bookings/{bookingId}/bookedOffers/{offerId}:
+    delete:
+      tags:
+        - Bookings
+      summary: Delete booked offer in a booking.
+      operationId: deleteBookingBookedOffersId
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: offerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+    
+        '204':
+          $ref: '#/components/responses/NoContentResponse'
     
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -3270,7 +3171,7 @@ paths:
   /bookings/{bookingId}/documents:
     post:
       tags:
-        - Document
+        - Booking Documents
       summary: Allows adding a document to a booking.
       operationId: createDocuments
       parameters:
@@ -3329,7 +3230,7 @@ paths:
   /bookings/{bookingId}/documents/{documentId}:
     get:
       tags:
-        - Document
+        - Booking Documents
       summary: returns a document from a booking
       operationId: getDocument
       parameters:
@@ -3386,7 +3287,7 @@ paths:
 
     delete:
       tags:
-        - Document
+        - Booking Documents
       summary: Delete a document from a booking.
       operationId: deleteBookingsDocumentsId
       parameters:
@@ -4651,6 +4552,10 @@ components:
             Id of this trip for referencing purposes. Unique within trip response.
           type: string
           nullable: false
+        summary:
+          type: string
+        externalRef:
+          type: string
         startTime:
           description: >-
             Departure time at origin.
@@ -6615,7 +6520,7 @@ components:
       type: object
       additionalProperties: false
       description: >-
-        Fees are used to represent additional costs for services or products.   In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the provider system.
+        Fees are used to represent additional costs for services or products.  In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the provider system.
       required:
         - id
         - price
@@ -10372,10 +10277,13 @@ components:
       additionalProperties: false
       required:
         - offerId
-        - passengerRefs
         - ancillaryOfferId
+        - passengerRefs
       properties:
         offerId:
+          type: string
+          nullable: false
+        ancillaryOfferId:
           type: string
           nullable: false
         passengerRefs:
@@ -10383,9 +10291,6 @@ components:
           items:
             type: string
           minItems: 1
-          nullable: false
-        ancillaryOfferId:
-          type: string
           nullable: false
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
@@ -10464,11 +10369,14 @@ components:
       additionalProperties: false
       required:
         - offerId
-        - passengerRefs
         - reservationOfferId
+        - passengerRefs
         - placeSelections
       properties:
         offerId:
+          type: string
+          nullable: false
+        reservationOfferId:
           type: string
           nullable: false
         passengerRefs:
@@ -10476,9 +10384,6 @@ components:
           items:
             type: string
           minItems: 1
-          nullable: false
-        reservationOfferId:
-          type: string
           nullable: false
         placeSelections:
           type: array
@@ -10509,6 +10414,59 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BookedOffer'
+
+    BookedOfferSummary:
+      type: object
+      additionalProperties: false
+      required:
+        - offerId
+        - summary
+        - bookingPartSummaries
+      properties:
+        offerId:
+          type: string
+          nullable: false
+        summary:
+          type: string
+          nullable: false
+        bookingPartSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartSummary'
+          minItems: 1
+
+    BookingPartSummary:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - summary
+        - productSummaries
+        - status
+        - type
+      properties:
+        id:
+          type: string
+          nullable: false
+        summary:
+          type: string
+          nullable: false
+        productSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductSummary'
+          minItems: 1
+        status:
+          $ref: '#/components/schemas/BookingPartStatus'
+        type:
+          $ref: '#/components/schemas/BookingPartType'
+
+    BookingPartType:
+      type: string
+      enum:
+        - ADMISSION
+        - RESERVATION
+        - ANCILLARY
 
     BookingResponseContent:
       description: >-
@@ -10589,8 +10547,9 @@ components:
       description: >-
         Summary of the booking found by the booking search. For more information, get the booking.
       required:
+        - passengers
         - id
-        - productSummary
+        - bookedOfferSummaries
       properties:
         purchaser:
           $ref: '#/components/schemas/Purchaser'
@@ -10598,7 +10557,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
-        tripSummary:
+          minItems: 1
+        tripSummaries:
           type: array
           items:
             $ref: '#/components/schemas/TripSummary'
@@ -10609,10 +10569,10 @@ components:
           $ref: '#/components/schemas/Price'
         provisionalPrice:
           $ref: '#/components/schemas/Price'
-        productSummary:
+        bookedOfferSummaries:
           type: array
           items:
-            $ref: '#/components/schemas/ProductSummary'
+            $ref: '#/components/schemas/BookedOfferSummary'
           minItems: 1
 
     CancelFulfillmentsOffer:
