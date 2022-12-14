@@ -118,7 +118,7 @@ online distribution/carrier systems of [BENE](https://www.benerail.com),
 well as existing [UIC leaflets](https://www.shop-etf.com/en/leaflets-irs) were
 carefully examined and taken into account.
 
-Proofing that the specification is not bound to rail
+Proofing that the specification is not bound to rail,
 [Bileto](https://www.bileto.com/en) is successfully using the standard for the
 distribution of bus rides.
 
