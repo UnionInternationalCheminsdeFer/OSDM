@@ -16,10 +16,10 @@ The aims of the **Open Sales and Distribution Model (OSDM)** are twofold:
 2. to **lower complexity and distribution costs** for retailers, distributor and
    carriers.
 
-The OSDM **strengthens rail and public transport** as a convenient and ecological
-means of transportation by simplifying distribution. Finally, it lays a **solid
-fundament** which can be extended to the distribution of other means of
-transportation.
+The OSDM **strengthens rail and public transport** as a convenient and
+ecological means of transportation by simplifying distribution. Finally, it lays
+a **solid fundament** which can be extended to the distribution of other means
+of transportation.
 
 The OSDM Online API and specification essentially consists of two parts:
 **Offline Model** and **Online API**. The Online API works in two modes:
@@ -112,15 +112,15 @@ online distribution/carrier systems of [BENE](https://www.benerail.com),
 **UIC Railways** as well as distribution solutions provided by
 [Amadeus](https://amadeus.com/), [Sabre](https://www.sabre.com/),
 [Silverrail](https://www.silverrailtech.com/), [Sqills](https://sqills.com/),
-[Trainline](https://www.thetrainline.com/),
+[Turnit](https://turnit.com), [Trainline](https://www.thetrainline.com/),
 [Travelport](https://www.travelport.com/) and others. Furthermore, the
 [Hermes ecosystem](https://www.hitrail.com/hermes-ecosystem) for reservations as
 well as existing [UIC leaflets](https://www.shop-etf.com/en/leaflets-irs) were
 carefully examined and taken into account.
 
-Recently [Bileto](https://www.bileto.com/en) as well as
-[Turnit](https://turnit.com/) have joint the initiative and are using the
-standard for the distribution of bus rides.
+Proofing that the specification is not bound to rail
+[Bileto](https://www.bileto.com/en) is successfully using the standard for the
+distribution of bus rides.
 
 Advisors from **CER**, **CIT**, **ECTAA**, **EU Traveltech** and sounding boards
 from the **European Commission** as well as the **European Rail Agency** were
