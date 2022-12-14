@@ -244,18 +244,19 @@ Booking must be supported by all parties.
 
 A product must contain the following information:
 
-- `id`: an id uniquely identifying the product, e.g. "Sparschiene"
-- `description`: A textual description of the product
-- `conditions`: A structured description of the sales or after-sales conditions
-  which can be machine interpreted.
-- `refundable`: Indicates whether a product is refundable, refundable with
-  conditions or not refundable
-- `exchangeable`: Indicates whether a product is exchangeable, exchangeable with
-  conditions or not exchangeable
-- `serviceClass`: The service class describing the level of comfort.
+- An id uniquely identifying the product, e.g. "Sparschiene".
+- A textual description of the product.
+- A structured description of the sales or after-sales conditions which are
+  machine interpretable as well as a human readable.
+- A indication whether a product is _refundable_, _refundable with conditions_
+  or _not refundable_.
+- A indication whether a product is _exchangeable_, _exchangeable with
+  conditions_ or _not exchangeable_.
+- The service class describing the level of comfort.
+- Define the supported fulfillment media types.
 
-Other attributes may define the supported fulfillment media types of the product
-as well as text defining service or carrier constraint.
+A product does not have a price, as the price is bound to an offer as an
+instantiation of a product.
 
 ### Requirements on Fulfillment
 
