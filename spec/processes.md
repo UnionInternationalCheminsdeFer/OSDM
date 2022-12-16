@@ -310,6 +310,60 @@ return.
 - Schedule mismatch between systems
 - Unknown error on server side
 
+#### Place Availability of Offers
+
+Each reservation item may provide availability information in `availablePlaces`. The total number of places is specified when availability of accommodation sub type `ANY_SEAT` is presented, optionally with all possible place properties. Sum of all available places object does not build the total number, some of these availabilities might be subset of the total. The fare provider is free to provide either total capacity only, or detail on other accommodation types and sub types.
+
+```
+...
+{
+  "availablePlaces": [
+    {
+      "accommodationType": "SEAT",
+      "accommodationSubType": "ANY_SEAT",
+      "placeProperties": [
+        {
+          "code": "SILENCE"
+        },
+        {
+          "code": "WINDOW"
+        },
+        {
+          "code": "AILE"
+        },
+        {
+          "code": "TABLE"
+        },
+        {
+          "code": "OPEN_SPACE"
+        }
+        ],
+        "numericAvailability": 123,
+        "tripLegCoverage": {
+            "tripId": 1,
+            "legId": 2
+        }                
+      ]
+    },
+    {
+      "accommodationType": "SEAT",
+      "accommodationSubType": "WITH_ANIMALS",
+      "placeProperties": [
+            {
+              "code": "WITH_ANIMALS"
+            }
+        ],
+        "numericAvailability": 5,
+        "tripLegCoverage": {
+            "tripId": 1,
+            "legId": 2
+        }                
+    }
+  ]
+}
+...
+```
+
 #### Getting Coach Layouts
 
 Graphical seat reservation allows a customer to conveniently choose its
@@ -389,7 +443,7 @@ In most cases the offer will not contain information on specific place
 properties for reservations. the reservation resource in the offer provides
 information on the availability of places with the selected offer:
 
-- Places with specific properties
+- Places with specific properties; please refer to the section _Place Availability of Offers_ on the semantics of provided Place Availabilities.
 - Places nearby another place
 - A graphical display of available places.
 
