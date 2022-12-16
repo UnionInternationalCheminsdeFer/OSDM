@@ -45,7 +45,7 @@ The following services/features are mandatory/optional to implement:
 | `/bookings/{bookingId}/purchaser`    | Resources to manipulate a purchasers information at every stage of the flow | **Mandatory**                                                              |
 | `/bookings/{bookingId}/fulfillments` | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets.                                |
 | `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer                                  | **Mandatory** is to support full refund.                                   |
-| `/booking-search/`                   | Resources to search for bookings                                            | **Mandatory**                                                              |
+| `/bookings-search/`                  | Resources to search for bookings                                            | **Mandatory**                                                              |
 | `/fulfillments`                      | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets.                                |
 
 | Trip planning Resources | Description                     | Need to Support |
