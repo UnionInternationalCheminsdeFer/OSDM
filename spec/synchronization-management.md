@@ -27,9 +27,10 @@ The API informs authorized listener of the fact that changes have occurred using
   A trip related to the booking which was uncertain has been confirmed. For
   large groups it is possible to book before the train is actually available.
 
-  The recommended action is to reload the related booking and to bubble the
-  event up. If final partner, inform the client. You may want to re-confirm the
-  client is travelling and if relevant trigger confirmation the payment process.
+  The recommended action is to reload and update the related booking, i.e. the
+  related fulfillments and to bubble the event up. If it reaches the final
+  partner, it informs the client. You may want to re-confirm the client is
+  traveling and if relevant trigger confirmation the payment process.
 
 - `BOOKING_TRIP_CHANGED`
 
@@ -37,9 +38,10 @@ The API informs authorized listener of the fact that changes have occurred using
   updated. Thus, it does not cover real-time updates. The trip on the level of
   that provider is still feasible.
 
-  The recommended action is to reload the booking from this provider. If part of
-  a multi-provider trip, check the total trip is still feasible and bubble the
-  event up. If final partner, inform the client.
+  The recommended action is to reload and update the booking from this provider
+  i.e. the related fulfillments. If part of a multi-provider trip, check the
+  total trip is still feasible and bubble the event up. If it reaches final
+  partner, it informs the client.
 
 - `BOOKING_REAL_TIME_EVENT_OCCURRED`
 
@@ -60,7 +62,7 @@ The API informs authorized listener of the fact that changes have occurred using
 - `FULFILLMENT_REFUNDED`
 
   A fulfillment has been refunded. In case of deferred refund, it would be at
-  the end of the « waiting period ». In case of seat release, it will take place
+  the end of the _waiting period_. In case of seat release, it will take place
   at the moment of the actual refund.
 
   The recommended action is to retrieve the booking and update the local
@@ -69,7 +71,7 @@ The API informs authorized listener of the fact that changes have occurred using
 - `FULFILLMENT_EXCHANGED`
 
   A fulfillment has been exchanged. In case of deferred refund, it would be at
-  the end of the « waiting period ». In case of seat release, it will take place
+  the end of the _waiting period_. In case of seat release, it will take place
   at the moment of the actual refund.
 
   The recommended action is to retrieve the booking and update the local
