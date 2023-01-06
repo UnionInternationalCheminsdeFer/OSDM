@@ -2,6 +2,13 @@
 
 title "BookingPart State Model"
 
+state onhold #LightGreen
+
+state refunded #LightBlue
+state released #LightBlue
+state exchangeOngoing #LightBlue
+state exchanged #LightBlue
+
 [*] --> prebooked : POST /bookings with offer ids, optional accommodation / ancillariy ids
 prebooked --> confirmed: POST /bookings/{id}/fulfillments \n where at least 1 fulfillment is confirmed
 prebooked --> [*]: DELETE /bookings/{id}
@@ -26,8 +33,12 @@ cancelled --> [*]
 
 refunded --> [*]
 
-exchangeOngoing --> [*]
+exchangeOngoing --> exchanged: POST /bookings/{id}/exchangeOperations \n followed by POST /booking/{id}/fulfillments
+exchangeOngoing --> fulfilled: exchange is not finalized
 
+exchanged --> [*]
+
+released --> refunded: If refund operation is triggered
 released --> [*]
 
 error --> [*] : DELETE /booking \nin a cleanup context
