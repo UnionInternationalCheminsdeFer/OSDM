@@ -128,4 +128,4 @@ The following increments are planned:
 | `PI-4`            | 14.02.2022 | _delivered with OSDM v.1.4_, see [Release Notes 1.4](https://osdm.io/releases/OSDM-release-notes-v1.4/) |
 | `PI-5`            | 24.06.2022 | merged into V.2.0                                                                                       |
 | `PI-6`            | 28.10.2022 | _delivered with OSDM v.2.0_ see [Release Notes 2.0](https://osdm.io/releases/OSDM-release-notes-v2.0/)  |
-| `PI-7`            | 09.02.2023 | _scope_, specification work on going                                                                    |
+| `PI-7`            | 09.02.2023 | _scoped_, specification work on going                                                                    |
