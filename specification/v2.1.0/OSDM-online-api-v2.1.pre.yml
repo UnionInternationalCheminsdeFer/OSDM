@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 2.1.pre-2023-01-09
+  version: 2.1.pre-2023-01-16
   description: >-
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Distributor Mode and Allocator Mode. The API works the same in both modes, except that in allocator mode the API also returns fare information.
     The OSDM specification combines the allocator and distributor modes into one aligned API interface.
@@ -38,12 +38,12 @@ tags:
   - name: Bookings
     description: >-
       resources to manipulate bookings
-  - name: Purchaser
-    description: >-
-      resources to manipulate a purchaser's information at every stage of the flow
   - name: BookedOffers
     description: >-
       resources to manipulate bookings
+  - name: Purchaser
+    description: >-
+      resources to manipulate a purchaser's information at every stage of the flow
   - name: Bookings Search
     description: >-
       resources to search for bookings
@@ -5740,14 +5740,6 @@ components:
           $ref: '#/components/schemas/OfferMode'
         currency:
           $ref: '#/components/schemas/Currency'
-        nutsCodes:
-          description: >-
-            Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
-          type: array
-          items:
-            type: string
-        place:
-          $ref: '#/components/schemas/PlaceRef'
 
     OfferPartType:
       description: >-
@@ -5785,12 +5777,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TripSpecification'
-        tripSearchCriteria:
-          $ref: '#/components/schemas/TripSearchCriteria'
         tripIds:
           type: array
           items:
             type: string
+        tripSearchCriteria:
+          $ref: '#/components/schemas/TripSearchCriteria'
+        nonTripSearchCriteria:
+          $ref: '#/components/schemas/NonTripSearchCriteria'
         requestedSections:
           type: array
           items:
@@ -11269,6 +11263,32 @@ components:
             Textual representation of the carrier to be displayed unless the application is able to indicate the name by the carrier references.
           type: string
           example: RhB
+
+    NonTripSearchCriteria:
+      type: object
+      additionalProperties: false
+      description: >-
+        Defines the requested validity when searching specifically for a non-trip Offer. 
+        
+        The geographical validity can either be specified by a list of nutsCodes, by a list of places (e.g. stations) with the semantics that trips between either of any of the listed stations are covered (e.g. Frankfurt (Main) Hbf, Friedberg(Hess) and Hanau Hbf, which would imply that any travel between these stations is to be covered), or a list of zones (e.g. with carrier urn:vdv:rmv, the zones with the ids 50, 2501 and 3001 would cover the same area as the list of stations above).
+      properties:
+        validFrom:
+          type: string
+          format: date-time
+        nutsCodes:
+          description: >-
+            Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
+          type: array
+          items:
+            type: string
+        zones:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZoneDefinition'
+        places:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceRef'
 
     OfferCollectionResponseContent:
       type: string
