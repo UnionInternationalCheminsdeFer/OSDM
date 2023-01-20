@@ -14,3 +14,7 @@
 3. Removed `Purchaser.Id` (2023-01-20)
 4. Changed `Exchange.fulfillments` to `Exchange.exchangedFulfillmentIds`
    (2023-01-13)
+5.	PATCH is replaced vith POST in the exchange resource.
+6. PATCH is replaced with POST both for ancillaries and reservations in the
+   BookingParts resource 
+7.	Rename bookedOffer to bookedOffers in resource pathes
