@@ -106,8 +106,7 @@ of by the customer.
 | `INCLUDING_DRINK`       | Y                      | Y                | Y              | A drink is included at the place                                                                 |                        |
 | `KIOSQUE`               | N                      | Y                | Y              | Kiosque (special seats in edge area of a TGV)                                                    |                        |
 | `LADIES`                | N                      | Y                | Y              | Ladies compartment                                                                               |                        |
-| `MEN`                   | N                      | Y                | Y              | Men compartment                                                                                  |                        |
-| `MIXED_GENDER`   | N                      | Y                | Y              | Mixed gender compartment                                                                                  |                        |            
+                                                                            |                        |            
 | `LOWER_BED`             | N                      | Y                | Y              | Lower bed or couchette                                                                           | `PLACE_LOCATION`       |
 | `LOWER_DECK`            | N                      | Y                | Y              | Lower deck in a double deck train                                                                | `DECK`                 |
 | `MEN`                   | N                      | Y                | Y              | Men compartment in night train                                                                   |                        |
