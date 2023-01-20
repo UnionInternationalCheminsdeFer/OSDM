@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 2.1.pre-2023-01-16
+  version: 2.1.pre-2023-01-20
   description: >-
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Distributor Mode and Allocator Mode. The API works the same in both modes, except that in allocator mode the API also returns fare information.
     The OSDM specification combines the allocator and distributor modes into one aligned API interface.
@@ -38,12 +38,12 @@ tags:
   - name: Bookings
     description: >-
       resources to manipulate bookings
-  - name: BookedOffers
-    description: >-
-      resources to manipulate bookings
   - name: Purchaser
     description: >-
       resources to manipulate a purchaser's information at every stage of the flow
+  - name: BookedOffers
+    description: >-
+      resources to manipulate bookings
   - name: Bookings Search
     description: >-
       resources to search for bookings
@@ -6359,6 +6359,7 @@ components:
         - id
         - code
         - owner
+        - flexibility
       properties:
         id:
           description: >-
@@ -6389,20 +6390,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Condition'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
         serviceClass:
           $ref: '#/components/schemas/ServiceClass'
         travelClass:
           $ref: '#/components/schemas/TravelClass'
+        fulfillmentOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOption'
         isTrainBound:
           type: boolean
           default: false
         isReturnProduct:
           type: boolean
           default: false
-        fulfillmentOptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentOption'
         serviceConstraintText:
           type: string
         carrierConstraintText:
@@ -9845,12 +9848,7 @@ components:
       additionalProperties: false
       description: >-
         purchaser information
-      required:
-        - id
       properties:
-        id:
-          type: string
-          nullable: false
         externalRef:
           description: >-
             A stable reference to a purchaser from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
