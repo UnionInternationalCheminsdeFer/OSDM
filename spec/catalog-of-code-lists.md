@@ -62,7 +62,7 @@ Place Preference Group collects Place preferences where only one can be chosen
 of by the customer.
 
 | Code                    | Accommodation Sub Type | Place Preference | Place Property | Description                                                                                      | Place Preference Group |
-| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- | --- |
+| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- |
 | `AISLE`                 | N                      | Y                | Y              | Place at the aisle                                                                               | `PLACE_LOCATION`       |
 | `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area                                                                    |                        |
 | `ANY_SEAT`              | Y                      | N                | Y              | Indicates within a place preference group explicitly that the selection is optional              |                        |
@@ -105,7 +105,9 @@ of by the customer.
 | `INCLUDING_MEAL`        | Y                      | Y                | Y              | Meal at the place is included                                                                    |                        |
 | `INCLUDING_DRINK`       | Y                      | Y                | Y              | A drink is included at the place                                                                 |                        |
 | `KIOSQUE`               | N                      | Y                | Y              | Kiosque (special seats in edge area of a TGV)                                                    |                        |
-| `LADIES`                | N                      | Y                | Y              | Ladies compartment in night train                                                                |                        |
+| `LADIES`                | N                      | Y                | Y              | Ladies compartment                                                                               |                        |
+| `MEN`                   | N                      | Y                | Y              | Men compartment                                                                                  |                        |
+| `MIXED_GENDER`   | N                      | Y                | Y              | Mixed gender compartment                                                                                  |                        |            
 | `LOWER_BED`             | N                      | Y                | Y              | Lower bed or couchette                                                                           | `PLACE_LOCATION`       |
 | `LOWER_DECK`            | N                      | Y                | Y              | Lower deck in a double deck train                                                                | `DECK`                 |
 | `MEN`                   | N                      | Y                | Y              | Men compartment in night train                                                                   |                        |
@@ -910,7 +912,7 @@ Snapshot version, for the actual code list see
 ## Service Facilities
 
 | OSDM code                       | Description                                                                                                    | TAP-TSI code list | TAP-TSI code |
-| ------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------- | ------------ | --- | --- | --------------------------- | -------- | --- |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------- | ------------ |
 |                                 | - classes -                                                                                                    |                   |              |
 | `FIRST_CLASS`                   | First class accommodation                                                                                      | B.4.7037          | 6            |
 | `SECOND_CLASS`                  | Second class accommodation                                                                                     | B.4.7037          | 7            |
@@ -996,7 +998,7 @@ Snapshot version, for the actual code list see
 | N/A                             | Second class compartment with 6 couchettes                                                                     | B.4.9039          | 64           |
 | `COUCHETTE_WHEELCHAIR`          | Couchette with wheelchair space                                                                                |                   |              |
 | N/A                             | Second class couchette with wheelchair space                                                                   | B.4.9039          | 65           |
-| `VEHICLE_TRAINSPORT`            | Facilities for vehicle transport etc. Not bicycles. Cars,                                                      | `SEAT`            | seats        |     |     | boats, trailers, motorbikes | B.4.9039 | 14  |
+| `VEHICLE_TRAINSPORT`            | Facilities for vehicle transport etc. Not bicycles. Cars, boats, trailers, motorbikes                          |                    |              |
 |                                 | - food -                                                                                                       |                   |              |
 | `RESTAURANT`                    | Restaurant facility                                                                                            |                   |              |
 | `BAR`                           | A bar is available                                                                                             | B.4.9039          | 47           |
