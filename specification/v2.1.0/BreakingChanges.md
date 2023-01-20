@@ -9,7 +9,8 @@
    consistent, within the `Booking` object, the products list should also be
    moved from the Booking object level into the `BookedOffer` object.
    (2022-12-09)
-2. Removed `nutsCodes` and `places` from `OfferSearchCriteria` (2023-01-13)
+2. Removed `nutsCodes` and `places` from `OfferSearchCriteria` and moved to
+   `NonTripOfferSearchCriteria`(2023-01-13)
 3. Removed `Purchaser.Id` (2023-01-20)
 4. Changed `Exchange.fulfillments` to `Exchange.exchangedFulfillmentIds`
    (2023-01-13)
