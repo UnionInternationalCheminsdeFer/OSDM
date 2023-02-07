@@ -8393,8 +8393,11 @@ components:
         - $ref: '#/components/schemas/TravelAccountBase'
         - type: object
           required:
+            - issuer
             - regionalConstraint
           properties:
+            issuer:
+              $ref: '#/components/schemas/CompanyRef'
             regionalConstraint:
               $ref: '#/components/schemas/RegionalConstraint'
             regionalConstraintSummary:
@@ -8405,10 +8408,13 @@ components:
         - $ref: '#/components/schemas/TravelAccountBase'
         - type: object
           required:
+            - issuer
             - unit
             - totalBalance
             - remainingBalance
           properties:
+            issuer:
+              $ref: '#/components/schemas/CompanyRef'
             unit:
               $ref: '#/components/schemas/MultiRideAccountUnit'
             unitName:
