@@ -3191,6 +3191,64 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
+  /travelAccounts:
+    get:
+      summary: Lookup for a travel account balance
+      operationId: findTravelAccount
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: issuer
+          in: query
+          schema:
+            type: string
+          required: true
+        - name: identifier
+          in: query
+          schema:
+            type: string
+          required: true
+        - name: embed
+          in: query
+          description: >-
+            Influences whether referenced resources are returned in full or as references only.
+            Default value: NONE
+          schema:
+            type: array
+            maxItems: 2
+            items:
+              $ref: '#/components/schemas/TravelAccountContent'
+      responses:
+        '200':
+          description: >-
+            Looked up travel account balance for given issuer and identifier.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TravelAccountResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
   /zones:
     get:
       tags:
@@ -5932,6 +5990,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fare'
+        indicatedTravelAccountConsumption:
+          $ref: '#/components/schemas/IndicatedTravelAccountConsumption'
         _links:
           type: array
           items:
@@ -6091,7 +6151,7 @@ components:
         appliedReductions:
           type: array
           items:
-            $ref: '#/components/schemas/ReductionCard'
+            $ref: '#/components/schemas/ReductionCardType'
         regionalValiditySummary:
           $ref: '#/components/schemas/RegionalValiditySummary'
 
@@ -8156,6 +8216,18 @@ components:
         reductionCardsDelivery:
           $ref: '#/components/schemas/ReductionCardsDelivery'
 
+    TravelAccountResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningCollection'
+        travelAccount:
+          anyOf:
+            - $ref: '#/components/schemas/ReductionCardAccount'
+            - $ref: '#/components/schemas/TravelPassAccount'
+            - $ref: '#/components/schemas/MultiRideAccount'
+
     ZoneCollectionResponse:
       type: object
       additionalProperties: false
@@ -8179,7 +8251,7 @@ components:
         reductionCards:
           type: array
           items:
-            $ref: '#/components/schemas/ReductionCard'
+            $ref: '#/components/schemas/ReductionCardType'
 
     ZonesDelivery:
       type: object
@@ -8197,7 +8269,7 @@ components:
           items:
             $ref: '#/components/schemas/ZoneDefinition'
 
-    ReductionCard:
+    ReductionCardType:
       type: object
       additionalProperties: false
       required:
@@ -8238,6 +8310,115 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    MultiRideAccountUnit:
+      type: string
+      x-extensible-enum:
+        - TRIP
+        - DAY
+        - MONEY
+        - NAMED
+
+    IndicatedTravelAccountConsumption:
+      type: object
+      required:
+        - unit
+        - units
+      properties:
+        unit:
+          $ref: '#/components/schemas/MultiRideAccountUnit'
+        unitName:
+          type: string
+        unitCurrency:
+          $ref: '#/components/schemas/Currency'
+        units:
+          type: integer
+
+
+    TravelAccountConsumption:
+      type: object
+      properties:
+        consumedOn:
+          type: string
+          format: date-time
+        unitsSpent:
+          type: integer
+        booking:
+          $ref: '#/components/schemas/Booking'
+
+    TravelAccountContent:
+      type: string
+      enum:
+        - ALL
+        - CONSUMPTIONS
+        - NONE
+      default: NONE
+
+    TravelAccountBase:
+      type: object
+      discriminator:
+        propertyName: objectType
+      required:
+        - objectType
+        - identifier
+      properties:
+        objectType:
+          description: Attribute is used as discriminator for inheritance between data types.
+          type: string
+        identifier:
+          type: string
+        consumptions:
+          type: array
+          items:
+            type:
+            $ref: '#/components/schemas/TravelAccountConsumption'
+    
+    ReductionCardAccount:
+      allOf:
+        - $ref: '#/components/schemas/TravelAccountBase'
+        - type: object
+          required:
+            - type
+          properties:
+            type:
+              $ref: '#/components/schemas/ReductionCardType'
+            holderName:
+              type: string
+            expirationDate:
+              type: string
+              format: date-time
+
+    TravelPassAccount:
+      allOf:
+        - $ref: '#/components/schemas/TravelAccountBase'
+        - type: object
+          required:
+            - regionalConstraint
+          properties:
+            regionalConstraint:
+              $ref: '#/components/schemas/RegionalConstraint'
+            regionalConstraintSummary:
+              type: string
+
+    MultiRideAccount:
+      allOf:
+        - $ref: '#/components/schemas/TravelAccountBase'
+        - type: object
+          required:
+            - unit
+            - totalBalance
+            - remainingBalance
+          properties:
+            unit:
+              $ref: '#/components/schemas/MultiRideAccountUnit'
+            unitName:
+              type: string
+            unitCurrency:
+              $ref: '#/components/schemas/Currency'
+            totalBalance:
+              type: integer
+            remainingBalance:
+              type: integer
 
     ZoneDefinition:
       type: object
