@@ -8367,6 +8367,12 @@ components:
           type: string
         identifier:
           type: string
+        validFrom:
+          type: string
+          format: date-time
+        validUntil:
+          type: string
+          format: date-time
         consumptions:
           type: array
           items:
@@ -8384,9 +8390,6 @@ components:
               $ref: '#/components/schemas/ReductionCardType'
             holderName:
               type: string
-            expirationDate:
-              type: string
-              format: date-time
 
     TravelPassAccount:
       allOf:
@@ -8425,6 +8428,10 @@ components:
               type: integer
             remainingBalance:
               type: integer
+            regionalConstraint:
+              $ref: '#/components/schemas/RegionalConstraint'
+            regionalConstraintSummary:
+              type: string
 
     ZoneDefinition:
       type: object
