@@ -3219,7 +3219,7 @@ paths:
             type: array
             maxItems: 2
             items:
-              $ref: '#/components/schemas/TravelAccountContent'
+              $ref: '#/components/schemas/TravelAccountEmbedOptions'
       responses:
         '200':
           description: >-
@@ -8346,7 +8346,7 @@ components:
         booking:
           $ref: '#/components/schemas/Booking'
 
-    TravelAccountContent:
+    TravelAccountEmbedOptions:
       type: string
       enum:
         - ALL
