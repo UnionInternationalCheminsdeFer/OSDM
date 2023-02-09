@@ -77,6 +77,9 @@ tags:
   - name: Reimbursement Management
     description: >-
       resources to manage reimbursements
+  - name: Travel Account Management
+    description: >-
+      resources to manage travel accounts and their balances
   - name: Master Data
     description: >-
       resources to get master data
@@ -3193,6 +3196,8 @@ paths:
 
   /travelAccounts:
     get:
+      tags:
+        - Travel Account Management
       summary: Lookup for a travel account balance
       operationId: findTravelAccount
       parameters:
@@ -8373,6 +8378,8 @@ components:
         validUntil:
           type: string
           format: date-time
+        holder:
+          $ref: '#components/schemas/PersonDetail'
         consumptions:
           type: array
           items:
@@ -8388,8 +8395,6 @@ components:
           properties:
             type:
               $ref: '#/components/schemas/ReductionCardType'
-            holderName:
-              type: string
 
     TravelPassAccount:
       allOf:
