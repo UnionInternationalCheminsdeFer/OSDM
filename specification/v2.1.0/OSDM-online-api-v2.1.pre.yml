@@ -8228,7 +8228,7 @@ components:
         warnings:
           $ref: '#/components/schemas/WarningCollection'
         travelAccount:
-          anyOf:
+          oneOf:
             - $ref: '#/components/schemas/ReductionCardAccount'
             - $ref: '#/components/schemas/TravelPassAccount'
             - $ref: '#/components/schemas/MultiRideAccount'
@@ -8334,8 +8334,8 @@ components:
           $ref: '#/components/schemas/MultiRideAccountUnit'
         unitName:
           type: string
-        unitCurrency:
-          $ref: '#/components/schemas/Currency'
+        unitPrice:
+          $ref: '#/components/schemas/Price'
         units:
           type: integer
 
@@ -8346,10 +8346,20 @@ components:
         consumedOn:
           type: string
           format: date-time
+        unit:
+          $ref: '#/components/schemas/MultiRideAccountUnit'
+        unitName:
+          type: string
+        unitPrice:
+          $ref: '#/components/schemas/Price'
         unitsSpent:
           type: integer
-        booking:
-          $ref: '#/components/schemas/Booking'
+        bookingId:
+          type: string
+        bookingSummary:
+          $ref: '#/components/schemas/BookedOfferSummary'
+        tripSummary:
+          $ref: '#/components/schemas/TripSummary'
 
     TravelAccountEmbedOptions:
       type: string
@@ -8357,7 +8367,7 @@ components:
         - ALL
         - CONSUMPTIONS
         - NONE
-      default: NONE
+      default: ALL
 
     TravelAccountBase:
       type: object
