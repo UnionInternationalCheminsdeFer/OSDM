@@ -18,3 +18,8 @@
 6. **PATCH** is replaced with **POST** both for ancillaries and reservations in
    the BookingParts resource.
 7. Rename `bookedOffer` to `bookedOffers` in resource paths
+8. Remove `ServiceAttribute` (2023-02-17)
+9. Refactor `Place`
+10. Remove `name` from `PlaceRefs
+11. Remove inheritance from `ExchangeOfferRequest` and `ExchangeOfferResponse`
+12. Remove inheritance from `PersonSearchReuest` and `CompanySearchRequest`
