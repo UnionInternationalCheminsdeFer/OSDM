@@ -21,6 +21,7 @@ All members of the International Union of Railways
 - **2021 October** Version 1.3 OSDM released
 - **2021 February** Version 1.4 OSDM released
 - **2022 October** Version 2.0 OSDM released
+- **2023 February** Version 3.0 OSDM released
 
 ### Licencing
 
