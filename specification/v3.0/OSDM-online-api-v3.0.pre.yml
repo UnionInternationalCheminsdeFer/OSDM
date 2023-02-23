@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.0.pre-2022-02-22
+  version: 3.0.pre-2022-02-23
   description: >-
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Distributor Mode and Allocator Mode. The API works the same in both modes, except that in allocator mode the API also returns fare information.
     The OSDM specification combines the allocator and distributor modes into one aligned API interface.
@@ -38,12 +38,12 @@ tags:
   - name: Bookings
     description: >-
       resources to manipulate bookings
-  - name: Purchaser
-    description: >-
-      resources to manipulate a purchaser's information at every stage of the flow
   - name: BookedOffers
     description: >-
       resources to manipulate bookings
+  - name: Purchaser
+    description: >-
+      resources to manipulate a purchaser's information at every stage of the flow
   - name: Bookings Search
     description: >-
       resources to search for bookings
@@ -269,7 +269,7 @@ paths:
       responses:
         '200':
           description: >-
-            trips found matching criteria
+            trips found
           content:
             application/json:
               schema:
@@ -334,7 +334,7 @@ paths:
       responses:
         '200':
           description: >-
-            Trip(s) found
+            trips found
           content:
             application/json:
               schema:
@@ -411,7 +411,7 @@ paths:
       responses:
         '200':
           description: >-
-            the requested trip
+             trip found
           content:
             application/json:
               schema:
@@ -563,6 +563,8 @@ paths:
       tags:
         - On Hold
       summary: Creates an on hold offer.
+      description: >-
+        Onhold offer created
       operationId: createOnHoldOffer
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -643,7 +645,7 @@ paths:
       responses:
         '200':
           description: >-
-            TODO: Please add comment for response
+            Onhold Offer confirmed
           content:
             application/json:
               schema:
@@ -975,17 +977,23 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
+  /bookings/{bookingId}/bookedOffers/{offerId}:
     get:
       tags:
         - BookedOffers
-      summary: Get booked offers of a booking.
-      operationId: getBookingBookedOffers
+      summary: Gets a bookedOffer of a booking.
+      operationId: getBookingBookedOffersId
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: offerId
           in: path
           required: true
           schema:
@@ -1027,11 +1035,10 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-  /bookings/{bookingId}/bookedOffers/{offerId}:
     delete:
       tags:
         - BookedOffers
-      summary: Delete booked offer in a booking.
+      summary: Delete a bookedOffer from a booking.
       operationId: deleteBookingBookedOffersId
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1542,7 +1549,7 @@ paths:
     get:
       tags:
         - Bookings
-      summary: Returns the history of a booking.
+      summary: Returns the history of changes to a booking.
       operationId: getBookingsIdHistory
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1556,20 +1563,10 @@ paths:
           required: true
           schema:
             type: string
-        - name: embed
-          in: query
-          description: >-
-            Influences whether referenced resources are returned in full or as references only.
-            Default value: ALL
-          schema:
-            type: array
-            maxItems: 7
-            items:
-              $ref: '#/components/schemas/BookingResponseContent'
       responses:
         '200':
           description: >-
-            booking found
+            booking history found
           content:
             application/json:
               schema:
@@ -1829,68 +1826,6 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-    patch:
-      tags:
-        - Fulfillments
-      summary: Activates a fulfillment, i.e. changes the status to AVAILABLE.
-      description: >-
-        Changes the fulfillment to status AVAILABLE. In the case of multi-journey product, one of the fulfillment is now "activated" and can be used to travel.
-      operationId: patchFulfillment
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - name: fulfillmentId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: >-
-          patch the fulfillment
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FulfillmentActivationPatchRequest'
-      responses:
-        '200':
-          description: >-
-            fulfillment patched
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-    
-    
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-
   /bookings/{bookingId}/refundOffers:
     post:
       tags:
@@ -1922,7 +1857,7 @@ paths:
       responses:
         '200':
           description: >-
-            Refund offer created
+            refund offer created
           content:
             application/json:
               schema:
@@ -1978,7 +1913,7 @@ paths:
       responses:
         '200':
           description: >-
-            RefundOffer found
+            refund offer found
           content:
             application/json:
               schema:
@@ -2046,7 +1981,7 @@ paths:
       responses:
         '200':
           description: >-
-            RefundOffer confirmed
+            refund offer confirmed
           content:
             application/json:
               schema:
@@ -2159,7 +2094,7 @@ paths:
       responses:
         '200':
           description: >-
-            Refund offer created
+            release offer created
           content:
             application/json:
               schema:
@@ -2221,7 +2156,7 @@ paths:
       responses:
         '200':
           description: >-
-            RefundOffer found
+            release offer found
           content:
             application/json:
               schema:
@@ -2283,7 +2218,7 @@ paths:
       responses:
         '200':
           description: >-
-            RefundOffer confirmed
+            release offer confirmed
           content:
             application/json:
               schema:
@@ -3315,6 +3250,8 @@ paths:
       tags:
         - Booking Documents
       summary: returns a document from a booking
+      description: >-
+        booking documents found
       operationId: getDocument
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -3443,7 +3380,7 @@ paths:
       responses:
         '200':
           description: >-
-            TODO: Please add comment for response
+            Reimbursement created
           content:
             application/json:
               schema:
@@ -3505,7 +3442,7 @@ paths:
       responses:
         '200':
           description: >-
-            TODO: Please add comment for response
+            reimbursement found
           content:
             application/json:
               schema:
@@ -3572,7 +3509,7 @@ paths:
       responses:
         '200':
           description: >-
-            TODO: Please add comment for response
+            reimbursement updated
           content:
             application/json:
               schema:
@@ -3633,7 +3570,7 @@ paths:
       responses:
         '200':
           description: >-
-            TODO: Please add comment for response
+            travel account found
           content:
             application/json:
               schema:
@@ -10754,10 +10691,8 @@ components:
       properties:
         warnings:
           $ref: '#/components/schemas/WarningCollection'
-        bookedOffers:
-          type: array
-          items:
-            $ref: '#/components/schemas/BookedOffer'
+        bookedOffer:
+          $ref: '#/components/schemas/BookedOffer'
 
     BookedOfferSummary:
       type: object
@@ -11258,7 +11193,7 @@ components:
       properties:
         summary:
           description: >-
-            human readable description of the modification
+            human readable description of the event
           type: string
           nullable: false
         requestor:
