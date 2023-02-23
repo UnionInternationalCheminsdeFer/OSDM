@@ -9,7 +9,7 @@
     - name: Online API v3.0.pre (next version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.0/OSDM-online-api-v3.0.pre.yml&nocors
     - name: Online API v3.0.pre (next version) - Swagger
-      link: https://app.swaggerhub.com/apis/schlpbch/uic-90918_10_osdm/3.0.pre-2022-02-22
+      link: https://app.swaggerhub.com/apis/schlpbch/uic-90918_10_osdm/3.0.pre-2022-02-23
 - name: Specification
   link: spec/
   dropdown:
