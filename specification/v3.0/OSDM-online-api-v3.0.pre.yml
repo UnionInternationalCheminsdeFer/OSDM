@@ -2,10 +2,9 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.0.pre-2022-02-23
+  version: 3.0.pre-2022-02-27
   description: >-
-    Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Distributor Mode and Allocator Mode. The API works the same in both modes, except that in allocator mode the API also returns fare information.
-    The OSDM specification combines the allocator and distributor modes into one aligned API interface.
+    Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
   contact:
     name: OSDM Working Group
     url: 'https://osdm.io'
@@ -38,12 +37,12 @@ tags:
   - name: Bookings
     description: >-
       resources to manipulate bookings
-  - name: BookedOffers
-    description: >-
-      resources to manipulate bookings
   - name: Purchaser
     description: >-
       resources to manipulate a purchaser's information at every stage of the flow
+  - name: BookedOffers
+    description: >-
+      resources to manipulate bookings
   - name: Bookings Search
     description: >-
       resources to search for bookings
@@ -1826,6 +1825,67 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
+    patch:
+      tags:
+        - Fulfillments
+      summary: Activates a fulfillment, i.e. changes the status to AVAILABLE.
+      description: >-
+        Changes the fulfillment to status AVAILABLE. In the case of multi-journey product, one of the fulfillment is now "activated" and can be used to travel.
+      operationId: patchFulfillmentId
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+        - name: fulfillmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentActivationPatchRequest'
+      responses:
+        '200':
+          description: >-
+            fulfillment patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+    
+    
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
   /bookings/{bookingId}/refundOffers:
     post:
       tags:
@@ -2601,6 +2661,61 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
+  /bookings/{bookingId}/exchangeOperations:
+    post:
+      tags:
+        - Exchange
+      summary: Pre-books an exchangeOffer as part of an exchange operation.
+      operationId: createBookingExchangeOperations
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExchangeOperationRequest'
+      responses:
+        '200':
+          description: >-
+            TODO: Please add comment for response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExchangeOperationResponse'
+    
+    
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
   /bookings/{bookingId}/exchangeOperations/{exchangeOperationId}:
     get:
       tags:
@@ -2674,11 +2789,11 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-    post:
+    patch:
       tags:
         - Exchange
       summary: Allows to update an ongoing exchange operation.
-      operationId: createBookingExchangeOperations
+      operationId: updateBookingExchangeOperations
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -2704,7 +2819,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ExchangeOperationRequest'
+              $ref: '#/components/schemas/ExchangeOperationPatchRequest'
       responses:
         '200':
           description: >-
@@ -6282,13 +6397,9 @@ components:
           $ref: '#/components/schemas/BookingPartStatus'
         offerMode:
           $ref: '#/components/schemas/OfferMode'
-        allocatorBookingRef:
+        distributorBookingRef:
           description: >-
-            The booking reference of the booking the offer part is in on the provider side.
-          type: string
-        providerBookingRef:
-          description: >-
-            The booking reference of the order the offer part is in on the final provider side = the provider actually hosting or allocating  the product.
+            reference to the booking in the downstream distributor system
           type: string
         passengerIds:
           description: >-
@@ -6708,9 +6819,9 @@ components:
           $ref: '#/components/schemas/Price'
         applicability:
           $ref: '#/components/schemas/ApplicabilityType'
-        providerBookingReference:
+        distributorBookingRef:
           description: >-
-            The booking reference of the booking the offer part is in on the provider side.
+            reference to the booking in the downstream distributor system
           type: string
         refundable:
           $ref: '#/components/schemas/RefundType'
@@ -6779,9 +6890,7 @@ components:
       type: object
       additionalProperties: false
       description: >-
-        The corporate code is a token that reduces the price at POST trip-offer-collection time OR
-        trip-offer-request or Token to receive offers that are not available without it, associated with an
-        agreement between allocator/carrier and a corporate client.
+        The corporate code is a token that reduces the price of an offer or enables  offers that are not available without it. Needs with a commercial agreement between parties.
       required:
         - code
         - issuer
@@ -7118,11 +7227,11 @@ components:
       type: object
       additionalProperties: false
       description: >-
-        A fulfillment is a document (or part of a document in allocator mode) that
+        A fulfillment is a document (or part of a document in distributor mode) that
         - allows the passenger to prove its travel right
         - provides easier access to trains and stations
         - allows an exchange for other services (voucher)
-        A fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
+        A fulfillment refers to services of one or multiple offer parts or a fare (distributor mode).
       required:
         - id
         - createdOn
@@ -7165,7 +7274,7 @@ components:
             $ref: '#/components/schemas/FulfillmentDocument'
         fulfillmentParts:
           description: >-
-            Fulfillment items to be integrated into tickets (allocator mode).
+            Fulfillment items to be integrated into tickets (distributor mode).
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentPart'
@@ -7265,7 +7374,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentMediaType'
-        passengerReference:
+        passengerRef:
           description: >-
             reference to a passenger
           type: string
@@ -7683,7 +7792,7 @@ components:
         - FULFILLED
         - ERROR
 
-    ExchangeOperationRequest:
+    ExchangeOperationPatchRequest:
       type: object
       additionalProperties: false
       description: >-
@@ -8011,6 +8120,7 @@ components:
         - ELECTRONIC_PAYMENT
         - INVOICE
         - VOUCHER
+        - TRAVEL_ACCOUNT
 
     BankAccountReference:
       type: object
@@ -8168,7 +8278,7 @@ components:
       description: >-
         Known Values:
         - BANK_ACCOUNT
-        - SETTLED_TIME_LIMIT_EXCEEDED: an allocator settled the claim as the fare provided did not reply in due time. The compensation amount debited is provided
+        - SETTLED_TIME_LIMIT_EXCEEDED: A distributor settled the claim as the fare provided did not reply in due time. The compensation amount debited is provided.
         - PASSENGER_CHANGE
       type: string
       x-extensible-enum:
@@ -8288,14 +8398,14 @@ components:
       additionalProperties: false
       required:
         - issuer
-        - id
+        - type
         - name
       properties:
         issuer:
           $ref: '#/components/schemas/CompanyRef'
-        id:
+        type:
           description: >-
-            id of the card type within the issue
+            card type
           type: string
           nullable: false
         name:
@@ -8531,8 +8641,7 @@ components:
       type: object
       additionalProperties: false
       description: >-
-        travel validity data are needed to create barcode and control data (IRS 90918-4)
-        in allocator mode even in case they have been checked during the online sale
+        In distributor mode, travel validity data is needed to create barcode and control data (IRS 90918-4) even in case they have been checked during the on-line sale.
       required:
         - validityRange
       properties:
@@ -8819,13 +8928,15 @@ components:
     FareCombinationModel:
       type: object
       additionalProperties: false
+      description: >-
+        Defines the model according to which the fares can be combined.
       required:
         - model
       properties:
         model:
           description: >-
-            Possible models are SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING.
-            The models need to be supported by the allocator.
+            A distributor needs to support the following models:  SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING.
+            
           type: string
           nullable: false
         combinableCarriers:
@@ -9552,8 +9663,7 @@ components:
       type: object
       additionalProperties: false
       description: >-
-        Selection of places with common properties description element - textual description of the places
-        placeProperties is mandatory for allocator mode, for distributors the textual description is used
+        In distributor mode placeProperties are mandatory to be returned.
       required:
         - id
         - passengerIds
@@ -10808,9 +10918,9 @@ components:
           $ref: '#/components/schemas/CompanySearchRequest'
         bookingId:
           type: string
-        providerRef:
-          type: string
-        allocatorRef:
+        distributorBookingRef:
+          description: >-
+            reference to the booking in the downstream distributor system
           type: string
         fulfillmentId:
           type: string
@@ -10954,11 +11064,6 @@ components:
         cancelFulfillmentsOffer:
           $ref: '#/components/schemas/CancelFulfillmentsOffer'
 
-    ChangeType:
-      type: string
-      enum:
-        - TODO
-
     CoachLayoutGridSize:
       type: object
       additionalProperties: false
@@ -11054,7 +11159,7 @@ components:
         id:
           type: string
           nullable: false
-        passengerReference:
+        passengerRef:
           description: >-
             Reference to a passenger, to be specified when the document related to an individual passenger.
           type: string
@@ -11128,7 +11233,7 @@ components:
         - scope
         - type
       properties:
-        passengerReference:
+        passengerRef:
           description: >-
             Reference to a passenger, to be specified when the document related to an individual passenger.
           type: string
@@ -11233,6 +11338,18 @@ components:
         - PASSENGERS
         - NONE
       default: ALL
+
+    ExchangeOperationRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - exchangeOffers
+      properties:
+        exchangeOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferSelection'
+          minItems: 1
 
     ExchangeOperationResponseContent:
       description: >-
@@ -11512,6 +11629,12 @@ components:
         - $ref: '#/components/schemas/AbstractConsumptionUnit'
         - type: object
           additionalProperties: false
+          required:
+            - name
+          properties:
+            name:
+              type: string
+              nullable: false
 
     NonTripSearchCriteria:
       type: object
@@ -11561,7 +11684,12 @@ components:
 
     OfferMode:
       description: >-
-        Offer Mode applied to provide Offers for given criteria. Distributor may specify which Offer Mode is preferred though the allocator, if not supporting given mode, reverts back to the other mode and provides warning instead. Individual Offer Mode  means that each Passenger is given individual Admissions and Reservations   in order to allow to refund individual Passengers booked in single Booking.
+        Offer mode applied to provide offers for given criteria. 
+        
+        Individual offer mode means that each passenger is given individual admissions and reservations  to allow to refund individual passengers booked in a single booking.
+        
+        If collective mode is not supported,  reverts back to the other mode and provides warning instead.
+        
       type: string
       enum:
         - COLLECTIVE
@@ -11648,14 +11776,12 @@ components:
         Method of payment used by the customer to the distributor. On input of voucher the remaining sum attribute is not present.
       required:
         - type
-        - voucherInformation
-        - remainingSum
       properties:
         type:
           $ref: '#/components/schemas/PaymentType'
         voucherInformation:
           $ref: '#/components/schemas/VoucherInformation'
-        remainingSum:
+        remainingVoucherAmount:
           $ref: '#/components/schemas/Price'
 
     PersonSearchRequest:
