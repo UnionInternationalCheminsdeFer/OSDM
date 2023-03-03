@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.0.pre-2022-02-27
+  version: 3.0.pre-2022-03-03
   description: >-
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
   contact:
@@ -37,12 +37,12 @@ tags:
   - name: Bookings
     description: >-
       resources to manipulate bookings
-  - name: Purchaser
-    description: >-
-      resources to manipulate a purchaser's information at every stage of the flow
   - name: BookedOffers
     description: >-
       resources to manipulate bookings
+  - name: Purchaser
+    description: >-
+      resources to manipulate a purchaser's information at every stage of the flow
   - name: Bookings Search
     description: >-
       resources to search for bookings
@@ -296,7 +296,7 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-  /trips-collection/{tripsCollectionId}:
+  /tripCollection/{tripsCollectionId}:
     get:
       tags:
         - Trips
@@ -1593,7 +1593,7 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-  /bookings-search:
+  /bookingsSearch:
     post:
       tags:
         - Bookings Search
@@ -2601,7 +2601,7 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-  /exchange-offers:
+  /bookings/{bookingId}/exchangeOffers:
     post:
       tags:
         - Exchange
@@ -2613,6 +2613,12 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: false
         - name: pEmbed
           in: query
           required: true
@@ -2666,7 +2672,7 @@ paths:
       tags:
         - Exchange
       summary: Pre-books an exchangeOffer as part of an exchange operation.
-      operationId: createBookingExchangeOperations
+      operationId: createBookingsExchangeOperations
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -2721,7 +2727,7 @@ paths:
       tags:
         - Exchange
       summary: Returns the exchange operation with the id provided. It may be a provisional or a confirmed exchange.
-      operationId: getBookingExchangeOperations
+      operationId: getBookingsExchangeOperations
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -2793,7 +2799,7 @@ paths:
       tags:
         - Exchange
       summary: Allows to update an ongoing exchange operation.
-      operationId: updateBookingExchangeOperations
+      operationId: updateBookingsExchangeOperations
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -2861,7 +2867,7 @@ paths:
       tags:
         - Exchange
       summary: Cancels an ongoing exchange operation in provisional state.
-      operationId: deleteBookingExchangeOperation
+      operationId: deleteBookingsExchangeOperation
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -3100,11 +3106,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/CoachLayoutCollectionResponse'
           headers:
-            Expires:
+            Cache-Control:
               schema:
                 type: string
+                default: 'public, max-age=10000'
                 description: >-
-                  Gives the date/time after which the response is considered stale (in 'HTTP-date' format as defined by RFC 7231).
+                  Resource is fairly persistent and has a medium time to live to allow short-term caching.
     
     
         '400':
@@ -3157,11 +3164,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/CoachLayoutResponse'
           headers:
-            Expires:
+            Cache-Control:
               schema:
                 type: string
+                default: 'public, max-age=10000'
                 description: >-
-                  Gives the date/time after which the response is considered stale (in 'HTTP-date' format as defined by RFC 7231).
+                  Resource is fairly persistent and has a medium time to live to allow short-term caching.
     
     
         '400':
@@ -3211,16 +3219,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/ReductionCardCollectionResponse'
           headers:
+            Cache-Control:
+              schema:
+                type: string
+                default: 'public, max-age=10000'
+                description: >-
+                  Resource is fairly persistent and has a medium time to live to allow short-term caching.
             Content-Language:
               schema:
                 type: string
                 description: >-
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-            Expires:
-              schema:
-                type: string
-                description: >-
-                  Gives the date/time after which the response is considered stale (in 'HTTP-date' format as defined by RFC 7231).
     
     
         '400':
@@ -3467,6 +3476,72 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
+  /travelAccounts:
+    get:
+      tags:
+        - Travel Account
+      summary: Returns a travel account.
+      operationId: getTravelAccounts
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: issuer
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: travelAccount
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: embed
+          in: query
+          description: >-
+            Default value: ALL
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TravelAccountResponseContent'
+      responses:
+        '200':
+          description: >-
+            travel account found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TravelAccountResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+    
+    
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
   /bookings/{bookingId}/reimbursements:
     post:
       tags:
@@ -3629,67 +3704,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReimbursementResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-    
-    
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-
-  /travelAccounts:
-    get:
-      tags:
-        - Travel Account
-      summary: Returns a travel account.
-      operationId: getTravelAccounts
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - name: travelAccountId
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: pEmbed
-          in: query
-          description: >-
-            Default value: ALL
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/TravelAccountResponseContent'
-      responses:
-        '200':
-          description: >-
-            travel account found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TravelAccountResponse'
           headers:
             Content-Language:
               schema:
@@ -5420,6 +5434,7 @@ components:
         - REGIONAL
         - INTERREGIONAL
         - URBAN
+        - TRAIN
         - TRAM
         - UNDERGROUND
         - NIGHT_TRAIN
@@ -5515,10 +5530,6 @@ components:
           type: array
           items:
             type: string
-        name:
-          description: >-
-            Public name of the place.
-          type: string
         geoPosition:
           $ref: '#/components/schemas/GeoPosition'
         _links:
@@ -5972,7 +5983,7 @@ components:
         - fulfillments
         - offerId
         - createdOn
-        - validUntil
+        - preBookableUntil
         - passengerRefs
         - admissionOfferParts
       properties:
@@ -5998,7 +6009,7 @@ components:
           type: string
           format: date-time
           nullable: false
-        validUntil:
+        preBookableUntil:
           description: >-
              time until the offer can be pre-booked, however its availability is not guaranteed
           type: string
@@ -6045,7 +6056,7 @@ components:
       required:
         - offerId
         - createdOn
-        - validUntil
+        - preBookableUntil
         - passengerRefs
       properties:
         offerId:
@@ -6061,7 +6072,7 @@ components:
           type: string
           format: date-time
           nullable: false
-        validUntil:
+        preBookableUntil:
           description: >-
              time until the offer can be pre-booked, however its availability is not guaranteed
           type: string
@@ -6129,7 +6140,7 @@ components:
         - minimalPrice
         - overallServiceClass
         - overallFlexibility
-        - minimalConsumptionUnits
+        - minimalUnit
       properties:
         minimalPrice:
           $ref: '#/components/schemas/Price'
@@ -6143,8 +6154,8 @@ components:
           $ref: '#/components/schemas/AccommodationSubType'
         overallFlexibility:
           $ref: '#/components/schemas/Flexibility'
-        minimalConsumptionUnits:
-          $ref: '#/components/schemas/AbstractConsumptionUnit'
+        minimalUnit:
+          $ref: '#/components/schemas/IndicatedConsumption'
 
     AbstractOfferPart:
       type: object
@@ -6157,6 +6168,7 @@ components:
         - objectType
         - id
         - createdOn
+        - validFrom
         - price
         - offerMode
         - passengerRefs
@@ -6179,7 +6191,15 @@ components:
           type: string
           format: date-time
           nullable: false
+        validFrom:
+          description: >-
+            Time from which on the offer can be used, e.g. travel.
+          type: string
+          format: date-time
+          nullable: false
         validUntil:
+          description: >-
+            Time until the offer can be used, e.g. travel.
           type: string
           format: date-time
         price:
@@ -6264,8 +6284,8 @@ components:
             $ref: '#/components/schemas/ReductionCardType'
         regionalValiditySummary:
           $ref: '#/components/schemas/RegionalValiditySummary'
-        consumptionUnits:
-          $ref: '#/components/schemas/AbstractConsumptionUnit'
+        unit:
+          $ref: '#/components/schemas/IndicatedConsumption'
 
     OfferTag:
       type: object
@@ -6357,7 +6377,7 @@ components:
         - passengerIds
         - refundable
         - exchangeable
-        - consumptionUnits
+        - unit
       properties:
         objectType:
           description: Attribute is used as discriminator for inheritance between data types.
@@ -6435,8 +6455,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CardTypeReference'
-        consumptionUnits:
-          $ref: '#/components/schemas/AbstractConsumptionUnit'
+        unit:
+          $ref: '#/components/schemas/IndicatedConsumption'
 
     RefundType:
       type: string
@@ -7255,10 +7275,6 @@ components:
           description: >-
             Ticket Control Number.
           type: string
-        offerParts:
-          type: array
-          items:
-            $ref: '#/components/schemas/OfferPartReference'
         bookingParts:
           type: array
           items:
@@ -8154,9 +8170,10 @@ components:
       type: object
       additionalProperties: false
       description: >-
-        The supporting document helps to support the request.
+        The supporting document helps to supporting the claim.  Either downloadLink + downloadExpiry or content + format must be provided.
       required:
         - title
+        - downloadExpiry
         - format
       properties:
         title:
@@ -8165,6 +8182,12 @@ components:
           type: string
           nullable: false
           example: delay confirmation written by staff on board
+        downloadLink:
+          type: string
+        downloadExpiry:
+          type: string
+          format: date-time
+          nullable: false
         content:
           description: >-
             base64 encoded binary of the actual document
@@ -8316,6 +8339,13 @@ components:
     BackOfficeStatus:
       description: >-
         Status of the request sent to the back office.
+        Valid Values:
+        - INITIATED
+        - EVALUATING
+        - DECIDED
+        - SETTLED
+        - INFORMATION_MISSING
+        - REQUEST_UPDATED: Additional information, i.e. documents have been provided which should trigger reevaluation.
       type: string
       enum:
         - INITIATED
@@ -8323,6 +8353,7 @@ components:
         - DECIDED
         - SETTLED
         - INFORMATION_MISSING
+        - REQUEST_UPDATED
 
     ComplaintDecision:
       type: object
@@ -8349,8 +8380,10 @@ components:
       properties:
         warnings:
           $ref: '#/components/schemas/WarningCollection'
-        reductionCardsDelivery:
-          $ref: '#/components/schemas/ReductionCardsDelivery'
+        reductionCardTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReductionCardType'
 
     ZoneCollectionResponse:
       type: object
@@ -8358,36 +8391,6 @@ components:
       properties:
         warnings:
           $ref: '#/components/schemas/WarningCollection'
-        zonesDelivery:
-          $ref: '#/components/schemas/ZonesDelivery'
-
-    ReductionCardsDelivery:
-      type: object
-      additionalProperties: false
-      description: >-
-        Delivery of a list of reduction cards.
-      properties:
-        deliveryDate:
-          description: >-
-            date of the assembly of the reduction card data set
-          type: string
-          format: date-time
-        reductionCardTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReductionCardType'
-
-    ZonesDelivery:
-      type: object
-      additionalProperties: false
-      description: >-
-        Delivery of a list of zones
-      properties:
-        deliveryDate:
-          description: >-
-            date of the assembly of the zones data set
-          type: string
-          format: date-time
         zones:
           type: array
           items:
@@ -8713,7 +8716,7 @@ components:
           maximum: 99
         tariffId:
           description: >-
-            Tarif id for the old serie format.
+            Tariff id for the old series format.
           type: integer
           format: int32
           minimum: 0
@@ -10119,6 +10122,11 @@ components:
             date of birth of the passenger
           type: string
           format: date
+        age:
+          type: integer
+          format: int32
+          minimum: 0
+          exclusiveMinimum: true
         type:
           $ref: '#/components/schemas/PassengerType'
         cards:
@@ -10145,11 +10153,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-        age:
-          type: integer
-          format: int32
-          minimum: 0
-          exclusiveMinimum: true
 
     AnonymousPassengerSpecification:
       type: object
@@ -10523,26 +10526,6 @@ components:
         issuer:
           $ref: '#/components/schemas/CompanyRef'
 
-    AbstractConsumptionUnit:
-      type: object
-      additionalProperties: false
-      discriminator:
-        propertyName: objectType
-      required:
-        - objectType
-        - amount
-      properties:
-        objectType:
-          description: Attribute is used as discriminator for inheritance between data types.
-          type: string
-        amount:
-          description: >-
-            Defaults to 1 except it the unit is a money consumption, i.e., a price.
-          type: integer
-          format: int32
-          nullable: false
-          default: 1
-
     AbstractTravelAccount:
       type: object
       additionalProperties: false
@@ -10550,7 +10533,6 @@ components:
         propertyName: objectType
       required:
         - objectType
-        - id
         - holder
         - issuer
         - validFrom
@@ -10561,7 +10543,6 @@ components:
           type: string
         id:
           type: string
-          nullable: false
         holder:
           $ref: '#/components/schemas/PersonDetail'
         issuer:
@@ -10574,6 +10555,18 @@ components:
           type: string
           format: date-time
           nullable: false
+
+    AbstractTravelAccountUnit:
+      type: object
+      additionalProperties: false
+      discriminator:
+        propertyName: objectType
+      required:
+        - objectType
+      properties:
+        objectType:
+          description: Attribute is used as discriminator for inheritance between data types.
+          type: string
 
     AdditionalOfferCollectionResponse:
       type: object
@@ -10629,7 +10622,7 @@ components:
           format: int32
           nullable: false
         unit:
-          $ref: '#/components/schemas/AbstractConsumptionUnit'
+          $ref: '#/components/schemas/AbstractTravelAccountUnit'
 
     BookedOfferAncillaryPatchRequest:
       type: object
@@ -11120,7 +11113,7 @@ components:
           format: date
         phoneNumber:
           type: string
-        emial:
+        email:
           type: string
 
     ContextType:
@@ -11140,9 +11133,9 @@ components:
           type: string
           format: date-time
 
-    DayConsumptionUnit:
+    DayTravelAccountUnit:
       allOf:
-        - $ref: '#/components/schemas/AbstractConsumptionUnit'
+        - $ref: '#/components/schemas/AbstractTravelAccountUnit'
         - type: object
           additionalProperties: false
 
@@ -11434,6 +11427,20 @@ components:
         - AVAILABLE
         - CHECKED_IN
 
+    IndicatedConsumption:
+      type: object
+      additionalProperties: false
+      required:
+        - unit
+        - amount
+      properties:
+        unit:
+          $ref: '#/components/schemas/AbstractTravelAccountUnit'
+        amount:
+          type: integer
+          format: int32
+          nullable: false
+
     IndicatedTravelAccountConsumption:
       type: object
       additionalProperties: false
@@ -11572,9 +11579,9 @@ components:
       enum:
         - CAN_CARRY
 
-    MoneyConsumptionUnit:
+    MoneyTravelAccountUnit:
       allOf:
-        - $ref: '#/components/schemas/AbstractConsumptionUnit'
+        - $ref: '#/components/schemas/AbstractTravelAccountUnit'
         - type: object
           additionalProperties: false
           required:
@@ -11606,7 +11613,7 @@ components:
             consumptions:
               type: array
               items:
-                $ref: '#/components/schemas/TravelAcoountConsumption'
+                $ref: '#/components/schemas/TravelAccountConsumption'
 
     NamedCompany:
       type: object
@@ -11624,9 +11631,9 @@ components:
           type: string
           example: RhB
 
-    NamedConsumptionUnit:
+    NamedTravelAccountUnit:
       allOf:
-        - $ref: '#/components/schemas/AbstractConsumptionUnit'
+        - $ref: '#/components/schemas/AbstractTravelAccountUnit'
         - type: object
           additionalProperties: false
           required:
@@ -11843,6 +11850,11 @@ components:
         - $ref: '#/components/schemas/AbstractTravelAccount'
         - type: object
           additionalProperties: false
+          required:
+            - type
+          properties:
+            type:
+              $ref: '#/components/schemas/ReductionCardType'
 
     RefundOfferResponse:
       type: object
@@ -12182,6 +12194,35 @@ components:
         - HOURS
         - MINUTES
 
+    TravelAccountConsumption:
+      type: object
+      additionalProperties: false
+      required:
+        - consumedOn
+        - bookingId
+        - unit
+        - bookingSummary
+        - consumedAmount
+      properties:
+        consumedOn:
+          type: string
+          format: date-time
+          nullable: false
+        bookingId:
+          type: string
+          nullable: false
+        unit:
+          $ref: '#/components/schemas/AbstractTravelAccountUnit'
+        bookingSummary:
+          type: string
+          nullable: false
+        tripSummary:
+          $ref: '#/components/schemas/TripSummary'
+        consumedAmount:
+          type: integer
+          format: int32
+          nullable: false
+
     TravelAccountResponse:
       type: object
       additionalProperties: false
@@ -12199,30 +12240,6 @@ components:
         - NONE
       default: ALL
 
-    TravelAcoountConsumption:
-      type: object
-      additionalProperties: false
-      required:
-        - consumedOn
-        - bookingId
-        - unit
-        - bookingSummary
-      properties:
-        consumedOn:
-          type: string
-          format: date-time
-          nullable: false
-        bookingId:
-          type: string
-          nullable: false
-        unit:
-          $ref: '#/components/schemas/AbstractConsumptionUnit'
-        bookingSummary:
-          type: string
-          nullable: false
-        tripSummary:
-          $ref: '#/components/schemas/TripSummary'
-
     TravelPassAccount:
       allOf:
         - $ref: '#/components/schemas/AbstractTravelAccount'
@@ -12236,12 +12253,6 @@ components:
               nullable: false
             regionalConstraint:
               $ref: '#/components/schemas/RegionalConstraint'
-
-    TripConsumptionUnit:
-      allOf:
-        - $ref: '#/components/schemas/AbstractConsumptionUnit'
-        - type: object
-          additionalProperties: false
 
     TripCoverage:
       type: object
@@ -12305,6 +12316,12 @@ components:
           nullable: false
         coveredSection:
           $ref: '#/components/schemas/Section'
+
+    TripTravelAccountUnit:
+      allOf:
+        - $ref: '#/components/schemas/AbstractTravelAccountUnit'
+        - type: object
+          additionalProperties: false
 
     TripsCollectionResponseContent:
       type: string
