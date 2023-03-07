@@ -11410,6 +11410,17 @@ components:
           nullable: false
         fromPlace:
           $ref: '#/components/schemas/PlaceRef'
+        stockControlNumber:
+          description: >- 
+             id of the secure paper stock that 
+             identifies the blank secure paper stock to be used for printing. 
+             The stock control number is only used for secure paper stock and triggers a 
+             printing of the stock control number in the ticket layout. 
+             This establishes a link between paper stock and ticket that is used 
+             to control the usage of blank secure paper stock at offices as secure paper has otherwise no
+             intrinsic protection against internal fraud. 
+          type: string
+          
 
     HistoryStatus:
       type: string
@@ -12375,4 +12386,3 @@ components:
             voucher code provided by the issuer
           type: string
           nullable: false
-
