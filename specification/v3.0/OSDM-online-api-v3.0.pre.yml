@@ -1032,8 +1032,6 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-        '204':
-          $ref: '#/components/responses/NoContentResponse'
     
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -1151,8 +1149,6 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-        '204':
-          $ref: '#/components/responses/NoContentResponse'
     
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -1270,8 +1266,6 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-        '204':
-          $ref: '#/components/responses/NoContentResponse'
     
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -1497,8 +1491,6 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-        '204':
-          $ref: '#/components/responses/NoContentResponse'
     
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -2070,8 +2062,6 @@ paths:
         '204':
           description: |
             refund offer deleted
-        '204':
-          $ref: '#/components/responses/NoContentResponse'
     
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -2306,8 +2296,6 @@ paths:
         '204':
           description: |
             release offer deleted
-        '204':
-          $ref: '#/components/responses/NoContentResponse'
     
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -2543,8 +2531,6 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-        '204':
-          $ref: '#/components/responses/NoContentResponse'
     
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -2853,8 +2839,6 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-        '204':
-          $ref: '#/components/responses/NoContentResponse'
     
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -3408,8 +3392,6 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-        '204':
-          $ref: '#/components/responses/NoContentResponse'
     
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -3423,70 +3405,6 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-  /travel-accounts:
-    get:
-      tags:
-        - Travel Account
-      summary: Returns a travel account.
-      operationId: getTravelAccounts
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - name: issuer
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: travelAccount
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: embed
-          in: query
-          description: |
-            Default value: ALL
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/TravelAccountResponseContent'
-      responses:
-        '200':
-          description: |
-            travel account found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TravelAccountResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: |
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-    
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3674,6 +3592,70 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+  /travel-accounts:
+    get:
+      tags:
+        - Travel Account
+      summary: Returns a travel account.
+      operationId: getTravelAccounts
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: issuer
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: travelAccount
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: embed
+          in: query
+          description: |
+            Default value: ALL
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TravelAccountResponseContent'
+      responses:
+        '200':
+          description: |
+            travel account found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TravelAccountResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+    
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4085,14 +4067,6 @@ components:
         type: string
 
   responses:
-    NoContentResponse:
-      description: |
-        No Content (204)
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-
     BadRequestResponse:
       description: |
         Bad Request (400)
