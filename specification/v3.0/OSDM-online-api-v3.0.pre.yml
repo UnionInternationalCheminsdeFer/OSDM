@@ -2,9 +2,17 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.0.pre-2022-03-09
+  version: 3.0.pre-2022-03-10
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
+    
+    The following resources are key to get started:
+    
+      -  [Processes](https://osdm.io/spec/processes/)
+      -  [Models](https://osdm.io/spec/models/)
+      -  [Getting started](https://osdm.io/spec/getting-started/)
+    
+    
   contact:
     name: OSDM Working Group
     url: 'https://osdm.io'
@@ -4760,7 +4768,6 @@ components:
         A minimal trip specification from origin to destination.
       required:
         - legs
-        - isPartOfInternationalTrip
       properties:
         externalRef:
           description: |
@@ -4773,7 +4780,6 @@ components:
           minItems: 1
         isPartOfInternationalTrip:
           type: boolean
-          nullable: false
           default: false
 
     OperatingDays:
@@ -5312,6 +5318,10 @@ components:
           items:
             $ref: '#/components/schemas/NamedCompany'
           minItems: 1
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralAttribute'
 
     Mode:
       type: object
@@ -6033,8 +6043,9 @@ components:
     RequestedInformation:
       type: string
       description: |
-        Boolean-expression indicating the data that must be set in the data
-        model in order to proceed to next step of the process.
+        Boolean-expression indicating the data that must be set in the data model in order to proceed to next step of the process. 
+        
+        The syntax and semantics of the expression is described in detail in the OSDM documentation.
 
     OfferSummary:
       type: object
@@ -6055,7 +6066,6 @@ components:
         - minimalPrice
         - overallServiceClass
         - overallFlexibility
-        - minimalIndicatedConsumption
       properties:
         minimalPrice:
           $ref: '#/components/schemas/Price'
@@ -6572,12 +6582,9 @@ components:
         - $ref: '#/components/schemas/AbstractBookingPart'
         - type: object
           additionalProperties: false
-          required:
-            - isReservationRequired
           properties:
             isReservationRequired:
               type: boolean
-              nullable: false
               default: false
             feeRefs:
               type: array
@@ -7369,12 +7376,10 @@ components:
       description: |
         In case of multi-journey products describe parameters to be used to change the a fulfillment in status AVAILABLE to FULFILLED so it can be used by the passenger.
       required:
-        - fromPlaceRequired
         - maxAvailableZones
       properties:
         fromPlaceRequired:
           type: boolean
-          nullable: false
           default: false
         travelDates:
           description: |
@@ -7464,7 +7469,6 @@ components:
         - createdOn
         - validUntil
         - status
-        - appliedOverruleCode
         - fulfillments
         - refundFee
         - refundableAmount
@@ -9412,7 +9416,7 @@ components:
       description: |
         ISO 4217 currency codes
       nullable: false
-      example: CHF, EUR, SEK
+      example: CHF
 
     VAT:
       type: object
@@ -9502,31 +9506,34 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Describes sales, usage and after sales conditions applicable to the product.  See after sales conditions for individual after sales amounts.
+        Describes sales, usage and after sales conditions applicable to the product.  See after sales conditions for individual after sales amounts. The language of the text is controlled by the accept-language header, i.e. supporting English is a must.
       required:
         - type
         - description
-        - shortDescription
       properties:
         type:
           $ref: '#/components/schemas/ConditionType'
         description:
+          description: |
+            human readable documentation of the text.
           type: string
           minLength: 1
           nullable: false
         shortDescription:
+          description: |
+            short description of the condition no longer than 64 characters
           type: string
-          minLength: 1
 
     ConditionType:
       type: string
       x-extensible-enum:
+        - PRE_SALE
         - SALE
+        - TRAVEL
         - PLACE_CHANGE
         - FULFILLMENT
         - EXCHANGE
         - REFUND
-        - TRAVEL
 
     AvailablePlace:
       type: object
@@ -10323,12 +10330,9 @@ components:
     MotorCycle:
       type: object
       additionalProperties: false
-      required:
-        - isSideCarIncluded
       properties:
         isSideCarIncluded:
           type: boolean
-          nullable: false
           default: false
         licensePlate:
           description: |
@@ -10521,25 +10525,6 @@ components:
       x-extensible-enum:
         - MEAL
         - BEVERAGE
-
-    Balance:
-      type: object
-      additionalProperties: false
-      required:
-        - total
-        - remaining
-        - unit
-      properties:
-        total:
-          type: integer
-          format: int32
-          nullable: false
-        remaining:
-          type: integer
-          format: int32
-          nullable: false
-        unit:
-          $ref: '#/components/schemas/AbstractTravelAccountUnit'
 
     BookedOfferAncillaryPatchRequest:
       type: object
@@ -11327,11 +11312,27 @@ components:
           nullable: false
         fromPlace:
           $ref: '#/components/schemas/PlaceRef'
-        stockControlNumber:
+        stockControlNumbers:
           description: |
-            id of the secure paper stock that identifies the blank secure paper stock used for printing.
+            The ids of the secure paper stock that identifies the blank secure paper stock used for printing.
             
             The stock control number is only used for secure paper stock and triggers a printing of the stock control number in the ticket layout. This establishes a link between paper stock and ticket that is used to control the usage of blank secure paper stock at offices as secure paper has otherwise no intrinsic protection against internal fraud.
+          type: array
+          items:
+            type: string
+
+    GeneralAttribute:
+      type: object
+      additionalProperties: false
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          nullable: false
+        code:
+          type: string
+        url:
           type: string
 
     HistoryStatus:
@@ -11512,10 +11513,31 @@ components:
           properties:
             currency:
               $ref: '#/components/schemas/Currency'
-            vats:
-              type: array
-              items:
-                $ref: '#/components/schemas/VAT'
+            scale:
+              type: integer
+              format: int32
+              default: 2
+
+    MulitRideBalance:
+      type: object
+      additionalProperties: false
+      description: |
+        The balance of the travel account.
+      required:
+        - total
+        - remaining
+        - unit
+      properties:
+        total:
+          type: integer
+          format: int32
+          nullable: false
+        remaining:
+          type: integer
+          format: int32
+          nullable: false
+        unit:
+          $ref: '#/components/schemas/AbstractTravelAccountUnit'
 
     MultiRideAccount:
       allOf:
@@ -11532,7 +11554,7 @@ components:
               type: string
               nullable: false
             balance:
-              $ref: '#/components/schemas/Balance'
+              $ref: '#/components/schemas/MulitRideBalance'
             consumptions:
               type: array
               items:
@@ -11806,6 +11828,8 @@ components:
     Reimbursement:
       type: object
       additionalProperties: false
+      description: |
+        Customers who have bought a ticket which allows reimbursement and which have not traveled or traveled partially only can claim to be reimbursed. The customer must prove that he has not or only partially used the ticket. A partial use might be a only a part of the trip was traveled or only some of the travelers were traveling or a combination of both.
       required:
         - id
         - request
@@ -12180,6 +12204,10 @@ components:
     TripCoverage:
       type: object
       additionalProperties: false
+      description: |
+        The trip coverage defines which part of the trip is covered by the offer or the booking respectively.
+        
+        If neither leg ids nor section ids are not defined, the complete trip is covered.
       required:
         - coveredTripId
       properties:
