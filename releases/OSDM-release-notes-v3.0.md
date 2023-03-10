@@ -11,7 +11,7 @@ The following features have been added with version 3.0 of OSDM.
 
 ### Request Ancillaries or Reservations
 
-Return optional reservations or ancillaries of a given offer.
+Return optional reservations or ancillaries suitable for a given offer.
 
 ### Adding-offer to pre-booked Booking
 
@@ -40,5 +40,5 @@ Other work addressed includes:
 ### Breaking Changes
 
 We adhere to [Semantic Versioning](https://semver.org/), thus a list of
-[breaking changes](https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v2.1.0/BreakingChanges.md)
+[breaking changes](https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v3.0/BreakingChanges.md)
 compared to version 2.0 is available.
