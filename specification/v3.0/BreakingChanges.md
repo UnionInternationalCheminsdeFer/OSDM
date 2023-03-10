@@ -1,5 +1,7 @@
 # Breaking changes since 2.0
 
+## Changes with High Semantic Impact
+
 1. In order to avoid having to add a products list to all of the different
    response objects which could contain an offer, we decided to add the list of
    products to the Offer object, i.e. `Offer` now contains a products attribute
@@ -9,6 +11,10 @@
    consistent, within the `Booking` object, the products list should also be
    moved from the Booking object level into the `BookedOffer` object.
    (2022-12-09)
+
+## Smaller Changes 
+
+1. Consistent use of kebab-case for path segments
 2. Removed `nutsCodes` and `places` from `OfferSearchCriteria` and moved to
    `NonTripOfferSearchCriteria`(2023-01-13)
 3. Removed `Purchaser.Id` (2023-01-20)
@@ -23,3 +29,4 @@
 10. Remove `name` from `PlaceRefs
 11. Remove inheritance from `ExchangeOfferRequest` and `ExchangeOfferResponse`
 12. Remove inheritance from `PersonSearchReuest` and `CompanySearchRequest`
+
