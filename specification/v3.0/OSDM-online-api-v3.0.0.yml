@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.0.pre-2022-03-10
+  version: 3.0.0
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
     
@@ -555,7 +555,7 @@ paths:
         - On Hold
       summary: Creates an on hold offer.
       description: |
-        Onhold offer created
+        On hold offer created
       operationId: createOnHoldOffer
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -7175,12 +7175,17 @@ components:
         A fulfillment refers to services of one or multiple offer parts or a fare (distributor mode).
       required:
         - id
+        - bookingRef
         - createdOn
         - status
         - bookingParts
-        - bookingId
       properties:
         id:
+          type: string
+          nullable: false
+        bookingRef:
+          description: |
+            the id of the booking the fulfillment is part of
           type: string
           nullable: false
         summary:
@@ -7220,11 +7225,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-        bookingId:
-          description: |
-            the id of the booking the fulfillment is part of
-          type: string
-          nullable: false
 
     FulfillmentPartStatus:
       description: |
@@ -8324,19 +8324,22 @@ components:
       type: object
       additionalProperties: false
       required:
+        - code
         - issuer
-        - type
         - name
       properties:
-        issuer:
-          $ref: '#/components/schemas/CompanyRef'
-        type:
-          description: |
-            card type
+        code:
           type: string
           nullable: false
+        issuer:
+          $ref: '#/components/schemas/CompanyRef'
         name:
           $ref: '#/components/schemas/Text'
+        cardIdRequired:
+          description: |
+            the card id must be delivered in online sales
+          type: boolean
+          default: false
         includedCardTypes:
           description: |
             This card includes the listed cards
@@ -8350,11 +8353,6 @@ components:
           items:
             $ref: '#/components/schemas/ServiceClassType'
           maxItems: 4
-        cardIdRequired:
-          description: |
-            the card id must be delivered in online sales
-          type: boolean
-          default: false
         _links:
           type: array
           items:
@@ -10113,14 +10111,14 @@ components:
           exclusiveMinimum: true
         type:
           $ref: '#/components/schemas/PassengerType'
-        cards:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardTypeReference'
         prmNeeds:
           type: array
           items:
             $ref: '#/components/schemas/PRMNeedType'
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardReference'
 
     PassengerSpecification:
       type: object
@@ -10440,15 +10438,13 @@ components:
       type: object
       additionalProperties: false
       required:
-        - id
+        - code
       properties:
-        id:
-          description: |
-            Code of the card type according to issuer.
-          type: string
-          nullable: false
         issuer:
           $ref: '#/components/schemas/CompanyRef'
+        code:
+          type: string
+          nullable: false
 
     AbstractTravelAccount:
       type: object
@@ -10460,6 +10456,7 @@ components:
         - issuer
         - validFrom
         - validUntil
+        - number
       properties:
         objectType:
           description: Attribute is used as discriminator for inheritance between data types.
@@ -10475,6 +10472,9 @@ components:
         validUntil:
           type: string
           format: date-time
+          nullable: false
+        number:
+          type: string
           nullable: false
 
     AbstractTravelAccountUnit:
@@ -10958,6 +10958,23 @@ components:
           $ref: '#/components/schemas/WarningCollection'
         cancelFulfillmentsOffer:
           $ref: '#/components/schemas/CancelFulfillmentsOffer'
+
+    CardReference:
+      type: object
+      additionalProperties: false
+      description: |
+        Number and issuer are needed to identify a travel account, the code identifies a reduction card.
+      properties:
+        code:
+          description: |
+            Code of the card type according to issuer. E.g. BahnCard50.
+          type: string
+        number:
+          description: |
+            Number identifying the travel account, need issuer to be unique.
+          type: string
+        issuer:
+          $ref: '#/components/schemas/CompanyRef'
 
     CoachLayoutGridSize:
       type: object
@@ -11518,7 +11535,28 @@ components:
               format: int32
               default: 2
 
-    MulitRideBalance:
+    MultiRideAccount:
+      allOf:
+        - $ref: '#/components/schemas/AbstractTravelAccount'
+        - type: object
+          additionalProperties: false
+          required:
+            - regionalConstraintSummary
+            - balance
+          properties:
+            regionalConstraint:
+              $ref: '#/components/schemas/RegionalConstraint'
+            regionalConstraintSummary:
+              type: string
+              nullable: false
+            balance:
+              $ref: '#/components/schemas/MultiRideBalance'
+            consumptions:
+              type: array
+              items:
+                $ref: '#/components/schemas/TravelAccountConsumption'
+
+    MultiRideBalance:
       type: object
       additionalProperties: false
       description: |
@@ -11538,27 +11576,6 @@ components:
           nullable: false
         unit:
           $ref: '#/components/schemas/AbstractTravelAccountUnit'
-
-    MultiRideAccount:
-      allOf:
-        - $ref: '#/components/schemas/AbstractTravelAccount'
-        - type: object
-          additionalProperties: false
-          required:
-            - regionalConstraintSummary
-            - balance
-          properties:
-            regionalConstraint:
-              $ref: '#/components/schemas/RegionalConstraint'
-            regionalConstraintSummary:
-              type: string
-              nullable: false
-            balance:
-              $ref: '#/components/schemas/MulitRideBalance'
-            consumptions:
-              type: array
-              items:
-                $ref: '#/components/schemas/TravelAccountConsumption'
 
     NamedCompany:
       type: object
