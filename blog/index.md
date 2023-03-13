@@ -1,5 +1,5 @@
 ---
 layout: blog
 title: OSDM Blog
-subtitle: Blog sub title
+hide_hero: false
 ---

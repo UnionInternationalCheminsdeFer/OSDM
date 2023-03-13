@@ -62,5 +62,7 @@
   link: organization/
 - name: Team
   link: team/
+- name: Blog
+  link: blog/
 - name: About
   link: about/
