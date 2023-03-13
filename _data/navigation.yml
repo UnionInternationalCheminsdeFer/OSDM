@@ -1,4 +1,4 @@
-- name: OSDM Online APIs
+- name: APIs
   dropdown:
     - name: Online API v2.0.5 (previous version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v2.0.0/OSDM-online-api-v2.0.5.yml&nocors
