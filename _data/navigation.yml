@@ -48,7 +48,7 @@
       link: https://github.com/UnionInternationalCheminsdeFer/OSDM/
     - name: OSDM Wiki
       link: https://github.com/UnionInternationalCheminsdeFer/OSDM/wiki/
-    - name: UML Model
+    - name: OSDM UML Model
       link: tools/uml-model/
     - name: OSDM Demo Environment
       link: tools/demo-environment/
