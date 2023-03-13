@@ -4,7 +4,7 @@
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v2.0.0/OSDM-online-api-v2.0.5.yml&nocors
     - name: Online API v2.0.5 (previous version) - Swagger
       link: https://app.swaggerhub.com/apis/schlpbch/uic-90918_10_osdm/2.0.5
-    - name: Webhook API v2.0.0 (previous)
+    - name: Webhook API v2.0.0 (previous version)
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v2.0.0/OSDM-online-webhook-v2.0.0.yml&nocors
     - name: Online API v3.0.0 (stable version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.0/OSDM-online-api-v3.0.0.yml&nocors
@@ -48,6 +48,8 @@
       link: https://github.com/UnionInternationalCheminsdeFer/OSDM/
     - name: OSDM Wiki
       link: https://github.com/UnionInternationalCheminsdeFer/OSDM/wiki/
+    - name: UML Model
+      link: tools/uml-model/
     - name: OSDM Demo Environment
       link: tools/demo-environment/
     - name: OSDM Demo App
