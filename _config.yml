@@ -25,7 +25,7 @@ future: false
 # Measuring hits
 google-analytics: UA-185392233-1
 
-paginate: 5
+paginate: 3
 paginate_path: "/blog/page:num"
 
 plugins:
