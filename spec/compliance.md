@@ -5,9 +5,7 @@ hide_hero: true
 permalink: /spec/compliance/
 ---
 
-## Compliance 
-
-_Updated for 2.1_
+## Compliance
 
 To be compliant with the OSDM specification in total a party must be compliant
 with the offline as well as the online part of the specification. However, a
@@ -37,16 +35,16 @@ not sell such a fare.
 
 The following services/features are mandatory/optional to implement:
 
-| Resources                            | Description                                                                 | Need to Support                                                            |
-| ------------------------------------ | --------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `/offers`                            | Resources to get bookable offers                                            | **Mandatory** is to provide at least admission offers.                     |
-| `/bookings`                          | Resources to manipulate bookings                                            | **Mandatory**                                                              |
-| `/bookings/{bookingId}/passengers`   | Resources to manipulate passenger information at every stage of the flow    | **Mandatory**                                                              |
-| `/bookings/{bookingId}/purchaser`    | Resources to manipulate a purchasers information at every stage of the flow | **Mandatory**                                                              |
-| `/bookings/{bookingId}/fulfillments` | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets.                                |
-| `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer                                  | **Mandatory** is to support full refund.                                   |
-| `/bookings-search/`                  | Resources to search for bookings                                            | **Mandatory**                                                              |
-| `/fulfillments`                      | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets.                                |
+| Resources                            | Description                                                                 | Need to Support                                        |
+| ------------------------------------ | --------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `/offers`                            | Resources to get bookable offers                                            | **Mandatory** is to provide at least admission offers. |
+| `/bookings`                          | Resources to manipulate bookings                                            | **Mandatory**                                          |
+| `/bookings/{bookingId}/passengers`   | Resources to manipulate passenger information at every stage of the flow    | **Mandatory**                                          |
+| `/bookings/{bookingId}/purchaser`    | Resources to manipulate a purchasers information at every stage of the flow | **Mandatory**                                          |
+| `/bookings/{bookingId}/fulfillments` | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets.            |
+| `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer                                  | **Mandatory** is to support full refund.               |
+| `/bookings-search/`                  | Resources to search for bookings                                            | **Mandatory**                                          |
+| `/fulfillments`                      | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets.            |
 
 | Trip planning Resources | Description                     | Need to Support |
 | ----------------------- | ------------------------------- | --------------- |
@@ -95,16 +93,16 @@ when the communication schema changes, the readers must not break.
 
 The following services/features are mandatory/optional to implement:
 
-| Resources                            | Description                                                                 | Need to Support                                                            |
-| ------------------------------------ | --------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `/offers`                            | Resources to get bookable offers                                            | **Mandatory** is to provide fare offers                                    |
-| `/bookings`                          | Resources to manipulate bookings                                            | **Mandatory**                                                              |
-| `/bookings/{bookingId}/passengers`   | Resources to manipulate passenger information at every stage of the flow    | **Mandatory**                                                              |
-| `/bookings/{bookingId}/purchaser`    | Resources to manipulate a purchasers information at every stage of the flow | **Mandatory**                                                              |
-| `/bookings/{bookingId}/fulfillments` | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets.                                |
-| `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer                                  | **Mandatory** is to support full refund.                                   |
-| `/booking-search/`                   | Resources to search for bookings                                            | **Mandatory**                                                              |
-| `/fulfillments`                      | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets.                                |
+| Resources                            | Description                                                                 | Need to Support                             |
+| ------------------------------------ | --------------------------------------------------------------------------- | ------------------------------------------- |
+| `/offers`                            | Resources to get bookable offers                                            | **Mandatory** is to provide fare offers     |
+| `/bookings`                          | Resources to manipulate bookings                                            | **Mandatory**                               |
+| `/bookings/{bookingId}/passengers`   | Resources to manipulate passenger information at every stage of the flow    | **Mandatory**                               |
+| `/bookings/{bookingId}/purchaser`    | Resources to manipulate a purchasers information at every stage of the flow | **Mandatory**                               |
+| `/bookings/{bookingId}/fulfillments` | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets. |
+| `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer                                  | **Mandatory** is to support full refund.    |
+| `/booking-search/`                   | Resources to search for bookings                                            | **Mandatory**                               |
+| `/fulfillments`                      | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets. |
 
 | Trip planning Resources | Description                     | Need to Support |
 | ----------------------- | ------------------------------- | --------------- |
