@@ -15,7 +15,8 @@
 ## Smaller Changes 
 
 1. Consistent use of kebab-case for path segments
-2. Removed `nutsCodes` and `places` from `OfferSearchCriteria` and moved to
+2. Consistent use of HTTP `Cache-Control` instead of `Expires` HTTP header
+3. Removed `nutsCodes` and `places` from `OfferSearchCriteria` and moved to
    `NonTripOfferSearchCriteria`(2023-01-13)
 3. Removed `Purchaser.Id` (2023-01-20)
 4. Changed `Exchange.fulfillments` to `Exchange.exchangedFulfillmentIds`
@@ -26,7 +27,12 @@
 7. Rename `bookedOffer` to `bookedOffers` in resource paths
 8. Remove `ServiceAttribute` (2023-02-17)
 9. Refactor `Place`
-10. Remove `name` from `PlaceRefs
+10. Remove `name` from `PlaceRefs`
 11. Remove inheritance from `ExchangeOfferRequest` and `ExchangeOfferResponse`
 12. Remove inheritance from `PersonSearchReuest` and `CompanySearchRequest`
-
+13. `ReductionCard` object was renamed to `ReductionCardType`, response of the master data endpoint was simplified and there is no longer a delivery date.
+14. `AnonymousPassengerSpecification.cards` has reworked structure of `CardReference` that can now refer both master CardTypeReference and any TravelAccount.
+15. Modified and cleared login on validFrom/validUntil on `Offer` and `OfferPart` level
+16. `Offer.validTo` changed to `Offer.preBookableUntil`
+17. `Booking.providerBookingRef` renamed to `Booking.externalRef`
+18. Date time format on various places defined using regular expression (breaks compatibility on code-generation level)
