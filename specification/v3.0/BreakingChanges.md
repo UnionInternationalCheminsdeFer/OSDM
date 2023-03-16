@@ -1,6 +1,6 @@
 # Breaking changes since 2.0
 
-## Changes with High Semantic Impact
+## Changes with High Impact
 
 1. In order to avoid having to add a products list to all of the different
    response objects which could contain an offer, we decided to add the list of
