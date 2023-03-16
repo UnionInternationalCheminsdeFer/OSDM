@@ -29,7 +29,7 @@
 9. Refactor `Place`
 10. Remove `name` from `PlaceRefs`
 11. Remove inheritance from `ExchangeOfferRequest` and `ExchangeOfferResponse`
-12. Remove inheritance from `PersonSearchReuest` and `CompanySearchRequest`
+12. Remove inheritance from `PersonSearchRequest` and `CompanySearchRequest`
 13. `ReductionCard` object was renamed to `ReductionCardType`, response of the master data endpoint was simplified and there is no longer a delivery date.
 14. `AnonymousPassengerSpecification.cards` has reworked structure of `CardReference` that can now refer both master CardTypeReference and any TravelAccount.
 15. Modified and cleared login on validFrom/validUntil on `Offer` and `OfferPart` level
