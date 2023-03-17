@@ -18,32 +18,32 @@ data models.
 
 ## Overview of Services
 
-| Resources                                            | Description                                                            |
-| ---------------------------------------------------- | ---------------------------------------------------------------------- |
-| `/places`                                            | Resources to search for places                                         |
-| `/trips`                                             | Resources to search for trips                                          |
-| `/offers`                                            | Resources to get bookable offers                                       |
-| `/availabilities`                                    | resources to retrieve availability information on places (seats,..)    |
-| `/bookings`                                          | Resources to manipulate bookings                                       |
-| `/bookings/{bookingId}/passengers/{passengerId}`     | Resources to change passengers                                         |
-| `/bookings/{bookingId}/bookedOffer/...`              | resources to change pre-booked bookings, e.g. provide place selections |
-| `/bookings/{bookingId}/reimbursements`               | resources to reimburse unused tickets                                  |
-| `/bookings/{bookingId}/releaseOffers`                | resources to release tickets                                           |
-| `/bookings/{bookingId}/cancelFulfillmentsOffers`     | resources to cancel fulfillments                                       |
-| `/products`                                          | retrieve products information on one or more products                  |
-| `/bookings/{bookingId}/fulfillments`                 | retrieve fulfillments, e.g. tickets                                    |
-| `/fulfillments`                                      | confirm a booking and retrieve fulfillments                            |
-| `/bookings/{bookingId}/refundOffers`                 | Resources to get and accept a refund offer                             |
-| `/bookings/{bookingId}/refundOffers/{refundOfferId}` | _dito_                                                                 |
-| `/bookings/{bookingId}/exchangeOperations`           | Resources to get and accept a exchange offer                           |
-| `/bookings/{bookingId}/exchange-offers`              | _dito_                                                                 |
-| `/bookings/{bookingId}/releaseOffers`                | Resources to get, accept or delete a release offer                     |
-| `/bookings/{bookingId}/cancelFulfillmentOffers`      | Resources to get, accept or delete a cancelFulfillment offer           |
-| `/coachLayouts`                                      | Returns all coach layouts.                                             |
-| `/coachLayouts/{layoutId}`                           | Returns a coach layout for layout id                                   |
-| `/complaints`                                        | resources to create and manipulate complaints                          |
-| `/reductionCards`                                    | retrieve reduction card types                                          |
-| `/coachLayouts`                                      | retrieve coach layouts                                                 |
+| Resources                                          | Description                                                            |
+| -------------------------------------------------- | ---------------------------------------------------------------------- |
+| `/places`                                          | Resources to search for places                                         |
+| `/trips`                                           | Resources to search for trips                                          |
+| `/offers`                                          | Resources to get bookable offers                                       |
+| `/availabilities`                                  | resources to retrieve availability information on places (seats,..)    |
+| `/bookings`                                        | Resources to manipulate bookings                                       |
+| `/bookings/{bookingId}/passengers/`                | Resources to change passengers                                         |
+| `/bookings/{bookingId}/purchaser/`                 | Resources to change purchaser                                          |
+| `/bookings/{bookingId}/booked-offers/`             | resources to change pre-booked bookings, e.g. provide place selections |
+| `/bookings/{bookingId}/reimbursements`             | resources to reimburse unused tickets                                  |
+| `/bookings/{bookingId}/release-offers`             | resources to release tickets                                           |
+| `/bookings/{bookingId}/cancel-fulfillments-offers` | resources to cancel fulfillments                                       |
+| `/products`                                        | retrieve products information on one or more products                  |
+| `/bookings/{bookingId}/fulfillments`               | retrieve fulfillments, e.g. tickets                                    |
+| `/fulfillments`                                    | confirm a booking and retrieve fulfillments                            |
+| `/bookings/{bookingId}/refund-offers`              | Resources to get and accept a refund offer                             |
+| `/bookings/{bookingId}/exchange-operations`        | Resources to get and accept a exchange offer                           |
+| `/bookings/{bookingId}/exchange-offers`            | _dito_                                                                 |
+| `/bookings/{bookingId}/release-offers`             | Resources to get, accept or delete a release offer                     |
+| `/bookings/{bookingId}/cancel-fulfillment-offers`  | Resources to get, accept or delete a cancelFulfillment offer           |
+| `/complaints`                                      | resources to create and manipulate complaints                          |
+| `/coach-layouts`                                   | Returns all coach layouts.                                             |
+| `/reduction-cards`                                 | retrieve reduction card types                                          |
+| `/products`                                        | retrieve product information                                           |
+| `/zones`                                           | retrieve zone information                                              |
 
 ## Process Flow
 
@@ -77,7 +77,7 @@ Given the high stability of this information, places are given a long time to
 live and get responses can be cached for a long period, so these operations
 should not be too costly in terms of calls or bandwidth.
 
-#### Error handling
+#### Error Handling
 
 Error handling by the **Retailer** remains basic here as a handful of cases have
 to be handled:
@@ -204,7 +204,7 @@ are identified and relevant to this section
 - Overbooking
 - Schedule correction applied
 
-### Round trip handling
+### Round Trip Handling
 
 We define a round trip as a mirrored couple of trips _(A-B B-A)_, each made of
 one or more segments.
@@ -312,7 +312,13 @@ return.
 
 #### Place Availability of Offers
 
-Each reservation item may provide availability information in `availablePlaces`. The total number of places is specified when availability of accommodation sub type `ANY_SEAT` is presented, optionally with all possible place properties. Sum of all available places object does not build the total number, some of these availabilities might be subset of the total. The fare provider is free to provide either total capacity only, or detail on other accommodation types and sub types.
+Each reservation item may provide availability information in `availablePlaces`.
+The total number of places is specified when availability of accommodation sub
+type `ANY_SEAT` is presented, optionally with all possible place properties. Sum
+of all available places object does not build the total number, some of these
+availabilities might be subset of the total. The fare provider is free to
+provide either total capacity only, or detail on other accommodation types and
+sub types.
 
 ```
 ...
@@ -443,7 +449,8 @@ In most cases the offer will not contain information on specific place
 properties for reservations. the reservation resource in the offer provides
 information on the availability of places with the selected offer:
 
-- Places with specific properties; please refer to the section _Place Availability of Offers_ on the semantics of provided Place Availabilities.
+- Places with specific properties; please refer to the section _Place
+  Availability of Offers_ on the semantics of provided Place Availabilities.
 - Places nearby another place
 - A graphical display of available places.
 
@@ -921,6 +928,7 @@ potential refund fee, etc (see the model for more details).
 ![Confirm a Refund Offer](../images/processes/seq-confirm-a-refund-offer.png)
 
 ### Release a Booking
+
 #### Request a release Offer
 
 ![Request a Release Offer](../images/processes/seq-request-a-release-offer.png)
