@@ -549,7 +549,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /booking/{bookingId}/on-hold-offer:
+  /bookings/{bookingId}/on-hold-offer:
     post:
       tags:
         - On Hold
@@ -603,7 +603,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /booking/{bookingId}/on-hold-offer/{onHoldOfferId}:
+  /bookings/{bookingId}/on-hold-offer/{onHoldOfferId}:
     patch:
       tags:
         - On Hold
@@ -3423,70 +3423,6 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /travel-accounts:
-    get:
-      tags:
-        - Travel Account
-      summary: Returns a travel account.
-      operationId: getTravelAccounts
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - name: issuer
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: travelAccount
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: embed
-          in: query
-          description: |
-            Default value: ALL
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/TravelAccountResponseContent'
-      responses:
-        '200':
-          description: |
-            travel account found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TravelAccountResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: |
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-    
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
   /bookings/{bookingId}/reimbursements:
     post:
       tags:
@@ -3664,6 +3600,70 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+  /travel-accounts:
+    get:
+      tags:
+        - Travel Account
+      summary: Returns a travel account.
+      operationId: getTravelAccounts
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: issuer
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: travelAccount
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: embed
+          in: query
+          description: |
+            Default value: ALL
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TravelAccountResponseContent'
+      responses:
+        '200':
+          description: |
+            travel account found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TravelAccountResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+    
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4810,8 +4810,6 @@ components:
           type: string
           format: date
         age:
-          description: |
-            Age of the passenger at the date of travel. Less stable than the state of birth.
           type: integer
           format: int32
           minimum: 0
@@ -4825,6 +4823,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CardReference'
+        gender:
+          $ref: '#/components/schemas/Gender'
 
     ApplicabilityType:
       type: string
@@ -9053,8 +9053,6 @@ components:
           type: string
           format: date
         age:
-          description: |
-            Age of the passenger  at the date of travel. Less stable than the state of birth.
           type: integer
           format: int32
           minimum: 0
@@ -9074,6 +9072,8 @@ components:
           $ref: '#/components/schemas/PersonDetail'
         type:
           $ref: '#/components/schemas/PassengerType'
+        gender:
+          $ref: '#/components/schemas/Gender'
 
     PassengerType:
       description: |
