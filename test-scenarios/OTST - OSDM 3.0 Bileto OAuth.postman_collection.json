@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "d0db90db-3058-4540-a1bf-086f09512fd6",
+		"name": "OTST: OSDM 3.0 Bileto OAuth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21672"
+	},
+	"item": [
+		{
+			"name": "Issue OAuth Access Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token_type\", jsonData.token_type);",
+							"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);",
+							"",
+							"function pad(number) {",
+							"    return (number < 10) ? '0' + number : number;",
+							"}",
+							"",
+							"function get_next_weekday (date) {",
+							"    var tomorrow = new Date(date.setDate(date.getDate() + 1))",
+							"    return tomorrow.getDay() % 6",
+							"        ? tomorrow",
+							"        : get_next_weekday(tomorrow)",
+							"}",
+							"",
+							"var nextWeekday = get_next_weekday(new Date());",
+							"",
+							"postman.setEnvironmentVariable(\"next_weekday\", \"\" + nextWeekday.getUTCFullYear() + \"-\" + pad(nextWeekday.getUTCMonth() + 1) + \"-\" + pad(nextWeekday.getUTCDate()));",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base}}/oauth/token?grant_type=client_credentials&client_id={{client_id}}&client_secret={{client_secret}}",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

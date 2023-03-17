@@ -1,229 +1,11 @@
 {
 	"info": {
 		"_postman_id": "ca77501e-e4f4-48b9-b336-04c550519f49",
-		"name": "OTST: OSDM 2.0 Direct Reservation Booking",
+		"name": "OTST: OSDM 3.0 Direct Reservation Booking",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21672"
 	},
 	"item": [
-		{
-			"name": "Issue OAuth Access Token",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = JSON.parse(responseBody);",
-							"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{base}}/api/oauth/token?grant_type=client_credentials&client_id={{client_id}}&client_secret={{client_secret}}",
-					"host": [
-						"{{base}}"
-					],
-					"path": [
-						"api",
-						"oauth",
-						"token"
-					],
-					"query": [
-						{
-							"key": "grant_type",
-							"value": "client_credentials"
-						},
-						{
-							"key": "client_id",
-							"value": "{{client_id}}"
-						},
-						{
-							"key": "client_secret",
-							"value": "{{client_secret}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Places",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Requestor",
-						"value": "{{requestor}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base}}/api/places",
-					"host": [
-						"{{base}}"
-					],
-					"path": [
-						"api",
-						"places"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Place by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Requestor",
-						"value": "{{requestor}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{base}}/api/places/urn:uic:stn:{{destination_uic_code}}",
-					"host": [
-						"{{base}}"
-					],
-					"path": [
-						"api",
-						"places",
-						"urn:uic:stn:{{destination_uic_code}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Place by Mask",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Requestor",
-						"value": "{{requestor}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"placeInput\" : {\r\n        \"name\" : \"{{origin_mask}}\"\r\n    }\r\n}"
-				},
-				"url": {
-					"raw": "{{base}}/api/places",
-					"host": [
-						"{{base}}"
-					],
-					"path": [
-						"api",
-						"places"
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "Get Offer (R 1076, Pardubice hl.n. - Liberec, reservations only)",
 			"event": [
@@ -238,7 +20,12 @@
 							"});",
 							"",
 							"var offer = jsonData.offers[0];",
-							"postman.setEnvironmentVariable(\"offer_id\", offer.id);",
+							"",
+							"pm.test(\"Offer has ID\", function () {",
+							"    pm.expect(offer.offerId).to.be.a('string').and.not.be.empty;",
+							"});",
+							"",
+							"postman.setEnvironmentVariable(\"offer_id\", offer.offerId);",
 							"",
 							"pm.test(\"Offer contains Reservation part\", function () {",
 							"    pm.expect(offer.reservationOfferParts.length).to.eql(1);",
@@ -265,20 +52,6 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"function pad(number) {\r",
-							"    return (number < 10) ? '0' + number : number;\r",
-							"}\r",
-							"\r",
-							"function get_next_weekday (date) {\r",
-							"    var tomorrow = new Date(date.setDate(date.getDate() + 1))\r",
-							"    return tomorrow.getDay() % 6\r",
-							"        ? tomorrow\r",
-							"        : get_next_weekday(tomorrow)\r",
-							"}\r",
-							"\r",
-							"var nextWeekday = get_next_weekday(new Date());\r",
-							"\r",
-							"postman.setEnvironmentVariable(\"next_weekday\", \"\" + nextWeekday.getUTCFullYear() + \"-\" + pad(nextWeekday.getUTCMonth() + 1) + \"-\" + pad(nextWeekday.getUTCDate()));\r",
 							""
 						],
 						"type": "text/javascript"
@@ -300,7 +73,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
+						"value": "{{token_type}} {{access_token}}",
 						"type": "text"
 					},
 					{
@@ -311,7 +84,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"objectType\" : \"OfferCollectionRequest\",\n    \"tripSpecifications\": [\n        {\n            \"externalRef\": \"required-external-trip-id-of-distributor\",\n            \"legs\": [\n                {\n                    \"externalRef\": \"required-external-leg-id-of-distributor\",\n                    \"timedLeg\": {\n                        \"start\" : {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"urn:uic:stn:{{origin_uic_code}}\",\n                                \"objectType\" : \"StopPlaceRef\"\n                            },\n                            \"serviceDeparture\": {\n                                \"timetabledTime\": \"{{next_weekday}}T{{departure_time}}\"\n                            }\n                        },\n                        \"end\": {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"urn:uic:stn:{{destination_uic_code}}\",\n                                \"objectType\" : \"StopPlaceRef\"\n                            },\n                            \"serviceArrival\": {\n                                \"timetabledTime\": \"{{next_weekday}}T{{arrival_time}}\"\n                            }\n                        },\n                        \"service\": {\n                            \"vehicleNumbers\": [\n                                \"{{vehicle_number}}\"\n                            ],\n                            \"operatorRefs\": [\n                                \"urn:uic:rics:{{operator_code}}\"\n                            ]\n                        }\n                    }\n                }\n            ]\n        }\n    ],\n    \"passengerSpecifications\": [\n        {\n            \"dateOfBirth\": \"1996-01-01\",\n            \"externalRef\": \"{{passenger_external_ref}}\",\n            \"type\": \"PERSON\",\n            \"cards\": []\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"{{currency}}\",\n        \"requestedOfferParts\": [\n            \"RESERVATION\"\n        ],\n        \"serviceClassTypes\": [\n            \"STANDARD\"\n        ],\n        \"comfortClasses\": [\n            \"SECOND\"\n        ]\n    },\n    \"requestedFulfillmentOptions\": [\n        {\n            \"type\": \"ETICKET\",\n            \"media\": \"PDF_A4\"\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}\n",
+					"raw": "{\n    \"objectType\" : \"OfferCollectionRequest\",\n    \"tripSpecifications\": [\n        {\n            \"externalRef\": \"{{trip_external_ref}}\",\n            \"legs\": [\n                {\n                    \"externalRef\": \"{{leg_external_ref}}\",\n                    \"timedLeg\": {\n                        \"start\" : {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"{{origin_ref}}\",\n                                \"objectType\" : \"StopPlaceRef\"\n                            },\n                            \"serviceDeparture\": {\n                                \"timetabledTime\": \"{{next_weekday}}T{{departure_time}}\"\n                            }\n                        },\n                        \"end\": {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"{{destination_ref}}\",\n                                \"objectType\" : \"StopPlaceRef\"\n                            },\n                            \"serviceArrival\": {\n                                \"timetabledTime\": \"{{next_weekday}}T{{arrival_time}}\"\n                            }\n                        },\n                        \"service\": {\n                            \"vehicleNumbers\": [\n                                \"{{vehicle_number}}\"\n                            ],\n                            \"carriers\": [\n                                {\n                                    \"ref\": \"{{operator_ref}}\"\n                                }\n                            ]\n                        }\n                    }\n                }\n            ]\n        }\n    ],\n    \"anonymousPassengerSpecifications\": [\n        {\n            \"dateOfBirth\": \"1996-01-01\",\n            \"externalRef\": \"{{passenger_external_ref}}\",\n            \"type\": \"PERSON\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"{{currency}}\",\n        \"requestedOfferParts\": [\n            \"RESERVATION\"\n        ],\n        \"serviceClassTypes\": [\n            \"STANDARD\"\n        ],\n        \"comfortClasses\": [\n            \"SECOND\"\n        ]\n    },\n    \"requestedFulfillmentOptions\": [\n        {\n            \"type\": \"ETICKET\",\n            \"media\": \"PDF_A4\"\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -319,12 +92,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{base}}/api/offers",
+					"raw": "{{base}}/offers",
 					"host": [
 						"{{base}}"
 					],
 					"path": [
-						"api",
 						"offers"
 					]
 				}
@@ -339,7 +111,7 @@
 					"script": {
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
-							"var preSelection = jsonData.reservation.preSelection[0];\r",
+							"var preSelection = jsonData.vehicleAvailability.preSelections[0];\r",
 							"postman.setEnvironmentVariable(\"preselected_coach\", preSelection.coach);\r",
 							"postman.setEnvironmentVariable(\"preselected_place\", preSelection.place);"
 						],
@@ -352,7 +124,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
+						"value": "{{token_type}} {{access_token}}",
 						"type": "text"
 					},
 					{
@@ -367,17 +139,31 @@
 					}
 				],
 				"url": {
-					"raw": "{{base}}/api/offers/{{offer_id}}/reservations/{{reservation_id}}/place-map",
+					"raw": "{{base}}/availabilities/place-map?contextType=OFFER&contextId={{offer_id}}&resourceType=RESERVATION&resourceId={{reservation_id}}",
 					"host": [
 						"{{base}}"
 					],
 					"path": [
-						"api",
-						"offers",
-						"{{offer_id}}",
-						"reservations",
-						"{{reservation_id}}",
+						"availabilities",
 						"place-map"
+					],
+					"query": [
+						{
+							"key": "contextType",
+							"value": "OFFER"
+						},
+						{
+							"key": "contextId",
+							"value": "{{offer_id}}"
+						},
+						{
+							"key": "resourceType",
+							"value": "RESERVATION"
+						},
+						{
+							"key": "resourceId",
+							"value": "{{reservation_id}}"
+						}
 					]
 				}
 			},
@@ -402,7 +188,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
+						"value": "{{token_type}} {{access_token}}",
 						"type": "text"
 					},
 					{
@@ -431,12 +217,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{base}}/api/bookings",
+					"raw": "{{base}}/bookings",
 					"host": [
 						"{{base}}"
 					],
 					"path": [
-						"api",
 						"bookings"
 					]
 				}
@@ -467,7 +252,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
+						"value": "{{token_type}} {{access_token}}",
 						"type": "text"
 					},
 					{
@@ -482,12 +267,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{base}}/api/bookings/{{booking_id}}/fulfillments",
+					"raw": "{{base}}/bookings/{{booking_id}}/fulfillments",
 					"host": [
 						"{{base}}"
 					],
 					"path": [
-						"api",
 						"bookings",
 						"{{booking_id}}",
 						"fulfillments"
@@ -518,7 +302,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
+						"value": "{{token_type}} {{access_token}}",
 						"type": "text"
 					},
 					{
@@ -533,12 +317,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{base}}/api/fulfillments/{{fulfillment_id}}",
+					"raw": "{{base}}/fulfillments/{{fulfillment_id}}",
 					"host": [
 						"{{base}}"
 					],
 					"path": [
-						"api",
 						"fulfillments",
 						"{{fulfillment_id}}"
 					]
@@ -554,7 +337,7 @@
 					"script": {
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
-							"postman.setEnvironmentVariable(\"refund_offer_id\", jsonData.refundOffersCollection.refundOffers[0].id);"
+							"postman.setEnvironmentVariable(\"refund_offer_id\", jsonData.refundOffers[0].id);"
 						],
 						"type": "text/javascript"
 					}
@@ -565,7 +348,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer{{access_token}}",
+						"value": "{{token_type}} {{access_token}}",
 						"type": "text"
 					},
 					{
@@ -586,7 +369,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"fulfillmentIds\" : [\r\n        {{fulfillment_id}}\r\n    ]\r\n}",
+					"raw": "{\r\n    \"fulfillmentIds\" : [\r\n        \"{{fulfillment_id}}\"\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -594,15 +377,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{base}}/api/bookings/{{booking_id}}/refundOffers",
+					"raw": "{{base}}/bookings/{{booking_id}}/refund-offers",
 					"host": [
 						"{{base}}"
 					],
 					"path": [
-						"api",
 						"bookings",
 						"{{booking_id}}",
-						"refundOffers"
+						"refund-offers"
 					]
 				}
 			},
@@ -630,7 +412,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
+						"value": "{{token_type}} {{access_token}}",
 						"type": "text"
 					},
 					{
@@ -651,7 +433,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"confirmedRefundOfferId\" : {{refund_offer_id}}\r\n}",
+					"raw": "{\r\n    \"status\" : \"CONFIRMED\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -659,15 +441,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{base}}/api/bookings/{{booking_id}}/refundOffers/{{refund_offer_id}}",
+					"raw": "{{base}}/bookings/{{booking_id}}/refund-offers/{{refund_offer_id}}",
 					"host": [
 						"{{base}}"
 					],
 					"path": [
-						"api",
 						"bookings",
 						"{{booking_id}}",
-						"refundOffers",
+						"refund-offers",
 						"{{refund_offer_id}}"
 					]
 				}
