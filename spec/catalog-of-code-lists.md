@@ -74,12 +74,12 @@ of by the customer.
 | `CAR_SMALL`             | Y                      | N                | Y              | Vehicle parking place category 1-3                                                               |                        |
 | `CAR_LARGE`             | Y                      | N                | Y              | Vehicle parking place category 6-8                                                               |                        |
 | `CARRE`                 | N                      | Y                | Y              | Carré (4 seats facing normally 2nd Class)                                                        |                        |
-| `CHILDREN_AREA`         | N                      | Y                | Y              | Places in children area                                                                          | `FAMILY`               |
+| `CHILDREN_AREA`         | Y                      | Y                | Y              | Places in children area                                                                          | `FAMILY`               |
 | `CLUB`                  | Y                      | N                | Y              | Club Category (RENFE)                                                                            |                        |
 | `CLUB_2`                | N                      | Y                | Y              | Club Duo (2 seats facing in a separate compartment)                                              |                        |
 | `CLUB_4`                | N                      | Y                | Y              | Club 4 (4 seats facing)                                                                          |                        |
-| `COMPARTMENT`           | N                      | N                | Y              | places in a compartment                                                                          | `PLACE_GROUPING`       |
-| `COMPLETE`              | Y                      | N                | N              | all places in a compartment are included, no other passengers will be located in the compartment |                        |
+| `COMPARTMENT`           | Y                      | N                | Y              | places in a compartment                                                                          | `PLACE_GROUPING`       |
+| `COMPLETE`              | Y                      | N                | Y              | all places in a compartment are included, no other passengers will be located in the compartment |                        |
 | `CONFERENCE`            | Y                      | N                | Y              | Conference compartment                                                                           |                        |
 | `CONNECTING_DOOR`       | N                      | Y                | Y              | Compartments with connecting Door (in Sleepers)                                                  |                        |
 | `COUCHETTE_2`           | Y                      | N                | Y              | Two person couchette cabin                                                                       |                        |
@@ -96,7 +96,7 @@ of by the customer.
 | `DOUBLE_SWC`            | Y                      | N                | Y              | Double sleeper compartment with shower & WC                                                      |                        |
 | `DOUBLE_SWC_DB`         | Y                      | N                | Y              | Double sleeper compartment with shower & WC & double bed                                         |                        |
 | `DOUBLE_S`              | Y                      | N                | Y              | Double sleeper compartment with shower                                                           |                        |
-| `EASY_ACCESS`           | N                      | Y                | Y              | Place with easy access for PRMs                                                                  |                        |
+| `EASY_ACCESS`           | Y                      | Y                | Y              | Place with easy access for PRMs                                                                  |                        |
 | `FACE_2_FACE`           | Y                      | Y                | Y              | places face to face (2 seats facing)                                                             | `PLACE_ALIGNMENT`      |
 | `EXCELLENCE`            | Y                      | Y                | Y              | Special Excellence Places (RhB)                                                                  |                        |
 | `FAMILY`                | N                      | Y                | Y              | Places in family area                                                                            | `FAMILY`               |
@@ -111,6 +111,7 @@ of by the customer.
 | `LOWER_DECK`            | N                      | Y                | Y              | Lower deck in a double deck train                                                                | `DECK`                 |
 | `MEN`                   | N                      | Y                | Y              | Men compartment in night train                                                                   |                        |
 | `MIDDLE_BED`            | N                      | Y                | Y              | Middle bed or couchette                                                                          | `PLACE_LOCATION`       |
+| `MIDDLE_SEAT`           | N                      | Y                | Y              | Middle seat                                                                          | `PLACE_LOCATION`       |  
 | `MINI_SUITE`            | Y                      | N                | Y              | Mini Suite - single person couchette compartment (Capsule)                                       |                        |
 | `MIXED`                 | N                      | Y                | Y              | Mixed compartment in night train                                                                 |                        |
 | `MOTOR_CYCLE`           | Y                      | N                | Y              | Motorcycle                                                                                       |                        |
@@ -118,9 +119,9 @@ of by the customer.
 | `NEAR_ANIMALS`          | N                      | N                | Y              | Places close to place with animals                                                               |                        |
 | `NEAR_DINING`           | N                      | Y                | Y              | Places near the dining car                                                                       |                        |
 | `NEAR_PLAY_AREA`        | N                      | Y                | Y              | Places near a child play area                                                                    | `FAMILY`               |
-| `NEAR_BICYCLE_AREA`     | N                      | Y                | Y              | Places near the bicycle storage space                                                            |                        |
-| `NEAR_WHEELCHAIR`       | N                      | Y                | N              | used to indicate places near the wheelchair when booked by an accompagning person                |                        |
-| `OPEN_SPACE`            | N                      | Y                | Y              | Places in open space area                                                                        | `PLACE_GROUPING`       |
+| `NEAR_BICYCLE_AREA`     | Y                      | Y                | Y              | Places near the bicycle storage space                                                            |                        |
+| `NEAR_WHEELCHAIR`       | Y                      | Y                | N              | used to indicate places near the wheelchair when booked by an accompagning person                |                        |
+| `OPEN_SPACE`            | Y                      | Y                | Y              | Places in open space area                                                                        | `PLACE_GROUPING`       |
 | `PANORAMA`              | Y                      | Y                | Y              | Places in a panorama coach                                                                       |                        |
 | `PHONE`                 | N                      | Y                | Y              | Places in an area with mobile phone amplifier                                                    |                        |
 | `POWER`                 | N                      | Y                | Y              | Place with power socket                                                                          |                        |
@@ -147,8 +148,8 @@ of by the customer.
 | `UPPER_DECK`            | N                      | Y                | Y              | Upper deck in a double deck train                                                                | `DECK`                 |
 | `VIDEO`                 | N                      | Y                | Y              | Place with video entertainment                                                                   |                        |
 | `WHEELCHAIR`            | Y                      | Y                | Y              | Wheel chair place                                                                                |                        |
-| `WHEELCHAIR_AND_SEAT`   | N                      | Y                | Y              | Wheelchair place with additional seat                                                            |                        |
-| `WHEELCHAIR_NO_SEAT`    | N                      | Y                | Y              | Wheelchair space without additional seat                                                         |                        |
+| `WHEELCHAIR_AND_SEAT`   | Y                      | Y                | Y              | Wheelchair place with additional seat                                                            |                        |
+| `WHEELCHAIR_NO_SEAT`    | Y                      | Y                | Y              | Wheelchair space without additional seat                                                         |                        |
 | `WIFI`                  | N                      | Y                | Y              | Places with WiFi access point                                                                    |                        |
 | `WINDOW`                | N                      | Y                | Y              | place at the window                                                                              | `PLACE_LOCATION`       |
 | `WITH_ANIMALS`          | Y                      | Y                | Y              | Place with animals (animals allowed)                                                             |                        |
