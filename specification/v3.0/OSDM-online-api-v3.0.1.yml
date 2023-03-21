@@ -4672,7 +4672,7 @@ components:
           type: string
           example: 8
         serviceArrival:
-          $ref: '#/components/schemas/ServiceLocalTime'
+          $ref: '#/components/schemas/ServiceTime'
         status:
           $ref: '#/components/schemas/StopCallStatus'
 
@@ -4688,7 +4688,7 @@ components:
         stopPlaceRef:
           $ref: '#/components/schemas/StopPlaceRef'
         serviceArrival:
-          $ref: '#/components/schemas/ServicelTime'
+          $ref: '#/components/schemas/ServiceTime'
 
     Ancillary:
       allOf:
@@ -4997,7 +4997,7 @@ components:
           type: string
           example: 8
         serviceDeparture:
-          $ref: '#/components/schemas/ServiceLocalTime'
+          $ref: '#/components/schemas/ServiceTime'
         status:
           $ref: '#/components/schemas/StopCallStatus'
 
@@ -5013,7 +5013,7 @@ components:
         stopPlaceRef:
           $ref: '#/components/schemas/StopPlaceRef'
         serviceDeparture:
-          $ref: '#/components/schemas/ServicelTime'
+          $ref: '#/components/schemas/ServiceTime'
 
     BookedOffer:
       type: object
@@ -7855,9 +7855,9 @@ components:
           type: string
           example: 8
         serviceArrival:
-          $ref: '#/components/schemas/ServiceLocalTime'
+          $ref: '#/components/schemas/ServiceTime'
         serviceDeparture:
-          $ref: '#/components/schemas/ServiceLocalTime'
+          $ref: '#/components/schemas/ServiceTime'
         status:
           $ref: '#/components/schemas/StopCallStatus'
 
@@ -7874,9 +7874,9 @@ components:
         stopPlaceRef:
           $ref: '#/components/schemas/StopPlaceRef'
         serviceArrival:
-          $ref: '#/components/schemas/ServiceLocalTime'
+          $ref: '#/components/schemas/ServiceTime'
         serviceDeparture:
-          $ref: '#/components/schemas/ServiceLocalTime'
+          $ref: '#/components/schemas/ServiceTime'
 
     JourneyRef:
       type: string
@@ -10841,25 +10841,6 @@ components:
         - BOOKED_CLASS_MISSING
         - BOOKED_MEAL_MISSING
 
-    ServiceLocalTime:
-      type: object
-      additionalProperties: false
-      description: |
-        Contains at least scheduled time, but can contain real time and estimated times. Provided by OJP.
-      required:
-        - timetabledTime
-      properties:
-        timetabledTime:
-          type: string
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
-          nullable: false
-        estimatedTime:
-          type: string
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
-        observedTime:
-          type: string
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
-
     ServiceStatus:
       type: object
       additionalProperties: false
@@ -10889,9 +10870,14 @@ components:
             'full', 'seatingAvailable' and 'standingAvailable'.
           type: string
 
-    ServicelTime:
+    ServiceTime:
       type: object
       additionalProperties: false
+      description: |
+        The time needs to be in Offset Time Format, i.e.  2023-12-03T10:15:30+01:00 as it is important the time zones are important  to show in the timetable.
+        
+        Do not use the Coordinated Universal Time (UTC) format, i.e. 2023-12-03T10:15:30Z.
+        
       required:
         - timetabledTime
         - estimatedTime
