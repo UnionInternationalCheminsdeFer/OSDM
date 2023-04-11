@@ -4182,6 +4182,8 @@ components:
         - objectType
         - id
         - createdOn
+        - confirmableUntil
+        - validFrom
         - price
         - status
         - passengerIds
@@ -4200,6 +4202,16 @@ components:
         createdOn:
           description: |
             Validity of offer towards passenger
+          type: string
+          format: date-time
+          nullable: false
+        confirmableUntil:
+          description: |
+            Date until the booking needs to be confirmed.
+          type: string
+          format: date-time
+          nullable: false
+        validFrom:
           type: string
           format: date-time
           nullable: false
@@ -5626,6 +5638,7 @@ components:
       required:
         - id
         - createdOn
+        - validFrom
         - validUntil
         - status
         - fulfillments
@@ -5640,6 +5653,10 @@ components:
             A human-readable description of the refund offer.
           type: string
         createdOn:
+          type: string
+          format: date-time
+          nullable: false
+        validFrom:
           type: string
           format: date-time
           nullable: false
@@ -7210,7 +7227,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Fees are used to represent additional costs for services or products.  In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the provider system.
+        Fees are used to represent additional costs for services or products.  In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the providing system.
       required:
         - id
         - price
@@ -8753,6 +8770,7 @@ components:
         - id
         - summary
         - createdOn
+        - validFrom
         - validUntil
         - onHoldFee
         - deposit
@@ -8765,6 +8783,10 @@ components:
           type: string
           nullable: false
         createdOn:
+          type: string
+          format: date-time
+          nullable: false
+        validFrom:
           type: string
           format: date-time
           nullable: false
@@ -8984,7 +9006,7 @@ components:
             reduction or loyalty cards owned by the passenger
           type: array
           items:
-            $ref: '#/components/schemas/CardTypeReference'
+            $ref: '#/components/schemas/CardReference'
         gender:
           $ref: '#/components/schemas/Gender'
         detail:
@@ -9061,7 +9083,7 @@ components:
             reduction or loyalty cards owned by the passenger
           type: array
           items:
-            $ref: '#/components/schemas/CardTypeReference'
+            $ref: '#/components/schemas/CardReference'
         prmNeeds:
           description: |
             For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
@@ -9948,6 +9970,7 @@ components:
       required:
         - id
         - createdOn
+        - validFrom
         - validUntil
         - status
         - fulfillments
@@ -9965,6 +9988,10 @@ components:
           type: string
           example: Refund Offer for Paris-Barcelona Andre Dupont 2022-07-23
         createdOn:
+          type: string
+          format: date-time
+          nullable: false
+        validFrom:
           type: string
           format: date-time
           nullable: false
@@ -10280,7 +10307,10 @@ components:
       additionalProperties: false
       required:
         - id
+        - createdOn
+        - validFrom
         - validUntil
+        - confirmedOn
         - status
         - fulfillments
       properties:
@@ -10293,9 +10323,21 @@ components:
           description: |
             A human-readable description of the refund offer.
           type: string
+        createdOn:
+          type: string
+          format: date-time
+          nullable: false
+        validFrom:
+          type: string
+          format: date-time
+          nullable: false
         validUntil:
           description: |
              time until the offer can be used
+          type: string
+          format: date-time
+          nullable: false
+        confirmedOn:
           type: string
           format: date-time
           nullable: false
@@ -11917,11 +11959,13 @@ components:
         - destination
       properties:
         departureTime:
+          description: |
+            Needs to in local date time format.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
         arrivalTime:
           description: |
-            requested arrival time. If arrival time is provided the departure time must be omitted.
+            Needs to in local date time format. If arrival time is provided the departure time must be omitted.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
         origin:
