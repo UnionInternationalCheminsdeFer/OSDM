@@ -1000,6 +1000,10 @@
 			"description": "carrier - carrier responsible for the transport. entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station). terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main rail station).",
 			"type": "object",
 			"properties": {
+				"name": {
+				        "description": "Name of the zone to be used in descriptions for the regional validity.",
+				        "type": string				          
+				},
 				"binaryZoneId": {
 					"description": "Id to support local traffic standards (e.g. VDV,...)",
 					"type": "string",
