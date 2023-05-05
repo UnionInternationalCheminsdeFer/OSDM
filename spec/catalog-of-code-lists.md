@@ -1155,6 +1155,19 @@ Transaction type used in after sales rules for fares.
 | `UPGRADE`               | Exchange with a fare of higher value         |
 | `GROUP_DOWN_SIZE`       | Exchange with a group of less passengers     |
 
+## TravelDirection
+  
+Trave direction of a couach. To get the direction of travel for a place the direcion information of the coah needs to be combined with the direction of the seat in the coach layout.  
+  
+| Code             | Description                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------- |
+| `UNSPECIFIED`    | The direction of travel is undefined                                                  |  
+| `IN_DIRECTION`   | In direction of travel                                                                | 
+| `OPPOSITE_DIRECTION`    | Opposite to direction                                                       | 
+| `CHANGING`       |  direction is changing                                                                |   
+| `STARTING_IN_DIRECTION`    |   starting in direction but changing later                                  | 
+| `STARTING_OPPOSITE_TO_DIRECTION`    |  starting oposite to direction but changing later                  |   
+  
 ## TravelValidityType
 
 Type of the travel validity of a fare.
