@@ -1091,6 +1091,24 @@ reproduced.
 | `NATIONAL`       | VAT applies in national tickets only                                                                                            |
 | `SHORT_DISTANCE` | VAT applies in short distance tickets only                                                                                      |
 | `LONG_DISTANCE`  | VAT applies in long distance tickets only. This needs to be applied in case the fare is integrated in a longer journey.         |
+  
+## TimeReference
+
+| Code                    | Description                                                                                                                |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `BEFORE_DEPARTURE`      | Time value calculated relative to the departure (subtract from departure). The time zone of the departure station applies. |
+| `AFTER_DEPARTURE`       | Time value calculated relative to the departure (add to depature). The time zone of the departure station applies.         |
+| `AFTER_SALE`            | Time value calculated relative to the sates time (add to sales time). The time zone of the sale applies.                   |
+| `BEFORE_START_VALIDITY` | Before the start of the validity. The time zone of the departure station applies.                                          |
+| `AFTER_END_VALIDITY`    | After the start of the validity. The time zone of the departure station applies.                                           |
+
+## TimeUnit
+
+| Code     | Description |
+| -------- | ----------- |
+| `DAY`    |             |
+| `MINUTE` |             |
+| `HOUR`   |             |  
 
 ## Transfer Type
 
@@ -1124,23 +1142,6 @@ Corresponding to numerical codes in TAP-TSI (B.2.3) / UIC
 | `SHIP`             |                                                                | 33                 |
 | `BUS`              |                                                                | 32                 |
 
-## TimeReference
-
-| Code                    | Description                                                                                                                |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `BEFORE_DEPARTURE`      | Time value calculated relative to the departure (subtract from departure). The time zone of the departure station applies. |
-| `AFTER_DEPARTURE`       | Time value calculated relative to the departure (add to depature). The time zone of the departure station applies.         |
-| `AFTER_SALE`            | Time value calculated relative to the sates time (add to sales time). The time zone of the sale applies.                   |
-| `BEFORE_START_VALIDITY` | Before the start of the validity. The time zone of the departure station applies.                                          |
-| `AFTER_END_VALIDITY`    | After the start of the validity. The time zone of the departure station applies.                                           |
-
-## TimeUnit
-
-| Code     | Description |
-| -------- | ----------- |
-| `DAY`    |             |
-| `MINUTE` |             |
-| `HOUR`   |             |
 
 ## TransactionType
 
@@ -1157,7 +1158,7 @@ Transaction type used in after sales rules for fares.
 
 ## TravelDirection
   
-Trave direction of a couach. To get the direction of travel for a place the direcion information of the coah needs to be combined with the direction of the seat in the coach layout.  
+Trave direction of a coach. To get the direction of travel for a place the direcion information of the coah needs to be combined with the direction of the seat in the coach layout.  
   
 | Code             | Description                                                                           |
 | ---------------- | ------------------------------------------------------------------------------------- |
