@@ -1002,7 +1002,7 @@
 			"properties": {
 				"name": {
 				        "description": "Name of the zone to be used in descriptions for the regional validity.",
-				        "type": string				          
+				        "type": "string"				          
 				},
 				"binaryZoneId": {
 					"description": "Id to support local traffic standards (e.g. VDV,...)",
