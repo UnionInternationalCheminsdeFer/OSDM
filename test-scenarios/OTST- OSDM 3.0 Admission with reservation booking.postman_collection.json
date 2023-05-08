@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "182fb968-bfd9-4f3d-92c4-569433dade02",
-		"name": "OTST: OSDM 3.0 Admission-only booking",
+		"_postman_id": "266f0776-7482-4772-81b6-6e901ca1079c",
+		"name": "OTST: OSDM 3.0 Admission with reservation booking",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "20344053"
 	},
@@ -29,10 +29,6 @@
 							"",
 							"pm.test(\"Offer contains admission\", function () {",
 							"    pm.expect(offer.admissionOfferParts.length).to.eql(1);",
-							"});",
-							"",
-							"pm.test(\"Offer does not contain reservation\", function () {",
-							"    pm.expect(offer.reservationOfferParts.length).to.eql(0);",
 							"});",
 							"",
 							"postman.setEnvironmentVariable(\"reservation_id\", offer.admissionOfferParts[0].id);",
@@ -87,107 +83,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"objectType\" : \"OfferCollectionRequest\",\n    \"tripSpecifications\": [{\n            \"externalRef\": \"{{trip_external_ref}}\",\n            \"legs\": [{\n                    \"externalRef\": \"{{leg_external_ref}}\",\n                    \"timedLeg\": {\n                        \"start\": {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"{{origin_ref}}\", //740000008\n                                \"objectType\": \"StopPlaceRef\"\n                            },\n                            \"serviceDeparture\": {\n                                \"timetabledTime\": \"{{next_weekday}}T{{departure_time}}\"\n                            }\n                        },\n                        \"end\": {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"{{destination_ref}}\", //740000977\n                                \"objectType\": \"StopPlaceRef\"\n                            },\n                            \"serviceArrival\": {\n                                \"timetabledTime\": \"{{next_weekday}}T{{arrival_time}}\"\n                            }\n                        },\n                        \"service\": {\n                            \"vehicleNumbers\": [\"{{vehicle_number}}\"],\n                            \"carriers\": [{\n                                    \"ref\": \"{{operator_ref}}\"\n                                }\n                            ]\n                        }\n                    }\n                }\n            ]\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"requestedOfferParts\": [\n            \"ADMISSION\"\n        ],\n        \"flexibilities\": [\n            \"FULL_FLEXIBLE\"\n        ],\n        \"currency\": \"{{currency}}\"\n    },\n    \"anonymousPassengerSpecifications\": [{\n            \"externalRef\": \"{{passenger_external_ref}}\",\n            \"type\": \"PERSON\",\n            \"gender\": \"MALE\"\n        }\n    ]\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base}}/offers",
-					"host": [
-						"{{base}}"
-					],
-					"path": [
-						"offers"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get an offer (tripSearchCriteria)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = JSON.parse(responseBody);",
-							"",
-							"pm.test(\"Single Offer was provided\", function () {",
-							"    pm.expect(jsonData.offers.length).to.eql(1);",
-							"});",
-							"",
-							"var offer = jsonData.offers[0];",
-							"",
-							"pm.test(\"Offer has ID\", function () {",
-							"    pm.expect(offer.offerId).to.be.a('string').and.not.be.empty;",
-							"});",
-							"",
-							"postman.setEnvironmentVariable(\"offer_id\", offer.offerId);",
-							"",
-							"pm.test(\"Offer contains admission\", function () {",
-							"    pm.expect(offer.admissionOfferParts.length).to.eql(1);",
-							"});",
-							"",
-							"pm.test(\"Offer does not contain reservation\", function () {",
-							"    pm.expect(offer.reservationOfferParts.length).to.eql(0);",
-							"});",
-							"",
-							"postman.setEnvironmentVariable(\"reservation_id\", offer.admissionOfferParts[0].id);",
-							"",
-							"pm.test(\"Passenger Specification was provided\", function () {",
-							"    pm.expect(jsonData.anonymousPassengerSpecifications.length).to.eql(1);",
-							"});",
-							"",
-							"var passenger = jsonData.anonymousPassengerSpecifications[0];",
-							"",
-							"pm.test(\"Passenger Specification was provided\", function () {",
-							"    pm.expect(passenger.externalRef).to.eql(postman.getEnvironmentVariable(\"passenger_external_ref\"));",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{token_type}} {{access_token}}",
-						"type": "text"
-					},
-					{
-						"key": "Requestor",
-						"value": "{{requestor}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"objectType\" : \"OfferCollectionRequest\",\n    \"tripSearchCriteria\": {\n        \"departureTime\": \"{{next_weekday}}T{{departure_time}}\",\n        \"origin\": {\n            \"stopPlaceRef\": \"{{origin_ref}}\",\n            \"objectType\": \"StopPlaceRef\"\n        },\n        \"destination\": {\n            \"stopPlaceRef\": \"{{destination_ref}}\",\n            \"objectType\": \"StopPlaceRef\"\n        },\n        \"parameters\": {\n            \"numberOfResults\": 1,\n            \"numberOfResultsBefore\": 0,\n            \"numberOfResultsAfter\": 1,\n            \"ignoreRealtimeData\": false\n        }\n    },\n    \"offerSearchCriteria\": {\n        \"offerMode\": \"INDIVIDUAL\",\n        \"currency\": \"{{currency}}\"\n    },\n    \"anonymousPassengerSpecifications\": [{\n            \"externalRef\": \"{{passenger_external_ref}}\",\n            \"type\": \"PERSON\",\n            \"cards\": [],\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"corporateCodes\": [],\n    \"promotionCodes\": []\n}\n",
+					"raw": "{\n    \"objectType\" : \"OfferCollectionRequest\",\n    \"tripSpecifications\": [{\n            \"externalRef\": \"{{trip_external_ref}}\",\n            \"legs\": [{\n                    \"externalRef\": \"{{leg_external_ref}}\",\n                    \"timedLeg\": {\n                        \"start\": {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"{{origin_ref}}\", //740000008\n                                \"objectType\": \"StopPlaceRef\"\n                            },\n                            \"serviceDeparture\": {\n                                \"timetabledTime\": \"{{next_weekday}}T{{departure_time}}\"\n                            }\n                        },\n                        \"end\": {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"{{destination_ref}}\", //740000977\n                                \"objectType\": \"StopPlaceRef\"\n                            },\n                            \"serviceArrival\": {\n                                \"timetabledTime\": \"{{next_weekday}}T{{arrival_time}}\"\n                            }\n                        },\n                        \"service\": {\n                            \"vehicleNumbers\": [\"{{vehicle_number}}\"],\n                            \"carriers\": [{\n                                    \"ref\": \"{{operator_ref}}\"\n                                }\n                            ]\n                        }\n                    }\n                }\n            ]\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"requestedOfferParts\": [\n            \"ADMISSION\",\"RESERVATION\"\n        ],\n        \"flexibilities\": [\n            \"FULL_FLEXIBLE\"\n        ],\n        \"currency\": \"{{currency}}\"\n    },\n    \"anonymousPassengerSpecifications\": [{\n            \"externalRef\": \"{{passenger_external_ref}}\",\n            \"type\": \"PERSON\",\n            \"gender\": \"MALE\"\n        }\n    ]\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -224,7 +120,19 @@
 							"\r",
 							"pm.test(\"Trip destination matches search destination\", function () {\r",
 							"    pm.expect(trip.destination.stopPlaceRef).to.eql(postman.getEnvironmentVariable(\"destination_ref\"));\r",
-							"});"
+							"});\r",
+							"\r",
+							"pm.test(\"Booked offer contains admission\", function () {\r",
+							"    pm.expect(jsonData.booking.bookedOffers[0].admissions.length).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Booked offer contains reservation\", function () {\r",
+							"    pm.expect(jsonData.booking.bookedOffers[0].reservations.length).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Admission references a reservation\", function () {\r",
+							"    pm.expect(jsonData.booking.bookedOffers[0].admissions[0].reservationRefs[0].id).to.eql(jsonData.booking.bookedOffers[0].reservations[0].id)\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}
