@@ -1,14 +1,16 @@
 @startuml
 title "Fullfillment State Diagram With Activation"
-[*] --> available: POST /bookings/id/fulfillments
-[*] --> onHold: POST /bookings/id/fulfillments
-available --> fulfilled: PATCH /bookings/id/fulfillments
+[*] --> available: POST /bookings/{id}/fulfillments
+[*] --> onHold: POST /bookings/{id}/fulfillments
+available --> fulfilled: PATCH /bookings/{id}/fulfillments
 available --> expired: timer 1 expired
 onHold --> available: timer 2 expired
 fulfilled --> checkedin: passenger check-in communicated 
-fulfilled --> refunded: PATCH /bookings/id/refundOffer
+fulfilled --> refunded: PATCH /bookings/{id}/refundOffer
+fulfilled --> exchanged: PATCH /bookings/{id}/exchange-operations/{eId}
 checkedin --> [*]
 fulfilled --> [*]: passenger never checked ind
 refunded --> [*]
+exchanged --> [*]
 expired --> [*]
 @enduml

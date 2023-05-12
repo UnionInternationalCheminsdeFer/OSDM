@@ -6,7 +6,9 @@ confirmed --> fulfilled: PATCH /bookings/{id}/fulfillments
 fulfilled --> checkedin: passenger check-in communicated 
 confirmed --> refunded: PATCH /bookings/{id}/refundOffer
 fulfilled --> refunded: PATCH /bookings/{id}/refundOffer
-checkedin --> [*]
+fulfilled --> exchanged: PATCH /bookings/{id}/exchange-operations/{eId}
 fulfilled --> [*]: passenger never checked in
-refunded --> [*] 
+checkedin --> [*]
+refunded --> [*]
+exchanged --> [*]
 @enduml
