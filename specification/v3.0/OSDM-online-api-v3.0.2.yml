@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.0.2.pre-2023-05-22
+  version: 3.0.2.pre-2023-05-26
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
     
@@ -5428,6 +5428,15 @@ components:
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         ticketTimeLimit:
+          description: |
+            use confirmationTimeLimit instead
+          type: string
+          format: date-time
+          deprecated: true
+          nullable: true
+        confirmationTimeLimit:
+          description: |
+            Time until the booking needs to be confirmed or put on hold. After that, the booking is no longer valid.
           type: string
           format: date-time
           nullable: true
@@ -10732,7 +10741,6 @@ components:
         - createdOn
         - validFrom
         - validUntil
-        - confirmedOn
         - status
         - fulfillments
       properties:
@@ -10763,7 +10771,7 @@ components:
         confirmedOn:
           type: string
           format: date-time
-          nullable: false
+          nullable: true
         status:
           $ref: '#/components/schemas/ReleaseStatus'
         fulfillments:
