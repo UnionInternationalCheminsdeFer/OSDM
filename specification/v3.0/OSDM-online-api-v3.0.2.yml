@@ -634,7 +634,7 @@ paths:
       responses:
         '200':
           description: |
-            Onhold Offer confirmed
+            On hold offer confirmed
           content:
             application/json:
               schema:
@@ -11989,7 +11989,7 @@ components:
     TravelAccountType:
       type: string
       enum:
-        - LOYALITY_CARD
+        - LOYALTY_CARD
         - TRAVEL_PASS
         - MULTI_RIDE
         - REDUCTION_CARD
