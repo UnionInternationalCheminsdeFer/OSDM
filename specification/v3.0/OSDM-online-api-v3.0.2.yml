@@ -4354,7 +4354,7 @@ components:
           description: |
             Indicates whether the offerId can be used in more than one booking.
           type: boolean
-          nullable: true
+          nullable: false
           default: false
         passengerRefs:
           type: array
@@ -10870,7 +10870,7 @@ components:
         Boolean-expression indicating the data that must be set in the data model in order to proceed to next step of the process. 
         
         The syntax and semantics of the expression is described in detail in the OSDM documentation.
-      nullable: true
+      nullable: false
 
     Reservation:
       description: |

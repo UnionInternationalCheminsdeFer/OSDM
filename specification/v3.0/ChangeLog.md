@@ -41,6 +41,8 @@ Because of a bug in the OpenAPI generator in case of inheritance and optional at
   - numericAvailability
   - tripTags
   - returnTags
+  - isReusable
+  - requestedInformation
 
 - Place
   - alternativeIds
