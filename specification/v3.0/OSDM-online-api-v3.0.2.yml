@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.0.2.pre-2023-05-26
+  version: 3.0.2
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
     
@@ -4197,7 +4197,7 @@ components:
           nullable: false
         summary:
           type: string
-          nullable: true
+          nullable: false
         createdOn:
           description: |
             Validity of offer towards passenger
@@ -4219,11 +4219,11 @@ components:
             Validity of offer towards passenger
           type: string
           format: date-time
-          nullable: true
+          nullable: false
         confirmedOn:
           type: string
           format: date-time
-          nullable: true
+          nullable: false
         price:
           $ref: '#/components/schemas/Price'
         tripCoverage:
@@ -4244,12 +4244,12 @@ components:
           description: |
             reference to the booking in the downstream distributor system
           type: string
-          nullable: true
+          nullable: false
         retailerBookingRef:
           description: |
             reference to the booking in the downstream distributor system
           type: string
-          nullable: true
+          nullable: false
         passengerIds:
           description: |
             Id of the passenger
@@ -4321,7 +4321,7 @@ components:
           description: |
             A human-readable description of the Offer.
           type: string
-          nullable: true
+          nullable: false
         createdOn:
           type: string
           format: date-time
@@ -4337,7 +4337,7 @@ components:
             Time until the offer can be used, e.g. travel.
           type: string
           format: date-time
-          nullable: true
+          nullable: false
         price:
           $ref: '#/components/schemas/Price'
         tripCoverage:
@@ -4347,7 +4347,7 @@ components:
             Indicates until when the price for the given offer is guaranteed.
           type: string
           format: date-time
-          nullable: true
+          nullable: false
         offerMode:
           $ref: '#/components/schemas/OfferMode'
         isReusable:
@@ -4365,7 +4365,7 @@ components:
         numericAvailability:
           type: integer
           format: int32
-          nullable: true
+          nullable: false
         refundable:
           $ref: '#/components/schemas/RefundType'
         exchangeable:
@@ -4383,7 +4383,7 @@ components:
           type: array
           items:
             type: string
-          nullable: true
+          nullable: false
         returnTags:
           description: |
             List of tags (and their type) that allow identifying sets of compatible offers when booking a return trip
@@ -4392,7 +4392,7 @@ components:
           type: array
           items:
             type: string
-          nullable: true
+          nullable: false
         offerTag:
           $ref: '#/components/schemas/OfferTag'
         requestedInformation:
@@ -9582,7 +9582,7 @@ components:
           type: array
           items:
             type: string
-          nullable: true
+          nullable: false
         geoPosition:
           $ref: '#/components/schemas/GeoPosition'
         _links:
