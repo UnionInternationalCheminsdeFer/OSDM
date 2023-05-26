@@ -25,7 +25,7 @@
 
 ## OpenAPI Generator tweaks
 
-Because of a bug in the OpenAPI generator in case of inheritance and optional attributes `nullable: false` had to be tweaked on the following classes and attributes:4
+Because of a bug in the OpenAPI generator in case of inheritance and optional attributes `nullable: false` had to be tweaked on the following classes and attributes:
 
 - AbstractBookingPart
   - summary
