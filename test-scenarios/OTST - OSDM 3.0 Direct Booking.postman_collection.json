@@ -1,0 +1,824 @@
+{
+	"info": {
+		"_postman_id": "96efcc15-a8f8-46d6-9610-39686653cc50",
+		"name": "OTST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "OTST Sales Scenario",
+			"item": [
+				{
+					"name": "1. Agent token (non-OSDM)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"// Verify whether the correct status code is returned",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Set the authorization token",
+									"postman.setEnvironmentVariable(\"auth.token\", jsonData.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{auth.key_secret}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"grant_type\": \"https://com.sqills.s3.oauth.agent\",\n    \"username\": \"{{agent.username}}\",\n    \"password\": \"{{agent.password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-host}}/oauth/v2/token",
+							"host": [
+								"{{api-host}}"
+							],
+							"path": [
+								"oauth",
+								"v2",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Navigate (non-OSDM)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"// Verify whether the correct status code is returned",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Sets the relevant variables from the POST Navigate response",
+									"postman.setEnvironmentVariable(\"service_name\", jsonData.data.travels[0].routes[0].legs[0].service_name);",
+									"postman.setEnvironmentVariable(\"service_type\", jsonData.data.travels[0].routes[0].legs[0].service_type);",
+									"postman.setEnvironmentVariable(\"departure\", jsonData.data.travels[0].routes[0].legs[0].departure.substring(0, 19));",
+									"postman.setEnvironmentVariable(\"arrival\", jsonData.data.travels[0].routes[0].legs[0].arrival.substring(0, 19));",
+									"postman.setEnvironmentVariable(\"service_schedule_date\", jsonData.data.travels[0].routes[0].legs[0].service_schedule_date);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{locale}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth.token}}"
+							},
+							{
+								"key": "X-Orientation-Flags",
+								"value": "D",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"travels\": [\n        {\n            \"origin\": \"{{location}}\",\n            \"destination\": \"{{location_2}}\",\n            \"departure\": \"{{date}}\",\n            \"max_transfers\": 0\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{api-host}}/api/v2/orientation/navigate",
+							"host": [
+								"{{api-host}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"orientation",
+								"navigate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Service Type (non-OSDM)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"// Verify whether the correct status code is returned",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Sets the relevant variables from the Get ServiceType response",
+									"postman.setEnvironmentVariable(\"service_type_rics_code\", jsonData.rics_code);",
+									"postman.setEnvironmentVariable(\"service_type_name\", jsonData.name);",
+									"postman.setEnvironmentVariable(\"service_type_brand_code\", jsonData.brand_code);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{locale}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth.token}}"
+							},
+							{
+								"key": "X-Orientation-Flags",
+								"value": "D",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"travels\": [\n        {\n            \"origin\": \"{{location}}\",\n            \"destination\": \"{{location_2}}\",\n            \"departure\": \"{{date}}\",\n            \"max_transfers\": 0\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{api-host}}/api/v3/navigation/service-types/{{service_type}}",
+							"host": [
+								"{{api-host}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"navigation",
+								"service-types",
+								"{{service_type}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Offers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"// Verify whether the correct status code is returned",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Verify whether json with the correct schema is being returned",
+									"var Ajv = require('ajv'),",
+									"    ajv = new Ajv({logger: console});",
+									"",
+									"const OSDM_SCHEMA = ajv.compile(JSON.parse(pm.collectionVariables.get(\"osdm_offers_schema\")));",
+									"",
+									"pm.test(\"Response uses a valid schema\", function() {",
+									"    pm.expect(ajv.validate(pm.response.json(), OSDM_SCHEMA)).to.be.true;",
+									"});",
+									"",
+									"// Verify there are bundles returned to select an offer from",
+									"pm.test(\"offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.offers).not.to.be.empty;",
+									"});",
+									"",
+									"//Check if there are offers with reservations",
+									"var offerWithReservation = false;",
+									"var offerWithReservationId = -1;",
+									"pm.response.json().offers.forEach(function(tripOffer) {",
+									"    if( tripOffer.reservationOfferParts !== undefined && tripOffer.admissionOfferParts !== undefined) {",
+									"        offerWithReservation = true;",
+									"        offerWithReservationId = tripOffer.offerId;",
+									"        pm.collectionVariables.set(\"offerWithReservation\", offerWithReservation);",
+									"        pm.collectionVariables.set(\"offerWithReservationId\", offerWithReservationId);",
+									"        ",
+									"        // Get the first returned passengerRef",
+									"        pm.collectionVariables.set(\"passenger_ref_reservation\", tripOffer.admissionOfferParts[0].passengerRefs[0]);",
+									"    }",
+									"});",
+									"",
+									"//Check if there are offers with admissions without reservations",
+									"var offerWithoutReservation = false;",
+									"var offerWithoutReservationId = -1;",
+									"pm.response.json().offers.forEach(function(tripOffer) {",
+									"    if( tripOffer.reservationOfferParts === undefined && tripOffer.admissionOfferParts !== undefined) {",
+									"        offerWithoutReservation = true;",
+									"        offerWithoutReservationId = tripOffer.offerId;",
+									"        pm.collectionVariables.set(\"offerWithoutReservation\", offerWithoutReservation);",
+									"        pm.collectionVariables.set(\"offerWithoutReservationId\", offerWithoutReservationId);",
+									"",
+									"        // Get the first returned passengerRef",
+									"        pm.collectionVariables.set(\"passenger_ref_only_admission\", tripOffer.admissionOfferParts[0].passengerRefs[0]);",
+									"    }",
+									"});",
+									"",
+									"//Check if there are offers with ancillaries",
+									"var offerWithAncillary = false;",
+									"var offerWithAncillaryOfferId = -1;",
+									"var offerWithAncillaryId = -1;",
+									"pm.response.json().offers.forEach(function(tripOffer) {",
+									"    tripOffer.ancillaryOfferParts.forEach(function(ancillaryOfferPart) {",
+									"        ancillaryOfferPart.products.forEach(function(ancillaryOfferPartProduct) {",
+									"",
+									"            var productId = ancillaryOfferPartProduct.productId;",
+									"",
+									"            if (productId.includes(\"LUGGAGE\")) {",
+									"                offerWithAncillary = true;",
+									"                offerWithAncillaryOfferId = tripOffer.offerId;",
+									"                offerWithAncillaryId = ancillaryOfferPart.id;",
+									"",
+									"                pm.collectionVariables.set(\"offerWithAncillary\", offerWithAncillary);",
+									"                pm.collectionVariables.set(\"offerWithAncillaryOfferId\",offerWithAncillaryOfferId);",
+									"                pm.collectionVariables.set(\"offerWithAncillaryId\", offerWithAncillaryId);",
+									"        ",
+									"                // Get the first returned passengerRef",
+									"                pm.collectionVariables.set(\"passenger_ref_ancillary\", tripOffer.admissionOfferParts[0].passengerRefs[0]);",
+									"            }",
+									"        });",
+									"    });",
+									"});",
+									"",
+									"//determine routing based on returned and collected data",
+									"if(offerWithReservation===true) {",
+									"    postman.setNextRequest(\"5a. Booking (With Reservation)\");",
+									"} else if(offerWithoutReservation===true) {",
+									"    postman.setNextRequest(\"6a. Booking (No Reservation)\");",
+									"} else if(offerWithAncillary===true) {",
+									"    postman.setNextRequest(\"7a. Booking (With Ancillary)\");",
+									"} else {",
+									"    postman.setNextRequest(\"8. Get Booking\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth.token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;version=3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"objectType\": \"string\",\n    \"tripSpecifications\": [\n        {\n            \"externalRef\": \"string\",\n            \"legs\": [\n                {\n                    \"externalRef\": \"string\",\n                    \"timedLeg\": {\n                        \"start\": {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"urn:{{namespace_stations}}:stn:{{location}}\"\n                            },\n                            \"serviceDeparture\": {\n                                \"timetabledTime\": \"{{departure}}\"\n                            }\n                        },\n                        \"end\": {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"urn:{{namespace_stations}}:stn:{{location_2}}\"\n                            },\n                            \"serviceArrival\": {\n                                \"timetabledTime\": \"{{arrival}}\"\n                            }\n                        },\n                        \"service\": {\n                            \"productCategory\": {\n                                \"name\": \"{{service_type_name}}\",\n                                \"shortName\": \"{{service_type_name}}\",\n                                \"productCategoryRef\": \"urn:{{namespace_stations}}:sbc:{{service_type_brand_code}}\"\n                            },\n                            \"publishedServiceName\": \"{{service_name}}\",\n                            \"vehicleNumbers\": [\n                                \"{{service_name}}\"\n                            ],\n                            \"carriers\": [\n                                {\n                                    \"ref\": \"{{namespace_carrier}}{{service_type_rics_code}}\",\n                                    \"name\": \"{{service_type}}\"\n                                }\n                            ]\n                        }\n                    }\n                }\n            ],\n            \"isPartOfInternationalTrip\": false\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"{{currency}}\"\n    },\n    \"anonymousPassengerSpecifications\": [\n        {\n            \"externalRef\": \"{{passenger_externalRef}}\",\n            \"type\": \"{{passenger_type}}\"\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/offers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"offers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5a. Booking (With Reservation)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var Ajv = require('ajv'),",
+									"    ajv = new Ajv({logger: console});",
+									"",
+									"const OSDM_SCHEMA = ajv.compile(JSON.parse(pm.collectionVariables.get(\"osdm_booking_schema\")));",
+									"",
+									"// Verify whether the correct status code is returned",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response uses a valid schema\", function() {",
+									"    pm.expect(ajv.validate(pm.response.json(), OSDM_SCHEMA)).to.be.true;",
+									"});",
+									"",
+									"// Store the returned booking id",
+									"postman.setEnvironmentVariable(\"bookingId\", jsonData.booking.id);",
+									"",
+									"// Store the id of the first passenger",
+									"postman.setEnvironmentVariable(\"passengerId\", jsonData.booking.passengers[0].id);",
+									"",
+									"// Store the id of the first booked offer",
+									"postman.setEnvironmentVariable(\"exchangeOfferIds\", jsonData.booking.bookedOffers[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth.token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;version={{osdm-version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"purchaser\": {\n        \"detail\": {\n            \"firstName\": \"{{purchaser_firstName}}\",\n            \"lastName\": \"{{purchaser_lastName}}\",\n            \"eMail\": \"{{purchaser_email}}\",\n            \"phoneNumber\": \"{{purchaser_phoneNumber}}\"\n        }\n    },\n    \"offers\": [\n        {\n            \"offerId\": \"{{offerWithReservationId}}\",\n            \"passengerRefs\": [\n                \"{{passenger_ref_reservation}}\"\n            ]\n        }\n    ],\n    \"passengerSpecifications\": [\n        {\n            \"externalRef\": \"{{passenger_externalRef}}\",\n            \"dateOfBirth\": \"{{passenger_dateOfBirth}}\",\n            \"id\": \"{{{passenger_ref_reservation}}}\",\n            \"summary\": \"{{passenger_ref_reservation}}\",\n            \"type\": \"{{passenger_type}}\",\n            \"detail\": {\n                \"firstName\": \"{{passenger_firstName}}\",\n                \"lastName\": \"{{passenger_lastName}}\",\n                \"eMail\": \"{{passenger_email}}\",\n                \"phoneNumber\": \"{{passenger_phonenumber}}\"\n            }\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ],\n    \"externalRef\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5b. Fulfillments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"// Verify whether the correct status code is returned",
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"if (pm.collectionVariables.get(\"offerWithoutReservation\")=== true) {",
+									"    postman.setNextRequest(\"6a. Booking (No Reservation)\");",
+									"} else if(pm.collectionVariables.get(\"offerWithAncillary\")===true) {",
+									"    postman.setNextRequest(\"7a. Booking (With Ancillary)\");",
+									"} else {",
+									"    postman.setNextRequest(\"8. Get Booking\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth.token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "version={{osdm-version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{bookingId}}/fulfillments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{bookingId}}",
+								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6a. Booking (No Reservation)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var Ajv = require('ajv'),",
+									"    ajv = new Ajv({logger: console});",
+									"",
+									"const OSDM_SCHEMA = ajv.compile(JSON.parse(pm.collectionVariables.get(\"osdm_booking_schema\")));",
+									"",
+									"// Verify whether the correct status code is returned",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response uses a valid schema\", function() {",
+									"    pm.expect(ajv.validate(pm.response.json(), OSDM_SCHEMA)).to.be.true;",
+									"});",
+									"",
+									"// Store the returned booking id",
+									"postman.setEnvironmentVariable(\"bookingId\", jsonData.booking.id);",
+									"",
+									"// Store the id of the first passenger",
+									"postman.setEnvironmentVariable(\"passengerId\", jsonData.booking.passengers[0].id);",
+									"",
+									"// Store the id of the first booked offer",
+									"postman.setEnvironmentVariable(\"exchangeOfferIds\", jsonData.booking.bookedOffers[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth.token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;version={{osdm-version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"purchaser\": {\n        \"detail\": {\n            \"firstName\": \"{{purchaser_firstName}}\",\n            \"lastName\": \"{{purchaser_lastName}}\",\n            \"eMail\": \"{{purchaser_email}}\",\n            \"phoneNumber\": \"{{purchaser_phoneNumber}}\"\n        }\n    },\n    \"offers\": [\n        {\n            \"offerId\": \"{{offerWithoutReservationId}}\",\n            \"passengerRefs\": [\n                \"{{passenger_ref_only_admission}}\"\n            ]\n        }\n    ],\n    \"passengerSpecifications\": [\n        {\n            \"externalRef\": \"{{passenger_externalRef}}\",\n            \"dateOfBirth\": \"{{passenger_dateOfBirth}}\",\n            \"id\": \"{{{passenger_ref_only_admission}}}\",\n            \"summary\": \"{{passenger_ref_only_admission}}\",\n            \"type\": \"{{passenger_type}}\",\n            \"detail\": {\n                \"firstName\": \"{{passenger_firstName}}\",\n                \"lastName\": \"{{passenger_lastName}}\",\n                \"eMail\": \"{{passenger_email}}\",\n                \"phoneNumber\": \"{{passenger_phonenumber}}\"\n            }\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ],\n    \"externalRef\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6b. Fulfillments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"// Verify whether the correct status code is returned",
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"if(pm.collectionVariables.get(\"offerWithAncillary\")===true) {",
+									"    postman.setNextRequest(\"7a. Booking (With Ancillary)\");",
+									"} else {",
+									"    postman.setNextRequest(\"8. Get Booking\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth.token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "version={{osdm-version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{bookingId}}/fulfillments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{bookingId}}",
+								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7a. Booking (With Ancillary)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var Ajv = require('ajv'),",
+									"    ajv = new Ajv({logger: console});",
+									"",
+									"const OSDM_SCHEMA = ajv.compile(JSON.parse(pm.collectionVariables.get(\"osdm_booking_schema\")));",
+									"",
+									"// Verify whether the correct status code is returned",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response uses a valid schema\", function() {",
+									"    pm.expect(ajv.validate(pm.response.json(), OSDM_SCHEMA)).to.be.true;",
+									"});",
+									"",
+									"// Store the returned booking id",
+									"postman.setEnvironmentVariable(\"bookingId\", jsonData.booking.id);",
+									"",
+									"// Store the id of the first passenger",
+									"postman.setEnvironmentVariable(\"passengerId\", jsonData.booking.passengers[0].id);",
+									"",
+									"// Store the id of the first booked offer",
+									"postman.setEnvironmentVariable(\"exchangeOfferIds\", jsonData.booking.bookedOffers[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth.token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;version={{osdm-version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"purchaser\": {\n        \"detail\": {\n            \"firstName\": \"{{purchaser_firstName}}\",\n            \"lastName\": \"{{purchaser_lastName}}\",\n            \"eMail\": \"{{purchaser_email}}\",\n            \"phoneNumber\": \"{{purchaser_phoneNumber}}\"\n        }\n    },\n    \"offers\": [\n        {\n            \"offerId\": \"{{offerWithAncillaryOfferId}}\",\n            \"passengerRefs\": [\n                \"{{passenger_ref_ancillary}}\"\n            ],\n            \"optionalAncillarySelections\": [\n                {\n                    \"ancillaryId\": \"{{selected_ancillary_id}}\",\n                    \"passengerRefs\": [\n                        \"{{passenger_ref_ancillary}}\"\n                    ]\n                }\n            ]\n        }\n    ],\n    \"passengerSpecifications\": [\n        {\n            \"externalRef\": \"{{passenger_externalRef}}\",\n            \"dateOfBirth\": \"{{passenger_dateOfBirth}}\",\n            \"id\": \"{{{passenger_ref_ancillary}}}\",\n            \"summary\": \"{{passenger_ref_ancillary}}\",\n            \"type\": \"{{passenger_type}}\",\n            \"detail\": {\n                \"firstName\": \"{{passenger_firstName}}\",\n                \"lastName\": \"{{passenger_lastName}}\",\n                \"eMail\": \"{{passenger_email}}\",\n                \"phoneNumber\": \"{{passenger_phonenumber}}\"\n            }\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ],\n    \"externalRef\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7b. Fulfillments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"// Verify whether the correct status code is returned",
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth.token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "version={{osdm-version}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{bookingId}}/fulfillments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{bookingId}}",
+								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. Get Booking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify whether the correct status code is returned",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth.token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "version={{osdm-version}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{bookingId}}?embed=ALL",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{bookingId}}"
+							],
+							"query": [
+								{
+									"key": "embed",
+									"value": "ALL"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
