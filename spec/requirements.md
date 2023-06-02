@@ -287,20 +287,28 @@ For a given a booking a refund can be requested.
 A refund can have a fee.
 
 Cancellation (a.k.a. revoke) is a special kind of refund where no fees apply,
-and the complete amount is returned.
+and the complete amount is returned triggered by an overrule code.
 
 Cancellation must be supported by all parties.
 
 Total refund must be supported by all parties.
 
-### Requirements on Partial Refund or Exchange
+### Requirements on Partial Refund 
 
-Partial refund is regarded as special form of exchange.
+Partial refund allows to remove passengers and booking parts (only if supported by the
+underlying tarif) from a booking.
 
-Partial refund is the exchange of a part of the fulfillments of a booking where
-the remaining fulfillments remain valid for traveling.
+A partial refund can have a fee.
 
-Partial refund as well as exchange may be supported by all parties.
+Partial refund may be supported by all parties.
+
+### Requirements on Exchange
+
+Exchange allows to change trip and passengers.
+
+An exchange can have a fee.
+
+Exchange may be supported by all parties.
 
 ### Requirements on Seat Change
 
