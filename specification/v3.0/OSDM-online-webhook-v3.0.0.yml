@@ -4,7 +4,7 @@ servers:
     url: https://localhost:8080
 info:
   title: UIC 90918-10 - OSDM webhooks
-  version: 3.0.0
+  version: 3.0.2
   description: |
     Specifications for the OSDM API standard. The OSDM webhook specification allows an allocator to inform a distributor about changes to a booking or a complaint.
   contact:
@@ -108,16 +108,22 @@ components:
         - BOOKING_REACCOMMODATED
         - BOOKING_TRIP_CHANGED
         - BOOKING_TRIP_CONFIRMED
-        - FULFILLMENT_AVAILABLE
+        - BOOKING_ON_HOLD
         - DOCUMENT_AVAILABLE
+        - FULFILLMENT_AVAILABLE
         - FULFILLMENT_REFUNDED
         - FULFILLMENT_EXCHANGED
+        - FULFILLMENT_CANCELLED
+        - FULFILLMENT_RELEASED
         - FULFILLMENT_CONTROLLED
         - ACCOMMODATION_RELEASED
         - PURCHASER_CHANGED
         - PASSENGER_CHANGED
         - REFUND_INITIATED
         - EXCHANGE_INITIATED
+        - RELEASE_INITIATED
+        - CANCEL_INITIATED
+        - ON_HOLD_INITIATED
       example: FULFILLMENT_REFUNDED
 
     ComplaintEvent:
