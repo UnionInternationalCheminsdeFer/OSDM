@@ -1,0 +1,936 @@
+{
+	"info": {
+		"_postman_id": "3e866f0c-ff69-408e-b617-b683eb7ae6d0",
+		"name": "OTST: OSDM 3.0 Admission-only with two-step refund",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20344053",
+		"_collection_link": "https://turnit-team.postman.co/workspace/OTST~0a821f9a-2acb-40f3-8d35-459754deceb5/collection/20344053-3e866f0c-ff69-408e-b617-b683eb7ae6d0?action=share&creator=20344053&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Creating a booking",
+			"item": [
+				{
+					"name": "Get an offer (tripSpecification)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.test(\"Single Offer was provided\", function () {",
+									"    pm.expect(jsonData.offers.length).to.eql(1);",
+									"    console.log(\"Single Offer was provided\")",
+									"});",
+									"",
+									"var offer = jsonData.offers[0];",
+									"",
+									"pm.test(\"Offer has ID\", function () {",
+									"    pm.expect(offer.offerId).to.be.a('string').and.not.be.empty;",
+									"    console.log(\"Offer has ID\")",
+									"});",
+									"",
+									"postman.setEnvironmentVariable(\"offer_id\", offer.offerId);",
+									"",
+									"pm.test(\"Offer contains admission\", function () {",
+									"    pm.expect(offer.admissionOfferParts.length).to.eql(1);",
+									"    console.log(\"Offer contains admission\")",
+									"});",
+									"",
+									"pm.test(\"Offer does not contain reservation\", function () {",
+									"    pm.expect(offer.reservationOfferParts.length).to.eql(0);",
+									"    console.log(\"No reservation is present in offer\")",
+									"});",
+									"",
+									"postman.setEnvironmentVariable(\"reservation_id\", offer.admissionOfferParts[0].id);",
+									"",
+									"pm.test(\"Passenger Specification was provided\", function () {",
+									"    pm.expect(jsonData.anonymousPassengerSpecifications.length).to.eql(1);",
+									"});",
+									"",
+									"var passenger = jsonData.anonymousPassengerSpecifications[0];",
+									"",
+									"pm.test(\"Passenger ref is returned correctly\", function () {",
+									"    pm.expect(passenger.externalRef).to.eql(postman.getEnvironmentVariable(\"passenger_external_ref\"));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"objectType\" : \"OfferCollectionRequest\",\n    \"tripSpecifications\": [{\n            \"externalRef\": \"{{trip_external_ref}}\",\n            \"legs\": [{\n                    \"externalRef\": \"{{leg_external_ref}}\",\n                    \"timedLeg\": {\n                        \"start\": {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"{{origin_ref}}\",\n                                \"objectType\": \"StopPlaceRef\"\n                            },\n                            \"serviceDeparture\": {\n                                \"timetabledTime\": \"{{next_weekday}}T{{departure_time}}\"\n                            }\n                        },\n                        \"end\": {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"{{destination_ref}}\",\n                                \"objectType\": \"StopPlaceRef\"\n                            },\n                            \"serviceArrival\": {\n                                \"timetabledTime\": \"{{next_weekday}}T{{arrival_time}}\"\n                            }\n                        },\n                        \"service\": {\n                            \"vehicleNumbers\": [\"{{vehicle_number}}\"],\n                            \"carriers\": [{\n                                    \"ref\": \"{{operator_ref}}\"\n                                }\n                            ]\n                        }\n                    }\n                }\n            ]\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"requestedOfferParts\": [\n            \"ADMISSION\"\n        ],\n        \"flexibilities\": [\n            \"FULL_FLEXIBLE\"\n        ],\n        \"currency\": \"{{currency}}\"\n    },\n    \"anonymousPassengerSpecifications\": [{\n            \"externalRef\": \"{{passenger_external_ref}}\",\n            \"type\": \"PERSON\",\n            \"gender\": \"MALE\"\n        }\n    ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/offers",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"offers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a booking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"booking_id\", jsonData.booking.id);\r",
+									"\r",
+									"var trip = jsonData.booking.trips[0]\r",
+									"\r",
+									"pm.test(\"Trip origin matches search origin\", function () {\r",
+									"    pm.expect(trip.origin.stopPlaceRef).to.eql(postman.getEnvironmentVariable(\"origin_ref\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Trip destination matches search destination\", function () {\r",
+									"    pm.expect(trip.destination.stopPlaceRef).to.eql(postman.getEnvironmentVariable(\"destination_ref\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"offers\": [\r\n        {\r\n            \"offerId\": \"{{offer_id}}\",\r\n            \"passengerRefs\": [\r\n                \"{{passenger_external_ref}}\"\r\n            ]\r\n        }\r\n    ],\r\n    \"passengerSpecifications\": [\r\n        {\r\n            \"externalRef\": \"{{passenger_external_ref}}\",\r\n            \"dateOfBirth\": \"1996-01-01\",\r\n            \"type\": \"PERSON\"\r\n        }\r\n    ],\r\n    \"externalRef\": \"{{booking_external_ref}}\"\r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/bookings",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get booking info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Booking details obtained\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var booking = jsonData.booking;\r",
+									"    pm.expect(booking.id).to.eql(postman.getEnvironmentVariable(\"booking_id\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/bookings/{{booking_id}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create the fulfillment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Fulfillment for one booking obtained\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var fulfillments = jsonData.fulfillments;\r",
+									"    pm.expect(fulfillments.length).to.eql(1);\r",
+									"\r",
+									"    postman.setEnvironmentVariable(\"fulfillment_id\", jsonData.fulfillments[0].id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/bookings/{{booking_id}}/fulfillments",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Fulfillment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Fulfillment for one booking obtained\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var fulfillment = jsonData.fulfillment;\r",
+									"    pm.expect(fulfillment.id).to.eql(postman.getEnvironmentVariable(\"fulfillment_id\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/fulfillments/{{fulfillment_id}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"fulfillments",
+								"{{fulfillment_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Two-step refund",
+			"item": [
+				{
+					"name": "Requesting a release offer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"release_offer_id\", jsonData.releaseOffers[0].id);\r",
+									"\r",
+									"pm.test(\"At least 1 release offer was provided\", function () {\r",
+									"    pm.expect(jsonData.releaseOffers.length).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Release offer status PROPOSED\", function () {\r",
+									"    pm.expect(jsonData.releaseOffers[0].status).to.eql(\"PROPOSED\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fulfillmentIds\" : [\r\n        \"{{fulfillment_id}}\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/bookings/{{booking_id}}/release-offers",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"release-offers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get booking info before confirming release",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Booking details obtained\", function () {\r",
+									"    var booking = jsonData.booking;\r",
+									"    pm.expect(booking.id).to.eql(postman.getEnvironmentVariable(\"booking_id\"));\r",
+									"});\r",
+									"pm.test(\"Booked offer status still FULFILLED\", function () {\r",
+									"    pm.expect(jsonData.booking.bookedOffers[0].admissions[0].status).to.eql(\"FULFILLED\");\r",
+									"});\r",
+									"pm.test(\"Fulfillment status still FULFILLED\", function () {\r",
+									"    pm.expect(jsonData.booking.fulfillments[0].status).to.eql(\"FULFILLED\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No release offers yet\", function () {\r",
+									"    pm.expect(jsonData.booking.releaseOffers.length).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No refund offers yet\", function () {\r",
+									"    pm.expect(jsonData.booking.refundOffers.length).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/bookings/{{booking_id}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm the release offer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Release offer confirmed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.releaseOffer.status).to.eql(\"CONFIRMED\");\r",
+									"});\r",
+									"pm.test(\"Fulfillment status RELEASED\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.releaseOffer.fulfillments[0].status).to.eql(\"RELEASED\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\" : \"CONFIRMED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/bookings/{{booking_id}}/release-offers/{{release_offer_id}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"release-offers",
+								"{{release_offer_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get booking info post-release",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Booking details obtained\", function () {\r",
+									"    var booking = jsonData.booking;\r",
+									"    pm.expect(booking.id).to.eql(postman.getEnvironmentVariable(\"booking_id\"));\r",
+									"});\r",
+									"pm.test(\"Booked offer status RELEASED\", function () {\r",
+									"    pm.expect(jsonData.booking.bookedOffers[0].admissions[0].status).to.eql(\"RELEASED\");\r",
+									"});\r",
+									"pm.test(\"Fulfillment status RELEASED\", function () {\r",
+									"    pm.expect(jsonData.booking.fulfillments[0].status).to.eql(\"RELEASED\");\r",
+									"});\r",
+									"pm.test(\"Release offer status RELEASED\", function () {\r",
+									"    pm.expect(jsonData.booking.releaseOffers[0].fulfillments[0].status).to.eql(\"RELEASED\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No refund offers yet\", function () {\r",
+									"    pm.expect(jsonData.booking.refundOffers.length).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/bookings/{{booking_id}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Requesting a Refund Offer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"refund_offer_id\", jsonData.refundOffers[0].id);\r",
+									"\r",
+									"pm.test(\"At least 1 refund offer was provided\", function () {\r",
+									"    pm.expect(jsonData.refundOffers.length).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Refund offer status PROPOSED\", function () {\r",
+									"    pm.expect(jsonData.refundOffers[0].status).to.eql(\"PROPOSED\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fulfillmentIds\" : [\r\n        \"{{fulfillment_id}}\"\r\n    ],\r\n    \"overruleCode\": \"TECHNICAL_FAILURE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/bookings/{{booking_id}}/refund-offers",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"refund-offers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get booking info before confirming refund",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Booking details obtained\", function () {\r",
+									"    var booking = jsonData.booking;\r",
+									"    pm.expect(booking.id).to.eql(postman.getEnvironmentVariable(\"booking_id\"));\r",
+									"});\r",
+									"pm.test(\"Booked offer status still RELEASED\", function () {\r",
+									"    pm.expect(jsonData.booking.bookedOffers[0].admissions[0].status).to.eql(\"RELEASED\");\r",
+									"});\r",
+									"pm.test(\"Fulfillment status still RELEASED\", function () {\r",
+									"    pm.expect(jsonData.booking.fulfillments[0].status).to.eql(\"RELEASED\");\r",
+									"});\r",
+									"pm.test(\"Release offer status still RELEASED\", function () {\r",
+									"    pm.expect(jsonData.booking.releaseOffers[0].fulfillments[0].status).to.eql(\"RELEASED\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No refund offers yet\", function () {\r",
+									"    pm.expect(jsonData.booking.refundOffers.length).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/bookings/{{booking_id}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm the Refund Offer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Refund Offer was Confirmed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(jsonData.refundOffer.status).to.eql(\"CONFIRMED\");\r",
+									"});\r",
+									"pm.test(\"Fulfillment status REFUNDED\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.refundOffer.fulfillments[0].status).to.eql(\"REFUNDED\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\" : \"CONFIRMED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/bookings/{{booking_id}}/refund-offers/{{refund_offer_id}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"refund-offers",
+								"{{refund_offer_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get booking info post-refund",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Booking details obtained\", function () {\r",
+									"    var booking = jsonData.booking;\r",
+									"    pm.expect(booking.id).to.eql(postman.getEnvironmentVariable(\"booking_id\"));\r",
+									"});\r",
+									"pm.test(\"Booked offer status REFUNDED\", function () {\r",
+									"    pm.expect(jsonData.booking.bookedOffers[0].admissions[0].status).to.eql(\"REFUNDED\");\r",
+									"});\r",
+									"pm.test(\"Fulfillment status REFUNDED\", function () {\r",
+									"    pm.expect(jsonData.booking.fulfillments[0].status).to.eql(\"REFUNDED\");\r",
+									"});\r",
+									"pm.test(\"Refund offer status REFUNDED\", function () {\r",
+									"    pm.expect(jsonData.booking.refundOffers[0].fulfillments[0].status).to.eql(\"REFUNDED\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Requestor",
+								"value": "{{requestor}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/bookings/{{booking_id}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
