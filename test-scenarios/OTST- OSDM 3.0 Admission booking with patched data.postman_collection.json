@@ -1,0 +1,594 @@
+{
+	"info": {
+		"_postman_id": "182fb968-bfd9-4f3d-92c4-569433dade02",
+		"name": "OTST: OSDM 3.0 Admission booking with patched data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20344053",
+		"_collection_link": "https://turnit-team.postman.co/workspace/OTST~0a821f9a-2acb-40f3-8d35-459754deceb5/collection/20344053-182fb968-bfd9-4f3d-92c4-569433dade02?action=share&creator=20344053&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Get an offer (tripSpecification)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Single Offer was provided\", function () {",
+							"    pm.expect(jsonData.offers.length).to.eql(1);",
+							"});",
+							"",
+							"var offer = jsonData.offers[0];",
+							"",
+							"pm.test(\"Offer has ID\", function () {",
+							"    pm.expect(offer.offerId).to.be.a('string').and.not.be.empty;",
+							"});",
+							"",
+							"postman.setEnvironmentVariable(\"offer_id\", offer.offerId);",
+							"",
+							"pm.test(\"Offer contains admission\", function () {",
+							"    pm.expect(offer.admissionOfferParts.length).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Offer does not contain reservation\", function () {",
+							"    pm.expect(offer.reservationOfferParts.length).to.eql(0);",
+							"});",
+							"",
+							"postman.setEnvironmentVariable(\"reservation_id\", offer.admissionOfferParts[0].id);",
+							"",
+							"pm.test(\"Passenger Specification was provided\", function () {",
+							"    pm.expect(jsonData.anonymousPassengerSpecifications.length).to.eql(1);",
+							"});",
+							"",
+							"var passenger = jsonData.anonymousPassengerSpecifications[0];",
+							"",
+							"pm.test(\"Passenger ref is returned correctly\", function () {",
+							"    pm.expect(passenger.externalRef).to.eql(postman.getEnvironmentVariable(\"passenger_external_ref\"));",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token_type}} {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Requestor",
+						"value": "{{requestor}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"objectType\" : \"OfferCollectionRequest\",\n    \"tripSpecifications\": [{\n            \"externalRef\": \"{{trip_external_ref}}\",\n            \"legs\": [{\n                    \"externalRef\": \"{{leg_external_ref}}\",\n                    \"timedLeg\": {\n                        \"start\": {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"{{origin_ref}}\", //740000008,\n                                \"objectType\": \"StopPlaceRef\"\n                            },\n                            \"serviceDeparture\": {\n                                \"timetabledTime\": \"{{next_weekday}}T{{departure_time}}\"\n                            }\n                        },\n                        \"end\": {\n                            \"stopPlaceRef\": {\n                                \"stopPlaceRef\": \"{{destination_ref}}\", //740000977\n                                \"objectType\": \"StopPlaceRef\"\n                            },\n                            \"serviceArrival\": {\n                                \"timetabledTime\": \"{{next_weekday}}T{{arrival_time}}\"\n                            }\n                        },\n                        \"service\": {\n                            \"vehicleNumbers\": [\"{{vehicle_number}}\"],\n                            \"carriers\": [{\n                                    \"ref\": \"{{operator_ref}}\"\n                                }\n                            ]\n                        }\n                    }\n                }\n            ]\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"requestedOfferParts\": [\n            \"ADMISSION\"\n        ],\n        \"flexibilities\": [\n            \"FULL_FLEXIBLE\"\n        ],\n        \"currency\": \"{{currency}}\"\n    },\n    \"anonymousPassengerSpecifications\": [{\n            \"externalRef\": \"{{passenger_external_ref}}\",\n            \"type\": \"PERSON\",\n            \"gender\": \"MALE\"\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/offers",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a booking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"booking_id\", jsonData.booking.id);\r",
+							"postman.setEnvironmentVariable(\"passenger_id\", jsonData.booking.passengers[0].id);\r",
+							"\r",
+							"var trip = jsonData.booking.trips[0]\r",
+							"\r",
+							"pm.test(\"Trip origin matches search origin\", function () {\r",
+							"    pm.expect(trip.origin.stopPlaceRef).to.eql(postman.getEnvironmentVariable(\"origin_ref\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Trip destination matches search destination\", function () {\r",
+							"    pm.expect(trip.destination.stopPlaceRef).to.eql(postman.getEnvironmentVariable(\"destination_ref\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_type}} {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Requestor",
+						"value": "{{requestor}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"offers\": [\r\n        {\r\n            \"offerId\": \"{{offer_id}}\",\r\n            \"passengerRefs\": [\r\n                \"{{passenger_external_ref}}\"\r\n            ]\r\n        }\r\n    ],\r\n    \"passengerSpecifications\": [\r\n        {\r\n            \"externalRef\": \"{{passenger_external_ref}}\",\r\n            \"dateOfBirth\": \"1996-01-01\",\r\n            \"type\": \"PERSON\"\r\n        }\r\n    ],\r\n    \"externalRef\": \"{{booking_external_ref}}\"\r\n}\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/bookings",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get booking info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Booking details obtained\", function () {\r",
+							"    var booking = jsonData.booking;\r",
+							"    pm.expect(booking.id).to.eql(postman.getEnvironmentVariable(\"booking_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"No passenger details are defined\", function () {\r",
+							"    pm.expect(jsonData.booking.passengers[0].detail).to.eql(undefined);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"No purchaser details are defined\", function () {\r",
+							"    pm.expect(jsonData.booking.purchaser).to.eql(undefined);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_type}} {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Requestor",
+						"value": "{{requestor}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base}}/bookings/{{booking_id}}",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"bookings",
+						"{{booking_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add passenger info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Passenger ID matches\", function () {\r",
+							"    pm.expect(jsonData.passenger.id).to.eql(postman.getEnvironmentVariable(\"passenger_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Passenger external ref matches\", function () {\r",
+							"    pm.expect(jsonData.passenger.externalRef).to.eql(postman.getEnvironmentVariable(\"passenger_external_ref\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Passenger data matches\", function () {\r",
+							"    pm.expect(jsonData.passenger.detail.firstName).to.eql(\"OTST-test-firstName\");\r",
+							"    pm.expect(jsonData.passenger.detail.lastName).to.eql(\"OTST-test-lastName\");\r",
+							"    pm.expect(jsonData.passenger.detail.eMail).to.eql(\"OTST-test-email@email.com\");\r",
+							"    pm.expect(jsonData.passenger.detail.phoneNumber).to.eql(\"37212344321\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{passenger_id}}\",\r\n    \"externalRef\": \"{{passenger_external_ref}}\",\r\n    \"detail\": {\r\n        \"firstName\": \"OTST-test-firstName\",\r\n        \"lastName\": \"OTST-test-lastName\",\r\n        \"eMail\": \"OTST-test-email@email.com\",\r\n        \"phoneNumber\": \"37212344321\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/bookings/{{booking_id}}/passengers/{{passenger_id}}",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"bookings",
+						"{{booking_id}}",
+						"passengers",
+						"{{passenger_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get passenger info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base}}/bookings/{{booking_id}}/passengers/{{passenger_id}}",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"bookings",
+						"{{booking_id}}",
+						"passengers",
+						"{{passenger_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add purchaser info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Purchaser external ref matches\", function () {\r",
+							"    pm.expect(jsonData.purchaser.externalRef).to.eql(postman.getEnvironmentVariable(\"purchaser_external_ref\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Purchaser data matches\", function () {\r",
+							"    pm.expect(jsonData.purchaser.detail.firstName).to.eql(\"OTST-purchaser-firstName\");\r",
+							"    pm.expect(jsonData.purchaser.detail.lastName).to.eql(\"OTST-purchaser-lastName\");\r",
+							"    pm.expect(jsonData.purchaser.detail.eMail).to.eql(\"OTST-purchaser-email@email.com\".toLowerCase());\r",
+							"    pm.expect(jsonData.purchaser.detail.phoneNumber).to.eql(\"37243211234\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"externalRef\": \"{{purchaser_external_ref}}\",\r\n    \"detail\": {\r\n        \"firstName\": \"OTST-purchaser-firstName\",\r\n        \"lastName\": \"OTST-purchaser-lastName\",\r\n        \"eMail\": \"OTST-purchaser-email@email.com\",\r\n        \"phoneNumber\": \"37243211234\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/bookings/{{booking_id}}/purchaser",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"bookings",
+						"{{booking_id}}",
+						"purchaser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get purchaser info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base}}/bookings/{{booking_id}}/purchaser",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"bookings",
+						"{{booking_id}}",
+						"purchaser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create the fulfillment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Fulfillment for one booking obtained\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var fulfillments = jsonData.fulfillments;\r",
+							"    pm.expect(fulfillments.length).to.eql(1);\r",
+							"\r",
+							"    postman.setEnvironmentVariable(\"fulfillment_id\", jsonData.fulfillments[0].id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_type}} {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Requestor",
+						"value": "{{requestor}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base}}/bookings/{{booking_id}}/fulfillments",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"bookings",
+						"{{booking_id}}",
+						"fulfillments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Fulfillment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Fulfillment for one booking obtained\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var fulfillment = jsonData.fulfillment;\r",
+							"    pm.expect(fulfillment.id).to.eql(postman.getEnvironmentVariable(\"fulfillment_id\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_type}} {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Requestor",
+						"value": "{{requestor}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base}}/fulfillments/{{fulfillment_id}}",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"fulfillments",
+						"{{fulfillment_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get booking info post-fulfillment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Booking details obtained\", function () {\r",
+							"    var booking = jsonData.booking;\r",
+							"    pm.expect(booking.id).to.eql(postman.getEnvironmentVariable(\"booking_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Passenger details are present\", function () {\r",
+							"    pm.expect(jsonData.booking.passengers[0].detail).to.not.eql(undefined);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Purchaser details are present\", function () {\r",
+							"    pm.expect(jsonData.booking.purchaser).to.not.eql(undefined);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_type}} {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Requestor",
+						"value": "{{requestor}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base}}/bookings/{{booking_id}}",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"bookings",
+						"{{booking_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
