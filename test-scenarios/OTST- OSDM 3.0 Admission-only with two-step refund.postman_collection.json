@@ -580,9 +580,10 @@
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"",
+									"var jsonData = JSON.parse(responseBody);",
 									"pm.collectionVariables.set(\"bookingId\", jsonData.booking.id);",
-									"pm.collectionVariables.set(\"passengerId\", jsonData.booking.passengers[0].id);"
+									"pm.collectionVariables.set(\"passengerId\", jsonData.booking.passengers[0].id);",
+									"pm.collectionVariables.set(\"fulfillmentId\", jsonData.booking.fulfillments[0].id)"
 								],
 								"type": "text/javascript"
 							}
@@ -685,7 +686,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fulfillmentIds\" : [\r\n        \"{{fulfillment_id}}\"\r\n    ]\r\n}",
+							"raw": "{\r\n    \"fulfillmentIds\" : [\r\n        \"{{fulfillmentId}}\"\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -717,7 +718,7 @@
 									"\r",
 									"pm.test(\"Booking details obtained\", function () {\r",
 									"    var booking = jsonData.booking;\r",
-									"    pm.expect(booking.id).to.eql(postman.getEnvironmentVariable(\"booking_id\"));\r",
+									"    pm.expect(booking.id).to.eql(pm.collectionVariables.get(\"bookingId\"));\r",
 									"});\r",
 									"pm.test(\"Booked offer status still FULFILLED\", function () {\r",
 									"    pm.expect(jsonData.booking.bookedOffers[0].admissions[0].status).to.eql(\"FULFILLED\");\r",
@@ -761,13 +762,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base}}/bookings/{{booking_id}}",
+							"raw": "{{base}}/bookings/{{bookingId}}",
 							"host": [
 								"{{base}}"
 							],
 							"path": [
 								"bookings",
-								"{{booking_id}}"
+								"{{bookingId}}"
 							]
 						}
 					},
@@ -852,7 +853,7 @@
 									"\r",
 									"pm.test(\"Booking details obtained\", function () {\r",
 									"    var booking = jsonData.booking;\r",
-									"    pm.expect(booking.id).to.eql(postman.getEnvironmentVariable(\"booking_id\"));\r",
+									"    pm.expect(booking.id).to.eql(pm.collectionVariables.get(\"bookingId\"));\r",
 									"});\r",
 									"pm.test(\"Booked offer status RELEASED\", function () {\r",
 									"    pm.expect(jsonData.booking.bookedOffers[0].admissions[0].status).to.eql(\"RELEASED\");\r",
@@ -895,13 +896,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base}}/bookings/{{booking_id}}",
+							"raw": "{{base}}/bookings/{{bookingId}}",
 							"host": [
 								"{{base}}"
 							],
 							"path": [
 								"bookings",
-								"{{booking_id}}"
+								"{{bookingId}}"
 							]
 						}
 					},
@@ -956,7 +957,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fulfillmentIds\" : [\r\n        \"{{fulfillment_id}}\"\r\n    ],\r\n    \"overruleCode\": \"TECHNICAL_FAILURE\"\r\n}",
+							"raw": "{\r\n    \"fulfillmentIds\" : [\r\n        \"{{fulfillmentId}}\"\r\n    ],\r\n    \"overruleCode\": \"TECHNICAL_FAILURE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -988,7 +989,7 @@
 									"\r",
 									"pm.test(\"Booking details obtained\", function () {\r",
 									"    var booking = jsonData.booking;\r",
-									"    pm.expect(booking.id).to.eql(postman.getEnvironmentVariable(\"booking_id\"));\r",
+									"    pm.expect(booking.id).to.eql(pm.collectionVariables.get(\"bookingId\"));\r",
 									"});\r",
 									"pm.test(\"Booked offer status still RELEASED\", function () {\r",
 									"    pm.expect(jsonData.booking.bookedOffers[0].admissions[0].status).to.eql(\"RELEASED\");\r",
@@ -1031,13 +1032,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base}}/bookings/{{booking_id}}",
+							"raw": "{{base}}/bookings/{{bookingId}}",
 							"host": [
 								"{{base}}"
 							],
 							"path": [
 								"bookings",
-								"{{booking_id}}"
+								"{{bookingId}}"
 							]
 						}
 					},
@@ -1123,7 +1124,7 @@
 									"\r",
 									"pm.test(\"Booking details obtained\", function () {\r",
 									"    var booking = jsonData.booking;\r",
-									"    pm.expect(booking.id).to.eql(postman.getEnvironmentVariable(\"booking_id\"));\r",
+									"    pm.expect(booking.id).to.eql(pm.collectionVariables.get(\"bookingId\"));\r",
 									"});\r",
 									"pm.test(\"Booked offer status REFUNDED\", function () {\r",
 									"    pm.expect(jsonData.booking.bookedOffers[0].admissions[0].status).to.eql(\"REFUNDED\");\r",
@@ -1159,13 +1160,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base}}/bookings/{{booking_id}}",
+							"raw": "{{base}}/bookings/{{bookingId}}",
 							"host": [
 								"{{base}}"
 							],
 							"path": [
 								"bookings",
-								"{{booking_id}}"
+								"{{bookingId}}"
 							]
 						}
 					},
@@ -1271,6 +1272,11 @@
 		},
 		{
 			"key": "exchangeOfferIds",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "fulfillmentId",
 			"value": "",
 			"type": "string"
 		}
