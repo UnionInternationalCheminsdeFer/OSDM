@@ -5538,6 +5538,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExchangeOperation'
+        relatedBookingIds:
+          type: array
+          items:
+            type: string
         _links:
           description: |
             
