@@ -719,6 +719,23 @@ you to download the layout. As a distributor you can now use this information to
 build a slick reservation UI that allows your customer to choose the seat or
 bed.
 
+### How to book a pass?
+
+Offers for a pass for a certain origin and destination can be requested by using
+the `productTags` filter:
+
+```json
+{
+  "tripSearchCriteria": {
+    "origin": "urn:uic:stn:8500010",
+    "destination": "urn:uic:stn:8503000"
+  },
+  "offerSearchCriteria": {
+    "productTags": ["Interrail"]
+  }
+}
+```
+
 ### What are fares?
 
 Fares are priced segments which can be used to create offers for a given trips
