@@ -988,11 +988,11 @@
 					"type": "boolean",
 					"default": false
 				},
-                                "technicalViaOnly": {
-                                        "description": "this via station is used to support the alignment with time tables but is not part of the contractual route provided to the passenger.",
-                                        "type": "boolean",
-                                        "default": false
-                                }				
+        "technicalViaOnly": {
+          "description": "this via station is used to support the alignment with time tables but is not part of the contractual route provided to the passenger.",
+          "type": "boolean",
+          "default": false
+        }
 			},
 			"additionalProperties": false
 		},
