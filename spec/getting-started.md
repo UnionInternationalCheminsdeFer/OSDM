@@ -335,12 +335,14 @@ this segment. On this segment this is a ICE train operated by SBB.
   }
   ```
 
-- Step 4: Get the fulfillments
+- Step 4: Finalize the booking and get the fulfillments
 
   To finalize the booking and handout a ticket the last call is to get
   fulfillments of this ticket. Fulfillments are a general term to describe
   physical tickets as well as non-digital one such as Apple's passbook or a
   simple code only.
+
+  `POST /bookings/{booking_id}/fulfillments`
 
   The fulfillments can be simply accessed by calling:
 
