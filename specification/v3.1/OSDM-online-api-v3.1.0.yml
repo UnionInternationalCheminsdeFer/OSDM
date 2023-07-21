@@ -48,12 +48,15 @@ tags:
   - name: BookedOffers
     description: |
       resources to manipulate bookings
-  - name: Purchaser
-    description: |
-      resources to manipulate a purchaser's information at every stage of the flow
   - name: Bookings Search
     description: |
       resources to search for bookings
+  - name: Bookings Split
+    description: |
+      resources to split a booking
+  - name: Purchaser
+    description: |
+      resources to manipulate a purchaser's information at every stage of the flow
   - name: Passengers
     description: |
       resources to manipulate a passenger's information at every stage of the flow
@@ -1476,7 +1479,7 @@ paths:
     patch:
       tags:
         - Bookings
-      summary: Updates the booking but does *not* confirm the booking.
+      summary: Updates a booking but does *not* confirm the booking.
       description: |
         Updates fulfillment types, place selection and add payment. Does *not* confirm the booking. The booking is confirmed by calling 'POST /bookings/{bookingId}/fulfillments'.
         
@@ -1534,7 +1537,7 @@ paths:
     delete:
       tags:
         - Bookings
-      summary: Deletes the booking.
+      summary: Deletes a booking.
       description: |
         It is only possible before the booking is confirmed or in case of a technical problem in confirming multiple
         independent bookings within a sales transaction. Deletes on a confirmed booking must be documented
@@ -1665,6 +1668,55 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
+    
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+  /bookings-split:
+    post:
+      tags:
+        - Bookings Split
+      summary: Split a booking into multiple bookings.
+      description: |
+        Splits a booking into a set of bookings according to the defined groups of a passenger(s). Only possible if allowed by the underlying tariff, if the bookedOffers are sufficiently partitioned and no pricing is needed.
+      operationId: splitBookings
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingSplitRequest'
+      responses:
+        '200':
+          description: |
+            TODO: Please add comment for response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingSplitResponse'
     
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -5829,7 +5881,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Groups of passenger that are to be split into seperate bookings. 
+        Group of passenger(s) that is to be split into a separate booking.
       required:
         - passengerIds
       properties:
@@ -5865,9 +5917,9 @@ components:
       type: object
       additionalProperties: false
       required:
-        - BookingSplit
+        - bookingSplit
       properties:
-        BookingSplit:
+        bookingSplit:
           type: array
           items:
             $ref: '#/components/schemas/BookingSplit'

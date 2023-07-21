@@ -17,7 +17,7 @@
 
 ## Changes to Classes and Attributes
 
-- Added `Booking.relatedBookings` (Split booking)
+- Added `Booking.relatedBookings` (split booking)
 - Added `BookingSplit`, `BookingSplitGroup`, `BookingSplitRequest`,
   `BookingSplitResponse`
 
@@ -27,7 +27,7 @@
 - Added `ContactDetail` to `PassengerDetail`
 
 - Added `PartialRefundOffer`, `PartialRefundOfferRequest` and
-  `PartialRefundOfferResponse` (I-76)
+  `PartialRefundOfferResponse` (partial refund)
 
 - Added optional `code` to `Problem`
 
@@ -37,7 +37,7 @@
 - `PersonDetail.email` - moved to `ContactDetail`
 - `PersonDetail.phoneNumber`- moved to `ContactDetail`
 
-## Removed Deprecated Attributes
+## Removed Deprecations
 
 - `PersonDetail.eMail` - use `PersonDetail.email` instead
 - `Fulfillment.status` - only `FulfillmentPart` has status
