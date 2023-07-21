@@ -41,4 +41,4 @@
 
 - `PersonDetail.eMail` - use `PersonDetail.email` instead
 - `Fulfillment.status` - only `FulfillmentPart` has status
-- `Booking.ticketTimeLimit` - use `confirmationTimeLimit` instead
+- `Booking.ticketTimeLimit` - use `Booking.confirmationTimeLimit` instead
