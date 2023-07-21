@@ -9,7 +9,7 @@
   - make BookingPartReference optional
 - add `AppliedPassenger` and `ActualPassengerType` (I-76)
 - `Product` and `FulfillmentPart`: add `TextElement` (I-76)
-- add `symbiology` to `SecurityFeatureType` (I-76)
+- add `symbology` to `SecurityFeatureType` (I-76)
 - add `name` to `CardTypeReference` optionally (I-76)
 - add overrule code to `ReleaseOfferRequest` (I-77)
 - add DISRUPTION, JOURNEY*OBSOLETE, CERTIFIED_MEDICAL_CONDITION and DELAY*
