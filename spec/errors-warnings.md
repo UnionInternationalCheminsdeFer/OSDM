@@ -5,9 +5,10 @@ hide_hero: true
 permalink: /spec/errors-warnings/
 ---
 
-_To be released with version 3.1_
+_To be released with version 3.1. _
 
-_TODO: add a list of standardized warnings_
+_TODO: add a list of standardized warnings and needs attributes `Warning.code`
+and `Warning.details` added_
 
 _Open Question: Do we need a namespace for the errors and warnings?_
 
@@ -47,7 +48,7 @@ is a human-readable explanation specific to this occurrence of the problem. The
 occurrence of the problem.
 
 ```json
-Problem {
+"problem": {
   "code": "PLACE_NO_RESULTS",
   "type": "https://osdm.io/errors/place-no-results",
   "title": "The search did not return any result",
@@ -124,7 +125,7 @@ implementers to foresee a translation based on the code if relevant. Optionally,
 a warning message can contain reference to resources in the model.
 
 ```json
-"warning" {
+"warning": {
   "code": "PLACE_PROPERTY_NOT_RESPECTED",
   "type": "https://osdm.io/warnings/place-property-not-respected",
   "title": "Place property not respected",
