@@ -7,7 +7,9 @@ permalink: /spec/errors-warnings/
 
 _To be released with version 3.1_
 
-_Open Questions: Do we need a namespace for the errors and warnings?_
+_TODO: add a list of standardized warnings_
+
+_Open Question: Do we need a namespace for the errors and warnings?_
 
 # Errors and Warnings
 
@@ -67,7 +69,7 @@ In order that OSDM implementations behave consistently in error situations, the
 following error codes must be supported in case of functional errors by all
 implementations:
 
-| **Functional area** | **Code**                                     | **Title**                                                                 |
+| **Functional area** | **Error Code**                               | **Title**                                                                 |
 | ------------------- | -------------------------------------------- | ------------------------------------------------------------------------- |
 | Places              | `PLACE_INVALID_CHARACTERS`                   | Invalid characters in the search string                                   |
 | Places              | `PLACE_NO_RESULTS`                           | The search did not return any result                                      |
@@ -130,7 +132,18 @@ Warning {
 }
 ```
 
-As for the errors, an implementors are required to use the following codes and
+## Standardized Functional Warnings
+
+In order that OSDM implementations behave consistently in warning situations,
+the following warning codes must be supported in case of functional warnings by
+all implementations:
+
+| **Functional area** | **Warning Code**               | **Title**                    |
+| ------------------- | ------------------------------ | ---------------------------- |
+| Reservation         | `PLACE_PROPERTY_NOT_RESPECTED` | Place property not respected |
+| todo                | `todo`                         | todo                         |
+
+As for the warnings, an implementor is required to use these warning codes and
 descriptions for the situations identified in order to be compliant.
 
 In case they wish to pass additional warnings specific to their situation and
