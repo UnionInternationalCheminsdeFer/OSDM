@@ -48,11 +48,11 @@ occurrence of the problem.
 
 ```json
 Problem {
-  code: "PLACE_NO_RESULTS",
-  type: "https://osdm.io/errors/place-no-results",
-  title: "The search did not return any result",
-  detail: "The place `Duckburg` could not be found",
-  status: 404,
+  "code": "PLACE_NO_RESULTS",
+  "type": "https://osdm.io/errors/place-no-results",
+  "title": "The search did not return any result",
+  "detail": "The place `Duckburg` could not be found",
+  "status": 404,
 }
 ```
 
@@ -124,11 +124,11 @@ implementers to foresee a translation based on the code if relevant. Optionally,
 a warning message can contain reference to resources in the model.
 
 ```json
-Warning {
-  code: "PLACE_PROPERTY_NOT_RESPECTED",
-  type: "https://osdm.io/warnings/place-property-not-respected",
-  title: "Place property not respected",
-  detail: "Place property `WINDOW` is not respected in offer with Id `123456`",
+"warning" {
+  "code": "PLACE_PROPERTY_NOT_RESPECTED",
+  "type": "https://osdm.io/warnings/place-property-not-respected",
+  "title": "Place property not respected",
+  "detail": "Place property `WINDOW` is not respected in offer with id `123456`",
 }
 ```
 
