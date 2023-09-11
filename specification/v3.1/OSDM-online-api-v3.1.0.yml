@@ -905,11 +905,12 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/booked-offers/{bookedOfferId}/passengers/{passengerId}:
+
+  /bookings/{bookingId}/booked-offers/{offerId}:
     post:
       tags:
         - BookedOffers
-      summary: Adds a bookedOffer in a booking.
+      summary: Creates a bookedOffer from an offer and adds it in a booking.
       operationId: postBookingBookedOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -922,12 +923,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: passengerId
+        - name: offerId
           in: path
           required: true
           schema:
@@ -937,7 +933,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BookedOfferRequest'
+              $ref: '#/components/schemas/AddBookedOfferRequest'
       responses:
         '200':
           description: |
@@ -945,7 +941,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BookedOfferResponse'
+                $ref: '#/components/schemas/AddBookedOfferResponse'
           headers:
             Content-Language:
               schema:
@@ -973,7 +969,8 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/booked-offers/{offerId}:
+          
+  /bookings/{bookingId}/booked-offers/{bookedOfferId}:
     get:
       tags:
         - BookedOffers
@@ -989,7 +986,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: offerId
+        - name: bookedOfferId
           in: path
           required: true
           schema:
@@ -1044,7 +1041,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: offerId
+        - name: bookedOfferId
           in: path
           required: true
           schema:
@@ -5399,8 +5396,10 @@ components:
           items:
             $ref: '#/components/schemas/BookedOffer'
 
-    BookedOfferRequest:
+    AddBookedOfferRequest:
       type: object
+      description: 
+        adding an offer to a booking as prebooked. additional passengers that were not already in the booking are added in additional passengers existing passengers are referenced in passengerRef.
       additionalProperties: false
       required:
         - offers
@@ -5410,10 +5409,14 @@ components:
           items:
             $ref: '#/components/schemas/OfferSelection'
           minItems: 1
-        passengers:
+        passengerRefs:
           type: array
           items:
-            $ref: '#/components/schemas/Passenger'
+            type: string
+        additionalPassengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PassengerSpecification'        
         promotionCodes:
           type: array
           items:
@@ -5467,6 +5470,17 @@ components:
           $ref: '#/components/schemas/WarningCollection'
         bookedOffer:
           $ref: '#/components/schemas/BookedOffer'
+          
+    AddBookedOfferResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningCollection'
+        bookedOfferIds:
+          type: array
+          items:
+            type: string
 
     BookedOfferSummary:
       type: object
@@ -13237,4 +13251,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceRef'
-
