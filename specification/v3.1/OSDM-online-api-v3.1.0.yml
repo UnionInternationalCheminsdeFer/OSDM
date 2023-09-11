@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.1.0.pre-2023-07-21
+  version: 3.1.0.pre-2023-09-11
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
     
@@ -7189,6 +7189,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fee'
+        exchangeBreakdown:
+          $ref: '#/components/schemas/ExchangeBreakDown'
         fares:
           type: array
           items:
@@ -7200,6 +7202,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+            
+            
+    ExchangeBreakDown:
+      type: object
+      description: breakdown of fees taken in a refund
+      properties:
+        refundItems:
+          type: array
+          items: 
+             $ref: '#/components/schemas/ExchangeBreakdownItem'
+          minItems: 1   
+             
+    ExchangeBreakdownItem:
+      type: object
+      required:
+        - bookingPartIds
+        - exchangeFee
+        - exchangePrice
+      properties:
+        exchangeFee:
+          $ref: '#/components/schemas/Price'
+        exchangePrice:
+          $ref: '#/components/schemas/Price'
+        refundableAmount:
+          $ref: '#/components/schemas/Price'          
+        bookingPartIds:
+          type: array
+          items:
+            type: string                      
 
     ExchangeOfferCollectionRequest:
       type: object
@@ -10683,14 +10714,41 @@ components:
           $ref: '#/components/schemas/Price'
         refundableAmount:
           $ref: '#/components/schemas/Price'
+        refundBreakdown:
+          $ref: '#/components/schemas/RefundBreakDown'
         _links:
           description: |
-            
             Java Property Name: 'links' 
           type: array
           items:
             $ref: '#/components/schemas/Link'
 
+    RefundBreakDown:
+      type: object
+      description: breakdown of fees taken in a refund
+      properties:
+        refundItems:
+          type: array
+          items: 
+             $ref: '#/components/schemas/RefundBreakdownItem'
+          minItems: 1   
+             
+    RefundBreakdownItem:
+      type: object
+      required:
+        - bookingPartIds
+        - refundFee
+        - refundableAmount
+      properties:
+        refundFee:
+          $ref: '#/components/schemas/Price'
+        refundableAmount:
+          $ref: '#/components/schemas/Price' 
+        bookingPartIds:
+          type: array
+          items:
+            type: string  
+            
     RefundOfferCollectionResponse:
       type: object
       additionalProperties: false
@@ -13237,4 +13295,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceRef'
-
