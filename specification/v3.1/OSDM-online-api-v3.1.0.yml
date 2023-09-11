@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.1.0.pre-2023-07-21
+  version: 3.1.0.pre-2023-09-11
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
     
@@ -906,11 +906,11 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-  /bookings/{bookingId}/booked-offers/{offerId}:
+  /bookings/{bookingId}/booked-offers:
     post:
       tags:
         - BookedOffers
-      summary: Creates a bookedOffer from an offer and adds it in a booking.
+      summary: Creates bookedOffers from offers and adds them in a booking.
       operationId: postBookingBookedOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -919,11 +919,6 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: offerId
           in: path
           required: true
           schema:
@@ -5472,6 +5467,7 @@ components:
           $ref: '#/components/schemas/BookedOffer'
           
     AddBookedOfferResponse:
+      description: ids of the created booked offers
       type: object
       additionalProperties: false
       properties:
