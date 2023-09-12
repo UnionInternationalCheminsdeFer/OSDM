@@ -2,6 +2,9 @@
 hide footbox
 
 actor "Retailer"
+actor "Distributor"
+actor "Carrier:C1"
+actor "Carrier:C2"
 
 "Retailer" -> "Distributor": GET /reduction-cards
 
@@ -23,13 +26,21 @@ actor "Retailer"
 
 "Retailer" -> "Distributor": GET /availabilities/place-map (reservationOfferPartId)
  
-"Distributor" -> "Carrier:C1": GET /availabilities/place-map (reservationId)
+"Distributor" -> "Carrier:C1": GET /availabilities/place-map (reservationOfferPartId)
 
 "Retailer" -> "Retailer": combine place-maps with coach layouts and manage customer selection of a place
 
-"Retailer" -> "Distributor": POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations incl. reservationOfferIds and place selections
+"Retailer" -> "Distributor": POST /bookings 
 
-"Distributor" -> "Carrier:C1": POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservation incl. reservationOfferId and place selection
+"Distributor" -> "Carrier:C1": POST /booking
+
+"Distributor" -> "Carrier:C2": POST /booking 
+
+"Distributor" --> "Retailer": booking  
+
+"Retailer" -> "Distributor": POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations incl. reservationIds and place selections
+
+"Distributor" -> "Carrier:C1": POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservation incl. reservationId and place selection
 
 "Distributor" -> "Carrier:C2": POST /booking 
 

@@ -1,0 +1,90 @@
+@startuml
+hide footbox
+
+actor "Retailer"
+actor "Distributor"
+actor "Carrier:C1"
+actor "Carrier:C2"
+
+"Retailer" -> "Distributor": GET /reduction-cards
+
+"Retailer" -> "Distributor": GET /coach-layouts
+
+"Retailer" -> "Distributor": POST /offers 
+
+"Distributor" -> "Distributor": split the request to carriers / fare providers
+
+"Distributor" -> "Carrier:C1": POST /offers incl. trip 
+
+"Distributor" -> "Carrier:C2": POST /offers incl. trip 
+
+"Distributor" -> "Distributor": combine fare offers according to fare rules
+
+"Distributor" --> "Retailer": offers incl. reservation offer parts
+
+"Retailer" -> "Retailer": manage customer selection of an offer
+
+"Retailer" -> "Distributor": POST /bookings 
+
+"Distributor" -> "Carrier:C1": POST /booking 
+
+"Distributor" -> "Carrier:C2": POST /booking 
+
+"Distributor" --> "Retailer": booking  
+
+"Retailer" -> "Distributor": POST /bookings/{bookingId}/fulfillments
+
+"Distributor" -> "Carrier:C1": /bookings/{bookingId}/fulfillments
+
+"Distributor" -> "Carrier:C2": /bookings/{bookingId}/fulfillments
+
+"Retailer" <-- "Distributor": fulfillmentIds
+
+loop for each fulfillment
+
+"Retailer" -> "Distributor": GET /fulfillments/{fulfillmentId}
+
+end
+
+"Retailer" -> "Retailer": separate flow
+
+
+"Retailer" -> "Distributor": POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/additional-offers
+
+"Distributor" -> "Distributor": split the request to carriers / fare providers
+
+"Distributor" -> "Carrier:C1": POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/additional-offers
+
+"Distributor" -> "Carrier:C2": POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/additional-offers
+
+"Distributor" -> "Distributor": combine fares according to fare rules
+
+"Distributor" --> "Retailer": additional offers incl. reservation offer parts
+
+"Retailer" -> "Distributor": GET /availabilities/place-map (reservationId)
+ 
+"Distributor" -> "Carrier:C1": GET /availabilities/place-map (reservationId)
+
+"Retailer" -> "Retailer": combine place-maps with coach layouts and manage customer selection of a place
+
+"Retailer" -> "Distributor": POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations incl. reservationOfferIds and place selections
+
+"Distributor" -> "Carrier:C1": POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservation incl. reservationOfferId and place selection
+
+"Distributor" --> "Retailer": booked-offers
+
+"Retailer" -> "Distributor": POST /bookings/{bookingId}/fulfillments
+
+"Distributor" -> "Carrier:C1": /bookings/{bookingId}/fulfillments
+
+"Distributor" -> "Carrier:C2": /bookings/{bookingId}/fulfillments
+
+"Retailer" <-- "Distributor": fulfillmentIds
+
+loop for each fulfillment
+
+"Retailer" -> "Distributor": GET /fulfillments/{fulfillmentId}
+
+end
+
+@enduml
