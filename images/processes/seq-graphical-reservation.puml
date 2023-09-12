@@ -1,51 +1,51 @@
 @startuml
 hide footbox
 
-actor "TicketVendor"
+actor "Retailer"
 
-"TicketVendor" -> "Distributor": GET reduction cards
+"Retailer" -> "Distributor": GET /reduction-cards
 
-"TicketVendor" -> "Distributor": GET coach layouts
+"Retailer" -> "Distributor": GET /coach-layouts
 
-"TicketVendor" -> "Distributor": POST offers collection using from / to places
+"Retailer" -> "Distributor": POST offers 
 
-"Distributor" -> "Distributor": split the request to carriers / fare prooviders
+"Distributor" -> "Distributor": split the request to carriers / fare providers
 
-"Distributor" -> "Carrier:C1": POST offers collection including trip 
+"Distributor" -> "Carrier:C1": POST /offers incl. trip 
 
-"Distributor" -> "Carrier:C2": POST offers collection including trip 
+"Distributor" -> "Carrier:C2": POST /offers incl. trip 
 
 "Distributor" -> "Distributor": combine fare offers according to fare rules
 
-"Distributor" --> "TicketVendor": offers
+"Distributor" --> "Retailer": offers incl. reservation offer parts
 
-"TicketVendor" -> "TicketVendor": manage customer selection of an offer
+"Retailer" -> "Retailer": manage customer selection of an offer
 
-"TicketVendor" -> "Distributor": GET place-map (reservationId)
+"Retailer" -> "Distributor": GET /availabilities/place-map (reservationOfferPartId)
  
-"Distributor" -> "Carrier:C1": GET place-map (reservationId)
+"Distributor" -> "Carrier:C1": GET /availabilities/place-map (reservationId)
 
-"TicketVendor" -> "TicketVendor": combine place-maps with coach layouts and manage customer selection of a place
+"Retailer" -> "Retailer": combine place-maps with coach layouts and manage customer selection of a place
 
-"TicketVendor" -> "Distributor": POST bookingid, place selection
+"Retailer" -> "Distributor": POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations incl. reservationOfferIds and place selections
 
-"Distributor" -> "Carrier:C1": POST bookingid, place selection 
+"Distributor" -> "Carrier:C1": POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservation incl. reservationOfferId and place selection
 
-"Distributor" -> "Carrier:C2": POST booking 
+"Distributor" -> "Carrier:C2": POST /booking 
 
-"Distributor" --> "TicketVendor": booking  
+"Distributor" --> "Retailer": booking  
 
-"TicketVendor" -> "Distributor": POST fulfillments
+"Retailer" -> "Distributor": POST /bookings/{bookingId}/fulfillments
 
-"Distributor" -> "Carrier:C1": POST fulfillments
+"Distributor" -> "Carrier:C1": /bookings/{bookingId}/fulfillments
 
-"Distributor" -> "Carrier:C2": POST fulfillments
+"Distributor" -> "Carrier:C2": /bookings/{bookingId}/fulfillments
 
-"TicketVendor" <-- "Distributor": fulfillmentIds
+"Retailer" <-- "Distributor": fulfillmentIds
 
 loop for each fulfillment
 
-"TicketVendor" -> "Distributor": GET fulfillmentId
+"Retailer" -> "Distributor": GET /fulfillments/{fulfillmentId}
 
 end
 
