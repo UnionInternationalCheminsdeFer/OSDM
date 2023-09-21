@@ -4227,6 +4227,9 @@ components:
           nullable: false
         price:
           $ref: '#/components/schemas/Price'
+        refundAmount:
+          $ref: '#/components/schemas/Price'
+          description: Amount to be refunded to the purchaser
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         products:
@@ -10473,8 +10476,12 @@ components:
             $ref: '#/components/schemas/VoucherInformation'
         refundFee:
           $ref: '#/components/schemas/Price'
+          description: |
+            Amount kept by the carrier and/or distributor
         refundableAmount:
           $ref: '#/components/schemas/Price'
+          description: |
+            Amount refunded to the purchaser
         _links:
           description: |
             
