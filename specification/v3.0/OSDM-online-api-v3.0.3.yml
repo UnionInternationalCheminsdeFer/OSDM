@@ -4241,16 +4241,23 @@ components:
           $ref: '#/components/schemas/BookingPartStatus'
         offerMode:
           $ref: '#/components/schemas/OfferMode'
+        bookingPartRef:
+          type: string
+          nullable: true
+          description: |
+            The unique booking reference for the part in the provider system.
         distributorBookingRef:
           description: |
             reference to the booking in the downstream distributor system
           type: string
           nullable: false
+          deprecated: true
         retailerBookingRef:
           description: |
             reference to the booking in the downstream distributor system
           type: string
           nullable: false
+          deprecated: true
         passengerIds:
           description: |
             Id of the passenger
@@ -5406,9 +5413,12 @@ components:
         id:
           type: string
           nullable: false
+        bookingRef:
+          type: string
+          description: The unique booking reference in the provider system. Usually refers to an order number or PNR.
         externalRef:
           description: |
-            The unique booking reference in the provider system. Usually refers to an order number or PNR.
+            The unique booking reference in the distributor/reseller system. Usually refers to an order number or PNR.
           type: string
           nullable: true
         summary:
@@ -5596,6 +5606,10 @@ components:
         or e-ticket and preferred fulfillment media.
         The latter is optional and relevant in some cases only.
       properties:
+        externalRef:
+          type: string
+          description: The unique booking reference in the distributor/reseller system. Usually refers to an order number or PNR.
+          nullable: true
         placeSelections:
           type: array
           items:
@@ -5644,6 +5658,7 @@ components:
             $ref: '#/components/schemas/BookingResponseContent'
         externalRef:
           type: string
+          description: The unique booking reference in the distributor/reseller system. Usually refers to an order number or PNR.
           nullable: true
 
     BookingResponse:
