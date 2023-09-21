@@ -7517,6 +7517,12 @@ components:
             mapping from an even lower-level provider).
           type: string
           nullable: true
+          deprecated: true
+        productRef:
+          type: string
+          description: |
+            Reference to the Product representing the Fee
+          nullable: true
 
     Flexibility:
       type: string
