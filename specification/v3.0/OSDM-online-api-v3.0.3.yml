@@ -4246,7 +4246,6 @@ components:
           $ref: '#/components/schemas/OfferMode'
         bookingPartRef:
           type: string
-          nullable: true
           description: |
             The unique booking reference for the part in the provider system.
         distributorBookingRef:
