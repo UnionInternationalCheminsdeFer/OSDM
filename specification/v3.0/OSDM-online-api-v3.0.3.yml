@@ -10081,6 +10081,8 @@ components:
             A human-readable description of the product.
           type: string
           nullable: true
+        type:
+          $ref: '#/components/schemas/ProductType'
         code:
           description: |
             The product code expressed in the provider system (could be a
@@ -10146,6 +10148,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    ProductType:
+      description: |
+        General product types harmonized across fare providers. (More to be added, use null for types not listed yet.)
+      type: string
+      enum:
+        - "ADMISSION_PASS"
+        - "ADMISSION_MULTI_RIDE"
 
     ProductCategory:
       type: object
