@@ -6970,6 +6970,10 @@ components:
           $ref: '#/components/schemas/Price'
         exchangePrice:
           $ref: '#/components/schemas/Price'
+        exchangeOfferBreakDown:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExchangeOfferItem'
         fulfillments:
           type: array
           items:
@@ -10472,6 +10476,10 @@ components:
           nullable: true
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
+        refundOfferBreakDown:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundOfferItem'
         fulfillments:
           type: array
           items:
@@ -10496,6 +10504,41 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    ExchangeOfferItem:
+      type: object
+      required:
+        - exchangeFee
+        - exchangePrice
+        - bookingParts
+      properties:
+        exchangeFee:
+          description: Amount kept by the carrier and/or the distributor
+          $ref: '#/components/schemas/Price'
+        exchangePrice:
+          $ref: '#/components/schemas/Price'
+        bookingParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'
+
+    RefundOfferItem:
+      type: object
+      required:
+        - refundFee
+        - refundableAmount
+        - bookingParts
+      properties:
+        refundFee:
+          description: Amount kept by the carrier and/or the distributor
+          $ref: '#/components/schemas/Price'
+        refundableAmount:
+          description: Amount to be returned to the purchaser
+          $ref: '#/components/schemas/Price'
+        bookingParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'
 
     RefundOfferCollectionResponse:
       type: object
