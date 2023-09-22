@@ -10153,7 +10153,7 @@ components:
       description: |
         General product types harmonized across fare providers. (More to be added, use null for types not listed yet.)
       type: string
-      enum:
+      x-extensible-enum:
         - "ADMISSION_PASS"
         - "ADMISSION_MULTI_RIDE"
 
