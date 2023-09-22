@@ -933,7 +933,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddBookedOfferResponse'
+                $ref: '#/components/schemas/BookedOfferResponse'
           headers:
             Content-Language:
               schema:
@@ -5365,18 +5365,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BookedOffer'
-            
-    AddBookedOfferResponse:
-      description: ids of the created booked offers
-      type: object
-      additionalProperties: false
-      properties:
-        warnings:
-          $ref: '#/components/schemas/WarningCollection'
-        bookedOfferIds:
-          type: array
-          items:
-            type: string
 
     BookedOfferResponse:
       type: object
@@ -5386,6 +5374,13 @@ components:
           $ref: '#/components/schemas/WarningCollection'
         bookedOffer:
           $ref: '#/components/schemas/BookedOffer'
+          deprecated: true
+        bookedOfferIds:
+          type: array
+          items:
+            type: string
+          description: |
+            IDs of offers booked by the request. Will be always provided, single of the booked offer may not be provided in bookedOffer attribute.
 
     BookedOfferSummary:
       type: object
