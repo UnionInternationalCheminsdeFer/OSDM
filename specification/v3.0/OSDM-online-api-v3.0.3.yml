@@ -925,7 +925,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddBookedOfferRequest'
+              $ref: '#/components/schemas/BookedOfferRequest'
       responses:
         '200':
           description: |
@@ -933,7 +933,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddBookedOfferResponse'
+                $ref: '#/components/schemas/BookedOfferResponse'
           headers:
             Content-Language:
               schema:
@@ -4227,6 +4227,9 @@ components:
           nullable: false
         price:
           $ref: '#/components/schemas/Price'
+        refundAmount:
+          $ref: '#/components/schemas/Price'
+          description: Amount to be refunded to the purchaser
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         products:
@@ -4241,16 +4244,22 @@ components:
           $ref: '#/components/schemas/BookingPartStatus'
         offerMode:
           $ref: '#/components/schemas/OfferMode'
+        bookingPartRef:
+          type: string
+          description: |
+            The unique booking reference for the part in the provider system.
         distributorBookingRef:
           description: |
             reference to the booking in the downstream distributor system
           type: string
           nullable: false
+          deprecated: true
         retailerBookingRef:
           description: |
             reference to the booking in the downstream distributor system
           type: string
           nullable: false
+          deprecated: true
         passengerIds:
           description: |
             Id of the passenger
@@ -5252,7 +5261,7 @@ components:
           items:
             $ref: '#/components/schemas/BookedOffer'
 
-    AddBookedOfferRequest:
+    BookedOfferRequest:
       type: object
       additionalProperties: false
       required:
@@ -5263,11 +5272,14 @@ components:
           items:
             $ref: '#/components/schemas/OfferSelection'
           minItems: 1
-        passengerRefs:
+        passengers:
           type: array
           items:
-            type: string
-        additionalPassengers:
+            $ref: '#/components/schemas/Passenger'
+          deprecated: true
+          description: |
+            Existing passengers are linked with the given booking and do not need to be referenced in the request.
+        additionalPassengerSpecifications:
           type: array
           items:
             $ref: '#/components/schemas/PassengerSpecification'
@@ -5353,18 +5365,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BookedOffer'
-            
-    AddBookedOfferResponse:
-      description: ids of the created booked offers
-      type: object
-      additionalProperties: false
-      properties:
-        warnings:
-          $ref: '#/components/schemas/WarningCollection'
-        bookedOfferIds:
-          type: array
-          items:
-            type: string
 
     BookedOfferResponse:
       type: object
@@ -5374,6 +5374,13 @@ components:
           $ref: '#/components/schemas/WarningCollection'
         bookedOffer:
           $ref: '#/components/schemas/BookedOffer'
+          deprecated: true
+        bookedOfferIds:
+          type: array
+          items:
+            type: string
+          description: |
+            IDs of offers booked by the request. Will be always provided, single of the booked offer may not be provided in bookedOffer attribute.
 
     BookedOfferSummary:
       type: object
@@ -5406,9 +5413,12 @@ components:
         id:
           type: string
           nullable: false
+        bookingRef:
+          type: string
+          description: The unique booking reference in the provider system. Usually refers to an order number or PNR.
         externalRef:
           description: |
-            The unique booking reference in the provider system. Usually refers to an order number or PNR.
+            The unique booking reference in the distributor/reseller system. Usually refers to an order number or PNR.
           type: string
           nullable: true
         summary:
@@ -5596,6 +5606,10 @@ components:
         or e-ticket and preferred fulfillment media.
         The latter is optional and relevant in some cases only.
       properties:
+        externalRef:
+          type: string
+          description: The unique booking reference in the distributor/reseller system. Usually refers to an order number or PNR.
+          nullable: true
         placeSelections:
           type: array
           items:
@@ -5644,6 +5658,7 @@ components:
             $ref: '#/components/schemas/BookingResponseContent'
         externalRef:
           type: string
+          description: The unique booking reference in the distributor/reseller system. Usually refers to an order number or PNR.
           nullable: true
 
     BookingResponse:
@@ -6219,6 +6234,11 @@ components:
             place number as displayed physically on the place
           type: string
           nullable: false
+        icon:
+          description: |
+            Icon type of the graphical item type. Code list according to UIC90918-1
+            graphical item type e.g. seat = 1
+          type: string
         direction:
           $ref: '#/components/schemas/DirectionType'
         remarkId:
@@ -6319,6 +6339,9 @@ components:
           items:
             $ref: '#/components/schemas/PlacePosition'
           minItems: 1
+        number:
+          description: Compartment number
+          type: string
         isSelectable:
           description: |
             Indicates whether compartments are selectable as a whole only
@@ -6945,6 +6968,10 @@ components:
           $ref: '#/components/schemas/Price'
         exchangePrice:
           $ref: '#/components/schemas/Price'
+        exchangeOfferBreakDown:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExchangeOfferItem'
         fulfillments:
           type: array
           items:
@@ -7502,6 +7529,11 @@ components:
             mapping from an even lower-level provider).
           type: string
           nullable: true
+          deprecated: true
+        productRef:
+          type: string
+          description: |
+            Reference to the Product representing the Fee
 
     Flexibility:
       type: string
@@ -10044,6 +10076,8 @@ components:
             A human-readable description of the product.
           type: string
           nullable: true
+        type:
+          $ref: '#/components/schemas/ProductType'
         code:
           description: |
             The product code expressed in the provider system (could be a
@@ -10109,6 +10143,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    ProductType:
+      description: |
+        General product types harmonized across fare providers. (More to be added, use null for types not listed yet.)
+      type: string
+      x-extensible-enum:
+        - "ADMISSION_PASS"
+        - "ADMISSION_MULTI_RIDE"
 
     ProductCategory:
       type: object
@@ -10441,6 +10483,10 @@ components:
           nullable: true
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
+        refundOfferBreakDown:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundOfferItem'
         fulfillments:
           type: array
           items:
@@ -10452,8 +10498,12 @@ components:
             $ref: '#/components/schemas/VoucherInformation'
         refundFee:
           $ref: '#/components/schemas/Price'
+          description: |
+            Amount kept by the carrier and/or distributor
         refundableAmount:
           $ref: '#/components/schemas/Price'
+          description: |
+            Amount refunded to the purchaser
         _links:
           description: |
             
@@ -10461,6 +10511,41 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    ExchangeOfferItem:
+      type: object
+      required:
+        - exchangeFee
+        - exchangePrice
+        - bookingParts
+      properties:
+        exchangeFee:
+          description: Amount kept by the carrier and/or the distributor
+          $ref: '#/components/schemas/Price'
+        exchangePrice:
+          $ref: '#/components/schemas/Price'
+        bookingParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'
+
+    RefundOfferItem:
+      type: object
+      required:
+        - refundFee
+        - refundableAmount
+        - bookingParts
+      properties:
+        refundFee:
+          description: Amount kept by the carrier and/or the distributor
+          $ref: '#/components/schemas/Price'
+        refundableAmount:
+          description: Amount to be returned to the purchaser
+          $ref: '#/components/schemas/Price'
+        bookingParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'
 
     RefundOfferCollectionResponse:
       type: object
