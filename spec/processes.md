@@ -310,7 +310,21 @@ return.
 - Schedule mismatch between systems
 - Unknown error on server side
 
-#### Place Availability of Offers
+#### Reservation
+
+Reservation offers are part of the offer but the selection of places is an additionl intermediate step after the prebooking of offers. The selection of places can be made via a graphical display of available places or via the specifcation of customer requirements (at a table, at the window, etc..).
+
+The basic flow is shown here:
+
+![Reservations on a pre-booked Booking](../images/processes/seq-graphical-reservation.png)
+
+
+Reservations can aso be added to an already confirmed booking:
+
+![Adding Reservations on a confirmed booking](../images/processes/seq-graphical-reservation-after-booking.png)
+
+
+##### Place Availability of Offers for Reservation
 
 Each reservation item may provide availability information in `availablePlaces`.
 The total number of places is specified when availability of accommodation sub
