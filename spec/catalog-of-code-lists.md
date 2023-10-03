@@ -693,6 +693,21 @@ required.
 | `DOCUMENT_CHANGE` | E.g. passport was lost and replaced                  |
 | `AGENT_ERROR`     | Personal data were enterd wronlgy by the sales agent |
 
+## Product Types
+
+| Code                        | Description                                          |
+| --------------------------- | ---------------------------------------------------- |
+| `ADMISSION_MULTI_RIDE`      | admission that can be used for multiple journeys     |
+| `ADMISSION_POINT2POINT`     | admission for a single (point to point) journey      |
+| `ADMISSION_PASS`            | admission for a pass to be used unlimitedly within   |
+| `UPGRADE_PASS`              | upgrade for a pass to be used unlimitedly within     |
+| `UPGRADE_POINT2POINT`       | upgrade for a single (point to point) journey        |
+| `UPGRADE_MULTI_RIDE`        | upgrade that can be used for multiple journeys       |
+| `RESERVATION`               | reservation                                          |
+| `ANCILLARY_SERVICE`         | ancillary service                                    |
+| `ANCILLARY_ITEM`            | ancillary item (e.g. merchandising item)             |
+
+
 ## Public Transportation Modes (ptMode)
 
 see Transport Modes
