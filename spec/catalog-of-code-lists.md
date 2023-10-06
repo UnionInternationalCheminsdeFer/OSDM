@@ -706,6 +706,7 @@ required.
 | `RESERVATION`               | reservation                                          |
 | `ANCILLARY_SERVICE`         | ancillary service                                    |
 | `ANCILLARY_ITEM`            | ancillary item (e.g. merchandising item)             |
+| `REDUCTION_CARD`            | reduction card                                       |
 
 
 ## Public Transportation Modes (ptMode)
