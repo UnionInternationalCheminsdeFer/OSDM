@@ -2524,7 +2524,7 @@
 					"$ref": "#/definitions/TextDef"
 				},
 				"type": {
-      				       "$ref: "#/definitions/ProductType",
+      				       "$ref": "#/definitions/ProductType"
       				},
 				"description": {
 					"description": "Detailed description of the product.",
