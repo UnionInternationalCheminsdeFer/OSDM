@@ -2523,6 +2523,9 @@
 					"description": "Summary of the product.",
 					"$ref": "#/definitions/TextDef"
 				},
+				"type": {
+      				       "$ref: "#/definitions/ProductType",
+      				},
 				"description": {
 					"description": "Detailed description of the product.",
 					"$ref": "#/definitions/TextDef"
@@ -2599,6 +2602,22 @@
 				"REFUND",
 				"TRAVEL"
 			]
-		}
+		},
+		"ProductType": {
+		      "description": "General product types harmonized across fare providers. (More to be added, use null for types not listed yet.)",
+		      "type": "string",
+		      "x-extensible-enum": [
+		        "ADMISSION_PASS",
+		        "ADMISSION_MULTI_RIDE",
+		        "ADMISSION_POINT2POINT",
+		        "UPGRADE_PASS",
+		        "UPGRADE_MULTI_RIDE",
+		        "UPGRADE_POINT2POINT",        
+		        "RESERVATION",      
+		        "ANCILLARY_SERVICE",   
+                        "ANCILLARY_ITEM", 
+                        "REDUCTION_CARD"
+                        ]
+                 }
 	}
 }
