@@ -928,7 +928,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddBookedOfferRequest'
+              $ref: '#/components/schemas/BookedOfferRequest'
       responses:
         '200':
           description: |
@@ -5454,7 +5454,7 @@ components:
           items:
             $ref: '#/components/schemas/BookedOffer'
 
-    AddBookedOfferRequest:
+    BookedOfferRequest:
       type: object
       description: 
         adding an offer to a booking as prebooked. additional passengers that were not already in the booking are added in additional passengers existing passengers are referenced in passengerRef.
@@ -5467,11 +5467,14 @@ components:
           items:
             $ref: '#/components/schemas/OfferSelection'
           minItems: 1
-        passengerRefs:
+        passengers:
           type: array
           items:
-            type: string
-        additionalPassengers:
+            $ref: '#/components/schemas/Passenger'
+          deprecated: true
+          description: |
+            Existing passengers are linked with the given booking and do not need to be referenced in the request.
+        additionalPassengerSpecifications:
           type: array
           items:
             $ref: '#/components/schemas/PassengerSpecification'        
