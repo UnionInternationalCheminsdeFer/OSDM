@@ -6465,6 +6465,9 @@ components:
       properties:
         icon:
           type: string
+          description: |
+            Icon type of the graphical item type. Code list according to UIC90918-1
+            graphical item type e.g. seat = 1
           nullable: false
         number:
           description: |
@@ -6571,6 +6574,9 @@ components:
           items:
             $ref: '#/components/schemas/PlacePosition'
           minItems: 1
+        number:
+          description: Compartment number
+          type: string
         isSelectable:
           description: |
             Indicates whether compartments are selectable as a whole only
