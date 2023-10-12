@@ -9903,6 +9903,7 @@ components:
           nullable: true
         address:
           $ref: '#/components/schemas/Address'
+          nullable: true
         contact:
           $ref: '#/components/schemas/ContactDetail'
         taxId:
@@ -10626,8 +10627,10 @@ components:
           nullable: true
         detail:
           $ref: '#/components/schemas/PersonDetail'
+          nullable: true
         companyDetails:
           $ref: '#/components/schemas/CompanyDetail'
+          nullable: true
         _links:
           description: |
             
