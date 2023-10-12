@@ -9905,6 +9905,11 @@ components:
           $ref: '#/components/schemas/Address'
         contact:
           $ref: '#/components/schemas/ContactDetail'
+        taxId:
+          type: string
+          description: Tax identification of the physical person for issuing an invoice or receipt
+          nullable: true
+          example: CZ1234567890
 
     PersonSearchRequest:
       type: object
