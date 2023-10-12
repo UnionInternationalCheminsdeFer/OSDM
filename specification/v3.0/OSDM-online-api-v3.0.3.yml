@@ -11334,6 +11334,10 @@ components:
         endLegId:
           type: string
           nullable: true
+        externalTripRef:
+          description: reference to a trip in case multiple trips are provided
+          type: string
+          nullable: true          
 
     SecurityElementFormat:
       type: string
