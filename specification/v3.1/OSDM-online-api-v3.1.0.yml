@@ -7231,6 +7231,10 @@ components:
           $ref: '#/components/schemas/Price'
         exchangePrice:
           $ref: '#/components/schemas/Price'
+        exchangeOfferBreakDown:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExchangeOfferItem'
         fulfillments:
           type: array
           items:
@@ -10816,8 +10820,8 @@ components:
           $ref: '#/components/schemas/Price'
           description: |
             Amount refunded to the purchaser
-        refundBreakdown:
-          $ref: '#/components/schemas/RefundBreakDown'
+        refundOfferBreakdown:
+          $ref: '#/components/schemas/RefundOfferItem'
         _links:
           description: |
             Java Property Name: 'links' 
@@ -10825,31 +10829,40 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    RefundBreakDown:
-      type: object
-      description: breakdown of fees taken in a refund
-      properties:
-        refundItems:
-          type: array
-          items: 
-             $ref: '#/components/schemas/RefundBreakdownItem'
-          minItems: 1   
-             
-    RefundBreakdownItem:
+    ExchangeOfferItem:
       type: object
       required:
-        - bookingPartIds
-        - refundFee
-        - refundableAmount
+        - exchangeFee
+        - exchangePrice
+        - bookingParts
       properties:
-        refundFee:
+        exchangeFee:
+          description: Amount kept by the carrier and/or the distributor
           $ref: '#/components/schemas/Price'
-        refundableAmount:
-          $ref: '#/components/schemas/Price' 
-        bookingPartIds:
+        exchangePrice:
+          $ref: '#/components/schemas/Price'
+        bookingParts:
           type: array
           items:
-            type: string  
+            $ref: '#/components/schemas/BookingPartReference'  
+             
+    RefundOfferItem:
+      type: object
+      required:
+        - refundFee
+        - refundableAmount
+        - bookingParts
+      properties:
+        refundFee:
+          description: Amount kept by the carrier and/or the distributor
+          $ref: '#/components/schemas/Price'
+        refundableAmount:
+          description: Amount to be returned to the purchaser
+          $ref: '#/components/schemas/Price'
+        bookingParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference' 
             
     RefundOfferCollectionResponse:
       type: object
