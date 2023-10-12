@@ -4467,16 +4467,22 @@ components:
           $ref: '#/components/schemas/BookingPartStatus'
         offerMode:
           $ref: '#/components/schemas/OfferMode'
+        bookingPartCode:
+          type: string
+          description: |
+            The unique booking code for the part in the provider system.
         distributorBookingRef:
           description: |
             reference to the booking in the downstream distributor system
           type: string
           nullable: true
+          deprecated: true
         retailerBookingRef:
           description: |
             reference to the booking in the downstream distributor system
           type: string
           nullable: true
+          deprecated: true
         passengerIds:
           description: |
             Id of the passenger
@@ -5563,6 +5569,9 @@ components:
         id:
           type: string
           nullable: false
+        bookingCode:
+          type: string
+          description: The unique booking code in the provider system. Usually refers to an order number or PNR.
         externalRef:
           description: |
             The unique booking reference in the provider system. Usually refers to an order number or PNR.
@@ -5861,14 +5870,25 @@ components:
         bookingId:
           type: string
           nullable: true
+        bookingCode:
+          description: |
+            reference to the booking in the downstream distributor system
+          type: string
+          nullable: true
+        externalRef:
+          description: reference to the booking in the retailer system
+          type: string
+          nullable: true
         distributorBookingRef:
           description: |
             reference to the booking in the downstream distributor system
           type: string
           nullable: true
+          deprecated: true
         retailerBookingRef:
           type: string
           nullable: true
+          deprecated: true
         fulfillmentId:
           type: string
           nullable: true
