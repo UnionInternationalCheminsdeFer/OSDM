@@ -10492,6 +10492,7 @@ components:
         - "RESERVATION"
         - "ANCILLARY_SERVICE"
         - "ANCILLARY_ITEM"
+        - "REDUCTION_CARD"
 
     ProductCategory:
       type: object
