@@ -9714,8 +9714,6 @@ components:
           $ref: '#/components/schemas/Gender'
         detail:
           $ref: '#/components/schemas/PersonDetail'
-        contact:
-          $ref: '#/components/schemas/ContactDetail'
         identificationCard:
           $ref: '#/components/schemas/IdentificationCard'
         transportableDetails:
