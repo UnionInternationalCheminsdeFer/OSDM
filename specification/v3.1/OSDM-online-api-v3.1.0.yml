@@ -1740,7 +1740,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings-split:
+  /bookings/{bookingId}/split:
     post:
       tags:
         - Bookings Split
@@ -1754,6 +1754,13 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking to be split
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
