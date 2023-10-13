@@ -9810,8 +9810,6 @@ components:
             $ref: '#/components/schemas/PRMNeedType'
         detail:
           $ref: '#/components/schemas/PersonDetail'
-        contact:
-          $ref: '#/components/schemas/ContactDetail'
         type:
           $ref: '#/components/schemas/PassengerType'
         gender:
