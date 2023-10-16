@@ -449,6 +449,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | `PKPASS`       | pkpass file format                                                     |
 | `RETAILER_APP` | mobile ticket in retailer specific format to be loaded into mobile app |
 | `TICKETLESS`   | no ticket                                                              |
+| `SMS`          | ticket information of link to the fulfillment send by SMS              |
 
 ## Gender
 
