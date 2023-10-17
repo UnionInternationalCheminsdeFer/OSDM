@@ -30,8 +30,8 @@ given business process can be transferred between the parties involved.
 
 ### Requirements on Passenger
 
-A passenger is the person travailing on a vehicle. A passenger must not
-necessarily be the person who has bought the booking, i.e. the customer.
+A passenger is the person travailing on a vehicle. A passenger may not
+necessarily be the person who has performed the booking, i.e. the customer.
 
 A passenger has a gender (male, female or X) and date of birth. A passenger can
 own reductions, most often in the form of cards.
@@ -61,7 +61,7 @@ if this is supported by the transport vehicle.
 A location uniquely identifies a place in space. A location can be of type
 station, point-of-interest, address or geo-coordinate.
 
-For railway stations the UIC code station codes most be supported.
+For railway stations the UIC station codes most be supported.
 
 To support other means of transportation the types can potentially be extended.
 
@@ -129,11 +129,11 @@ for some combinations of TGV and TER in France an offer must support referencing
 two products. Additionally, an included reservation does not reference a
 product.
 
-An admission might be linked mandatorily or optional to one or more reservations
+An admission may be linked mandatorily or optionally to one or more reservations.
 
 #### Requirements on Reservation
 
-A reservation provides the right to sit or lay on dedicated place in a vehicle
+A reservation provides the right to sit or lay on dedicated place in a vehicle.
 
 A reservation has a price.
 
@@ -266,8 +266,8 @@ reference the offer parts covered by the fulfillment.
 
 A fulfillment must reference fulfillment documents (aka. tickets). Fulfillment
 documents in form of a UIC PDF ticket most be supported by all parties. A
-fulfillment is provided for a specific FulfillmentType (e.g. CIT_PAPER) and
-FulfillmentMedia specifying the format (e.g. RCT2).
+fulfillment is provided for a specific FulfillmentType (e.g. `CIT_PAPER`) and
+FulfillmentMedia specifying the format (e.g. `RCT2`).
 
 **In distributor mode only:** A fulfillment may reference fulfillment items such
 as visual security elements, additional bar codes or control key.
@@ -314,13 +314,13 @@ Exchange may be supported by all parties.
 
 _Optional requirement_
 
-If supported by the underlying system, it most be possible to change of seat
+If supported by the underlying system, it must be possible to change of seat
 after the booking is confirmed and fulfilled. This change can either be free or
-a fee can be requested from the carrier.
+for a fee when requested by the carrier.
 
-The following scenario exist:
+The following scenarii exist:
 
-1. Specific seat and coach requested: Optionally, a seat map can be requested,
+1. Specific seat and coach requested: optionally, a seat map can be requested,
    so that the user knows which seat is available. The user can then select a
    specific coach and seat number.
 2. Near to a given seat: The user provides in the request a seat number he
@@ -328,7 +328,7 @@ The following scenario exist:
 3. Seat preferences: The user provides seat arrangement such as window, aisle
    etc…
 
-Some providers give the possibility to up sell to a better seat after booking.
+Some providers give the possibility to up-sell to a better seat after booking.
 This is an adjacent but not equivalent case, as the change of seat should not
 affect allocation or update the inventory.
 
@@ -358,18 +358,18 @@ or parts of it (e.g. in case of a return trip) where the service has not been
 provided as promised. This includes:
 
 - Delays of trains
-  - In case the train was not restricted to specific trains this includes also
+  - In case the fare was not restricted to specific trains this also includes
     trains which were not mentioned in the trip of the booking
   - A description of the cause is needed delayed trains incl. the delay, missed
-    connections, cancelled trains,...
-  - Abandoned travel (e.g. in case of a return, subsequent trains,..)
-- Service derogation (e.g. first class not available, ...)
+    connections, cancelled trains, …
+  - Abandoned travel (e.g. in case of a return, subsequent trains, …)
+- Service derogation (e.g. first class not available, …)
 
 It must be possible to provide documentation to support the claim (e.g. scanned
 manual remark of train staff) (Alternatively require exchange via **UIC
 90918-4**).
 
-It must be possible to demand the that the claimed amount is issued as a voucher
+It must be possible to demand that the claimed amount is issued as a voucher
 or transferred to a bank account.
 
 It must be possible to lookup the status of the claim made.
@@ -382,7 +382,7 @@ It must be possible to inform the distributor / fare provider that the payment
 was made and the claim is settled.
 
 It must be possible for a distributor to inform the fare provider that the claim
-was accepted because the fare provider missed a legal time line to handling the
+was accepted because the fare provider missed a legal timeline to handling the
 claim.
 
 ### Requirements on Reimbursements
@@ -394,12 +394,12 @@ must prove that he has not or only partially used the ticket.
 A partial use might be a only a part of the trip was traveled or only some of
 the travelers were traveling or a combination of both.
 
-The non use of a ticket might be proven by documents that were provided to the
-customer/traveler on a train or at a station. This prove can also be provided in
+The non-use of a ticket may be proven by documents that were provided to the
+customer/traveler on a train or at a station. This proof can also be provided in
 electronic form by a carrier.
 
-The customer must be able to make his claim via a retailer to the disributor
-which needs to request the reimbursement from the involved carriers.
+The customer must be able to make the claim via a retailer to the disributor
+who needs to forward the request to the involved carriers.
 
 ## Functional Requirements of a Distributor
 
@@ -542,7 +542,7 @@ List of classes allowed in the ticket. Railways use different notions and names
 on service classes on their trains. A common type is needed to combine different
 levels of service from different railways.
 
-There needs to be a marketing name for the class.
+A marketing name is required for the class.
 
 Service class is optional for transportables
 
@@ -766,7 +766,7 @@ A name of the fare needs to be provided.
 
 ### Requirements on the after sales conditions
 
-After sales conditions define fees to be taken in case of an after sales
+After sales conditions define fees to be taken in case of an aftersales
 transaction on behalf of a customer. The after sales transactions considered
 are:
 
@@ -837,8 +837,8 @@ _Decision_: The solution should be independent from the timetable.
 
 #### Indication of train links on the ticket
 
-Tickets might be linked to the use of specific trains even in case there is no
-reservation. There are different options on how to indicate this restriction:
+Tickets may be linked to the use of specific trains even in the case there is no
+seat reservation. There are different options on how to indicate this restriction:
 
 - DB solution: The train information replaces the corresponding route part
 

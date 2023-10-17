@@ -335,53 +335,50 @@ provide either total capacity only, or detail on other accommodation types and
 sub types.
 
 ```
-...
 {
-  "availablePlaces": [
-    {
-      "accommodationType": "SEAT",
-      "accommodationSubType": "ANY_SEAT",
-      "placeProperties": [
-        {
-          "code": "SILENCE"
-        },
-        {
-          "code": "WINDOW"
-        },
-        {
-          "code": "AILE"
-        },
-        {
-          "code": "TABLE"
-        },
-        {
-          "code": "OPEN_SPACE"
-        }
-        ],
-        "numericAvailability": 123,
-        "tripLegCoverage": {
-            "tripId": 1,
-            "legId": 2
-        }                
-      ]
-    },
-    {
-      "accommodationType": "SEAT",
-      "accommodationSubType": "WITH_ANIMALS",
-      "placeProperties": [
-            {
-              "code": "WITH_ANIMALS"
-            }
-        ],
-        "numericAvailability": 5,
-        "tripLegCoverage": {
-            "tripId": 1,
-            "legId": 2
-        }                
-    }
-  ]
+  "availablePlaces": [
+    {
+      "accommodationType": "SEAT",
+      "accommodationSubType": "ANY_SEAT",
+      "placeProperties": [
+        {
+          "code": "SILENCE"
+        },
+        {
+          "code": "WINDOW"
+        },
+        {
+          "code": "AISLE"
+        },
+        {
+          "code": "TABLE"
+        },
+        {
+          "code": "OPEN_SPACE"
+        }
+      ],
+      "numericAvailability": 123,
+      "tripLegCoverage": {
+        "tripId": 1,
+        "legId": 2
+      }
+    },
+    {
+      "accommodationType": "SEAT",
+      "accommodationSubType": "WITH_ANIMALS",
+      "placeProperties": [
+        {
+          "code": "WITH_ANIMALS"
+        }
+      ],
+      "numericAvailability": 5,
+      "tripLegCoverage": {
+        "tripId": 1,
+        "legId": 2
+      }
+    }
+  ]
 }
-...
 ```
 
 #### Getting Coach Layouts
@@ -405,23 +402,23 @@ Proposed trip by timetable system:
 
 | Origin - Destination          | Train Number                         |
 | ----------------------------- | ------------------------------------ |
-| Rotterdam ? Antwerp           | Thalys 9324 (mandatory reservation)  |
-| Antwerp ? Liège               | IC 2345 + IR 5567                    |
-| Liège ? Frankfurt             | ICE 122 (mandatory reservation)      |
-| Frankfurt ? Wien Hbf          | RailJet RJ 23 (optional reservation) |
-| Wien Hbf ? Wien Stephansplatz | Metro                                |
+| Rotterdam → Antwerp           | Thalys 9324 (mandatory reservation)  |
+| Antwerp → Liège               | IC 2345 + IR 5567                    |
+| Liège → Frankfurt             | ICE 122 (mandatory reservation)      |
+| Frankfurt → Wien Hbf          | RailJet RJ 23 (optional reservation) |
+| Wien Hbf → Wien Stephansplatz | Metro                                |
 
 ### Fare Provider Resolution returns
 
 | Origin - Destination          | Train Number                         | Fare Provider                      | Consolidated |
-| ----------------------------- | ------------------------------------ | ---------------------------------- | ------------ | --- |
-| Rotterdam ? Antwerp           | Thalys 9324 (mandatory reservation)  | PAO                                | PAO          |
-| Antwerp ? Liège               | IC 2345 + IR 5567                    | Fare SNCB                          | Fare SNCB    |
-| Liège ? Frankfurt             | ICE 122 (mandatory reservation)      | GUS                                | GUS          |
-| Frankfurt ? Wien Hbf          | RailJet RJ 23 (optional reservation) | Frankfurt ? Salzburg (Border)      | Fare DB      |
-|                               |                                      | Salzburg (Border) ? WienHbf        | Fare ÖBB     |     |
-|                               |                                      | Frankfurt ? Wien Hbf (reservation) | Fare ÖBB     |
-| Wien Hbf ? Wien Stephansplatz | Metro                                | Fare ÖBB                           |
+| ----------------------------- | ------------------------------------ | ---------------------------------- | ------------ |
+| Rotterdam → Antwerp           | Thalys 9324 (mandatory reservation)  | PAO                                | PAO          |
+| Antwerp → Liège               | IC 2345 + IR 5567                    | Fare SNCB                          | Fare SNCB    |
+| Liège → Frankfurt             | ICE 122 (mandatory reservation)      | GUS                                | GUS          |
+| Frankfurt → Wien Hbf          | RailJet RJ 23 (optional reservation) | Frankfurt → Salzburg (Border)      | Fare DB      |
+|                               |                                      | Salzburg (Border) → Wien Hbf       | Fare ÖBB     |
+|                               |                                      | Frankfurt → Wien Hbf (reservation) | Fare ÖBB     |
+| Wien Hbf → Wien Stephansplatz | Metro                                | Fare ÖBB                           |              |
 
 ## Booking Processes
 
@@ -431,14 +428,14 @@ Proposed trip by timetable system:
 
 Once the offer has been selected, the API consumer can proceed to the booking of
 that offer. Along with the offer, optional or mandatory reservations or
-ancillaries can be booked as well. The optional offer parts can be identified
-easily in the offers as they will always be linked with an admission product (in
+ancillaries can be booked as well. The optional offer parts can be easily identified
+in the offers as they will always be linked with an admission product (in
 `admission.reservations` or `admission.ancillaries`). The link contains the
 relationType property, which indicates whether the pointed reservation or
 ancillary is included (in which case it is not needed to explicitly add it in
 the booking request), mandatory (the reservation or ancillary must be added in
-the booking request) or optional (the reservation or ancillary can be added in
-the booking request.
+the booking request) or optional (the reservation or ancillary may be added in
+the booking request).
 
 Adding optional or mandatory elements is simply done by adding the respective
 offer part in the booking request (cf YAML specifications) `POST /bookings`.
@@ -460,12 +457,12 @@ be assigned to the passengers for this offer part.
 ### Additional availability information before provisional booking step
 
 In most cases the offer will not contain information on specific place
-properties for reservations. the reservation resource in the offer provides
+properties for reservations. The reservation resource in the offer provides
 information on the availability of places with the selected offer:
 
 - Places with specific properties; please refer to the section _Place
   Availability of Offers_ on the semantics of provided Place Availabilities.
-- Places nearby another place
+- Places nearby another place.
 - A graphical display of available places.
 
 ![Graphical reservation](../images/processes/seq-graphical-reservation.png)
@@ -473,9 +470,9 @@ information on the availability of places with the selected offer:
 ### Additional information in provisional booking step
 
 In some cases, additional information must be provided before or at the
-provisional booking time in order to be taken into account, such as:
+time of provisional booking in order to be taken into account, such as:
 
-- Additional passenger identity information
+- Additional passenger identity information;
 - Additional accommodation preferences regarding the accommodation, or its exact
   location.
 
@@ -903,12 +900,12 @@ These are the required information needed per process step for major parties
 | Distributor         | Pre-booking Step                                                                                                                                                                                                                                                                                               | Booking Step                                                                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | **Bene**            |                                                                                                                                                                                                                                                                                                                | `firstName` and `lastName`                                                                                                              |
-| **DB**              | In general one `firstName` and `name`, regardless of the number of passengers. In case of regional trains, however, all names and sur names are needed, unless printed on security paper.                                                                                                                      |
+| **DB**              | In general one `firstName` and `name`, regardless of the number of passengers. In case of regional trains, however, all names and sur names are needed, unless printed on security paper.                                                                                                                      |                                                                                                                                         |
 | **öBB**             | Both `firstName` and `lastName` are needed. `dateOfBirth` date may be needed. Some reduction cards require the number to be provided at pre-booking time, in order to be pre-checked. In other cases, the cards are simply checked on-board `phoneNumber` or `eMail` (once per order - as contact information) | `phoneNumber` or `eMail` (once per order - as contact information)                                                                      |
 | **RENFE**           | Per passenger: `firstName`, `lastName`, surname document type and identity document (DNI, NIE or passport). A `phoneNumber` or `eMail`.                                                                                                                                                                        | Per passenger: `firstName`, `lastName`, surname document type and Identity document. (DNI, NIE or passport) A `phoneNumber` or `eMail`. |
-| **SBB**             | Per passenger: `name` and `first name` and `dateOfBirth. Additional sales parameters for some products such as `phoneNumber`or`eMail` for reservations                                                                                                                                                         |                                                                                                                                         |
+| **SBB**             | Per passenger: `name` and `first name` and `dateOfBirth. Additional sales parameters for some products such as `phoneNumber`or`eMail` for reservations.                                                                                                                                                        |                                                                                                                                         |
 | **SJ**              | Todo                                                                                                                                                                                                                                                                                                           |                                                                                                                                         |
-| **SNCF**            | `dateOfBirth` is mandatory, a fake date can be used at offer time, but the real one must be provided at pre-booking time                                                                                                                                                                                       |
+| **SNCF**            | `dateOfBirth` is mandatory, a fake date can be used at offer time, but the real one must be provided at pre-booking time                                                                                                                                                                                       |                                                                                                                                         |
 | **Eurostar/Thalys** | `firstName` and `lastName`                                                                                                                                                                                                                                                                                     | Thalys loyalty card number                                                                                                              |
 
 ## After Sales Processes
