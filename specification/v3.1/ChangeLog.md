@@ -11,10 +11,11 @@
 
   `POST /bookings-split`
 
-- added a resource to get a partial refund offer:
+- added a service to delete an admission:
+  `DELETE /bookings/{bookingId}/booked-offers/{bookedOfferId}/admissions/{admissionId}`
 
-  `POST /bookings/{bookingId}/partial-refund-offers`
 
+  
 ## Changes to Classes and Attributes
 
 - Added `Booking.relatedBookings` (split booking)
@@ -31,11 +32,32 @@
 
 - Added optional `code` to `Problem`
 
+- Added optional `taxId` to `PersonDetail`
+
+- Added optional `ProductType` to `Product`
+
+- Added optional `externalTripRef` to `Section`
+
+- Added optional `bookingPartRef` to `BookingPart`
+
+- Added optional `productRef` in `Fee`
+
+- Added optional `refundAmount" in `BookingParts`
+
+- Added `icon` in `CoachLayoutPlace`
+
+- Added optional `number` in `Compartment` 
+
+- Added optional breakdown of fees on refund offers and exchange offers - refund/exhangeFee, refundAmout/exchangePrice, bookingParts
+
+- Added optional `bookedOfferIds` in `BookedOfferRespose` for additioonal booked offers
+
 ## Deprecations
 
 - `PersonDetail.preferredLanguages` - moved to `ContactDetail`
 - `PersonDetail.email` - moved to `ContactDetail`
 - `PersonDetail.phoneNumber`- moved to `ContactDetail`
+- `productCode`
 
 ## Removed Deprecations
 
