@@ -96,6 +96,8 @@ implementations:
 | Booking             | `BOOKING_BOOKING_ALREADY_CONFIRMED`          | The booking is already confirmed                                          |
 | Booking             | `BOOKING_BOOKING_ALREADY_CANCELLED`          | The booking is already cancelled                                          |
 | Booking             | `BOOKING_MODIFICATION_NOT_ALLOWED`           | The booking and does not allow modifications                              |
+| Booking             | `BOOKING_VEHICLE_TOO_HEAVY`                  | A vehicle is too heavy to be transported by car carriage. This relates to the current load of the train or coach, so booking might be possible at another         |
+| Booking             | `BOOKING_VEHICLE_WEIGHT_MISSING`             | A vehicle is not possible without providing the weight of the vehicle     |
 | Confirm             | `CONFIRMATION_PARTIAL_SUCCESS`               | Partial success                                                           |
 | Confirm             | `CONFIRMATION_OPERATION_NOT_SUPPORTED`       | Operation not supported on one of the offer parts                         |
 | Confirm             | `CONFIRMATION_UNKNOWN_ERROR`                 | Unknown error on provider side                                            |
