@@ -12,6 +12,7 @@
   `POST /bookings-split`
 
 - added a service to delete an admission:
+  
   `DELETE /bookings/{bookingId}/booked-offers/{bookedOfferId}/admissions/{admissionId}`
 
 
