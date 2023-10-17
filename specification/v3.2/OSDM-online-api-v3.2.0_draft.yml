@@ -9660,7 +9660,7 @@ components:
           $ref: '#/components/schemas/WarningCollection'
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
-        partialReundOffer:
+        partialRefundOffer:
           $ref: '#/components/schemas/ExchangeOffer'
         passengers:
           type: array
