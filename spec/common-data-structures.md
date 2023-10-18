@@ -18,8 +18,8 @@ structures that implement the requirement.
 
 The following general data types shall be used:
 
-- DateTime Formats: Date time values must be encoded according to RFC 3339,
-  section 5.6.
+- DateTime Formats: Date time values must be encoded according to [RFC 3339,
+  section 5.6](https://www.rfc-editor.org/rfc/rfc3339.html#section-5.6).
 - Station Codes: Station codes must be taken from the TAP TSI retail station
   code list (MERITS).
 - Station Names: Station names should not include ”/”,”\*”. These characters are
@@ -648,7 +648,7 @@ Reduction “cards”.
 Definition of a regional validity of a fare. The regional validity constraint is
 defined by an entry connection point and an exit connection point to combine
 this regional validity with other regional validities of other carriers and the
-specification of the regional validity that is sued and described in _IRS
+specification of the regional validity that is used and described in _IRS
 90918-4_ for ticket control. The entry or exit connection point might be missing
 in case the fare cannot be combined or can be combined on one side only.
 
@@ -667,7 +667,7 @@ E.g.:
 
 - Carrier 1: RegionalConstraint {Exit (A,B), RegionalValidity X – Y/Z- A}
 - Carrier 2: RegionalConstraint {Entry (A,B), RegionalValidity B – C/D – E}
-- _Result_: X*Y/Z*A*B*C/D\*E
+- _Result_: `X*Y/Z*A*B*C/D*E`
 
 The distributor might need to remove doubled stations in routes in case the
 connection point is a real station used in both regional validity descriptions
@@ -675,7 +675,7 @@ in case it is displayed as one combined text:
 
 - Carrier 1: RegionalConstraint {Exit (A), RegionalValidity X – Y/Z- A}
 - Carrier 2: RegionalConstraint {Entry (A), RegionalValidity A – C/D – E}
-- _Result_: X*Y/Z*A*A*C/D*E --> X*Y/Z*A*C/D\*E
+- _Result_: `X*Y/Z*A*A*C/D*E` --> `X*Y/Z*A*C/D*E`
 
 #### Connecting Regional Validity to Trips
 

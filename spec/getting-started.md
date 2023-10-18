@@ -569,7 +569,7 @@ POST in such cases and thus support privacy by design.
 IRT stands for _integrated rail ticket_ and stands for a group of products where
 the admission includes a seat as reservation. For example given, IRT are
 available on Eurostar or Thalys trains which basically act as any airplane where
-you can only enter is you have a reserved seat.
+you can only enter if you have a reserved seat.
 
 The way they are modelled in OSDM are as _admission_ with an _included
 reservation_, i.e., the seat reservation have an `"optionality": INCLUDED`. The
@@ -591,7 +591,7 @@ fares) on their trains.
 ### When to pass in which passenger attributes?
 
 We take special care not to violate passenger personal rights and build in
-privacy by design. Thus we collect as few information as possible at every step,
+privacy by design. Thus we collect as little information as possible at every step,
 i.e. only the attributes absolutely necessary to fulfill the operation are
 gathered. To indicate which information is needed there is a
 `requestedInformation` attribute which express the information needed expressed
