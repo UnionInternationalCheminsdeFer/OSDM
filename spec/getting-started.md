@@ -8,6 +8,15 @@ permalink: /spec/getting-started/
 
 ## Introduction
 
+OSDM (Open Sales and Distribution Model) defines an API to enable and simplify the sale of transport 
+products. The API allows Retailers to access transport products provided by distributors. It also allows 
+distributors to access transport product bricks provided by carriers or fare providers to build 
+combined transport products. The aim of OSDM is to provide a simple API to access required information 
+online, however OSDM also rovides an offline data exchange of fares.
+
+OSDM covers scheduled multimodal transport services (trains, busses, trams, ...). On Demand services are 
+currently covered with some functional limitation.
+
 The OSDM API is rich and can be overwhelming at start. Reason for its feature
 richness (leading to its complexity) is the fact that it aims to cover all
 possible public transportation products and distribution processes within Europe
