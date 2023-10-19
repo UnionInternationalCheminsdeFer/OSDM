@@ -14,6 +14,9 @@ distributors to access transport product bricks provided by carriers or fare pro
 combined transport products. The aim of OSDM is to provide a simple API to access required information 
 online, however OSDM also rovides an offline data exchange of fares.
 
+The API covers the full sales process including time table / offer serch, prebooking and booking, refund, 
+exchange including special processes to handle delays, change of material and compensation. 
+
 OSDM covers scheduled multimodal transport services (trains, busses, trams, ...). On Demand services are 
 currently covered with some functional limitation.
 
