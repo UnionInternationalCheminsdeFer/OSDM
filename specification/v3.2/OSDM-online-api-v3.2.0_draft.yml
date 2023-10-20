@@ -25,6 +25,9 @@ servers:
   - url: https://s3p-osdm.cloud.sqills.com
     description: |
       Sqills Sandbox
+  - url: https://osdm-5.platform.bileto.zone/api
+    description: |
+      Bileto Sandbox (osdm.cz)
 
 tags:
   - name: Places
