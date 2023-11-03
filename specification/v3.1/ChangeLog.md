@@ -65,3 +65,9 @@
 - `PersonDetail.eMail` - use `PersonDetail.email` instead
 - `Fulfillment.status` - only `FulfillmentPart` has status
 - `Booking.ticketTimeLimit` - use `Booking.confirmationTimeLimit` instead
+
+# Version 3.0.3
+
+## Changes to Resources
+
+TODO
