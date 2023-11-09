@@ -2798,70 +2798,6 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/partial-refund-offers:
-    post:
-      tags:
-        - Exchange
-      summary: Returns a partial refund offer for booking part(s) or passenger(s) to be removed. Operation is valid only if supported by underlying tariff.
-      operationId: createPartialRefundOffersCollection
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-            nullable: false
-        - name: embed
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/ExchangeOfferCollectionResponseContent' 
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PartialRefundOfferRequest'
-      responses:
-        '200':
-          description: |
-            Partial refund offer found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PartialRefundOfferResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: |
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-    
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
   /bookings/{bookingId}/exchange-operations:
     post:
       tags:
@@ -7536,6 +7472,23 @@ components:
         - YES
         - NO
         - WITH_CONDITION
+        
+    ExchangeOfferItem:
+      type: object
+      required:
+        - exchangeFee
+        - exchangePrice
+        - bookingParts
+      properties:
+        exchangeFee:
+          description: Amount kept by the carrier and/or the distributor
+          $ref: '#/components/schemas/Price'
+        exchangePrice:
+          $ref: '#/components/schemas/Price'
+        bookingParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'          
 
     ExcludedTimeRange:
       type: object
@@ -9627,52 +9580,26 @@ components:
         - SHIP
         - BUS
 
-    PartialRefundOfferRequest:
+    PartialRefundSpecification:
       type: object
-      additionalProperties: false
       required:
-        - bookingPartsToBeRefunded
+        - fulfillmentId
       properties:
-        overRuleCode:
-          $ref: '#/components/schemas/OverruleCode'
-        requestedFulfillmentOptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentOption'
-        passengersToBeRemoved:
-          type: array
-          items:
-            type: string
-          nullable: true
-        bookingPartsToBeRefunded:
-          type: array
-          items:
-            type: string
-          minItems: 1
-          nullable: false
-        refundDate:
+        fulfillmentId:
+          description: |
+            id of the fulfillment where some part(s) should be removed
           type: string
-          format: date-time
-          nullable: true
+        bookingPartIds:
+          description: ids of booking parts to be removed from the fulfillment
+          type: array
+          items:
+            type: string
+        passengerIds:
+          type: array
+          description: ids of passengers to be removed from the fulfillment
+          items:
+            type: string  
 
-    PartialRefundOfferResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        warnings:
-          $ref: '#/components/schemas/WarningCollection'
-        appliedOverruleCode:
-          $ref: '#/components/schemas/OverruleCode'
-        partialRefundOffer:
-          $ref: '#/components/schemas/ExchangeOffer'
-        passengers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Passenger'
-        trips:
-          type: array
-          items:
-            $ref: '#/components/schemas/Trip'
 
     Passenger:
       type: object
@@ -10834,10 +10761,16 @@ components:
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
         fulfillments:
+          description: fulfillments to be refunded or replaced
           type: array
           items:
             $ref: '#/components/schemas/Fulfillment'
           minItems: 1
+        issuedfulfillments:
+          description: new fulfillments issued with this offer (only available after confirmation)
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
         issuedVouchers:
           type: array
           items:
@@ -10859,23 +10792,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    ExchangeOfferItem:
-      type: object
-      required:
-        - exchangeFee
-        - exchangePrice
-        - bookingParts
-      properties:
-        exchangeFee:
-          description: Amount kept by the carrier and/or the distributor
-          $ref: '#/components/schemas/Price'
-        exchangePrice:
-          $ref: '#/components/schemas/Price'
-        bookingParts:
-          type: array
-          items:
-            $ref: '#/components/schemas/BookingPartReference'  
-             
+            
     RefundOfferItem:
       type: object
       required:
@@ -10934,12 +10851,18 @@ components:
       properties:
         fulfillmentIds:
           description: |
-            id of the fulfillment to refund
+            ids of the fulfillments to refund
           type: array
           items:
             type: string
           minItems: 1
           nullable: false
+        partialRefundSpecifications:
+          description: |
+            To do a partial refund repeat the fulfillmentIds affected and point out what to refund
+          type: array
+          items:
+            $ref: '#/components/schemas/PartialRefundSpecification'          
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
         refundDate:
