@@ -9902,7 +9902,7 @@ components:
           description: first family name in case of multiple family names. The element lastName includes all family names.
           type: string
           nullable: false
-          exampl: "Diaz"
+          example: "Diaz"
         secondFamilyName:          
           description: second family name in case of multiple family names. The element lastName includes all family names.
           type: string
