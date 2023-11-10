@@ -9580,27 +9580,6 @@ components:
         - SHIP
         - BUS
 
-    PartialRefundSpecification:
-      type: object
-      required:
-        - fulfillmentId
-      properties:
-        fulfillmentId:
-          description: |
-            id of the fulfillment where some part(s) should be removed
-          type: string
-        bookingPartIds:
-          description: ids of booking parts to be removed from the fulfillment
-          type: array
-          items:
-            type: string
-        passengerIds:
-          type: array
-          description: ids of passengers to be removed from the fulfillment
-          items:
-            type: string  
-
-
     Passenger:
       type: object
       additionalProperties: false
@@ -10857,12 +10836,12 @@ components:
             type: string
           minItems: 1
           nullable: false
-        partialRefundSpecifications:
+        refundSpecifications:
           description: |
             To do a partial refund repeat the fulfillmentIds affected and point out what to refund
           type: array
           items:
-            $ref: '#/components/schemas/PartialRefundSpecification'          
+            $ref: '#/components/schemas/RefundSpecification'          
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
         refundDate:
@@ -10881,6 +10860,26 @@ components:
           $ref: '#/components/schemas/WarningCollection'
         refundOffer:
           $ref: '#/components/schemas/RefundOffer'
+
+    RefundSpecification:
+      type: object
+      required:
+        - fulfillmentId
+      properties:
+        fulfillmentId:
+          description: |
+            id of the fulfillment where some part(s) should be removed
+          type: string
+        bookingPartIds:
+          description: ids of booking parts to be removed from the fulfillment
+          type: array
+          items:
+            type: string
+        passengerIds:
+          type: array
+          description: ids of passengers to be removed from the fulfillment
+          items:
+            type: string  
 
     RefundStatus:
       type: string
