@@ -332,10 +332,14 @@ in the cancellation confirmation.
 ### Graphical seat reservation
 
 In order to display the layout of a train to a customer a service to
-access coach layout data and availability pf places is needed.
+access coach layout data and availability of places is needed.
 
 
-### Edit passenger information
+### Passenger information
+
+Passenger names are supported with an element for fits names and an element for last names. As 
+an additional option it is possibe to provide a first and a last familiy name additionally. This is used to 
+cover lewgal requirements in some spanish speaking countries where both family names might be required separately. 
 
 To add or in special cases edit passenger information a service is
 provided. This service is explicitly designed to be fully complaint to
