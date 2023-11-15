@@ -11,13 +11,21 @@ permalink: /spec/processes/
 2. [Overview of Services](#OverviewofServices)
 3. [Process Flow](#ProcessFlow)
 4. [Trips and Places Processes](#TripsandPlacesProcesses)
-5. [Offers](#Offers)
+   1. [Looking Up Places](#LookingUpPlaces)
+   2. [Getting and Browsing Trips](#GettingTrips)
+6. [Offers](#Offers)
    1. [Getting and Browsing Offers](#GettingOffers)
    2. [Round Trip Handling](#RoundTripsHandling)
    3. [Reservation](#Reservation)
 8. [Complex Example](#ComplexExample)
 9. [Booking Processes](#BookingProcesses)
-10. [After Sales Processes](#AfterSalesProcesses)
+   1. [Creating a Booking Based on Offers](#CreatingBookings)
+   2. [Additional information in provisional booking](#AddingInformation)
+   3. [Handling Partial Success of Pre-Booking](#HandlingPartialSuccess)
+   4. [Completing Booking for Confirmation and Fulfillment](#CompleteBooking)
+   5. [Cancel a Not Confirmed Booking ](#CancelUnconfirmedBooking)
+   6. [Payment information and Payment Vouchers](#PaymentInformation)
+11. [After Sales Processes](#AfterSalesProcesses)
     1. [Refund](#Refund)
     2. [Release a Booking](#Refund)
     3. [Partial Refund](#PartialRefund)
@@ -80,7 +88,7 @@ with a refund or exchange offer which can then be booked by the customer.
 
 ## Trips and Places Processes <a name="TripsandPlacesProcesses">
 
-### Looking Up Places
+### Looking Up Places <a name="LookingUpPlaces">
 
 ![Looking Up Places](../images/processes/seq-looking-up-places.png)
 
@@ -115,7 +123,7 @@ In case the error can apply to multiple fields, it is recommended to provide
 additional details such as the incriminated field in the detail property of the
 `Problem` element.
 
-### Getting and Browsing Trips
+### Getting and Browsing Trips <a name="GettingTrips">
 
 ![Getting and Browsing Trips](../images/processes/seq-getting-and-browsing-trips.png)
 
@@ -443,7 +451,7 @@ Proposed trip by timetable system:
 
 ## Booking Processes <a name="BookingProcesses">
 
-### Creating a Booking Based on Offers
+### Creating a Booking Based on Offers <a name="CreatingBookings">
 
 ![Creating a Booking Based on Offers](../images/processes/seq-creating-a-booking-based-on-offers.png)
 
@@ -475,7 +483,7 @@ the offer responses, with the exception that for reservations and fares, the
 reservedPlaces element will now be populated with the places that have actually
 be assigned to the passengers for this offer part.
 
-### Additional availability information before provisional booking step
+### Additional information in provisional booking step  <a name="AddingInformation">
 
 In most cases the offer will not contain information on specific place
 properties for reservations. The reservation resource in the offer provides
@@ -488,7 +496,6 @@ information on the availability of places with the selected offer:
 
 ![Graphical reservation](../images/processes/seq-graphical-reservation.png)
 
-### Additional information in provisional booking step
 
 In some cases, additional information must be provided before or at the
 time of provisional booking in order to be taken into account, such as:
@@ -597,7 +604,7 @@ overlap. However, the provider implementers must verify and validate the set of
 offers selected is valid. if the trip being booked is also a return trip, then
 the rule applies for each direction.
 
-### Handling Partial Success of Pre-Booking
+### Handling Partial Success of Pre-Booking  <a name="HandlingPartialSuccess">
 
 ![Handling Partial Success of Pre-Booking](../images/processes/seq-handling-partial-success-of-pre-booking.png)
 
@@ -642,7 +649,7 @@ situations can be communicated through the `Warning` messages:
   together in a booking, the passenger information of the first offer will be
   copied in the booking, and those of the following offers will be ignored.
 
-### Completing Booking for Confirmation and Fulfillment
+### Completing Booking for Confirmation and Fulfillment <a name="CompleteBooking">
 
 ![Completing Booking for Confirmation and Fulfillment](../images/processes/seq-completing-booking-for-confirmation-and-fulfillment.png)
 
@@ -679,7 +686,7 @@ between the offered product and the updated passenger property.
 - Attempted to modify a read-only property
 - The booking is confirmed/refunded/cancelled and does not allow modifications
 
-### Cancel a Not Confirmed Booking
+### Cancel a Not Confirmed Booking <a name="CancelUnconfirmedBooking">
 
 ![Cancel a Not Confirmed Booking ](../images/processes/seq-cancel-a-not-confirmed-booking.png)
 
@@ -709,7 +716,7 @@ duration of that grace period is left to the implementor.
 - the booking is already cancelled
 - unknown error on the server side
 
-### Payment information and Payment Vouchers
+### Payment information and Payment Vouchers <a name="PaymentInformation">
 
 OSDM does not currently handle the payment process directly, which means that
 payment from the customer has to be taken by the distributor outside of this
