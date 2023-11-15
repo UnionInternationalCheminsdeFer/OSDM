@@ -986,6 +986,10 @@ offer is requested and needs to be confirmed to be applied.
 
 ### Partial Refund <a name="PartialRefund">
 
+Partial refunds of passengers and booking parts included in one fulfllment (Collective ticketing) are
+possible with version 3.2 onwards. The parts to be refunded need to be specified in the RefundSpecification. 
+
+A partial refund will result in new fulfilments after the confirmation of the refund offer and booking.
 
 ### Cancel Fulfillment  <a name="CancelFulfillment">
 
