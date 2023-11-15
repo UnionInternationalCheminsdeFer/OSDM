@@ -9800,8 +9800,20 @@ components:
           type: string
           nullable: false
         lastName:
+          description: full last names of the person
           type: string
           nullable: false
+          example: "Diaz Lopez"
+        firstFamilyName:
+          description: first family name in case of multiple family names. The element lastName includes all family names.
+          type: string
+          nullable: false
+          example: "Diaz"
+        secondFamilyName:          
+          description: second family name in case of multiple family names. The element lastName includes all family names.
+          type: string
+          nullable: false  
+          example: "Lopez"
         email:
           type: string
           deprecated: true
