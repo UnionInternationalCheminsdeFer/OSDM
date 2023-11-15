@@ -5,7 +5,28 @@ hide_hero: true
 permalink: /spec/processes/
 ---
 
-## Introduction
+## Table of contents
+
+1. [Introduction](#introduction)
+2. [Overview of Services](#OverviewofServices)
+3. [Process Flow](#ProcessFlow)
+4. [Trips and Places Processes](#TripsandPlacesProcesses)
+5. [Offers](#Offers)
+   1. [Getting and Browsing Offers](#GettingOffers)
+   2. [Round Trip Handling](#RoundTripsHandling)
+   3. [Reservation](#Reservation)
+8. [Complex Example](#ComplexExample)
+9. [Booking Processes](#BookingProcesses)
+10. [After Sales Processes](#AfterSalesProcesses)
+    1. [Refund](#Refund)
+    2. [Release a Booking](#Refund)
+    3. [Partial Refund](#PartialRefund)
+    4. [Cancel Fulfillment](#CancelFulfillment)
+    5. [Exchange](#Exchange)
+    6. [Complaints](#Complaints)
+    7. [Reimbursement](#Reimbursement)
+
+## Introduction <a name="introduction">
 
 This page shows a representation of the data models underlying the API
 specifications. It is therefore not a strict representation of the resources
@@ -16,7 +37,7 @@ of the API and its underlying concepts. As such, some of the details of how the
 information is structured in the API are not represented or simplified in the
 data models.
 
-## Overview of Services
+## Overview of Services  <a name="OverviewofServices">
 
 | Resources                                          | Description                                                            |
 | -------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -45,7 +66,7 @@ data models.
 | `/products`                                        | retrieve product information                                           |
 | `/zones`                                           | retrieve zone information                                              |
 
-## Process Flow
+## Process Flow <a name="ProcessFlow">
 
 ![Process Flow](../images/processes/act-process-flow.png)
 
@@ -57,7 +78,7 @@ the booking can either be on paper or paperless.
 If needed bookings can either be refunded or exchanged by providing the customer
 with a refund or exchange offer which can then be booked by the customer.
 
-## Trips and Places Processes
+## Trips and Places Processes <a name="TripsandPlacesProcesses">
 
 ### Looking Up Places
 
@@ -145,9 +166,9 @@ In case the error can apply to multiple fields, it is recommended to provide
 additional details such as the incriminated field in the detail property of the
 `Problem` element.
 
-## Offers
+## Offers  <a name="Offers">
 
-### Getting and Browsing Offers
+### Getting and Browsing Offers <a name="GettingOffers">
 
 ![Getting and Browsing Offers](../images/processes/seq-getting-and-browsing-offers.png)
 
@@ -204,7 +225,7 @@ are identified and relevant to this section
 - Overbooking
 - Schedule correction applied
 
-### Round Trip Handling
+### Round Trip Handling <a name="RoundTripsHandling">
 
 We define a round trip as a mirrored couple of trips _(A-B B-A)_, each made of
 one or more segments.
@@ -310,7 +331,7 @@ return.
 - Schedule mismatch between systems
 - Unknown error on server side
 
-#### Reservation
+### Reservation <a name="Reservation">
 
 Reservation offers are part of the offer but the selection of places is an additionl intermediate step after the prebooking of offers. The selection of places can be made via a graphical display of available places or via the specifcation of customer requirements (at a table, at the window, etc..).
 
@@ -390,7 +411,7 @@ be used periodically as master data service . Second,
 `GET /coachLayouts/{layoutId}` returns the information for a given `layoutId`
 and can be used during the on-line offering and booking process.
 
-## A Complex Example Mixing Offers and Fares
+## A Complex Example Mixing Offers and Fares <a name="ComplexExample">
 
 ### Request From Front-end
 
@@ -420,7 +441,7 @@ Proposed trip by timetable system:
 |                               |                                      | Frankfurt → Wien Hbf (reservation) | Fare ÖBB     |
 | Wien Hbf → Wien Stephansplatz | Metro                                | Fare ÖBB                           |              |
 
-## Booking Processes
+## Booking Processes <a name="BookingProcesses">
 
 ### Creating a Booking Based on Offers
 
@@ -908,9 +929,9 @@ These are the required information needed per process step for major parties
 | **SNCF**            | `dateOfBirth` is mandatory, a fake date can be used at offer time, but the real one must be provided at pre-booking time                                                                                                                                                                                       |                                                                                                                                         |
 | **Eurostar/Thalys** | `firstName` and `lastName`                                                                                                                                                                                                                                                                                     | Thalys loyalty card number                                                                                                              |
 
-## After Sales Processes
+## After Sales Processes  <a name="AfterSalesProcesses">
 
-### Refund
+### Refund <a name="Refund">
 
 #### Request a Refund Offer
 
@@ -938,7 +959,8 @@ potential refund fee, etc (see the model for more details).
 
 ![Confirm a Refund Offer](../images/processes/seq-confirm-a-refund-offer.png)
 
-### Release a Booking
+### Release a Booking <a name="ReleaseBooking">
+
 
 #### Request a release Offer
 
@@ -962,7 +984,10 @@ offer is requested and needs to be confirmed to be applied.
 
 ![Confirm a Release Offer](../images/processes/seq-confirm-a-release-offer.png)
 
-### Cancel Fulfillment
+### Partial Refund <a name="PartialRefund">
+
+
+### Cancel Fulfillment  <a name="CancelFulfillment">
 
 #### Cancel Fulfillment request
 
@@ -983,18 +1008,18 @@ offer can be confirmed to delete the fulfillment.
 
 ![Confirm a CancelFulfillment Offer](../images/processes/seq-confirm-a-cancelFulfillment-offer.png)
 
-### On Hold Bookings
+### On Hold Bookings  <a name="OnHoldBookings">
 
 An unconfirmed booking will expire after the time limit of the booking. An
 extension of the time limit can be requested as a OnHold-Offer. The offer can be
 requested and needs to be confirmed to extend the time limit. The OnHold offer
 might be subject to a fee.
 
-## Example End-to-end Interaction
+### Example End-to-end Interaction <a name="ExampleEnd-To-End">
 
 ![Example End to End Interaction](../images/processes/seq-end-to-end-interaction.png)
 
-### Exchange
+### Exchange  <a name="Exchange">
 
 #### Requesting an exchange offer
 
@@ -1017,7 +1042,7 @@ the passengers card data (card number).
 The offer for a replacement returned might include a fee. The replacement offer
 needs to be accepted and booked the same way as a usual offer.
 
-### Complaints
+### Complaints  <a name="Complaints">
 
 Complaints can be provided on behalf of a passenger. Complaints might concern a
 delay of a train or a service degradation on the journey. The handling of
@@ -1038,7 +1063,7 @@ held.
 
 ![Complaint](../images/processes/seq-complaintManagement2.png)
 
-### Reimbursement
+### Reimbursement <a name="Reimbursement">
 
 Customers who have bought a ticket which allows reimbursement and which have not
 traveled or traveled partially only can claim to be reimbursed. The customer
