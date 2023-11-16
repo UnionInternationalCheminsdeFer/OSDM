@@ -11417,7 +11417,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceProperty'
-        splittSection:
+        splitSection:
           description: | 
             indication of the covered part of a leg in case the reserved 
             place does not cover the whole leg. This element is allowed 
