@@ -410,6 +410,14 @@ sub types.
 }
 ```
 
+##### Partial Reservation
+
+A provider might offer a reservation even in case the seat is not available on the whole leg. In this casethe provider should 
+include multiple reservation in the offer that will provide a reservation on a part of the leg.
+
+A proprietary implemnetation is included in the specification where the split is indicated only in the reservation lateron using the 
+splitSection data in the ReservedPlace object. A provider is allowed to use the splitSection only in case the client has allowed this by sending a ProductTag SPLITT_RESERVATION in the offer request. 
+
 #### Getting Coach Layouts
 
 Graphical seat reservation allows a customer to conveniently choose its
