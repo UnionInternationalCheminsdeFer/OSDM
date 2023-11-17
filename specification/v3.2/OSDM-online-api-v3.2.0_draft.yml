@@ -4612,7 +4612,6 @@ components:
           $ref: '#/components/schemas/IndicatedConsumption'
         _links:
           description: |
-            
             Java Property Name: 'links' 
           type: array
           items:
@@ -4681,25 +4680,25 @@ components:
         
       type: string
       x-extensible-enum:
-        - DOG
-        - PET
-        - LUGGAGE
-        - PRM
-        - BICYCLE
-        - PRAM
-        - COMPANION_DOG
-        - CAR
-        - MOTORCYCLE
-        - TRAILER
-        - FAMILY_CHILD
-        - WHEELCHAIR
-        - PERSON
-        - YOUNG_CHILD
-        - CHILD
-        - YOUTH
-        - ADULT
-        - SENIOR
-      default: PERSON
+        - "DOG"
+        - "PET"
+        - "LUGGAGE"
+        - "PRM"
+        - "BICYCLE"
+        - "PRAM"
+        - "COMPANION_DOG"
+        - "CAR"
+        - "MOTORCYCLE""
+        - "TRAILER"
+        - "FAMILY_CHILD"
+        - "WHEELCHAIR"
+        - "PERSON"
+        - "YOUNG_CHILD"
+        - "CHILD"
+        - "YOUTH"
+        - "ADULT"
+        - "SENIOR"
+      default: "PERSON"
 
     AdditionalOfferCollectionResponse:
       type: object
@@ -5093,9 +5092,9 @@ components:
     ApplicabilityType:
       type: string
       x-extensible-enum:
-        - BOOKING
-        - TRIP
-        - OFFERPART
+        - "BOOKING"
+        - "TRIP"
+        - "OFFERPART"
 
     AppliedPassengerType:
       type: object
@@ -5131,18 +5130,18 @@ components:
         Indication of items attached to the car
       type: string
       x-extensible-enum:
-        - ROOF_RACK
-        - BICYCLE_STAND
+        - "ROOF_RACK"
+        - "BICYCLE_STAND"
 
     AvailabilityStatus:
       description: |
         status of the place or coach
       type: string
       enum:
-        - ALLOCATED
-        - FREE
-        - RESTRICTED
-      default: FREE
+        - "ALLOCATED"
+        - "FREE"
+        - "RESTRICTED"
+      default: "FREE"
 
     AvailablePlace:
       type: object
@@ -5194,20 +5193,20 @@ components:
       description: |
         Status of the request sent to the back office.
         Valid Values:
-        - INITIATED
-        - EVALUATING
-        - DECIDED
-        - SETTLED
-        - INFORMATION_MISSING
-        - REQUEST_UPDATED: Additional information, i.e. documents have been provided which should trigger reevaluation.
+        - "INITIATED"
+        - "EVALUATING"
+        - "DECIDED"
+        - "SETTLED"
+        - "INFORMATION_MISSING"
+        - "REQUEST_UPDATED": Additional information, i.e. documents have been provided which should trigger reevaluation.
       type: string
       enum:
-        - INITIATED
-        - EVALUATING
-        - DECIDED
-        - SETTLED
-        - INFORMATION_MISSING
-        - REQUEST_UPDATED
+        - "INITIATED"
+        - "EVALUATING"
+        - "DECIDED"
+        - "SETTLED"
+        - "INFORMATION_MISSING"
+        - "REQUEST_UPDATED"
 
     BankAccountReference:
       type: object
@@ -5239,16 +5238,17 @@ components:
     BankIdCode:
       type: string
       x-extensible-enum:
-        - SWIFT
+        - "SWIFT"
 
     BarCodeType:
       description: |
         Item according to IRS 90918-9: FCB, TLB, SSB
       type: string
       x-extensible-enum:
-        - FCB
-        - TLB
-        - SSB
+        - "FCB"
+        - "TLB"
+        - "SSB"
+        - "DOSIPAS"
 
     BaseTripPolicyFilter:
       type: object
@@ -5609,7 +5609,6 @@ components:
           nullable: true
         _links:
           description: |
-            
             Java Property Name: 'links' 
           type: array
           items:
@@ -5657,16 +5656,16 @@ components:
     BookingPartStatus:
       type: string
       enum:
-        - PREBOOKED
-        - ON_HOLD
-        - CONFIRMED
-        - FULFILLED
-        - CANCELLED
-        - RELEASED
-        - REFUNDED
-        - EXCHANGE_ONGOING
-        - EXCHANGED
-        - ERROR
+        - "PREBOOKED"
+        - "ON_HOLD"
+        - "CONFIRMED"
+        - "FULFILLED"
+        - "CANCELLED"
+        - "RELEASED"
+        - "REFUNDED"
+        - "EXCHANGE_ONGOING"
+        - "EXCHANGED"
+        - "ERROR"
 
     BookingPartSummary:
       type: object
