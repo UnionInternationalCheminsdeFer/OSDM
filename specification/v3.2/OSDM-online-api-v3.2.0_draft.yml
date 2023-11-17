@@ -3825,7 +3825,6 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3882,7 +3881,7 @@ paths:
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            List of available seats
           content:
             application/json:
               schema:
@@ -3914,6 +3913,66 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+    post:
+      tags:
+        - Availabilities
+      summary: Get multiple place maps including availabilities.
+      description: |
+        Get multiple place maps including availabilities.
+      operationId: getAvailabilitiesPlaceMaps
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: array
+              minitems: 1
+              maxItems: 50
+              items:              
+                $ref: '#/components/schemas/PricingReference'     
+      responses:
+        '200':
+          description: |
+            place availabilities for the requested fares and offer parts
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 50
+                items:                 
+                  $ref: '#/components/schemas/PlaceAvailability'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+    
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'          
   /availabilities/nearby:
     get:
       tags:
@@ -4561,7 +4620,6 @@ components:
             List of tags (and their type) that allow identifying sets of compatible offers when trying to combine multiple offers covering one single trip.
             At least one (not all) tripTags must be in common to allow combination
             If no tag is provided, there is no trip constraint on this specific offer.
-            
           type: array
           items:
             type: string
@@ -9929,6 +9987,8 @@ components:
       required:
         - vehicle
       properties:
+        reference:
+          $ref: '#/components/schemas/PricingReference'   
         vehicle:
           $ref: '#/components/schemas/Vehicle'
         preSelections:
@@ -9937,6 +9997,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlacePreSelection'
+            
 
     PlaceAvailabilityCollectionResponse:
       type: object
@@ -9957,6 +10018,18 @@ components:
           $ref: '#/components/schemas/WarningCollection'
         vehicleAvailability:
           $ref: '#/components/schemas/PlaceAvailability'
+          
+          
+    PlaceAvailabilitiesResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        warning:
+          $ref: '#/components/schemas/WarningCollection'
+        vehicleAvailabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceAvailability'
 
     PlaceParam:
       type: object
@@ -10256,6 +10329,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VAT'
+
+    PricingReference:
+      type: object
+      description: reference to a fare or offerPart  
+      required: 
+        - contextId
+        - contextType
+        - resourceId
+        - resourceType    
+      properties:
+        contextId:
+          type: string
+        contextType:
+          $ref: '#/components/schemas/ContextType' 
+        resourceId:
+          type: string
+        resourceType:
+          $ref: '#/components/schemas/ResourceType' 
 
     Problem:
       type: object
