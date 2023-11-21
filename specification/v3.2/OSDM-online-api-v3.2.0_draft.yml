@@ -9236,7 +9236,7 @@ components:
         productTags:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ProductTag'
           nullable: true
         flexibilities:
           description: |
@@ -10402,6 +10402,18 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
+    ProductTag:
+      description: |
+        Known values:
+        - SPLITED_RESERVATION
+          Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation
+          Without this indication the provider is not allowed to use the SplittedSection Oject inside a reservation. 
+          The implmntation of SPLITED_RESERVATION is not recommended. To provide reservations that do not cover a full leg 
+          multiple reservations as offerParts should be created.
+      type: string
+      x-extensible-enum:
+        - SPLITED_RESEVATION
+
     ProductType:
       description: |
         General product types harmonized across fare providers. (More to be added, use null for types not listed yet.)
@@ -11405,6 +11417,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceProperty'
+        splitSection:
+          description: | 
+            indication of the covered part of a leg in case the reserved 
+            place does not cover the whole leg. This element is allowed 
+            on in case the offer was requested using the SPLIT_RESERVATION product tag
+            an implementation is not recommendend
+          $ref: '#/components/schemas/Section'            
 
     Resource:
       type: object
