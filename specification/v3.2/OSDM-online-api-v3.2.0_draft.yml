@@ -9236,7 +9236,7 @@ components:
         productTags:
           type: array
           items:
-            type: '#/components/schemas/ProductTag'
+            $ref: '#/components/schemas/ProductTag'
           nullable: true
         flexibilities:
           description: |
