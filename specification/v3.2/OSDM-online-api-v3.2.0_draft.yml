@@ -4688,7 +4688,7 @@ components:
         - "PRAM"
         - "COMPANION_DOG"
         - "CAR"
-        - "MOTORCYCLE""
+        - "MOTORCYCLE"
         - "TRAILER"
         - "FAMILY_CHILD"
         - "WHEELCHAIR"
