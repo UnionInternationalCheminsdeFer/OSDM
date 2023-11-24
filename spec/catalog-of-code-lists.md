@@ -106,8 +106,7 @@ of by the customer.
 | `INCLUDING_MEAL`        | Y                      | Y                | Y              | Meal at the place is included                                                                    |                        |
 | `INCLUDING_DRINK`       | Y                      | Y                | Y              | A drink is included at the place                                                                 |                        |
 | `KIOSQUE`               | N                      | Y                | Y              | Kiosque (special seats in edge area of a TGV)                                                    |                        |
-| `LADIES`                | N                      | Y                | Y              | Ladies compartment                                                                               |                        |
-                                                                            |                        |            
+| `LADIES`                | N                      | Y                | Y              | Ladies compartment                                                                               |                        |    
 | `LOWER_BED`             | N                      | Y                | Y              | Lower bed or couchette                                                                           | `PLACE_LOCATION`       |
 | `LOWER_DECK`            | N                      | Y                | Y              | Lower deck in a double deck train                                                                | `DECK`                 |
 | `MEN`                   | N                      | Y                | Y              | Men compartment in night train                                                                   |                        |
@@ -137,7 +136,8 @@ of by the customer.
 | `SALON`                 | N                      | Y                | Y              | Salon (6 seats facing in a separate compartment)                                                 |                        |
 | `SLEEPERETTE`           | Y                      | N                | Y              | Sleeperette (reclining seat)                                                                     |                        |
 | `SLEEPER_DELUXE`        | Y                      | N                | Y              | berth deluxe                                                                                     |                        |
-| `SOLO`                  | N                      | Y                | Y              | Separate place without neighbor seat                                                             | `PLACE_LOCATION`       |
+| `SOLO`                  | Y                      | Y                | Y              | Separate place without neighbor seat                                                             | `PLACE_LOCATION`       |
+| `SOLO_COM`               | N                      | Y                | Y              | Special separate place without neighbor seat (e.g. in TGV)                                                            | `PLACE_LOCATION`       |
 | `SPECIAL_SLEEPER`       | Y                      | N                | Y              | Special Sleeper Compartment, one Person sleeper compartment smaller than a Single                |                        |
 | `TABLE`                 | N                      | Y                | Y              | Places at a table                                                                                |                        |
 | `TANDEM`                | Y                      | Y                | Y              | Tandem Bicycle                                                                                   |                        |
