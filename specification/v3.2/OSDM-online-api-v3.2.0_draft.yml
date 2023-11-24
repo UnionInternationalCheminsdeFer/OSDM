@@ -4354,7 +4354,6 @@ components:
         - objectType
         - id
         - createdOn
-        - confirmableUntil
         - validFrom
         - price
         - status
@@ -4379,7 +4378,8 @@ components:
           nullable: false
         confirmableUntil:
           description: |
-            Date until the booking needs to be confirmed
+            Date until the booking part needs to be confirmed. Must be provided for a booking part in PREBOOKED stated.
+            For later states, the value is ignored and can be null.
           type: string
           format: date-time
           nullable: false
