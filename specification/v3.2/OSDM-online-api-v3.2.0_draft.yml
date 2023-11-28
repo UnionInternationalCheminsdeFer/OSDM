@@ -4472,6 +4472,24 @@ components:
             $ref: '#/components/schemas/CardReference'
         indicatedConsumption:
           $ref: '#/components/schemas/IndicatedConsumption'
+        accountingReference:
+          $ref: '#/components/schemas/AccountingRef'
+
+    AccountingRef:
+      description: |
+          reference to accounting data in case the accounting is not provided by the API provider
+      type: object
+      required: 
+        - company
+      properties:
+        accountingCompany:
+          $ref: '#/components/schemas/CompanyRef'
+        accountingIds:
+          description: |
+            ids of accounting data used to link the booking part with accounting data in the billing send by the accounting company
+          type: array
+          items:
+            type: string          
 
     AbstractOfferPart:
       type: object
