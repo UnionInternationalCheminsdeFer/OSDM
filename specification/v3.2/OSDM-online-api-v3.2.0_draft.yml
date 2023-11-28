@@ -4472,7 +4472,7 @@ components:
             $ref: '#/components/schemas/CardReference'
         indicatedConsumption:
           $ref: '#/components/schemas/IndicatedConsumption'
-        accountingReference:
+        accountingRef:
           $ref: '#/components/schemas/AccountingRef'
 
     AccountingRef:
