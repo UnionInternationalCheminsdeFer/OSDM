@@ -727,29 +727,29 @@ by a specific carrier:
 
 | Predefined Card-Ids       | Issuer | Description                                  | Type           | Included Cards         |
 | ------------------------- | ------ | -------------------------------------------- | -------------- | ---------------------- |
-| `UIC_EURAIL`              | Eurail | Eurail Pass                                  | PASS           |                        |
-| `UIC_INTERRAIL`           | Eurail | Interrail Pass                               | PASS           |                        |
+| `UIC_EURAIL`              | Eurail | Eurail Pass                                  | TRAVEL_PASS    |                        |
+| `UIC_INTERRAIL`           | Eurail | Interrail Pass                               | TRAVEL_PASS    |                        |
 | `UIC_FIP_LEASURE_RED`     | FIP    | FIP reduction (50%)                          | REDUCTION_CARD |                        |
-| `UIC_FIP_DUTY`            | FIP    | FIP duty                                     | PASS           |                        |
-| `UIC_FIP_LEASURE_FREE`    | FIP    | FIP free personal use                        | PASS           |                        |
+| `UIC_FIP_DUTY`            | FIP    | FIP duty                                     | TRAVEL_PASS    |                        |
+| `UIC_FIP_LEASURE_FREE`    | FIP    | FIP free personal use                        | TRAVEL_PASS    |                        |
 | `UIC_RAILPLUS`            | \*     | A pure rail plus card                        | REDUCTION_CARD |                        |
 | `UIC_RIT_1`               | \*     | RIT reduction for RIT 1 members              | REDUCTION_CARD |                        |
 | `UIC_RIT_2`               | \*     | RIT reduction for RIT 2 members              | REDUCTION_CARD |                        |
 | `UIC_RIT_3`               | \*     | RIT reduction for RIT 3 members              | REDUCTION_CARD |                        |
-| `UIC_EURAIL_1`            | Eurail | Eurail Pass First Class                      | PASS           |                        |
-| `UIC_INTERRAIL_1`         | Eurail | Interrail Pass First Class                   | PASS           |                        |
+| `UIC_EURAIL_1`            | Eurail | Eurail Pass First Class                      | TRAVEL_PASS    |                        |
+| `UIC_INTERRAIL_1`         | Eurail | Interrail Pass First Class                   | TRAVEL_PASS    |                        |
 | `UIC_FIP_LEASURE_RED_1`   | FIP    | FIP reduction (50%) First Class              | REDUCTION_CARD |                        |
-| `UIC_FIP_DUTY_1`          | FIP    | FIP duty First Class                         | PASS           |                        |
-| `UIC_FIP_LEASURE_FREE_1`  | FIP    | FIP free personal use First Class            | PASS           |                        |
+| `UIC_FIP_DUTY_1`          | FIP    | FIP duty First Class                         | TRAVEL_PASS    |                        |
+| `UIC_FIP_LEASURE_FREE_1`  | FIP    | FIP free personal use First Class            | TRAVEL_PASS    |                        |
 | `UIC_RAILPLUS_1`          | \*     | A pure rail plus card First Class            | REDUCTION_CARD |                        |
 | `UIC_RIT_1_1`             | \*     | RIT reduction for RIT 1 First Class members  | REDUCTION_CARD |                        |
 | `UIC_RIT_2_1`             | \*     | RIT reduction for RIT 2 First Class members  | REDUCTION_CARD |                        |
 | `UIC_RIT_3_1`             | \*     | RIT reduction for RIT 3 First Class members  | REDUCTION_CARD |                        |
-| `UIC_EURAIL_2`            | Eurail | Eurail Pass Second Class                     | PASS           |                        |
-| `UIC_INTERRAIL_2`         | Eurail | Interrail Pass Second Class                  | PASS           |                        |
+| `UIC_EURAIL_2`            | Eurail | Eurail Pass Second Class                     | TRAVEL_PASS    |                        |
+| `UIC_INTERRAIL_2`         | Eurail | Interrail Pass Second Class                  | TRAVEL_PASS    |                        |
 | `UIC_FIP_LEASURE_RED_2`   | FIP    | FIP reduction (50%) Second Class             | REDUCTION_CARD |                        |
-| `UIC_FIP_DUTY_2`          | FIP    | FIP duty Second Class                        | PASS           |                        |
-| `UIC_FIP_LEASURE_FREE_2`  | FIP    | FIP free personal use Second Class           | PASS           |                        |
+| `UIC_FIP_DUTY_2`          | FIP    | FIP duty Second Class                        | TRAVEL_PASS    |                        |
+| `UIC_FIP_LEASURE_FREE_2`  | FIP    | FIP free personal use Second Class           | TRAVEL_PASS    |                        |
 | `UIC_RAILPLUS_2`          | \*     | A pure rail plus card Second Class           | REDUCTION_CARD |                        |
 | `UIC_RIT_1_2`             | \*     | RIT reduction for RIT 1 members Second Class | REDUCTION_CARD |                        |
 | `UIC_RIT_2_2`             | \*     | RIT reduction for RIT 2 members Second Class | REDUCTION_CARD |                        |
@@ -758,6 +758,7 @@ by a specific carrier:
 | `UIC_INT_DISABILITY_CARD` | \*     | International Disabled Card                  | REDUCTION_CARD | UIC_EU_DISABILITY_CARD |
 
 Other cards should start with the RICS code of the issuer.
+
 
 ## Reservation Preference Group
 
@@ -1173,6 +1174,15 @@ Transaction type used in after sales rules for fares.
 | `EXCHANGE_SAME_CARRIER` | Exchange with a new fare of the same carrier |
 | `UPGRADE`               | Exchange with a fare of higher value         |
 | `GROUP_DOWN_SIZE`       | Exchange with a group of less passengers     |
+
+## Travel Account Types
+
+| Code                      | Description                                                                |
+| ------------------------- | -------------------------------------------------------------------------- |
+| TRAVEL_PASS               | A travel account or card that also serves as ticket in some area           |
+| REDUCTION_CARD            | A customer card providing reductions                                       |
+| MULTI_RIDE                | A travel account that provides a limited number if trips or item           |
+| LOYALTY_CARD              | A customer/traveler card that only serves to collect loyality incentives   |
 
 ## TravelDirection
   
