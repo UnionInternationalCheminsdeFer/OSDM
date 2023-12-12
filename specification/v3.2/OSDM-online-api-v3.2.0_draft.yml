@@ -109,6 +109,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/ifNoneMatch'
         - name: page
           in: query
           description: |
@@ -128,9 +129,17 @@ paths:
               schema:
                 type: string
                 default: 'public, max-age=10000'
-                description: |
+              description: |
                   Resource is fairly persistent and has a medium time to live to allow short-term caching.
-    
+            ETag:
+              schema:
+                type: string
+              description: |
+                  Version tag
+        '303':
+          $ref: '#/components/responses/SeeOtherResponse'
+        '304':
+          $ref: '#/components/responses/NotModifiedResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -4218,6 +4227,14 @@ components:
       schema:
         type: string
 
+    ifNoneMatch:
+      name: If-None-Match
+      in: header
+      description: |
+        The HTTP If-None-Match is used to check whether the providing system has a newer version of the requested data.
+      schema:
+        type: string
+
     requestor:
       name: Requestor
       in: header
@@ -4247,6 +4264,25 @@ components:
         type: string
 
   responses:
+    SeeOtherResponse:
+      description: |
+        See Other (303)
+      headers:
+        Location:
+          schema:
+            type: string
+          description: |
+              Location (URN) of the response data
+        ETag:
+          schema:
+            type: string
+          description: |
+              Version tag
+
+    NotModifiedResponse:
+      description: |
+        Not Modified (304)
+        
     BadRequestResponse:
       description: |
         Bad Request (400)
