@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.2.0
+  version: 3.1.1
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
     
@@ -25,9 +25,6 @@ servers:
   - url: https://s3p-osdm.cloud.sqills.com
     description: |
       Sqills Sandbox
-  - url: https://osdm-5.platform.bileto.zone/api
-    description: |
-      Bileto Sandbox (osdm.cz)
 
 tags:
   - name: Places
@@ -109,7 +106,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/ifNoneMatch'
         - name: page
           in: query
           description: |
@@ -129,17 +125,9 @@ paths:
               schema:
                 type: string
                 default: 'public, max-age=10000'
-              description: |
+                description: |
                   Resource is fairly persistent and has a medium time to live to allow short-term caching.
-            ETag:
-              schema:
-                type: string
-              description: |
-                  Version tag
-        '303':
-          $ref: '#/components/responses/SeeOtherResponse'
-        '304':
-          $ref: '#/components/responses/NotModifiedResponse'
+    
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2786,7 +2774,6 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -4227,14 +4214,6 @@ components:
       schema:
         type: string
 
-    ifNoneMatch:
-      name: If-None-Match
-      in: header
-      description: |
-        The HTTP If-None-Match is used to check whether the providing system has a newer version of the requested data.
-      schema:
-        type: string
-
     requestor:
       name: Requestor
       in: header
@@ -4264,25 +4243,6 @@ components:
         type: string
 
   responses:
-    SeeOtherResponse:
-      description: |
-        See Other (303)
-      headers:
-        Location:
-          schema:
-            type: string
-          description: |
-              Location (URN) of the response data
-        ETag:
-          schema:
-            type: string
-          description: |
-              Version tag
-
-    NotModifiedResponse:
-      description: |
-        Not Modified (304)
-        
     BadRequestResponse:
       description: |
         Bad Request (400)
@@ -4390,6 +4350,7 @@ components:
         - objectType
         - id
         - createdOn
+        - confirmableUntil
         - validFrom
         - price
         - status
@@ -4414,8 +4375,7 @@ components:
           nullable: false
         confirmableUntil:
           description: |
-            Date until the booking part needs to be confirmed. Must be provided for a booking part in PREBOOKED stated.
-            For later states, the value is ignored and can be null.
+            Date until the booking needs to be confirmed
           type: string
           format: date-time
           nullable: false
@@ -4666,6 +4626,7 @@ components:
           $ref: '#/components/schemas/IndicatedConsumption'
         _links:
           description: |
+            
             Java Property Name: 'links' 
           type: array
           items:
@@ -4734,25 +4695,25 @@ components:
         
       type: string
       x-extensible-enum:
-        - "DOG"
-        - "PET"
-        - "LUGGAGE"
-        - "PRM"
-        - "BICYCLE"
-        - "PRAM"
-        - "COMPANION_DOG"
-        - "CAR"
-        - "MOTORCYCLE"
-        - "TRAILER"
-        - "FAMILY_CHILD"
-        - "WHEELCHAIR"
-        - "PERSON"
-        - "YOUNG_CHILD"
-        - "CHILD"
-        - "YOUTH"
-        - "ADULT"
-        - "SENIOR"
-      default: "PERSON"
+        - DOG
+        - PET
+        - LUGGAGE
+        - PRM
+        - BICYCLE
+        - PRAM
+        - COMPANION_DOG
+        - CAR
+        - MOTORCYCLE
+        - TRAILER
+        - FAMILY_CHILD
+        - WHEELCHAIR
+        - PERSON
+        - YOUNG_CHILD
+        - CHILD
+        - YOUTH
+        - ADULT
+        - SENIOR
+      default: PERSON
 
     AdditionalOfferCollectionResponse:
       type: object
@@ -5146,9 +5107,9 @@ components:
     ApplicabilityType:
       type: string
       x-extensible-enum:
-        - "BOOKING"
-        - "TRIP"
-        - "OFFERPART"
+        - BOOKING
+        - TRIP
+        - OFFERPART
 
     AppliedPassengerType:
       type: object
@@ -5184,18 +5145,18 @@ components:
         Indication of items attached to the car
       type: string
       x-extensible-enum:
-        - "ROOF_RACK"
-        - "BICYCLE_STAND"
+        - ROOF_RACK
+        - BICYCLE_STAND
 
     AvailabilityStatus:
       description: |
         status of the place or coach
       type: string
       enum:
-        - "ALLOCATED"
-        - "FREE"
-        - "RESTRICTED"
-      default: "FREE"
+        - ALLOCATED
+        - FREE
+        - RESTRICTED
+      default: FREE
 
     AvailablePlace:
       type: object
@@ -5247,20 +5208,20 @@ components:
       description: |
         Status of the request sent to the back office.
         Valid Values:
-        - "INITIATED"
-        - "EVALUATING"
-        - "DECIDED"
-        - "SETTLED"
-        - "INFORMATION_MISSING"
-        - "REQUEST_UPDATED": Additional information, i.e. documents have been provided which should trigger reevaluation.
+        - INITIATED
+        - EVALUATING
+        - DECIDED
+        - SETTLED
+        - INFORMATION_MISSING
+        - REQUEST_UPDATED: Additional information, i.e. documents have been provided which should trigger reevaluation.
       type: string
       enum:
-        - "INITIATED"
-        - "EVALUATING"
-        - "DECIDED"
-        - "SETTLED"
-        - "INFORMATION_MISSING"
-        - "REQUEST_UPDATED"
+        - INITIATED
+        - EVALUATING
+        - DECIDED
+        - SETTLED
+        - INFORMATION_MISSING
+        - REQUEST_UPDATED
 
     BankAccountReference:
       type: object
@@ -5292,17 +5253,16 @@ components:
     BankIdCode:
       type: string
       x-extensible-enum:
-        - "SWIFT"
+        - SWIFT
 
     BarCodeType:
       description: |
         Item according to IRS 90918-9: FCB, TLB, SSB
       type: string
       x-extensible-enum:
-        - "FCB"
-        - "TLB"
-        - "SSB"
-        - "DOSIPAS"
+        - FCB
+        - TLB
+        - SSB
 
     BaseTripPolicyFilter:
       type: object
@@ -5663,6 +5623,7 @@ components:
           nullable: true
         _links:
           description: |
+            
             Java Property Name: 'links' 
           type: array
           items:
@@ -5710,16 +5671,16 @@ components:
     BookingPartStatus:
       type: string
       enum:
-        - "PREBOOKED"
-        - "ON_HOLD"
-        - "CONFIRMED"
-        - "FULFILLED"
-        - "CANCELLED"
-        - "RELEASED"
-        - "REFUNDED"
-        - "EXCHANGE_ONGOING"
-        - "EXCHANGED"
-        - "ERROR"
+        - PREBOOKED
+        - ON_HOLD
+        - CONFIRMED
+        - FULFILLED
+        - CANCELLED
+        - RELEASED
+        - REFUNDED
+        - EXCHANGE_ONGOING
+        - EXCHANGED
+        - ERROR
 
     BookingPartSummary:
       type: object
@@ -5750,9 +5711,9 @@ components:
     BookingPartType:
       type: string
       enum:
-        - "ADMISSION"
-        - "RESERVATION"
-        - "ANCILLARY"
+        - ADMISSION
+        - RESERVATION
+        - ANCILLARY
 
     BookingPatchRequest:
       type: object
@@ -5826,20 +5787,20 @@ components:
         Influences whether referenced resources are returned in full or as references only. 
       type: string
       enum:
-        - "ALL"
-        - "BOOKING"
-        - "BOOKING_PASSENGERS"
-        - "BOOKING_PURCHASER"
-        - "BOOKING_TRIPS"
-        - "BOOKING_BOOKEDOFFERS"
-        - "BOOKING_FULFILLMENTS"
-        - "BOOKING_DOCUMENTS"
-        - "BOOKING_REFUNDOFFERS"
-        - "BOOKING_RELEASEOFFERS"
-        - "BOOKING_CANCELFULFILLMENTSOFFER"
-        - "BOOKING_EXCHANGEOPERATIONS"
-        - "NONE"
-      default: "ALL"
+        - ALL
+        - BOOKING
+        - BOOKING_PASSENGERS
+        - BOOKING_PURCHASER
+        - BOOKING_TRIPS
+        - BOOKING_BOOKEDOFFERS
+        - BOOKING_FULFILLMENTS
+        - BOOKING_DOCUMENTS
+        - BOOKING_REFUNDOFFERS
+        - BOOKING_RELEASEOFFERS
+        - BOOKING_CANCELFULFILLMENTSOFFER
+        - BOOKING_EXCHANGEOPERATIONS
+        - NONE
+      default: ALL
 
     BookingSearchParameters:
       type: object
@@ -6404,6 +6365,7 @@ components:
           $ref: '#/components/schemas/CoachLayoutGridSize'
         _links:
           description: |
+            
             Java Property Name: 'links' 
           type: array
           items:
@@ -6497,6 +6459,7 @@ components:
           description: |
             Icon type of the graphical item type. Code list according to UIC90918-1
             graphical item type e.g. silence area sign = 116
+            
           type: string
           nullable: false
         coords:
@@ -6549,7 +6512,9 @@ components:
       type: string
       description: |
         Identifies a company. For rail, a RICS company code or compatible ERA company code are used. 
+        
         E.g.: "urn:uic:rics:1185:000011"
+        
       nullable: false
 
     Compartment:
@@ -6617,14 +6582,14 @@ components:
     ComplaintChangeReason:
       description: |
         Known Values:
-        - "BANK_ACCOUNT"
-        - "SETTLED_TIME_LIMIT_EXCEEDED": A distributor settled the claim as the fare provided did not reply in due time. The compensation amount debited is provided.
-        - "PASSENGER_CHANGE"
+        - BANK_ACCOUNT
+        - SETTLED_TIME_LIMIT_EXCEEDED: A distributor settled the claim as the fare provided did not reply in due time. The compensation amount debited is provided.
+        - PASSENGER_CHANGE
       type: string
       x-extensible-enum:
-        - "BANK_ACCOUNT"
-        - "SETTLED_TIME_LIMIT_EXCEEDED"
-        - "PASSENGER_CHANGE"
+        - BANK_ACCOUNT
+        - SETTLED_TIME_LIMIT_EXCEEDED
+        - PASSENGER_CHANGE
 
     ComplaintDecision:
       type: object
@@ -6709,13 +6674,13 @@ components:
     ConditionType:
       type: string
       x-extensible-enum:
-        - "PRE_SALE"
-        - "SALE"
-        - "TRAVEL"
-        - "PLACE_CHANGE"
-        - "FULFILLMENT"
-        - "EXCHANGE"
-        - "REFUND"
+        - PRE_SALE
+        - SALE
+        - TRAVEL
+        - PLACE_CHANGE
+        - FULFILLMENT
+        - EXCHANGE
+        - REFUND
 
     ContactDetail:
       type: object
@@ -6748,8 +6713,8 @@ components:
     ContextType:
       type: string
       enum:
-        - "OFFER"
-        - "BOOKING"
+        - OFFER
+        - BOOKING
 
     ContinuousLeg:
       type: object
@@ -6798,9 +6763,9 @@ components:
         Types of modes that run at any time without a timetable. Provided by OJP.
       type: string
       x-extensible-enum:
-        - "WALK"
-        - "DEMAND_RESPONSIVE"
-        - "REPLACEMENT_SERVICE"
+        - WALK
+        - DEMAND_RESPONSIVE
+        - REPLACEMENT_SERVICE
 
     ContinuousService:
       type: object
@@ -6843,14 +6808,14 @@ components:
     ControlSecurityType:
       description: |
         Known Values:
-        - "SiP": secure paper tickets
-        - "SiD": security in data (signed bar code)
-        - "SiS": security in system
+        - SiP: secure paper tickets
+        - SiD: security in data (signed bar code)
+        - SiS: security in system
       type: string
       x-extensible-enum:
-        - "SiP"
-        - "SiD"
-        - "SiS"
+        - SiP
+        - SiD
+        - SiS
 
     CorporateCode:
       type: object
@@ -6881,14 +6846,14 @@ components:
       description: |
         ISO country code (2 alpha), relative URNs with base urn:iso:std:iso:3166 are recommended
       nullable: false
-      example: "DE"
+      example: DE
 
     Currency:
       type: string
       description: |
         ISO 4217 currency codes
       nullable: false
-      example: "CHF"
+      example: CHF
 
     CustomerComplaint:
       type: object
@@ -7011,10 +6976,10 @@ components:
         - DOWN: down (from right side of the coach pointing to the middle of the aisle)
       type: string
       enum:
-        - "RIGHT"
-        - "LEFT"
-        - "UP"
-        - "DOWN"
+        - RIGHT
+        - LEFT
+        - UP
+        - DOWN
 
     Document:
       type: object
@@ -7096,8 +7061,8 @@ components:
     DocumentScope:
       type: string
       enum:
-        - "BOOKING"
-        - "PASSENGER"
+        - BOOKING
+        - PASSENGER
 
     DocumentSpecification:
       type: object
@@ -7133,10 +7098,10 @@ components:
     DocumentType:
       type: string
       enum:
-        - "BOOKING_RECEIPT"
-        - "CO2_REPORT"
-        - "INFORMATION"
-        - "COMPLAINT_EXPLANATION"
+        - BOOKING_RECEIPT
+        - CO2_REPORT
+        - INFORMATION
+        - COMPLAINT_EXPLANATION
 
     Event:
       type: object
@@ -7192,20 +7157,20 @@ components:
     EventType:
       type: string
       enum:
-        - "BOOKING_REAL_TIME_EVENT_OCCURED"
-        - "BOOKING_REACOMMODATED"
-        - "BOOKING_TRIP_CHANGED"
-        - "BOOKING_TRIP_CONFIRMED"
-        - "FULFILLMENT_AVAILABLE"
-        - "DOCUMENT_AVAILABLE"
-        - "FULFILLMENT_REFUNDED"
-        - "FULFILLMENT_EXCHANGED"
-        - "FULFILLMENT_CONTROLLED"
-        - "ACCOMMODATION_RELEASED"
-        - "PURCHASER_CHANGED"
-        - "PASSENGER_CHANGED"
-        - "REFUND_INITIATED"
-        - "EXCHANGE_INITIATED"
+        - BOOKING_REAL_TIME_EVENT_OCCURED
+        - BOOKING_REACOMMODATED
+        - BOOKING_TRIP_CHANGED
+        - BOOKING_TRIP_CONFIRMED
+        - FULFILLMENT_AVAILABLE
+        - DOCUMENT_AVAILABLE
+        - FULFILLMENT_REFUNDED
+        - FULFILLMENT_EXCHANGED
+        - FULFILLMENT_CONTROLLED
+        - ACCOMMODATION_RELEASED
+        - PURCHASER_CHANGED
+        - PASSENGER_CHANGED
+        - REFUND_INITIATED
+        - EXCHANGE_INITIATED
 
     ExchangeOffer:
       type: object
@@ -7414,12 +7379,12 @@ components:
     ExchangeOfferCollectionResponseContent:
       type: string
       enum:
-        - "ALL"
-        - "EXCHANGEOFFERS"
-        - "TRIP"
-        - "PASSENGERS"
-        - "NONE"
-      default: "ALL"
+        - ALL
+        - EXCHANGEOFFERS
+        - TRIP
+        - PASSENGERS
+        - NONE
+      default: ALL
 
     ExchangeOperation:
       type: object
@@ -7498,19 +7463,19 @@ components:
         Influences whether referenced resources are returned in full or as references only.
       type: string
       enum:
-        - "ALL"
-        - "EXCHANGEOPERATION"
-        - "EXCHANGEOPERATION_EXCHANGEOFFERS"
-        - "EXCHANGEOPERATION_FULFILLMENTS"
-      default: "ALL"
+        - ALL
+        - EXCHANGEOPERATION
+        - EXCHANGEOPERATION_EXCHANGEOFFERS
+        - EXCHANGEOPERATION_FULFILLMENTS
+      default: ALL
 
     ExchangeStatus:
       type: string
       enum:
-        - "PREBOOKED"
-        - "CONFIRMED"
-        - "FULFILLED"
-        - "ERROR"
+        - PREBOOKED
+        - CONFIRMED
+        - FULFILLED
+        - ERROR
 
     ExchangeableType:
       description: |
@@ -7518,26 +7483,9 @@ components:
         NO when not exchangeable or exchangeable with 100% fee, WITH_CONDITIONS in all other cases.
       type: string
       enum:
-        - "YES"
-        - "NO"
-        - "WITH_CONDITION"
-        
-    ExchangeOfferItem:
-      type: object
-      required:
-        - exchangeFee
-        - exchangePrice
-        - bookingParts
-      properties:
-        exchangeFee:
-          description: Amount kept by the carrier and/or the distributor
-          $ref: '#/components/schemas/Price'
-        exchangePrice:
-          $ref: '#/components/schemas/Price'
-        bookingParts:
-          type: array
-          items:
-            $ref: '#/components/schemas/BookingPartReference'          
+        - YES
+        - NO
+        - WITH_CONDITION
 
     ExcludedTimeRange:
       type: object
@@ -7567,8 +7515,8 @@ components:
     ExclusionScope:
       type: string
       enum:
-        - "START_OF_TRAVEL"
-        - "COMPLETE_RANGE"
+        - START_OF_TRAVEL
+        - COMPLETE_RANGE
 
     Fare:
       type: object
@@ -7788,10 +7736,10 @@ components:
         Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
       type: string
       x-extensible-enum:
-        - "ADMISSION"
-        - "RESERVATION"
-        - "INTEGRATED_RESERVATION"
-        - "ANCILLARY"
+        - ADMISSION
+        - RESERVATION
+        - INTEGRATED_RESERVATION
+        - ANCILLARY
 
     Fee:
       type: object
@@ -7842,9 +7790,9 @@ components:
     Flexibility:
       type: string
       x-extensible-enum:
-        - "FULL_FLEXIBLE"
-        - "SEMI_FLEXIBLE"
-        - "NON_FLEXIBLE"
+        - FULL_FLEXIBLE
+        - SEMI_FLEXIBLE
+        - NON_FLEXIBLE
 
     Fulfillment:
       type: object
@@ -8040,11 +7988,11 @@ components:
         The type of fulfillment document.
       type: string
       x-extensible-enum:
-        - "BOARDING_PASS"
-        - "BOOKING_RECEIPT"
-        - "INFORMATION"
-        - "TICKET"
-        - "VOUCHER"
+        - BOARDING_PASS
+        - BOOKING_RECEIPT
+        - INFORMATION
+        - TICKET
+        - VOUCHER
 
     FulfillmentId:
       type: string
@@ -8081,13 +8029,13 @@ components:
         Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
       type: string
       x-extensible-enum:
-        - "ALLOCATOR_APP"
-        - "PDF_A4"
-        - "PKPASS"
-        - "RCCST"
-        - "RCT2"
-        - "UIC_PDF"
-        - "TICKETLESS"
+        - ALLOCATOR_APP
+        - PDF_A4
+        - PKPASS
+        - RCCST
+        - RCT2
+        - UIC_PDF
+        - TICKETLESS
 
     FulfillmentOption:
       type: object
@@ -8160,16 +8108,16 @@ components:
         Individual fulfillments of a multi journey booking need an separate patch to create the usable fulfillment in status FULFILLED before they are in an intermediate state AVAILABLE where they don't provide a document for travel. Fulfillments can be ON_HOLD in case they are booked but not yet available (e.g. a booking providing two journeys per week) or passed in case the fulfillment was not patched for usage within the required time.
       type: string
       enum:
-        - "AVAILABLE"
-        - "ON_HOLD"
-        - "CONFIRMED"
-        - "FULFILLED"
-        - "CHECKEDIN"
-        - "CANCELLED"
-        - "RELEASED"
-        - "REFUNDED"
-        - "EXCHANGED"
-        - "EXPIRED"
+        - AVAILABLE
+        - ON_HOLD
+        - CONFIRMED
+        - FULFILLED
+        - CHECKEDIN
+        - CANCELLED
+        - RELEASED
+        - REFUNDED
+        - EXCHANGED
+        - EXPIRED
 
     FulfillmentPatchRequest:
       type: object
@@ -8194,10 +8142,10 @@ components:
     FulfillmentType:
       type: string
       x-extensible-enum:
-        - "ETICKET"
-        - "CIT_PAPER"
-        - "PASS_CHIP"
-        - "PASS_REFERENCE"
+        - ETICKET
+        - CIT_PAPER
+        - PASS_CHIP
+        - PASS_REFERENCE
 
     FulfillmentUsage:
       type: object
@@ -8239,9 +8187,9 @@ components:
         The gender of the passenger, which is important in the case of night trains.
       type: string
       enum:
-        - "MALE"
-        - "FEMALE"
-        - "X"
+        - MALE
+        - FEMALE
+        - X
 
     GeneralAttribute:
       type: object
@@ -8292,18 +8240,18 @@ components:
     HistoryStatus:
       type: string
       enum:
-        - "PREBOOKED"
-        - "ON_HOLD"
-        - "CONFIRMED"
-        - "FULFILLED"
-        - "CANCELLED"
-        - "RELEASED"
-        - "REFUNDED"
-        - "EXCHANGED"
-        - "EXCHANGE_ONGOING"
-        - "ERROR"
-        - "AVAILABLE"
-        - "CHECKED_IN"
+        - PREBOOKED
+        - ON_HOLD
+        - CONFIRMED
+        - FULFILLED
+        - CANCELLED
+        - RELEASED
+        - REFUNDED
+        - EXCHANGED
+        - EXCHANGE_ONGOING
+        - ERROR
+        - AVAILABLE
+        - CHECKED_IN
 
     IdentificationCard:
       type: object
@@ -8374,10 +8322,10 @@ components:
         - SERVICE_DEGRADED: e.g. service class not provided
       type: string
       x-extensible-enum:
-        - "DELAY"
-        - "JOURNEY_ABANDONED"
-        - "JOURNEY_NOT_STARTED"
-        - "SERVICE_DEGRADED"
+        - DELAY
+        - JOURNEY_ABANDONED
+        - JOURNEY_NOT_STARTED
+        - SERVICE_DEGRADED
 
     IndicatedConsumption:
       type: object
@@ -8413,18 +8361,18 @@ components:
         Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
       type: string
       x-extensible-enum:
-        - "WALK"
-        - "CYCLE"
-        - "TAXI"
-        - "SELF_DRIVE_CAR"
-        - "OTHERS_DRIVE_CAR"
-        - "MOTORCYCLE"
-        - "TRUCK"
-        - "SCOOTER"
-        - "RIDE_POOL_CAR"
-        - "CAR_SHARING"
-        - "CYCLE_SHARING"
-        - "SCOOTER_SHARING"
+        - WALK
+        - CYCLE
+        - TAXI
+        - SELF_DRIVE_CAR
+        - OTHERS_DRIVE_CAR
+        - MOTORCYCLE
+        - TRUCK
+        - SCOOTER
+        - RIDE_POOL_CAR
+        - CAR_SHARING
+        - CYCLE_SHARING
+        - SCOOTER_SHARING
 
     InitialPlaceInput:
       type: object
@@ -8821,13 +8769,13 @@ components:
         
       type: string
       enum:
-        - "HEIGHT"
-        - "LENGTH"
-        - "WEIGHT"
-        - "WIDTH"
-        - "WIDTH_HEIGHT"
-        - "WIDTH_HEIGHT_LENGTH"
-        - "VOLUME"
+        - HEIGHT
+        - LENGTH
+        - WEIGHT
+        - WIDTH
+        - WIDTH_HEIGHT
+        - WIDTH_HEIGHT_LENGTH
+        - VOLUME
 
     LuggageRestriction:
       type: object
@@ -8865,7 +8813,7 @@ components:
         - CAN_CARRY: Weight is ok if you can carry it yourself.
       type: string
       enum:
-        - "CAN_CARRY"
+        - CAN_CARRY
 
     Mode:
       type: object
@@ -8948,10 +8896,10 @@ components:
     MountingType:
       type: string
       enum:
-        - "UPPER_BORDER"
-        - "LOWER_BORDER"
-        - "UPPER_TO_LOWER_BORDER"
-        - "FREE"
+        - UPPER_BORDER
+        - LOWER_BORDER
+        - UPPER_TO_LOWER_BORDER
+        - FREE
 
     MultiRideAccount:
       allOf:
@@ -9215,11 +9163,11 @@ components:
     OfferCollectionResponseContent:
       type: string
       enum:
-        - "ALL"
-        - "OFFERS"
-        - "TRIPS"
-        - "NONE"
-      default: "ALL"
+        - ALL
+        - OFFERS
+        - TRIPS
+        - NONE
+      default: ALL
 
     OfferMode:
       description: |
@@ -9231,8 +9179,8 @@ components:
         
       type: string
       enum:
-        - "COLLECTIVE"
-        - "INDIVIDUAL"
+        - COLLECTIVE
+        - INDIVIDUAL
 
     OfferPartReference:
       type: object
@@ -9266,13 +9214,13 @@ components:
         Default is to get search for offers of all types.
       type: string
       enum:
-        - "ADMISSION"
-        - "RESERVATION"
-        - "ANCILLARY"
-        - "FARE_ADMISSION"
-        - "FARE_RESERVATION"
-        - "FARE_ANCILLARY"
-        - "ALL"
+        - ADMISSION
+        - RESERVATION
+        - ANCILLARY
+        - FARE_ADMISSION
+        - FARE_RESERVATION
+        - FARE_ANCILLARY
+        - ALL
 
     OfferSearchCriteria:
       type: object
@@ -9285,7 +9233,7 @@ components:
         productTags:
           type: array
           items:
-            $ref: '#/components/schemas/ProductTag'
+            type: string
           nullable: true
         flexibilities:
           description: |
@@ -9562,72 +9510,72 @@ components:
         Reason for and type of an after sale, code list in IRS 90918-10.
         The PRM_SUPPORT_UNAVAILABLE overrule code shall only be used by the UIC PRM ABT tool.
         Known Values:
-        - "CONNECTION_BROKEN"
-        - "DEATH"
-        - "EQUIPMENT_FAILURE"
-        - "PAYMENT_FAILURE"
-        - "PRM_SUPPORT_UNAVAILABLE"
-        - "SALES_STAFF_ERROR"
-        - "STOP_NOT_SERVED"
-        - "STRIKE"
-        - "TECHNICAL_FAILURE"
-        - "TICKET_NOT_USED"
-        - "INABILITY_TO_TRAVEL": Inability to travel due to accident or sickness.
-        - "EXTERNAL_COMPENSATION": Offer has been compensated outside of the provider system in another way.
-        - "DISRUPTION": Inability to operate due to disruption.
-        - "JOURNEY_OBSOLETE": Due to external factors it's senseless to start the trip, thus the travel is obsolete.
-        - "CERTIFIED_MEDICAL_CONDITION": A medical certificate certifies that the passenger is unable to travel.
-        - "DELAY_COMPENSATION": Allows to override conditions in context of passenger rights regulation (PRR).
+        - CONNECTION_BROKEN
+        - DEATH
+        - EQUIPMENT_FAILURE
+        - PAYMENT_FAILURE
+        - PRM_SUPPORT_UNAVAILABLE
+        - SALES_STAFF_ERROR
+        - STOP_NOT_SERVED
+        - STRIKE
+        - TECHNICAL_FAILURE
+        - TICKET_NOT_USED
+        - INABILITY_TO_TRAVEL: Inability to travel due to accident or sickness.
+        - EXTERNAL_COMPENSATION: Offer has been compensated outside of the provider system in another way.
+        - DISRUPTION: Inability to operate due to disruption.
+        - JOURNEY_OBSOLETE: Due to external factors it's senseless to start the trip, thus the travel is obsolete.
+        - CERTIFIED_MEDICAL_CONDITION: A medical certificate certifies that the passenger is unable to travel.
+        - DELAY_COMPENSATION: Allows to override conditions in context of passenger rights regulation (PRR).
       type: string
       x-extensible-enum:
-        - "CONNECTION_BROKEN"
-        - "DEATH"
-        - "EQUIPMENT_FAILURE"
-        - "PAYMENT_FAILURE"
-        - "PRM_SUPPORT_UNAVAILABLE"
-        - "SALES_STAFF_ERROR"
-        - "STOP_NOT_SERVED"
-        - "STRIKE"
-        - "TECHNICAL_FAILURE"
-        - "TICKET_NOT_USED"
-        - "INABILITY_TO_TRAVEL"
-        - "EXTERNAL_COMPENSATION"
-        - "DISRUPTION"
-        - "JOURNEY_OBSOLETE"
-        - "CERTIFIED_MEDICAL_CONDITION"
-        - "DELAY_COMPENSATION"
+        - CONNECTION_BROKEN
+        - DEATH
+        - EQUIPMENT_FAILURE
+        - PAYMENT_FAILURE
+        - PRM_SUPPORT_UNAVAILABLE
+        - SALES_STAFF_ERROR
+        - STOP_NOT_SERVED
+        - STRIKE
+        - TECHNICAL_FAILURE
+        - TICKET_NOT_USED
+        - INABILITY_TO_TRAVEL
+        - EXTERNAL_COMPENSATION
+        - DISRUPTION
+        - JOURNEY_OBSOLETE
+        - CERTIFIED_MEDICAL_CONDITION
+        - DELAY_COMPENSATION
 
     PRMNeedType:
       type: string
       x-extensible-enum:
-        - "NEED_PRM_SUPPORT"
-        - "WHEELCHAIR"
-        - "ACCOMPANYING_DOG"
-        - "COMPANION_SEAT"
-        - "COMPANION"
+        - NEED_PRM_SUPPORT
+        - WHEELCHAIR
+        - ACCOMPANYING_DOG
+        - COMPANION_SEAT
+        - COMPANION
 
     PTMode:
       description: |
         TAP-TSI/UIC contains a sensible subset of SIRI Transport Modes.
       type: string
       x-extensible-enum:
-        - "HIGH_SPEED_TRAIN"
-        - "HISTORIC_TRAIN"
-        - "INTERCITY"
-        - "REGIONAL"
-        - "INTERREGIONAL"
-        - "URBAN"
-        - "TRAIN"
-        - "TRAM"
-        - "UNDERGROUND"
-        - "NIGHT_TRAIN"
-        - "SHARED_TAXI"
-        - "MOTOR_RAIL"
-        - "MOUNTAIN_TRAIN"
-        - "PLANE"
-        - "COACH_GROUP"
-        - "SHIP"
-        - "BUS"
+        - HIGH_SPEED_TRAIN
+        - HISTORIC_TRAIN
+        - INTERCITY
+        - REGIONAL
+        - INTERREGIONAL
+        - URBAN
+        - TRAIN
+        - TRAM
+        - UNDERGROUND
+        - NIGHT_TRAIN
+        - SHARED_TAXI
+        - MOTOR_RAIL
+        - MOUNTAIN_TRAIN
+        - PLANE
+        - COACH_GROUP
+        - SHIP
+        - BUS
 
     Passenger:
       type: object
@@ -9780,20 +9728,20 @@ components:
         Proposed default PERSON
       type: string
       x-extensible-enum:
-        - "DOG"
-        - "PET"
-        - "LUGGAGE"
-        - "PRM"
-        - "BICYCLE"
-        - "PRAM"
-        - "COMPANION_DOG"
-        - "CAR"
-        - "PERSON"
-        - "MOTORCYCLE"
-        - "TRAILER"
-        - "FAMILY_CHILD"
-        - "WHEELCHAIR"
-      default: "PERSON"
+        - DOG
+        - PET
+        - LUGGAGE
+        - PRM
+        - BICYCLE
+        - PRAM
+        - COMPANION_DOG
+        - CAR
+        - PERSON
+        - MOTORCYCLE
+        - TRAILER
+        - FAMILY_CHILD
+        - WHEELCHAIR
+      default: PERSON
 
     PaymentMethod:
       type: object
@@ -9816,13 +9764,13 @@ components:
     PaymentType:
       type: string
       x-extensible-enum:
-        - "CARD"
-        - "CASH"
-        - "DIRECT_DEBIT"
-        - "ELECTRONIC_PAYMENT"
-        - "INVOICE"
-        - "VOUCHER"
-        - "TRAVEL_ACCOUNT"
+        - CARD
+        - CASH
+        - DIRECT_DEBIT
+        - ELECTRONIC_PAYMENT
+        - INVOICE
+        - VOUCHER
+        - TRAVEL_ACCOUNT
 
     PersonDetail:
       type: object
@@ -9849,20 +9797,8 @@ components:
           type: string
           nullable: false
         lastName:
-          description: full last names of the person
           type: string
           nullable: false
-          example: "Diaz Lopez"
-        firstFamilyName:
-          description: first family name in case of multiple family names. The element lastName includes all family names.
-          type: string
-          nullable: false
-          example: "Diaz"
-        secondFamilyName:          
-          description: second family name in case of multiple family names. The element lastName includes all family names.
-          type: string
-          nullable: false  
-          example: "Lopez"
         email:
           type: string
           deprecated: true
@@ -10083,14 +10019,14 @@ components:
         preferenceGroup:
           type: string
           nullable: false
-          example: "SEAT_DIRECTION"
+          example: SEAT_DIRECTION
         preferences:
           type: array
           items:
             type: string
           minItems: 1
           nullable: false
-          example: "FORWARD_FACING"
+          example: FORWARD_FACING
 
     PlaceProperty:
       type: string
@@ -10170,20 +10106,20 @@ components:
         Provided by OJP.
       type: string
       enum:
-        - "STOP"
-        - "ADDRESS"
-        - "POI"
-        - "GEO_COORDINATE"
-        - "TOPOGRAPHIC_PLACE"
+        - STOP
+        - ADDRESS
+        - POI
+        - GEO_COORDINATE
+        - TOPOGRAPHIC_PLACE
 
     PlaceUsage:
       description: |
         Provided by OJP.
       type: string
       enum:
-        - "ORIGIN"
-        - "VIA"
-        - "DESTINATION"
+        - ORIGIN
+        - VIA
+        - DESTINATION
 
     PointOfInterest:
       description: |
@@ -10450,18 +10386,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-
-    ProductTag:
-      description: |
-        Known values:
-        - SPLITED_RESERVATION
-          Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation
-          Without this indication the provider is not allowed to use the SplittedSection Oject inside a reservation. 
-          The implmntation of SPLITED_RESERVATION is not recommended. To provide reservations that do not cover a full leg 
-          multiple reservations as offerParts should be created.
-      type: string
-      x-extensible-enum:
-        - SPLITED_RESEVATION
 
     ProductType:
       description: |
@@ -10813,16 +10737,10 @@ components:
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
         fulfillments:
-          description: fulfillments to be refunded or replaced
           type: array
           items:
             $ref: '#/components/schemas/Fulfillment'
           minItems: 1
-        issuedfulfillments:
-          description: new fulfillments issued with this offer (only available after confirmation)
-          type: array
-          items:
-            $ref: '#/components/schemas/Fulfillment'
         issuedVouchers:
           type: array
           items:
@@ -10844,7 +10762,23 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-            
+    ExchangeOfferItem:
+      type: object
+      required:
+        - exchangeFee
+        - exchangePrice
+        - bookingParts
+      properties:
+        exchangeFee:
+          description: Amount kept by the carrier and/or the distributor
+          $ref: '#/components/schemas/Price'
+        exchangePrice:
+          $ref: '#/components/schemas/Price'
+        bookingParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'  
+             
     RefundOfferItem:
       type: object
       required:
@@ -10903,18 +10837,12 @@ components:
       properties:
         fulfillmentIds:
           description: |
-            ids of the fulfillments to refund
+            id of the fulfillment to refund
           type: array
           items:
             type: string
           minItems: 1
           nullable: false
-        refundSpecifications:
-          description: |
-            To do a partial refund repeat the fulfillmentIds affected and point out what to refund
-          type: array
-          items:
-            $ref: '#/components/schemas/RefundSpecification'          
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
         refundDate:
@@ -10934,26 +10862,6 @@ components:
         refundOffer:
           $ref: '#/components/schemas/RefundOffer'
 
-    RefundSpecification:
-      type: object
-      required:
-        - fulfillmentId
-      properties:
-        fulfillmentId:
-          description: |
-            id of the fulfillment where some part(s) should be removed
-          type: string
-        bookingPartIds:
-          description: ids of booking parts to be removed from the fulfillment
-          type: array
-          items:
-            type: string
-        passengerIds:
-          type: array
-          description: ids of passengers to be removed from the fulfillment
-          items:
-            type: string  
-
     RefundStatus:
       type: string
       enum:
@@ -10963,9 +10871,9 @@ components:
     RefundType:
       type: string
       enum:
-        - "YES"
-        - "NO"
-        - "WITH_CONDITION"
+        - YES
+        - NO
+        - WITH_CONDITION
 
     RegionalConstraint:
       type: object
@@ -11045,9 +10953,9 @@ components:
         - EU_PRR: terms and conditions according to EU-PRR regulation
       type: string
       enum:
-        - "CIV"
-        - "MD"
-        - "EU_PRR"
+        - CIV
+        - MD
+        - EU_PRR
 
     Reimbursement:
       type: object
@@ -11117,8 +11025,8 @@ components:
         Reason why the booking should be reimbursed.
       type: string
       x-extensible-enum:
-        - "STRIKE"
-        - "TICKET_NOT_USED"
+        - STRIKE
+        - TICKET_NOT_USED
 
     ReimbursementRequest:
       type: object
@@ -11173,9 +11081,9 @@ components:
     ReimbursementStatus:
       type: string
       enum:
-        - "IMMEDIATE"
-        - "DELAYED"
-      default: "IMMEDIATE"
+        - IMMEDIATE
+        - DELAYED
+      default: IMMEDIATE
 
     ReleaseOffer:
       type: object
@@ -11283,8 +11191,8 @@ components:
     ReleaseStatus:
       type: string
       enum:
-        - "PROPOSED"
-        - "CONFIRMED"
+        - PROPOSED
+        - CONFIRMED
 
     RemarkType:
       description: |
@@ -11300,13 +11208,13 @@ components:
         - MIGHT_BE_IN_OPEN_SPACE: place might be in open space
       type: string
       x-extensible-enum:
-        - "MIGHT_HAVE_TABLE"
-        - "MIGHT_NOT_HAVE_TABLE"
-        - "MIGHT_HAVE_DIFFERENT_DIRECTION"
-        - "MIGHT_HAVE_TABLE_AND_DIFFERENT_DIRECTION"
-        - "MIGHT_NOT_HAVE_TABLE_AND_MIGHT_HAVE_DIFFERENT_DIRECTION"
-        - "MIGHT_BE_IN_COMPARTMENT"
-        - "MIGHT_BE_IN_OPEN_SPACE"
+        - MIGHT_HAVE_TABLE
+        - MIGHT_NOT_HAVE_TABLE
+        - MIGHT_HAVE_DIFFERENT_DIRECTION
+        - MIGHT_HAVE_TABLE_AND_DIFFERENT_DIRECTION
+        - MIGHT_NOT_HAVE_TABLE_AND_MIGHT_HAVE_DIFFERENT_DIRECTION
+        - MIGHT_BE_IN_COMPARTMENT
+        - MIGHT_BE_IN_OPEN_SPACE
 
     RequestedInformation:
       type: string
@@ -11466,13 +11374,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceProperty'
-        splitSection:
-          description: | 
-            indication of the covered part of a leg in case the reserved 
-            place does not cover the whole leg. This element is allowed 
-            on in case the offer was requested using the SPLIT_RESERVATION product tag
-            an implementation is not recommendend
-          $ref: '#/components/schemas/Section'            
 
     Resource:
       type: object
@@ -11626,17 +11527,17 @@ components:
     SecurityElementFormat:
       type: string
       enum:
-        - "PNG"
-        - "GIF"
-        - "SVG"
-        - "BINARY"
-        - "TEXT"
+        - PNG
+        - GIF
+        - SVG
+        - BINARY
+        - TEXT
 
     SecurityElementType:
       type: string
       enum:
-        - "VISUAL_ELEMENT"
-        - "BAR_CODE"
+        - VISUAL_ELEMENT
+        - BAR_CODE
 
     SecurityFeatureType:
       type: object
@@ -11768,11 +11669,11 @@ components:
         Type of quality level, finer grained than the comfort class.
       type: string
       x-extensible-enum:
-        - "BEST"
-        - "HIGH"
-        - "STANDARD"
-        - "BASIC"
-        - "ANY_CLASS"
+        - BEST
+        - HIGH
+        - STANDARD
+        - BASIC
+        - ANY_CLASS
 
     ServiceConstraint:
       type: object
@@ -11796,10 +11697,10 @@ components:
         enumeration of service degradations
       type: string
       x-extensible-enum:
-        - "RESERVED_PLACES_MISSING"
-        - "BOOKED_ACCOMMODATION_TYPE_MISSING"
-        - "BOOKED_CLASS_MISSING"
-        - "BOOKED_MEAL_MISSING"
+        - RESERVED_PLACES_MISSING
+        - BOOKED_ACCOMMODATION_TYPE_MISSING
+        - BOOKED_CLASS_MISSING
+        - BOOKED_MEAL_MISSING
 
     ServiceStatus:
       type: object
@@ -11861,8 +11762,8 @@ components:
     SiSType:
       type: string
       x-extensible-enum:
-        - "REGISTRY"
-        - "PEER_TO_PEER"
+        - REGISTRY
+        - PEER_TO_PEER
 
     SituationFullRef:
       type: string
@@ -11876,10 +11777,10 @@ components:
         indication of special coach
       type: string
       x-extensible-enum:
-        - "RESTAURANT_COACH"
-        - "BICYCLE_COACH"
-        - "LUGGAGE_COACH"
-        - "TRAIN_HEAD"
+        - RESTAURANT_COACH
+        - BICYCLE_COACH
+        - LUGGAGE_COACH
+        - TRAIN_HEAD
 
     StationSet:
       type: object
@@ -11896,8 +11797,8 @@ components:
     StopBehavior:
       type: string
       enum:
-        - "ORIGIN_DESTINATION_ONLY"
-        - "REAL_BOARDING_ALIGHTING"
+        - ORIGIN_DESTINATION_ONLY
+        - REAL_BOARDING_ALIGHTING
 
     StopCallStatus:
       type: object
@@ -12022,12 +11923,12 @@ components:
         Symbology to use when rendering the binary data.
       type: string
       enum:
-        - "AZTEC"
-        - "Code128A"
-        - "Code128B"
-        - "Code128C"
-        - "QR"
-        - "TEXT"
+        - AZTEC
+        - Code128A
+        - Code128B
+        - Code128C
+        - QR
+        - TEXT
 
     Text:
       type: object
@@ -12087,10 +11988,10 @@ components:
         - TICKET_VALIDITY: any text on the ticket regarding it's validity (other than information which can be retrieved from the booking)
       type: string
       enum:
-        - "INFORMATION"
-        - "MANDATORY"
-        - "MANDATORY_WITH_CONFIRMATION"
-        - "TICKET_VALIDITY"
+        - INFORMATION
+        - MANDATORY
+        - MANDATORY_WITH_CONFIRMATION
+        - TICKET_VALIDITY
 
     ThroughTicketTag:
       description: |
@@ -12098,14 +11999,14 @@ components:
         - RESPLUS: Through ticket tag according to Swedish Regulation.
       type: string
       x-extensible-enum:
-        - "RESPLUS"
+        - RESPLUS
 
     TimeUnit:
       type: string
       enum:
-        - "DAYS"
-        - "HOURS"
-        - "MINUTES"
+        - DAYS
+        - HOURS
+        - MINUTES
 
     TimedLeg:
       type: object
@@ -12283,8 +12184,8 @@ components:
     TrainValidityScope:
       type: string
       enum:
-        - "BOARDING"
-        - "ARRIVAL"
+        - BOARDING
+        - ARRIVAL
 
     TransferLeg:
       type: object
@@ -12335,17 +12236,17 @@ components:
         Modes dedicated to perform transfers. Provided by OJP.
       type: string
       x-extensible-enum:
-        - "WALK"
-        - "PARK_AND_RIDE"
-        - "BIKE_AND_RIDE"
-        - "CAR_HIRE"
-        - "BIKE_HIRE"
-        - "PROTECTED_CONNECTION"
-        - "GUARANTEED_CONNECTION"
-        - "REMAIN_IN_VEHICLE"
-        - "CHANGE_WITHIN_VEHICLE"
-        - "CHECK_IN"
-        - "CHECK_OUT"
+        - WALK
+        - PARK_AND_RIDE
+        - BIKE_AND_RIDE
+        - CAR_HIRE
+        - BIKE_HIRE
+        - PROTECTED_CONNECTION
+        - GUARANTEED_CONNECTION
+        - REMAIN_IN_VEHICLE
+        - CHANGE_WITHIN_VEHICLE
+        - CHECK_IN
+        - CHECK_OUT
 
     Translation:
       type: object
@@ -12389,11 +12290,11 @@ components:
         Subset of the values from the passenger type code list IRS 90918-10
       type: string
       x-extensible-enum:
-        - "PET"
-        - "BICYCLE"
-        - "CAR"
-        - "MOTOR_CYCLE"
-        - "CAR_TRAILER"
+        - PET
+        - BICYCLE
+        - CAR
+        - MOTOR_CYCLE
+        - CAR_TRAILER
 
     TravelAccountConsumption:
       type: object
@@ -12436,18 +12337,18 @@ components:
     TravelAccountResponseContent:
       type: string
       enum:
-        - "ALL"
-        - "CONSUMPTIONS"
-        - "NONE"
+        - ALL
+        - CONSUMPTIONS
+        - NONE
       default: ALL
 
     TravelAccountType:
       type: string
       enum:
-        - "LOYALTY_CARD"
-        - "TRAVEL_PASS"
-        - "MULTI_RIDE"
-        - "REDUCTION_CARD"
+        - LOYALTY_CARD
+        - TRAVEL_PASS
+        - MULTI_RIDE
+        - REDUCTION_CARD
 
     TravelClass:
       description: |
@@ -12464,11 +12365,11 @@ components:
         to right with ascending coordinates in the layout values.
       type: string
       x-extensible-enum:
-        - "UNSPECIFIED"
-        - "IN_DIRECTION"
-        - "OPPOSITE_DIRECTION"
-        - "CHANGING"
-        - "STARING_IN_DIRECTION"
+        - UNSPECIFIED
+        - IN_DIRECTION
+        - OPPOSITE_DIRECTION
+        - CHANGING
+        - STARING_IN_DIRECTION
 
     TravelPassAccount:
       allOf:
@@ -12675,10 +12576,10 @@ components:
         - FULFILLMENT: A new fulfillment needs to be created to allocate a trip.
       type: string
       x-extensible-enum:
-        - "NONE"
-        - "MANUAL"
-        - "ACTIVATION"
-        - "FULFILLMENT"
+        - NONE
+        - MANUAL
+        - ACTIVATION
+        - FULFILLMENT
 
     TripAllocationUnit:
       description: |
@@ -12691,10 +12592,10 @@ components:
         - DURATION: the allocation is per duration.
       type: string
       x-extensible-enum:
-        - "NONE"
-        - "TRIP"
-        - "DAY"
-        - "DURATION"
+        - NONE
+        - TRIP
+        - DAY
+        - DURATION
 
     TripCollectionResponse:
       type: object
@@ -12768,9 +12669,9 @@ components:
     TripDirectionType:
       type: string
       enum:
-        - "OUT_BOUND"
-        - "IN_BOUND"
-      default: "OUT_BOUND"
+        - OUT_BOUND
+        - IN_BOUND
+      default: OUT_BOUND
 
     TripInterruptionConstraint:
       type: object
@@ -12818,9 +12719,9 @@ components:
         - ACTIVATION: Passenger needs to deactivate the ticket during the interruption (via an app).
       type: string
       x-extensible-enum:
-        - "NONE"
-        - "MANUAL"
-        - "ACTIVATION"
+        - NONE
+        - MANUAL
+        - ACTIVATION
 
     TripLeg:
       type: object
@@ -12968,10 +12869,10 @@ components:
     TripResponseContent:
       type: string
       enum:
-        - "ALL"
-        - "PLACES"
-        - "NONE"
-      default: "ALL"
+        - ALL
+        - PLACES
+        - NONE
+      default: ALL
 
     TripSearchCriteria:
       type: object
@@ -13235,19 +13136,19 @@ components:
         into single trips if appropriate.
       type: string
       x-extensible-enum:
-        - "SINGLE_TRIP"
-        - "MULTIPLE_TRIPS"
-        - "UNRESTRICTED"
+        - SINGLE_TRIP
+        - MULTIPLE_TRIPS
+        - UNRESTRICTED
 
     VatScope:
       description: |
         scope where the VAT applies
       type: string
       x-extensible-enum:
-        - "INTERNATIONAL"
-        - "NATIONAL"
-        - "SHORT_DISTANCE"
-        - "LONG_DISTANCE"
+        - INTERNATIONAL
+        - NATIONAL
+        - SHORT_DISTANCE
+        - LONG_DISTANCE
 
     Vehicle:
       type: object
