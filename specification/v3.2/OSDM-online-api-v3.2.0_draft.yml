@@ -4516,7 +4516,7 @@ components:
           reference to accounting data in case the accounting is not provided by the API provider
       type: object
       required: 
-        - company
+        - accountingCompany
       properties:
         accountingCompany:
           $ref: '#/components/schemas/CompanyRef'
