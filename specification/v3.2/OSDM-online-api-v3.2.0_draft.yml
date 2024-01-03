@@ -12498,6 +12498,10 @@ components:
               nullable: false
             regionalConstraint:
               $ref: '#/components/schemas/RegionalConstraint'
+            consumptions:
+              type: array
+              items:
+                 $ref: '#/components/schemas/TravelAccountConsumption'  
 
     TravelValidity:
       type: object
