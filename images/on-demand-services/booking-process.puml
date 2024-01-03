@@ -1,0 +1,14 @@
+@startuml
+hide footbox
+
+actor "Retailer"
+
+
+"Retailer" -> "Distributor": POST offer search
+
+"Distributor" -> "On-Demand-Service-Provider": xxx
+
+"Distributor" -> "Carrier:C1": Post Offer search
+
+
+@enduml
