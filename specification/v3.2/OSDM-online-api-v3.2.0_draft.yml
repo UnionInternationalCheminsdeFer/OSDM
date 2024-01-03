@@ -4928,7 +4928,7 @@ components:
         afterSaleFee:
           $ref: '#/components/schemas/Price'
         reimbursementMethod:
-          $ref: '#/components/schemas/ReimboursementMethod'  
+          $ref: '#/components/schemas/ReimbursementMethod'  
 
     AfterSaleConditionType:
       type: string
@@ -10840,7 +10840,7 @@ components:
         refundOfferBreakdown:
           $ref: '#/components/schemas/RefundOfferItem'
         reimbursementMethod:
-          $ref: '#/components/schemas/ReimboursementMethod'   
+          $ref: '#/components/schemas/ReimbursementMethod'   
         _links:
           description: |
             Java Property Name: 'links' 
