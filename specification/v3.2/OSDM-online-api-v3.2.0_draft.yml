@@ -8084,6 +8084,7 @@ components:
       type: string
       x-extensible-enum:
         - "ALLOCATOR_APP"
+        - "FULFILLMENT_PARTS"
         - "PDF_A4"
         - "PKPASS"
         - "RCCST"
