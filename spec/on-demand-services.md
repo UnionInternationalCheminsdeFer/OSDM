@@ -17,9 +17,16 @@ This page describes the integration of OSDM with TOMP to include on-Demand-Servi
 
 ## Use Cases <a name="useCases">
 
+A retailer requests a trip offer collection where trhe first mile can be made via an On-Demand-Service whith a provider that supports TOMP. The retailer expects a complete offer and the distributor to handle the connection to the provider of the On-Demand-Service.
 
 
 
 
 
 ## Offer and Booking Process <a name="tompBooking">
+
+| OSDM Service called by the retailer  | TOMP Service(s) called by the distributor | required mappings  | 
+| ------------------------------------ | ----------------------------------------- | ------------------ | 
+|                                      |                                           |                    | 
+
+
