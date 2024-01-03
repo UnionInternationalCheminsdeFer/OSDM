@@ -3,12 +3,26 @@ hide footbox
 
 actor "Retailer"
 
+== Creating the trip collection & getting the initial set of trips including an on-demand-service on the first mile ==
+Retailer -> Distributor: POST /trips-collection <MUNCHEN-PARIS, 23/10/2021, 2 pax, dob, ...>
+Distributor -> JourneyPlanner : <retrieve trips information based on API Consumer request>
+JourneyPlanner --> Distributor : <trips information>
+loop for each trip    
+    loop for each segment
+        Distributor -> Distributor: determine Provider
+    end
+end
+Distributor -> Distributor : create offer requests
 
-"Retailer" -> "Distributor": POST offer search
-
-"Distributor" -> "On-Demand-Service-Provider": xxx
-
-"Distributor" -> "Carrier:C1": Post Offer search
-
+Distributor -> TompProvider: get offers 
+TompProvider -> TompProvider: calculate offers
+TompProvider --> Distributor : offers
+loop for each request
+    Distributor -> FareProvider: get offers 
+    FareProvider -> FareProvider: calculate offers
+    FareProvider --> Distributor : request with trips
+end
+Distributor -> Distributor : reconcile trips and \nconstruct global offers
+Distributor --> Retailer: <List of Offers>
 
 @enduml
