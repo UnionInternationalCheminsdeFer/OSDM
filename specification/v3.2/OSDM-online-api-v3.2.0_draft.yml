@@ -4927,6 +4927,8 @@ components:
           nullable: true
         afterSaleFee:
           $ref: '#/components/schemas/Price'
+        reimbursementMethod:
+          $ref: '#/components/schemas/ReimboursementMethod'  
 
     AfterSaleConditionType:
       type: string
@@ -10837,6 +10839,8 @@ components:
             Amount refunded to the purchaser
         refundOfferBreakdown:
           $ref: '#/components/schemas/RefundOfferItem'
+        reimbursementMethod:
+          $ref: '#/components/schemas/ReimboursementMethod'   
         _links:
           description: |
             Java Property Name: 'links' 
@@ -11096,6 +11100,17 @@ components:
         shortExplanation:
           type: string
           nullable: true
+
+    ReimbursementMethod:
+      description: reimbourcement methods to inform on restrictions of the payment method
+      type: object
+      properties:
+         paymentMethod: 
+            description: payment method to be used for the reimboursement 
+            type: string
+            x-extensible-enum:
+              - "VOUCHER"
+              - "ORIGINAL_ACCOUNT"
 
     ReimbursementPatchRequest:
       type: object
