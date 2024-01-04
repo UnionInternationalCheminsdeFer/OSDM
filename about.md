@@ -31,4 +31,5 @@ License. Copyright by [UIC](https://www.uic.org).
 
 ## History
 
-These [background information](background) give insight into the birth of OSDM.
+These [background information](../background) give insight into the birth of
+OSDM.

@@ -4,7 +4,7 @@ title: Background
 permalink: /background/
 ---
 
-## Background
+## History of OSDM
 
 The Open Sales and Distribution Model has emerged from the **new Tariff Model
 (nTM)** and [Full Service Model (FSM 2.0)](https://tsga.eu/fsm) initiatives:
