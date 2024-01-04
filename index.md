@@ -3,7 +3,7 @@ title: OSDM
 subtitle: Open Sales and Distribution Model
 layout: page
 show_sidebar: true
-hero_link: https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v2.0.0/IRS-90918-10-v2.0.0.pdf
+hero_link: https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v3.0.0/IRS-90918-10-v3.0.0.pdf
 hero_link_text: Download Specification
 ---
 
@@ -32,32 +32,6 @@ The OSDM API and documents are **Open Source** and freely available to all
 parties interested. The OSDM-Online API is modelled in `YAML`, fully supporting
 the `REST paradigm`.
 
-## Background
-
-The Open Sales and Distribution Model has emerged from the **new Tariff Model
-(nTM)** and [Full Service Model (FSM 2.0)](https://tsga.eu/fsm) initiatives:
-
-- The initiative new Tariff Model (nTM) initiated by UIC established the
-  successor standard of **PRIFIS**. It defines on the one hand an offline
-  standard for the exchange of priced segments (formerly: **PRIFIS series**) and
-  on the other hand a new online standard for the purchase of dynamically priced
-  segments. The priced segments are calculated and provided by so-called fare
-  providers. The priced segments are fetched by an distributor which combines
-  these priced segments into a consistent offer and later into a booking and
-  ticket. Essentially, this process allows the vision of _"one trip - one ticket
-  within Europe"_ to materialize.
-
-- The [Full Service Model (FSM 2.0)](https://tsga.eu/fsm) initiative defines an
-  open standard for the distribution of rail services (bookings, reservations,
-  integrated reservations and additional services) within Europe and beyond. By
-  standardizing the distribution interface, the distribution of products and
-  services can be greatly simplified.
-
-To join forces and represent the **rail sector as a whole** the two initiatives
-have been merged into this initiative. The specification will be supported by
-the [UIC](https://uic.org) as
-[IRS-90918-10 Leaflet](https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v2.0.0/IRS-90918-10-v2.0.0.pdf).
-
 ## Roles
 
 The OSDM Model is split between roles participants can take:
@@ -72,7 +46,8 @@ The OSDM Model is split between roles participants can take:
 - **Retailer** – selling tickets from one or more distributors to the customer.
   Selecting the distributors and joining multiple independent bookings.
 
-A railway or a system provider can support more than one role.
+A railway/public transport company or a system provider can support more than
+one role.
 
 ## Design Goals
 
@@ -136,7 +111,3 @@ from **Retailer** to **Distributor** to **Fare Provider (aka. carrier)** and
 aligned the interfaces by modelling them the same. Thus calling a provider, an
 distributor or a fare provider is exactly the same from an API perspective. The
 only difference is that in distributor mode you get fare specific information.
-
-## Access to the Specification
-
-All documents are **publicly available** in the [Specification](./spec) section.
