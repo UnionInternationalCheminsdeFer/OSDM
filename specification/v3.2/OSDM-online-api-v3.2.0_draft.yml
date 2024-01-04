@@ -5165,13 +5165,13 @@ components:
         passengerRef:
           description: |
             id of the passenger.  
-            
             In the offer flow the id refers to the externalRef as the passenger id is created at booking time only.
           type: string
           nullable: false
         type:
           $ref: '#/components/schemas/ActualPassengerType'
         description:
+          description: clear text represenation of the actual passenger type, suitable to be presented to a client
           type: string
           nullable: false
         tripCoverage:
