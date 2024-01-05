@@ -5,7 +5,20 @@ hide_hero: true
 permalink: /spec/models/
 ---
 
-## Introduction
+
+## Table of contents
+
+1. [Introduction](#introduction)
+2. [Trips and Places](#TripsAndPlaces)
+2. [Complaint](#complaint)
+3. [Reimbursement](#reimbursement)
+4. [Release](#release)
+5. [Putting Prebooking on Hold](#onHold)
+6. [State Models](#stateModels)
+7. [Ids and References](#ids)
+
+
+## Introduction <a name="introduction">
 
 This page shows a representation of the data models underlying the API
 specifications. It is therefore not a strict representation of the resources
@@ -20,7 +33,7 @@ concepts.
 
 ![Legend](../images/models/legend.png)
 
-## Trips and Places
+## Trips and Places <a name="TripsAndPlaces">
 
 ### Places Data Model
 
@@ -518,12 +531,12 @@ the tripOffers, but it is worth mentioning it separately here as
   will disappear with the booking or the time-to-live expiry of the offers, and
   the passengers created in the booking will have a different id.
 
-### RefundOffers
+### RefundOffers 
 
 Refund offers represent a provisional refund request that is made on all or a
 subset of the fulfillments contained in a booking.
 
-### ExchangeOperations
+### ExchangeOperations 
 
 An exchange operations represent an ongoing exchange process, either in
 provisional state of in confirmed state (depending on its status). Much like a
@@ -535,7 +548,7 @@ are very similar, except for their status that will change, obviously, and the
 fact that the exchangeOffer is then transformed into a booked Offer in the
 booking and only referenced in the exchangeOperation
 
-## Exchange Offers
+## Exchange Offers <a name="exchangeOffers">
 
 The exchange offers (and related models such as exchangeTripOffers) are totally
 similar to their offer counterpart, with the difference that ExchangeOffers also
@@ -545,7 +558,7 @@ difference between the value that can be returned form the fulfillment and the
 value of the current offers + the exchange fees = the total amount to be paid or
 refunded if/when confirming the exchange)
 
-## Complaint
+## Complaint <a name="complaint">
 
 A complaint can be filed by a passenger in case of delay/disruption or service
 derogation for a booking or parts of it (e.g. in case of a return trip). A
@@ -556,7 +569,7 @@ If a claim is accepted or rejected the system that made the request must be
 informed. The accepted or rejected claim must provide an explanation for the
 decision especially if the amount covers the ticket price only partially.
 
-## Reimbursement
+## Reimbursement <a name="reimbursement">
 
 A reimbursement can be filed by a passenger in case his booked tariffs allows
 for a refund on unused or partially unused tickets. A passenger can provide
@@ -567,7 +580,7 @@ If a request is accepted or rejected the system that made the request must be
 informed. The accepted or rejected request must provide an explanation for the
 decision especially if the amount covers the ticket price only partially.
 
-## Release
+## Release <a name="release">
 
 A release of a booking is an intermediate step toward a refund. It invalidates
 tickets and frees booked resources (e.g. reserved places on a train). The
@@ -576,13 +589,13 @@ party involved. The refund is then completed by the original retailer. The
 benefit for the customer is that the time of the release is used to calculate
 the refund amount.
 
-## Putting bookings on Hold
+## Putting bookings on Hold <a name="onHold">
 
 An unconfirmed booking expires after the time limit of the pre-booking. It is
 possible to ask for an extension of the time limit and the provider might grant
 the extension. He has the option to add a fee for this extension.
 
-## State Models
+## State Models <a name="stateModels">
 
 ### Trip State Model
 
@@ -621,3 +634,64 @@ Values are a subset of the booking status values (see before).
 ### Complaint State Model
 
 ![Complaint State Model](../images/models/complaint-state-model.png)
+
+
+## Ids and References <a name="ids">
+
+| Object                    | ids                   | description      |                                                                          
+| ------------------------- | --------------------- | ---------------- | 
+| Place                     | id                    | id defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn '8500001'  | 
+| Place                     | alternativeIds        | For a place with ids in different reference systems, the alternative ids can be returned. The reference system is encoded in the string. E.g.: "urn:uic:std:8000001", "x_swe:stn:10000", "ch:1:sloid:343434"                 | 
+| TripCollectionResponse    | id                    | included to be compliant with OJP, no use  |
+| Trip  | id | id of the trip  |
+| Trip  | externalRef | external reference of the trip, e.g. provided by a time table provider / engine |
+| Trip  | situationFullRefs | references to situation messages (outside of OSDM) |
+| TripSummary | id | id of the trip that is summerized |
+| TripSummary | externalRef | external reference of the trip summarized, e.g. provided by a time table provider / engine |
+| TripLeg | id  | id of a leg in the trip. Unique within the trip only. |
+| TripSpecification | externalRef  | Referencing a Trip via the Trips id  |
+| TripLegSpecification | externalRef | Referencing a TripLeg via the TripLegs id |
+| Section | externalTripRef | Referencing a Trip via the Trips id  |
+| Section | startLegId | Referencing a TripLeg via the TripLegs id |
+| Section | endLegId | Referencing a TripLeg via the TripLegs id |
+| AnonymousPassengerSpecification | externalRef | Reference to a passenger provided by the API consumer. Unique within the context of one Offer/Booking. Must not reference a passenger in a broader context due to GDPR regulation  |
+| Offer  | offerId | Id of the offer given by the provider. |
+| Offer | passengerRefs | reference to the passengers via the externalRef of the AbstractPassengerSpecification |
+| Product | id | Id of the product |
+| TripCoverage | coveredTripId | reference to the trip via the id of the trip. |
+| TripCoverage | coveredTripLegIds | reference to the covered TripLegs within the referenced Trip via the TripLeg id|
+| AbstractOfferPart (AdmissionOfferPart, ReservationfferPart, AncillaryOfferPart) | id | id of the offer part |
+| AbstractOfferPart (AdmissionOfferPart, ReservationfferPart, AncillaryOfferPart) | passengerRefs | reference to the passengers via the externalRef of the AbstractPassengerSpecification |
+| Fee | id | id of the fee |
+| Fee | distributorBookingRef | useless |
+| Fee | productRef | reference to the product via the produt id |
+| Fare | id | id of the fare |
+| Product | id | id of the product |
+| Coach | layoutId | reference to the coach layout via the id of the CoachLayout |
+| BookedOfferReservationRequest | offerId | reference to the offer from which the reservation offers parts are taken via the Offer id |
+| BookedOfferReservationRequest | reservationOfferId | reference to the reservation offer part via the ReservationOfferPart id  |
+| BookedOfferReservationRequest | passengerRefs | reference to the passengers via the externalRef of the AbstractPassengerSpecification |
+| Booking | id | id of the Booking |
+| Booking | externalRef | reference to the booking provided by the consumer |
+| Booking | bookingCode | short booking identifier by the provider of the booking. Human readable and unique within the provider context and for a limited time only | 
+| BookedOffer | offerId | id of the BookedOffer. Note: The BookedOffer id is different from the Offer id|that was used to create the BookedOffer |
+| BookingRequest | externalRef | reference of the consumer to be included in Booking as externalRef |
+| AbstractBookingPart (Admission, Reservation, Ancillary) | id | id of the BookedOfferPart. Note: The BookedOfferPart id is different from the OfferPart id|that was used to create the BookedOfferPart |
+| AbstractBookingPart (Admission, Reservation, Ancillary) | passengerIds | reference to the pssengers via the Passenger id. ||
+| AbstractBookingPart (Admission, Reservation, Ancillary) | accountingRef | reference to accounting company e.g. in case the accounting company differs from the provider. |
+| Passenger | id | id of the passenger created by the provider |
+| Passenger | externalRef | external passenger ref btained from the consumer via the AbstractPassengerSpecification |
+| Fulfillment | id | id of the fulfillment |
+| Fulfillment | bookingRef | reference to the booking via th Booking id |
+| Fulfillment | controlNumber | control number given by the provider and unique within the provider context and for a short time only. The control number is used as identifier within bar codes. |
+||||
+||||
+
+
+
+
+
+
+
+
+
