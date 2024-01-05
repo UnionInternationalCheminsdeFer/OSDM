@@ -8563,7 +8563,7 @@ components:
           nullable: false
         code:
           description: |
-            Internal code of the attribute. Can be used for detection of double occurrences.
+            Internal code of the attribute. Can be used for detection of double occurrences. Refers to Service Facilities / Leg Attributes from the Catalog of Code Lists
           type: string
           nullable: true
         fromStopSeqNumber:
