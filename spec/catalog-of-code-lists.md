@@ -576,6 +576,10 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 Language codes used in OSDM are based on the
 [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
 
+## Leg Attributes
+
+Service Facilities <a name="serviceFacilities">
+
 ## Nationality
 
 Language codes used in OSDM are based on the
@@ -928,7 +932,7 @@ Snapshot version, for the actual code list see
 | `STANDARD` |                       |
 | `BASIC`    | Standard second class |
 
-## Service Facilities
+## Service Facilities / Leg Attributes <a name="serviceFacilities">
 
 | OSDM code                       | Description                                                                                                    | TAP-TSI code list | TAP-TSI code |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------- | ------------ |
