@@ -9407,7 +9407,7 @@ components:
             This contains a mapping from the offer part id to an external ref for implicitly booked reservations (included reservations and mandatory reservations).
           type: array
           items:
-            $ref: '#/components/schemas/ImplicitReservationsOfferMapping'
+            $ref: '#/components/schemas/ImplicitReservationOfferMapping'
         feeOfferMappings:
           description: |
             This contains a mapping from the offer part id to an external ref for fees.
