@@ -7869,21 +7869,6 @@ components:
           description: |
             Reference to the Product representing the Fee
 
-    FeeOfferMapping:
-      type: object
-      additionalProperties: false
-      required:
-        - feeId
-        - externalRef
-      properties:
-        feeId:
-          description: OfferPartId of the fee
-          type: string
-          nullable: false
-        externalRef:
-          type: string
-          nullable: false
-
     Flexibility:
       type: string
       x-extensible-enum:
@@ -8430,6 +8415,7 @@ components:
       additionalProperties: false
       required:
         - reservationId
+        - externalRef
       properties:
         reservationId:
           description: OfferPartId of the (included or mandatory) reservation
@@ -9408,12 +9394,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ImplicitReservationOfferMapping'
-        feeOfferMappings:
-          description: |
-            This contains a mapping from the offer part id to an external ref for fees.
-          type: array
-          items:
-            $ref: '#/components/schemas/FeeOfferMapping'
         placeSelections:
           type: array
           items:
