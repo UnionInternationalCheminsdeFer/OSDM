@@ -12749,9 +12749,11 @@ components:
       type: object
       additionalProperties: false
       description: |
-        The trip coverage defines which part of the trip is covered by the offer or the booking respectively.
+        The trip coverage defines which part of the trip is covered by the offer, offer part, booking or booking part, respectively.
         
-        If neither leg ids nor section ids are not defined, the complete trip is covered.
+        If neither coveredLegIds nor coveredSections are defined, the complete trip is covered.
+        coveredLegIds and coveredSections are mutually exclusive, i.e. only one of the structures can be present.
+        
       required:
         - coveredTripId
       properties:
