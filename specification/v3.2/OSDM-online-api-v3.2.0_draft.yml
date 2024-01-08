@@ -7887,12 +7887,15 @@ components:
         A fulfillment refers to services of one or multiple offer parts or a fare (distributor mode).
       required:
         - id
+        - status
         - bookingRef
         - createdOn
       properties:
         id:
           type: string
           nullable: false
+        status: 
+          $ref: '#/components/schemas/FulfillmentStatus'  
         bookingRef:
           description: |
             the id of the booking the fulfillment is part of
@@ -8140,8 +8143,6 @@ components:
       description: |
         Fulfillment items to be integrated in to tickets,
         e.g. visual security elements, additional bar codes, control keys.
-      required:
-        - status
       properties:
         fulfillmentMedia:
           description: |
@@ -8183,14 +8184,13 @@ components:
           type: boolean
           nullable: true
           default: false
-        status:
-          $ref: '#/components/schemas/FulfillmentPartStatus'
 
-    FulfillmentPartStatus:
+    FulfillmentStatus:
       description: |
         Individual fulfillments of a multi journey booking need an separate patch to create the usable fulfillment in status FULFILLED before they are in an intermediate state AVAILABLE where they don't provide a document for travel. Fulfillments can be ON_HOLD in case they are booked but not yet available (e.g. a booking providing two journeys per week) or passed in case the fulfillment was not patched for usage within the required time.
       type: string
       enum:
+        - "PREBOOKED"
         - "AVAILABLE"
         - "ON_HOLD"
         - "CONFIRMED"
