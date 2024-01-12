@@ -4414,6 +4414,10 @@ components:
         id:
           type: string
           nullable: false
+        externalRef:
+          description: If an externalRef was given in the Booking request or BookedOfferRequest, it must be returned here
+          type: string
+          nullable: false
         summary:
           type: string
           nullable: true
@@ -4889,6 +4893,21 @@ components:
               items:
                 $ref: '#/components/schemas/RegulatoryCondition'
 
+    AdmissionOfferMapping:
+      type: object
+      additionalProperties: false
+      required:
+        - admissionId
+        - externalRef
+      properties:
+        admissionId:
+          description: OfferPartId of the admission
+          type: string
+          nullable: false
+        externalRef:
+          type: string
+          nullable: false
+
     AdmissionOfferPart:
       description: |
         An admission represents a travel right, or the entitlement to travel onboard a train between
@@ -5106,6 +5125,9 @@ components:
         - passengerRefs
       properties:
         ancillaryId:
+          type: string
+          nullable: false
+        externalRef:
           type: string
           nullable: false
         passengerRefs:
@@ -5453,6 +5475,9 @@ components:
         ancillaryOfferId:
           type: string
           nullable: false
+        externalRef:
+          type: string
+          nullable: false
         passengerRefs:
           type: array
           items:
@@ -5517,6 +5542,9 @@ components:
           type: string
           nullable: false
         reservationOfferId:
+          type: string
+          nullable: false
+        externalRef:
           type: string
           nullable: false
         passengerRefs:
@@ -7881,12 +7909,15 @@ components:
         A fulfillment refers to services of one or multiple offer parts or a fare (distributor mode).
       required:
         - id
+        - status
         - bookingRef
         - createdOn
       properties:
         id:
           type: string
           nullable: false
+        status: 
+          $ref: '#/components/schemas/FulfillmentStatus'  
         bookingRef:
           description: |
             the id of the booking the fulfillment is part of
@@ -8134,8 +8165,6 @@ components:
       description: |
         Fulfillment items to be integrated in to tickets,
         e.g. visual security elements, additional bar codes, control keys.
-      required:
-        - status
       properties:
         fulfillmentMedia:
           description: |
@@ -8177,10 +8206,8 @@ components:
           type: boolean
           nullable: true
           default: false
-        status:
-          $ref: '#/components/schemas/FulfillmentPartStatus'
 
-    FulfillmentPartStatus:
+    FulfillmentStatus:
       description: |
         Individual fulfillments of a multi journey booking need an separate patch to create the usable fulfillment in status FULFILLED before they are in an intermediate state AVAILABLE where they don't provide a document for travel. Fulfillments can be ON_HOLD in case they are booked but not yet available (e.g. a booking providing two journeys per week) or passed in case the fulfillment was not patched for usage within the required time.
       type: string
@@ -8399,10 +8426,25 @@ components:
         - SERVICE_DEGRADED: e.g. service class not provided
       type: string
       x-extensible-enum:
-        - 'DELAY'
-        - 'JOURNEY_ABANDONED'
-        - 'JOURNEY_NOT_STARTED'
-        - 'SERVICE_DEGRADED'
+        - "DELAY"
+        - "JOURNEY_ABANDONED"
+        - "JOURNEY_NOT_STARTED"
+        - "SERVICE_DEGRADED"
+
+    ImplicitReservationOfferMapping:
+      type: object
+      additionalProperties: false
+      required:
+        - reservationId
+        - externalRef
+      properties:
+        reservationId:
+          description: OfferPartId of the (included or mandatory) reservation
+          type: string
+          nullable: false
+        externalRef:
+          type: string
+          nullable: false
 
     IndicatedConsumption:
       type: object
@@ -9361,6 +9403,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AncillarySelection'
+        admissionOfferMappings:
+          description: |
+            This contains a mapping from the offer part id to an external ref for AdmissionOfferParts.
+          type: array
+          items:
+            $ref: '#/components/schemas/AdmissionOfferMapping'
+        implicitReservationOfferMappings:
+          description: |
+            This contains a mapping from the offer part id to an external ref for implicitly booked reservations (included reservations and mandatory reservations).
+          type: array
+          items:
+            $ref: '#/components/schemas/ImplicitReservationOfferMapping'
         placeSelections:
           type: array
           items:
@@ -11465,6 +11519,9 @@ components:
         - reservationId
       properties:
         reservationId:
+          type: string
+          nullable: false
+        externalRef:
           type: string
           nullable: false
 
