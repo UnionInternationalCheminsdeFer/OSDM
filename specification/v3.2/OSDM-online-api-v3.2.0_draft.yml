@@ -180,7 +180,7 @@ paths:
       responses:
         '200':
           description: |
-            place information found
+            places found
           content:
             application/json:
               schema:
@@ -313,9 +313,9 @@ paths:
     get:
       tags:
         - Trips
-      summary:
-        Returns a collection of trips for a for a given trips collection id.
+      summary: Returns a collection of trips.
       description: |
+        Returns a collection of trips for a for a given trips collection id.
         The unique codes of the origin and destination can be resolved using the places service.
       operationId: getTripsCollectionId
       parameters:
@@ -1372,8 +1372,9 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary:
-        Removes an admission from pre-booked booking. It is up to the provider
+      summary: Removes an admission from pre-booked booking.
+      description: |
+        Removes an admission from pre-booked booking.It is up to the provider
         to change or remove dependent bookedOfferParts or to reject the request.
         A repricing might occur.
       operationId: deleteBookingBookedOffersAdmission
@@ -2516,7 +2517,8 @@ paths:
     post:
       tags:
         - Cancel Fulfillments
-      summary:
+      summary: Initiates a cancel fulfillments process
+      description: |
         Initiates a cancel fulfillments process by creating a
         cancelFulfillmentsOffers resource.
       operationId: postCancelFulfillmentsOffers
@@ -2753,8 +2755,9 @@ paths:
     post:
       tags:
         - Exchange
-      summary:
-        Returns exchange offers for a specified fulfillments submitted given
+      summary: Returns exchange offers for specified fulfillments
+      description: |
+        Returns exchange offers for specified fulfillments submitted given
         requested new trip characteristics.
       operationId: createExchangeOffersCollection
       parameters:
@@ -2872,7 +2875,8 @@ paths:
     get:
       tags:
         - Exchange
-      summary:
+      summary: Returns the exchange operation with the id provided.
+      description: |
         Returns the exchange operation with the id provided. It may be a
         provisional or a confirmed exchange.
       operationId: getBookingsExchangeOperations
@@ -3512,7 +3516,7 @@ paths:
     get:
       tags:
         - Booking Documents
-      summary: returns a document from a booking
+      summary: Returns a booking document.
       description: |
         booking documents found
       operationId: getDocument
@@ -4415,7 +4419,9 @@ components:
           type: string
           nullable: false
         externalRef:
-          description: If an externalRef was given in the Booking request or BookedOfferRequest, it must be returned here
+          description: |
+            If an externalRef was given in the Booking request or
+            BookedOfferRequest, it must be returned here.
           type: string
           nullable: false
         summary:
@@ -7916,8 +7922,8 @@ components:
         id:
           type: string
           nullable: false
-        status: 
-          $ref: '#/components/schemas/FulfillmentStatus'  
+        status:
+          $ref: '#/components/schemas/FulfillmentStatus'
         bookingRef:
           description: |
             the id of the booking the fulfillment is part of
@@ -8426,10 +8432,10 @@ components:
         - SERVICE_DEGRADED: e.g. service class not provided
       type: string
       x-extensible-enum:
-        - "DELAY"
-        - "JOURNEY_ABANDONED"
-        - "JOURNEY_NOT_STARTED"
-        - "SERVICE_DEGRADED"
+        - 'DELAY'
+        - 'JOURNEY_ABANDONED'
+        - 'JOURNEY_NOT_STARTED'
+        - 'SERVICE_DEGRADED'
 
     ImplicitReservationOfferMapping:
       type: object
