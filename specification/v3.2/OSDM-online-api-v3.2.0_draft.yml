@@ -3929,12 +3929,8 @@ paths:
         required: true
         content:
           application/json:
-            schema: 
-              type: array
-              minitems: 1
-              maxItems: 50
-              items:              
-                $ref: '#/components/schemas/PricingReference'     
+            schema:
+              $ref: '#/components/schemas/AvailabilityScope'
       responses:
         '200':
           description: |
@@ -5191,6 +5187,37 @@ components:
       x-extensible-enum:
         - ROOF_RACK
         - BICYCLE_STAND
+        
+    AvailabilityScope:
+      type: object
+      description: fare or offerParts which should be covered by the available seats
+      required: 
+        - partReferences   
+      properties:
+        singleSelectionMapsRequired:
+          description: if true the place map must include places for a single reservation or fare only 
+          type: boolean
+          default: true
+        partReferences:
+          $ref: '#/components/schemas/PartReference' 
+          
+    PartReference:
+      type: object
+      description: reference to a fare or offerPart  
+      required: 
+        - contextId
+        - contextType
+        - resourceId
+        - resourceType    
+      properties:
+        contextId:
+          type: string
+        contextType:
+          $ref: '#/components/schemas/ContextType' 
+        resourceId:
+          type: string
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'            
 
     AvailabilityStatus:
       description: |
@@ -6585,6 +6612,12 @@ components:
           type: boolean
           nullable: true
           default: false
+        reservationRefs:
+          description: |
+            references to the reservations for which this place nca be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+          type: array
+          items: 
+            type: string          
         status:
           $ref: '#/components/schemas/AvailabilityStatus'
         travelClass:
@@ -9988,7 +10021,7 @@ components:
         - vehicle
       properties:
         reference:
-          $ref: '#/components/schemas/PricingReference'   
+          $ref: '#/components/schemas/PartReference'   
         vehicle:
           $ref: '#/components/schemas/Vehicle'
         preSelections:
@@ -10081,6 +10114,12 @@ components:
           type: boolean
           nullable: true
           default: true
+        reservationRefs:
+          description: |
+            references to the reservations for which this place nca be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+          type: array
+          items: 
+            type: string
         placeProperties:
           type: array
           items:
@@ -10090,6 +10129,9 @@ components:
       type: object
       additionalProperties: false
       properties:
+        reservationId:
+          description: id of the reservation in case the places have already been selected and the customer now wants to change the selection.
+          type: string
         coach:
           type: string
           nullable: true
@@ -10329,24 +10371,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VAT'
-
-    PricingReference:
-      type: object
-      description: reference to a fare or offerPart  
-      required: 
-        - contextId
-        - contextType
-        - resourceId
-        - resourceType    
-      properties:
-        contextId:
-          type: string
-        contextType:
-          $ref: '#/components/schemas/ContextType' 
-        resourceId:
-          type: string
-        resourceType:
-          $ref: '#/components/schemas/ResourceType' 
 
     Problem:
       type: object
