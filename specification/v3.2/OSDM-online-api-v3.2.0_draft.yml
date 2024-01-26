@@ -5,14 +5,13 @@ info:
   version: 3.2.0
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
-    
+
     The following resources are key to get started:
-    
+
       -  [Processes](https://osdm.io/spec/processes/)
       -  [Models](https://osdm.io/spec/models/)
       -  [Getting started](https://osdm.io/spec/getting-started/)
-    
-    
+
   contact:
     name: OSDM Working Group
     url: 'https://osdm.io'
@@ -77,7 +76,7 @@ tags:
       resources to put a pre-booking on hold for a given time limit
   - name: Release
     description: |
-      resources to release 
+      resources to release
   - name: Complaint Management
     description: |
       resources to manage complaints
@@ -119,7 +118,7 @@ paths:
       responses:
         '200':
           description: |
-            the requested places
+            places found
           content:
             application/json:
               schema:
@@ -130,12 +129,11 @@ paths:
                 type: string
                 default: 'public, max-age=10000'
               description: |
-                  Resource is fairly persistent and has a medium time to live to allow short-term caching.
+                Resource is fairly persistent and has a medium time to live to allow short-term caching.
             ETag:
               schema:
                 type: string
-              description: |
-                  Version tag
+              description: version tag
         '303':
           $ref: '#/components/responses/SeeOtherResponse'
         '304':
@@ -182,12 +180,12 @@ paths:
       responses:
         '200':
           description: |
-            place information found matching criteria
+            places found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlaceResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -229,7 +227,7 @@ paths:
       responses:
         '200':
           description: |
-            the requested places
+            place found
           content:
             application/json:
               schema:
@@ -241,7 +239,7 @@ paths:
                 default: 'public, max-age=10000'
                 description: |
                   Resource is fairly persistent and has a medium time to live to allow short-term caching.
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -290,7 +288,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TripCollectionResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -315,8 +313,9 @@ paths:
     get:
       tags:
         - Trips
-      summary: Returns a collection of trips for a specified origin and destination (and via).
+      summary: Returns a collection of trips.
       description: |
+        Returns a collection of trips for a for a given trips collection id.
         The unique codes of the origin and destination can be resolved using the places service.
       operationId: getTripsCollectionId
       parameters:
@@ -359,7 +358,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -409,7 +408,7 @@ paths:
             REAL_BOARDING_ALIGHTING returns all stops except virtual stops).
             Default value: ORIGIN_DESTINATION_ONLY
           schema:
-            $ref: '#/components/schemas/StopBehavior' 
+            $ref: '#/components/schemas/StopBehavior'
         - name: embed
           in: query
           description: |
@@ -423,7 +422,7 @@ paths:
       responses:
         '200':
           description: |
-             trip found
+            trip found
           content:
             application/json:
               schema:
@@ -435,7 +434,7 @@ paths:
                 default: 'public, max-age=10000'
                 description: |
                   Resource is fairly persistent and has a medium time to live to allow short-term caching.
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -476,7 +475,7 @@ paths:
       responses:
         '200':
           description: |
-            Collection of offer found
+            collection of offers found
           content:
             application/json:
               schema:
@@ -487,7 +486,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -532,7 +531,7 @@ paths:
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            additional offers found for booked offer
           content:
             application/json:
               schema:
@@ -543,7 +542,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -592,12 +591,12 @@ paths:
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            on-hold offer created
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/OnHoldOfferResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -649,12 +648,12 @@ paths:
       responses:
         '200':
           description: |
-            On hold offer confirmed
+            on-hold offer confirmed
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/OnHoldOfferResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -705,7 +704,7 @@ paths:
       responses:
         '200':
           description: |
-            Passenger found
+            passenger found
           content:
             application/json:
               schema:
@@ -716,7 +715,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -770,7 +769,7 @@ paths:
       responses:
         '200':
           description: |
-            Passenger successfully patched
+            passenger successfully patched
           content:
             application/json:
               schema:
@@ -781,7 +780,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -825,7 +824,7 @@ paths:
       responses:
         '200':
           description: |
-            Purchaser found
+            purchaser found
           content:
             application/json:
               schema:
@@ -836,7 +835,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -883,7 +882,7 @@ paths:
       responses:
         '200':
           description: |
-            Purchaser successfully patched
+            purchaser patched
           content:
             application/json:
               schema:
@@ -894,7 +893,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -944,7 +943,7 @@ paths:
       responses:
         '200':
           description: |
-            Booking prebooked
+            booking pre-booked
           content:
             application/json:
               schema:
@@ -955,7 +954,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -976,7 +975,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-          
+
   /bookings/{bookingId}/booked-offers/{bookedOfferId}:
     get:
       tags:
@@ -1001,7 +1000,7 @@ paths:
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            bookedOffer found
           content:
             application/json:
               schema:
@@ -1012,7 +1011,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1057,7 +1056,7 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1112,7 +1111,7 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1139,7 +1138,7 @@ paths:
     post:
       tags:
         - BookingPart
-      summary: Adds an optional reservation to a  prebooked booking.
+      summary: Adds an optional reservation to a pre-booked booking.
       operationId: createBookingBookedOffersReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1166,7 +1165,7 @@ paths:
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            reservation added to booked offer
           content:
             application/json:
               schema:
@@ -1177,7 +1176,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1229,7 +1228,7 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1283,7 +1282,7 @@ paths:
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            ancillary added to booked offer
           content:
             application/json:
               schema:
@@ -1294,7 +1293,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1346,7 +1345,7 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1373,7 +1372,11 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes an admission from pre-booked booking. It is up to the provider to change or remove dependent bookedOfferParts or to jeject the request. A repricing might occure. 
+      summary: Removes an admission from pre-booked booking.
+      description: |
+        Removes an admission from pre-booked booking.It is up to the provider
+        to change or remove dependent bookedOfferParts or to reject the request.
+        A repricing might occur.
       operationId: deleteBookingBookedOffersAdmission
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1400,7 +1403,7 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1444,7 +1447,7 @@ paths:
       responses:
         '200':
           description: |
-            Booking prebooked
+            booking pre-booked
           content:
             application/json:
               schema:
@@ -1455,7 +1458,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1518,7 +1521,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1545,7 +1548,7 @@ paths:
       summary: Updates a booking but does *not* confirm the booking.
       description: |
         Updates fulfillment types, place selection and add payment. Does *not* confirm the booking. The booking is confirmed by calling 'POST /bookings/{bookingId}/fulfillments'.
-        
+
       operationId: updateBooking
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1574,7 +1577,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BookingResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1625,7 +1628,7 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1674,7 +1677,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BookingHistoryResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1720,7 +1723,7 @@ paths:
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            booking search results found
           content:
             application/json:
               schema:
@@ -1731,7 +1734,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1782,12 +1785,12 @@ paths:
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            booking split
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BookingSplitResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1812,12 +1815,14 @@ paths:
     post:
       tags:
         - Fulfillments
-      summary: Confirms the booking a triggers the fulfillment of the booking synchronously or asynchronously.
+      summary:
+        Confirms the booking a triggers the fulfillment of the booking
+        synchronously or asynchronously.
       description: |
         Confirms the booking and triggers the fulfillment of the booking.
-        
+
         If the fulfillments are created synchronously the service directly returns the fulfillments. The fulfillments are then in state FULFILLED.
-        
+
         If the fulfillments are created asynchronously the service starts the creation of the fulfillments. No fulfillmentIds are returned. The fulfillments are in stage CONFIRMED. The booking needs to be retrieved later to obtain the fulfillments.
       operationId: postFulfillments
       parameters:
@@ -1843,7 +1848,7 @@ paths:
                 $ref: '#/components/schemas/FulfillmentCollectionResponse'
         '202':
           $ref: '#/components/responses/FulfillmentRequestAcceptedResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1900,7 +1905,7 @@ paths:
                 $ref: '#/components/schemas/FulfillmentCollectionResponse'
         '202':
           $ref: '#/components/responses/FulfillmentRequestAcceptedResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1955,7 +1960,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1981,7 +1986,7 @@ paths:
         - Fulfillments
       summary: Activates a fulfillment, i.e. changes the status to AVAILABLE.
       description: |
-        Changes the fulfillment to status AVAILABLE. In the case of multi-journey product, one of the fulfillment is now "activated" and can be used to travel.
+        Changes the fulfillment to status AVAILABLE. In the case of multi-journey product, one of the fulfillment is now 'activated' and can be used to travel.
       operationId: patchFulfillmentId
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -2014,7 +2019,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2073,7 +2078,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RefundOfferCollectionResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2133,7 +2138,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2199,7 +2204,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2251,7 +2256,7 @@ paths:
         '204':
           description: |
             refund offer deleted
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2313,7 +2318,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2367,7 +2372,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReleaseOfferResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2433,7 +2438,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2485,7 +2490,7 @@ paths:
         '204':
           description: |
             release offer deleted
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2512,7 +2517,10 @@ paths:
     post:
       tags:
         - Cancel Fulfillments
-      summary: Initiates a cancel fulfillments process by creating a cancelFulfillmentsOffers resource.
+      summary: Initiates a cancel fulfillments process
+      description: |
+        Initiates a cancel fulfillments process by creating a
+        cancelFulfillmentsOffers resource.
       operationId: postCancelFulfillmentsOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -2546,7 +2554,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2604,7 +2612,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2670,7 +2678,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2720,7 +2728,7 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2747,7 +2755,10 @@ paths:
     post:
       tags:
         - Exchange
-      summary: Returns exchange offers for a specified fulfillments submitted given requested new trip characteristics.
+      summary: Returns exchange offers for specified fulfillments
+      description: |
+        Returns exchange offers for specified fulfillments submitted given
+        requested new trip characteristics.
       operationId: createExchangeOffersCollection
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -2765,7 +2776,7 @@ paths:
           in: query
           required: true
           schema:
-            $ref: '#/components/schemas/ExchangeOfferCollectionResponseContent' 
+            $ref: '#/components/schemas/ExchangeOfferCollectionResponseContent'
       requestBody:
         required: true
         content:
@@ -2786,7 +2797,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2834,12 +2845,12 @@ paths:
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            exchange offer pre-booked
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExchangeOperationResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2864,7 +2875,10 @@ paths:
     get:
       tags:
         - Exchange
-      summary: Returns the exchange operation with the id provided. It may be a provisional or a confirmed exchange.
+      summary: Returns the exchange operation with the id provided.
+      description: |
+        Returns the exchange operation with the id provided. It may be a
+        provisional or a confirmed exchange.
       operationId: getBookingsExchangeOperations
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -2910,7 +2924,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2976,7 +2990,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3028,7 +3042,7 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3078,7 +3092,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ComplaintResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3134,7 +3148,7 @@ paths:
                 default: 'public, max-age=10000'
                 description: |
                   Resource is fairly persistent and has a medium time to live to allow short-term caching.
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3189,7 +3203,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ComplaintResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3245,7 +3259,7 @@ paths:
                 default: 'public, max-age=10000'
                 description: |
                   Resource is fairly persistent and has a medium time to live to allow short-term caching.
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3301,7 +3315,7 @@ paths:
                 default: 'public, max-age=10000'
                 description: |
                   Resource is fairly persistent and has a medium time to live to allow short-term caching.
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3359,7 +3373,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3420,7 +3434,7 @@ paths:
                 type: string
                 description: |
                   Gives the date/time after which the response is considered stale (in 'HTTP-date' format as defined by RFC 7231).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3466,7 +3480,7 @@ paths:
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            booking documents created
           content:
             application/json:
               schema:
@@ -3477,7 +3491,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3502,7 +3516,7 @@ paths:
     get:
       tags:
         - Booking Documents
-      summary: returns a document from a booking
+      summary: Returns a booking document.
       description: |
         booking documents found
       operationId: getDocument
@@ -3524,7 +3538,7 @@ paths:
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            booking document found
           content:
             application/json:
               schema:
@@ -3535,7 +3549,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3581,7 +3595,7 @@ paths:
         '204':
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3643,7 +3657,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3703,7 +3717,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3768,7 +3782,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3834,7 +3848,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3877,7 +3891,7 @@ paths:
           in: query
           required: true
           schema:
-            $ref: '#/components/schemas/ContextType' 
+            $ref: '#/components/schemas/ContextType'
         - name: resourceId
           in: query
           required: true
@@ -3887,11 +3901,11 @@ paths:
           in: query
           required: true
           schema:
-            $ref: '#/components/schemas/ResourceType' 
+            $ref: '#/components/schemas/ResourceType'
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            place availabilities found
           content:
             application/json:
               schema:
@@ -3902,7 +3916,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3947,7 +3961,7 @@ paths:
           in: query
           required: true
           schema:
-            $ref: '#/components/schemas/ContextType' 
+            $ref: '#/components/schemas/ContextType'
         - name: resourceId
           in: query
           description: |
@@ -3959,7 +3973,7 @@ paths:
           in: query
           required: true
           schema:
-            $ref: '#/components/schemas/ResourceType' 
+            $ref: '#/components/schemas/ResourceType'
         - name: coachNumber
           in: query
           description: |
@@ -3977,7 +3991,7 @@ paths:
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            place availabilities found
           content:
             application/json:
               schema:
@@ -3988,7 +4002,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -4031,7 +4045,7 @@ paths:
           in: query
           required: true
           schema:
-            $ref: '#/components/schemas/ContextType' 
+            $ref: '#/components/schemas/ContextType'
         - name: resourceId
           in: query
           required: true
@@ -4041,11 +4055,11 @@ paths:
           in: query
           required: true
           schema:
-            $ref: '#/components/schemas/ResourceType' 
+            $ref: '#/components/schemas/ResourceType'
       responses:
         '200':
           description: |
-            TODO: Please add comment for response
+            place availabilities found
           content:
             application/json:
               schema:
@@ -4056,7 +4070,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -4112,7 +4126,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -4171,7 +4185,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -4272,17 +4286,17 @@ components:
           schema:
             type: string
           description: |
-              Location (URN) of the response data
+            Location (URN) of the response data
         ETag:
           schema:
             type: string
           description: |
-              Version tag
+            Version tag
 
     NotModifiedResponse:
       description: |
         Not Modified (304)
-        
+
     BadRequestResponse:
       description: |
         Bad Request (400)
@@ -4379,7 +4393,6 @@ components:
           schema:
             $ref: '#/components/schemas/Problem'
 
-
   schemas:
     AbstractBookingPart:
       type: object
@@ -4398,9 +4411,17 @@ components:
         - exchangeable
       properties:
         objectType:
-          description: Attribute is used as discriminator for inheritance between data types.
+          description:
+            Attribute is used as discriminator for inheritance between data
+            types.
           type: string
         id:
+          type: string
+          nullable: false
+        externalRef:
+          description: |
+            If an externalRef was given in the Booking request or
+            BookedOfferRequest, it must be returned here.
           type: string
           nullable: false
         summary:
@@ -4513,9 +4534,9 @@ components:
 
     AccountingRef:
       description: |
-          reference to accounting data in case the accounting is not provided by the API provider
+        reference to accounting data in case the accounting is not provided by the API provider
       type: object
-      required: 
+      required:
         - accountingCompany
       properties:
         accountingCompany:
@@ -4525,7 +4546,7 @@ components:
             ids of accounting data used to link the booking part with accounting data in the billing send by the accounting company
           type: array
           items:
-            type: string          
+            type: string
 
     AbstractOfferPart:
       type: object
@@ -4548,7 +4569,9 @@ components:
         - availableFulfillmentOptions
       properties:
         objectType:
-          description: Attribute is used as discriminator for inheritance between data types.
+          description:
+            Attribute is used as discriminator for inheritance between data
+            types.
           type: string
         id:
           type: string
@@ -4615,7 +4638,7 @@ components:
             List of tags (and their type) that allow identifying sets of compatible offers when trying to combine multiple offers covering one single trip.
             At least one (not all) tripTags must be in common to allow combination
             If no tag is provided, there is no trip constraint on this specific offer.
-            
+
           type: array
           items:
             type: string
@@ -4666,7 +4689,7 @@ components:
           $ref: '#/components/schemas/IndicatedConsumption'
         _links:
           description: |
-            Java Property Name: 'links' 
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -4684,7 +4707,9 @@ components:
         - number
       properties:
         objectType:
-          description: Attribute is used as discriminator for inheritance between data types.
+          description:
+            Attribute is used as discriminator for inheritance between data
+            types.
           type: string
         holder:
           $ref: '#/components/schemas/PersonDetail'
@@ -4711,7 +4736,9 @@ components:
         - objectType
       properties:
         objectType:
-          description: Attribute is used as discriminator for inheritance between data types.
+          description:
+            Attribute is used as discriminator for inheritance between data
+            types.
           type: string
 
     AccommodationSubType:
@@ -4720,6 +4747,99 @@ components:
         Accommodation sub type definition out of the Accommodation Sub Type Code List
       default: 'ANY_SEAT'
       nullable: false
+      x-extensible-enum:
+        - "AISLE"
+        - "AIR-CONDITIONED"
+        - "ANY_SEAT"
+        - "BISTRO"
+        - "BICYCLE"
+        - "BUSINESS"
+        - "BUSINESS_COMFORT"
+        - "CABIN8"
+        - "CAR_SMALL"
+        - "CAR_LARGE"
+        - "CARRE"
+        - "CHILDREN_AREA"
+        - "CLUB"
+        - "CLUB_2"
+        - "CLUB_4"
+        - "COMPARTMENT"
+        - "COMPLETE"
+        - "CONFERENCE"
+        - "CONNECTING_DOOR"
+        - "COUCHETTE_2"
+        - "COUCHETTE_4"
+        - "COUCHETTE_5"
+        - "COUCHETTE_6"
+        - "COUCHETTE_COMFORT_4"
+        - "COUCHETTE_COMFORT_5"
+        - "COUCHETTE_COMFORT_6"
+        - "COUCHETTE_PRM_2"
+        - "COUCHETTE_PRM_3"
+        - "COUCHETTE_PRM_4"
+        - "DOUBLE"
+        - "DOUBLE_SWC"
+        - "DOUBLE_SWC_DB"
+        - "DOUBLE_S"
+        - "EASY_ACCESS"
+        - "FACE_2_FACE"
+        - "EXCELLENCE"
+        - "FAMILY"
+        - "FRONT_VIEW"
+        - "HISTORIC_COACH"
+        - "INCLUDING_MEAL"
+        - "INCLUDING_DRINK"
+        - "KIOSQUE"
+        - "LADIES"
+        - "LOWER_BED"
+        - "LOWER_DECK"
+        - "MEN"
+        - "MIDDLE_BED"
+        - "MIDDLE_SEAT"
+        - "MINI_SUITE"
+        - "MIXED"
+        - "MOTOR_CYCLE"
+        - "MOTOR_CYCLE_SC"
+        - "NEAR_ANIMALS"
+        - "NEAR_DINING"
+        - "NEAR_PLAY_AREA"
+        - "NEAR_BICYCLE_AREA"
+        - "NEAR_WHEELCHAIR"
+        - "OPEN_SPACE"
+        - "PANORAMA"
+        - "PHONE"
+        - "POWER"
+        - "PRAM"
+        - "PRAM_WITH_SEAT"
+        - "RESTAURANT"
+        - "SILENCE"
+        - "SINGLE"
+        - "SINGLE_SWC"
+        - "SINGLE_SWC_DOUBLE"
+        - "SIDE_BY_SIDE"
+        - "SALON"
+        - "SLEEPERETTE"
+        - "SLEEPER_DELUXE"
+        - "SOLO"
+        - "SOLO_COM"
+        - "SPECIAL_SLEEPER"
+        - "TABLE"
+        - "TANDEM"
+        - "TOURIST_SLEEPER_2"
+        - "TOURIST_SLEEPER_3"
+        - "TOURIST_SLEEPER_4"
+        - "TOURIST_SLEEPER_3_SWC"
+        - "UPPER_BED"
+        - "UPPER_DECK"
+        - "VIDEO"
+        - "WHEELCHAIR"
+        - "WHEELCHAIR_AND_SEAT"
+        - "WHEELCHAIR_NO_SEAT"
+        - "WIFI"
+        - "WINDOW"
+        - "WITH_ANIMALS"
+        - "WITH_SMALL_CHILDREN"
+        - "WITHOUT_ANIMALS"
 
     AccommodationType:
       type: string
@@ -4727,32 +4847,38 @@ components:
         Accommodation type definition out of the Accommodation Type Code List
       default: 'SEAT'
       nullable: false
+      x-extensible-enum:
+        - "SEAT"
+        - "COUCHETTE"
+        - "BERTH"
+        - "VEHICLE"
+        - "STORAGE"
 
     ActualPassengerType:
       description: |
         Actual Passenger type according to UIC passenger, i.e. passenger type list. Returns the passenger type according to the underlying fare system. E.g. a passenger of type PERSON is categorized as a ADULT or YOUTH.
-        
+
       type: string
       x-extensible-enum:
-        - "DOG"
-        - "PET"
-        - "LUGGAGE"
-        - "PRM"
-        - "BICYCLE"
-        - "PRAM"
-        - "COMPANION_DOG"
-        - "CAR"
-        - "MOTORCYCLE"
-        - "TRAILER"
-        - "FAMILY_CHILD"
-        - "WHEELCHAIR"
-        - "PERSON"
-        - "YOUNG_CHILD"
-        - "CHILD"
-        - "YOUTH"
-        - "ADULT"
-        - "SENIOR"
-      default: "PERSON"
+        - 'DOG'
+        - 'PET'
+        - 'LUGGAGE'
+        - 'PRM'
+        - 'BICYCLE'
+        - 'PRAM'
+        - 'COMPANION_DOG'
+        - 'CAR'
+        - 'MOTORCYCLE'
+        - 'TRAILER'
+        - 'FAMILY_CHILD'
+        - 'WHEELCHAIR'
+        - 'PERSON'
+        - 'YOUNG_CHILD'
+        - 'CHILD'
+        - 'YOUTH'
+        - 'ADULT'
+        - 'SENIOR'
+      default: 'PERSON'
 
     AdditionalOfferCollectionResponse:
       type: object
@@ -4872,6 +4998,21 @@ components:
               items:
                 $ref: '#/components/schemas/RegulatoryCondition'
 
+    AdmissionOfferMapping:
+      type: object
+      additionalProperties: false
+      required:
+        - admissionId
+        - externalRef
+      properties:
+        admissionId:
+          description: OfferPartId of the admission
+          type: string
+          nullable: false
+        externalRef:
+          type: string
+          nullable: false
+
     AdmissionOfferPart:
       description: |
         An admission represents a travel right, or the entitlement to travel onboard a train between
@@ -4928,14 +5069,14 @@ components:
         afterSaleFee:
           $ref: '#/components/schemas/Price'
         reimbursementMethod:
-          $ref: '#/components/schemas/ReimbursementMethod'  
+          $ref: '#/components/schemas/ReimbursementMethod'
 
     AfterSaleConditionType:
       type: string
       x-extensible-enum:
-        - PLACE_CHANGE
-        - EXCHANGE
-        - REFUND
+        - 'PLACE_CHANGE'
+        - 'EXCHANGE'
+        - 'REFUND'
 
     AfterSalesConditionsLink:
       type: object
@@ -5055,7 +5196,7 @@ components:
                 $ref: '#/components/schemas/OfferPartReference'
             category:
               description: |
-                Categorization of the ancillary such as "Meal" or "Gift".
+                Categorization of the ancillary such as 'Meal' or 'Gift'.
               type: string
               nullable: true
             type:
@@ -5091,6 +5232,9 @@ components:
         ancillaryId:
           type: string
           nullable: false
+        externalRef:
+          type: string
+          nullable: false
         passengerRefs:
           type: array
           items:
@@ -5101,15 +5245,15 @@ components:
     AncillaryType:
       type: string
       x-extensible-enum:
-        - MEAL
-        - BEVERAGE
+        - 'MEAL'
+        - 'BEVERAGE'
 
     AnonymousPassengerSpecification:
       type: object
       additionalProperties: false
       description: |
         Minimal specification of a passenger to request offers without any GDPR relevant attributes such as name or address.
-        
+
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
       required:
         - externalRef
@@ -5148,9 +5292,9 @@ components:
     ApplicabilityType:
       type: string
       x-extensible-enum:
-        - "BOOKING"
-        - "TRIP"
-        - "OFFERPART"
+        - 'BOOKING'
+        - 'TRIP'
+        - 'OFFERPART'
 
     AppliedPassengerType:
       type: object
@@ -5186,18 +5330,18 @@ components:
         Indication of items attached to the car
       type: string
       x-extensible-enum:
-        - "ROOF_RACK"
-        - "BICYCLE_STAND"
+        - 'ROOF_RACK'
+        - 'BICYCLE_STAND'
 
     AvailabilityStatus:
       description: |
         status of the place or coach
       type: string
       enum:
-        - "ALLOCATED"
-        - "FREE"
-        - "RESTRICTED"
-      default: "FREE"
+        - 'ALLOCATED'
+        - 'FREE'
+        - 'RESTRICTED'
+      default: 'FREE'
 
     AvailablePlace:
       type: object
@@ -5249,20 +5393,20 @@ components:
       description: |
         Status of the request sent to the back office.
         Valid Values:
-        - "INITIATED"
-        - "EVALUATING"
-        - "DECIDED"
-        - "SETTLED"
-        - "INFORMATION_MISSING"
-        - "REQUEST_UPDATED": Additional information, i.e. documents have been provided which should trigger reevaluation.
+        - 'INITIATED'
+        - 'EVALUATING'
+        - 'DECIDED'
+        - 'SETTLED'
+        - 'INFORMATION_MISSING'
+        - 'REQUEST_UPDATED': Additional information, i.e. documents have been provided which should trigger reevaluation.
       type: string
       enum:
-        - "INITIATED"
-        - "EVALUATING"
-        - "DECIDED"
-        - "SETTLED"
-        - "INFORMATION_MISSING"
-        - "REQUEST_UPDATED"
+        - 'INITIATED'
+        - 'EVALUATING'
+        - 'DECIDED'
+        - 'SETTLED'
+        - 'INFORMATION_MISSING'
+        - 'REQUEST_UPDATED'
 
     BankAccountReference:
       type: object
@@ -5294,17 +5438,17 @@ components:
     BankIdCode:
       type: string
       x-extensible-enum:
-        - "SWIFT"
+        - 'SWIFT'
 
     BarCodeType:
       description: |
         Item according to IRS 90918-9: FCB, TLB, SSB
       type: string
       x-extensible-enum:
-        - "FCB"
-        - "TLB"
-        - "SSB"
-        - "DOSIPAS"
+        - 'FCB'
+        - 'TLB'
+        - 'SSB'
+        - 'DOSIPAS'
 
     BaseTripPolicyFilter:
       type: object
@@ -5436,6 +5580,9 @@ components:
         ancillaryOfferId:
           type: string
           nullable: false
+        externalRef:
+          type: string
+          nullable: false
         passengerRefs:
           type: array
           items:
@@ -5458,8 +5605,10 @@ components:
 
     BookedOfferRequest:
       type: object
-      description: 
-        adding an offer to a booking as prebooked. additional passengers that were not already in the booking are added in additional passengers existing passengers are referenced in passengerRef.
+      description:
+        adding an offer to a booking as pre-booked. additional passengers that
+        were not already in the booking are added in additional passengers
+        existing passengers are referenced in passengerRef.
       additionalProperties: false
       required:
         - offers
@@ -5479,7 +5628,7 @@ components:
         additionalPassengerSpecifications:
           type: array
           items:
-            $ref: '#/components/schemas/PassengerSpecification'        
+            $ref: '#/components/schemas/PassengerSpecification'
         promotionCodes:
           type: array
           items:
@@ -5498,6 +5647,9 @@ components:
           type: string
           nullable: false
         reservationOfferId:
+          type: string
+          nullable: false
+        externalRef:
           type: string
           nullable: false
         passengerRefs:
@@ -5574,7 +5726,9 @@ components:
           nullable: false
         bookingCode:
           type: string
-          description: The unique booking code in the provider system. Usually refers to an order number or PNR.
+          description:
+            The unique booking code in the provider system. Usually refers to an
+            order number or PNR.
         externalRef:
           description: |
             The unique booking reference in the provider system. Usually refers to an order number or PNR.
@@ -5665,7 +5819,7 @@ components:
           nullable: true
         _links:
           description: |
-            Java Property Name: 'links' 
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -5703,8 +5857,8 @@ components:
           nullable: true
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -5712,16 +5866,16 @@ components:
     BookingPartStatus:
       type: string
       enum:
-        - "PREBOOKED"
-        - "ON_HOLD"
-        - "CONFIRMED"
-        - "FULFILLED"
-        - "CANCELLED"
-        - "RELEASED"
-        - "REFUNDED"
-        - "EXCHANGE_ONGOING"
-        - "EXCHANGED"
-        - "ERROR"
+        - 'PREBOOKED'
+        - 'ON_HOLD'
+        - 'CONFIRMED'
+        - 'FULFILLED'
+        - 'CANCELLED'
+        - 'RELEASED'
+        - 'REFUNDED'
+        - 'EXCHANGE_ONGOING'
+        - 'EXCHANGED'
+        - 'ERROR'
 
     BookingPartSummary:
       type: object
@@ -5752,9 +5906,9 @@ components:
     BookingPartType:
       type: string
       enum:
-        - "ADMISSION"
-        - "RESERVATION"
-        - "ANCILLARY"
+        - 'ADMISSION'
+        - 'RESERVATION'
+        - 'ANCILLARY'
 
     BookingPatchRequest:
       type: object
@@ -5825,23 +5979,23 @@ components:
 
     BookingResponseContent:
       description: |
-        Influences whether referenced resources are returned in full or as references only. 
+        Influences whether referenced resources are returned in full or as references only.
       type: string
       enum:
-        - "ALL"
-        - "BOOKING"
-        - "BOOKING_PASSENGERS"
-        - "BOOKING_PURCHASER"
-        - "BOOKING_TRIPS"
-        - "BOOKING_BOOKEDOFFERS"
-        - "BOOKING_FULFILLMENTS"
-        - "BOOKING_DOCUMENTS"
-        - "BOOKING_REFUNDOFFERS"
-        - "BOOKING_RELEASEOFFERS"
-        - "BOOKING_CANCELFULFILLMENTSOFFER"
-        - "BOOKING_EXCHANGEOPERATIONS"
-        - "NONE"
-      default: "ALL"
+        - 'ALL'
+        - 'BOOKING'
+        - 'BOOKING_PASSENGERS'
+        - 'BOOKING_PURCHASER'
+        - 'BOOKING_TRIPS'
+        - 'BOOKING_BOOKEDOFFERS'
+        - 'BOOKING_FULFILLMENTS'
+        - 'BOOKING_DOCUMENTS'
+        - 'BOOKING_REFUNDOFFERS'
+        - 'BOOKING_RELEASEOFFERS'
+        - 'BOOKING_CANCELFULFILLMENTSOFFER'
+        - 'BOOKING_EXCHANGEOPERATIONS'
+        - 'NONE'
+      default: 'ALL'
 
     BookingSearchParameters:
       type: object
@@ -5953,7 +6107,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Contains the newly created booking 
+        Contains the newly created booking
       required:
         - bookingId
         - passengerIds
@@ -6074,7 +6228,7 @@ components:
           nullable: false
         validUntil:
           description: |
-             time until the offer can be used
+            time until the offer can be used
           type: string
           format: date-time
           nullable: false
@@ -6091,8 +6245,8 @@ components:
           minItems: 1
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -6109,8 +6263,8 @@ components:
             $ref: '#/components/schemas/CancelFulfillmentsOffer'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -6145,8 +6299,8 @@ components:
     CancelFulfillmentsStatus:
       type: string
       enum:
-        - PROPOSED
-        - CONFIRMED
+        - 'PROPOSED'
+        - 'CONFIRMED'
 
     Car:
       type: object
@@ -6402,11 +6556,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachLayoutInternal'
+        compartmentNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoachLayoutCompartmentNumber'            
         gridSize:
           $ref: '#/components/schemas/CoachLayoutGridSize'
         _links:
           description: |
-            Java Property Name: 'links' 
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -6501,8 +6659,23 @@ components:
             graphical item type e.g. silence area sign = 116
           type: string
           nullable: false
+        direction:
+          $ref: '#/components/schemas/DirectionType'          
         coords:
           $ref: '#/components/schemas/LayoutCoordinates'
+
+    CoachLayoutCompartmentNumber:
+      description: Layout item to place a compartment number. The number has no icon, it only places the number  
+      type: object
+      additionalProperties: false
+      required:
+        - number
+        - coords
+      properties:
+        number:
+          type: string
+        coords:
+          $ref: '#/components/schemas/LayoutCoordinates'   
 
     CombinationTag:
       type: object
@@ -6551,7 +6724,7 @@ components:
       type: string
       description: |
         Identifies a company. For rail, a RICS company code or compatible ERA company code are used. 
-        E.g.: "urn:uic:rics:1185:000011"
+        E.g.: 'urn:uic:rics:1185:000011'
       nullable: false
 
     Compartment:
@@ -6610,8 +6783,8 @@ components:
           $ref: '#/components/schemas/ComplaintDecision'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -6619,14 +6792,14 @@ components:
     ComplaintChangeReason:
       description: |
         Known Values:
-        - "BANK_ACCOUNT"
-        - "SETTLED_TIME_LIMIT_EXCEEDED": A distributor settled the claim as the fare provided did not reply in due time. The compensation amount debited is provided.
-        - "PASSENGER_CHANGE"
+        - 'BANK_ACCOUNT'
+        - 'SETTLED_TIME_LIMIT_EXCEEDED': A distributor settled the claim as the fare provided did not reply in due time. The compensation amount debited is provided.
+        - 'PASSENGER_CHANGE'
       type: string
       x-extensible-enum:
-        - "BANK_ACCOUNT"
-        - "SETTLED_TIME_LIMIT_EXCEEDED"
-        - "PASSENGER_CHANGE"
+        - 'BANK_ACCOUNT'
+        - 'SETTLED_TIME_LIMIT_EXCEEDED'
+        - 'PASSENGER_CHANGE'
 
     ComplaintDecision:
       type: object
@@ -6711,13 +6884,13 @@ components:
     ConditionType:
       type: string
       x-extensible-enum:
-        - "PRE_SALE"
-        - "SALE"
-        - "TRAVEL"
-        - "PLACE_CHANGE"
-        - "FULFILLMENT"
-        - "EXCHANGE"
-        - "REFUND"
+        - 'PRE_SALE'
+        - 'SALE'
+        - 'TRAVEL'
+        - 'PLACE_CHANGE'
+        - 'FULFILLMENT'
+        - 'EXCHANGE'
+        - 'REFUND'
 
     ContactDetail:
       type: object
@@ -6750,8 +6923,8 @@ components:
     ContextType:
       type: string
       enum:
-        - "OFFER"
-        - "BOOKING"
+        - 'OFFER'
+        - 'BOOKING'
 
     ContinuousLeg:
       type: object
@@ -6800,9 +6973,9 @@ components:
         Types of modes that run at any time without a timetable. Provided by OJP.
       type: string
       x-extensible-enum:
-        - "WALK"
-        - "DEMAND_RESPONSIVE"
-        - "REPLACEMENT_SERVICE"
+        - 'WALK'
+        - 'DEMAND_RESPONSIVE'
+        - 'REPLACEMENT_SERVICE'
 
     ContinuousService:
       type: object
@@ -6845,14 +7018,14 @@ components:
     ControlSecurityType:
       description: |
         Known Values:
-        - "SiP": secure paper tickets
-        - "SiD": security in data (signed bar code)
-        - "SiS": security in system
+        - 'SiP': secure paper tickets
+        - 'SiD': security in data (signed bar code)
+        - 'SiS': security in system
       type: string
       x-extensible-enum:
-        - "SiP"
-        - "SiD"
-        - "SiS"
+        - 'SiP'
+        - 'SiD'
+        - 'SiS'
 
     CorporateCode:
       type: object
@@ -6883,14 +7056,14 @@ components:
       description: |
         ISO country code (2 alpha), relative URNs with base urn:iso:std:iso:3166 are recommended
       nullable: false
-      example: "DE"
+      example: 'DE'
 
     Currency:
       type: string
       description: |
         ISO 4217 currency codes
       nullable: false
-      example: "CHF"
+      example: 'CHF'
 
     CustomerComplaint:
       type: object
@@ -7013,10 +7186,10 @@ components:
         - DOWN: down (from right side of the coach pointing to the middle of the aisle)
       type: string
       enum:
-        - "RIGHT"
-        - "LEFT"
-        - "UP"
-        - "DOWN"
+        - 'RIGHT'
+        - 'LEFT'
+        - 'UP'
+        - 'DOWN'
 
     Document:
       type: object
@@ -7054,7 +7227,7 @@ components:
           nullable: true
         format:
           description: |
-            Physical format of the document provided in the content field in Mime-Type format, e.g. application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
+            Physical format of the document provided in the content field in Mime-Type format, e.g. application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
           type: string
           nullable: true
           example: application/pdf
@@ -7098,8 +7271,8 @@ components:
     DocumentScope:
       type: string
       enum:
-        - "BOOKING"
-        - "PASSENGER"
+        - 'BOOKING'
+        - 'PASSENGER'
 
     DocumentSpecification:
       type: object
@@ -7123,7 +7296,7 @@ components:
           nullable: true
         format:
           description: |
-            Physical format of the document provided in the content field in Mime-Type format, e.g. application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
+            Physical format of the document provided in the content field in Mime-Type format, e.g. application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
           type: string
           nullable: true
           example: application/pdf
@@ -7135,10 +7308,10 @@ components:
     DocumentType:
       type: string
       enum:
-        - "BOOKING_RECEIPT"
-        - "CO2_REPORT"
-        - "INFORMATION"
-        - "COMPLAINT_EXPLANATION"
+        - 'BOOKING_RECEIPT'
+        - 'CO2_REPORT'
+        - 'INFORMATION'
+        - 'COMPLAINT_EXPLANATION'
 
     Event:
       type: object
@@ -7194,20 +7367,20 @@ components:
     EventType:
       type: string
       enum:
-        - "BOOKING_REAL_TIME_EVENT_OCCURED"
-        - "BOOKING_REACOMMODATED"
-        - "BOOKING_TRIP_CHANGED"
-        - "BOOKING_TRIP_CONFIRMED"
-        - "FULFILLMENT_AVAILABLE"
-        - "DOCUMENT_AVAILABLE"
-        - "FULFILLMENT_REFUNDED"
-        - "FULFILLMENT_EXCHANGED"
-        - "FULFILLMENT_CONTROLLED"
-        - "ACCOMMODATION_RELEASED"
-        - "PURCHASER_CHANGED"
-        - "PASSENGER_CHANGED"
-        - "REFUND_INITIATED"
-        - "EXCHANGE_INITIATED"
+        - 'BOOKING_REAL_TIME_EVENT_OCCURRED'
+        - 'BOOKING_REACCOMMODATED'
+        - 'BOOKING_TRIP_CHANGED'
+        - 'BOOKING_TRIP_CONFIRMED'
+        - 'FULFILLMENT_AVAILABLE'
+        - 'DOCUMENT_AVAILABLE'
+        - 'FULFILLMENT_REFUNDED'
+        - 'FULFILLMENT_EXCHANGED'
+        - 'FULFILLMENT_CONTROLLED'
+        - 'ACCOMMODATION_RELEASED'
+        - 'PURCHASER_CHANGED'
+        - 'PASSENGER_CHANGED'
+        - 'REFUND_INITIATED'
+        - 'EXCHANGE_INITIATED'
 
     ExchangeOffer:
       type: object
@@ -7251,7 +7424,7 @@ components:
           nullable: false
         preBookableUntil:
           description: |
-             time until the offer can be pre-booked, however its availability is not guaranteed
+            time until the offer can be pre-booked, however its availability is not guaranteed
           type: string
           format: date-time
           nullable: false
@@ -7289,23 +7462,22 @@ components:
             $ref: '#/components/schemas/Fare'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
-            
-            
+
     ExchangeBreakDown:
       type: object
       description: breakdown of fees taken in a refund
       properties:
         refundItems:
           type: array
-          items: 
-             $ref: '#/components/schemas/ExchangeBreakdownItem'
-          minItems: 1   
-             
+          items:
+            $ref: '#/components/schemas/ExchangeBreakdownItem'
+          minItems: 1
+
     ExchangeBreakdownItem:
       type: object
       required:
@@ -7318,11 +7490,11 @@ components:
         exchangePrice:
           $ref: '#/components/schemas/Price'
         refundableAmount:
-          $ref: '#/components/schemas/Price'          
+          $ref: '#/components/schemas/Price'
         bookingPartIds:
           type: array
           items:
-            type: string                      
+            type: string
 
     ExchangeOfferCollectionRequest:
       type: object
@@ -7407,8 +7579,8 @@ components:
             $ref: '#/components/schemas/Passenger'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -7416,12 +7588,12 @@ components:
     ExchangeOfferCollectionResponseContent:
       type: string
       enum:
-        - "ALL"
-        - "EXCHANGEOFFERS"
-        - "TRIP"
-        - "PASSENGERS"
-        - "NONE"
-      default: "ALL"
+        - 'ALL'
+        - 'EXCHANGEOFFERS'
+        - 'TRIP'
+        - 'PASSENGERS'
+        - 'NONE'
+      default: 'ALL'
 
     ExchangeOperation:
       type: object
@@ -7500,19 +7672,19 @@ components:
         Influences whether referenced resources are returned in full or as references only.
       type: string
       enum:
-        - "ALL"
-        - "EXCHANGEOPERATION"
-        - "EXCHANGEOPERATION_EXCHANGEOFFERS"
-        - "EXCHANGEOPERATION_FULFILLMENTS"
-      default: "ALL"
+        - 'ALL'
+        - 'EXCHANGEOPERATION'
+        - 'EXCHANGEOPERATION_EXCHANGEOFFERS'
+        - 'EXCHANGEOPERATION_FULFILLMENTS'
+      default: 'ALL'
 
     ExchangeStatus:
       type: string
       enum:
-        - "PREBOOKED"
-        - "CONFIRMED"
-        - "FULFILLED"
-        - "ERROR"
+        - 'PREBOOKED'
+        - 'CONFIRMED'
+        - 'FULFILLED'
+        - 'ERROR'
 
     ExchangeableType:
       description: |
@@ -7520,10 +7692,10 @@ components:
         NO when not exchangeable or exchangeable with 100% fee, WITH_CONDITIONS in all other cases.
       type: string
       enum:
-        - "YES"
-        - "NO"
-        - "WITH_CONDITION"
-        
+        - 'YES'
+        - 'NO'
+        - 'WITH_CONDITION'
+
     ExchangeOfferItem:
       type: object
       required:
@@ -7539,7 +7711,7 @@ components:
         bookingParts:
           type: array
           items:
-            $ref: '#/components/schemas/BookingPartReference'          
+            $ref: '#/components/schemas/BookingPartReference'
 
     ExcludedTimeRange:
       type: object
@@ -7569,8 +7741,8 @@ components:
     ExclusionScope:
       type: string
       enum:
-        - "START_OF_TRAVEL"
-        - "COMPLETE_RANGE"
+        - 'START_OF_TRAVEL'
+        - 'COMPLETE_RANGE'
 
     Fare:
       type: object
@@ -7643,6 +7815,12 @@ components:
             $ref: '#/components/schemas/PlaceAllocation'
         coveredSection:
           $ref: '#/components/schemas/Section'
+        passengerRefs:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          nullable: false          
         passengerConstraints:
           description: |
             passenger constraint to be included in bar codes
@@ -7682,7 +7860,7 @@ components:
         model:
           description: |
             A distributor needs to support the following models:  SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING.
-            
+
           type: string
           nullable: false
         combinableCarriers:
@@ -7725,7 +7903,7 @@ components:
         In case the connection point is between stations for each side of the border real stations must be provided.
         Multiple sets of station can be provided in the rare case that the connection point connects more than two station (A-B and A-C).
         Multiple stations within a set at one side of the border might be provided in case of changes (new stations build near the border).
-        
+
         Providing the UIC code for the station is mandatory.
       allOf:
         - $ref: '#/components/schemas/Place'
@@ -7790,16 +7968,16 @@ components:
         Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
       type: string
       x-extensible-enum:
-        - "ADMISSION"
-        - "RESERVATION"
-        - "INTEGRATED_RESERVATION"
-        - "ANCILLARY"
+        - 'ADMISSION'
+        - 'RESERVATION'
+        - 'INTEGRATED_RESERVATION'
+        - 'ANCILLARY'
 
     Fee:
       type: object
       additionalProperties: false
       description: |
-        Fees are used to represent additional costs for services or products.  In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the providing system.
+        Fees are used to represent additional costs for services or products. In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the providing system.
       required:
         - id
         - price
@@ -7840,13 +8018,15 @@ components:
           type: string
           description: |
             Reference to the Product representing the Fee
+        accountingRef:
+          $ref: '#/components/schemas/AccountingRef'
 
     Flexibility:
       type: string
       x-extensible-enum:
-        - "FULL_FLEXIBLE"
-        - "SEMI_FLEXIBLE"
-        - "NON_FLEXIBLE"
+        - 'FULL_FLEXIBLE'
+        - 'SEMI_FLEXIBLE'
+        - 'NON_FLEXIBLE'
 
     Fulfillment:
       type: object
@@ -7859,12 +8039,15 @@ components:
         A fulfillment refers to services of one or multiple offer parts or a fare (distributor mode).
       required:
         - id
+        - status
         - bookingRef
         - createdOn
       properties:
         id:
           type: string
           nullable: false
+        status:
+          $ref: '#/components/schemas/FulfillmentStatus'
         bookingRef:
           description: |
             the id of the booking the fulfillment is part of
@@ -7906,8 +8089,8 @@ components:
             $ref: '#/components/schemas/FulfillmentPart'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -7917,7 +8100,7 @@ components:
       additionalProperties: false
       description: |
         Changes the fulfillment to status AVAILABLE. In the case of multi-journey  product, one of the fulfillment is
-        now "activated" and can be used to travel.
+        now 'activated' and can be used to travel.
       required:
         - startOfUsage
       properties:
@@ -7941,7 +8124,7 @@ components:
         stockControlNumbers:
           description: |
             The ids of the secure paper stock that identifies the blank secure paper stock used for printing.
-            
+
             The stock control number is only used for secure paper stock and triggers a printing of the stock control number in the ticket layout. This establishes a link between paper stock and ticket that is used to control the usage of blank secure paper stock at offices as secure paper has otherwise no intrinsic protection against internal fraud.
           type: array
           items:
@@ -8042,11 +8225,11 @@ components:
         The type of fulfillment document.
       type: string
       x-extensible-enum:
-        - "BOARDING_PASS"
-        - "BOOKING_RECEIPT"
-        - "INFORMATION"
-        - "TICKET"
-        - "VOUCHER"
+        - 'BOARDING_PASS'
+        - 'BOOKING_RECEIPT'
+        - 'INFORMATION'
+        - 'TICKET'
+        - 'VOUCHER'
 
     FulfillmentId:
       type: string
@@ -8083,14 +8266,14 @@ components:
         Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
       type: string
       x-extensible-enum:
-        - "ALLOCATOR_APP"
-        - "FULFILLMENT_PARTS"
-        - "PDF_A4"
-        - "PKPASS"
-        - "RCCST"
-        - "RCT2"
-        - "UIC_PDF"
-        - "TICKETLESS"
+        - 'ALLOCATOR_APP'
+        - 'FULFILLMENT_PARTS'
+        - 'PDF_A4'
+        - 'PKPASS'
+        - 'RCCST'
+        - 'RCT2'
+        - 'UIC_PDF'
+        - 'TICKETLESS'
 
     FulfillmentOption:
       type: object
@@ -8112,8 +8295,6 @@ components:
       description: |
         Fulfillment items to be integrated in to tickets,
         e.g. visual security elements, additional bar codes, control keys.
-      required:
-        - status
       properties:
         fulfillmentMedia:
           description: |
@@ -8155,24 +8336,22 @@ components:
           type: boolean
           nullable: true
           default: false
-        status:
-          $ref: '#/components/schemas/FulfillmentPartStatus'
 
-    FulfillmentPartStatus:
+    FulfillmentStatus:
       description: |
         Individual fulfillments of a multi journey booking need an separate patch to create the usable fulfillment in status FULFILLED before they are in an intermediate state AVAILABLE where they don't provide a document for travel. Fulfillments can be ON_HOLD in case they are booked but not yet available (e.g. a booking providing two journeys per week) or passed in case the fulfillment was not patched for usage within the required time.
       type: string
       enum:
-        - "AVAILABLE"
-        - "ON_HOLD"
-        - "CONFIRMED"
-        - "FULFILLED"
-        - "CHECKEDIN"
-        - "CANCELLED"
-        - "RELEASED"
-        - "REFUNDED"
-        - "EXCHANGED"
-        - "EXPIRED"
+        - 'AVAILABLE'
+        - 'ON_HOLD'
+        - 'CONFIRMED'
+        - 'FULFILLED'
+        - 'CHECKEDIN'
+        - 'CANCELLED'
+        - 'RELEASED'
+        - 'REFUNDED'
+        - 'EXCHANGED'
+        - 'EXPIRED'
 
     FulfillmentPatchRequest:
       type: object
@@ -8197,10 +8376,10 @@ components:
     FulfillmentType:
       type: string
       x-extensible-enum:
-        - "ETICKET"
-        - "CIT_PAPER"
-        - "PASS_CHIP"
-        - "PASS_REFERENCE"
+        - 'ETICKET'
+        - 'CIT_PAPER'
+        - 'PASS_CHIP'
+        - 'PASS_REFERENCE'
 
     FulfillmentUsage:
       type: object
@@ -8242,9 +8421,9 @@ components:
         The gender of the passenger, which is important in the case of night trains.
       type: string
       enum:
-        - "MALE"
-        - "FEMALE"
-        - "X"
+        - 'MALE'
+        - 'FEMALE'
+        - 'X'
 
     GeneralAttribute:
       type: object
@@ -8295,25 +8474,25 @@ components:
     HistoryStatus:
       type: string
       enum:
-        - "PREBOOKED"
-        - "ON_HOLD"
-        - "CONFIRMED"
-        - "FULFILLED"
-        - "CANCELLED"
-        - "RELEASED"
-        - "REFUNDED"
-        - "EXCHANGED"
-        - "EXCHANGE_ONGOING"
-        - "ERROR"
-        - "AVAILABLE"
-        - "CHECKED_IN"
+        - 'PREBOOKED'
+        - 'ON_HOLD'
+        - 'CONFIRMED'
+        - 'FULFILLED'
+        - 'CANCELLED'
+        - 'RELEASED'
+        - 'REFUNDED'
+        - 'EXCHANGED'
+        - 'EXCHANGE_ONGOING'
+        - 'ERROR'
+        - 'AVAILABLE'
+        - 'CHECKED_IN'
 
     IdentificationCard:
       type: object
       additionalProperties: false
       description: |
         Person identification information  to be exchanged for border control if legally required.
-        
+
         It is not allowed to send personal information not required in the offer reply.
         It is legally not allowed to send these personal data already in the offer request.
       required:
@@ -8377,10 +8556,25 @@ components:
         - SERVICE_DEGRADED: e.g. service class not provided
       type: string
       x-extensible-enum:
-        - "DELAY"
-        - "JOURNEY_ABANDONED"
-        - "JOURNEY_NOT_STARTED"
-        - "SERVICE_DEGRADED"
+        - 'DELAY'
+        - 'JOURNEY_ABANDONED'
+        - 'JOURNEY_NOT_STARTED'
+        - 'SERVICE_DEGRADED'
+
+    ImplicitReservationOfferMapping:
+      type: object
+      additionalProperties: false
+      required:
+        - reservationId
+        - externalRef
+      properties:
+        reservationId:
+          description: OfferPartId of the (included or mandatory) reservation
+          type: string
+          nullable: false
+        externalRef:
+          type: string
+          nullable: false
 
     IndicatedConsumption:
       type: object
@@ -8416,18 +8610,18 @@ components:
         Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
       type: string
       x-extensible-enum:
-        - "WALK"
-        - "CYCLE"
-        - "TAXI"
-        - "SELF_DRIVE_CAR"
-        - "OTHERS_DRIVE_CAR"
-        - "MOTORCYCLE"
-        - "TRUCK"
-        - "SCOOTER"
-        - "RIDE_POOL_CAR"
-        - "CAR_SHARING"
-        - "CYCLE_SHARING"
-        - "SCOOTER_SHARING"
+        - 'WALK'
+        - 'CYCLE'
+        - 'TAXI'
+        - 'SELF_DRIVE_CAR'
+        - 'OTHERS_DRIVE_CAR'
+        - 'MOTORCYCLE'
+        - 'TRUCK'
+        - 'SCOOTER'
+        - 'RIDE_POOL_CAR'
+        - 'CAR_SHARING'
+        - 'CYCLE_SHARING'
+        - 'SCOOTER_SHARING'
 
     InitialPlaceInput:
       type: object
@@ -8563,7 +8757,7 @@ components:
           nullable: false
         code:
           description: |
-            Internal code of the attribute. Can be used for detection of double occurrences.
+            Internal code of the attribute. Can be used for detection of double occurrences. Refers to Service Facilities / Leg Attributes from the Catalog of Code Lists
           type: string
           nullable: true
         fromStopSeqNumber:
@@ -8819,18 +9013,18 @@ components:
     LuggageDimensionEnum:
       description: |
         Type of the dimension. Combined sizes are the sum of the sizes.
-        
+
         Explanation:  WIDTH_HEIGHT_LENGTH = sum of width, hight and length in cm (= linear equivalent).
-        
+
       type: string
       enum:
-        - "HEIGHT"
-        - "LENGTH"
-        - "WEIGHT"
-        - "WIDTH"
-        - "WIDTH_HEIGHT"
-        - "WIDTH_HEIGHT_LENGTH"
-        - "VOLUME"
+        - 'HEIGHT'
+        - 'LENGTH'
+        - 'WEIGHT'
+        - 'WIDTH'
+        - 'WIDTH_HEIGHT'
+        - 'WIDTH_HEIGHT_LENGTH'
+        - 'VOLUME'
 
     LuggageRestriction:
       type: object
@@ -8863,12 +9057,12 @@ components:
     LuggageRestrictionRuleEnum:
       description: |
         Named luggage restriction rule.
-        
+
         Valid Values:
         - CAN_CARRY: Weight is ok if you can carry it yourself.
       type: string
       enum:
-        - "CAN_CARRY"
+        - 'CAN_CARRY'
 
     Mode:
       type: object
@@ -8951,10 +9145,10 @@ components:
     MountingType:
       type: string
       enum:
-        - "UPPER_BORDER"
-        - "LOWER_BORDER"
-        - "UPPER_TO_LOWER_BORDER"
-        - "FREE"
+        - 'UPPER_BORDER'
+        - 'LOWER_BORDER'
+        - 'UPPER_TO_LOWER_BORDER'
+        - 'FREE'
 
     MultiRideAccount:
       allOf:
@@ -9032,7 +9226,7 @@ components:
       additionalProperties: false
       description: |
         Defines the requested validity when searching specifically for a non-trip Offer. 
-        
+
         The geographical validity can either be specified by a list of nutsCodes, by a list of places (e.g. stations) with the semantics that trips between either of any of the listed stations are covered (e.g. Frankfurt (Main) Hbf, Friedberg(Hess) and Hanau Hbf, which would imply that any travel between these stations is to be covered), or a list of zones (e.g. with carrier urn:vdv:rmv, the zones with the ids 50, 2501 and 3001 would cover the same area as the list of stations above).
       properties:
         validFrom:
@@ -9091,7 +9285,7 @@ components:
           nullable: false
         preBookableUntil:
           description: |
-             time until the offer can be pre-booked, however its availability is not guaranteed
+            time until the offer can be pre-booked, however its availability is not guaranteed
           type: string
           format: date-time
           nullable: false
@@ -9129,8 +9323,8 @@ components:
             $ref: '#/components/schemas/Fare'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -9140,9 +9334,9 @@ components:
       additionalProperties: false
       description: |
         Defines the parameters needed to request an offer. Either a tripSearchCriteria, a list of trip specifications, or a list of tripIds can be passed in to request offers.
-        
+
         If you are searching for fares you pass in the complete trip and the use the requestedSections attribute to define which part(s) you need fares (including virtual border points).
-        
+
       required:
         - anonymousPassengerSpecifications
       properties:
@@ -9209,8 +9403,8 @@ components:
             $ref: '#/components/schemas/Trip'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -9218,24 +9412,24 @@ components:
     OfferCollectionResponseContent:
       type: string
       enum:
-        - "ALL"
-        - "OFFERS"
-        - "TRIPS"
-        - "NONE"
-      default: "ALL"
+        - 'ALL'
+        - 'OFFERS'
+        - 'TRIPS'
+        - 'NONE'
+      default: 'ALL'
 
     OfferMode:
       description: |
         Offer mode applied to provide offers for given criteria. 
-        
+
         Individual offer mode means that each passenger is given individual admissions and reservations  to allow to refund individual passengers booked in a single booking.
-        
+
         If collective mode is not supported,  reverts back to the other mode and provides warning instead.
-        
+
       type: string
       enum:
-        - "COLLECTIVE"
-        - "INDIVIDUAL"
+        - 'COLLECTIVE'
+        - 'INDIVIDUAL'
 
     OfferPartReference:
       type: object
@@ -9256,26 +9450,26 @@ components:
           nullable: true
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
 
     OfferPartType:
       description: |
-        Allows to request offerparts of a certain type.
+        Allows to request offer-parts of a certain type.
         To support H/H use ['RESERVATION', 'ANCILLARY'].
         Default is to get search for offers of all types.
       type: string
       enum:
-        - "ADMISSION"
-        - "RESERVATION"
-        - "ANCILLARY"
-        - "FARE_ADMISSION"
-        - "FARE_RESERVATION"
-        - "FARE_ANCILLARY"
-        - "ALL"
+        - 'ADMISSION'
+        - 'RESERVATION'
+        - 'ANCILLARY'
+        - 'FARE_ADMISSION'
+        - 'FARE_RESERVATION'
+        - 'FARE_ANCILLARY'
+        - 'ALL'
 
     OfferSearchCriteria:
       type: object
@@ -9339,6 +9533,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AncillarySelection'
+        admissionOfferMappings:
+          description: |
+            This contains a mapping from the offer part id to an external ref for AdmissionOfferParts.
+          type: array
+          items:
+            $ref: '#/components/schemas/AdmissionOfferMapping'
+        implicitReservationOfferMappings:
+          description: |
+            This contains a mapping from the offer part id to an external ref for implicitly booked reservations (included reservations and mandatory reservations).
+          type: array
+          items:
+            $ref: '#/components/schemas/ImplicitReservationOfferMapping'
         placeSelections:
           type: array
           items:
@@ -9463,8 +9669,8 @@ components:
           nullable: false
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -9477,15 +9683,14 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Confirming the offer puts into the "On-hold" state.
+        Confirming the offer puts into the 'On-hold' state.
       required:
         - increaseTTL
       properties:
         increaseTTL:
           description: |
             increase of time to live (in minutes)
-            
-            
+
           type: integer
           format: int32
           nullable: false
@@ -9565,79 +9770,79 @@ components:
         Reason for and type of an after sale, code list in IRS 90918-10.
         The PRM_SUPPORT_UNAVAILABLE overrule code shall only be used by the UIC PRM ABT tool.
         Known Values:
-        - "CONNECTION_BROKEN"
-        - "DEATH"
-        - "EQUIPMENT_FAILURE"
-        - "PAYMENT_FAILURE"
-        - "PRM_SUPPORT_UNAVAILABLE"
-        - "SALES_STAFF_ERROR"
-        - "STOP_NOT_SERVED"
-        - "STRIKE"
-        - "TECHNICAL_FAILURE"
-        - "TICKET_NOT_USED"
-        - "INABILITY_TO_TRAVEL": Inability to travel due to accident or sickness.
-        - "EXTERNAL_COMPENSATION": Offer has been compensated outside of the provider system in another way.
-        - "DISRUPTION": Inability to operate due to disruption.
-        - "JOURNEY_OBSOLETE": Due to external factors it's senseless to start the trip, thus the travel is obsolete.
-        - "CERTIFIED_MEDICAL_CONDITION": A medical certificate certifies that the passenger is unable to travel.
-        - "DELAY_COMPENSATION": Allows to override conditions in context of passenger rights regulation (PRR).
+        - 'CONNECTION_BROKEN'
+        - 'DEATH'
+        - 'EQUIPMENT_FAILURE'
+        - 'PAYMENT_FAILURE'
+        - 'PRM_SUPPORT_UNAVAILABLE'
+        - 'SALES_STAFF_ERROR'
+        - 'STOP_NOT_SERVED'
+        - 'STRIKE'
+        - 'TECHNICAL_FAILURE'
+        - 'TICKET_NOT_USED'
+        - 'INABILITY_TO_TRAVEL': Inability to travel due to accident or sickness.
+        - 'EXTERNAL_COMPENSATION': Offer has been compensated outside of the provider system in another way.
+        - 'DISRUPTION': Inability to operate due to disruption.
+        - 'JOURNEY_OBSOLETE': Due to external factors it's senseless to start the trip, thus the travel is obsolete.
+        - 'CERTIFIED_MEDICAL_CONDITION': A medical certificate certifies that the passenger is unable to travel.
+        - 'DELAY_COMPENSATION': Allows to override conditions in context of passenger rights regulation (PRR).
       type: string
       x-extensible-enum:
-        - "CONNECTION_BROKEN"
-        - "DEATH"
-        - "EQUIPMENT_FAILURE"
-        - "PAYMENT_FAILURE"
-        - "PRM_SUPPORT_UNAVAILABLE"
-        - "SALES_STAFF_ERROR"
-        - "STOP_NOT_SERVED"
-        - "STRIKE"
-        - "TECHNICAL_FAILURE"
-        - "TICKET_NOT_USED"
-        - "INABILITY_TO_TRAVEL"
-        - "EXTERNAL_COMPENSATION"
-        - "DISRUPTION"
-        - "JOURNEY_OBSOLETE"
-        - "CERTIFIED_MEDICAL_CONDITION"
-        - "DELAY_COMPENSATION"
+        - 'CONNECTION_BROKEN'
+        - 'DEATH'
+        - 'EQUIPMENT_FAILURE'
+        - 'PAYMENT_FAILURE'
+        - 'PRM_SUPPORT_UNAVAILABLE'
+        - 'SALES_STAFF_ERROR'
+        - 'STOP_NOT_SERVED'
+        - 'STRIKE'
+        - 'TECHNICAL_FAILURE'
+        - 'TICKET_NOT_USED'
+        - 'INABILITY_TO_TRAVEL'
+        - 'EXTERNAL_COMPENSATION'
+        - 'DISRUPTION'
+        - 'JOURNEY_OBSOLETE'
+        - 'CERTIFIED_MEDICAL_CONDITION'
+        - 'DELAY_COMPENSATION'
 
     PRMNeedType:
       type: string
       x-extensible-enum:
-        - "NEED_PRM_SUPPORT"
-        - "WHEELCHAIR"
-        - "ACCOMPANYING_DOG"
-        - "COMPANION_SEAT"
-        - "COMPANION"
+        - 'NEED_PRM_SUPPORT'
+        - 'WHEELCHAIR'
+        - 'ACCOMPANYING_DOG'
+        - 'COMPANION_SEAT'
+        - 'COMPANION'
 
     PTMode:
       description: |
         TAP-TSI/UIC contains a sensible subset of SIRI Transport Modes.
       type: string
       x-extensible-enum:
-        - "HIGH_SPEED_TRAIN"
-        - "HISTORIC_TRAIN"
-        - "INTERCITY"
-        - "REGIONAL"
-        - "INTERREGIONAL"
-        - "URBAN"
-        - "TRAIN"
-        - "TRAM"
-        - "UNDERGROUND"
-        - "NIGHT_TRAIN"
-        - "SHARED_TAXI"
-        - "MOTOR_RAIL"
-        - "MOUNTAIN_TRAIN"
-        - "PLANE"
-        - "COACH_GROUP"
-        - "SHIP"
-        - "BUS"
+        - 'HIGH_SPEED_TRAIN'
+        - 'HISTORIC_TRAIN'
+        - 'INTERCITY'
+        - 'REGIONAL'
+        - 'INTERREGIONAL'
+        - 'URBAN'
+        - 'TRAIN'
+        - 'TRAM'
+        - 'UNDERGROUND'
+        - 'NIGHT_TRAIN'
+        - 'SHARED_TAXI'
+        - 'MOTOR_RAIL'
+        - 'MOUNTAIN_TRAIN'
+        - 'PLANE'
+        - 'COACH_GROUP'
+        - 'SHIP'
+        - 'BUS'
 
     Passenger:
       type: object
       additionalProperties: false
       description: |
         Information about a passenger.
-        
+
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
       required:
         - id
@@ -9694,8 +9899,8 @@ components:
             $ref: '#/components/schemas/PRMNeedType'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -9733,7 +9938,7 @@ components:
       additionalProperties: false
       description: |
         Minimal specification of a passenger to request offers.
-        
+
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
       required:
         - externalRef
@@ -9783,20 +9988,20 @@ components:
         Proposed default PERSON
       type: string
       x-extensible-enum:
-        - "DOG"
-        - "PET"
-        - "LUGGAGE"
-        - "PRM"
-        - "BICYCLE"
-        - "PRAM"
-        - "COMPANION_DOG"
-        - "CAR"
-        - "PERSON"
-        - "MOTORCYCLE"
-        - "TRAILER"
-        - "FAMILY_CHILD"
-        - "WHEELCHAIR"
-      default: "PERSON"
+        - 'DOG'
+        - 'PET'
+        - 'LUGGAGE'
+        - 'PRM'
+        - 'BICYCLE'
+        - 'PRAM'
+        - 'COMPANION_DOG'
+        - 'CAR'
+        - 'PERSON'
+        - 'MOTORCYCLE'
+        - 'TRAILER'
+        - 'FAMILY_CHILD'
+        - 'WHEELCHAIR'
+      default: 'PERSON'
 
     PaymentMethod:
       type: object
@@ -9819,13 +10024,13 @@ components:
     PaymentType:
       type: string
       x-extensible-enum:
-        - "CARD"
-        - "CASH"
-        - "DIRECT_DEBIT"
-        - "ELECTRONIC_PAYMENT"
-        - "INVOICE"
-        - "VOUCHER"
-        - "TRAVEL_ACCOUNT"
+        - 'CARD'
+        - 'CASH'
+        - 'DIRECT_DEBIT'
+        - 'ELECTRONIC_PAYMENT'
+        - 'INVOICE'
+        - 'VOUCHER'
+        - 'TRAVEL_ACCOUNT'
 
     PersonDetail:
       type: object
@@ -9855,17 +10060,21 @@ components:
           description: full last names of the person
           type: string
           nullable: false
-          example: "Diaz Lopez"
+          example: 'Diaz Lopez'
         firstFamilyName:
-          description: first family name in case of multiple family names. The element lastName includes all family names.
+          description:
+            first family name in case of multiple family names. The element
+            lastName includes all family names.
           type: string
           nullable: false
-          example: "Diaz"
-        secondFamilyName:          
-          description: second family name in case of multiple family names. The element lastName includes all family names.
+          example: 'Diaz'
+        secondFamilyName:
+          description:
+            second family name in case of multiple family names. The element
+            lastName includes all family names.
           type: string
-          nullable: false  
-          example: "Lopez"
+          nullable: false
+          example: 'Lopez'
         email:
           type: string
           deprecated: true
@@ -9884,7 +10093,9 @@ components:
           $ref: '#/components/schemas/ContactDetail'
         taxId:
           type: string
-          description: Tax identification of the physical person for issuing an invoice or receipt
+          description:
+            Tax identification of the physical person for issuing an invoice or
+            receipt
           nullable: true
           example: CZ1234567890
 
@@ -9921,7 +10132,9 @@ components:
         - id
       properties:
         objectType:
-          description: Attribute is used as discriminator for inheritance between data types.
+          description:
+            Attribute is used as discriminator for inheritance between data
+            types.
           type: string
         id:
           description: |
@@ -9932,7 +10145,7 @@ components:
         alternativeIds:
           description: |
             For a place with ids in different reference systems, the alternative ids can be returned. 
-            The reference system is encoded in the string. E.g.: "urn:uic:std:80000", "x_swe:stn:10000", "ch:1:sloid:343434"
+            The reference system is encoded in the string. E.g.: 'urn:uic:std:80000', 'x_swe:stn:10000', 'ch:1:sloid:343434'
           type: array
           items:
             type: string
@@ -9941,8 +10154,8 @@ components:
           $ref: '#/components/schemas/GeoPosition'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -10086,14 +10299,14 @@ components:
         preferenceGroup:
           type: string
           nullable: false
-          example: "SEAT_DIRECTION"
+          example: 'SEAT_DIRECTION'
         preferences:
           type: array
           items:
             type: string
           minItems: 1
           nullable: false
-          example: "FORWARD_FACING"
+          example: 'FORWARD_FACING'
 
     PlaceProperty:
       type: string
@@ -10111,7 +10324,9 @@ components:
         - objectType
       properties:
         objectType:
-          description: Attribute is used as discriminator for inheritance between data types.
+          description:
+            Attribute is used as discriminator for inheritance between data
+            types.
           type: string
 
     PlaceRequest:
@@ -10173,20 +10388,20 @@ components:
         Provided by OJP.
       type: string
       enum:
-        - "STOP"
-        - "ADDRESS"
-        - "POI"
-        - "GEO_COORDINATE"
-        - "TOPOGRAPHIC_PLACE"
+        - 'STOP'
+        - 'ADDRESS'
+        - 'POI'
+        - 'GEO_COORDINATE'
+        - 'TOPOGRAPHIC_PLACE'
 
     PlaceUsage:
       description: |
         Provided by OJP.
       type: string
       enum:
-        - "ORIGIN"
-        - "VIA"
-        - "DESTINATION"
+        - 'ORIGIN'
+        - 'VIA'
+        - 'DESTINATION'
 
     PointOfInterest:
       description: |
@@ -10448,8 +10663,8 @@ components:
             $ref: '#/components/schemas/CombinationTag'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -10457,30 +10672,30 @@ components:
     ProductTag:
       description: |
         Known values:
-        - SPLITED_RESERVATION
+        - SPLIT_RESERVATION
           Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation
-          Without this indication the provider is not allowed to use the SplittedSection Oject inside a reservation. 
-          The implmntation of SPLITED_RESERVATION is not recommended. To provide reservations that do not cover a full leg 
+          Without this indication the provider is not allowed to use the SplitSection Object inside a reservation. 
+          The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover a full leg 
           multiple reservations as offerParts should be created.
       type: string
       x-extensible-enum:
-        - SPLITED_RESEVATION
+        - 'SPLIT_RESERVATION'
 
     ProductType:
       description: |
         General product types harmonized across fare providers. (More to be added, use null for types not listed yet.)
       type: string
       x-extensible-enum:
-        - "ADMISSION_PASS"
-        - "ADMISSION_MULTI_RIDE"
-        - "ADMISSION_POINT2POINT"
-        - "UPGRADE_PASS"
-        - "UPGRADE_MULTI_RIDE"
-        - "UPGRADE_POINT2POINT"
-        - "RESERVATION"
-        - "ANCILLARY_SERVICE"
-        - "ANCILLARY_ITEM"
-        - "REDUCTION_CARD"
+        - 'ADMISSION_PASS'
+        - 'ADMISSION_MULTI_RIDE'
+        - 'ADMISSION_POINT2POINT'
+        - 'UPGRADE_PASS'
+        - 'UPGRADE_MULTI_RIDE'
+        - 'UPGRADE_POINT2POINT'
+        - 'RESERVATION'
+        - 'ANCILLARY_SERVICE'
+        - 'ANCILLARY_ITEM'
+        - 'REDUCTION_CARD'
 
     ProductCategory:
       type: object
@@ -10546,7 +10761,7 @@ components:
           nullable: false
         legIds:
           description: |
-             indices of the legs in the trip given by the provider of the offer
+            indices of the legs in the trip given by the provider of the offer
           type: array
           items:
             type: string
@@ -10622,8 +10837,8 @@ components:
           nullable: true
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -10757,8 +10972,8 @@ components:
           maxItems: 4
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -10797,7 +11012,7 @@ components:
           nullable: false
         validUntil:
           description: |
-             time until the offer can be used
+            time until the offer can be used
           type: string
           format: date-time
           nullable: false
@@ -10821,8 +11036,10 @@ components:
           items:
             $ref: '#/components/schemas/Fulfillment'
           minItems: 1
-        issuedfulfillments:
-          description: new fulfillments issued with this offer (only available after confirmation)
+        issuedFulfillments:
+          description:
+            new fulfillments issued with this offer (only available after
+            confirmation)
           type: array
           items:
             $ref: '#/components/schemas/Fulfillment'
@@ -10841,15 +11058,14 @@ components:
         refundOfferBreakdown:
           $ref: '#/components/schemas/RefundOfferItem'
         reimbursementMethod:
-          $ref: '#/components/schemas/ReimbursementMethod'   
+          $ref: '#/components/schemas/ReimbursementMethod'
         _links:
           description: |
-            Java Property Name: 'links' 
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
 
-            
     RefundOfferItem:
       type: object
       required:
@@ -10866,8 +11082,8 @@ components:
         bookingParts:
           type: array
           items:
-            $ref: '#/components/schemas/BookingPartReference' 
-            
+            $ref: '#/components/schemas/BookingPartReference'
+
     RefundOfferCollectionResponse:
       type: object
       additionalProperties: false
@@ -10880,8 +11096,8 @@ components:
             $ref: '#/components/schemas/RefundOffer'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -10919,7 +11135,7 @@ components:
             To do a partial refund repeat the fulfillmentIds affected and point out what to refund
           type: array
           items:
-            $ref: '#/components/schemas/RefundSpecification'          
+            $ref: '#/components/schemas/RefundSpecification'
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
         refundDate:
@@ -10957,20 +11173,20 @@ components:
           type: array
           description: ids of passengers to be removed from the fulfillment
           items:
-            type: string  
+            type: string
 
     RefundStatus:
       type: string
       enum:
-        - PROPOSED
-        - CONFIRMED
+        - 'PROPOSED'
+        - 'CONFIRMED'
 
     RefundType:
       type: string
       enum:
-        - "YES"
-        - "NO"
-        - "WITH_CONDITION"
+        - 'YES'
+        - 'NO'
+        - 'WITH_CONDITION'
 
     RegionalConstraint:
       type: object
@@ -11043,16 +11259,16 @@ components:
         General conditions applied to cover legal regulations within the area of validity. Allocators must
         reflect these terms and conditions in the conditions of combined offers and indicate them to the customer
         where required. Which indications are mandatory to be shown to the customer is defined in the SCICs.
-        
+
         Valid Values:
         - CIV: terms and conditions according to COTIV regulation
         - MD: terms and conditions according to SMPS regulation
         - EU_PRR: terms and conditions according to EU-PRR regulation
       type: string
       enum:
-        - "CIV"
-        - "MD"
-        - "EU_PRR"
+        - 'CIV'
+        - 'MD'
+        - 'EU_PRR'
 
     Reimbursement:
       type: object
@@ -11080,8 +11296,8 @@ components:
           $ref: '#/components/schemas/ReimbursementDecision'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -11103,15 +11319,17 @@ components:
           nullable: true
 
     ReimbursementMethod:
-      description: reimbourcement methods to inform on restrictions of the payment method
+      description: |
+        reimbursement methods to inform on restrictions of the payment method
       type: object
       properties:
-         paymentMethod: 
-            description: payment method to be used for the reimboursement 
-            type: string
-            x-extensible-enum:
-              - "VOUCHER"
-              - "ORIGINAL_ACCOUNT"
+        paymentMethod:
+          description: |
+            payment method to be used for the reimbursement
+          type: string
+          x-extensible-enum:
+            - 'VOUCHER'
+            - 'ORIGINAL_ACCOUNT'
 
     ReimbursementPatchRequest:
       type: object
@@ -11133,8 +11351,8 @@ components:
         Reason why the booking should be reimbursed.
       type: string
       x-extensible-enum:
-        - "STRIKE"
-        - "TICKET_NOT_USED"
+        - 'STRIKE'
+        - 'TICKET_NOT_USED'
 
     ReimbursementRequest:
       type: object
@@ -11189,9 +11407,9 @@ components:
     ReimbursementStatus:
       type: string
       enum:
-        - "IMMEDIATE"
-        - "DELAYED"
-      default: "IMMEDIATE"
+        - 'IMMEDIATE'
+        - 'DELAYED'
+      default: 'IMMEDIATE'
 
     ReleaseOffer:
       type: object
@@ -11224,7 +11442,7 @@ components:
           nullable: false
         validUntil:
           description: |
-             time until the offer can be used
+            time until the offer can be used
           type: string
           format: date-time
           nullable: false
@@ -11243,8 +11461,8 @@ components:
           $ref: '#/components/schemas/OverruleCode'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -11261,8 +11479,8 @@ components:
             $ref: '#/components/schemas/ReleaseOffer'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -11299,8 +11517,8 @@ components:
     ReleaseStatus:
       type: string
       enum:
-        - "PROPOSED"
-        - "CONFIRMED"
+        - 'PROPOSED'
+        - 'CONFIRMED'
 
     RemarkType:
       description: |
@@ -11316,19 +11534,19 @@ components:
         - MIGHT_BE_IN_OPEN_SPACE: place might be in open space
       type: string
       x-extensible-enum:
-        - "MIGHT_HAVE_TABLE"
-        - "MIGHT_NOT_HAVE_TABLE"
-        - "MIGHT_HAVE_DIFFERENT_DIRECTION"
-        - "MIGHT_HAVE_TABLE_AND_DIFFERENT_DIRECTION"
-        - "MIGHT_NOT_HAVE_TABLE_AND_MIGHT_HAVE_DIFFERENT_DIRECTION"
-        - "MIGHT_BE_IN_COMPARTMENT"
-        - "MIGHT_BE_IN_OPEN_SPACE"
+        - 'MIGHT_HAVE_TABLE'
+        - 'MIGHT_NOT_HAVE_TABLE'
+        - 'MIGHT_HAVE_DIFFERENT_DIRECTION'
+        - 'MIGHT_HAVE_TABLE_AND_DIFFERENT_DIRECTION'
+        - 'MIGHT_NOT_HAVE_TABLE_AND_MIGHT_HAVE_DIFFERENT_DIRECTION'
+        - 'MIGHT_BE_IN_COMPARTMENT'
+        - 'MIGHT_BE_IN_OPEN_SPACE'
 
     RequestedInformation:
       type: string
       description: |
         Boolean-expression indicating the data that must be set in the data model in order to proceed to next step of the process. 
-        
+
         The syntax and semantics of the expression is described in detail in the OSDM documentation.
       nullable: true
 
@@ -11433,6 +11651,9 @@ components:
         reservationId:
           type: string
           nullable: false
+        externalRef:
+          type: string
+          nullable: false
 
     ReservedPlace:
       type: object
@@ -11483,12 +11704,12 @@ components:
           items:
             $ref: '#/components/schemas/PlaceProperty'
         splitSection:
-          description: | 
-            indication of the covered part of a leg in case the reserved 
+          description: |
+            Indication of the covered part of a leg in case the reserved 
             place does not cover the whole leg. This element is allowed 
             on in case the offer was requested using the SPLIT_RESERVATION product tag
-            an implementation is not recommendend
-          $ref: '#/components/schemas/Section'            
+            an implementation is not recommended.
+          $ref: '#/components/schemas/Section'
 
     Resource:
       type: object
@@ -11507,8 +11728,8 @@ components:
     ResourceType:
       type: string
       enum:
-        - FARE
-        - RESERVATION
+        - 'FARE'
+        - 'RESERVATION'
 
     ReturnConstraint:
       type: object
@@ -11546,7 +11767,7 @@ components:
       description: |
         This property can be used in case a return trip is being requested.
         This will allow to benefit from return-specific fares or product
-        
+
       properties:
         inwardReturnDate:
           description: |
@@ -11637,22 +11858,22 @@ components:
         externalTripRef:
           description: reference to a trip in case multiple trips are provided
           type: string
-          nullable: true   
+          nullable: true
 
     SecurityElementFormat:
       type: string
       enum:
-        - "PNG"
-        - "GIF"
-        - "SVG"
-        - "BINARY"
-        - "TEXT"
+        - 'PNG'
+        - 'GIF'
+        - 'SVG'
+        - 'BINARY'
+        - 'TEXT'
 
     SecurityElementType:
       type: string
       enum:
-        - "VISUAL_ELEMENT"
-        - "BAR_CODE"
+        - 'VISUAL_ELEMENT'
+        - 'BAR_CODE'
 
     SecurityFeatureType:
       type: object
@@ -11784,11 +12005,11 @@ components:
         Type of quality level, finer grained than the comfort class.
       type: string
       x-extensible-enum:
-        - "BEST"
-        - "HIGH"
-        - "STANDARD"
-        - "BASIC"
-        - "ANY_CLASS"
+        - 'BEST'
+        - 'HIGH'
+        - 'STANDARD'
+        - 'BASIC'
+        - 'ANY_CLASS'
 
     ServiceConstraint:
       type: object
@@ -11812,10 +12033,10 @@ components:
         enumeration of service degradations
       type: string
       x-extensible-enum:
-        - "RESERVED_PLACES_MISSING"
-        - "BOOKED_ACCOMMODATION_TYPE_MISSING"
-        - "BOOKED_CLASS_MISSING"
-        - "BOOKED_MEAL_MISSING"
+        - 'RESERVED_PLACES_MISSING'
+        - 'BOOKED_ACCOMMODATION_TYPE_MISSING'
+        - 'BOOKED_CLASS_MISSING'
+        - 'BOOKED_MEAL_MISSING'
 
     ServiceStatus:
       type: object
@@ -11855,9 +12076,9 @@ components:
       additionalProperties: false
       description: |
         The time needs to be in Offset Time Format, i.e.  2023-12-03T10:15:30+01:00 as it is important the time zones are important  to show in the timetable.
-        
+
         Do not use the Coordinated Universal Time (UTC) format, i.e. 2023-12-03T10:15:30Z.
-        
+
       required:
         - timetabledTime
       properties:
@@ -11877,8 +12098,8 @@ components:
     SiSType:
       type: string
       x-extensible-enum:
-        - "REGISTRY"
-        - "PEER_TO_PEER"
+        - 'REGISTRY'
+        - 'PEER_TO_PEER'
 
     SituationFullRef:
       type: string
@@ -11892,10 +12113,10 @@ components:
         indication of special coach
       type: string
       x-extensible-enum:
-        - "RESTAURANT_COACH"
-        - "BICYCLE_COACH"
-        - "LUGGAGE_COACH"
-        - "TRAIN_HEAD"
+        - 'RESTAURANT_COACH'
+        - 'BICYCLE_COACH'
+        - 'LUGGAGE_COACH'
+        - 'TRAIN_HEAD'
 
     StationSet:
       type: object
@@ -11912,8 +12133,8 @@ components:
     StopBehavior:
       type: string
       enum:
-        - "ORIGIN_DESTINATION_ONLY"
-        - "REAL_BOARDING_ALIGHTING"
+        - 'ORIGIN_DESTINATION_ONLY'
+        - 'REAL_BOARDING_ALIGHTING'
 
     StopCallStatus:
       type: object
@@ -12038,12 +12259,12 @@ components:
         Symbology to use when rendering the binary data.
       type: string
       enum:
-        - "AZTEC"
-        - "Code128A"
-        - "Code128B"
-        - "Code128C"
-        - "QR"
-        - "TEXT"
+        - 'AZTEC'
+        - 'Code128A'
+        - 'Code128B'
+        - 'Code128C'
+        - 'QR'
+        - 'TEXT'
 
     Text:
       type: object
@@ -12103,10 +12324,10 @@ components:
         - TICKET_VALIDITY: any text on the ticket regarding it's validity (other than information which can be retrieved from the booking)
       type: string
       enum:
-        - "INFORMATION"
-        - "MANDATORY"
-        - "MANDATORY_WITH_CONFIRMATION"
-        - "TICKET_VALIDITY"
+        - 'INFORMATION'
+        - 'MANDATORY'
+        - 'MANDATORY_WITH_CONFIRMATION'
+        - 'TICKET_VALIDITY'
 
     ThroughTicketTag:
       description: |
@@ -12114,14 +12335,14 @@ components:
         - RESPLUS: Through ticket tag according to Swedish Regulation.
       type: string
       x-extensible-enum:
-        - "RESPLUS"
+        - 'RESPLUS'
 
     TimeUnit:
       type: string
       enum:
-        - "DAYS"
-        - "HOURS"
-        - "MINUTES"
+        - 'DAYS'
+        - 'HOURS'
+        - 'MINUTES'
 
     TimedLeg:
       type: object
@@ -12254,7 +12475,7 @@ components:
           $ref: '#/components/schemas/ServiceBrandCode'
         serviceBrandAbbreviation:
           description: |
-            Abbreviation of the service brand, e.g. "IC", "TGV". See the OSDM code list. Needs to match the service brand code.
+            Abbreviation of the service brand, e.g. 'IC', 'TGV'. See the OSDM code list. Needs to match the service brand code.
           type: string
           nullable: false
 
@@ -12299,8 +12520,8 @@ components:
     TrainValidityScope:
       type: string
       enum:
-        - "BOARDING"
-        - "ARRIVAL"
+        - 'BOARDING'
+        - 'ARRIVAL'
 
     TransferLeg:
       type: object
@@ -12351,17 +12572,17 @@ components:
         Modes dedicated to perform transfers. Provided by OJP.
       type: string
       x-extensible-enum:
-        - "WALK"
-        - "PARK_AND_RIDE"
-        - "BIKE_AND_RIDE"
-        - "CAR_HIRE"
-        - "BIKE_HIRE"
-        - "PROTECTED_CONNECTION"
-        - "GUARANTEED_CONNECTION"
-        - "REMAIN_IN_VEHICLE"
-        - "CHANGE_WITHIN_VEHICLE"
-        - "CHECK_IN"
-        - "CHECK_OUT"
+        - 'WALK'
+        - 'PARK_AND_RIDE'
+        - 'BIKE_AND_RIDE'
+        - 'CAR_HIRE'
+        - 'BIKE_HIRE'
+        - 'PROTECTED_CONNECTION'
+        - 'GUARANTEED_CONNECTION'
+        - 'REMAIN_IN_VEHICLE'
+        - 'CHANGE_WITHIN_VEHICLE'
+        - 'CHECK_IN'
+        - 'CHECK_OUT'
 
     Translation:
       type: object
@@ -12405,11 +12626,11 @@ components:
         Subset of the values from the passenger type code list IRS 90918-10
       type: string
       x-extensible-enum:
-        - "PET"
-        - "BICYCLE"
-        - "CAR"
-        - "MOTOR_CYCLE"
-        - "CAR_TRAILER"
+        - 'PET'
+        - 'BICYCLE'
+        - 'CAR'
+        - 'MOTOR_CYCLE'
+        - 'CAR_TRAILER'
 
     TravelAccountConsumption:
       type: object
@@ -12452,27 +12673,27 @@ components:
     TravelAccountResponseContent:
       type: string
       enum:
-        - "ALL"
-        - "CONSUMPTIONS"
-        - "NONE"
+        - 'ALL'
+        - 'CONSUMPTIONS'
+        - 'NONE'
       default: ALL
 
     TravelAccountType:
       type: string
       enum:
-        - "LOYALTY_CARD"
-        - "TRAVEL_PASS"
-        - "MULTI_RIDE"
-        - "REDUCTION_CARD"
+        - 'LOYALTY_CARD'
+        - 'TRAVEL_PASS'
+        - 'MULTI_RIDE'
+        - 'REDUCTION_CARD'
 
     TravelClass:
       description: |
         Traditional first and second class.
       type: string
       x-extensible-enum:
-        - FIRST
-        - SECOND
-        - ANY_CLASS
+        - 'FIRST'
+        - 'SECOND'
+        - 'ANY_CLASS'
 
     TravelDirectionType:
       description: |
@@ -12480,11 +12701,11 @@ components:
         to right with ascending coordinates in the layout values.
       type: string
       x-extensible-enum:
-        - "UNSPECIFIED"
-        - "IN_DIRECTION"
-        - "OPPOSITE_DIRECTION"
-        - "CHANGING"
-        - "STARING_IN_DIRECTION"
+        - 'UNSPECIFIED'
+        - 'IN_DIRECTION'
+        - 'OPPOSITE_DIRECTION'
+        - 'CHANGING'
+        - 'STARING_IN_DIRECTION'
 
     TravelPassAccount:
       allOf:
@@ -12502,7 +12723,7 @@ components:
             consumptions:
               type: array
               items:
-                 $ref: '#/components/schemas/TravelAccountConsumption'  
+                $ref: '#/components/schemas/TravelAccountConsumption'
 
     TravelValidity:
       type: object
@@ -12648,8 +12869,8 @@ components:
           $ref: '#/components/schemas/TripStatus'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -12695,10 +12916,10 @@ components:
         - FULFILLMENT: A new fulfillment needs to be created to allocate a trip.
       type: string
       x-extensible-enum:
-        - "NONE"
-        - "MANUAL"
-        - "ACTIVATION"
-        - "FULFILLMENT"
+        - 'NONE'
+        - 'MANUAL'
+        - 'ACTIVATION'
+        - 'FULFILLMENT'
 
     TripAllocationUnit:
       description: |
@@ -12711,10 +12932,10 @@ components:
         - DURATION: the allocation is per duration.
       type: string
       x-extensible-enum:
-        - "NONE"
-        - "TRIP"
-        - "DAY"
-        - "DURATION"
+        - 'NONE'
+        - 'TRIP'
+        - 'DAY'
+        - 'DURATION'
 
     TripCollectionResponse:
       type: object
@@ -12739,8 +12960,8 @@ components:
             $ref: '#/components/schemas/TripSummary'
         _links:
           description: |
-            
-            Java Property Name: 'links' 
+
+            Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -12749,9 +12970,11 @@ components:
       type: object
       additionalProperties: false
       description: |
-        The trip coverage defines which part of the trip is covered by the offer or the booking respectively.
-        
-        If neither leg ids nor section ids are not defined, the complete trip is covered.
+        The trip coverage defines which part of the trip is covered by the offer, offer part, booking or booking part, respectively.
+
+        If neither coveredLegIds nor coveredSections are defined, the complete trip is covered.
+        coveredLegIds and coveredSections are mutually exclusive, i.e. only one of the structures can be present.
+
       required:
         - coveredTripId
       properties:
@@ -12788,9 +13011,9 @@ components:
     TripDirectionType:
       type: string
       enum:
-        - "OUT_BOUND"
-        - "IN_BOUND"
-      default: "OUT_BOUND"
+        - 'OUT_BOUND'
+        - 'IN_BOUND'
+      default: 'OUT_BOUND'
 
     TripInterruptionConstraint:
       type: object
@@ -12838,9 +13061,9 @@ components:
         - ACTIVATION: Passenger needs to deactivate the ticket during the interruption (via an app).
       type: string
       x-extensible-enum:
-        - "NONE"
-        - "MANUAL"
-        - "ACTIVATION"
+        - 'NONE'
+        - 'MANUAL'
+        - 'ACTIVATION'
 
     TripLeg:
       type: object
@@ -12988,10 +13211,10 @@ components:
     TripResponseContent:
       type: string
       enum:
-        - "ALL"
-        - "PLACES"
-        - "NONE"
-      default: "ALL"
+        - 'ALL'
+        - 'PLACES'
+        - 'NONE'
+      default: 'ALL'
 
     TripSearchCriteria:
       type: object
@@ -13190,10 +13413,10 @@ components:
     TripsCollectionResponseContent:
       type: string
       enum:
-        - ALL
-        - TRIPS
-        - TRIPSUMMARIES
-        - NONE
+        - 'ALL'
+        - 'TRIPS'
+        - 'TRIPSUMMARIES'
+        - 'NONE'
       default: ALL
 
     VAT:
@@ -13255,19 +13478,19 @@ components:
         into single trips if appropriate.
       type: string
       x-extensible-enum:
-        - "SINGLE_TRIP"
-        - "MULTIPLE_TRIPS"
-        - "UNRESTRICTED"
+        - 'SINGLE_TRIP'
+        - 'MULTIPLE_TRIPS'
+        - 'UNRESTRICTED'
 
     VatScope:
       description: |
         scope where the VAT applies
       type: string
       x-extensible-enum:
-        - "INTERNATIONAL"
-        - "NATIONAL"
-        - "SHORT_DISTANCE"
-        - "LONG_DISTANCE"
+        - 'INTERNATIONAL'
+        - 'NATIONAL'
+        - 'SHORT_DISTANCE'
+        - 'LONG_DISTANCE'
 
     Vehicle:
       type: object
@@ -13360,7 +13583,9 @@ components:
             warning.
           type: string
           nullable: true
-          example: The price of the given offer part has been updated during the booking operation
+          example:
+            The price of the given offer part has been updated during the
+            booking operation
         instance:
           description: |
             An absolute URI that identifies the specific occurrence of the warning.
@@ -13374,7 +13599,7 @@ components:
       additionalProperties: false
       description: |
         List of warnings.
-        
+
       required:
         - warnings
       properties:
