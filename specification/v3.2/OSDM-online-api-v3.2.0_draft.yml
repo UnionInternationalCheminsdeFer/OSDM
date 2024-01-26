@@ -5222,9 +5222,14 @@ components:
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         appliedReductionCardTypes:
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/ReductionCardType'
+        appliedReductions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardReference'            
 
     AttachableItemType:
       description: |
