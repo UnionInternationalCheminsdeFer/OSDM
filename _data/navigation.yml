@@ -48,6 +48,8 @@
       link: spec/catalog-of-code-lists/
     - name: Non-Functional Requirements
       link: spec/non-functional-requirements/
+    - name: Dual Approaches
+      link: spec/dual-approaches/
     - name: Compliance
       link: spec/compliance/
 - name: Tools
