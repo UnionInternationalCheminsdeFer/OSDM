@@ -13305,6 +13305,8 @@ components:
           type: boolean
           nullable: true
           default: false
+        returnSearchParameters:
+          $ref: '#/components/schemas/ReturnSearchParameters'
 
     TripStatus:
       type: object
