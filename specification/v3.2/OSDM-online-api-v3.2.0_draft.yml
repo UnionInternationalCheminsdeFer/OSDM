@@ -6395,6 +6395,12 @@ components:
           $ref: '#/components/schemas/CompanyRef'
         specialCoach:
           $ref: '#/components/schemas/SpecialCoachType'
+        reservationRefs:
+          description: |
+            references to the reservations/fares for which all places in the coach can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+          type: array
+          items: 
+            type: string   
 
     CoachLayout:
       type: object
@@ -6614,7 +6620,7 @@ components:
           default: false
         reservationRefs:
           description: |
-            references to the reservations for which this place nca be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+            references to the reservations/fares for which this place can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
           type: array
           items: 
             type: string          
@@ -13310,7 +13316,12 @@ components:
           items:
             $ref: '#/components/schemas/Coach'
           minItems: 1
-
+        reservationRefs:
+          description: |
+            references to the reservations/fares for which all placesin the vehicle can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+          type: array
+          items: 
+            type: string     
     VehicleFilter:
       type: object
       additionalProperties: false
