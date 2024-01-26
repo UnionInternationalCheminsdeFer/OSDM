@@ -6457,6 +6457,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachLayoutInternal'
+        compartmentNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoachLayoutCompartmentNumber'            
         gridSize:
           $ref: '#/components/schemas/CoachLayoutGridSize'
         _links:
@@ -6556,8 +6560,23 @@ components:
             graphical item type e.g. silence area sign = 116
           type: string
           nullable: false
+        direction:
+          $ref: '#/components/schemas/DirectionType'          
         coords:
           $ref: '#/components/schemas/LayoutCoordinates'
+
+    CoachLayoutCompartmentNumber:
+      description: Layout item to place a compartment number. The number has no icon, it only places the number  
+      type: object
+      additionalProperties: false
+      required:
+        - number
+        - coords
+      properties:
+        number:
+          type: string
+        coords:
+          $ref: '#/components/schemas/LayoutCoordinates'   
 
     CombinationTag:
       type: object
