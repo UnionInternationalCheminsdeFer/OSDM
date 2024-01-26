@@ -10562,9 +10562,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CombinationTag'
+        productTags:
+          description: product tags associated with the product that can be used to search for offers. This can be omitted outside of the product master data service
+          type: array
+          items:         
+             type: string
+             nullable: true
         _links:
           description: |
-
             Java Property Name: 'links'
           type: array
           items:
