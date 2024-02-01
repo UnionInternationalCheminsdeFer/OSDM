@@ -3848,7 +3848,6 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3905,7 +3904,6 @@ paths:
       responses:
         '200':
           description: |
-            place availabilities found
           content:
             application/json:
               schema:
@@ -3937,6 +3935,62 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+    post:
+      tags:
+        - Availabilities
+      summary: Get multiple place maps including availabilities.
+      description: |
+        Get multiple place maps including availabilities.
+      operationId: getAvailabilitiesPlaceMaps
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AvailabilityScope'
+      responses:
+        '200':
+          description: |
+            place availabilities for the requested fares and offer parts
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 50
+                items:                 
+                  $ref: '#/components/schemas/PlaceAvailability'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+    
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'          
   /availabilities/nearby:
     get:
       tags:
@@ -4638,7 +4692,6 @@ components:
             List of tags (and their type) that allow identifying sets of compatible offers when trying to combine multiple offers covering one single trip.
             At least one (not all) tripTags must be in common to allow combination
             If no tag is provided, there is no trip constraint on this specific offer.
-
           type: array
           items:
             type: string
@@ -5335,8 +5388,39 @@ components:
         Indication of items attached to the car
       type: string
       x-extensible-enum:
-        - 'ROOF_RACK'
-        - 'BICYCLE_STAND'
+        - ROOF_RACK
+        - BICYCLE_STAND
+        
+    AvailabilityScope:
+      type: object
+      description: fare or offerParts which should be covered by the available seats
+      required: 
+        - partReferences   
+      properties:
+        singleSelectionMapsRequired:
+          description: if true the place map must include places for a single reservation or fare only 
+          type: boolean
+          default: true
+        partReferences:
+          $ref: '#/components/schemas/PartReference' 
+          
+    PartReference:
+      type: object
+      description: reference to a fare or offerPart  
+      required: 
+        - contextId
+        - contextType
+        - resourceId
+        - resourceType    
+      properties:
+        contextId:
+          type: string
+        contextType:
+          $ref: '#/components/schemas/ContextType' 
+        resourceId:
+          type: string
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'            
 
     AvailabilityStatus:
       description: |
@@ -6524,6 +6608,12 @@ components:
           $ref: '#/components/schemas/CompanyRef'
         specialCoach:
           $ref: '#/components/schemas/SpecialCoachType'
+        reservationRefs:
+          description: |
+            references to the reservations/fares for which all places in the coach can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+          type: array
+          items: 
+            type: string   
 
     CoachLayout:
       type: object
@@ -6756,6 +6846,12 @@ components:
           type: boolean
           nullable: true
           default: false
+        reservationRefs:
+          description: |
+            references to the reservations/fares for which this place can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+          type: array
+          items: 
+            type: string          
         status:
           $ref: '#/components/schemas/AvailabilityStatus'
         travelClass:
@@ -10199,6 +10295,8 @@ components:
       required:
         - vehicle
       properties:
+        reference:
+          $ref: '#/components/schemas/PartReference'   
         vehicle:
           $ref: '#/components/schemas/Vehicle'
         preSelections:
@@ -10207,6 +10305,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlacePreSelection'
+            
 
     PlaceAvailabilityCollectionResponse:
       type: object
@@ -10227,6 +10326,18 @@ components:
           $ref: '#/components/schemas/WarningCollection'
         vehicleAvailability:
           $ref: '#/components/schemas/PlaceAvailability'
+          
+          
+    PlaceAvailabilitiesResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        warning:
+          $ref: '#/components/schemas/WarningCollection'
+        vehicleAvailabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceAvailability'
 
     PlaceParam:
       type: object
@@ -10278,6 +10389,12 @@ components:
           type: boolean
           nullable: true
           default: true
+        reservationRefs:
+          description: |
+            references to the reservations for which this place nca be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+          type: array
+          items: 
+            type: string
         placeProperties:
           type: array
           items:
@@ -10287,6 +10404,9 @@ components:
       type: object
       additionalProperties: false
       properties:
+        reservationId:
+          description: id of the reservation in case the places have already been selected and the customer now wants to change the selection.
+          type: string
         coach:
           type: string
           nullable: true
@@ -13513,7 +13633,12 @@ components:
           items:
             $ref: '#/components/schemas/Coach'
           minItems: 1
-
+        reservationRefs:
+          description: |
+            references to the reservations/fares for which all placesin the vehicle can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+          type: array
+          items: 
+            type: string     
     VehicleFilter:
       type: object
       additionalProperties: false
