@@ -4709,6 +4709,9 @@ components:
           $ref: '#/components/schemas/OfferTag'
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
+        summaryProductId:
+          type: string
+          description: Id of the product representing the commercial attributes of this offer part
         products:
           type: array
           items:
