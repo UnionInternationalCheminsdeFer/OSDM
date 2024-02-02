@@ -54,6 +54,9 @@ tags:
   - name: Bookings Search
     description: |
       resources to search for bookings
+  - name: Bookings Split
+    description: |
+      resources to split bookings
   - name: Passengers
     description: |
       resources to manipulate a passenger's information at every stage of the flow
@@ -1599,6 +1602,64 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BookingSearchResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+    
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+  /bookings/{bookingId}/split:
+    post:
+      tags:
+        - Bookings Split
+      summary: Split the given according to specified passengers.
+      operationId: splitBooking
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingSplitRequest'
+      responses:
+        '200':
+          description: |
+            return list of resulting bookings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingSplitResponse'
           headers:
             Content-Language:
               schema:
@@ -5477,6 +5538,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExchangeOperation'
+        relatedBookingIds:
+          type: array
+          items:
+            type: string
         _links:
           description: |
             
@@ -5752,6 +5817,59 @@ components:
           items:
             $ref: '#/components/schemas/BookedOfferSummary'
           minItems: 1
+
+    BookingSplitRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        passengerRefsGroups:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+            minItems: 1
+          minItems: 1
+
+
+    BookingSplitResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningCollection'
+        bookingSplitResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingSplitResult'
+
+
+    BookingSplitResult:
+      type: object
+      additionalProperties: false
+      description: |
+        List of booking resulting from the split operation
+      required:
+        - splitBookingRefs
+      properties:
+        splitBookingRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/SplitBookingReference'
+    SplitBookingReference:
+      type: object
+      additionalProperties: false
+      required:
+        - bookingId
+        - passengerReferences
+      properties:
+        bookingId:
+          type: string
+          nullable: false
+        passengerReferences:
+          type: array
+          items:
+            type: string
 
     Calendar:
       type: object
