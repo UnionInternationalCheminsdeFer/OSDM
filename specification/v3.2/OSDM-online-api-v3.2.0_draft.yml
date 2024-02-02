@@ -4472,12 +4472,6 @@ components:
         id:
           type: string
           nullable: false
-        externalRef:
-          description: |
-            If an externalRef was given in the Booking request or
-            BookedOfferRequest, it must be returned here.
-          type: string
-          nullable: false
         summary:
           type: string
           nullable: true
@@ -5057,21 +5051,6 @@ components:
               items:
                 $ref: '#/components/schemas/RegulatoryCondition'
 
-    AdmissionOfferMapping:
-      type: object
-      additionalProperties: false
-      required:
-        - admissionId
-        - externalRef
-      properties:
-        admissionId:
-          description: OfferPartId of the admission
-          type: string
-          nullable: false
-        externalRef:
-          type: string
-          nullable: false
-
     AdmissionOfferPart:
       description: |
         An admission represents a travel right, or the entitlement to travel onboard a train between
@@ -5289,9 +5268,6 @@ components:
         - passengerRefs
       properties:
         ancillaryId:
-          type: string
-          nullable: false
-        externalRef:
           type: string
           nullable: false
         passengerRefs:
@@ -5675,9 +5651,6 @@ components:
         ancillaryOfferId:
           type: string
           nullable: false
-        externalRef:
-          type: string
-          nullable: false
         passengerRefs:
           type: array
           items:
@@ -5742,9 +5715,6 @@ components:
           type: string
           nullable: false
         reservationOfferId:
-          type: string
-          nullable: false
-        externalRef:
           type: string
           nullable: false
         passengerRefs:
@@ -8668,21 +8638,6 @@ components:
         - 'JOURNEY_NOT_STARTED'
         - 'SERVICE_DEGRADED'
 
-    ImplicitReservationOfferMapping:
-      type: object
-      additionalProperties: false
-      required:
-        - reservationId
-        - externalRef
-      properties:
-        reservationId:
-          description: OfferPartId of the (included or mandatory) reservation
-          type: string
-          nullable: false
-        externalRef:
-          type: string
-          nullable: false
-
     IndicatedConsumption:
       type: object
       additionalProperties: false
@@ -9640,18 +9595,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AncillarySelection'
-        admissionOfferMappings:
-          description: |
-            This contains a mapping from the offer part id to an external ref for AdmissionOfferParts.
-          type: array
-          items:
-            $ref: '#/components/schemas/AdmissionOfferMapping'
-        implicitReservationOfferMappings:
-          description: |
-            This contains a mapping from the offer part id to an external ref for implicitly booked reservations (included reservations and mandatory reservations).
-          type: array
-          items:
-            $ref: '#/components/schemas/ImplicitReservationOfferMapping'
         placeSelections:
           type: array
           items:
@@ -11785,9 +11728,6 @@ components:
         - reservationId
       properties:
         reservationId:
-          type: string
-          nullable: false
-        externalRef:
           type: string
           nullable: false
 
