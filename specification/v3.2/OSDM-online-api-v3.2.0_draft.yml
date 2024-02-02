@@ -4515,6 +4515,9 @@ components:
           description: Amount to be refunded to the purchaser
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        summaryProductId:
+          type: string
+          description: Id of the product representing the commercial attributes of this booking part
         products:
           description: |
             In offer mode, in almost all cases exactly one product is referenced. Only on some French
@@ -4709,6 +4712,9 @@ components:
           $ref: '#/components/schemas/OfferTag'
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
+        summaryProductId:
+          type: string
+          description: Id of the product representing the commercial attributes of this offer part
         products:
           type: array
           items:
