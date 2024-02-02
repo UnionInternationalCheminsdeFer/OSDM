@@ -1,7 +1,7 @@
-passenger[<uuid>].details.phone
+passenger[<ref>].details.phone
 
-passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name
+passenger[<ref>].details.firstName AND passenger[<ref>].details.name
 
-passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name AND (passenger[<uuid>].details.eMail OR passenger[<uuid>].details.phone)
+passenger[<ref>].details.firstName AND passenger[<ref>].details.name AND (passenger[<ref>].details.eMail OR passenger[<ref>].details.phone)
 
 passenger[ANY].details.phone
