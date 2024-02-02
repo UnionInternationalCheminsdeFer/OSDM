@@ -13051,12 +13051,24 @@ components:
         If neither coveredLegIds nor coveredSections are defined, the complete trip is covered.
         coveredLegIds and coveredSections are mutually exclusive, i.e. only one of the structures can be present.
 
+        If either coveredLegIds or coveredSections is defined, the sectionIndex field must be filled to indicate which part of the trip is covered
+        by the respective OfferPart or BookingPart
+
       required:
         - coveredTripId
       properties:
         coveredTripId:
           type: string
           nullable: false
+        sectionIndex:
+          description: |
+            Describes which part of the trip (in order) is covered by the OfferPart/BookingPart which contains this TripCoverage structure.
+
+            This needs to be filled if either coveredLegIds or coveredSections is present.
+          type: integer
+          format: int32
+          minimum: 1
+          nullable: true
         coveredLegIds:
           description: |
             Indicate which legs are covered by the specific offer. Not used for fares.
