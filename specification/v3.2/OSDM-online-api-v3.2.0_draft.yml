@@ -8866,14 +8866,14 @@ components:
             The attribute is valid from the stop point with this sequence number within the leg. If missing it is valid from the beginning of the leg.
           type: integer
           format: int32
-          minimum: 1
+          minimum: 0
           nullable: true
         toStopSeqNumber:
           description: |
             The attribute is valid to the stop point (inclusively) with this sequence number within the leg. If missing it is valid to the end of the leg.
           type: integer
           format: int32
-          minimum: 1
+          minimum: 0
           nullable: true
 
     LegacyAccountingIdentifier:
@@ -12277,7 +12277,7 @@ components:
             Sequence number of this stop in the service pattern of the journey.
           type: integer
           format: int32
-          minimum: 1
+          minimum: 0
           nullable: true
         requestStop:
           description: |
