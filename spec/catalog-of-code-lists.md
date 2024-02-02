@@ -698,6 +698,14 @@ required.
 | `DOCUMENT_CHANGE` | E.g. passport was lost and replaced                  |
 | `AGENT_ERROR`     | Personal data were enterd wronlgy by the sales agent |
 
+## Product Tags
+
+| Code              | Description                                          |
+| ----------------- | ---------------------------------------------------- |
+| SPLIT_RESERVATION | Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation Without this indication the provider is not allowed to use the SplitSection Object inside a reservation. The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover a full leg multiple reservations as offerParts should be created. |
+| Product Types | All product types can be used as Product Tags in the search |
+ 
+
 ## Product Types
 
 | Code                        | Description                                          |
