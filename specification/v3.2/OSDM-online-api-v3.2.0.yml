@@ -7707,6 +7707,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VoucherInformation'
+        trips:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trip'
 
     ExchangeOperationPatchRequest:
       type: object
