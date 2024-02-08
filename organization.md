@@ -112,21 +112,8 @@ The meeting minutes as well as future improvements are documented in the
 
 ## Road Map
 
-The specification, i.e., the product is improved in fixed-length time boxes
-similar to a
+The specification is improved in fixed-length time boxes similar to a
 [program increment](https://www.scaledagileframework.com/program-increment/) in
-the [SAFe](https://www.scaledagileframework.com/) framework.
-
-The following increments are planned:
-
-| Product Increment |  End Date  | State                                                                                                   |
-| ----------------- | :--------: | ------------------------------------------------------------------------------------------------------- |
-| `PI-8`            | 07.06.2023 | _scoped_                                                                                                |
-| `PI-7`            | 09.02.2023 | _accepted_, packaging on going                                                                          |
-| `PI-6`            | 28.10.2022 | _delivered with OSDM v.2.0_ see [Release Notes 2.0](https://osdm.io/releases/OSDM-release-notes-v2.0/)  |
-| `PI-5`            | 24.06.2022 | merged into V.2.0                                                                                       |
-| `PI-4`            | 14.02.2022 | _delivered with OSDM v.1.4_, see [Release Notes 1.4](https://osdm.io/releases/OSDM-release-notes-v1.4/) |
-| `PI-3`            | 28.10.2021 | _delivered with OSDM v.1.3_, see [Release Notes 1.3](https://osdm.io/releases/OSDM-release-notes-v1.3/) |
-| `PI-2`            | 24.06.2021 | _delivered with OSDM v.1.2_, see [Release Notes 1.2](https://osdm.io/releases/OSDM-release-notes-v1.2/) |
-| `PI-1`            | 11.02.2021 | _delivered with OSDM v.1.1_                                                                             |
-| `PI-0`            | 17.12.2020 | _delivered with OSDM v.1.0_                                                                             |
+the [SAFe](https://www.scaledagileframework.com/) framework. See the
+[OSDM Wiki](https://github.com/UnionInternationalCheminsdeFer/OSDM/wiki/) for
+the roadmap.
