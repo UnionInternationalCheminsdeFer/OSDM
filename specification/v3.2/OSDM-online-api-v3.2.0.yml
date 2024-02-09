@@ -13344,6 +13344,10 @@ components:
             Ordered series of points where the journey must pass through. If more
             than one via point is given all of them must be obeyed - in the correct
             order. The server is allowed to replace a via stop by equivalent stops.
+
+            TripDataFilters given at a via apply to the section after that via. To apply a TripDataFilter for 
+            the first section (between the origin and the first via), use the TripDataFilter within the
+            TripParameters structure.   
           type: array
           items:
             $ref: '#/components/schemas/TripVia'
@@ -13497,6 +13501,8 @@ components:
       additionalProperties: false
       description: |
         Via restrictions for a trip. Provided by OJP.
+
+        A TripDataFilter given applies to the section after this via.
       required:
         - viaPlace
       properties:
@@ -13509,6 +13515,8 @@ components:
           format: duration
           nullable: true
           example: 30M
+        dataFilter:
+          $ref: '#/components/schemas/TripDataFilter'
 
     TripsCollectionResponseContent:
       type: string
