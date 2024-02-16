@@ -13,8 +13,8 @@ The following features have been added with version 3.2 of OSDM.
 - Split of a booking improved (Amadeus)
 - Second last name for Spain (Renfe)
 - Reservation on leg parts (if no seat is available for the entire leg) (Sweden)
-- Graphical reservation offer selection for busses in Sweden ()
-- Special accounting reference (DB for Eurostar via SNCF)
+- Graphical reservation offer selection for busses in Sweden (Sweden)
+- Special accounting reference (DB/Eurostar/SNCF)
 
 ### Other Work
 
