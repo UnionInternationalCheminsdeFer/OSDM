@@ -22,14 +22,16 @@ All members of the International Union of Railways
 - **2021 February** Version 1.4 OSDM released
 - **2022 October** Version 2.0 OSDM released
 - **2023 February** Version 3.0 OSDM released
+- **2023 November** Version 3.1 OSDM released
+- **2024 February** Version 3.2 OSDM released
 
-### Licencing
+### Licensing
 
 **Licensed under the Apache License, Version 2.0 (the "License"); you may not
 use this file except in compliance with the License. You may obtain a copy of
 the License at**
 
-**[Apache Licence V2.0](http://www.apache.org/licenses/LICENSE-2.0)**
+**[Apache License V2.0](http://www.apache.org/licenses/LICENSE-2.0)**
 
 **Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
@@ -79,7 +81,7 @@ specified in UIC leaflet 108.1 and 2. Some of the difficulties are:
 
 ### Online Distribution
 
-The second main goal of this specification to address the lack of a unified
+The second main goal of this specification is to address the lack of a unified
 interface for distribution of admissions (i.e., tickets), reservations,
 integrated reservation and ancillaries. Currently within the rail sector there
 exists a variety of very complex and incompatible interfaces to distribute rail
@@ -92,7 +94,7 @@ transportation.
 
 ## Objectives
 
-The main objectives guiding this specification were:
+The main objectives guiding this specification are:
 
 ### Objectives for Offline Distribution
 
@@ -109,7 +111,7 @@ The main objectives guiding this specification were:
 - Focus on easy possibly online-solutions to be implemented within the next two
   years taking into account upcoming requirements, i.e. new RICS-codes etc.
 
-- The reservation should be fully integrated in the new technology
+- The reservation should be fully integrated in the new technology.
 
 ### Objectives for Online Distribution
 
@@ -123,10 +125,10 @@ The main objectives guiding this specification were:
   as well as the fare provider role.
 
 - To provide a specification that can be supported by existing or upcoming
-  systems without major investments to secure existing investments
+  systems without major investments to secure existing investments.
 
 - To reduce unnecessary message conversions between callers as they provide no
-  business value
+  business value.
 
 ## Summary
 

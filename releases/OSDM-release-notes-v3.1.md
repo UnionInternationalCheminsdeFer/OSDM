@@ -35,7 +35,7 @@ Other work addressed includes:
 
 ### Breaking Changes
 
-We adhere to [Semantic Versioning](https://semver.org/), thus a this version is
+We adhere to [Semantic Versioning](https://semver.org/), thus this version is
 _backwards compatible with version 3.0._
 
 A detailed list of non-breaking changes are available in the

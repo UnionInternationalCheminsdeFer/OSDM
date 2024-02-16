@@ -12,6 +12,7 @@ common-data-structures.md \
 relationship-offer-offerpart-product-and-fare.md \
 technical-principles.md \
 offline-model.md \
+roles.md \
 models.md \
 processes.md \
 getting-started.md \
