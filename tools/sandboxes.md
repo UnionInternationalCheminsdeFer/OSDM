@@ -41,10 +41,10 @@ provides example client credentials to access the environment, a Postman
 collection with examples as well as the documentation of content and local
 specifics implemented in the OSDM API.
 
-![Bileto](https://osdm.io/images/logo/bileto-logo.png)
+![Bileto](../images/logo/bileto-logo.png)
 
-## benerail Sandbox
+## benerail OSDM Sandbox
 
-To be announced.
+Access process to be announced.
 
-![benerail](https://osdm.io/images/logo/benerail_logo_rgb.png)
+![benerail](../images/logo/benerail-logo.jpg)
