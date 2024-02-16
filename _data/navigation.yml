@@ -61,8 +61,8 @@
       link: https://github.com/UnionInternationalCheminsdeFer/OSDM/wiki/
     - name: OSDM UML Model
       link: tools/uml-model/
-    - name: OSDM Sandbox
-      link: tools/sandbox/
+    - name: OSDM Sandboxes
+      link: tools/sandboxes/
     - name: OSDM Demo App
       link: tools/demo-app/
     - name: OSDM H2O Converter

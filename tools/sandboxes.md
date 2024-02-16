@@ -1,7 +1,7 @@
 ---
 layout: page
 title: OSDM Sandbox
-permalink: /tools/sandbox/
+permalink: /tools/sandboxes/
 ---
 
 ## Aim
