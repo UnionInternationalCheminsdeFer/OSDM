@@ -1,12 +1,12 @@
 ---
 layout: page
-title: OSDM Demo Environment
-permalink: /tools/demo-environment/
+title: OSDM Sandbox
+permalink: /tools/sandbox/
 ---
 
 ## Aim
 
-Various providers and distributors built demo or sandbox environments to provide implementing or interesting parties  with access to _working prototypes_ or _near to real-life implementations_ to study the behavior and semantics of the OSDM API.
+Various providers and distributors built demo or sandbox environments to provide implementing or interested parties with access to _working prototypes_ or _near to real-life implementations_ to study the behavior and semantics of the OSDM API.
 
 These environments are usually registration-only and interested parties are provided with documentation of the content of the API as well as with examples of requests to try.
 
