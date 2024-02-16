@@ -12,10 +12,10 @@ A participant can play the following roles:
 - **Fare Provider** – defining the fare and combination rules and providing them
   to distributors offline or online.
 - **Distributor** – combining fares, defining after sales rules within the
-  frames et by the fare provider, providing combined offers and managing the
-  booking transaction, managing the ticket security (barcode, control
-  processes), managing compensations processes, managing the stock control
-  process.
+  constraints set by the fare provider, providing combined offers and managing
+  the booking transaction, managing the ticket security (barcode, control
+  processes), creating a fulfillment, managing compensations processes, managing
+  the stock control process.
 - **Retailer** – selling tickets from one or more distributors to the customer.
   Selecting the distributors and joining multiple independent bookings.
 
