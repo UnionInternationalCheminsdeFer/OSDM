@@ -450,7 +450,7 @@ These covers:
 The retailer needs to obey the delayed payment instruction provided by the
 distributor.
 
-### Change of personal data Scenario
+### Change of Personal Data Scenario
 
 #### Change of personal data
 
