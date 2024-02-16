@@ -36,6 +36,8 @@
       link: spec/technical-principles/
     - name: Models
       link: spec/models/
+    - name: Roles
+      link: spec/roles/
     - name: Processes
       link: spec/processes/
     - name: Pagination

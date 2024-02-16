@@ -19,7 +19,8 @@ A participant can play the following roles:
 - **Retailer** – selling tickets from one or more distributors to the customer.
   Selecting the distributors and joining multiple independent bookings.
 
-A RU or system provider can support more than one role.
+A public transport provider, e.g. a railway or a system provider can support
+more than one role.
 
 In the following sections, five scenario from the point of view of the different
 are high lighted.
@@ -33,7 +34,7 @@ of UIC specifications.
 
 ### Distribution Scenario – Sales
 
-#### Timetable search
+#### Timetable Search
 
 Timetable data are not in the scope of this specification. It is assumed, that
 the distributor has retrieved a valid travel solution from a timetable search
@@ -115,7 +116,7 @@ systems. (see Reservation Parameter).
 Payment is not in the scope of this specification. The carrier/fare provider is
 not involved in this step.
 
-### After sales scenario – cancellation
+### After Sales Scenario – Cancellation
 
 #### Refund Offer
 
@@ -135,7 +136,7 @@ delayed checking whether the ticket has been used.
 
 A confirmed booking is cancelled.
 
-### After sales scenario - exchange
+### After Sales Scenario - Exchange
 
 A cancellation offer is requested using special exchange reasons.
 
@@ -186,7 +187,7 @@ To retrieve the stored personal data the booking has to be requested.
 
 ### Distribution Scenario – Sales
 
-#### Timetable search
+#### Timetable Search
 
 The distributor makes a timetable search himself or retrieves the trip from a
 retailer. The distributor must specify additionally for which part of the trip
@@ -275,7 +276,7 @@ systems. (see Reservation Parameter).
 Payment is not in the scope of this specification. The carrier/fare provider is
 not involved in this step.
 
-### After sales scenario – cancellation
+### After Sales Scenario – Cancellation
 
 #### Refund Offer
 
@@ -299,7 +300,7 @@ applied that need to be transferred in the booking confirmation.
 In case of a delayed payment of refunds the distributor needs to validate the
 ticket control data (IRS 90918-4).
 
-### After sales scenario - exchange
+### After Sales Scenario - Exchange
 
 A exchange offer is requested using special exchange reasons.
 
@@ -349,11 +350,11 @@ To retrieve the stored personal data the booking has to be requested.
 
 ## Retailer Role
 
-### Distribution Scenario – sales
+### Distribution Scenario – Sales
 
-#### Timetable search
+#### Timetable Search
 
-The retailer makes a timetable search himself or retrieves the trip from a
+The retailer makes a timetable search itself or retrieves the trip from a
 distributor.
 
 #### Offer
