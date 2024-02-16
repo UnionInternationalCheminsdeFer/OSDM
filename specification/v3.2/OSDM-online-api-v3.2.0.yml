@@ -5447,7 +5447,9 @@ components:
           type: boolean
           default: true
         partReferences:
-          $ref: '#/components/schemas/PartReference' 
+          type: array
+          items:
+             $ref: '#/components/schemas/PartReference' 
           
     PartReference:
       type: object
