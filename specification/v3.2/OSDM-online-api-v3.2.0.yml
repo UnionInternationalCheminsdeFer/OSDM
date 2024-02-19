@@ -5413,7 +5413,8 @@ components:
         type:
           $ref: '#/components/schemas/ActualPassengerType'
         description:
-          description: clear text represenation of the actual passenger type, suitable to be presented to a client
+          description: |
+            Clear text representation of the actual passenger type, suitable to be presented to a client.
           type: string
           nullable: false
         tripCoverage:
@@ -13693,7 +13694,10 @@ components:
           minItems: 1
         reservationRefs:
           description: |
-            references to the reservations/fares for which all placesin the vehicle can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+            References to the reservations/fares for which all places in the vehicle can be selected. 
+            The reservation ids must be part of the list of reservation ids for which the consumer has
+            requested the available places and the consumer must accept a list by setting 
+            singleSelectionMapsRequired to false
           type: array
           items: 
             type: string     
