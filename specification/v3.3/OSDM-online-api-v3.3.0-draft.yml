@@ -4802,6 +4802,8 @@ components:
           $ref: '#/components/schemas/RegionalValiditySummary'
         indicatedConsumption:
           $ref: '#/components/schemas/IndicatedConsumption'
+        grantedReductionAmounts:
+          $ref: '#/components/schemas/GrantedReductionAmounts'          
         _links:
           description: |
             Java Property Name: 'links'
@@ -8635,6 +8637,63 @@ components:
               $ref: '#/components/schemas/Latitude'
             longitude:
               $ref: '#/components/schemas/Longitude'
+
+    GrantedReductionAmounts:
+      type: object
+      additionalProperties: false
+      description: |
+        granted reduction amounts 
+      properties:
+        grantedReductionAmount
+          type: array
+          items:
+            $ref: '#/components/schemas/GrantedReductionAmount'
+            
+    GrantedReductionAmount:
+      type: object
+      additionalProperties: false
+      description: |
+        Applied passenger types and reductions per passenger, per offer part and per part of the trip.
+      required:
+        - passengerRef
+        - grantedReductionAmount 
+        - description
+      properties:
+        description:
+          description: |
+            Clear text representation of the actual passenger type, suitable to be presented to a client.
+          type: string
+          nullable: false    
+        grantedReductionAmount:
+          $ref: '#/components/schemas/Price'       
+        passengerRefs:
+          description: |
+            ids of the passengers that were granted the reduction  
+          type: array
+          items:
+             type: string
+             nullable: false  
+          minItems: 1
+        tripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
+        appliedPassengerTypes:
+          type: array
+          items:        
+            $ref: '#/components/schemas/ActualPassengerType'
+        appliedReductions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardReference'  
+        appliedCorporateCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CorporateCode'
+        appliedPromotionCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromotionCode'            
+
+
 
     HistoryStatus:
       type: string
