@@ -8644,7 +8644,7 @@ components:
       description: |
         granted reduction amounts 
       properties:
-        grantedReductionAmount
+        grantedReductionAmount:
           type: array
           items:
             $ref: '#/components/schemas/GrantedReductionAmount'
