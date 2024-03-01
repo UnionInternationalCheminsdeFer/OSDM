@@ -8432,7 +8432,7 @@ components:
       type: string
       x-extensible-enum:
         - 'ALLOCATOR_APP' # deprecated
-        - 'DISTRIBUTOR-APP' 
+        - 'DISTRIBUTOR_APP' 
         - 'RETAILER_APP'
         - 'FULFILLMENT_PARTS'
         - 'PDF_A4'
