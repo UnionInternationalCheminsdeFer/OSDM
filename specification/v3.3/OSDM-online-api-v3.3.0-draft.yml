@@ -8655,9 +8655,9 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Applied passenger types and reductions per passenger, per offer part and per part of the trip.
+        Applied passenger types and reductions per passenger, per offerpart, booking part and per part of the trip. 
+        Passengers might be omitted in case the reduction aplies for theentire booking part.
       required:
-        - passengerRef
         - grantedAmount 
         - description
       properties:
@@ -8675,7 +8675,6 @@ components:
           items:
              type: string
              nullable: false  
-          minItems: 1
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         appliedPassengerTypes:
