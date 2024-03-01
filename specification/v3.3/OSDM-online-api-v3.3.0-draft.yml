@@ -8431,7 +8431,9 @@ components:
         Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
       type: string
       x-extensible-enum:
-        - 'ALLOCATOR_APP'
+        - 'ALLOCATOR_APP' # deprecated
+        - 'DISTRIBUTOR-APP' 
+        - 'RETAILER_APP'
         - 'FULFILLMENT_PARTS'
         - 'PDF_A4'
         - 'PKPASS'
