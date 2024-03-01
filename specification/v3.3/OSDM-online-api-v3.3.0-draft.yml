@@ -8429,9 +8429,13 @@ components:
     FulfillmentMediaType:
       description: |
         Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
+
+        Notice:`ALLOCATOR_APP` is deprecated and should not be used anymore. The `ALLOCATOR_APP` type is replaced by the `RETAILER_APP` type. `DISTRIBUTOR_APP` was introduced to distinguish between the different types of apps that can be used to fulfill a booking.
       type: string
       x-extensible-enum:
-        - 'ALLOCATOR_APP'
+        - 'ALLOCATOR_APP' # deprecated
+        - 'DISTRIBUTOR_APP' 
+        - 'RETAILER_APP'
         - 'FULFILLMENT_PARTS'
         - 'PDF_A4'
         - 'PKPASS'
