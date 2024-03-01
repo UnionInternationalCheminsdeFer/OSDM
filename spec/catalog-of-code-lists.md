@@ -447,7 +447,8 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | `UIC_PDF`      | PDF according to UIC Standard                                          |
 | `PDF_A4`       | proprietary A4 pdf format                                              |
 | `PKPASS`       | pkpass file format                                                     |
-| `RETAILER_APP` | mobile ticket in retailer specific format to be loaded into mobile app |
+| `RETAILER_APP` | mobile ticket in retailer specific format to be loaded into mobile app of the retailer |
+| `DISTRIBUTOR_APP` | mobile ticket in distributor specific format to be loaded into mobile app of the distriutor |
 | `TICKETLESS`   | no ticket                                                              |
 | `SMS`          | ticket information of link to the fulfillment send by SMS              |
 
