@@ -45,6 +45,21 @@ specifics implemented in the OSDM API.
 
 ## benerail OSDM Sandbox
 
-Access process to be announced.
+Benerail is a system provider for SNCB, NS, CFL and DSB with a focus on
+international and long distance rail tickets and has launched
+an [benerail OSDM sandbox](https://benerail.com/sandbox_osdm_api/).
+
+The OSDM API provides integrations between different roles, for example, between
+retailer and distributor or between distributor and fare provider - nowadays also
+referred to as carrier provider. Benerail, as a technical supplier, has the
+ambition to support both the distributor and fare provider role.
+
+The sandbox is designed as an experimental playground, and we welcome you to
+access it, share ideas and collaborate with us. You can submit a request to
+access our sandbox. You will receive credentials, documentations, a Postman
+project and in future a developer portal with more information.
+
+The link to our form is available on
+[benerail OSDM sandbox](https://benerail.com/sandbox_osdm_api/).
 
 ![benerail](../images/logo/benerail-logo.jpg)
