@@ -410,6 +410,8 @@ sub types.
 }
 ```
 
+Physical availability of places for reservation can be requested eigther by providing preferences on place properties or by reuesting the available places for a graphical seat display to select individual seats. The request for seats to be displayed graphically can reqquest the places for one or a selection of reservation offers. In case the request is for multiple reservation offers the client application must implement the switch of the offers based on selected places.
+
 ##### Partial Reservation
 
 A provider might offer a reservation even in case the seat is not available on the whole leg. In this casethe provider should 
