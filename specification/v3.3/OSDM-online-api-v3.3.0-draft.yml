@@ -4643,6 +4643,8 @@ components:
           $ref: '#/components/schemas/IndicatedConsumption'
         accountingRef:
           $ref: '#/components/schemas/AccountingRef'
+        grantedReductionAmounts:
+          $ref: '#/components/schemas/GrantedReductionAmounts'               
 
     AccountingRef:
       description: |
@@ -8656,7 +8658,7 @@ components:
         Applied passenger types and reductions per passenger, per offer part and per part of the trip.
       required:
         - passengerRef
-        - grantedReductionAmount 
+        - grantedAmount 
         - description
       properties:
         description:
@@ -8664,7 +8666,7 @@ components:
             Clear text representation of the actual passenger type, suitable to be presented to a client.
           type: string
           nullable: false    
-        grantedReductionAmount:
+        grantedAmount:
           $ref: '#/components/schemas/Price'       
         passengerRefs:
           description: |
