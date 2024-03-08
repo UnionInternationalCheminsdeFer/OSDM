@@ -466,7 +466,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
       requestBody:
         content:
           application/json:
@@ -746,7 +745,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -866,7 +864,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -1208,7 +1205,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           required: true
@@ -1325,7 +1321,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           required: true
@@ -1383,7 +1378,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           required: true
@@ -1555,7 +1549,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -1616,7 +1609,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -1759,7 +1751,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: page
           in: query
           schema:
@@ -2287,7 +2278,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -2521,7 +2511,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -2761,7 +2750,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -3073,7 +3061,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -3630,7 +3617,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           required: true
@@ -4341,9 +4327,12 @@ components:
       in: header
       description: |
         The HTTP Idempotency request header field can be used to carry idempotency key in order to make
-        non-idempotent HTTP methods such as POST or PATCH fault-tolerant.
+        non-idempotent HTTP methods such as POST or PATCH fault-tolerant. Servers should keep the idempotency
+        key for as long as the result of the underlying operation is valid. Idempotency keys should be 
+        globally unique. 
       schema:
         type: string
+        format: uuid
 
     ifNoneMatch:
       name: If-None-Match
