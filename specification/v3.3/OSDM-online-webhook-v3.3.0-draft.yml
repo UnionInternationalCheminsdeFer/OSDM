@@ -124,6 +124,7 @@ components:
         - RELEASE_INITIATED
         - CANCEL_INITIATED
         - ON_HOLD_INITIATED
+        - AFTERSALES_OVERRIDEN
       example: FULFILLMENT_REFUNDED
 
     ComplaintEvent:
