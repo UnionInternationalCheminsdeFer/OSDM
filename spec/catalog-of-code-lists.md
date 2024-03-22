@@ -127,7 +127,7 @@ of by the customer.
 | `POWER`                 | N                      | Y                | Y              | Place with power socket                                                                          |                        |
 | `PRAM`                  | Y                      | N                | Y              | Place for a Pram                                                                                 |                        |
 | `PRAM_WITH_SEAT`        | Y                      | N                | Y              | Seat with space for a pram                                                                       |                        |
-| `PRESTIGE`        | Y                      | Y                | Y              | Seat within a prestige compartment                                                                       |                        |
+| `PRESTIGE`        | Y                      | Y                | Y              | Luxurious seat on SOB's Prestige Continental Express (Swizerland)                                                                      |                        |
 | `RESTAURANT`            | Y                      | Y                | Y              | Restaurant (places in a dining car)                                                              |                        |
 | `SILENCE`               | Y                      | Y                | Y              | Quiet Compartment (Seat)                                                                         |                        |
 | `SINGLE`                | Y                      | N                | Y              | Single sleeper compartment                                                                       |                        |
