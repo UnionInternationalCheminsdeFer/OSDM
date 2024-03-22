@@ -18,7 +18,7 @@ permalink: /spec/authentication/
 
 ## Introduction <a name="introduction">
 
-The general requirement of the OSDM standard to use OAuth2 for authentication and authorization by means of JW tokens (JWTs) should be implemented in the following consistent manner.
+The general requirement of the OSDM standard to use OAuth2 for authentication and authorization by means of JW tokens (JWTs) should be implemented in the following consistent manner between backends.
 
 The following RFC documents apply:
 
@@ -40,7 +40,7 @@ This method makes it unnecessary to exchange actual client secrets between the c
 
 The general flow between consumer and provider looks like this:
 
-![Authentication_flow](../images/models/authentication_flow.png)
+![Authentication_flow](../images/authentication/authentication_flow_be_to_be.png)
 
 In this flow, the following services are defined:
 
