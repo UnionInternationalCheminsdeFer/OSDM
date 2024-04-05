@@ -7929,6 +7929,8 @@ components:
           $ref: '#/components/schemas/Text'
         description:
           $ref: '#/components/schemas/Text'
+        status:
+          $ref: '#/components/schemas/BookingPartStatus'          
         prices:
           description: |
             allows specifying a price in multiple currencies
