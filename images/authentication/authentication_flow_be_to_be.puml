@@ -1,0 +1,13 @@
+@startuml Token Generation Flow
+OSDM_Consumer -> OSDM_Consumer : Prepare JW Identity Token
+OSDM_Consumer -> OSDM_Consumer : Sign JW Identitiy Token 
+OSDM_Consumer -> OSDM_Provider_Login_Service : Request for Access Token including Identity Token
+OSDM_Provider_Login_Service -> OSDM_Provider_Login_Service : Validate JW Identity Token
+OSDM_Provider_Login_Service -> OSDM_Provider_Login_Service : Create and Sign Access Token
+OSDM_Provider_Login_Service -> OSDM_Consumer : JW Access Token
+OSDM_Consumer -> OSDM_Consumer : Cache JW Access Token
+OSDM_Consumer -> OSDM_Provider_Functional_Endpoints : OSDM Call e.g. POST /offers including Access Tolken
+OSDM_Provider_Functional_Endpoints -> OSDM_Provider_Functional_Endpoints : Validate JW Access Token
+OSDM_Provider_Functional_Endpoints -> OSDM_Provider_Functional_Endpoints : Process OSDM functional call
+OSDM_Provider_Functional_Endpoints -> OSDM_Consumer : OSDM Response e.g. OfferResponse
+@enduml

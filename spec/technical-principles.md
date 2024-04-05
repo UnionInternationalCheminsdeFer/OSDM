@@ -65,6 +65,8 @@ any registered consumer will be approved or rejected if approved a unique, techn
 
 In multi-environments (like DEV, TEST, INT, PROD) consumers might register for each environment separately.
 
+The detailled flow for machine-to-machine authentication can be found in [Authentication](../authentication/).
+
 ### User Lookup
 
 From a devOps perspective it might by hard to control who uses your API (for e.g. `ClientId` and secret might by passed around or hacked).
