@@ -1,7 +1,7 @@
-passenger[<ref>].details.phone
+passengerSpecifications[<ref>].detail.contact.phoneNumber
 
-passenger[<ref>].details.firstName AND passenger[<ref>].details.name
+passengerSpecifications[<ref>].detail.firstName AND passengerSpecifications[<ref>].detail.lastName
 
-passenger[<ref>].details.firstName AND passenger[<ref>].details.name AND (passenger[<ref>].details.eMail OR passenger[<ref>].details.phone)
+passengerSpecifications[<ref>].detail.firstName AND passengerSpecifications[<ref>].detail.lastName AND (passengerSpecifications[<ref>].detail.contact.email OR passengerSpecifications[<ref>].detail.contact.phoneNumber)
 
-passenger[ANY].details.phone
+passengerSpecifications[ANY].detail.contact.phoneNumber
