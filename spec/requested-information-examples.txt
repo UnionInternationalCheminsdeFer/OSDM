@@ -1,4 +1,4 @@
-passengerSpecifications[<ref>].detail.contact.phone
+passengerSpecifications[<ref>].detail.contact.phoneNumber
 
 passengerSpecifications[<ref>].detail.firstName AND passengerSpecifications[<ref>].detail.lastName
 
