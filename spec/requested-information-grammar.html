@@ -88,20 +88,20 @@ layout: default
 		Phone number required for passenger with a given id:
 	</p>
 	<pre>
-passenger[ee764ee0-55a1-11eb-ae93-0242ac130002].details.phone
+		passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130002].detail.contact.phoneNumber
 	</pre>
 	<p>
-		First name and name required with a given id:
+		First name and last name required with a given id:
 	</p>
 	<pre>
-passenger[ee764ee0-55a1-11eb-ae93-0242ac130004].details.firstName AND passenger[ee764ee0-55a1-11eb-ae93-0242ac130004].details.name	
+		passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130004].detail.firstName AND passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130004].detail.lastName
 	</pre>
 	</p>
 	<p>
 		More complex example:
 	</p>
 	<pre>
-passenger[ee764ee0-55a1-11eb-ae93-0242ac130006].details.firstName AND passenger[ee764ee0-55a1-11eb-ae93-0242ac130006].details.name AND (passenger[ee764ee0-55a1-11eb-ae93-0242ac130006].details.eMail OR passenger[ee764ee0-55a1-11eb-ae93-0242ac130006].details.phone)
+		passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130006].detail.firstName AND passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130006].detail.lastName AND (passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130006].detail.contact.email OR passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130006].detail.contact.phoneNumber)
 	</pre>
 </div>
 
