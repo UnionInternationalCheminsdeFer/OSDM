@@ -128,7 +128,8 @@ flavors.
 In some cases, API consumers will be required to provide some additional
 information in order to proceed with the provisional booking. In this case, the
 information needed will be specified in the `requestedInformation` element using
-a notation akin to regular expressions.
+a notation akin to regular expressions, which has a defined 
+[grammar](https://osdm.io/spec/requested-information-grammar.html).
 
 Offers should always contain a `minimalPrice` (= the price of the offer without
 any of the optional offer parts), a global service class and flexibility.
