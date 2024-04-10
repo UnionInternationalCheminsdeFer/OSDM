@@ -124,6 +124,7 @@ Additionally, implementers should consult [RFC 8725](https://datatracker.ietf.or
 ## Configuration <a name="configuration">
 
 Some configuration parameters need to be agreed upon bilaterally between the partners. They are listed in the following table.
+
 | Parameter                            | Usage                                                       | Explanation                                                | Parameter flow |
 | ------------------------------------ | ----------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
 | Signing algorithm                    | JW identity token, header field 'alg'                       | Algorithm used for signing the JW identity token           | Mutually agreed between provider and consumer                |
