@@ -10,14 +10,14 @@ schema files.
 
 ## URNs for code lists
 
-| Code List                 | Name Space and domain | CodeList       | Description                                                                                                                                          | example                    | base path for relative references |
-| ------------------------- | --------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | --------------------------------- |
-| stations                  | `urn:uic`             | `stn`          | UIC station codes ( = TAP-TSI retail station codes as defined in TAP-TSI Technical Document B.9). The codes are defined in TAP-TSI as numerical codes starting with the TAP-TSI country code without leading zeroes. Temporary codes not jet part of TAP-TSI reference data might be added with an additional number before the country code as aggreed with ERA.                                                                                                     | `urn:uic:stn:8512345`      | `urn:uic:stn:`                    |
-| metastations              | `urn:uic`             | `metastn`      | UIC meta station codes to e used for Points of Interrest                                                                                             | `urn:uic:metastn:198`      | `urn:uic:metastn:`                    |
-| service brands , products | `urn:uic`             | `sbc`          | UIC service brand code (TAP-TSI B.4.7009 / https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)                       | `urn:uic:sbc:17`           | `urn:uic:sbc:`                    |
-| companies                 | `urn:uic`             | `rics:ac`      | company code (TAP-TSI https://www.era.europa.eu/registers/ocr_en / https://uic.org/support-activities/it/rics) and optional administration code (AC) | `urn:uic:rics:1080:000011` | `urn:uic:rics:`                   |
-| countries                 | `urn:iso`             | `std:iso:3166` | ISO Country Codes                                                                                                                                    | `urn:iso:std:iso:3166:CH`  | `urn:iso:std:iso:3166:`           |
-| currencies                | `urn:iso`             | `std:iso:4217` | ISO Currency Codes                                                                                                                                   | `urn:iso:std:iso:4217:CFR` | `urn:iso:std:iso:4217:`           |
+| Code List                 | Name Space and domain | CodeList       | Description                                                                                                                                                                                                                                                                                                                                                       | example                    | base path for relative references |
+| ------------------------- | --------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | --------------------------------- |
+| stations                  | `urn:uic`             | `stn`          | UIC station codes ( = TAP-TSI retail station codes as defined in TAP-TSI Technical Document B.9). The codes are defined in TAP-TSI as numerical codes starting with the TAP-TSI country code without leading zeroes. Temporary codes not jet part of TAP-TSI reference data might be added with an additional number before the country code as aggreed with ERA. | `urn:uic:stn:8512345`      | `urn:uic:stn:`                    |
+| metastations              | `urn:uic`             | `metastn`      | UIC meta station codes to e used for Points of Interrest                                                                                                                                                                                                                                                                                                          | `urn:uic:metastn:198`      | `urn:uic:metastn:`                |
+| service brands , products | `urn:uic`             | `sbc`          | UIC service brand code (TAP-TSI B.4.7009 / https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)                                                                                                                                                                                                                                    | `urn:uic:sbc:17`           | `urn:uic:sbc:`                    |
+| companies                 | `urn:uic`             | `rics:ac`      | company code (TAP-TSI https://www.era.europa.eu/registers/ocr_en / https://uic.org/support-activities/it/rics) and optional administration code (AC)                                                                                                                                                                                                              | `urn:uic:rics:1080:000011` | `urn:uic:rics:`                   |
+| countries                 | `urn:iso`             | `std:iso:3166` | ISO Country Codes                                                                                                                                                                                                                                                                                                                                                 | `urn:iso:std:iso:3166:CH`  | `urn:iso:std:iso:3166:`           |
+| currencies                | `urn:iso`             | `std:iso:4217` | ISO Currency Codes                                                                                                                                                                                                                                                                                                                                                | `urn:iso:std:iso:4217:CFR` | `urn:iso:std:iso:4217:`           |
 
 ## Proprietary values
 
@@ -63,7 +63,7 @@ Place Preference Group collects Place preferences where only one can be chosen
 of by the customer.
 
 | Code                    | Accommodation Sub Type | Place Preference | Place Property | Description                                                                                      | Place Preference Group |
-| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- |
+| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- | --- |
 | `AISLE`                 | N                      | Y                | Y              | Place at the aisle                                                                               | `PLACE_LOCATION`       |
 | `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area                                                                    |                        |
 | `ANY_SEAT`              | Y                      | N                | Y              | Indicates within a place preference group explicitly that the selection is optional              |                        |
@@ -106,12 +106,12 @@ of by the customer.
 | `INCLUDING_MEAL`        | Y                      | Y                | Y              | Meal at the place is included                                                                    |                        |
 | `INCLUDING_DRINK`       | Y                      | Y                | Y              | A drink is included at the place                                                                 |                        |
 | `KIOSQUE`               | N                      | Y                | Y              | Kiosque (special seats in edge area of a TGV)                                                    |                        |
-| `LADIES`                | N                      | Y                | Y              | Ladies compartment                                                                               |                        |    
+| `LADIES`                | N                      | Y                | Y              | Ladies compartment                                                                               |                        |
 | `LOWER_BED`             | N                      | Y                | Y              | Lower bed or couchette                                                                           | `PLACE_LOCATION`       |
 | `LOWER_DECK`            | N                      | Y                | Y              | Lower deck in a double deck train                                                                | `DECK`                 |
 | `MEN`                   | N                      | Y                | Y              | Men compartment in night train                                                                   |                        |
 | `MIDDLE_BED`            | N                      | Y                | Y              | Middle bed or couchette                                                                          | `PLACE_LOCATION`       |
-| `MIDDLE_SEAT`           | N                      | Y                | Y              | Middle seat                                                                          | `PLACE_LOCATION`       |  
+| `MIDDLE_SEAT`           | N                      | Y                | Y              | Middle seat                                                                                      | `PLACE_LOCATION`       |
 | `MINI_SUITE`            | Y                      | N                | Y              | Mini Suite - single person couchette compartment (Capsule)                                       |                        |
 | `MIXED`                 | N                      | Y                | Y              | Mixed compartment in night train                                                                 |                        |
 | `MOTOR_CYCLE`           | Y                      | N                | Y              | Motorcycle                                                                                       |                        |
@@ -127,7 +127,7 @@ of by the customer.
 | `POWER`                 | N                      | Y                | Y              | Place with power socket                                                                          |                        |
 | `PRAM`                  | Y                      | N                | Y              | Place for a Pram                                                                                 |                        |
 | `PRAM_WITH_SEAT`        | Y                      | N                | Y              | Seat with space for a pram                                                                       |                        |
-| `PRESTIGE`        | Y                      | Y                | Y              | Luxurious seat on SOB's Prestige Continental Express (Swizerland)                                                                      |                        |
+| `PREMIUM`               | Y                      | Y                | Y              | Seat with premium comfort (higher than first class)                                              |                        |
 | `RESTAURANT`            | Y                      | Y                | Y              | Restaurant (places in a dining car)                                                              |                        |
 | `SILENCE`               | Y                      | Y                | Y              | Quiet Compartment (Seat)                                                                         |                        |
 | `SINGLE`                | Y                      | N                | Y              | Single sleeper compartment                                                                       |                        |
@@ -138,7 +138,7 @@ of by the customer.
 | `SLEEPERETTE`           | Y                      | N                | Y              | Sleeperette (reclining seat)                                                                     |                        |
 | `SLEEPER_DELUXE`        | Y                      | N                | Y              | berth deluxe                                                                                     |                        |
 | `SOLO`                  | Y                      | Y                | Y              | Separate place without neighbor seat                                                             | `PLACE_LOCATION`       |
-| `SOLO_COM`               | N                      | Y                | Y              | Special separate place without neighbor seat (e.g. in TGV)                                                            | `PLACE_LOCATION`       |
+| `SOLO_COM`              | N                      | Y                | Y              | Special separate place without neighbor seat (e.g. in TGV)                                       | `PLACE_LOCATION`       |
 | `SPECIAL_SLEEPER`       | Y                      | N                | Y              | Special Sleeper Compartment, one Person sleeper compartment smaller than a Single                |                        |
 | `TABLE`                 | N                      | Y                | Y              | Places at a table                                                                                |                        |
 | `TANDEM`                | Y                      | Y                | Y              | Tandem Bicycle                                                                                   |                        |
@@ -441,17 +441,17 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
 ## FulfillmentMediaType
 
-| Code           | Description                                                            |
-| -------------- | ---------------------------------------------------------------------- |
-| `RCT2`         | RCT2 secure paper format (including compressed format)                 |
-| `RCCST`        | Credit Card Size format                                                |
-| `UIC_PDF`      | PDF according to UIC Standard                                          |
-| `PDF_A4`       | proprietary A4 pdf format                                              |
-| `PKPASS`       | pkpass file format                                                     |
-| `RETAILER_APP` | mobile ticket in retailer specific format to be loaded into mobile app of the retailer |
+| Code              | Description                                                                                 |
+| ----------------- | ------------------------------------------------------------------------------------------- |
+| `RCT2`            | RCT2 secure paper format (including compressed format)                                      |
+| `RCCST`           | Credit Card Size format                                                                     |
+| `UIC_PDF`         | PDF according to UIC Standard                                                               |
+| `PDF_A4`          | proprietary A4 pdf format                                                                   |
+| `PKPASS`          | pkpass file format                                                                          |
+| `RETAILER_APP`    | mobile ticket in retailer specific format to be loaded into mobile app of the retailer      |
 | `DISTRIBUTOR_APP` | mobile ticket in distributor specific format to be loaded into mobile app of the distriutor |
-| `TICKETLESS`   | no ticket                                                              |
-| `SMS`          | ticket information of link to the fulfillment send by SMS              |
+| `TICKETLESS`      | no ticket                                                                                   |
+| `SMS`             | ticket information of link to the fulfillment send by SMS                                   |
 
 ## Gender
 
@@ -584,8 +584,8 @@ Service Facilities <a name="serviceFacilities">
 
 ## Nationality
 
-Language codes used in OSDM are based on the
-[ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
+Language codes used in OSDM are based on the [ISO
+639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
 
 ## NUTS codes
 
@@ -616,28 +616,28 @@ units. E.g.:
 
 ## Passenger Type (aka. Traveler Type)
 
-| Code           | Description                                                                                                                                                     | Transportable | Bulk (Offline) | Online Request | Online Reply | 918-9 FCB Version 3 |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | -------------- | -------------- | ------------ | ------------------- |
-| `YOUNG_CHILD`  | Young child defined by the carrier depending on the age                                                                                                         |               | X              |                | X            | freeAddonChild      |
-| `CHILD`        | Child defined by the carrier depending on the age                                                                                                               |               | X              |                | X            | child  |
-| `YOUTH`        | Youth defined by the carrier depending on the age                                                                                                               |               | X              |                | X            | youth  |
-| `ADULT`        | Adult defined by the carrier depending on the age                                                                                                               |               | X              |                | X            | adult  |
-| `SENIOR`       | Senior defined by the carrier depending on the age                                                                                                              |               | X              |                | X            | senior |
-| `FAMILY_CHILD` | Child associated with a family traveling together                                                                                                               |               | X              | X              | X            | freeAddonChild | 
-| `ACCOMP_PRM`   | Accompanying Person for PRM                                                                                                                                     |               | X              |                | X            | adult |
-| `PRM_CHILD`    | Handicapped young child accompanied by one person where the usual child according to the age price would be zero and the accompanying person would also be free |               | X              |                | X            | child + flag passengerWithReducedMobility |
+| Code           | Description                                                                                                                                                     | Transportable | Bulk (Offline) | Online Request | Online Reply | 918-9 FCB Version 3                           |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | -------------- | -------------- | ------------ | --------------------------------------------- |
+| `YOUNG_CHILD`  | Young child defined by the carrier depending on the age                                                                                                         |               | X              |                | X            | freeAddonChild                                |
+| `CHILD`        | Child defined by the carrier depending on the age                                                                                                               |               | X              |                | X            | child                                         |
+| `YOUTH`        | Youth defined by the carrier depending on the age                                                                                                               |               | X              |                | X            | youth                                         |
+| `ADULT`        | Adult defined by the carrier depending on the age                                                                                                               |               | X              |                | X            | adult                                         |
+| `SENIOR`       | Senior defined by the carrier depending on the age                                                                                                              |               | X              |                | X            | senior                                        |
+| `FAMILY_CHILD` | Child associated with a family traveling together                                                                                                               |               | X              | X              | X            | freeAddonChild                                |
+| `ACCOMP_PRM`   | Accompanying Person for PRM                                                                                                                                     |               | X              |                | X            | adult                                         |
+| `PRM_CHILD`    | Handicapped young child accompanied by one person where the usual child according to the age price would be zero and the accompanying person would also be free |               | X              |                | X            | child + flag passengerWithReducedMobility     |
 | `WHEELCHAIR`   | Passenger with wheel-chair                                                                                                                                      |               |                | X              |              | wheelchair indication in the reservation data |
-| `PERSON`       | Used in requests together with date of birth and in replies in case of products that might include a change of passenger type along the route  |               |                | X              |  X   | |
-| `PRM`          | Person with reduced mobility - to be used in case of accompanying person or dog, date of birth must be provided additionally                                    |               |                | X              |              | flag passengerWithReducedMobility |
-| `DOG`          | A dog                                                                                                                                                           | X             | X              | X              | X            | dog |
-| `PET`          | A pet but not a dog                                                                                                                                             | X             | X              | X              | X            | |
-| `LUGGAGE`      | Over-size luggage                                                                                                                                               | X             | X              | X              | X            | special luggage data |
-| `BICYCLE`      | A bicycle                                                                                                                                                       | X             | X              | X              | X            | bicycle |
-| `PRAM`         | A pram                                                                                                                                                          | X             | X              | X              | X            | special code in the reservation data |
-| `ACCOMP_DOG`   | An accompanying dog for a PRM                                                                                                                                   | X             | X              | X              | X            | dog |
-| `CAR`          | A car for car-carriage trains                                                                                                                                   | X             | X              | X              | X            | special car carriage data |
-| `MOTOCYCLE`    | A motorcycle for car carriage trains                                                                                                                            | X             | X              | X              | X            | special car carriage data |
-| `TRAILER`      | A trailer for car carriage trains                                                                                                                               | X             | X              | X              | X            | special car carriage data |
+| `PERSON`       | Used in requests together with date of birth and in replies in case of products that might include a change of passenger type along the route                   |               |                | X              | X            |                                               |
+| `PRM`          | Person with reduced mobility - to be used in case of accompanying person or dog, date of birth must be provided additionally                                    |               |                | X              |              | flag passengerWithReducedMobility             |
+| `DOG`          | A dog                                                                                                                                                           | X             | X              | X              | X            | dog                                           |
+| `PET`          | A pet but not a dog                                                                                                                                             | X             | X              | X              | X            |                                               |
+| `LUGGAGE`      | Over-size luggage                                                                                                                                               | X             | X              | X              | X            | special luggage data                          |
+| `BICYCLE`      | A bicycle                                                                                                                                                       | X             | X              | X              | X            | bicycle                                       |
+| `PRAM`         | A pram                                                                                                                                                          | X             | X              | X              | X            | special code in the reservation data          |
+| `ACCOMP_DOG`   | An accompanying dog for a PRM                                                                                                                                   | X             | X              | X              | X            | dog                                           |
+| `CAR`          | A car for car-carriage trains                                                                                                                                   | X             | X              | X              | X            | special car carriage data                     |
+| `MOTOCYCLE`    | A motorcycle for car carriage trains                                                                                                                            | X             | X              | X              | X            | special car carriage data                     |
+| `TRAILER`      | A trailer for car carriage trains                                                                                                                               | X             | X              | X              | X            | special car carriage data                     |
 
 ## Passport
 
@@ -702,27 +702,25 @@ required.
 
 ## Product Tags
 
-| Code              | Description                                          |
-| ----------------- | ---------------------------------------------------- |
+| Code              | Description                                                                                                                                                                                                                                                                                                                                                                                              |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SPLIT_RESERVATION | Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation Without this indication the provider is not allowed to use the SplitSection Object inside a reservation. The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover a full leg multiple reservations as offerParts should be created. |
-| Product Types | All product types can be used as Product Tags in the search |
- 
+| Product Types     | All product types can be used as Product Tags in the search                                                                                                                                                                                                                                                                                                                                              |
 
 ## Product Types
 
-| Code                        | Description                                          |
-| --------------------------- | ---------------------------------------------------- |
-| `ADMISSION_MULTI_RIDE`      | admission that can be used for multiple journeys     |
-| `ADMISSION_POINT2POINT`     | admission for a single (point to point) journey      |
-| `ADMISSION_PASS`            | admission for a pass to be used unlimitedly within   |
-| `UPGRADE_PASS`              | upgrade for a pass to be used unlimitedly within     |
-| `UPGRADE_POINT2POINT`       | upgrade for a single (point to point) journey        |
-| `UPGRADE_MULTI_RIDE`        | upgrade that can be used for multiple journeys       |
-| `RESERVATION`               | reservation                                          |
-| `ANCILLARY_SERVICE`         | ancillary service                                    |
-| `ANCILLARY_ITEM`            | ancillary item (e.g. merchandising item)             |
-| `REDUCTION_CARD`            | reduction card                                       |
-
+| Code                    | Description                                        |
+| ----------------------- | -------------------------------------------------- |
+| `ADMISSION_MULTI_RIDE`  | admission that can be used for multiple journeys   |
+| `ADMISSION_POINT2POINT` | admission for a single (point to point) journey    |
+| `ADMISSION_PASS`        | admission for a pass to be used unlimitedly within |
+| `UPGRADE_PASS`          | upgrade for a pass to be used unlimitedly within   |
+| `UPGRADE_POINT2POINT`   | upgrade for a single (point to point) journey      |
+| `UPGRADE_MULTI_RIDE`    | upgrade that can be used for multiple journeys     |
+| `RESERVATION`           | reservation                                        |
+| `ANCILLARY_SERVICE`     | ancillary service                                  |
+| `ANCILLARY_ITEM`        | ancillary item (e.g. merchandising item)           |
+| `REDUCTION_CARD`        | reduction card                                     |
 
 ## Public Transportation Modes (ptMode)
 
@@ -773,7 +771,6 @@ by a specific carrier:
 
 Other cards should start with the RICS code of the issuer.
 
-
 ## Reservation Preference Group
 
 | Code             | Description                                     |
@@ -789,8 +786,8 @@ Other cards should start with the RICS code of the issuer.
 
 ## Service Brands
 
-Snapshot version, for the actual code list see
-[UIC Service Brand Code List](https://uic.org/passenger/passenger-services-group/article/service-brand-code-list).
+Snapshot version, for the actual code list see [UIC Service Brand Code
+List](https://uic.org/passenger/passenger-services-group/article/service-brand-code-list).
 
 | Service Brand Code | Abbreviation | Reservation Ticket Text              | MERITS Description                          |
 | ------------------ | ------------ | ------------------------------------ | ------------------------------------------- |
@@ -1031,7 +1028,7 @@ Snapshot version, for the actual code list see
 | N/A                             | Second class compartment with 6 couchettes                                                                     | B.4.9039          | 64           |
 | `COUCHETTE_WHEELCHAIR`          | Couchette with wheelchair space                                                                                |                   |              |
 | N/A                             | Second class couchette with wheelchair space                                                                   | B.4.9039          | 65           |
-| `VEHICLE_TRAINSPORT`            | Facilities for vehicle transport etc. Not bicycles. Cars, boats, trailers, motorbikes                          |                    |              |
+| `VEHICLE_TRAINSPORT`            | Facilities for vehicle transport etc. Not bicycles. Cars, boats, trailers, motorbikes                          |                   |              |
 |                                 | - food -                                                                                                       |                   |              |
 | `RESTAURANT`                    | Restaurant facility                                                                                            |                   |              |
 | `BAR`                           | A bar is available                                                                                             | B.4.9039          | 47           |
@@ -1124,7 +1121,7 @@ reproduced.
 | `NATIONAL`       | VAT applies in national tickets only                                                                                            |
 | `SHORT_DISTANCE` | VAT applies in short distance tickets only                                                                                      |
 | `LONG_DISTANCE`  | VAT applies in long distance tickets only. This needs to be applied in case the fare is integrated in a longer journey.         |
-  
+
 ## TimeReference
 
 | Code                    | Description                                                                                                                |
@@ -1141,7 +1138,7 @@ reproduced.
 | -------- | ----------- |
 | `DAY`    |             |
 | `MINUTE` |             |
-| `HOUR`   |             |  
+| `HOUR`   |             |
 
 ## Transfer Type
 
@@ -1175,7 +1172,6 @@ Corresponding to numerical codes in TAP-TSI (B.2.3) / UIC
 | `SHIP`             |                                                                | 33                 |
 | `BUS`              |                                                                | 32                 |
 
-
 ## TransactionType
 
 Transaction type used in after sales rules for fares.
@@ -1191,26 +1187,28 @@ Transaction type used in after sales rules for fares.
 
 ## Travel Account Types
 
-| Code                      | Description                                                                |
-| ------------------------- | -------------------------------------------------------------------------- |
-| TRAVEL_PASS               | A travel account or card that also serves as ticket in some area           |
-| REDUCTION_CARD            | A customer card providing reductions                                       |
-| MULTI_RIDE                | A travel account that provides a limited number if trips or item           |
-| LOYALTY_CARD              | A customer/traveler card that only serves to collect loyality incentives   |
+| Code           | Description                                                              |
+| -------------- | ------------------------------------------------------------------------ |
+| TRAVEL_PASS    | A travel account or card that also serves as ticket in some area         |
+| REDUCTION_CARD | A customer card providing reductions                                     |
+| MULTI_RIDE     | A travel account that provides a limited number if trips or item         |
+| LOYALTY_CARD   | A customer/traveler card that only serves to collect loyality incentives |
 
 ## TravelDirection
-  
-Trave direction of a coach. To get the direction of travel for a place the direcion information of the coah needs to be combined with the direction of the seat in the coach layout.  
-  
-| Code             | Description                                                                           |
-| ---------------- | ------------------------------------------------------------------------------------- |
-| `UNSPECIFIED`    | The direction of travel is undefined                                                  |  
-| `IN_DIRECTION`   | In direction of travel                                                                | 
-| `OPPOSITE_DIRECTION`    | Opposite to direction                                                       | 
-| `CHANGING`       |  direction is changing                                                                |   
-| `STARTING_IN_DIRECTION`    |   starting in direction but changing later                                  | 
-| `STARTING_OPPOSITE_TO_DIRECTION`    |  starting oposite to direction but changing later                  |   
-  
+
+Trave direction of a coach. To get the direction of travel for a place the
+direcion information of the coah needs to be combined with the direction of the
+seat in the coach layout.
+
+| Code                             | Description                                      |
+| -------------------------------- | ------------------------------------------------ |
+| `UNSPECIFIED`                    | The direction of travel is undefined             |
+| `IN_DIRECTION`                   | In direction of travel                           |
+| `OPPOSITE_DIRECTION`             | Opposite to direction                            |
+| `CHANGING`                       | direction is changing                            |
+| `STARTING_IN_DIRECTION`          | starting in direction but changing later         |
+| `STARTING_OPPOSITE_TO_DIRECTION` | starting oposite to direction but changing later |
+
 ## TravelValidityType
 
 Type of the travel validity of a fare.
