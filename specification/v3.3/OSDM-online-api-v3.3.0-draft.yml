@@ -7358,6 +7358,9 @@ components:
         id:
           type: string
           nullable: false
+        summary:
+          type: string
+          nullable: true
         passengerRef:
           description: |
             Reference to a passenger, to be specified when the document related to an individual passenger.
