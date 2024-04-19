@@ -458,17 +458,13 @@ for the price and possible reservations assigned at provisional booking time.
 Basically, it is the time given to the API consumer to perform all updates
 needed to confirm the booking, and trigger that confirmation.
 
-At the root of the booking structure, two balance elements are provided to
+At the root of the booking structure, balance elements are provided to
 clarify the state of the financial exchange between a Retailer and the
 Distributor:
 
-- conditional balance is the balance of the booking that is not confirmed. It is
-  the amount that will be due to the provider if the booking is further
-  confirmed.
-
-- confirmed balance: is the balance of the booking that is confirmed. Unless
-  after sales takes place on one or more fulfillments in the booking, this
-  amount now must be paid to the provider.
+- provisionalPrice: the sum of the prices of all booking parts that are provisionally booked. This includes booking parts from exchange operations.
+- provisionalRefundAmount: the sum of refund amounts of all prebooked but not confirmed refunds and exchange operations.
+- confirmedPrice: The sum of the prices of all confirmed booking parts including confirmed parts from exchange operations minus the sum of all refund amounts from confirmed refunds or exchanges.
 
 Also located at the root of the booking structure is the ticket time limit. This
 is the time for which the provider will hold a booking in pre-booked state,
