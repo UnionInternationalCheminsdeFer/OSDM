@@ -5931,8 +5931,16 @@ components:
         purchaser:
           $ref: '#/components/schemas/Purchaser'
         provisionalPrice:
+          description: |
+             price of all unconfiremed preebooked parts in the booking
           $ref: '#/components/schemas/Price'
+        provisionalRefundAmount:
+          description: |
+             sum of the refund amounts of all unconfirmed prebooked refunds and exchanges   
+          $ref: '#/components/schemas/Price'          
         confirmedPrice:
+          description: |
+             summ of all prices of confirmed parts in the bookung minus the sum of all confirmed refund amounts.
           $ref: '#/components/schemas/Price'
         bookedOffers:
           type: array
@@ -6289,9 +6297,17 @@ components:
         id:
           type: string
           nullable: false
-        confirmedPrice:
-          $ref: '#/components/schemas/Price'
         provisionalPrice:
+          description: |
+             price of all unconfiremed preebooked parts in the booking
+          $ref: '#/components/schemas/Price'
+        provisionalRefundAmount:
+          description: |
+             sum of the refund amounts of all unconfirmed prebooked refunds and exchanges   
+          $ref: '#/components/schemas/Price'          
+        confirmedPrice:
+          description: |
+             summ of all prices of confirmed parts in the bookung minus the sum of all confirmed refund amounts.
           $ref: '#/components/schemas/Price'
         bookedOfferSummaries:
           type: array
