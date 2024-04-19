@@ -4640,6 +4640,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AfterSaleCondition'
+        afterSalesOverrideDetails:
+            $ref: '#/components/schemas/AfterSalesOverrideDetails'            
         appliedCorporateCodes:
           type: array
           items:
@@ -5219,6 +5221,30 @@ components:
           type: boolean
           nullable: true
           default: false
+
+    AfterSalesOverrideDetails:
+      description: in case initial after sales conditions have been overridden this object provides details on the origianl conditions and an explanation text for the customer
+      type: object
+      properties: 
+        initialAftersalesConditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AfterSaleCondition'
+        overrideDescription:
+          description: Description for the change of conditions for the customer.
+          type: string
+        validFrom:
+          type: string
+          format: date-time
+          nullable: true
+        validUntil:
+          type: string
+          format: date-time
+          nullable: true
+        initialExchangeableType: 
+          $ref: '#/components/schemas/ExchangeableType'
+        initialRefundType: 
+          $ref: '#/components/schemas/RefundType'  
 
     Alight:
       type: object
