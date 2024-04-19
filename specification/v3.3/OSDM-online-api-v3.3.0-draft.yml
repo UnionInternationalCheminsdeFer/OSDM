@@ -7403,7 +7403,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Non travel document created. Either downloadLink + downloadExpiry or content + format must be provided.
+        Non travel document created. Either downloadLink + downloadExpiry or content must be provided.
       required:
         - id
         - type
@@ -7434,11 +7434,8 @@ components:
           format: byte
           nullable: true
         format:
-          description: |
-            Physical format of the document provided in the content field in Mime-Type format, e.g. application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
-          type: string
+          $ref: '#/components/schemas/DocumentFormat'
           nullable: true
-          example: application/pdf
         type:
           $ref: '#/components/schemas/DocumentType'
         scope:
@@ -7486,7 +7483,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Non travel document created. Either downloadLink + downloadExpiry or content + format must be provided.
+        Non travel document created. Either downloadLink + downloadExpiry or content must be provided.
       required:
         - scope
         - type
@@ -7503,11 +7500,8 @@ components:
           format: byte
           nullable: true
         format:
-          description: |
-            Physical format of the document provided in the content field in Mime-Type format, e.g. application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
-          type: string
+          $ref: '#/components/schemas/DocumentFormat'
           nullable: true
-          example: application/pdf
         scope:
           $ref: '#/components/schemas/DocumentScope'
         type:
@@ -8401,7 +8395,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Document created for fulfillment. Either downloadLink + downloadExpiry or content + format must
+        Document created for fulfillment. Either downloadLink + downloadExpiry or content must
         be provided.
       required:
         - medium
@@ -8430,12 +8424,8 @@ components:
           format: byte
           nullable: true
         format:
-          description: |
-            Physical format of the document provided in the content field in Mime-Type format, e.g.
-            application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
-          type: string
+          $ref: '#/components/schemas/DocumentFormat'
           nullable: false
-          example: application/pdf
 
     FulfillmentDocumentType:
       description: |
@@ -8447,6 +8437,19 @@ components:
         - 'INFORMATION'
         - 'TICKET'
         - 'VOUCHER'
+
+    DocumentFormat:
+      description: |
+        Physical format of the document provided in the content field in Mime-Type format, e.g.
+        application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
+      type: string
+      enum:
+        - 'application/pdf'
+        - 'application/vnd.apple.pkpass'
+        - 'image/jpeg'
+        - 'image/png'
+        - 'text/calendar'
+        - 'text/html'
 
     FulfillmentId:
       type: string
@@ -12507,7 +12510,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        The supporting document helps to supporting the claim.  Either downloadLink + downloadExpiry or content + format must be provided.
+        The supporting document helps to supporting the claim.  Either downloadLink + downloadExpiry or content must be provided.
       required:
         - title
         - downloadExpiry
@@ -12533,12 +12536,8 @@ components:
           format: byte
           nullable: true
         format:
-          description: |
-            Physical format of the document provided in the content field in Mime-Type format, e.g. 
-            application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
-          type: string
+          $ref: '#/components/schemas/DocumentFormat'
           nullable: false
-          example: application/pdf
 
     Symbology:
       description: |
