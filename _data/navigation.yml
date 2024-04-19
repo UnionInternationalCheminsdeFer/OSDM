@@ -54,6 +54,8 @@
       link: spec/dual-approaches/
     - name: Compliance
       link: spec/compliance/
+    - name: Language
+      link: spec/language/
 - name: Tools
   link: tools/
   dropdown:
