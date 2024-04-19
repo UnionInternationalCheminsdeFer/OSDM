@@ -93,7 +93,7 @@ The signature is obtained by creating the string `<JWT Header Base64URL encoded>
 
 To obtain the actual JW access token required to authenticate the functional OSDM requests, a token request message needs to be issued to the OSDM provider's login service. This has the following attributes:
 
-- `grant_type=rn:ietf:params:oauth:grant-type:jwt-bearer`
+- `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer`
 - `assertion=<JWT>`
 - `scope=uic_osdm`
 
