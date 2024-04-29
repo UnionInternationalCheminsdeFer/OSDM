@@ -25,6 +25,7 @@ permalink: /spec/processes/
    4. [Completing Booking for Confirmation and Fulfillment](#CompleteBooking)
    5. [Cancel a Not Confirmed Booking ](#CancelUnconfirmedBooking)
    6. [Payment information and Payment Vouchers](#PaymentInformation)
+   7. [Add parts to a booking](#AddPartsToABookings)
 11. [After Sales Processes](#AfterSalesProcesses)
     1. [Refund](#Refund)
     2. [Release a Booking](#Refund)
@@ -945,6 +946,28 @@ These are the required information needed per process step for major parties
 | **SJ**              | Todo                                                                                                                                                                                                                                                                                                           |                                                                                                                                         |
 | **SNCF**            | `dateOfBirth` is mandatory, a fake date can be used at offer time, but the real one must be provided at pre-booking time                                                                                                                                                                                       |                                                                                                                                         |
 | **Eurostar/Thalys** | `firstName` and `lastName`                                                                                                                                                                                                                                                                                     | Thalys loyalty card number                                                                                                              |
+
+
+### Add parts to a booking <a name=AddPartsToABookings>
+
+Admissions, reservations and anxillaries might be added to an existing booking. A provider may decide whether he allows this opreatiuon on ujnconfirmed and/or confirmed bookings.
+
+Adding offers to an existing booking is done via: POST /bookings/{bookingId}/booked-offers....
+
+Reservation and Ancillary Booking Parts are added and deleted via: 
+
+- POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations
+- DELETE /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations/{reservationId} As long as the reservation offerPart is not confirmed. If confirmed the refund must be used.
+- POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries
+- DELETE /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries/{ancillaryId} As long as the anxillary offerPart is not confirmed. If confirmed the refund must be used.
+
+
+
+
+
+
+
+
 
 ## After Sales Processes  <a name="AfterSalesProcesses">
 
