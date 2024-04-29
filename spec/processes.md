@@ -363,6 +363,10 @@ availabilities might be subset of the total. The fare provider is free to
 provide either total capacity only, or detail on other accommodation types and
 sub types.
 
+If avalabilities are provided with the number of available places it is recommeded to provide 
+these for important combinations of place properties only and not for all possible combinations.
+
+
 ```
 {
   "availablePlaces": [
