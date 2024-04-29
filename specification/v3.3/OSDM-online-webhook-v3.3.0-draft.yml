@@ -92,6 +92,16 @@ components:
         bookingId:
           type: string
           description: The ID of the booking that has changed.
+        affectedBookingPartIds:
+          description: list of ids of affected booking parts 
+          type: array
+          items:
+            type: string
+        affectedFulfillmentIds:
+          description: list of ids of affected fulillments 
+          type: array
+          items:
+            type: string
         resources:
           description: >-
             Resources to be called by receiver to update a booking.
