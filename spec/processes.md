@@ -950,7 +950,7 @@ These are the required information needed per process step for major parties
 
 ### Add parts to a booking <a name=AddPartsToABookings>
 
-Admissions, reservations and anxillaries might be added to an existing booking. A provider may decide whether he allows this opreatiuon on ujnconfirmed and/or confirmed bookings.
+Admissions, reservations and anxillaries might be added to an existing booking. A provider may decide whether he allows this opreation on unconfirmed and/or confirmed bookings.
 
 Adding offers to an existing booking is done via: POST /bookings/{bookingId}/booked-offers....
 
