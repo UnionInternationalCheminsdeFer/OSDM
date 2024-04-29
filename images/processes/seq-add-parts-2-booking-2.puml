@@ -1,0 +1,18 @@
+hide footbox
+
+actor Retailer
+
+== Add Offers to an existing Booking ==
+Retailer -> Distributor: POST/offers{OfferCollectionRequest}
+Distributor --> Retailer: <Offers>
+Retailer -> Distributor: POST /bookings/5678/booked-offers{offers,passengers}
+Distributor --> Retailer: <BookedOfferIds>
+
+Retailer -> Distributor: PATCH /bookings/5678 <setting the fulfillmentOptions>
+Distributor --> Retailer: <Booking resource with updated fulfillmentOptions>
+
+
+Retailer -> Distributor: POST /bookings/{bookingId}/fulfillments
+Distributor --> Retailer: {fulfillments}
+
+
