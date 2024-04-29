@@ -956,14 +956,21 @@ Adding offers to an existing booking is done via: POST /bookings/{bookingId}/boo
 
 Reservation and Ancillary Booking Parts are added and deleted via: 
 
+- POST /bookings/5678/booked-offers/12345/additional-offers  (requesting offers)
 - POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations
 - DELETE /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations/{reservationId} As long as the reservation offerPart is not confirmed. If confirmed the refund must be used.
 - POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries
 - DELETE /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries/{ancillaryId} As long as the anxillary offerPart is not confirmed. If confirmed the refund must be used.
 
 
+![Adding parts to a booked offer](../images/processes/seq-add-parts-2-booking.png)
 
 
+- POST /offers{OfferCollectionRequest}
+- POST /bookings/5678/booked-offers{offers,passengers}
+- DELETE /bookings/{bookingId}/booked-offers/{bookedOfferId}
+
+![Adding parts to an existing booking](../images/processes/seq-add-parts-2-booking-2.png)
 
 
 
