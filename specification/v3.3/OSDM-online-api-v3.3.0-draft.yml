@@ -513,7 +513,7 @@ paths:
     get:
       tags:
         - Offers
-      summary: Get additional offers of booked offer for a given booking.
+      summary: Get additional offers of booked offer for a given booking. A provider can decide to allow or reject additional offers admissions, reservations or ancillaries on an confirmed booking.
       operationId: getBookingBookedOffersAdditionalOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1140,7 +1140,7 @@ paths:
     post:
       tags:
         - BookingPart
-      summary: Adds an optional reservation to a pre-booked booking.
+      summary: Adds a reservation to a booking. A provider can decide to allow or reject additional admissions, reservations or ancillaries on an confirmed booking.
       operationId: createBookingBookedOffersReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1203,7 +1203,7 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes an optional reservation from pre-booked booking.
+      summary: Removes a reservation from a booking in case the reservation was not yet cconfirmed. On confirmed reservations use the refund.
       operationId: deleteBookingBookedOffersReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1257,7 +1257,7 @@ paths:
     post:
       tags:
         - BookingPart
-      summary: Adds an ancillary to a pre-booked booking.
+      summary: Adds an ancillary to a booking. A provider can decide to allow or reject additional admissions, reservations or ancillaries on an confirmed booking.
       operationId: createBookingBookedOffersAncillaries
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1320,7 +1320,7 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes an ancillary from pre-booked booking.
+      summary: Removes an ancillary from a booking in case the ancillary is not jet confirmed. On confirmed anxillaries usethe refund.
       operationId: deleteBookingBookedOffersAncillary
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1374,7 +1374,7 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes an admission from pre-booked booking.
+      summary: Removes an admission from a booking. In case the admission is not confirmed. On confiremd admission use the refund.
       description: |
         Removes an admission from pre-booked booking.It is up to the provider
         to change or remove dependent bookedOfferParts or to reject the request.
