@@ -4581,7 +4581,7 @@ components:
           $ref: '#/components/schemas/Price'
         refundAmount:
           $ref: '#/components/schemas/Price'
-          description: Amount to be refunded to the purchaser
+          description: Amount refunded or to be refunded to the purchaser depending on the status of the booking Part
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         summaryProductId:
