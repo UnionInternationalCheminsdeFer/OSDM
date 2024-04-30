@@ -4,13 +4,13 @@ actor Retailer
 
 == Add offers to an existing bookedOffer ==
 
-Retailer -> Distributor: POST /bookings/5678/booked-offers/12345/additional-offers
+Retailer -> Distributor: GET /bookings/5678/booked-offers/12345/additional-offers
 Distributor --> Retailer: Offers
 
 
-Retailer --> Distributor: /bookings/5678/booked-offers/12345/reservations{BookedOfferReservationRequest}
+Retailer --> Distributor: POST /bookings/5678/booked-offers/12345/reservations{BookedOfferReservationRequest}
 Distributor --> Retailer: bookedOffers
-Retailer --> Distributor: /bookings/5678/booked-offers/12345/ancillaries{BookedOfferAncillarieRequest}
+Retailer --> Distributor: POST /bookings/5678/booked-offers/12345/ancillaries{BookedOfferAncillarieRequest}
 Distributor --> Retailer: bookedOffers
 
 Retailer -> Distributor: PATCH /bookings/5678 <setting the fulfillmentOptions>
