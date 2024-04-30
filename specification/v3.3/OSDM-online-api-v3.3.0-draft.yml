@@ -4882,8 +4882,8 @@ components:
     AccommodationSubType:
       type: string
       description: |
-        Accommodation sub type definition out of the Accommodation Sub Type Code List
-        Listed values here are examples. The complete code list is defined in https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty
+        Accommodation sub type definition out of the [Accommodation Sub Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
+        Listed values here are examples.
       default: 'ANY_SEAT'
       nullable: false
       x-extensible-enum:
