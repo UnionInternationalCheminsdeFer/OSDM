@@ -612,7 +612,15 @@ units. E.g.:
 | `STOP_NO_SERVED`          | Vehicle did not serve the stop place.                                |
 | `STRIKE`                  | Strike.                                                              |
 | `TECHNICAL_FAILURE`       | Technical failure on the distribution channel.                       |
-| `TICKET_UNUSED`           | Ticket not (fully) used by passenger.                                |
+| `TICKET_NOT_USED`         | Ticket not (fully) used by passenger.                                |
+| `DEATH`  | Death of a traveller  | 
+| `INABILITY_TO_TRAVEL`  |  Inability to travel due to accident or sickness. | 
+| `EXTERNAL_COMPENSATION`  |  Offer has been compensated outside of the provider system in another way. | 
+| `DISRUPTION' |  Inability to operate due to disruption. | 
+| `JOURNEY_OBSOLETE`  |  Due to external factors it's senseless to start the trip, thus the travel is obsolete. | 
+| `CERTIFIED_MEDICAL_CONDITION |  A medical certificate certifies that the passenger is unable to travel. | 
+| `DELAY_COMPENSATION`  | Allows to override conditions in context of passenger rights regulation (PRR). | 
+
 
 ## Passenger Type (aka. Traveler Type)  <a name="PassengerType">
 
