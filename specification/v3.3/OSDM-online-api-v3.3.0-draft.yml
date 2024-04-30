@@ -4882,7 +4882,8 @@ components:
     AccommodationSubType:
       type: string
       description: |
-        Accommodation sub type definition out of the [Accommodation Sub Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
+        Accommodation sub type definition out of the 
+        [Accommodation Sub Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
         Listed values here are examples.
       default: 'ANY_SEAT'
       nullable: false
@@ -4983,7 +4984,9 @@ components:
     AccommodationType:
       type: string
       description: |
-        Accommodation type definition out of the Accommodation Type Code List
+        Accommodation type definition out of the 
+        [Accommodation Type Code List](https://osdm.io/spec/catalog-of-code-lists/#AccomodationType)
+        Listed values here are examples.
       default: 'SEAT'
       nullable: false
       x-extensible-enum:
@@ -4995,8 +4998,11 @@ components:
 
     ActualPassengerType:
       description: |
-        Actual Passenger type according to UIC passenger, i.e. passenger type list. Returns the passenger type according to the underlying fare system. E.g. a passenger of type PERSON is categorized as a ADULT or YOUTH.
-
+        Actual Passenger type according to UIC passenger, i.e. passenger type list. 
+        Returns the passenger type according to the underlying fare system. 
+        E.g. a passenger of type PERSON is categorized as a ADULT or YOUTH.
+        Values from the [Passenger Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'DOG'
@@ -5389,10 +5395,12 @@ components:
           nullable: false
 
     AncillaryType:
+      description: |
+        Values from the [Ancillary Category Code List](https://osdm.io/spec/catalog-of-code-lists/#AncillaryCategory)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
-        - 'MEAL'
-        - 'BEVERAGE'
+        - 'FOOD_ON_BOARD'
 
     AnonymousPassengerSpecification:
       type: object
@@ -5628,6 +5636,8 @@ components:
     BarCodeType:
       description: |
         Item according to IRS 90918-9: FCB, TLB, SSB
+        Values from the [Barcode Type Code List](https://osdm.io/spec/catalog-of-code-lists/#BarcodeType)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'FCB'
@@ -6574,6 +6584,7 @@ components:
         code:
           description: |
             Code of the card type according to issuer. E.g. BahnCard50.
+            Predefined values from the [Reduction Card Code List](https://osdm.io/spec/catalog-of-code-lists/#ReductionCard)
           type: string
           nullable: true
         number:
@@ -6823,6 +6834,8 @@ components:
         - coords
       properties:
         icon:
+          description: |
+            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
           type: string
           nullable: false
         mounting:
@@ -6841,8 +6854,7 @@ components:
         icon:
           type: string
           description: |
-            Icon type of the graphical item type. Code list according to UIC90918-1
-            graphical item type e.g. seat = 1
+            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)            
           nullable: false
         number:
           description: |
@@ -6874,8 +6886,7 @@ components:
       properties:
         icon:
           description: |
-            Icon type of the graphical item type. Code list according to UIC90918-1
-            graphical item type e.g. silence area sign = 116
+            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
           type: string
           nullable: false
         direction:
@@ -7243,14 +7254,16 @@ components:
     ControlSecurityType:
       description: |
         Known Values:
-        - 'SiP': secure paper tickets
-        - 'SiD': security in data (signed bar code)
-        - 'SiS': security in system
+        - 'SIP': secure paper tickets
+        - 'SID': security in data (signed bar code)
+        - 'SIS': security in system
+        Values from the [Control Security Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ControlSecurityType)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
-        - 'SiP'
-        - 'SiD'
-        - 'SiS'
+        - 'SIP'
+        - 'SID'
+        - 'SIS'
 
     CorporateCode:
       type: object
@@ -8194,11 +8207,12 @@ components:
     FareType:
       description: |
         Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
+        Values from the [Fare Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FareType)
+        Listed values here are examples.        
       type: string
       x-extensible-enum:
         - 'ADMISSION'
         - 'RESERVATION'
-        - 'INTEGRATED_RESERVATION'
         - 'ANCILLARY'
 
     Fee:
@@ -8504,8 +8518,9 @@ components:
     FulfillmentMediaType:
       description: |
         Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
-
         Notice:`ALLOCATOR_APP` is deprecated and should not be used anymore. The `ALLOCATOR_APP` type is replaced by the `RETAILER_APP` type. `DISTRIBUTOR_APP` was introduced to distinguish between the different types of apps that can be used to fulfill a booking.
+        Values from the [Fulfillment Media Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentMediaType)
+        Listed values here are examples.       
       type: string
       x-extensible-enum:
         - 'ALLOCATOR_APP' # deprecated
@@ -8628,6 +8643,9 @@ components:
           $ref: '#/components/schemas/Fulfillment'
 
     FulfillmentType:
+      description: |
+        Values from the [Fulfillment Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentType)
+        Listed values here are examples.   
       type: string
       x-extensible-enum:
         - 'ETICKET'
@@ -10052,7 +10070,8 @@ components:
       description: |
         Reason for and type of an after sale, code list in IRS 90918-10.
         The PRM_SUPPORT_UNAVAILABLE overrule code shall only be used by the UIC PRM ABT tool.
-        Known Values:
+        Values from the [Overrule Codes Code List](https://osdm.io/spec/catalog-of-code-lists/#OverruleCode)
+        Listed values here are examples.   
         - 'CONNECTION_BROKEN'
         - 'DEATH'
         - 'EQUIPMENT_FAILURE'
@@ -10100,6 +10119,8 @@ components:
     PTMode:
       description: |
         TAP-TSI/UIC contains a sensible subset of SIRI Transport Modes.
+        Values from the [Transport Mode Code List](https://osdm.io/spec/catalog-of-code-lists/#TransportMode)
+        Listed values here are examples.   
       type: string
       x-extensible-enum:
         - 'HIGH_SPEED_TRAIN'
@@ -10182,7 +10203,6 @@ components:
             $ref: '#/components/schemas/PRMNeedType'
         _links:
           description: |
-
             Java Property Name: 'links'
           type: array
           items:
@@ -10221,7 +10241,6 @@ components:
       additionalProperties: false
       description: |
         Minimal specification of a passenger to request offers.
-
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
       required:
         - externalRef
@@ -10267,7 +10286,8 @@ components:
     PassengerType:
       description: |
         Passenger type according to UIC passenger, i.e. passenger type list.
-        See https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
+        Values from the [Passenger Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)
+        Listed values here are examples.   
         Proposed default PERSON
       type: string
       x-extensible-enum:
@@ -10604,21 +10624,26 @@ components:
         - preferences
       properties:
         preferenceGroup:
+          description: |
+            Values from the [Reservation Preference Group Code List](https://osdm.io/spec/catalog-of-code-lists/#ReservationPreferenceGroup)
           type: string
           nullable: false
-          example: 'SEAT_DIRECTION'
+          example: 'BERTH_LOCATION'
         preferences:
+          description: |
+            Place preferences in the group. 
+            Values from the [Place Property Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
           type: array
           items:
             type: string
           minItems: 1
           nullable: false
-          example: 'FORWARD_FACING'
+          example: 'WINDOW'
 
     PlaceProperty:
       type: string
       description: |
-        see code list
+         Values from the [Place Property Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
       nullable: false
       example: Power Connection
 
@@ -10996,6 +11021,8 @@ components:
     ProductType:
       description: |
         General product types harmonized across fare providers. (More to be added, use null for types not listed yet.)
+        Values from the [Product Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ProductTypes)
+        Listed values here are examples.           
       type: string
       x-extensible-enum:
         - 'ADMISSION_PASS'
@@ -12312,6 +12339,8 @@ components:
     ServiceClassType:
       description: |
         Type of quality level, finer grained than the comfort class.
+        Values from the [Service Class Code List](https://osdm.io/spec/catalog-of-code-lists/#ServiceClass)
+        Listed values here are examples.   
       type: string
       x-extensible-enum:
         - 'BEST'
@@ -12405,6 +12434,10 @@ components:
           nullable: true
 
     SiSType:
+      description: |
+        Type of the exchange of control data for security in system implementations.
+        Values from the [Control Data Exchange Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ControlDataExchangeType)
+        Listed values here are examples.   
       type: string
       x-extensible-enum:
         - 'REGISTRY'
@@ -12928,7 +12961,9 @@ components:
 
     TransportableType:
       description: |
-        Subset of the values from the passenger type code list IRS 90918-10
+        Subset of the values from 
+        the [Passenger Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)
+        Listed values here are examples.  
       type: string
       x-extensible-enum:
         - 'PET'
@@ -13004,6 +13039,8 @@ components:
       description: |
         indication of the direction of travel standard direction is left
         to right with ascending coordinates in the layout values.
+        Values from the [Travel Direction Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelDirection)
+        Listed values here are examples.  
       type: string
       x-extensible-enum:
         - 'UNSPECIFIED'
@@ -13720,7 +13757,6 @@ components:
       additionalProperties: false
       description: |
         Via restrictions for a trip. Provided by OJP.
-
         A TripDataFilter given applies to the section after this via.
       required:
         - viaPlace
@@ -13801,8 +13837,8 @@ components:
 
     ValidityType:
       description: |
-        Type of usage, either as single trip or multiple trips. Unrestricted fares might be combined 
-        into single trips if appropriate.
+        Type of usage, either as single trip or multiple trips. Unrestricted fares might be combined into single trips if appropriate. Values from the [Travel Validity Type Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelValidityType) 
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'SINGLE_TRIP'
@@ -13811,7 +13847,9 @@ components:
 
     VatScope:
       description: |
-        scope where the VAT applies
+        scope where the VAT applies.
+        Values from the [Tax Scope Code List](https://osdm.io/spec/catalog-of-code-lists/#TaxScope)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'INTERNATIONAL'
