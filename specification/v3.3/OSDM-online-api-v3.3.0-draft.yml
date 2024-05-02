@@ -619,11 +619,10 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/on-hold-offer/{onHoldOfferId}:
     patch:
       tags:
         - On Hold
-      summary: Confirms an on hold offer.
+      summary: Confirms the on hold offer.
       operationId: confirmOnHoldOffer
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -632,11 +631,6 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: onHoldOfferId
           in: path
           required: true
           schema:
@@ -655,6 +649,48 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OnHoldOfferResponse'
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+    delete:
+      tags:
+        - On Hold
+      summary: Deletes the on hold offer
+      operationId: deleteOnHoldOffer
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: |
+            In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
 
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -6008,6 +6044,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExchangeOperation'
+        onHoldOffer:
+          $ref: '#/components/schemas/OnHoldOffer'
         relatedBookingIds:
           description: |
             If this booking has been split, this attribute references the newly created bookingIds.
@@ -9927,7 +9965,6 @@ components:
       type: object
       additionalProperties: false
       required:
-        - id
         - summary
         - createdOn
         - validFrom
@@ -9936,9 +9973,6 @@ components:
         - deposit
         - increasedTTL
       properties:
-        id:
-          type: string
-          nullable: false
         summary:
           type: string
           nullable: false
