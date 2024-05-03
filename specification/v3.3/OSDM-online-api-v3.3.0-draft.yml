@@ -5077,6 +5077,49 @@ components:
               type: string
               nullable: false
 
+    PostalAddress:
+      type: object
+      properties:
+        name:
+          description: |
+                Name or description of address for use in passenger information.
+          type: string
+          nullable: true
+          example: Oude Trambaan 7, 2265CA Leidschendam, Nederland
+        countryName:
+          description: |
+                Country of the address.
+          type: string
+          nullable: true
+          example: The Netherlands
+        countryCode:
+            $ref: '#/components/schemas/CountryCode'
+        postCode:
+            description: |
+                Postal code of the address.
+            type: string
+            nullable: true
+            example: 2265CA
+        city:
+            description: |
+                City name
+            type: string
+            nullable: true
+            example: Leidschendam
+        street:
+            description: |
+              Street name of the address. Can also contain the house number.
+            type: string
+            nullable: true
+            example: Oude Trambaan
+        houseNumber:
+            description: |
+              House number of the address. House number can either be in this separate field, or can be
+              contained in the street field.
+            type: string
+            nullable: true
+            example: 7
+
     Admission:
       description: |
         An admission represents a travel right, or the entitlement to travel onboard a train between
@@ -6864,6 +6907,12 @@ components:
           nullable: false
         legalAddress:
           $ref: '#/components/schemas/Address'
+          deprecated: true
+          nullable: true
+          description: |
+            Deprecated in favor of `legalPostalAddress`
+        legalPostalAddress:
+          $ref: '#/components/schemas/PostalAddress'
         taxId:
           type: string
           nullable: false
@@ -7072,6 +7121,10 @@ components:
           nullable: true
         address:
           type: string
+          nullable: true
+          deprecated: true
+        postalAddress:
+          $ref: '#/components/schemas/PostalAddress'
           nullable: true
 
     ContextType:
@@ -10280,6 +10333,14 @@ components:
         address:
           $ref: '#/components/schemas/Address'
           nullable: true
+          deprecated: true
+          description: |
+            Deprecated in favor of `postalAddress`
+        postalAddress:
+          $ref: '#/components/schemas/PostalAddress'
+          nullable: true
+          description: |
+            Address of the physical person for issuing an invoice or receipt
         contact:
           $ref: '#/components/schemas/ContactDetail'
         taxId:
