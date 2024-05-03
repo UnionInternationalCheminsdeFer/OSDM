@@ -4557,9 +4557,11 @@ components:
           format: date-time
           nullable: false
         confirmableUntil:
+          deprecated: true
           description: |
+            confirmationTimeLimit in booking should be used.
             Date until the booking part needs to be confirmed. Must be provided for a booking part in PREBOOKED stated.
-            For later states, the value is ignored and can be null.
+            For later states, the value is ignored and can be null. 
           type: string
           format: date-time
           nullable: false
