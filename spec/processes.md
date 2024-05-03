@@ -936,7 +936,7 @@ These are the required information needed per process step for major parties
 | Distributor         | Pre-booking Step                                                                                                                                                                                                                                                                                               | Booking Step                                                                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | **Bene**            |                                                                                                                                                                                                                                                                                                                | `firstName` and `lastName`                                                                                                              |
-| **DB**              | In general one `firstName` and `name`, regardless of the number of passengers. In case of regional trains, however, all names and sur names are needed, unless printed on security paper.                                                                                                                      |                                                                                                                                         |
+| **DB**              | In general one `firstName` and `lastName`, regardless of the number of passengers. In case of some regional train tariffs, however, all names and surnames are needed, unless printed on security paper.                                                                                                                      |                                                                                                                                         |
 | **öBB**             | Both `firstName` and `lastName` are needed. `dateOfBirth` date may be needed. Some reduction cards require the number to be provided at pre-booking time, in order to be pre-checked. In other cases, the cards are simply checked on-board `phoneNumber` or `eMail` (once per order - as contact information) | `phoneNumber` or `eMail` (once per order - as contact information)                                                                      |
 | **RENFE**           | Per passenger: `firstName`, `lastName`, surname document type and identity document (DNI, NIE or passport). A `phoneNumber` or `eMail`.                                                                                                                                                                        | Per passenger: `firstName`, `lastName`, surname document type and Identity document. (DNI, NIE or passport) A `phoneNumber` or `eMail`. |
 | **SBB**             | Per passenger: `name` and `first name` and `dateOfBirth. Additional sales parameters for some products such as `phoneNumber`or`eMail` for reservations.                                                                                                                                                        |                                                                                                                                         |
@@ -995,6 +995,10 @@ is relevant to the refund operation at the moment the refund offer was created.
 This includes information such as the amount that will be refunded, any
 potential refund fee, etc (see the model for more details).
 
+A provider may return multiple refundOffers for the same request, which may differ
+e.g. in the validity time (validFrom/validUntil attribute pair) or in the 
+reimbursement method (e.g. lower refund fee when a voucher is accepted).
+
 #### Cancel a Refund Offer
 
 ![Cancel a Refund Offer](../images/processes/seq-cancel-a-refund-offer.png)
@@ -1002,6 +1006,15 @@ potential refund fee, etc (see the model for more details).
 #### Confirm a Refund Offer
 
 ![Confirm a Refund Offer](../images/processes/seq-confirm-a-refund-offer.png)
+
+In case of multiple refundOffers for the same set of fulfillments, confirming one
+of them will delete the other refundOffers for the same set of fulfillments.
+
+#### Multiple Refund Offers
+
+Once a refundOffer has been successfully requested, no more refundOffers can be 
+requested until the original refundOffer(s) have either been (a) cancelled (b) confirmed
+or have (c) expired (i.e. the "validUntil" time has passed).
 
 ### Release a Booking <a name="ReleaseBooking">
 
