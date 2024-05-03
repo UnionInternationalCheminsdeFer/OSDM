@@ -375,21 +375,11 @@ these for important combinations of place properties only and not for all possib
       "accommodationType": "SEAT",
       "accommodationSubType": "ANY_SEAT",
       "placeProperties": [
-        {
-          "code": "SILENCE"
-        },
-        {
-          "code": "WINDOW"
-        },
-        {
-          "code": "AISLE"
-        },
-        {
-          "code": "TABLE"
-        },
-        {
-          "code": "OPEN_SPACE"
-        }
+        "SILENCE",
+        "WINDOW",
+        "AISLE",
+        "TABLE",
+        "OPEN_SPACE"
       ],
       "numericAvailability": 123,
       "tripLegCoverage": {
@@ -401,9 +391,7 @@ these for important combinations of place properties only and not for all possib
       "accommodationType": "SEAT",
       "accommodationSubType": "WITH_ANIMALS",
       "placeProperties": [
-        {
-          "code": "WITH_ANIMALS"
-        }
+        "WITH_ANIMALS"
       ],
       "numericAvailability": 5,
       "tripLegCoverage": {
