@@ -369,7 +369,7 @@ these for important combinations of place properties only and not for all possib
 
 
 The availability can be requested on offer level or on booking level. The request parameter specify 
-the scope which can eigther be OFFER or BOOKING and the resource which is either a reservation RESERVATION or a 
+the context which can eigther be OFFER or BOOKING and the resource which is either a reservation RESERVATION or a 
 fare of type reservation (FARE). 
 
 
