@@ -452,7 +452,7 @@ events.
 
 The booking contains additional attributes that are needed to manage fulfillment options.
 
-#### Booking Time Limit for consfirmation
+#### Booking Time Limit for confirmation
 
 The booking contains confirmation time limit needed to manage and
 control the confirmation of the booking when it is in provisional state.
