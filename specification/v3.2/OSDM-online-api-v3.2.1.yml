@@ -7602,7 +7602,9 @@ components:
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         admissionOfferParts:
-          $ref: '#/components/schemas/AdmissionOfferPart'
+          type: array
+          items:        
+            $ref: '#/components/schemas/AdmissionOfferPart'
         reservationOfferParts:
           type: array
           items:
