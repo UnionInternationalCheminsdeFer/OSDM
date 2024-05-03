@@ -618,7 +618,9 @@ confirmed, the purchaser can be informed using the webhook API.
 
 ### Booking State Model
 
-The status applies to the booking parts, no overall booking state exists.
+The status applies to the booking parts, no booking state exists.
+
+### Booking Part State Model
 
 ![Booking State Model](../images/models/booking-state-model.png)
 
