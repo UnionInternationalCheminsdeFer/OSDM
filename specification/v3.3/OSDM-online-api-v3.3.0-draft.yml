@@ -5080,12 +5080,6 @@ components:
     PostalAddress:
       type: object
       properties:
-        name:
-          description: |
-                Name or description of address for use in passenger information.
-          type: string
-          nullable: true
-          example: Oude Trambaan 7, 2265CA Leidschendam, Nederland
         countryName:
           description: |
                 Country of the address.
