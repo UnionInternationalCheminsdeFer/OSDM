@@ -11,8 +11,8 @@ state exchanged #LightBlue
 
 [*] --> prebooked : POST /bookings with offer ids, optional accommodation / ancillariy ids
 prebooked --> confirmed: POST /bookings/{id}/fulfillments \n where at least 1 fulfillment is confirmed
-prebooked --> [*]: DELETE /bookings/{id}
-prebooked --> [*]: ttl reached
+prebooked --> cancelled: DELETE /bookings/{id}
+prebooked --> cancelled: ttl reached
 prebooked --> error: unrecoverable error \nat confirmation/fulfillment
 prebooked --> fulfilled: POST /bookings/{id}/fulfillments \n where all fulfillments are fulfilled
 prebooked --> onhold: PATCH /bookings/{id}/onhold-offer
