@@ -1709,7 +1709,7 @@ paths:
       operationId: postBookingCleanup
       parameters:
         - $ref: '#/components/parameters/requestor'
-        
+
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
@@ -1748,7 +1748,7 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
-          $ref: '#/components/responses/DefaultErrorResponse'         
+          $ref: '#/components/responses/DefaultErrorResponse'
   /bookings/{bookingId}/history:
     get:
       tags:
@@ -4069,7 +4069,7 @@ paths:
               schema:
                 type: array
                 maxItems: 50
-                items:                 
+                items:
                   $ref: '#/components/schemas/PlaceAvailability'
           headers:
             Content-Language:
@@ -4077,7 +4077,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -4097,7 +4097,7 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
-          $ref: '#/components/responses/DefaultErrorResponse'          
+          $ref: '#/components/responses/DefaultErrorResponse'
   /availabilities/nearby:
     get:
       tags:
@@ -4404,7 +4404,7 @@ components:
         The HTTP Idempotency request header field can be used to carry idempotency key in order to make
         non-idempotent HTTP methods such as POST or PATCH fault-tolerant. Servers should keep the idempotency
         key for as long as the result of the underlying operation is valid. Idempotency keys should be 
-        globally unique. 
+        globally unique.
       schema:
         type: string
         format: uuid
@@ -4608,7 +4608,7 @@ components:
           description: |
             confirmationTimeLimit in booking should be used.
             Date until the booking part needs to be confirmed. Must be provided for a booking part in PREBOOKED stated.
-            For later states, the value is ignored and can be null. 
+            For later states, the value is ignored and can be null.
           type: string
           format: date-time
           nullable: false
@@ -4690,7 +4690,7 @@ components:
           items:
             $ref: '#/components/schemas/AfterSaleCondition'
         afterSalesOverrideDetails:
-            $ref: '#/components/schemas/AfterSalesOverrideDetails'            
+            $ref: '#/components/schemas/AfterSalesOverrideDetails'
         appliedCorporateCodes:
           type: array
           items:
@@ -4712,7 +4712,7 @@ components:
         accountingRef:
           $ref: '#/components/schemas/AccountingRef'
         grantedReductionAmounts:
-          $ref: '#/components/schemas/GrantedReductionAmounts'               
+          $ref: '#/components/schemas/GrantedReductionAmounts'
 
     AccountingRef:
       description: |
@@ -4873,7 +4873,7 @@ components:
         indicatedConsumption:
           $ref: '#/components/schemas/IndicatedConsumption'
         grantedReductionAmounts:
-          $ref: '#/components/schemas/GrantedReductionAmounts'          
+          $ref: '#/components/schemas/GrantedReductionAmounts'
         _links:
           description: |
             Java Property Name: 'links'
@@ -5318,7 +5318,7 @@ components:
     AfterSalesOverrideDetails:
       description: in case initial after sales conditions have been overridden this object provides details on the origianl conditions and an explanation text for the customer
       type: object
-      properties: 
+      properties:
         initialAftersalesConditions:
           type: array
           items:
@@ -5334,10 +5334,10 @@ components:
           type: string
           format: date-time
           nullable: true
-        initialExchangeableType: 
+        initialExchangeableType:
           $ref: '#/components/schemas/ExchangeableType'
-        initialRefundType: 
-          $ref: '#/components/schemas/RefundType'  
+        initialRefundType:
+          $ref: '#/components/schemas/RefundType'
 
     Alight:
       type: object
@@ -5569,7 +5569,7 @@ components:
         appliedReductions:
           type: array
           items:
-            $ref: '#/components/schemas/CardReference'            
+            $ref: '#/components/schemas/CardReference'
 
     AttachableItemType:
       description: |
@@ -5578,39 +5578,39 @@ components:
       x-extensible-enum:
         - ROOF_RACK
         - BICYCLE_STAND
-        
+
     AvailabilityScope:
       type: object
       description: fare or offerParts which should be covered by the available seats
-      required: 
-        - partReferences   
+      required:
+        - partReferences
       properties:
         singleSelectionMapsRequired:
-          description: if true the place map must include places for a single reservation or fare only 
+          description: if true the place map must include places for a single reservation or fare only
           type: boolean
           default: true
         partReferences:
           type: array
           items:
-             $ref: '#/components/schemas/PartReference' 
-          
+             $ref: '#/components/schemas/PartReference'
+
     PartReference:
       type: object
-      description: reference to a fare or offerPart  
-      required: 
+      description: reference to a fare or offerPart
+      required:
         - contextId
         - contextType
         - resourceId
-        - resourceType    
+        - resourceType
       properties:
         contextId:
           type: string
         contextType:
-          $ref: '#/components/schemas/ContextType' 
+          $ref: '#/components/schemas/ContextType'
         resourceId:
           type: string
         resourceType:
-          $ref: '#/components/schemas/ResourceType'            
+          $ref: '#/components/schemas/ResourceType'
 
     AvailabilityStatus:
       description: |
@@ -6033,8 +6033,8 @@ components:
           $ref: '#/components/schemas/Price'
         provisionalRefundAmount:
           description: |
-             sum of the refund amounts of all unconfirmed prebooked refunds and exchanges   
-          $ref: '#/components/schemas/Price'          
+             sum of the refund amounts of all unconfirmed prebooked refunds and exchanges
+          $ref: '#/components/schemas/Price'
         confirmedPrice:
           description: |
              sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts.
@@ -6402,8 +6402,8 @@ components:
           $ref: '#/components/schemas/Price'
         provisionalRefundAmount:
           description: |
-             sum of the refund amounts of all unconfirmed prebooked refunds and exchanges   
-          $ref: '#/components/schemas/Price'          
+             sum of the refund amounts of all unconfirmed prebooked refunds and exchanges
+          $ref: '#/components/schemas/Price'
         confirmedPrice:
           description: |
              sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts.
@@ -6835,8 +6835,8 @@ components:
           description: |
             references to the reservations/fares for which all places in the coach can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
           type: array
-          items: 
-            type: string   
+          items:
+            type: string
 
     CoachLayout:
       type: object
@@ -6877,7 +6877,7 @@ components:
         compartmentNumbers:
           type: array
           items:
-            $ref: '#/components/schemas/CoachLayoutCompartmentNumber'            
+            $ref: '#/components/schemas/CoachLayoutCompartmentNumber'
         gridSize:
           $ref: '#/components/schemas/CoachLayoutGridSize'
         _links:
@@ -6942,7 +6942,7 @@ components:
         icon:
           type: string
           description: |
-            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)            
+            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
           nullable: false
         number:
           description: |
@@ -6978,12 +6978,12 @@ components:
           type: string
           nullable: false
         direction:
-          $ref: '#/components/schemas/DirectionType'          
+          $ref: '#/components/schemas/DirectionType'
         coords:
           $ref: '#/components/schemas/LayoutCoordinates'
 
     CoachLayoutCompartmentNumber:
-      description: Layout item to place a compartment number. The number has no icon, it only places the number  
+      description: Layout item to place a compartment number. The number has no icon, it only places the number
       type: object
       additionalProperties: false
       required:
@@ -6993,7 +6993,7 @@ components:
         number:
           type: string
         coords:
-          $ref: '#/components/schemas/LayoutCoordinates'   
+          $ref: '#/components/schemas/LayoutCoordinates'
 
     CombinationTag:
       type: object
@@ -7079,8 +7079,8 @@ components:
           description: |
             references to the reservations/fares for which this place can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
           type: array
-          items: 
-            type: string          
+          items:
+            type: string
         status:
           $ref: '#/components/schemas/AvailabilityStatus'
         travelClass:
@@ -7775,7 +7775,7 @@ components:
           $ref: '#/components/schemas/TripCoverage'
         admissionOfferParts:
           type: array
-          items:        
+          items:
             $ref: '#/components/schemas/AdmissionOfferPart'
         reservationOfferParts:
           type: array
@@ -8111,7 +8111,7 @@ components:
         description:
           $ref: '#/components/schemas/Text'
         status:
-          $ref: '#/components/schemas/BookingPartStatus'          
+          $ref: '#/components/schemas/BookingPartStatus'
         prices:
           description: |
             allows specifying a price in multiple currencies
@@ -8161,7 +8161,7 @@ components:
           items:
             type: string
           minItems: 1
-          nullable: false          
+          nullable: false
         passengerConstraints:
           description: |
             passenger constraint to be included in bar codes
@@ -8308,7 +8308,7 @@ components:
       description: |
         Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
         Values from the [Fare Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FareType)
-        Listed values here are examples.        
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'ADMISSION'
@@ -8432,6 +8432,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentPart'
+        tripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
         _links:
           description: |
 
@@ -8620,11 +8622,11 @@ components:
         Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
         Notice:`ALLOCATOR_APP` is deprecated and should not be used anymore. The `ALLOCATOR_APP` type is replaced by the `RETAILER_APP` type. `DISTRIBUTOR_APP` was introduced to distinguish between the different types of apps that can be used to fulfill a booking.
         Values from the [Fulfillment Media Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentMediaType)
-        Listed values here are examples.       
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'ALLOCATOR_APP' # deprecated
-        - 'DISTRIBUTOR_APP' 
+        - 'DISTRIBUTOR_APP'
         - 'RETAILER_APP'
         - 'FULFILLMENT_PARTS'
         - 'PDF_A4'
@@ -8722,7 +8724,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentId'
-     
+
     FulfillmentPostRequest:
       type: object
       additionalProperties: false
@@ -8731,7 +8733,7 @@ components:
       properties:
         issuingLanguage:
           type: string
-          description: the desired issuing language (ISO-639-1 language code). If not provided or not available, will default to (one of) the language(s) of the issuing country 
+          description: the desired issuing language (ISO-639-1 language code). If not provided or not available, will default to (one of) the language(s) of the issuing country
 
     FulfillmentResponse:
       type: object
@@ -8745,7 +8747,7 @@ components:
     FulfillmentType:
       description: |
         Values from the [Fulfillment Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentType)
-        Listed values here are examples.   
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'ETICKET'
@@ -8847,13 +8849,13 @@ components:
       type: object
       additionalProperties: false
       description: |
-        granted reduction amounts 
+        granted reduction amounts
       properties:
         grantedReductionAmount:
           type: array
           items:
             $ref: '#/components/schemas/GrantedReductionAmount'
-            
+
     GrantedReductionAmount:
       type: object
       additionalProperties: false
@@ -8861,33 +8863,33 @@ components:
         Applied passenger types and reductions per passenger, per offerpart, booking part and per part of the trip. 
         Passengers might be omitted in case the reduction aplies for theentire booking part.
       required:
-        - grantedAmount 
+        - grantedAmount
         - description
       properties:
         description:
           description: |
             Clear text representation of the actual passenger type, suitable to be presented to a client.
           type: string
-          nullable: false    
+          nullable: false
         grantedAmount:
-          $ref: '#/components/schemas/Price'       
+          $ref: '#/components/schemas/Price'
         passengerRefs:
           description: |
-            ids of the passengers that were granted the reduction  
+            ids of the passengers that were granted the reduction
           type: array
           items:
              type: string
-             nullable: false  
+             nullable: false
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         appliedPassengerTypes:
           type: array
-          items:        
+          items:
             $ref: '#/components/schemas/ActualPassengerType'
         appliedReductions:
           type: array
           items:
-            $ref: '#/components/schemas/CardReference'  
+            $ref: '#/components/schemas/CardReference'
         appliedCorporateCodes:
           type: array
           items:
@@ -8895,7 +8897,7 @@ components:
         appliedPromotionCodes:
           type: array
           items:
-            $ref: '#/components/schemas/PromotionCode'            
+            $ref: '#/components/schemas/PromotionCode'
 
 
 
@@ -10220,7 +10222,7 @@ components:
       description: |
         TAP-TSI/UIC contains a sensible subset of SIRI Transport Modes.
         Values from the [Transport Mode Code List](https://osdm.io/spec/catalog-of-code-lists/#TransportMode)
-        Listed values here are examples.   
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'HIGH_SPEED_TRAIN'
@@ -10606,7 +10608,7 @@ components:
         - vehicle
       properties:
         reference:
-          $ref: '#/components/schemas/PartReference'   
+          $ref: '#/components/schemas/PartReference'
         vehicle:
           $ref: '#/components/schemas/Vehicle'
         preSelections:
@@ -10615,7 +10617,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlacePreSelection'
-            
+
 
     PlaceAvailabilityCollectionResponse:
       type: object
@@ -10636,8 +10638,8 @@ components:
           $ref: '#/components/schemas/WarningCollection'
         vehicleAvailability:
           $ref: '#/components/schemas/PlaceAvailability'
-          
-          
+
+
     PlaceAvailabilitiesResponse:
       type: object
       additionalProperties: false
@@ -10703,7 +10705,7 @@ components:
           description: |
             references to the reservations for which this place nca be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
           type: array
-          items: 
+          items:
             type: string
         placeProperties:
           type: array
@@ -11104,7 +11106,7 @@ components:
         productTags:
           description: product tags associated with the product that can be used to search for offers. This can be omitted outside of the product master data service
           type: array
-          items:         
+          items:
              type: string
              nullable: true
         _links:
@@ -11130,7 +11132,7 @@ components:
       description: |
         General product types harmonized across fare providers. (More to be added, use null for types not listed yet.)
         Values from the [Product Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ProductTypes)
-        Listed values here are examples.           
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'ADMISSION_PASS'
@@ -12448,7 +12450,7 @@ components:
       description: |
         Type of quality level, finer grained than the comfort class.
         Values from the [Service Class Code List](https://osdm.io/spec/catalog-of-code-lists/#ServiceClass)
-        Listed values here are examples.   
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'BEST'
@@ -12545,7 +12547,7 @@ components:
       description: |
         Type of the exchange of control data for security in system implementations.
         Values from the [Control Data Exchange Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ControlDataExchangeType)
-        Listed values here are examples.   
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'REGISTRY'
@@ -13071,7 +13073,7 @@ components:
       description: |
         Subset of the values from 
         the [Passenger Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)
-        Listed values here are examples.  
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'PET'
@@ -13148,7 +13150,7 @@ components:
         indication of the direction of travel standard direction is left
         to right with ascending coordinates in the layout values.
         Values from the [Travel Direction Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelDirection)
-        Listed values here are examples.  
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'UNSPECIFIED'
@@ -13711,7 +13713,7 @@ components:
 
             TripDataFilters given at a via apply to the section after that via. To apply a TripDataFilter for 
             the first section (between the origin and the first via), use the TripDataFilter within the
-            TripParameters structure.   
+            TripParameters structure.
           type: array
           items:
             $ref: '#/components/schemas/TripVia'
@@ -13986,8 +13988,8 @@ components:
             requested the available places and the consumer must accept a list by setting 
             singleSelectionMapsRequired to false
           type: array
-          items: 
-            type: string     
+          items:
+            type: string
     VehicleFilter:
       type: object
       additionalProperties: false
