@@ -32,7 +32,7 @@ urn: X\_<3 letters code for the provider>:<codetype identifier>:<value>
 
 For example: urn: x_zoo:paxtype:OLIPHANT
 
-## Accommodation Type  <a name="AccomodationType">
+## Accommodation Type <a name="AccomodationType">
 
 | Code        | Description                                                          |
 | ----------- | -------------------------------------------------------------------- |
@@ -42,7 +42,7 @@ For example: urn: x_zoo:paxtype:OLIPHANT
 | `VEHICLE`   | Place for vehicles, e.g. in car carriage trains                      |
 | `STORAGE`   | Storage place for items, e.g. a hook for bicyles or space for a pram |
 
-## Accommodation Sub Type, Place Property, Reservation Place Preference  <a name="PlaceProperty">
+## Accommodation Sub Type, Place Property, Reservation Place Preference <a name="PlaceProperty">
 
 The Accommodation Sub Type defines the characteristics of a place for an offer.
 It can not be changed within the offer.
@@ -63,7 +63,7 @@ Place Preference Group collects Place preferences where only one can be chosen
 of by the customer.
 
 | Code                    | Accommodation Sub Type | Place Preference | Place Property | Description                                                                                      | Place Preference Group |
-| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- | 
+| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- |
 | `AISLE`                 | N                      | Y                | Y              | Place at the aisle                                                                               | `PLACE_LOCATION`       |
 | `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area                                                                    |                        |
 | `ANY_SEAT`              | Y                      | N                | Y              | Indicates within a place preference group explicitly that the selection is optional              |                        |
@@ -146,7 +146,7 @@ of by the customer.
 | `TOURIST_SLEEPER_3`     | Y                      | N                | Y              | T3 sleeper compartment                                                                           |                        |
 | `TOURIST_SLEEPER_4`     | Y                      | N                | Y              | T4 sleeper compartment                                                                           |                        |
 | `TOURIST_SLEEPER_3_SWC` | Y                      | N                | Y              | T3 sleeper compartment with shower & WC                                                          |                        |
-| `UPPER_BED`             | N                      | Y                | Y              | Upper bed or couchette                                                                           | `PLACE_LOCATION`       |   
+| `UPPER_BED`             | N                      | Y                | Y              | Upper bed or couchette                                                                           | `PLACE_LOCATION`       |
 | `UPPER_DECK`            | N                      | Y                | Y              | Upper deck in a double deck train                                                                | `DECK`                 |
 | `VIDEO`                 | N                      | Y                | Y              | Place with video entertainment                                                                   |                        |
 | `WHEELCHAIR`            | Y                      | Y                | Y              | Wheel chair place                                                                                |                        |
@@ -158,7 +158,7 @@ of by the customer.
 | `WITH_SMALL_CHILDREN`   | N                      | Y                | Y              | Places for passengers with small children                                                        | `FAMILY`               |
 | `WITHOUT_ANIMALS`       | N                      | Y                | Y              | Place in an area where animals are not allowed                                                   |                        |
 
-## Ancillary category  <a name="AncillaryCategory">
+## Ancillary category <a name="AncillaryCategory">
 
 | Code                  | Description                                                 |
 | --------------------- | ----------------------------------------------------------- |
@@ -174,7 +174,7 @@ of by the customer.
 | `WIFI`                | Access to WiFi                                              |
 | `PARKING`             | parking of cars                                             |
 
-## BarcodeType  <a name="BarcodeType">
+## BarcodeType <a name="BarcodeType">
 
 | Code      | Description                                                                                                                     |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------- |
@@ -183,7 +183,7 @@ of by the customer.
 | `SSB`     | Small Structured Barcode - See IRS 90918-9 / TAP TSI B.12                                                                       |
 | `DOSIPAS` | Double Signed Dynamic Barcode (static part (FCB) and dynamic part created at the control time) - See IRS 90918-9 / TAP TSI B.12 |
 
-## CardType  <a name="CardType">
+## CardType <a name="CardType">
 
 | Code             | Description                                                                          |
 | ---------------- | ------------------------------------------------------------------------------------ |
@@ -192,10 +192,10 @@ of by the customer.
 | `CHIP_CARD`      | Chip card to load bookings/references onto it                                        |
 | `PASS`           | A pass providing full or partial reduction within the region where the pass is valid |
 
-## Company Code  <a name="CompanyCode">
+## Company Code <a name="CompanyCode">
 
-See code
-[TAP-TSI Company code list](https://www.era.europa.eu/registers/ocr_en).
+See code [TAP-TSI Company code
+list](https://www.era.europa.eu/registers/ocr_en).
 
 | Country | Carrier Code | Short Name                   | Full Name                                                                                     |
 | ------- | ------------ | ---------------------------- | --------------------------------------------------------------------------------------------- |
@@ -394,25 +394,25 @@ See code
 | SK      | 3524         | Arriva SK                    | Arriva Service s.r.o.                                                                         |
 | US      | 3287         | Amtrak                       | National Railroad Passenger Corporation                                                       |
 
-## ControlDataExchangeType  <a name="ControlDataExchangeType">
+## ControlDataExchangeType <a name="ControlDataExchangeType">
 
 | Code        | Description                                                            |
 | ----------- | ---------------------------------------------------------------------- |
 | `REGISTRY`  | See IRS 90918-4 / TAP TSI B.14, data are delivered to the UIC registry |
 | `PEER2PEER` | See IRS 90918-4 / TAP TSI B.14, data are exchange peer 2 peer          |
 
-## ControlSecurityType  <a name="ControlSecurityType">
+## ControlSecurityType <a name="ControlSecurityType">
 
-| Code                                                                                 | Description |
-| ------------------------------------------------------------------------------------ | ----------- |
-| SIP |   `SIP Security in Paper -CIT secure background See IRS 90918-9                      |  
-| SID | `SID Security in Data (e.g. signed barcode) See IRS 90918-9                          |
-| SIS | `SIS Security in System (Online control vs. Ticket registry) See IRS 90918-9/90918-4 |
+| Code | Description                                                                          |
+| ---- | ------------------------------------------------------------------------------------ |
+| SIP  | `SIP Security in Paper -CIT secure background See IRS 90918-9                        |
+| SID  | `SID Security in Data (e.g. signed barcode) See IRS 90918-9                          |
+| SIS  | `SIS Security in System (Online control vs. Ticket registry) See IRS 90918-9/90918-4 |
 
 ## Currency <a name="Currency">
 
-Currency codes used in OSDM are based on the
-[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) standard.
+Currency codes used in OSDM are based on the [ISO
+4217](https://en.wikipedia.org/wiki/ISO_4217) standard.
 
 ## FareType <a name="FareType">
 
@@ -422,7 +422,7 @@ Currency codes used in OSDM are based on the
 | `RESERVATION` | seat allocation might include a supplement |
 | `ANCILLARY`   | ancillary                                  |
 
-## Fare CoachType 
+## Fare CoachType
 
 Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.1 .
 
@@ -430,7 +430,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.1 .
 
 Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
-## FulfillmentType  <a name="FulfillmentType">
+## FulfillmentType <a name="FulfillmentType">
 
 | Code             | Description                         |
 | ---------------- | ----------------------------------- |
@@ -439,7 +439,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | `PASS_CHIP`      | Fulfillment loaded on pass          |
 | `PASS_REFERENCE` | Reference to booking loaded on pass |
 
-## FulfillmentMediaType  <a name="FulfillmentMediaType">
+## FulfillmentMediaType <a name="FulfillmentMediaType">
 
 | Code              | Description                                                                                 |
 | ----------------- | ------------------------------------------------------------------------------------------- |
@@ -453,7 +453,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | `TICKETLESS`      | no ticket                                                                                   |
 | `SMS`             | ticket information of link to the fulfillment send by SMS                                   |
 
-## Gender  <a name="Gender">
+## Gender <a name="Gender">
 
 | Code     | Description |
 | -------- | ----------- |
@@ -461,7 +461,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | `FEMALE` | Female      |
 | `X`      | Diverse     |
 
-## Graphics Items  <a name="GraphicsItems">
+## Graphics Items <a name="GraphicsItems">
 
 | icon                                                             | description                                                           | icon code | orientation used | mounting used |
 | ---------------------------------------------------------------- | --------------------------------------------------------------------- | --------- | ---------------- | ------------- | --- |
@@ -565,7 +565,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | ![](../images/catalog-of-code-lists/graphics-icons/image123.jpg) | sleeping car                                                          | 174       | -                | -             |     |
 | ![](../images/catalog-of-code-lists/graphics-icons/image125.jpg) | car-carrier                                                           | 175       | -                | -             |
 
-## Interface Type  <a name="InterfaceType">
+## Interface Type <a name="InterfaceType">
 
 | Code                            | Description                                                                              |
 | ------------------------------- | ---------------------------------------------------------------------------------------- |
@@ -573,16 +573,16 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | `IRS90918_1_RESERVATION_XML`    | Reservation interface according to IRS90918-1 XML message format / TAP TSI B.5 soap      |
 | `OSDM`                          | OSDM API                                                                                 |
 
-## Language  <a name="Language">
+## Language <a name="Language">
 
-Language codes used in OSDM are based on the
-[ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
+Language codes used in OSDM are based on the [ISO
+639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
 
-## Leg Attributes  <a name="LegAttributes">
+## Leg Attributes <a name="LegAttributes">
 
 Service Facilities <a name="serviceFacilities">
 
-## Nationality  <a name="Nationality">
+## Nationality <a name="Nationality">
 
 Language codes used in OSDM are based on the [ISO
 639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
@@ -600,29 +600,28 @@ units. E.g.:
 | `BE21`  | Prov. (2) Antwerpen |
 | `BE211` | Arr. Antwerpen      |
 
-## Overrule Code  <a name="OverruleCode">
+## Overrule Code <a name="OverruleCode">
 
-| Code                      | Description                                                          |
-| ------------------------- | -------------------------------------------------------------------- |
-| `CONNECTION_BROKEN`       | The next leg can not be reached by passenger as previous leg failed. |
-| `EQUIPMENT_FAILURE`       | Vehicle can no longer be operated.                                   |
-| `PAYMENT_FAILURE`         | Payment failure.                                                     |
-| `PRM_SUPPORT_UNAVAILABLE` | A PRM has booked a trip which is not available to him/her.           |
-| `SALES_STAFF_ERROR`       | Sale staff error.                                                    |
-| `STOP_NO_SERVED`          | Vehicle did not serve the stop place.                                |
-| `STRIKE`                  | Strike.                                                              |
-| `TECHNICAL_FAILURE`       | Technical failure on the distribution channel.                       |
-| `TICKET_NOT_USED`         | Ticket not (fully) used by passenger.                                |
-| `DEATH`  | Death of a traveller  | 
-| `INABILITY_TO_TRAVEL`  |  Inability to travel due to accident or sickness. | 
-| `EXTERNAL_COMPENSATION`  |  Offer has been compensated outside of the provider system in another way. | 
-| `DISRUPTION' |  Inability to operate due to disruption. | 
-| `JOURNEY_OBSOLETE`  |  Due to external factors it's senseless to start the trip, thus the travel is obsolete. | 
-| `CERTIFIED_MEDICAL_CONDITION |  A medical certificate certifies that the passenger is unable to travel. | 
-| `DELAY_COMPENSATION`  | Allows to override conditions in context of passenger rights regulation (PRR). | 
+| Code                          | Description                                                                            |
+| ----------------------------- | -------------------------------------------------------------------------------------- |
+| `CONNECTION_BROKEN`           | The next leg can not be reached by passenger as previous leg failed.                   |
+| `EQUIPMENT_FAILURE`           | Vehicle can no longer be operated.                                                     |
+| `PAYMENT_FAILURE`             | Payment failure.                                                                       |
+| `PRM_SUPPORT_UNAVAILABLE`     | A PRM has booked a trip which is not available to him/her.                             |
+| `SALES_STAFF_ERROR`           | Sale staff error.                                                                      |
+| `STOP_NO_SERVED`              | Vehicle did not serve the stop place.                                                  |
+| `STRIKE`                      | Strike.                                                                                |
+| `TECHNICAL_FAILURE`           | Technical failure on the distribution channel.                                         |
+| `TICKET_NOT_USED`             | Ticket not (fully) used by passenger.                                                  |
+| `DEATH`                       | Death of a traveller                                                                   |
+| `INABILITY_TO_TRAVEL`         | Inability to travel due to accident or sickness.                                       |
+| `EXTERNAL_COMPENSATION`       | Offer has been compensated outside of the provider system in another way.              |
+| `DISRUPTION`                  | Inability to operate due to disruption.                                                |
+| `JOURNEY_OBSOLETE`            | Due to external factors it's senseless to start the trip, thus the travel is obsolete. |
+| `CERTIFIED_MEDICAL_CONDITION` | A medical certificate certifies that the passenger is unable to travel.                |
+| `DELAY_COMPENSATION`          | Allows to override conditions in context of passenger rights regulation (PRR).         |
 
-
-## Passenger Type (aka. Traveler Type)  <a name="PassengerType">
+## Passenger Type (aka. Traveler Type) <a name="PassengerType">
 
 | Code           | Description                                                                                                                                                     | Transportable | Bulk (Offline) | Online Request | Online Reply | 918-9 FCB Version 3                           |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | -------------- | -------------- | ------------ | --------------------------------------------- |
@@ -647,7 +646,7 @@ units. E.g.:
 | `MOTOCYCLE`    | A motorcycle for car carriage trains                                                                                                                            | X             | X              | X              | X            | special car carriage data                     |
 | `TRAILER`      | A trailer for car carriage trains                                                                                                                               | X             | X              | X              | X            | special car carriage data                     |
 
-## Passport  <a name="Passport">
+## Passport <a name="Passport">
 
 | Code                      | Description |
 | ------------------------- | ----------- |
@@ -657,7 +656,7 @@ units. E.g.:
 | `REFUGEE_TRAVEL_DOCUMENT` |             |
 | `DRIVING_LICENCE`         |             |
 
-## Personal data items  <a name="PersonalDataItems">
+## Personal data items <a name="PersonalDataItems">
 
 Codes for personal data items that might be transferred to the carrier if
 required.
@@ -690,7 +689,7 @@ required.
 | `CARD_ISSUER`              | Card issuer                                              |
 | `CARD_NUMBER`              | Card identifier                                          |
 
-## Personal data transfer types  <a name="PersonalData TransferType">
+## Personal data transfer types <a name="PersonalData TransferType">
 
 | Code           | Description                                                                            |
 | -------------- | -------------------------------------------------------------------------------------- |
@@ -699,7 +698,7 @@ required.
 | `SIS_CONTROL`  | The data will be transfered via security in system control data exchange (IRS 90918-4) |
 | `SID`          | The data will be transfered via a barcode                                              |
 
-## Personal data change reasons  <a name="PersonalDataChangeReason">
+## Personal data change reasons <a name="PersonalDataChangeReason">
 
 | Code              | Description                                          |
 | ----------------- | ---------------------------------------------------- |
@@ -708,14 +707,14 @@ required.
 | `DOCUMENT_CHANGE` | E.g. passport was lost and replaced                  |
 | `AGENT_ERROR`     | Personal data were enterd wronlgy by the sales agent |
 
-## Product Tags  <a name="ProductTags">
+## Product Tags <a name="ProductTags">
 
 | Code              | Description                                                                                                                                                                                                                                                                                                                                                                                              |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SPLIT_RESERVATION | Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation Without this indication the provider is not allowed to use the SplitSection Object inside a reservation. The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover a full leg multiple reservations as offerParts should be created. |
 | Product Types     | All product types can be used as Product Tags in the search                                                                                                                                                                                                                                                                                                                                              |
 
-## Product Types  <a name="ProductTypes">
+## Product Types <a name="ProductTypes">
 
 | Code                    | Description                                        |
 | ----------------------- | -------------------------------------------------- |
@@ -730,17 +729,17 @@ required.
 | `ANCILLARY_ITEM`        | ancillary item (e.g. merchandising item)           |
 | `REDUCTION_CARD`        | reduction card                                     |
 
-## Public Transportation Modes (ptMode)  <a name="PublicTansportModes">
+## Public Transportation Modes (ptMode) <a name="PublicTansportModes">
 
 see Transport Modes
 
-## Point of Interest (POI)  <a name="PointOfInterrest">
+## Point of Interest (POI) <a name="PointOfInterrest">
 
 POICodeList: By default the code list is set to UIC.
 
 POICode: Values are depending on code list and set is too large to be reproduced
 
-## Reduction cards  <a name="ReductionCard">
+## Reduction cards <a name="ReductionCard">
 
 The following code lists defines the commonly used cards which are not provided
 by a specific carrier:
@@ -779,7 +778,7 @@ by a specific carrier:
 
 Other cards should start with the RICS code of the issuer.
 
-## Reservation Preference Group  <a name="ReservationPreferenceGroup">
+## Reservation Preference Group <a name="ReservationPreferenceGroup">
 
 | Code             | Description                                     |
 | ---------------- | ----------------------------------------------- |
@@ -792,7 +791,7 @@ Other cards should start with the RICS code of the issuer.
 | `USAGE`          | Different usage types for different coach areas |
 | `VEHICLE`        | Different types of vehicles                     |
 
-## Service Brands  <a name="ServiceBrands">
+## Service Brands <a name="ServiceBrands">
 
 Snapshot version, for the actual code list see [UIC Service Brand Code
 List](https://uic.org/passenger/passenger-services-group/article/service-brand-code-list).
@@ -938,7 +937,7 @@ List](https://uic.org/passenger/passenger-services-group/article/service-brand-c
 | `253`              | `VAE`        | Voralpen-Express                     | Voralpen-Express (Panorama Train)           |
 | `254`              | `LK`         | FRECCIALINK                          | FRECCIALINK                                 |
 
-## Service Class  <a name="ServiceClass">
+## Service Class <a name="ServiceClass">
 
 | Code       | Description           |
 | ---------- | --------------------- |
@@ -1105,7 +1104,7 @@ then be prefixed by "X\_<3 letters code for the provider>". Example:
 _StationCode_: Values are depending on codelist and set is too large to be
 reproduced.
 
-## Supported Online Services  <a name="SupportedOnlineServices">
+## Supported Online Services <a name="SupportedOnlineServices">
 
 | Code                       | Description                                                       |
 | -------------------------- | ----------------------------------------------------------------- |
@@ -1121,7 +1120,7 @@ reproduced.
 | `FULFILLMENT`              | Provides an entire tickets                                        |
 | `FULFILLMENT_ITEMS`        | Providing security items for a ticket (e.g. additional bar codes) |
 
-## TaxScope  <a name="TaxScope">
+## TaxScope <a name="TaxScope">
 
 | Code             | Description                                                                                                                     |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |
@@ -1130,7 +1129,7 @@ reproduced.
 | `SHORT_DISTANCE` | VAT applies in short distance tickets only                                                                                      |
 | `LONG_DISTANCE`  | VAT applies in long distance tickets only. This needs to be applied in case the fare is integrated in a longer journey.         |
 
-## TimeReference  <a name="TimeReference">
+## TimeReference <a name="TimeReference">
 
 | Code                    | Description                                                                                                                |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -1140,7 +1139,7 @@ reproduced.
 | `BEFORE_START_VALIDITY` | Before the start of the validity. The time zone of the departure station applies.                                          |
 | `AFTER_END_VALIDITY`    | After the start of the validity. The time zone of the departure station applies.                                           |
 
-## TimeUnit  <a name="TimeUNit">
+## TimeUnit <a name="TimeUNit">
 
 | Code     | Description |
 | -------- | ----------- |
@@ -1148,14 +1147,14 @@ reproduced.
 | `MINUTE` |             |
 | `HOUR`   |             |
 
-## Transfer Type  <a name="TransferType">
+## Transfer Type <a name="TransferType">
 
 | Code    | Description                                                                             |
 | ------- | --------------------------------------------------------------------------------------- |
 | `WALK`  | A walk                                                                                  |
 | `OTHER` | Other types of transfer (e.g. taxi, local city transport not included in the offer,...) |
 
-## Transport Mode  <a name="TransportMode">
+## Transport Mode <a name="TransportMode">
 
 Corresponding to numerical codes in TAP-TSI (B.2.3) / UIC
 (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
@@ -1193,7 +1192,7 @@ Transaction type used in after sales rules for fares.
 | `UPGRADE`               | Exchange with a fare of higher value         |
 | `GROUP_DOWN_SIZE`       | Exchange with a group of less passengers     |
 
-## Travel Account Types  <a name="TravelAccountType">
+## Travel Account Types <a name="TravelAccountType">
 
 | Code           | Description                                                              |
 | -------------- | ------------------------------------------------------------------------ |
@@ -1227,7 +1226,7 @@ Type of the travel validity of a fare.
 | `MULTIPLE_TRIPS` | Fare is for multiple trips but with restrictions on the usage.                        |
 | `UNRESTRICTED`   | The fare is for multiple unrestricted use within the provided travel validity period. |
 
-## TripAllocationProcess  <a name="TripAllocationProcess">
+## TripAllocationProcess <a name="TripAllocationProcess">
 
 Trip allocation process indicated the type of process a passenger needs to
 follow to make use of a multi journey ticket with restrictions.
