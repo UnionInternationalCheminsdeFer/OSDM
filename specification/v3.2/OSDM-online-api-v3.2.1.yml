@@ -11227,7 +11227,9 @@ components:
           description: |
             Amount refunded to the purchaser
         refundOfferBreakdown:
-          $ref: '#/components/schemas/RefundOfferItem'
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundOfferItem'
         reimbursementMethod:
           $ref: '#/components/schemas/ReimbursementMethod'
         _links:
