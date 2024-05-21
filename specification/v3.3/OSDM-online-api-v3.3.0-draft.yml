@@ -7789,7 +7789,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fee'
-        exchangeBreakdown:
+        exchangeOfferBreakdown:
           $ref: '#/components/schemas/ExchangeBreakDown'
         fares:
           type: array
@@ -11505,7 +11505,10 @@ components:
           description: |
             Amount refunded to the purchaser
         refundOfferBreakdown:
-          $ref: '#/components/schemas/RefundOfferItem'
+          description: provides details on the composition of refund fee
+          type: array
+          items:
+             $ref: '#/components/schemas/RefundOfferItem'
         reimbursementMethod:
           $ref: '#/components/schemas/ReimbursementMethod'
         _links:
