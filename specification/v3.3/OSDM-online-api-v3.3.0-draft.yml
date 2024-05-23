@@ -13160,7 +13160,7 @@ components:
         - 'IN_DIRECTION'
         - 'OPPOSITE_DIRECTION'
         - 'CHANGING'
-        - 'STARING_IN_DIRECTION'
+        - 'STARTING_IN_DIRECTION'
 
     TravelPassAccount:
       allOf:
