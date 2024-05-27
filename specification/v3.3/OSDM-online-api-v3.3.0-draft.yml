@@ -6793,7 +6793,6 @@ components:
       type: object
       additionalProperties: false
       required:
-        - compartments
         - number
         - layoutId
       properties:
@@ -9149,7 +9148,8 @@ components:
               - value 0: lowest layer usually used for walls
               - value 1: middle layer usually used by places
               - value 2: top layer usually used by icons
-          type: string
+          type: integer
+          format: int32
           nullable: false
 
     LegAttribute:
@@ -13967,14 +13967,11 @@ components:
       description: |
         List of the coaches in a vehicle run ordered according to the physical
         ordering of the vehicle.
-      required:
-        - coaches
       properties:
         coaches:
           type: array
           items:
             $ref: '#/components/schemas/Coach'
-          minItems: 1
         reservationRefs:
           description: |
             References to the reservations/fares for which all places in the vehicle can be selected. 
