@@ -6793,23 +6793,18 @@ components:
       type: object
       additionalProperties: false
       required:
-        - compartments
         - number
-        - status
         - layoutId
       properties:
         compartments:
           type: array
           items:
             $ref: '#/components/schemas/Compartment'
-          minItems: 1
         number:
           description: |
             coach number
           type: string
           nullable: false
-        status:
-          $ref: '#/components/schemas/AvailabilityStatus'
         layoutId:
           description: |
             Id to identify the coach layout. In case of two deck vehicles, 
@@ -7060,7 +7055,6 @@ components:
         as a whole. Usual areas would be classic compartments.
       required:
         - places
-        - status
       properties:
         places:
           type: array
@@ -9144,7 +9138,8 @@ components:
               - value 0: lowest layer usually used for walls
               - value 1: middle layer usually used by places
               - value 2: top layer usually used by icons
-          type: string
+          type: integer
+          format: int32
           nullable: false
 
     LegAttribute:
@@ -10608,7 +10603,6 @@ components:
           items:
             $ref: '#/components/schemas/PlacePreSelection'
 
-
     PlaceAvailabilityCollectionResponse:
       type: object
       additionalProperties: false
@@ -10684,13 +10678,6 @@ components:
           nullable: false
         status:
           $ref: '#/components/schemas/AvailabilityStatus'
-        isSelectable:
-          description: |
-            Flag to indicate individual places as non-selectable in
-            case complete compartments must be selected.
-          type: boolean
-          nullable: true
-          default: true
         reservationRefs:
           description: |
             references to the reservations for which this place nca be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
@@ -10705,16 +10692,20 @@ components:
     PlacePreSelection:
       type: object
       additionalProperties: false
+      required:
+        - coach
+        - place
       properties:
         reservationId:
-          description: id of the reservation in case the places have already been selected and the customer now wants to change the selection.
+          description: |
+            id of the reservation in case the places have already been selected and the customer now wants to change the selection.
           type: string
         coach:
           type: string
-          nullable: true
+          nullable: false
         place:
           type: string
-          nullable: true
+          nullable: false
 
     PlacePreferenceGroup:
       type: object
@@ -13967,14 +13958,11 @@ components:
       description: |
         List of the coaches in a vehicle run ordered according to the physical
         ordering of the vehicle.
-      required:
-        - coaches
       properties:
         coaches:
           type: array
           items:
             $ref: '#/components/schemas/Coach'
-          minItems: 1
         reservationRefs:
           description: |
             References to the reservations/fares for which all places in the vehicle can be selected. 
@@ -13984,6 +13972,7 @@ components:
           type: array
           items:
             type: string
+
     VehicleFilter:
       type: object
       additionalProperties: false
