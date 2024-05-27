@@ -56,6 +56,8 @@
       link: spec/compliance/
     - name: Language
       link: spec/language/
+    - name: Grammar to request mandatory data
+      link: https://github.com/UnionInternationalCheminsdeFer/OSDM/tree/gh-pages/spec/requested-information-grammar.html
 - name: Tools
   link: tools/
   dropdown:
