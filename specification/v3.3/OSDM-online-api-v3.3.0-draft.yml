@@ -6812,7 +6812,8 @@ components:
           $ref: '#/components/schemas/AvailabilityStatus'
         layoutId:
           description: |
-            id to identify the coach layout
+            Id to identify the coach layout. In case of two deck vehicles, 
+            both upper and lower deck layouts are provided next to each other.
           type: string
           nullable: false
         layoutIdUpperDeck:
