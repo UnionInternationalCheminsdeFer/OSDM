@@ -7732,10 +7732,6 @@ components:
           $ref: '#/components/schemas/Price'
         exchangePrice:
           $ref: '#/components/schemas/Price'
-        exchangeOfferBreakDown:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExchangeOfferItem'
         fulfillments:
           type: array
           items:
@@ -7773,6 +7769,11 @@ components:
             $ref: '#/components/schemas/Product'
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        exchangeOfferBreakdown:
+          description: |
+            Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
+          type: array
+          $ref: '#/components/schemas/ExchangeBreakdownItem'
         admissionOfferParts:
           type: array
           items:
@@ -7789,8 +7790,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fee'
-        exchangeOfferBreakdown:
-          $ref: '#/components/schemas/ExchangeBreakDown'
         fares:
           type: array
           items:
@@ -7802,16 +7801,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-
-    ExchangeBreakDown:
-      type: object
-      description: breakdown of fees taken in a refund
-      properties:
-        refundItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExchangeBreakdownItem'
-          minItems: 1
 
     ExchangeBreakdownItem:
       type: object
@@ -11505,10 +11494,11 @@ components:
           description: |
             Amount refunded to the purchaser
         refundOfferBreakdown:
-          description: provides details on the composition of refund fee
+          description: |
+            breakdown of the refund offer
           type: array
           items:
-             $ref: '#/components/schemas/RefundOfferItem'
+             $ref: '#/components/schemas/RefundOfferBreakdownItem'
         reimbursementMethod:
           $ref: '#/components/schemas/ReimbursementMethod'
         _links:
@@ -11518,7 +11508,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    RefundOfferItem:
+    RefundOfferBreakdownItem:
       type: object
       required:
         - refundFee
