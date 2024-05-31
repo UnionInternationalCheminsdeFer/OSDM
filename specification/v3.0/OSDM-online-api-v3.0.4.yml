@@ -9839,6 +9839,11 @@ components:
         place:
           type: string
           nullable: true
+        reservationId:
+          description: |
+            id of the reservation in case the places have already been selected and the customer now wants to change the selection.
+          type: string
+          nullable: true
 
     PlacePreferenceGroup:
       type: object
