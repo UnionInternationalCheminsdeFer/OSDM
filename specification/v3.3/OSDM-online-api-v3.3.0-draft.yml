@@ -10706,6 +10706,33 @@ components:
         place:
           type: string
           nullable: false
+        selectionFee:
+          $ref: '#/components/schemas/SelectionFee'
+          
+
+    SelectionFee:
+      type: object
+      required:
+        - currency
+        - amount
+        - scale
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        amount:
+          description: |
+            amount in cents
+          type: integer
+          format: int32
+          nullable: false
+        scale:
+          description: |
+            scale of the amount - the number of positions after the comma
+          type: integer
+          format: int32
+          nullable: true
+          default: 2
+          
 
     PlacePreferenceGroup:
       type: object
