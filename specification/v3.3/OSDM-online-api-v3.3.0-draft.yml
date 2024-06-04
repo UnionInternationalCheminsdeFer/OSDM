@@ -5535,6 +5535,7 @@ components:
         - 'BOOKING'
         - 'TRIP'
         - 'OFFERPART'
+        - 'PLACE_SELECTION'
 
     AppliedPassengerType:
       type: object
@@ -7082,6 +7083,9 @@ components:
           $ref: '#/components/schemas/TravelClass'
         serviceClass:
           $ref: '#/components/schemas/ServiceClassType'
+        selectionFee:
+          $ref: '#/components/schemas/SelectionFee'
+
 
     Complaint:
       type: object
