@@ -22,6 +22,7 @@ permalink: /spec/authentication/
 3.3 [Validation of client credentials](#validation_of_client_credentials)
 3.4 [Configuration of client credentials](#configuration_client_credentials)
 3.5 [Example request using client credentials](#example_request_client_credentials)
+4 [Notes on access tokens](#notes_on_access_tokens)
 
 ## Introduction <a name="introduction">
 
@@ -253,3 +254,12 @@ grant_type=client_credentials
 &client_secret=MXCleFO22w2yAfolea75lrIE5RdqimPL
 &scope=uic_osdm
 ```
+## Notes on access tokens <a name="notes_on_access_tokens">
+
+The access tokens provided by the login service behave according to the relevant standards, particularly:
+
+- with the backend-to-backend flows described in this document, the login service only provides an **access token** - no refresh tokens are provided
+- the expiry time of the access token is provided in the **expires_in** element of the response
+- there is no need for the consumer to parse the access token
+- a consumer may request multiple access tokens in parallel requests (e.g. from multiple instances of their services), in particular:
+- requesting a new access token does **not** invalidate a previously issued access token for the same set of credentials
