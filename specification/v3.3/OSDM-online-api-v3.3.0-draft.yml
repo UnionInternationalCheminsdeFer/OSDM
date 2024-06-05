@@ -5814,7 +5814,7 @@ components:
           description: Note that the offerId returned does not necessarily match the offerId given in the Booking Request.
         externalRef:
           description: |
-            id of the selected offer in the client's system
+            id of the booked offer in the client's system
           type: string
           nullable: false
         summary:
