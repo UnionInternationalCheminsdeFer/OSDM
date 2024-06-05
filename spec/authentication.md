@@ -41,7 +41,7 @@ The following RFC documents apply:
 
 This document defines the two variants of flows to be used. It also defines the parameters used, which must be agreed and exchanged bilaterally between the parties involved.
 
-## Using JWTs for alient authentication <a name="JWTs">
+## Using JWTs for client authentication <a name="JWTs">
 
 This flow uses a **client authentication assertion** in the form of a **JW identity token** (`private_key_jwt` in terms of OpenID Connect (OIDC)), which is cryptographically signed by the client (OSDM consumer) and can be verified by the server (OSDM provider). It is the recommended 
 
