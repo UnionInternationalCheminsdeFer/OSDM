@@ -22,7 +22,7 @@ permalink: /spec/authentication/
 
 The general requirement of the OSDM standard to use OAuth2 for authentication and authorization by means of JW tokens (JWTs) should be implemented in one of two consistent methods. Either by
 
-- **Using JWTs for Client Authentication** according to [RFC-7523 Section 2.2](https://datatracker.ietf.org/doc/html/rfc7523#section-2.2), or by
+- **Using JWTs for Client Authentication** according to [RFC-7523 Section 2.2](https://datatracker.ietf.org/doc/html/rfc7523#section-2.2), (recommended) or by
 - **Using Client Credentials for Access Token Request** according to [RFC.6749 Section 4.4.2](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4.2)
 
 The following RFC documents apply:
@@ -38,7 +38,7 @@ This document defines the two variants of flows to be used. It also defines the 
 
 ## Using JWTs for Client Authentication <a name="JWTs">
 
-This flow uses a **client authentication assertion** in the form of a **JW identity token** (`private_key_jwt` in terms of OpenID Connect (OIDC)), which is cryptographically signed by the client (OSDM consumer) and can be verified by the server (OSDM provider).
+This flow uses a **client authentication assertion** in the form of a **JW identity token** (`private_key_jwt` in terms of OpenID Connect (OIDC)), which is cryptographically signed by the client (OSDM consumer) and can be verified by the server (OSDM provider). It is the recommended 
 
 The OSDM provider then issues a **JW access token** which can in turn be used by the OSDM consumer to prove their access rights to the OSDM endpoints by providing the JW access token in the Authenticate header of the OSDM endpoint invocation.
 
@@ -82,8 +82,8 @@ The identity token contains the following header fields. Where some fields are o
 
 | Attribute | RFC requirement | OSDM requirement | Description                               | Recommended value                                                  |
 | --------- | --------------- | ---------------- | ----------------------------------------- | ------------------------------------------------------------------ |
-| iss       | REQUIRED        | MANDATORY        | Issuer of the identity token              | defined by the OSDM consumer, use the URL of the public website.   |
-| sub       | REQUIRED        | MANDATORY        | "Username" of the client                  | defined by the OSDM provider                                       |
+| iss       | REQUIRED        | MANDATORY        | Issuer of the identity token              | defined by the OSDM provider (client id)                           |
+| sub       | REQUIRED        | MANDATORY        | Identity of the client                    | defined by the OSDM provider (client id)                           |
 | aud       | REQUIRED        | MANDATORY        | URL login service endpoint                | defined by the OSDM provider                                       |
 | exp       | REQUIRED        | MANDATORY        | Timestamp when this request expires       | current time + grace period of at least 2 minutes (120 seconds)    |
 | scope     | OPTIONAL        | MANDATORY        | Usage of the token                        | fixed value "uic_osdm"                                             |
@@ -101,8 +101,9 @@ The signature is obtained by creating the string `<JWT Header Base64URL encoded>
 
 To obtain the actual JW access token required to authenticate the functional OSDM requests, a token request message needs to be issued to the OSDM provider's login service. This has the following attributes:
 
-- `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer`
-- `assertion=<JWT>`
+- `grant_type=client_credentials
+- `client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
+- `client_assertion=<JWT>`
 - `scope=uic_osdm`
 
 The `<JWT>` means the JW identity token which has been described above.
@@ -118,7 +119,7 @@ The provider's login service should take certain steps in order to validate the 
 - Check the signing algorithm against a whitelist of allowed algorithms or against a pinned value for the consumer, to mitigate these attacks:
   - A third party (attacker) sends an identity token with alg: none, disabling signature verification and allowing token forgery.
   - A third party (attacker) sends an identity token with alg set to a symmetric algorithm, but kid set to an asymmetric key. This allows token forgery if the public key is known
-- Check that sub, kid and the public key match (note: the provider should store this triplet), to mitigate this attack:
+- Check that sub, iss, kid and the public key match (note: the provider should store this data), to mitigate this attack:
   - Consumer signs an identity token for another consumer's username with their own key
 - Check the signature of the token against the public key of the requestor, to mitigate this attack:
   - A third party (attacker) tries to request an access token without knowledge of the secret key, but tries anyway
@@ -137,8 +138,8 @@ Some configuration parameters need to be agreed upon bilaterally between the par
 | ------------------------------------ | ----------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
 | Signing algorithm                    | JW identity token, header field 'alg'                       | Algorithm used for signing the JW identity token           | Mutually agreed between provider and consumer                |
 | Signing key ID                       | JW identity token, header field 'kid'                       | Key used for signing the JW identity token                 | Defined by consumer                                          |
-| Issuer of JW identity token          | JW identity token, payload field 'iss'                      | Identifies the issuer of the JW identity token             | Defined by consumer, usually the URL of their public website |
-| Subject of the access token request  | JW identity token, payload field 'sub'                      | "Username" of the client within the provider's system      | Defined by provider                                          |
+| Issuer of JW identity token          | JW identity token, payload field 'iss'                      | Identity of the client within the provider's system        | Defined by provider                                          |
+| Subject of the access token request  | JW identity token, payload field 'sub'                      | Identity of the client within the provider's system        | Defined by provider                                          |
 | Audience of the access token request | JW identity token, payload field 'aud'                      | URL of the login service                                   | Defined by provider                                          |
 | Public key                           | Validation of signature within the provider's login service | Public key used for validating signature of identity token | Defined by consumer, part of the public/private key pair     |
 
@@ -164,7 +165,7 @@ Some examples are provided here.
 **Payload:**
 ```
 {
-  "iss" = "https://osdm-consumer.eu/",
+  "iss" = "UIC_OSDM_1080_4",
   "sub" = "UIC_OSDM_1080_4",
   "aud" = "https://osdm-provider.eu/logon-server/public/token",
   "exp" = "1709041312",
@@ -177,7 +178,7 @@ Some examples are provided here.
 
 ##### Encoded token <a name="encoded_token">
 
-`eyJhbGciPSJSUzI1NiIsInR5cCI9IkpXVCIsImtpZCI9IjEyMzQ1Njc4OTAifQ.eyJpc3MiPSJodHRwczovL3d3dy5iYWhuLmRlIiwic3ViIj0iVUlDX09TRE1fMTA4MF80IiwiYXVkIj0iaHR0cHM6Ly9vc2RtLXByb3ZpZGVyLmV1L2xvZ29uLXNlcnZlci9wdWJsaWMvdG9rZW4iLCJleHAiPSIxNzA5MDQxMzEyIiwic2NvcGUiPSJ1aWNfb3NkbSIsIm5iZiI9IjE3MDkwNDAyOTIiLCJpYXQiPSIxNzA5MDQwNDEyIiwiaXRpIj0iZTU3YjA5MDEtMTljZi00NzFlLTgxZmUtNjFiNmE3ZWUxOWI3In0.<signature>`
+`eyJhbGciPSJSUzI1NiIsInR5cCI9IkpXVCIsImtpZCI9IjEyMzQ1Njc4OTAifQ.eyJpc3MiPSJVSUNfT1NETV8xMDgwXzQiLCJzdWIiPSJVSUNfT1NETV8xMDgwXzQiLCJhdWQiPSJodHRwczovL29zZG0tcHJvdmlkZXIuZXUvbG9nb24tc2VydmVyL3B1YmxpYy90b2tlbiIsImV4cCI9IjE3MDkwNDEzMTIiLCJzY29wZSI9InVpY19vc2RtIiwibmJmIj0iMTcwOTA0MDI5MiIsImlhdCI9IjE3MDkwNDA0MTIiLCJpdGkiPSJlNTdiMDkwMS0xOWNmLTQ3MWUtODFmZS02MWI2YTdlZTE5YjcifQo.<signature>`
 
 #### Example request <a name="example_request">
 
@@ -185,8 +186,9 @@ Some examples are provided here.
 POST /logon-server/public/token
 Host: osdm-provider.eu
 Content-Type: application/x-www-form-urlencoded
-grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer
-&assertion=eyJhbGciPSJSUzI1NiIsInR5cCI9IkpXVCIsImtpZCI9IjEyMzQ1Njc4OTAifQ.eyJpc3MiPSJo...
+grant_type=client_credentials
+&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+&client_assertion=eyJhbGciPSJSUzI1NiIsInR5cCI9IkpXVCIsImtpZCI9IjEyMzQ1Njc4OTAifQ.eyJpc3MiPSJVSUNf...
 &scope=uic_osdm
 ```
 
