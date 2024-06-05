@@ -329,6 +329,23 @@ The carrier is responsible for the accounting. The data structure for
 IRT is used. The distributor will inform the carrier on the applied fees
 in the cancellation confirmation.
 
+#### direct accounting
+
+In some cases the accounting is not done by the provider of the OSDM API itself but is done 
+from the provider of a train service booked via OSDM. The service provider that creates the accounting 
+will most likely not use the OSDM booking part ids in the accounting data. To provide the link between the OSDM booking parts, fees 
+and refunds the accountingRef Object must be used in the OSDM api to provide the ids that will be used in the accounting data exchange.
+
+
+Example:
+
+Retailer A books a train service from the OSDM API of distributor B where the train is provided by Carrier C and Carrier C manages the accounting with A itself.
+The accounting data send from C to A as billing will contain the accounting IDs that have been provided in the OSDM api as accounting reference.
+
+
+
+
+
 ### Graphical seat reservation
 
 In order to display the layout of a train to a customer a service to
