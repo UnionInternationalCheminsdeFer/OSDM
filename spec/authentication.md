@@ -9,7 +9,7 @@ permalink: /spec/authentication/
 ## Table of contents
 
 1. [Introduction](#introduction)
-2. [Using JWTs for client authentication](#JWTs)
+2. [Using JWTs for client authentication](#jwts)
 2.1 [Flow using JWTs](#flow_jwt)
 2.2 [JW identity token](#jw_identity_token)
 2.3 [Request for an access token using JWTs](#request_for_access_token_jwt)
@@ -41,7 +41,7 @@ The following RFC documents apply:
 
 This document defines the two variants of flows to be used. It also defines the parameters used, which must be agreed and exchanged bilaterally between the parties involved.
 
-## Using JWTs for client authentication <a name="JWTs">
+## Using JWTs for client authentication <a name="jwts">
 
 This flow uses a **client authentication assertion** in the form of a **JW identity token** (`private_key_jwt` in terms of OpenID Connect (OIDC)), which is cryptographically signed by the client (OSDM consumer) and can be verified by the server (OSDM provider). It is the recommended 
 
