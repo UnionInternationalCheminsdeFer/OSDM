@@ -7725,6 +7725,10 @@ components:
       properties:
         exchangeFee:
           $ref: '#/components/schemas/Price'
+        accountingRef:
+          description: |
+            Accounting information for the exchange fee
+          $ref: '#/components/schemas/AccountingRef'
         exchangePrice:
           $ref: '#/components/schemas/Price'
         fulfillments:
@@ -11481,6 +11485,10 @@ components:
           $ref: '#/components/schemas/Price'
           description: |
             Amount kept by the carrier and/or distributor
+        accountingRef:
+          description: |
+            Accounting information for the refund fee
+          $ref: '#/components/schemas/AccountingRef'
         refundableAmount:
           $ref: '#/components/schemas/Price'
           description: |
