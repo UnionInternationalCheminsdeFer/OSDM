@@ -9,26 +9,34 @@ permalink: /spec/authentication/
 ## Table of contents
 
 1. [Introduction](#introduction)
-2. [Flow](#Flow)
-3. [JW identity token](#jw_identity_token)
-4. [Request for an access token](#request_for_access_token)
-5. [Validation of identity token](#validation_of_identity_token)
-6. [Configuration](#configuration)
-7. [Examples](#examples)
+2. [Using JWTs for Client Authentication](#JWTs)
+2.1 [Flow](#Flow)
+2.2 [JW identity token](#jw_identity_token)
+2.3 [Request for an access token](#request_for_access_token)
+2.4 [Validation of identity token](#validation_of_identity_token)
+2.5 [Configuration](#configuration)
+2.6 [Examples](#examples)
+3. [Using Client Credentials for Access Token Request](#client_credentials)
 
 ## Introduction <a name="introduction">
 
-The general requirement of the OSDM standard to use OAuth2 for authentication and authorization by means of JW tokens (JWTs) should be implemented in the following consistent manner between backends.
+The general requirement of the OSDM standard to use OAuth2 for authentication and authorization by means of JW tokens (JWTs) should be implemented in one of two consistent methods. Either by
+
+- **Using JWTs for Client Authentication** according to [RFC-7523 Section 2.2](https://datatracker.ietf.org/doc/html/rfc7523#section-2.2), or by
+- **Using Client Credentials for Access Token Request** according to [RFC.6749 Section 4.4.2](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4.2)
 
 The following RFC documents apply:
 
  1. [RFC-7519](https://datatracker.ietf.org/doc/rfc7519/) which explains what a JWT token is;
- 2. [RFC-6749$3.2](https://www.rfc-editor.org/rfc/rfc6749.html#section-3.2) which defines OAuth2 and the token endpoint involved in the creation of tokens;
- 3. [RFC-7521](https://datatracker.ietf.org/doc/rfc7521/) laying the groundwork for cryptographic client assertions;
- 4. [RFC-7523](https://datatracker.ietf.org/doc/rfc7523/) which describes how to properly secure the token endpoint with modern cryptography, thus not relying on static secrets;
- 5. [RFC-8725](https://datatracker.ietf.org/doc/rfc8725/) which gives guidance on securely validating and using JWTs.
+ 2. [RFC-6749 Section 3.2](https://datatracker.ietf.org/doc/html/rfc6749#section-3.2) which defines OAuth2 and the token endpoint involved in the creation of tokens;
+ 3. [RFC-6749 Section 4.4.2](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4.2) which defines the use of client credentials to obtain an access token;
+ 4. [RFC-7521](https://datatracker.ietf.org/doc/rfc7521/) laying the groundwork for cryptographic client assertions;
+ 5. [RFC-7523 Section 2.2](https://datatracker.ietf.org/doc/html/rfc7523#section-2.2) which describes how to properly secure the token endpoint with modern cryptography, thus not relying on static secrets;
+ 6. [RFC-8725](https://datatracker.ietf.org/doc/rfc8725/) which gives guidance on securely validating and using JWTs.
 
-This section defines the exact flow to be used. It also defines the parameters used, which must be agreed and exchanged bilaterally between the parties involved.
+This document defines the two variants of flows to be used. It also defines the parameters used, which must be agreed and exchanged bilaterally between the parties involved.
+
+## Using JWTs for Client Authentication <a name="JWTs">
 
 This flow uses a **client authentication assertion** in the form of a **JW identity token** (`private_key_jwt` in terms of OpenID Connect (OIDC)), which is cryptographically signed by the client (OSDM consumer) and can be verified by the server (OSDM provider).
 
@@ -36,7 +44,7 @@ The OSDM provider then issues a **JW access token** which can in turn be used by
 
 This method makes it unnecessary to exchange actual client secrets between the consumers and providers of the service and relies on asymmetric cryptography, i.e., the use of private/public keys for signing such requests.
 
-## Flow <a name="flow">
+### Flow <a name="flow">
 
 The general flow between consumer and provider looks like this:
 
@@ -48,7 +56,7 @@ In this flow, the following services are defined:
 - The **OSDM Provider Login Service** is the service which controls the authentication of the OSDM Consumer by issuing JW access tokens
 - The **OSDM Provider Functional Endpoints** implement the actual business logic of the OSDM Provider. Calls to these endpoints need to be authorized by providing the appropriate JW access tokens.
 
-## JW identity token <a name="jw_identity_token">
+### JW identity token <a name="jw_identity_token">
 
 A JW token (JWT) consists of three parts which are separated by dots ("."):
 
@@ -60,7 +68,7 @@ Each part is separately encoded using Base64URL encoding. The encoded header and
 
 Header and Payload of the JW token are encoded as JSON structures. Their content is defined in the following sections.
 
-### JW identity token header <a name="jw_identity_token_header">
+#### JW identity token header <a name="jw_identity_token_header">
 
 The identity token contains the following header fields. Where some fields are optional according to the relevant RFC, we still consider them mandatory for the purposes of usage within the OSDM standard.
 
@@ -70,7 +78,7 @@ The identity token contains the following header fields. Where some fields are o
 | kid       | OPTIONAL        | MANDATORY        | Id of the key used for signing this token | defined by OSDM consumer. Should be provided to the OSDM provider. |
 | typ       | REQUIRED        | MANDATORY        | Type of the token                         | fixed value "JWT"                                                  |
 
-### JW identity token payload <a name="jw_identity_token_payload">
+#### JW identity token payload <a name="jw_identity_token_payload">
 
 | Attribute | RFC requirement | OSDM requirement | Description                               | Recommended value                                                  |
 | --------- | --------------- | ---------------- | ----------------------------------------- | ------------------------------------------------------------------ |
@@ -85,11 +93,11 @@ The identity token contains the following header fields. Where some fields are o
 
 Note: All timestamps are in "Unix epoch", which is defined as the number of seconds since 1st January, 1970 UTC.
 
-### JW identity token signature <a name="jw_identity_token_signature">
+#### JW identity token signature <a name="jw_identity_token_signature">
 
 The signature is obtained by creating the string `<JWT Header Base64URL encoded>.<JWT Payload Base64URL encoded>`, and signing this string with the private key of the OSDM consumer using the algorithm specified in the JWT header field "alg". The signature is then also Base64URL encoded and added to the token.
 
-## Request for an access token <a name="request_for_access_token">
+### Request for an access token <a name="request_for_access_token">
 
 To obtain the actual JW access token required to authenticate the functional OSDM requests, a token request message needs to be issued to the OSDM provider's login service. This has the following attributes:
 
@@ -103,7 +111,7 @@ The provider should set the **expires_in** attribute of the response, so that th
 
 Consumers should cache the access token in order to avoid overloading the provider's login server, using the value from the expires_in attribute to invalidate cache entries.
 
-## Validation of identity token <a name="validation_of_identity_token">
+### Validation of identity token <a name="validation_of_identity_token">
 
 The provider's login service should take certain steps in order to validate the identity token received from the consumer before it issues the access token. The most important include:
 
@@ -121,7 +129,7 @@ The provider's login service should take certain steps in order to validate the 
 
 Additionally, implementers should consult [RFC 8725](https://datatracker.ietf.org/doc/html/rfc8725) for guidance on securely validating and using JWTs, both in the login service and in the functional endpoints.
 
-## Configuration <a name="configuration">
+### Configuration <a name="configuration">
 
 Some configuration parameters need to be agreed upon bilaterally between the partners. They are listed in the following table.
 
@@ -136,13 +144,13 @@ Some configuration parameters need to be agreed upon bilaterally between the par
 
 When the signing key pair is **rotated** (which should happen on a regular basis), the consumer needs to provide the new signing key ID and the new public key to the provider.
 
-## Examples <a name="examples">
+### Examples <a name="examples">
 
 Some examples are provided here.
 
-### Example JW identity token <a name="example_jw_identity_token">
+#### Example JW identity token <a name="example_jw_identity_token">
 
-#### JSON structure <a name="json_structure">
+##### JSON structure <a name="json_structure">
 
 **Header:**
 ```
@@ -167,11 +175,11 @@ Some examples are provided here.
 }
 ```
 
-#### Encoded token <a name="encoded_token">
+##### Encoded token <a name="encoded_token">
 
 `eyJhbGciPSJSUzI1NiIsInR5cCI9IkpXVCIsImtpZCI9IjEyMzQ1Njc4OTAifQ.eyJpc3MiPSJodHRwczovL3d3dy5iYWhuLmRlIiwic3ViIj0iVUlDX09TRE1fMTA4MF80IiwiYXVkIj0iaHR0cHM6Ly9vc2RtLXByb3ZpZGVyLmV1L2xvZ29uLXNlcnZlci9wdWJsaWMvdG9rZW4iLCJleHAiPSIxNzA5MDQxMzEyIiwic2NvcGUiPSJ1aWNfb3NkbSIsIm5iZiI9IjE3MDkwNDAyOTIiLCJpYXQiPSIxNzA5MDQwNDEyIiwiaXRpIj0iZTU3YjA5MDEtMTljZi00NzFlLTgxZmUtNjFiNmE3ZWUxOWI3In0.<signature>`
 
-### Example request <a name="example_request">
+#### Example request <a name="example_request">
 
 ```
 POST /logon-server/public/token
@@ -181,3 +189,7 @@ grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer
 &assertion=eyJhbGciPSJSUzI1NiIsInR5cCI9IkpXVCIsImtpZCI9IjEyMzQ1Njc4OTAifQ.eyJpc3MiPSJo...
 &scope=uic_osdm
 ```
+
+## Using Client Credentials for Access Token Request <a name="client_credentials">
+
+TODO
