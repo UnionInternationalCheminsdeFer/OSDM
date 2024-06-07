@@ -5496,7 +5496,7 @@ components:
 
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
       required:
-        - 
+        - externalRef
         - type
       properties:
         externalRef:
@@ -6339,7 +6339,7 @@ components:
             reference to the booking in the downstream distributor system
           type: string
           nullable: true
-        :
+        externalRef:
           description: reference to the booking in the retailer system
           type: string
           nullable: true
