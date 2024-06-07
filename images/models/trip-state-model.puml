@@ -9,6 +9,7 @@ confirmed --> changed: delay
 confirmed --> cancelled: disruption
 confirmed --> [*]
 cancelled --> [*]
+changed --> cancelled: disruption
 changed --> [*] 
 
 @enduml
