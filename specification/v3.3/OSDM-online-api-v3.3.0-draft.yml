@@ -5812,6 +5812,11 @@ components:
           type: string
           nullable: false
           description: Note that the offerId returned does not necessarily match the offerId given in the Booking Request.
+        externalRef:
+          description: |
+            A stable reference to the id of the booked offer in the caller's system. When received in input of a request, it must be persisted and echoed back in the response.
+          type: string
+          nullable: false
         summary:
           description: |
             A human-readable description of the booked offer.
@@ -9925,6 +9930,11 @@ components:
         offerId:
           description: |
             id of the selected offer or exchangeOffer
+          type: string
+          nullable: false
+        externalRef:
+          description: |
+            A stable reference to the id of the offer in the caller's system. When received in input of a request, it must be persisted and echoed back in the response.
           type: string
           nullable: false
         optionalReservationSelections:
