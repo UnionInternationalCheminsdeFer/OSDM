@@ -5496,7 +5496,7 @@ components:
 
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
       required:
-        - externalRef
+        - 
         - type
       properties:
         externalRef:
@@ -5814,7 +5814,7 @@ components:
           description: Note that the offerId returned does not necessarily match the offerId given in the Booking Request.
         externalRef:
           description: |
-            id of the booked offer in the client's system
+            A stable reference to the id of the booked offer in the caller's system. When received in input of a request, it must be persisted and echoed back in the response.
           type: string
           nullable: false
         summary:
@@ -6339,7 +6339,7 @@ components:
             reference to the booking in the downstream distributor system
           type: string
           nullable: true
-        externalRef:
+        :
           description: reference to the booking in the retailer system
           type: string
           nullable: true
@@ -9934,7 +9934,7 @@ components:
           nullable: false
         externalRef:
           description: |
-            id of the selected offer in the client's system
+            A stable reference to the id of the offer in the caller's system. When received in input of a request, it must be persisted and echoed back in the response.
           type: string
           nullable: false
         optionalReservationSelections:
