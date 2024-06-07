@@ -7555,9 +7555,11 @@ components:
           nullable: true
         content:
           description: |
-            base64 encoded binary of the actual fulfillment document
+            base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw document cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
         format:
           $ref: '#/components/schemas/DocumentFormat'
@@ -7621,9 +7623,11 @@ components:
           nullable: true
         content:
           description: |
-            base64 encoded binary of the actual fulfillment document
+            base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw document cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
         format:
           $ref: '#/components/schemas/DocumentFormat'
@@ -8543,9 +8547,11 @@ components:
           nullable: true
         content:
           description: |
-            base64 encoded binary of the actual fulfillment document
+            base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw document cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
         format:
           $ref: '#/components/schemas/DocumentFormat'
@@ -8587,9 +8593,11 @@ components:
           $ref: '#/components/schemas/SecurityFeatureType'
         data:
           description: |
-            base 64 encoded data
+            base64 encoded data. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw data cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
 
     FulfillmentItemSecurityFeatureLinks:
@@ -12687,9 +12695,11 @@ components:
           nullable: false
         content:
           description: |
-            base64 encoded binary of the actual document
+            base64 encoded binary of the actual document. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw document cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
         format:
           $ref: '#/components/schemas/DocumentFormat'
