@@ -398,12 +398,12 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - name: tripId
           in: path
-          maxLength: 32768
           description: |
             id of the trip to get.
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: stopBehavior
           in: query
           description: |
