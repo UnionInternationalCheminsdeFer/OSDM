@@ -418,6 +418,14 @@ include multiple reservation in the offer that will provide a reservation on a p
 A proprietary implemnetation is included in the specification where the split is indicated only in the reservation lateron using the 
 splitSection data in the ReservedPlace object. A provider is allowed to use the splitSection only in case the client has allowed this by sending a ProductTag SPLITT_RESERVATION in the offer request. 
 
+
+##### Fees on Seat Selection   <a name="SeatSelectionFees">
+
+Fees might be applied on selecting seats from a graphical map. For this purpose the amount of the fee can be provided per place in 
+the place availability. With the selection of the specific seats a fee will be addedto the booking which is linked to the reservation.
+The fee is indicated as for "SEAT_SELECTION". The indication that grapgical reservation is possible must also indicate that a fee will be taken. The 
+element gravicalReservation must show the value "WITH_FEE".
+
 #### Getting Coach Layouts
 
 Graphical seat reservation allows a customer to conveniently choose its
