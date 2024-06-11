@@ -403,6 +403,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: stopBehavior
           in: query
           description: |
@@ -530,6 +531,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '200':
           description: |
@@ -641,6 +643,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       requestBody:
         required: true
         content:
@@ -698,6 +701,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -1044,6 +1048,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '200':
           description: |
@@ -1100,6 +1105,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -1151,6 +1157,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: passengerId
           in: path
           required: true
@@ -1205,6 +1212,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       requestBody:
         required: true
         content:
@@ -1268,11 +1276,13 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: reservationId
           in: path
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -1322,6 +1332,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       requestBody:
         required: true
         content:
@@ -1385,11 +1396,13 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: ancillaryId
           in: path
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -1443,11 +1456,13 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: admissionId
           in: path
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -2229,6 +2244,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '200':
           description: |
@@ -2289,6 +2305,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       requestBody:
         required: true
         content:
@@ -2465,10 +2482,11 @@ paths:
         - name: releaseOfferId
           in: path
           description: |
-            id of the refund offer to get.
+            id of the release offer to get.
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '200':
           description: |
@@ -2519,10 +2537,11 @@ paths:
         - name: releaseOfferId
           in: path
           description: |
-            id of the refund offer
+            id of the release offer
           required: true
           schema:
             type: string
+            maxLength: 32768
       requestBody:
         required: true
         content:
@@ -2586,10 +2605,11 @@ paths:
         - name: releaseOfferId
           in: path
           description: |
-            id of the refund offer
+            id of the release offer
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -2702,6 +2722,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '200':
           description: |
@@ -2758,10 +2779,11 @@ paths:
         - name: cancelFulfillmentsOfferId
           in: path
           description: |
-            id of the refund offer
+            id of the cancel fulfillment offer
           required: true
           schema:
             type: string
+            maxLength: 32768
       requestBody:
         required: true
         content:
@@ -2828,6 +2850,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -3993,6 +4016,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: contextType
           in: query
           required: true
@@ -4003,6 +4027,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: resourceType
           in: query
           required: true
@@ -4119,6 +4144,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: contextType
           in: query
           required: true
@@ -4131,6 +4157,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: resourceType
           in: query
           required: true
@@ -4204,6 +4231,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: contextType
           in: query
           required: true
@@ -4214,6 +4242,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: resourceType
           in: query
           required: true
@@ -4593,6 +4622,7 @@ components:
           type: string
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           type: string
@@ -4757,6 +4787,7 @@ components:
           type: string
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -5472,6 +5503,7 @@ components:
       properties:
         ancillaryId:
           type: string
+          maxLength: 32768
           nullable: false
         passengerRefs:
           type: array
@@ -5605,10 +5637,12 @@ components:
       properties:
         contextId:
           type: string
+          maxLength: 32768
         contextType:
           $ref: '#/components/schemas/ContextType'
         resourceId:
           type: string
+          maxLength: 32768
         resourceType:
           $ref: '#/components/schemas/ResourceType'
 
@@ -5810,6 +5844,7 @@ components:
       properties:
         offerId:
           type: string
+          maxLength: 32768
           nullable: false
           description: Note that the offerId returned does not necessarily match the offerId given in the Booking Request.
         externalRef:
@@ -5863,9 +5898,11 @@ components:
       properties:
         offerId:
           type: string
+          maxLength: 32768
           nullable: false
         ancillaryOfferId:
           type: string
+          maxLength: 32768
           nullable: false
         passengerRefs:
           type: array
@@ -5929,9 +5966,11 @@ components:
       properties:
         offerId:
           type: string
+          maxLength: 32768
           nullable: false
         reservationOfferId:
           type: string
+          maxLength: 32768
           nullable: false
         passengerRefs:
           type: array
@@ -5971,6 +6010,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 32768
           description: |
             IDs of offers booked by the request. Will be always provided, single of the booked offer may not be provided in bookedOffer attribute.
 
@@ -5984,6 +6024,7 @@ components:
       properties:
         offerId:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           type: string
@@ -6150,17 +6191,18 @@ components:
       type: object
       additionalProperties: false
       description: |
-        References all the offer part elements in an uniform format.
-        In its part, an OfferPartReference can refer to reservation, admission, ancillary or fee.
+        References all the booking part elements in an uniform format.
+        In its part, a BookingPartReference can refer to reservation, admission, ancillary or fee.
       required:
         - id
       properties:
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
-            A human-readable description of the offer part reference.
+            A human-readable description of the booking part reference.
           type: string
           nullable: true
         _links:
@@ -6197,6 +6239,7 @@ components:
       properties:
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           type: string
@@ -6526,8 +6569,9 @@ components:
       properties:
         id:
           description: |
-            id of the refund offer
+            id of the cancel fulfillments offer
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -7108,6 +7152,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 32768
           nullable: true
         decision:
           $ref: '#/components/schemas/ComplaintDecision'
@@ -7560,9 +7605,11 @@ components:
           nullable: true
         content:
           description: |
-            base64 encoded binary of the actual fulfillment document
+            base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw document cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
         format:
           $ref: '#/components/schemas/DocumentFormat'
@@ -7626,9 +7673,11 @@ components:
           nullable: true
         content:
           description: |
-            base64 encoded binary of the actual fulfillment document
+            base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw document cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
         format:
           $ref: '#/components/schemas/DocumentFormat'
@@ -7743,6 +7792,7 @@ components:
           minItems: 1
         offerId:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -7852,6 +7902,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 32768
           nullable: true
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
@@ -8319,6 +8370,7 @@ components:
       properties:
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -8548,9 +8600,11 @@ components:
           nullable: true
         content:
           description: |
-            base64 encoded binary of the actual fulfillment document
+            base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw document cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
         format:
           $ref: '#/components/schemas/DocumentFormat'
@@ -8592,9 +8646,11 @@ components:
           $ref: '#/components/schemas/SecurityFeatureType'
         data:
           description: |
-            base 64 encoded data
+            base64 encoded data. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw data cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
 
     FulfillmentItemSecurityFeatureLinks:
@@ -9353,6 +9409,7 @@ components:
           description: |
             Allows to provide a value to the link, for example id of the targeted resource or displayable representation for the link.
           type: string
+          maxLength: 32768
           format: uri
           nullable: false
         type:
@@ -9365,6 +9422,7 @@ components:
           description: |
             Allows to provide a value to the link, for example id of the targeted resource or displayable representation for the link.
           type: string
+          maxLength: 32768
           nullable: true
 
     Longitude:
@@ -9680,6 +9738,7 @@ components:
       properties:
         offerId:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -9757,6 +9816,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 32768
           nullable: true
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
@@ -9851,6 +9911,7 @@ components:
       properties:
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -9931,6 +9992,7 @@ components:
           description: |
             id of the selected offer or exchangeOffer
           type: string
+          maxLength: 32768
           nullable: false
         externalRef:
           description: |
@@ -10039,6 +10101,7 @@ components:
       properties:
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           type: string
@@ -11439,6 +11502,7 @@ components:
           description: |
             id of the refund offer
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -11621,6 +11685,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 32768
         passengerIds:
           type: array
           description: ids of passengers to be removed from the fulfillment
@@ -11876,8 +11941,9 @@ components:
       properties:
         id:
           description: |
-            id of the refund offer
+            id of the release offer
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -11996,6 +12062,7 @@ components:
 
     RequestedInformation:
       type: string
+      maxLength: 32768
       description: |
         Boolean-expression indicating the data that must be set in the data model in order to proceed to next step of the process. 
 
@@ -12233,6 +12300,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 32768
           nullable: true
         outwardOfferTag:
           description: |
@@ -12307,6 +12375,7 @@ components:
         externalTripRef:
           description: reference to a trip in case multiple trips are provided
           type: string
+          maxLength: 32768
           nullable: true
 
     SecurityElementFormat:
@@ -12697,9 +12766,11 @@ components:
           nullable: false
         content:
           description: |
-            base64 encoded binary of the actual document
+            base64 encoded binary of the actual document. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw document cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
         format:
           $ref: '#/components/schemas/DocumentFormat'
@@ -12735,6 +12806,7 @@ components:
             $ref: '#/components/schemas/Translation'
         text:
           type: string
+          maxLength: 32768
           nullable: false
         shortText:
           type: string
@@ -12755,6 +12827,7 @@ components:
             Full version of the text for display when sufficient space is available.
           type: string
           minLength: 1
+          maxLength: 32768
           nullable: false
         shortDescription:
           description: |
@@ -13250,8 +13323,9 @@ components:
       properties:
         id:
           description: |
-            Id of this trip for referencing purposes. Unique within a trip.
+            Id of this trip for referencing purposes. Unique within a trip list.
           type: string
+          maxLength: 32768
           nullable: false
         externalRef:
           description: |
@@ -13438,6 +13512,7 @@ components:
       properties:
         coveredTripId:
           type: string
+          maxLength: 32768
           nullable: false
         sectionIndex:
           description: |
@@ -13567,6 +13642,7 @@ components:
       properties:
         tripId:
           type: string
+          maxLength: 32768
           nullable: false
         legId:
           type: string
@@ -13745,6 +13821,7 @@ components:
       properties:
         tripId:
           type: string
+          maxLength: 32768
           nullable: false
         coveredSection:
           $ref: '#/components/schemas/Section'
@@ -13821,6 +13898,7 @@ components:
           description: |
             Id of this trip for referencing purposes. Unique within trip response.
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           type: string
