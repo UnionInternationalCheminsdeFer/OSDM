@@ -13,27 +13,27 @@ permalink: /spec/processes/
 4. [Trips and Places Processes](#TripsandPlacesProcesses)
    1. [Looking Up Places](#LookingUpPlaces)
    2. [Getting and Browsing Trips](#GettingTrips)
-6. [Offers](#Offers)
+5. [Offers](#Offers)
    1. [Getting and Browsing Offers](#GettingOffers)
    2. [Round Trip Handling](#RoundTripsHandling)
    3. [Reservation](#Reservation)
-8. [Complex Example](#ComplexExample)
-9. [Booking Processes](#BookingProcesses)
+6. [Complex Example](#ComplexExample)
+7. [Booking Processes](#BookingProcesses)
    1. [Creating a Booking Based on Offers](#CreatingBookings)
    2. [Additional information in provisional booking](#AddingInformation)
    3. [Handling Partial Success of Pre-Booking](#HandlingPartialSuccess)
    4. [Completing Booking for Confirmation and Fulfillment](#CompleteBooking)
-   5. [Cancel a Not Confirmed Booking ](#CancelUnconfirmedBooking)
+   5. [Cancel a Not Confirmed Booking](#CancelUnconfirmedBooking)
    6. [Payment information and Payment Vouchers](#PaymentInformation)
    7. [Add parts to a booking](#AddPartsToABookings)
-11. [After Sales Processes](#AfterSalesProcesses)
-    1. [Refund](#Refund)
-    2. [Release a Booking](#Refund)
-    3. [Partial Refund](#PartialRefund)
-    4. [Cancel Fulfillment](#CancelFulfillment)
-    5. [Exchange](#Exchange)
-    6. [Complaints](#Complaints)
-    7. [Reimbursement](#Reimbursement)
+8. [After Sales Processes](#AfterSalesProcesses)
+   1. [Refund](#Refund)
+   2. [Release a Booking](#Refund)
+   3. [Partial Refund](#PartialRefund)
+   4. [Cancel Fulfillment](#CancelFulfillment)
+   5. [Exchange](#Exchange)
+   6. [Complaints](#Complaints)
+   7. [Reimbursement](#Reimbursement)
 
 ## Introduction <a name="introduction">
 
@@ -46,7 +46,7 @@ of the API and its underlying concepts. As such, some of the details of how the
 information is structured in the API are not represented or simplified in the
 data models.
 
-## Overview of Services  <a name="OverviewofServices">
+## Overview of Services <a name="OverviewofServices">
 
 | Resources                                          | Description                                                            |
 | -------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -175,7 +175,7 @@ In case the error can apply to multiple fields, it is recommended to provide
 additional details such as the incriminated field in the detail property of the
 `Problem` element.
 
-## Offers  <a name="Offers">
+## Offers <a name="Offers">
 
 ### Getting and Browsing Offers <a name="GettingOffers">
 
@@ -342,17 +342,18 @@ return.
 
 ### Reservation <a name="Reservation">
 
-Reservation offers are part of the offer but the selection of places is an additionl intermediate step after the prebooking of offers. The selection of places can be made via a graphical display of available places or via the specifcation of customer requirements (at a table, at the window, etc..).
+Reservation offers are part of the offer but the selection of places is an
+additionl intermediate step after the prebooking of offers. The selection of
+places can be made via a graphical display of available places or via the
+specifcation of customer requirements (at a table, at the window, etc..).
 
 The basic flow is shown here:
 
 ![Reservations on a pre-booked Booking](../images/processes/seq-graphical-reservation.png)
 
-
 Reservations can aso be added to an already confirmed booking:
 
 ![Adding Reservations on a confirmed booking](../images/processes/seq-graphical-reservation-after-booking.png)
-
 
 ##### Place Availability of Offers for Reservation
 
@@ -364,14 +365,14 @@ availabilities might be subset of the total. The fare provider is free to
 provide either total capacity only, or detail on other accommodation types and
 sub types.
 
-If avalabilities are provided with the number of available places it is recommeded to provide 
-these for important combinations of place properties only and not for all possible combinations.
+If avalabilities are provided with the number of available places it is
+recommeded to provide these for important combinations of place properties only
+and not for all possible combinations.
 
-
-The availability can be requested on offer level or on booking level. The request parameter specify 
-the context which can eigther be OFFER or BOOKING and the resource which is either a reservation RESERVATION or a 
-fare of type reservation (FARE). 
-
+The availability can be requested on offer level or on booking level. The
+request parameter specify the context which can eigther be OFFER or BOOKING and
+the resource which is either a reservation RESERVATION or a fare of type
+reservation (FARE).
 
 ```
 {
@@ -408,23 +409,34 @@ fare of type reservation (FARE).
 }
 ```
 
-Physical availability of places for reservation can be requested eigther by providing preferences on place properties or by reuesting the available places for a graphical seat display to select individual seats. The request for seats to be displayed graphically can reqquest the places for one or a selection of reservation offers. In case the request is for multiple reservation offers the client application must implement the switch of the offers based on selected places.
+Physical availability of places for reservation can be requested either by
+providing preferences on place properties or by requesting the available places
+for a graphical seat display to select individual seats. The request for seats
+to be displayed graphically can request the places for one or a selection of
+reservation offers. In case the request is for multiple reservation offers the
+client application must implement the switch of the offers based on selected
+places.
 
 ##### Partial Reservation
 
-A provider might offer a reservation even in case the seat is not available on the whole leg. In this casethe provider should 
-include multiple reservation in the offer that will provide a reservation on a part of the leg.
+A provider might offer a reservation even in case the seat is not available on
+the whole leg. In this case the provider should include multiple reservation in
+the offer that will provide a reservation on a part of the leg.
 
-A proprietary implemnetation is included in the specification where the split is indicated only in the reservation lateron using the 
-splitSection data in the ReservedPlace object. A provider is allowed to use the splitSection only in case the client has allowed this by sending a ProductTag SPLITT_RESERVATION in the offer request. 
+A proprietary implementation is included in the specification where the split is
+indicated only in the reservation later on using the splitSection data in the
+ReservedPlace object. A provider is allowed to use the splitSection only in case
+the client has allowed this by sending a ProductTag SPLITT_RESERVATION in the
+offer request.
 
+##### Fees on Seat Selection <a name="SeatSelectionFees">
 
-##### Fees on Seat Selection   <a name="SeatSelectionFees">
-
-Fees might be applied on selecting seats from a graphical map. For this purpose the amount of the fee can be provided per place in 
-the place availability. With the selection of the specific seats a fee will be addedto the booking which is linked to the reservation.
-The fee is indicated as for "SEAT_SELECTION". The indication that grapgical reservation is possible must also indicate that a fee will be taken. The 
-element gravicalReservation must show the value "WITH_FEE".
+Fees might be applied on selecting seats from a graphical map. For this purpose
+the amount of the fee can be provided per place in the place availability. With
+the selection of the specific seats a fee will be added to the booking which is
+linked to the reservation. The fee is indicated as for `SEAT_SELECTION`. The
+indication that graphical reservation is possible must also indicate that a fee
+will be taken. The element graphical Reservation must show the value `WITH_FEE`.
 
 #### Getting Coach Layouts
 
@@ -473,9 +485,9 @@ Proposed trip by timetable system:
 
 Once the offer has been selected, the API consumer can proceed to the booking of
 that offer. Along with the offer, optional or mandatory reservations or
-ancillaries can be booked as well. The optional offer parts can be easily identified
-in the offers as they will always be linked with an admission product (in
-`admission.reservations` or `admission.ancillaries`). The link contains the
+ancillaries can be booked as well. The optional offer parts can be easily
+identified in the offers as they will always be linked with an admission product
+(in `admission.reservations` or `admission.ancillaries`). The link contains the
 relationType property, which indicates whether the pointed reservation or
 ancillary is included (in which case it is not needed to explicitly add it in
 the booking request), mandatory (the reservation or ancillary must be added in
@@ -499,7 +511,7 @@ the offer responses, with the exception that for reservations and fares, the
 reservedPlaces element will now be populated with the places that have actually
 be assigned to the passengers for this offer part.
 
-### Additional information in provisional booking step  <a name="AddingInformation">
+### Additional information in provisional booking step <a name="AddingInformation">
 
 In most cases the offer will not contain information on specific place
 properties for reservations. The reservation resource in the offer provides
@@ -512,9 +524,8 @@ information on the availability of places with the selected offer:
 
 ![Graphical reservation](../images/processes/seq-graphical-reservation.png)
 
-
-In some cases, additional information must be provided before or at the
-time of provisional booking in order to be taken into account, such as:
+In some cases, additional information must be provided before or at the time of
+provisional booking in order to be taken into account, such as:
 
 - Additional passenger identity information;
 - Additional accommodation preferences regarding the accommodation, or its exact
@@ -526,7 +537,8 @@ The `RequestedInformation` property will provide the details of what needs to be
 specified in order to book a given offer. These details are provided under the
 form of a boolean expression, referring to the passenger model elements using
 dot notation (with the `TripOffer` as the root). For example, if it is required
-that last name and first name are set to proceed`RequestedInformation` would be :
+that last name and first name are set to proceed`RequestedInformation` would be
+:
 
 `passengerSpecifications[<uuid>].detail.firstName AND passengerSpecifiations[<uuid>].detail.lastName`
 
@@ -536,9 +548,8 @@ phone number is needed:
 `(passengerSpecifiations[0].detail.firstName AND passengerSpecifications[0].detail.lastName AND (passengerSpecifications[0].detail.contact.email OR passengerSpecifications[0].detail.contact.phone))`
 
 By parsing this structure, the API consumer is able to identify the elements
-that need to be filled-in to proceed. The
-[grammar for required information](../requested-information-grammar.html) is
-defined there.
+that need to be filled-in to proceed. The [grammar for required
+information](../requested-information-grammar.html) is defined there.
 
 The two types of information (accommodation preferences and passenger data
 updates) are both to be added in the `POST /bookings` body:
@@ -611,16 +622,16 @@ offer(s) in the same `POST /bookings` operation.
 
 #### Provisionally booking a trip with offers clusters
 
-When booking for a trip for which several offer clusters were provided
-([see offer clusters](../models#offers-with-partial-coverage))), the API
-consumer must be careful to always select one and only one offer from each offer
-cluster in the tripOffer. This ensures that even though the selection is done
-per offer cluster, the complete trip is covered exactly without any gap nor
-overlap. However, the provider implementers must verify and validate the set of
-offers selected is valid. if the trip being booked is also a return trip, then
-the rule applies for each direction.
+When booking for a trip for which several offer clusters were provided ([see
+offer clusters](../models#offers-with-partial-coverage))), the API consumer must
+be careful to always select one and only one offer from each offer cluster in
+the tripOffer. This ensures that even though the selection is done per offer
+cluster, the complete trip is covered exactly without any gap nor overlap.
+However, the provider implementers must verify and validate the set of offers
+selected is valid. if the trip being booked is also a return trip, then the rule
+applies for each direction.
 
-### Handling Partial Success of Pre-Booking  <a name="HandlingPartialSuccess">
+### Handling Partial Success of Pre-Booking <a name="HandlingPartialSuccess">
 
 ![Handling Partial Success of Pre-Booking](../images/processes/seq-handling-partial-success-of-pre-booking.png)
 
@@ -944,32 +955,38 @@ These are the required information needed per process step for major parties
 | Distributor         | Pre-booking Step                                                                                                                                                                                                                                                                                               | Booking Step                                                                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | **Bene**            |                                                                                                                                                                                                                                                                                                                | `firstName` and `lastName`                                                                                                              |
-| **DB**              | In general one `firstName` and `lastName`, regardless of the number of passengers. In case of some regional train tariffs, however, all names and surnames are needed, unless printed on security paper.                                                                                                                      |                                                                                                                                         |
+| **DB**              | In general one `firstName` and `lastName`, regardless of the number of passengers. In case of some regional train tariffs, however, all names and surnames are needed, unless printed on security paper.                                                                                                       |                                                                                                                                         |
 | **öBB**             | Both `firstName` and `lastName` are needed. `dateOfBirth` date may be needed. Some reduction cards require the number to be provided at pre-booking time, in order to be pre-checked. In other cases, the cards are simply checked on-board `phoneNumber` or `eMail` (once per order - as contact information) | `phoneNumber` or `eMail` (once per order - as contact information)                                                                      |
 | **RENFE**           | Per passenger: `firstName`, `lastName`, surname document type and identity document (DNI, NIE or passport). A `phoneNumber` or `eMail`.                                                                                                                                                                        | Per passenger: `firstName`, `lastName`, surname document type and Identity document. (DNI, NIE or passport) A `phoneNumber` or `eMail`. |
-| **SBB**             | Per passenger: `name` and `first name` and `dateOfBirth. Additional sales parameters for some products such as `phoneNumber`or`eMail` for reservations.                                                                                                                                                        |                                                                                                                                         |
+| **SBB**             | Per passenger: `name` and `first name` and `dateOfBirth`. Additional sales parameters for some products such as `phoneNumber`or`eMail` for reservations.                                                                                                                                                       |                                                                                                                                         |
 | **SJ**              | Todo                                                                                                                                                                                                                                                                                                           |                                                                                                                                         |
 | **SNCF**            | `dateOfBirth` is mandatory, a fake date can be used at offer time, but the real one must be provided at pre-booking time                                                                                                                                                                                       |                                                                                                                                         |
 | **Eurostar/Thalys** | `firstName` and `lastName`                                                                                                                                                                                                                                                                                     | Thalys loyalty card number                                                                                                              |
 
-
 ### Add parts to a booking <a name=AddPartsToABookings>
 
-Admissions, reservations and anxillaries might be added to an existing booking. A provider may decide whether he allows this opreation on unconfirmed and/or confirmed bookings.
+Admissions, reservations and anxillaries might be added to an existing booking.
+A provider may decide whether he allows this opreation on unconfirmed and/or
+confirmed bookings.
 
-Adding offers to an existing booking is done via: POST /bookings/{bookingId}/booked-offers....
+Adding offers to an existing booking is done via: POST
+/bookings/{bookingId}/booked-offers....
 
-Reservation and Ancillary Booking Parts are added and deleted via: 
+Reservation and Ancillary Booking Parts are added and deleted via:
 
-- POST /bookings/5678/booked-offers/12345/additional-offers  (requesting offers)
+- POST /bookings/5678/booked-offers/12345/additional-offers (requesting offers)
 - POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations
-- DELETE /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations/{reservationId} As long as the reservation offerPart is not confirmed. If confirmed the refund must be used.
+- DELETE
+  /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations/{reservationId}
+  As long as the reservation offerPart is not confirmed. If confirmed the refund
+  must be used.
 - POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries
-- DELETE /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries/{ancillaryId} As long as the anxillary offerPart is not confirmed. If confirmed the refund must be used.
-
+- DELETE
+  /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries/{ancillaryId}
+  As long as the anxillary offerPart is not confirmed. If confirmed the refund
+  must be used.
 
 ![Adding parts to a booked offer](../images/processes/seq-add-parts-2-booking.png)
-
 
 - POST /offers{OfferCollectionRequest}
 - POST /bookings/5678/booked-offers{offers,passengers}
@@ -977,11 +994,7 @@ Reservation and Ancillary Booking Parts are added and deleted via:
 
 ![Adding parts to an existing booking](../images/processes/seq-add-parts-2-booking-2.png)
 
-
-
-
-
-## After Sales Processes  <a name="AfterSalesProcesses">
+## After Sales Processes <a name="AfterSalesProcesses">
 
 ### Refund <a name="Refund">
 
@@ -1003,8 +1016,8 @@ is relevant to the refund operation at the moment the refund offer was created.
 This includes information such as the amount that will be refunded, any
 potential refund fee, etc (see the model for more details).
 
-A provider may return multiple refundOffers for the same request, which may differ
-e.g. in the validity time (validFrom/validUntil attribute pair) or in the 
+A provider may return multiple refundOffers for the same request, which may
+differ e.g. in the validity time (validFrom/validUntil attribute pair) or in the
 reimbursement method (e.g. lower refund fee when a voucher is accepted).
 
 #### Cancel a Refund Offer
@@ -1015,17 +1028,16 @@ reimbursement method (e.g. lower refund fee when a voucher is accepted).
 
 ![Confirm a Refund Offer](../images/processes/seq-confirm-a-refund-offer.png)
 
-In case of multiple refundOffers for the same set of fulfillments, confirming one
-of them will delete the other refundOffers for the same set of fulfillments.
+In case of multiple refundOffers for the same set of fulfillments, confirming
+one of them will delete the other refundOffers for the same set of fulfillments.
 
 #### Multiple Refund Offers
 
-Once a refundOffer has been successfully requested, no more refundOffers can be 
-requested until the original refundOffer(s) have either been (a) cancelled (b) confirmed
-or have (c) expired (i.e. the "validUntil" time has passed).
+Once a refundOffer has been successfully requested, no more refundOffers can be
+requested until the original refundOffer(s) have either been (a) cancelled (b)
+confirmed or have (c) expired (i.e. the "validUntil" time has passed).
 
 ### Release a Booking <a name="ReleaseBooking">
-
 
 #### Request a release Offer
 
@@ -1051,12 +1063,14 @@ offer is requested and needs to be confirmed to be applied.
 
 ### Partial Refund <a name="PartialRefund">
 
-Partial refunds of passengers and booking parts included in one fulfllment (Collective ticketing) are
-possible with version 3.2 onwards. The parts to be refunded need to be specified in the RefundSpecification. 
+Partial refunds of passengers and booking parts included in one fulfllment
+(Collective ticketing) are possible with version 3.2 onwards. The parts to be
+refunded need to be specified in the RefundSpecification.
 
-A partial refund will result in new fulfilments after the confirmation of the refund offer and booking.
+A partial refund will result in new fulfilments after the confirmation of the
+refund offer and booking.
 
-### Cancel Fulfillment  <a name="CancelFulfillment">
+### Cancel Fulfillment <a name="CancelFulfillment">
 
 #### Cancel Fulfillment request
 
@@ -1077,7 +1091,7 @@ offer can be confirmed to delete the fulfillment.
 
 ![Confirm a CancelFulfillment Offer](../images/processes/seq-confirm-a-cancelFulfillment-offer.png)
 
-### On Hold Bookings  <a name="OnHoldBookings">
+### On Hold Bookings <a name="OnHoldBookings">
 
 An unconfirmed booking will expire after the time limit of the booking. An
 extension of the time limit can be requested as a OnHold-Offer. The offer can be
@@ -1088,7 +1102,7 @@ might be subject to a fee.
 
 ![Example End to End Interaction](../images/processes/seq-end-to-end-interaction.png)
 
-### Exchange  <a name="Exchange">
+### Exchange <a name="Exchange">
 
 #### Requesting an exchange offer
 
@@ -1111,7 +1125,7 @@ the passengers card data (card number).
 The offer for a replacement returned might include a fee. The replacement offer
 needs to be accepted and booked the same way as a usual offer.
 
-### Complaints  <a name="Complaints">
+### Complaints <a name="Complaints">
 
 Complaints can be provided on behalf of a passenger. Complaints might concern a
 delay of a train or a service degradation on the journey. The handling of
