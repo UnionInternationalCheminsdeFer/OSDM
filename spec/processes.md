@@ -365,28 +365,22 @@ availabilities might be subset of the total. The fare provider is free to
 provide either total capacity only, or detail on other accommodation types and
 sub types.
 
-If avalabilities are provided with the number of available places it is
-recommeded to provide these for important combinations of place properties only
+If availabilities are provided with the number of available places it is
+recommended to provide these for important combinations of place properties only
 and not for all possible combinations.
 
 The availability can be requested on offer level or on booking level. The
-request parameter specify the context which can eigther be OFFER or BOOKING and
+request parameter specify the context which can either be OFFER or BOOKING and
 the resource which is either a reservation RESERVATION or a fare of type
 reservation (FARE).
 
-```
+```json
 {
   "availablePlaces": [
     {
       "accommodationType": "SEAT",
       "accommodationSubType": "ANY_SEAT",
-      "placeProperties": [
-        "SILENCE",
-        "WINDOW",
-        "AISLE",
-        "TABLE",
-        "OPEN_SPACE"
-      ],
+      "placeProperties": ["SILENCE", "WINDOW", "AISLE", "TABLE", "OPEN_SPACE"],
       "numericAvailability": 123,
       "tripLegCoverage": {
         "tripId": 1,
@@ -396,9 +390,7 @@ reservation (FARE).
     {
       "accommodationType": "SEAT",
       "accommodationSubType": "WITH_ANIMALS",
-      "placeProperties": [
-        "WITH_ANIMALS"
-      ],
+      "placeProperties": ["WITH_ANIMALS"],
       "numericAvailability": 5,
       "tripLegCoverage": {
         "tripId": 1,
