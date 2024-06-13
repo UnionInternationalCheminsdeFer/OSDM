@@ -398,7 +398,7 @@ The non-use of a ticket may be proven by documents that were provided to the
 customer/traveler on a train or at a station. This proof can also be provided in
 electronic form by a carrier.
 
-The customer must be able to make the claim via a retailer to the disributor
+The customer must be able to make the claim via a retailer to the distributor
 who needs to forward the request to the involved carriers.
 
 ## Functional Requirements of a Distributor
