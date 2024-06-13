@@ -25,7 +25,8 @@ permalink: /spec/processes/
    4. [Completing Booking for Confirmation and Fulfillment](#CompleteBooking)
    5. [Cancel a Not Confirmed Booking](#CancelUnconfirmedBooking)
    6. [Payment information and Payment Vouchers](#PaymentInformation)
-   7. [Add parts to a booking](#AddPartsToABookings)
+   7. [Interlude: Requested Information per Process Step](Interlude)
+   8. [Add parts to a booking](#AddPartsToABookings)
 8. [After Sales Processes](#AfterSalesProcesses)
    1. [Refund](#Refund)
    2. [Release a Booking](#Refund)
@@ -940,14 +941,14 @@ sales operation. Once the booking is confirmed, it becomes also impossible to
 modify any element in the booking (such as fulfillment type or passenger
 information)
 
-### Interlude: Requested Information per Process Step
+### Interlude: Requested Information per Process Step <a name=Interlude>
 
 These are the required information needed per process step for major parties
 
 | Distributor         | Pre-booking Step                                                                                                                                                                                                                                                                                               | Booking Step                                                                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | **Bene**            |                                                                                                                                                                                                                                                                                                                | `firstName` and `lastName`                                                                                                              |
-| **DB**              | In general one `firstName` and `lastName`, regardless of the number of passengers. In case of some regional train tariffs, however, all names and surnames are needed, unless printed on security paper.                                                                                                       |                                                                                                                                         |
+| **DB**              |                                                                                                                                                         | For electronic tickets, `firstName` and `lastName`, regardless of the number of passengers. In case of some regional train tariffs, however, all names and surnames are needed. For tickets printed on value paper (only few tariffs remain that allow this), no names are needed.                 |
 | **öBB**             | Both `firstName` and `lastName` are needed. `dateOfBirth` date may be needed. Some reduction cards require the number to be provided at pre-booking time, in order to be pre-checked. In other cases, the cards are simply checked on-board `phoneNumber` or `eMail` (once per order - as contact information) | `phoneNumber` or `eMail` (once per order - as contact information)                                                                      |
 | **RENFE**           | Per passenger: `firstName`, `lastName`, surname document type and identity document (DNI, NIE or passport). A `phoneNumber` or `eMail`.                                                                                                                                                                        | Per passenger: `firstName`, `lastName`, surname document type and Identity document. (DNI, NIE or passport) A `phoneNumber` or `eMail`. |
 | **SBB**             | Per passenger: `name` and `first name` and `dateOfBirth`. Additional sales parameters for some products such as `phoneNumber`or`eMail` for reservations.                                                                                                                                                       |                                                                                                                                         |
