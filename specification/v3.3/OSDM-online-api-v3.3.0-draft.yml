@@ -1936,7 +1936,7 @@ paths:
 
         If the fulfillments are created synchronously the service directly returns the fulfillments. The fulfillments are then in state FULFILLED.
 
-        If the fulfillments are created asynchronously the service starts the creation of the fulfillments. No fulfillmentIds are returned. The fulfillments are in stage CONFIRMED. The booking needs to be retrieved later to obtain the fulfillments.
+        If the fulfillments are created asynchronously the service starts the creation of the fulfillments. The fulfillmentIds may or may not returned. The fulfillments are in stage CONFIRMED. The booking needs to be retrieved later to obtain the fulfillments.
       operationId: postFulfillments
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1992,9 +1992,11 @@ paths:
     patch:
       tags:
         - Fulfillments
-      summary: Finalizes the fulfillments in asynchronous mode.
+      summary: Optionally finalizes the fulfillments in asynchronous mode.
       description: |
-        Finalizes the fulfillment in case of an asynchronous fulfillment mode.
+        Optionally finalizes the fulfillment in case of an asynchronous fulfillment mode when the provider doesn't complete the asynchronous fulfillment automatically.
+        
+        This step may be used as an indication of the `proof of delivery` to disallow the cancellation of booking.
       operationId: finalizeFulfillments
       parameters:
         - $ref: '#/components/parameters/requestor'
