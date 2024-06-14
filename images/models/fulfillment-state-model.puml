@@ -2,7 +2,7 @@
 title "Fulfillment State Model"
 [*] --> confirmed: POST /bookings/{id}/fulfillments
 [*] --> fulfilled: POST /bookings/{id}/fulfillments
-confirmed --> fulfilled: PATCH /bookings/{id}/fulfillments 
+confirmed --> fulfilled: (time event)
 fulfilled --> checkedin: passenger check-in communicated 
 confirmed --> refunded: PATCH /bookings/{id}/refundOffer
 fulfilled --> refunded: PATCH /bookings/{id}/refundOffer
