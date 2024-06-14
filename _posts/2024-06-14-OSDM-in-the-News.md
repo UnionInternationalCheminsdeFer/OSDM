@@ -7,7 +7,5 @@ categories: osdm update
 ---
 
 OSDM is getting more and more mentions in the news, which we reference under
-[news](https://osdm.io/news-resources/).
-
-Thanks to [Petrák Josef](https://www.linkedin.com/in/jspetrak/) for curating the
-list!
+[News, Mentions & Resources](https://osdm.io/news-resources/). Big thank you to
+[Petrák Josef](https://www.linkedin.com/in/jspetrak/) for curating the list!
