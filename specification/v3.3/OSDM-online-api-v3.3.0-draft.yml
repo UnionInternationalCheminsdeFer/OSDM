@@ -4509,6 +4509,7 @@ components:
       in: header
       description:
         The x-accept-namespace HTTP header indicates the URN namespace that the client prefers. The provider uses content-negotiation to apply the corresponding namespace(s) where applicable.
+      example: x_swe, uic, iata
       schema:
         type: string
 
