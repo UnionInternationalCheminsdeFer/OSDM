@@ -33,3 +33,7 @@ License. Copyright by [UIC](https://www.uic.org).
 
 These [background information](../background) give insight into the birth of
 OSDM.
+
+## News
+
+You can find list of [news, mentions and resource](../news-resources) to follow the latest development of the standard.
