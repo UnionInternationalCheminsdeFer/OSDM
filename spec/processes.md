@@ -534,6 +534,8 @@ that last name and first name are set to proceed`RequestedInformation` would be
 
 `passengerSpecifications[<uuid>].detail.firstName AND passengerSpecifiations[<uuid>].detail.lastName`
 
+The concept of *leading passenger* is also expressed using such requested information. Though the API doesn't include boolean indicator which passenger is the leading one, the provider system will identify the first eligible one (based on age or other business rules) and request necessary information using the `RequestedInformation` pattern. Removing this passenger during partial refund or exchange may be impossible in the aftersale if none other passenger is eligible for this role, or system doesn't support change of the leading passenger.
+
 Another example, if on top of first and last names, at least one email or one
 phone number is needed:
 
