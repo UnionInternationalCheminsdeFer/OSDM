@@ -5151,7 +5151,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         offers:
           type: array
           items:
@@ -5959,7 +5964,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         bookedOffers:
           type: array
           items:
@@ -6032,7 +6042,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         bookedOffers:
           type: array
           items:
@@ -6043,7 +6058,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         bookedOffer:
           $ref: '#/components/schemas/BookedOffer'
           deprecated: true
@@ -6221,7 +6241,12 @@ components:
         - events
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         events:
           type: array
           items:
@@ -6365,7 +6390,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         booking:
           $ref: '#/components/schemas/Booking'
 
@@ -6455,7 +6485,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         bookingSearchResults:
           type: array
           items:
@@ -6554,7 +6589,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         bookingSplitResult:
           $ref: '#/components/schemas/BookingSplitResult'
 
@@ -6657,7 +6697,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         cancelFulfillmentOffers:
           type: array
           items:
@@ -6693,7 +6738,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         cancelFulfillmentsOffer:
           $ref: '#/components/schemas/CancelFulfillmentsOffer'
 
@@ -6978,7 +7028,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         layouts:
           type: array
           items:
@@ -7047,7 +7102,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         coachLayout:
           $ref: '#/components/schemas/CoachLayout'
 
@@ -7272,7 +7332,12 @@ components:
         complaint:
           $ref: '#/components/schemas/Complaint'
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
 
     Condition:
       type: object
@@ -7667,7 +7732,12 @@ components:
         - documents
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         documents:
           type: array
           items:
@@ -7983,7 +8053,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         exchangeOffers:
           type: array
           items:
@@ -8088,7 +8163,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         exchangeOperation:
           $ref: '#/components/schemas/ExchangeOperation'
 
@@ -8570,7 +8650,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         fulfillments:
           type: array
           items:
@@ -8831,7 +8916,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         fulfillment:
           $ref: '#/components/schemas/Fulfillment'
 
@@ -9899,7 +9989,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         offers:
           type: array
           items:
@@ -10207,7 +10302,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         onHoldOffer:
           $ref: '#/components/schemas/OnHoldOffer'
 
@@ -10438,7 +10538,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         passenger:
           $ref: '#/components/schemas/Passenger'
 
@@ -10727,7 +10832,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         availablePlaces:
           type: array
           items:
@@ -10738,7 +10848,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         vehicleAvailability:
           $ref: '#/components/schemas/PlaceAvailability'
 
@@ -10747,8 +10862,13 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warning:
+        warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         vehicleAvailabilities:
           type: array
           items:
@@ -10890,7 +11010,12 @@ components:
         - places
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         places:
           type: array
           items:
@@ -11121,6 +11246,89 @@ components:
           type: string
           format: uri
           nullable: true
+        pointers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProblemPointer'
+            nullable: true
+          minItems: 0
+
+    ProblemPointer:
+      type: object
+      additionalProperties: false
+      description: |
+        Problem Details for HTTP APIs (RFC 7807) defines a 'problem detail' as a way
+        to carry machine-readable details of errors in a HTTP response to avoid
+        the need to define new error response formats for HTTP APIs.
+        See: https://tools.ietf.org/html/rfc7807
+      properties:
+        code:
+          description: |
+            optional in version 3.1, will be made mandatory in upcoming releases
+          type: string
+          nullable: true
+        type:
+          description: |
+            An absolute URI that identifies the problem type. When dereferenced,
+            it SHOULD provide human-readable documentation for the problem type
+            (e.g., using HTML).
+          type: string
+          format: uri
+          nullable: true
+          default: 'about:blank'
+          example: https://example.com/probs/passenger-too-young
+        title:
+          description: |
+            A short, summary of the problem type. Written in English and readable
+            for engineers (usually not suited for non technical stakeholders and
+            not localized);
+          type: string
+          nullable: true
+          example: Service Unavailable
+        status:
+          description: |
+            The HTTP status code generated by the origin server for this occurrence
+            of the problem.
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 599
+          nullable: true
+          example: 503
+        detail:
+          description: |
+            A human readable explanation specific to this occurrence
+            of the problem.
+          type: string
+          nullable: true
+          example: Connection to database timed out
+        instance:
+          description: |
+            An absolute URI that identifies the specific occurrence of the problem.
+          type: string
+          format: uri
+          nullable: true
+        requestPointer:
+          description: |
+            A pointer to the attribute in the request for the problem.
+          type: string
+          nullable: true
+          example:
+            "#/offers[1]/placeSelections[1]/reservationId"
+        responsePointer:
+          description: |
+            A pointer to the attribute in the response for the problem.
+          type: string
+          nullable: true
+          example:
+            "#/booking/bookedOffers[4]/reservations[1]/id"
+        originator:
+          description: |
+            Identifier to the origin server for this occurrence of the problem.
+          type: string
+          nullable: true
+          example:
+            IMS1
 
     Product:
       type: object
@@ -11287,7 +11495,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         products:
           description: |
             The list of all products available to the caller.
@@ -11397,7 +11610,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         purchaser:
           $ref: '#/components/schemas/Purchaser'
 
@@ -11479,7 +11697,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         reductionCardTypes:
           type: array
           items:
@@ -11647,7 +11870,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         refundOffers:
           type: array
           items:
@@ -11709,7 +11937,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         refundOffer:
           $ref: '#/components/schemas/RefundOffer'
 
@@ -11961,7 +12194,12 @@ components:
         reimbursement:
           $ref: '#/components/schemas/Reimbursement'
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
 
     ReimbursementStatus:
       type: string
@@ -12032,7 +12270,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         releaseOffers:
           type: array
           items:
@@ -12070,7 +12313,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         releaseOffer:
           $ref: '#/components/schemas/ReleaseOffer'
 
@@ -13234,7 +13482,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         travelAccount:
           $ref: '#/components/schemas/AbstractTravelAccount'
 
@@ -13517,7 +13770,12 @@ components:
         - id
       properties:
         warning:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         id:
           type: string
           nullable: false
@@ -13789,7 +14047,12 @@ components:
         - trip
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         trip:
           $ref: '#/components/schemas/Trip'
 
@@ -14212,7 +14475,7 @@ components:
           items:
             $ref: '#/components/schemas/Warning'
           minItems: 1
-
+    
     Zone:
       type: object
       additionalProperties: false
@@ -14259,7 +14522,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         zones:
           type: array
           items:
