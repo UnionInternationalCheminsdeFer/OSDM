@@ -12062,6 +12062,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentId'
+        releaseSpecifications:
+          description: |
+            To do a partial release repeat the fulfillmentIds affected and point out what to release
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundSpecification'            
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
 
