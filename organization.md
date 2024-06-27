@@ -28,7 +28,7 @@ A specification as a **product** which is managed as follows:
   (ETT)** representatives.
 
 - The **OSDM executive committee** (Chair:
-  [Marc Guigon](https://www.linkedin.com/in/marcguigon/) &
+  [Bertrand Minary](https://www.linkedin.com/in/bertrand-minary/) &
   [Vittorio Carta](https://www.linkedin.com/in/vittorio-carta-mba-0b90b728/))
   prioritizes the backlog based on the value for the **railway customer** and
   the **railway sector** as a whole. The committee is a **fair representation**
