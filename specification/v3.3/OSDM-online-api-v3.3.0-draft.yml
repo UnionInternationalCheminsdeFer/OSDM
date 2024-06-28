@@ -11195,10 +11195,10 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Problem Details for HTTP APIs (RFC 7807) defines a 'problem detail' as a way
+        Problem Details for HTTP APIs (RFC 9547) defines a 'problem detail' as a way
         to carry machine-readable details of errors in a HTTP response to avoid
         the need to define new error response formats for HTTP APIs.
-        See: https://tools.ietf.org/html/rfc7807
+        See: https://tools.ietf.org/html/rfc9547
       properties:
         code:
           description: |
@@ -11257,10 +11257,10 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Problem Details for HTTP APIs (RFC 7807) defines a 'problem detail' as a way
+        Problem Details for HTTP APIs (RFC 9547) defines a 'problem detail' as a way
         to carry machine-readable details of errors in a HTTP response to avoid
         the need to define new error response formats for HTTP APIs.
-        See: https://tools.ietf.org/html/rfc7807
+        See: https://tools.ietf.org/html/rfc9547
       properties:
         code:
           description: |
