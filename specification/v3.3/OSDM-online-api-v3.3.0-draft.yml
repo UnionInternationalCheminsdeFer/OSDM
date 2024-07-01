@@ -4701,12 +4701,7 @@ components:
           $ref: '#/components/schemas/Price'
         refundAmount:
           $ref: '#/components/schemas/Price'
-          description: Amount refunded or to be refunded to the purchaser depending on the status of the booking Part
-        refundFeeRefs:
-          type: array
-          items:
-            $ref: '#/components/schemas/BookingPartReference'
-          description: References to applied after sales fee(s)
+          description: Amount refunded or to be refunded to the purchaser depending on the product conditions and status of the booking Part
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         summaryProductId:
@@ -5614,6 +5609,12 @@ components:
         - 'TRIP'
         - 'OFFERPART'
 
+    TransactionContextType:
+      type: string
+      x-extensible-enum:
+        - 'SALES'
+        - 'AFTER_SALES'
+
     AppliedPassengerType:
       type: object
       additionalProperties: false
@@ -5919,11 +5920,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fee'
-        refundFees:
-          type: array
-          items:
-            $ref: '#/components/schemas/Fee'
-          description: Fee(s) applied by after sales
         fares:
           type: array
           items:
@@ -6277,6 +6273,13 @@ components:
         - 'EXCHANGE_ONGOING'
         - 'EXCHANGED'
         - 'ERROR'
+
+    FeeStatus:
+      type: string
+      enum:
+        - 'PREBOOKED'
+        - 'CONFIRMED'
+        - 'REFUNDED'
 
     BookingPartSummary:
       type: object
@@ -8433,6 +8436,10 @@ components:
           $ref: '#/components/schemas/Price'
         applicability:
           $ref: '#/components/schemas/ApplicabilityType'
+        transactionContext:
+          $ref: '#/components/schemas/TransactionContextType'
+        status:
+          $ref: '#/components/schemas/FeeStatus'
         distributorBookingRef:
           description: |
             reference to the booking in the downstream distributor system
