@@ -6,6 +6,9 @@ permalink: /news-resources/
 
 ## News, Mentions & Resources
 
+- 05.07.2024
+  [Mia-Platform](https://mia-platform.eu/blog/open-sales-distribution-model-osdm/)
+  _Discovering OSDM: A Comprehensive Guide to Understanding and Implementing Data Standards_
 - 06.06.2024
   [Welt](https://www.welt.de/reise/nah/article251491844/Mit-der-Bahn-ins-Ausland-Das-europaweite-Ticket-kommt.html)
   _Endlich kommt das europaweite Zugticket_
