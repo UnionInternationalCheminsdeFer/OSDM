@@ -9062,7 +9062,7 @@ components:
       additionalProperties: false
       description: |
         Applied passenger types and reductions per passenger, per offerpart, booking part and per part of the trip. 
-        Passengers might be omitted in case the reduction aplies for theentire booking part.
+        Passengers might be omitted in case the reduction applies to the complete booking part.
       required:
         - grantedAmount
         - description
