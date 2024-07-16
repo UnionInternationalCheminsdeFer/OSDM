@@ -11248,6 +11248,10 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/BookingPartReference'
+            graphicalReservationSupported:
+              type: boolean
+              nullable: true
+              default: false
 
     ReservationGroup:
       type: object
