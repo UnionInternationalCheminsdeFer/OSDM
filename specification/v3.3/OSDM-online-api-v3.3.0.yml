@@ -27,6 +27,9 @@ servers:
   - url: https://osdm-5.platform.bileto.zone/api
     description: |
       Bileto Sandbox (osdm.cz)
+  - url: https://benerail-stg-apim.azure-api.net
+    description: |
+      benerail Sandbox
 
 tags:
   - name: Places
@@ -1263,7 +1266,7 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes a reservation from a booking in case the reservation was not yet cconfirmed. On confirmed reservations use the refund.
+      summary: Removes a reservation from a booking in case the reservation was not yet confirmed. On confirmed reservations use the refund.
       operationId: deleteBookingBookedOffersReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1383,7 +1386,7 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes an ancillary from a booking in case the ancillary is not jet confirmed. On confirmed anxillaries usethe refund.
+      summary: Removes an ancillary from a booking in case the ancillary is not jet confirmed. On confirmed ancillaries use the refund.
       operationId: deleteBookingBookedOffersAncillary
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1439,7 +1442,7 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes an admission from a booking. In case the admission is not confirmed. On confiremd admission use the refund.
+      summary: Removes an admission from a booking. In case the admission is not confirmed. On a confirmed admission use the refund.
       description: |
         Removes an admission from pre-booked booking.It is up to the provider
         to change or remove dependent bookedOfferParts or to reject the request.
@@ -5393,7 +5396,9 @@ components:
           default: false
 
     AfterSalesOverrideDetails:
-      description: in case initial after sales conditions have been overridden this object provides details on the origianl conditions and an explanation text for the customer
+      description: | 
+        If initial after sales conditions have been overwritten this object provides details on the original
+        conditions and an explanation text for the customer
       type: object
       properties:
         initialAftersalesConditions:
@@ -6142,15 +6147,15 @@ components:
           $ref: '#/components/schemas/Purchaser'
         provisionalPrice:
           description: |
-             price of all unconfiremed prebooked parts in the booking
+            Price of all unconfirmed pre-booked parts in the booking
           $ref: '#/components/schemas/Price'
         provisionalRefundAmount:
           description: |
-             sum of the refund amounts of all unconfirmed prebooked refunds and exchanges
+            Sum of the refund amounts of all unconfirmed pre-booked refunds and exchanges
           $ref: '#/components/schemas/Price'
         confirmedPrice:
           description: |
-             sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts.
+            Sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts.
           $ref: '#/components/schemas/Price'
         bookedOffers:
           type: array
@@ -6535,11 +6540,11 @@ components:
           nullable: false
         provisionalPrice:
           description: |
-             price of all unconfiremed prebooked parts in the booking
+             price of all unconfirmed pre-booked parts in the booking
           $ref: '#/components/schemas/Price'
         provisionalRefundAmount:
           description: |
-             sum of the refund amounts of all unconfirmed prebooked refunds and exchanges
+             sum of the refund amounts of all unconfirmed pre-booked refunds and exchanges
           $ref: '#/components/schemas/Price'
         confirmedPrice:
           description: |
@@ -9059,7 +9064,7 @@ components:
       additionalProperties: false
       description: |
         Applied passenger types and reductions per passenger, per offerpart, booking part and per part of the trip. 
-        Passengers might be omitted in case the reduction aplies for theentire booking part.
+        Passengers might be omitted in case the reduction applies to the complete booking part.
       required:
         - grantedAmount
         - description
