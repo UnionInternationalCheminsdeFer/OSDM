@@ -5618,6 +5618,7 @@ components:
         - 'BOOKING'
         - 'TRIP'
         - 'OFFERPART'
+        - 'SEAT_SELECTION' :  (https://osdm.io/spec/processes/#SeatSelectionFee)
 
     TransactionContextType:
       type: string
@@ -5755,8 +5756,11 @@ components:
             $ref: '#/components/schemas/PlacePreferenceGroup'
         graphicalReservation:
           description: |
-            graphical reservation is supported, interface type 'NO','UIC_918',..
+            graphical reservation is supported, interface type 'WITH_FEE', 'NO', (https://osdm.io/spec/processes/#SeatSelectionFee)
           type: string
+          x-extensible-enum:
+             - 'WITH_FEE'
+             - 'NO'
           nullable: true
 
     BackOfficeStatus:
@@ -7114,6 +7118,8 @@ components:
           $ref: '#/components/schemas/RemarkType'
         coords:
           $ref: '#/components/schemas/LayoutCoordinates'
+        selectionFee:
+          $ref: '#/components/schemas/SelectionFee'          
 
     CoachLayoutResponse:
       type: object
@@ -12409,7 +12415,13 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/BookingPartReference'
+            availablePlacePreferences:
+              description: options for place selection in case the place selection is made after the pre-booking.
+              type: array
+              items:
+                $ref: '#/components/schemas/AvailablePlacePreferences'
             graphicalReservationSupported:
+              description: more detailed information on options for place selection and possible fees are part of availablePlacePreferences
               type: boolean
               nullable: true
               default: false
@@ -12796,6 +12808,15 @@ components:
         placeNumber:
           type: string
           nullable: false
+
+    SelectionFee:
+      type: object
+      description: selection fee that will be applied when selecting the place in a graphical seat map. (https://osdm.io/spec/processes/#SeatSelectionFee)
+      properties:
+        price:
+          $ref: '#/components/schemas/Price'
+      required:
+        - price
 
     ServiceBrandCode:
       type: string
