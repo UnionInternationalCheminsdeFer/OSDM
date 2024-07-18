@@ -11741,6 +11741,12 @@ components:
         code:
           type: string
           nullable: false
+        shortCode:
+          description:  |
+            reduction card code to be used in bar codes. The code is defined within
+            the context of the issuer and is required to be very short (usually 1-4 positions).
+            The code is used in ticket bar codes to indicate required checks of this reduction card during travel.
+          type: string          
         issuer:
           $ref: '#/components/schemas/CompanyRef'
         name:
