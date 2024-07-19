@@ -154,6 +154,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -203,6 +205,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -258,6 +262,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -307,6 +313,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -378,6 +386,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -456,6 +466,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -507,6 +519,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -565,6 +579,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -619,6 +635,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -679,6 +697,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -727,6 +747,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -787,6 +809,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -853,6 +877,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -906,6 +932,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -965,6 +993,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1025,6 +1055,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1084,6 +1116,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1133,6 +1167,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1190,6 +1226,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1254,6 +1292,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1310,6 +1350,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1374,6 +1416,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1430,6 +1474,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1490,6 +1536,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1544,6 +1592,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1608,6 +1658,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1666,6 +1718,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1717,6 +1771,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1767,6 +1823,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1814,6 +1872,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1871,6 +1931,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1928,6 +1990,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1994,6 +2058,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2056,6 +2122,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2110,6 +2178,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2172,6 +2242,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2230,6 +2302,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2292,6 +2366,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2362,6 +2438,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2414,6 +2492,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2475,6 +2555,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2531,6 +2613,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2601,6 +2685,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2653,6 +2739,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2716,6 +2804,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2776,6 +2866,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2846,6 +2938,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2897,6 +2991,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2964,6 +3060,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3018,6 +3116,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3093,6 +3193,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3162,6 +3264,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3214,6 +3318,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3262,6 +3368,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3318,6 +3426,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3375,6 +3485,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3430,6 +3542,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3487,6 +3601,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3547,6 +3663,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3610,6 +3728,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3667,6 +3787,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3725,6 +3847,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3772,6 +3896,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3832,6 +3958,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3892,6 +4020,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -3959,6 +4089,8 @@ paths:
           $ref: '#/components/responses/ConflictResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -4023,6 +4155,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -4092,6 +4226,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -4148,6 +4284,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -4237,6 +4375,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -4308,6 +4448,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -4366,6 +4508,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -4427,6 +4571,8 @@ paths:
           $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -4621,6 +4767,14 @@ components:
     ServiceUnavailableResponse:
       description: |
         Service Unavailable (503)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+
+    TooManyRequestsResponse:
+      description: |
+        Too Many Requests (429)
       content:
         application/problem+json:
           schema:
