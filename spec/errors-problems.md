@@ -18,6 +18,7 @@ The following standard HTTP error codes are used in the specification:
 | `404`          | Not found             |
 | `405`          | Method not allowed    |
 | `409`          | Conflict              |
+| `429`          | Too many requests     |
 | `500`          | Internal server error |
 | `501`          | Not implemented       |
 | `503`          | Service unavailable   |
@@ -107,6 +108,9 @@ implementations:
 | `UNKNOWN_ERROR`           | Unexpected or unspecified error occurred                                                      |
 | `PROPERTY_SUBSTITUTED`    | Requested property is not available and is substituted. Check the response for the substitute |
 | `PARTIAL_SUCCESS`         | The request could not be fully processed and is partially processed                           |
+| `SERVICE_UNAVAILABLE`     | The service is currently not available                                                        |
+| `UNAUTHORIZED`            | Client is no authorized                                                                       |
+
 
 The list can be extended by an implementor but at least these errors must be
 captured and they must be presented with the codes listed here above.
