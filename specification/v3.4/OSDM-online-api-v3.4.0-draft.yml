@@ -5618,7 +5618,7 @@ components:
         - 'BOOKING'
         - 'TRIP'
         - 'OFFERPART'
-        - 'SEAT_SELECTION' :  (https://osdm.io/spec/processes/#SeatSelectionFee)
+        - 'SEAT_SELECTION' :  (https://osdm.io/spec/processes/#SeatSelectionFees)
 
     TransactionContextType:
       type: string
@@ -5756,11 +5756,12 @@ components:
             $ref: '#/components/schemas/PlacePreferenceGroup'
         graphicalReservation:
           description: |
-            graphical reservation is supported, interface type 'WITH_FEE', 'NO', (https://osdm.io/spec/processes/#SeatSelectionFee)
+            graphical reservation is supported, interface type 'WITH_FEE', 'NO', (https://osdm.io/spec/processes/#SeatSelectionFees)
           type: string
           x-extensible-enum:
-             - 'WITH_FEE'
-             - 'NO'
+             - 'WITHOUT_FEE' : No additional fees will be added during seat selection. All fees are already linked with the reservation offer or booking
+             - 'WITH_FEE' : Additional selection fees might be applied in the seat selection. In case selection fees are applied this must be indicated here (https://osdm.io/spec/processes/#SeatSelectionFees)
+             - 'NO': No graphical reservation supported
           nullable: true
 
     BackOfficeStatus:
@@ -12811,7 +12812,7 @@ components:
 
     SelectionFee:
       type: object
-      description: selection fee that will be applied when selecting the place in a graphical seat map. (https://osdm.io/spec/processes/#SeatSelectionFee)
+      description: selection fee that will be applied when selecting the place in a graphical seat map. (https://osdm.io/spec/processes/#SeatSelectionFees)
       properties:
         price:
           $ref: '#/components/schemas/Price'
