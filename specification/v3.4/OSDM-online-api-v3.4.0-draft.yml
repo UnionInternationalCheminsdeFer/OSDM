@@ -11747,6 +11747,7 @@ components:
             the context of the issuer and is required to be very short (usually 1-4 positions).
             The code is used in ticket bar codes to indicate required checks of this reduction card during travel.
           type: string          
+          nullable: true
         issuer:
           $ref: '#/components/schemas/CompanyRef'
         name:
