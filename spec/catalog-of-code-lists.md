@@ -28,9 +28,17 @@ rest of the OSDM community. To do so, an OSDM provider should then use the
 following format for the proprietary values it wishes to extend the code set
 with :
 
-urn: X\_<3 letters code for the provider>:<codetype identifier>:<value>
+urn: x\_<ascii alphanumeric letters code for the provider>:<codetype identifier>:<value>
 
 For example: urn: x_zoo:paxtype:OLIPHANT
+
+[RFC 8141 Section 2.1](https://datatracker.ietf.org/doc/html/rfc8141#section-2.1) allows the domain part of the URN to be 30 ASCII alphanumeric letters at maximum including the `x_` prefix. URN treats the domain part as case-insensitive where OSDM mandates it to be always lower case.
+
+### Known proprietary code lists
+
+| Domain | Code List | Description         |
+| ------ | --------- | ------------------- |
+| x_eva  | stn       | HAFAS station codes |
 
 ## Accommodation Type <a name="AccomodationType">
 
