@@ -9717,7 +9717,6 @@ components:
           description: |
             Allows to provide a value to the link, for example id of the targeted resource or displayable representation for the link.
           type: string
-          maxLength: 32768
           format: uri
           nullable: false
         type:
