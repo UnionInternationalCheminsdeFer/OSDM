@@ -7610,7 +7610,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
-          minitems: 1  
+          minItems: 1  
         supportingDocuments:
           type: array
           items:
