@@ -11778,6 +11778,13 @@ components:
           items:
             $ref: '#/components/schemas/ServiceClassType'
           maxItems: 4
+        travelClassTypes:
+          description: |
+            list of travel classes where this card applies
+          type: array
+          items:
+            $ref: '#/components/schemas/TravelClassType'
+          maxItems: 2
         _links:
           description: |
 
@@ -13146,11 +13153,7 @@ components:
         Directly included text in case of online services. Text must be encoded in UTF-8 format.
       required:
         - id
-        - text
       properties:
-        id:
-          type: string
-          nullable: false
         translations:
           type: array
           items:
