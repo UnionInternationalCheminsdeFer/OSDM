@@ -7470,7 +7470,7 @@ components:
           type: string
           format: duration
           nullable: true
-          example: 1800S
+          example: PT10M
         situationFullRefs:
           type: array
           items:
