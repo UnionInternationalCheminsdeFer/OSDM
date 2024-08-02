@@ -13167,8 +13167,11 @@ components:
       description: |
         Directly included text in case of online services. Text must be encoded in UTF-8 format.
       required:
-        - id
+        - text
       properties:
+        id:
+          type: string
+          nullable: false
         translations:
           type: array
           items:
