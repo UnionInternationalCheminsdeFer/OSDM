@@ -11798,7 +11798,7 @@ components:
             list of travel classes where this card applies
           type: array
           items:
-            $ref: '#/components/schemas/TravelClassType'
+            $ref: '#/components/schemas/TravelClass'
           maxItems: 2
         _links:
           description: |
