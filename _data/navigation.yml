@@ -50,8 +50,8 @@
       link: spec/pagination/
     - name: Synchronization
       link: spec/synchronization/
-    - name: Errors & Warnings
-      link: spec/errors-warnings/
+    - name: Errors & Problems
+      link: spec/errors-problems/
     - name: Catalog of Code Lists
       link: spec/catalog-of-code-lists/
     - name: Non-Functional Requirements
