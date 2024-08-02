@@ -3495,14 +3495,14 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /reduction-card-types:
+  /reduction-cards:
     get:
       tags:
         - Master Data
       summary: Returns all reduction card definitions.
       description: |
         returns a collection of reduction card definitions
-      operationId: getReductionCardTypes
+      operationId: getReductionCards
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -3521,7 +3521,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReductionCardTypeCollectionResponse'
+                $ref: '#/components/schemas/ReductionCardCollectionResponse'
           headers:
             Cache-Control:
               schema:
@@ -11721,7 +11721,7 @@ components:
             type:
               $ref: '#/components/schemas/ReductionCardType'
 
-    ReductionCardTypeCollectionResponse:
+    ReductionCardCollectionResponse:
       type: object
       additionalProperties: false
       properties:
@@ -11778,13 +11778,6 @@ components:
           items:
             $ref: '#/components/schemas/ServiceClassType'
           maxItems: 4
-        travelClassTypes:
-          description: |
-            list of travel classes where this card applies
-          type: array
-          items:
-            $ref: '#/components/schemas/TravelClassType'
-          maxItems: 2
         _links:
           description: |
 
@@ -13153,7 +13146,11 @@ components:
         Directly included text in case of online services. Text must be encoded in UTF-8 format.
       required:
         - id
+        - text
       properties:
+        id:
+          type: string
+          nullable: false
         translations:
           type: array
           items:
