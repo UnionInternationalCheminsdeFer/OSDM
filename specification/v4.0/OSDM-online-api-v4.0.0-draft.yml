@@ -3495,14 +3495,14 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /reduction-cards:
+  /reduction-card-types:
     get:
       tags:
         - Master Data
       summary: Returns all reduction card definitions.
       description: |
         returns a collection of reduction card definitions
-      operationId: getReductionCards
+      operationId: getReductionCardTypes
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -3521,7 +3521,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReductionCardCollectionResponse'
+                $ref: '#/components/schemas/ReductionCardTypeCollectionResponse'
           headers:
             Cache-Control:
               schema:
@@ -11721,7 +11721,7 @@ components:
             type:
               $ref: '#/components/schemas/ReductionCardType'
 
-    ReductionCardCollectionResponse:
+    ReductionCardTypeCollectionResponse:
       type: object
       additionalProperties: false
       properties:
