@@ -3237,10 +3237,11 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Complaint'
+              $ref: '#/components/schemas/ComplaintRequest'
       responses:
         '200':
           description: |
@@ -7258,6 +7259,15 @@ components:
         serviceClass:
           $ref: '#/components/schemas/ServiceClassType'
 
+    ComplaintRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - customerComplaint
+      properties:
+        customerComplaint:
+           $ref: '#/components/schemas/CustomerComplaint'
+
     Complaint:
       type: object
       additionalProperties: false
@@ -7580,6 +7590,10 @@ components:
     CustomerComplaint:
       type: object
       additionalProperties: false
+      required:
+        - applicationTime
+        - journeyDetails
+        - affectedPassengers
       description: |
         complaint details provided by the passengers
       properties:
@@ -7597,6 +7611,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
+          minItems: 1  
         supportingDocuments:
           type: array
           items:
