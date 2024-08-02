@@ -3237,6 +3237,7 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
