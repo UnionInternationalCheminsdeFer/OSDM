@@ -7120,8 +7120,6 @@ components:
           $ref: '#/components/schemas/RemarkType'
         coords:
           $ref: '#/components/schemas/LayoutCoordinates'
-        selectionFee:
-          $ref: '#/components/schemas/SelectionFee'          
 
     CoachLayoutResponse:
       type: object
@@ -10971,6 +10969,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceProperty'
+        selectionFee:
+          $ref: '#/components/schemas/SelectionFee'                  
 
     PlacePreSelection:
       type: object
