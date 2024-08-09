@@ -5227,8 +5227,6 @@ components:
               type: string
               nullable: true
               example: 7
-            ref:
-              $ref: '#/components/schemas/AddressRef'
 
     AddressRef:
       description: |
@@ -8467,8 +8465,6 @@ components:
               items:
                 $ref: '#/components/schemas/StationSet'
               minItems: 1
-            ref:
-              $ref: '#/components/schemas/FareConnectionPointRef'
 
     FareConnectionPointRef:
       description: |
@@ -10819,6 +10815,10 @@ components:
           nullable: true
         geoPosition:
           $ref: '#/components/schemas/GeoPosition'
+        ref:
+          description: |
+            Reference to another a place, e.g. to link address information. Provided by OJP.
+          $ref: '#/components/schemas/PlaceRef'
         _links:
           description: |
 
@@ -11140,8 +11140,6 @@ components:
                 id of the Point of Interest.
               type: string
               nullable: false
-            ref:
-              $ref: '#/components/schemas/PointOfInterestRef'
 
     PointOfInterestCategory:
       type: object
@@ -13092,8 +13090,6 @@ components:
           required:
             - name
           properties:
-            ref:
-              $ref: '#/components/schemas/StopPlaceRef'
             name:
               description: |
                 Name of this stop place for use in passenger information.
