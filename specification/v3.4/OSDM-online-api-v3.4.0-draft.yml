@@ -9002,6 +9002,7 @@ components:
       description: |
         The gender of the passenger, which is important in the case of night trains.
       type: string
+      nullable: true
       enum:
         - 'MALE'
         - 'FEMALE'
