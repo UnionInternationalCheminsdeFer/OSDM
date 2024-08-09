@@ -1,0 +1,78 @@
+---
+layout: page
+title: On Demand Services
+hide_hero: true
+permalink: /spec/processes/
+---
+
+## Table of contents
+
+1. [Introduction](#introduction)
+2. [Use Cased](#usecases)
+
+## Introduction <a name="introduction">
+
+
+## Use Cases <a name="usecases">
+
+### find services
+
+search for ContinuousServices by:
+
+     - JourneyId  (from Trip)
+     - bookingId (context of a booking)
+     - passengerRef  (multiple ones in case of taxi, self driving taxi)
+     - BookingPartId of a previous booking (special price as add on to booked timed services, ..)
+     - geo-coordinate of requested pick-up place
+     - geo-coordinate of requestor
+
+    reply: list of available Continuous Services
+       per service:
+           id
+           description
+           available
+           available for blocking
+           fee for blocking
+           time limit for blocking
+           allocation procedure description
+           geo-location of the service
+           time to arrival at pick-up-place (taxi,..)
+           alternative pick-up-place
+
+### block service
+
+block ContinuousService by id
+           return ContinuousServiceUsage:
+              id
+              usage procedure description
+              descrition on end of usage
+              credentials to start the usage  (e.g. nfc-enabled pkpass, ...)
+              time limit for start of usage
+
+### start and end usage
+
+start usage on continuous service usage by id
+          return ContinuousServiceUsage: 
+              usage procedure description
+              descrition on end of usage        
+    
+end usage on continuous service usage by id
+          request:
+             EndUsageRequest
+                id
+                image of parking situation
+          return ContinuousServiceUsage 
+             status
+             refund of unused prepayed amount
+
+get usage of continuous service
+         return ContinuousServiceUsage 
+               status
+               amount to pay
+               remaining amount for prepayed usage
+               time to arrival at pick-up-place (taxi,..)
+
+
+
+
+
