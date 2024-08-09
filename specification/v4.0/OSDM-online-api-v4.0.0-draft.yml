@@ -7256,6 +7256,8 @@ components:
           $ref: '#/components/schemas/TravelClass'
         serviceClass:
           $ref: '#/components/schemas/ServiceClassType'
+        selectionFee:
+          $ref: '#/components/schemas/SelectionFee'               
 
     ComplaintRequest:
       type: object
