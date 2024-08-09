@@ -7255,6 +7255,8 @@ components:
           $ref: '#/components/schemas/TravelClass'
         serviceClass:
           $ref: '#/components/schemas/ServiceClassType'
+        selectionFee:
+          $ref: '#/components/schemas/SelectionFee'               
 
     Complaint:
       type: object
@@ -10946,7 +10948,7 @@ components:
           $ref: '#/components/schemas/AvailabilityStatus'
         reservationRefs:
           description: |
-            references to the reservations for which this place nca be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+            references to the reservations for which this place can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
           type: array
           items:
             type: string
