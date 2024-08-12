@@ -176,6 +176,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
       requestBody:
+        required: true
         description: |
           request for place
         content:
@@ -280,6 +281,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
       requestBody:
+        required: true
         description: |
           request for trips
         content:
@@ -476,6 +478,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -820,6 +823,7 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -932,6 +936,7 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -1966,7 +1971,7 @@ paths:
             type: string
 
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:
@@ -2685,6 +2690,7 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -3129,6 +3135,7 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -3237,6 +3244,7 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -3348,6 +3356,7 @@ paths:
             type: string
             format: uuid
       requestBody:
+        required: true
         content:
           application/json:
             schema:
