@@ -10,12 +10,19 @@ permalink: /spec/models/
 
 1. [Introduction](#introduction)
 2. [Trips and Places](#TripsAndPlaces)
-2. [Complaint](#complaint)
-3. [Reimbursement](#reimbursement)
-4. [Release](#release)
-5. [Putting Prebooking on Hold](#onHold)
-6. [State Models](#stateModels)
-7. [Ids and References](#ids)
+3. [Offers](#offers)
+4. [Admissions](#admissions)
+5. [Reservations](#reservations)
+6. [Ancillaries](#ancillaries)
+7. [Fees](#fees)
+8. [Products](#products)
+9. [Fares](#fares)
+10. [Complaint](#complaint)
+11. [Reimbursement](#reimbursement)
+12. [Release](#release)
+13. [Putting Prebooking on Hold](#onHold)
+14. [State Models](#stateModels)
+15. [Ids and References](#ids)
 
 
 ## Introduction <a name="introduction">
@@ -100,13 +107,11 @@ way between departure and arrival of each `tripLeg`.
 
 A trip can be in states _planned_, _confirmed_, _changed_ or _cancelled_.
 
-## Offers
+## Offers  <a name="offers">
 
-### Offers Data Model
+### Data Model
 
 ![Offers Data Model](../images/models/offers-data-model.png)
-
-## Main Resources
 
 ### Offers
 
@@ -226,7 +231,7 @@ individual pricing and fulfillment, while they would be grouped in one offer
 part in case of collective pricing and fulfillment. (see examples at the end of
 the offer section)
 
-### Offer Parts - Admissions
+### Offer Parts - Admissions  <a name="admissions">
 
 Admission offer parts represent a travel right, or the entitlement to travel
 onboard a train between the given origin and destination, following the given
@@ -243,7 +248,7 @@ while it is mandatory to pick at least one (it can be the case for night trains
 for example). In this case the reservations will all be qualified as optional,
 but the reservationRequired flag of the admission will be set to true.
 
-### Offer Parts - Reservations
+### Offer Parts - Reservations  <a name="reservations">
 
 Reservation offer parts represent seat or other accommodation type reservation
 on the transportation. It might contain multiple seats/places. In contrast with
@@ -298,7 +303,7 @@ with the current model, two approaches are proposed to implementers:
   counted once and only once, associated with a booking message warning that the
   price update took place.
 
-### Offer Parts - Ancillaries
+### Offer Parts - Ancillaries <a name="ancillaries">
 
 Ancillaries are used to represent non-transport products associated with the
 transportation request submitted. It could be onboard services such as a WIFI
@@ -309,7 +314,7 @@ This offer part is significantly simpler than those instantiating transport
 products, and only has one additional attribute, being the category of the
 ancillary.
 
-### Offer Parts - Fees
+### Offer Parts - Fees  <a name="fees">
 
 Fees are used to represent additional costs for services or products. Offer
 parts of type "fee" can be applied to the booking process (e.g. a service fee),
@@ -319,7 +324,7 @@ parts. In contrast to other offer parts in OSDM, the customer is not free
 whether to choose a fee or not: fees are generated and applied to other services
 or products by the provider system.
 
-### Products
+### Products <a name="products">
 
 Products are the products actually offered by the distributor. Products
 resources contain all the conditions and attributes of the product, regardless
@@ -334,7 +339,7 @@ time-to-live and save significant bandwidth. It also allows for a "product
 catalog" functionality to be built by the API consumer, should he want to do
 that.
 
-### Fares
+### Fares <a name="fares">
 
 Fares should be seen as the counter part of `OfferParts` in case of interactions
 between an distributor and a fare provider. The key difference here is that
