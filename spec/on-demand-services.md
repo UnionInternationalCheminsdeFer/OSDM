@@ -116,7 +116,7 @@ allocate Service Vehicle by id. The Service vehicle gets blocked for othre reque
               credentials to start the usage  (e.g. code, nfc-enabled pkpass, ...)
               time limit to start the usage
 
-DELETE ServiceVehicleUsage by id
+           DELETE ServiceVehicleUsage by id
             
 
 
@@ -151,9 +151,9 @@ end usage on continuous service usage by id
           return ServiceVehicleUsage
              status
              refund of unused prepayed amount
-
-GET ServiceVehicleUsage by id
-    return:   ServiceVehicleUsage including
+                
+         GET ServiceVehicleUsage by id
+             return:   ServiceVehicleUsage including
                       - id
                       - status
                           - WAITING_TO_START
@@ -178,4 +178,4 @@ GET ServiceVehicleUsage by id
 
 
 
-
+--
