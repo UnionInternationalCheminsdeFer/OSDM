@@ -154,27 +154,27 @@ end usage on continuous service usage by id
 
 GET ServiceVehicleUsage by id
     return:   ServiceVehicleUsage including
-              - id
-              - status
-                  - WAITING_TO_START
-                  - STARTED
-                  - CONTINUING
-                  - ENDED
-              - usage procedure description
-              - descrition on end of usage
-              - credentials to start the usage  (e.g. code, nfc-enabled pkpass, ...)
-              - time limit to start the usage
-              - time of starting the usage
-              - time limit to end the usage
-              - time of ending the usage
-              - geo-coordinate to end the usage / place?
-              - descriptions from the ServiceVehicle
-              - bookingPartId                                          --> fulfillments for billing, refund of unused prepayed amount
-              - remaining amount for prepayed usage                    --> in corresponding booking part?
-              - current refund amount if usage ends                    --> in corresponding booking part?
-              - current amount used                                    --> in corresponding booking part?
-              - current xyz used  /in case of fixed time or distance   --> in corresponding booking part?
-              - current xyz left  /in case of fixed time or distance   --> in corresponding booking part?
+                      - id
+                      - status
+                          - WAITING_TO_START
+                          - STARTED
+                          - CONTINUING
+                          - ENDED
+                      - usage procedure description
+                      - descrition on end of usage
+                      - credentials to start the usage  (e.g. code, nfc-enabled pkpass, ...)
+                      - time limit to start the usage
+                      - time of starting the usage
+                      - time limit to end the usage
+                      - time of ending the usage
+                      - geo-coordinate to end the usage / place?
+                      - descriptions from the ServiceVehicle
+                      - bookingPartId                                          --> fulfillments for billing, refund of unused prepayed amount
+                      - remaining amount for prepayed usage                    --> in corresponding booking part?
+                      - current refund amount if usage ends                    --> in corresponding booking part?
+                      - current amount used                                    --> in corresponding booking part?
+                      - current xyz used  /in case of fixed time or distance   --> in corresponding booking part?
+                      - current xyz left  /in case of fixed time or distance   --> in corresponding booking part?
 
 
 
