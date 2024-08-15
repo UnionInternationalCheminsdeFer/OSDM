@@ -25,38 +25,47 @@ A retailer requests a trip offer collection where trhe first mile can be made vi
 ### offer/booking <a name="booking">
 
 Case 1: Additional Offer to an existing booking:
+
+        The additional offer is requested at the end or beginn of the times journey
+
         GET  /bookings/{bookingId}/booked-offers/{bookedOfferId}/additional-offers
 
-        additional descriptions?
+        additional descriptions in offer and booking / product
               - service description (link to images)
               - pricing description
               - allocation procedure description
               - usage procedure description
-              - description on handling accidents/damages/irregularitries     
+              - description on handling accidents/damages/irregularities     
         
 
 Case 2: Initial Offer
 
+        Request an offer 
+        Search for available services nearby before conirming the offer
 
-Case 3: Using booked service and allocate the service later
+
+
+Case 3: book the service and allocate the service later
+
+        search for services referes to booking
 
 
 
 payment alternatives:
 
-  - Fixed price of the booking
+  - Fixed price of the bookin
+            - should work without changes
   - Prepaid booking and refund of unused part
+            - display of amount used and refundable part needed.
   - Post Payment
-  - 
+            - display of amount used needed
     
-
-
 
 
 ### allocate a service <a name="allocation">
 
 
-search for ContinuousServices by:
+search for available ContinuousServices by:
 
      - JourneyId  (from Trip)
      - bookingId (context of a booking or a prebooked service) / offerId (context of an offer without booking)
@@ -101,7 +110,8 @@ block ContinuousService by id
               time limit for start of usage
 
 delete usage by id
-              
+
+refund if allocation fails?
 
 ### start and end usage <a name="usage">
 
