@@ -31,7 +31,7 @@ Case 1: Additional Offer to an existing booking:
         GET  /bookings/{bookingId}/booked-offers/{bookedOfferId}/additional-offers
 
         additional descriptions in offer and booking / product
-              - service description (link to images)
+              - service description (link to images?)
               - pricing description
               - allocation procedure description
               - usage procedure description
@@ -63,6 +63,13 @@ payment alternatives:
   - Post Payment
             - display of amount used needed (indicatedConsumption already defined in bookingPart)
     
+
+### Resources:
+
+ContinuousServuces: just the endpoint to seatch for service vehicles providing the continuous service
+ServiceVehicle: A service vehicle that could ppotentially provide a continuous service
+ServiceVehicleUsage: The acual allocated service vehicle for the continuous service
+
 
 
 ### allocate a service <a name="allocation">
@@ -110,7 +117,7 @@ allocate Service Vehicle by id. The Service vehicle gets blocked for othre reque
            
            return ServiceVehicleUsage:
               id
-              status = blocked
+              status = allocated
               usage procedure description
               descrition on end of usage
               credentials to start the usage  (e.g. code, nfc-enabled pkpass, ...)
@@ -123,6 +130,9 @@ allocate Service Vehicle by id. The Service vehicle gets blocked for othre reque
 notification in case
   - allocation expires
   - allocation is changed (new taxi)
+  - usage ends
+  - usage ends due to missuse (e.g. area restrictions)
+  - usage ends for technical reasons (e.g. battery empty)
 
 refund if allocation fails?
 
@@ -151,6 +161,7 @@ end usage on continuous service usage by id
           return ServiceVehicleUsage
              status
              refund of unused prepayed amount
+             driver tip?
                 
          GET ServiceVehicleUsage by id
              return:   ServiceVehicleUsage including
@@ -162,6 +173,10 @@ end usage on continuous service usage by id
                           - ENDED
                       - usage procedure description
                       - descrition on end of usage
+                      - required technical support
+                         - IMAGE_OF_PARKKING_REQUIRED
+                         - NFC_PKPASS_SUPPORT_REQUIRED
+                         - TIP_OPTION_SUPPORTED
                       - credentials to start the usage  (e.g. code, nfc-enabled pkpass, ...)
                       - time limit to start the usage
                       - time of starting the usage
