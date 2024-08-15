@@ -41,24 +41,24 @@ Case 1: Additional Offer to an existing booking:
 Case 2: Initial Offer
 
         Request an offer 
-        Search for available services nearby before conirming the offer
+        Search for available services nearby before confirming the offer based on offerpartid
 
 
 
 Case 3: book the service and allocate the service later
 
-        search for services referes to booking
+        search for services referes to bookingpart
 
 
 
 payment alternatives:
 
-  - Fixed price of the bookin
+  - Fixed price of the booking
             - should work without changes
   - Prepaid booking and refund of unused part
-            - display of amount used and refundable part needed.
+            - display of amount used and refundable part needed. (indicatedConsumption already defined in bookingPart)
   - Post Payment
-            - display of amount used needed
+            - display of amount used needed (indicatedConsumption already defined in bookingPart)
     
 
 
@@ -67,9 +67,9 @@ payment alternatives:
 
 search for available ContinuousServices by:
 
-     - JourneyId  (from Trip)
+     - JourneyId/trip section  (from Trip)
      - bookingId (context of a booking or a prebooked service) / offerId (context of an offer without booking)
-     - passengerRef  (multiple ones in case of taxi, self driving taxi)
+     - passengerRef  (multiple passengers in case of taxi, self driving shuttle)
      - BookingPartId of a previous booking (special price as add on to booked timed services, ..)
      - geo-coordinate of requested pick-up place
      - geo-coordinate of requestor
@@ -82,7 +82,7 @@ search for available ContinuousServices by:
               - allocation procedure description
               - usage procedure description
               - description on handling accidents/damages/irregularitries       
-       per service:
+       per service vehicle:
            id
            description
               - pricing
@@ -93,37 +93,50 @@ search for available ContinuousServices by:
            fee for allocation
            time limit for blocking
            geo-location of the service
-           time to arrival at pick-up-place (taxi,..)
+           estimated time of arrival at pick-up-place (taxi,..)
            alternative pick-up-place
 
 ### allocate service
 
-block ContinuousService by id
-           post usage
+block ContinuousService by id:
+           POST /DerviceVehicle id 
            
-           return ContinuousServiceUsage:
+           return ServiceVehicleUsage:
               id
               status = blocked
               usage procedure description
               descrition on end of usage
-              credentials to start the usage  (e.g. nfc-enabled pkpass, ...)
-              time limit for start of usage
+              credentials to start the usage  (e.g. code, nfc-enabled pkpass, ...)
+              time limit to start the usage
 
-delete usage by id
+DELETE ServiceVehicleUsage by id
+            
+
+
+notification in case
+  - allocation expires
+  - allocation is changed (new taxi)
 
 refund if allocation fails?
 
+
+
 ### start and end usage <a name="usage">
 
+
 start usage on continuous service usage by id
-          patch usage   
+
+        PATCH ServiceVehicleUsage by id
+          StartUsageRequest
+                  optionally provide credentials (scanned vehicle barcode   
+                  
           return ContinuousServiceUsage: 
               status = in use
               usage procedure description
               descrition on end of usage        
     
 end usage on continuous service usage by id
-          patch usage
+          PATCH ServiceVehicleUsage by id
           request:
              EndUsageRequest
                 id
@@ -132,20 +145,26 @@ end usage on continuous service usage by id
              status
              refund of unused prepayed amount
 
-get usage of continuous service
-         return ContinuousServiceUsage 
-               status
-               amount to pay
-               remaining amount for prepayed usage
-               time to arrival at pick-up-place (taxi,..)
+GET ServiceVehicleUsage by id
+    return:   ServiceVehicleUsage including
+              id
+              status
+                  - WAITING_TO_START
+                  - STARTED
+                  - CONTINUING
+                  - ENDED
+              usage procedure description
+              descrition on end of usage
+              credentials to start the usage  (e.g. code, nfc-enabled pkpass, ...)
+              time limit to start the usage
+              time of starting the usage
+              time limit to end the usage
+              geo-coordinate to end the usage / place?
+              descriptions from the ServiceVehicle
+              bookingPartId --> fulfillments for billing, refund of unused prepayed amount
+              remaining amount for prepayed usage
+              used amount 
 
 
-
-
-## Offer and Booking Process <a name="tompBooking">
-
-| OSDM Service called by the retailer  | TOMP Service(s) called by the distributor | required mappings  | 
-| ------------------------------------ | ----------------------------------------- | ------------------ | 
-|                                      |                                           |                    | 
 
 
