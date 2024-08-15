@@ -21,8 +21,7 @@ permalink: /spec/models/
 11. [Reimbursement](#reimbursement)
 12. [Release](#release)
 13. [Putting Prebooking on Hold](#onHold)
-14. [State Models](#stateModels)
-15. [Ids and References](#ids)
+14. [Ids and References](#ids)
 
 
 ## Introduction <a name="introduction">
@@ -451,7 +450,7 @@ The booking represents the offers that have been selected and turned into a
 booking on request to the provider of the offers.It contains a set of sub
 resources, most of which were encountered in the offer stage. but also adds a
 few specific attributes and information, the most important undoubtedly being
-the booking status (see for the state model below). The booking will indeed
+the booking status (see [state models](/spec/state-models)). The booking will indeed
 evolve over time based on API consumer actions, time elapsed or other business
 events.
 
@@ -610,48 +609,6 @@ the refund amount.
 An unconfirmed booking expires after the time limit of the pre-booking. It is
 possible to ask for an extension of the time limit and the provider might grant
 the extension. He has the option to add a fee for this extension.
-
-## State Models <a name="stateModels">
-
-### Trip State Model
-
-The state `PLANNED` is relevant for trips on touristic trains or if trains only
-run if a certain amount of bookings have been made. If the the trip is
-confirmed, the purchaser can be informed using the webhook API.
-
-![Trip State Model](../images/models/trip-state-model.png)
-
-### Booking State Model
-
-The status applies to the booking parts, no booking state exists.
-
-### Booking Part State Model
-
-![Booking State Model](../images/models/booking-state-model.png)
-
-### Fulfillment State Model
-
-![Fulfillment State Model](../images/models/fulfillment-state-model.png)
-
-### Fulfillment State Model with Activation
-
-In case of multi-journey products, a fulfillment needs to be activated before,
-thus it changes from `AVAILABLE` to `FULFILLED`.
-
-![Fulfillment State Model](../images/models/fulfillment-state-model-with-activation.png)
-
-### Refund State Model
-
-![Refund State Data Model](../images/models/refund-state-model.png)
-
-### Exchange State Model
-
-Values are a subset of the booking status values (see before).
-![Exchange State Data Model](../images/models/exchangeOperation-state-model.png)
-
-### Complaint State Model
-
-![Complaint State Model](../images/models/complaint-state-model.png)
 
 
 ## Ids and References <a name="ids">
