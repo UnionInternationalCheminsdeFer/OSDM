@@ -19,8 +19,17 @@ This page describes the integration of OSDM with TOMP to include on-Demand-Servi
 
 ## Use Cases <a name="useCases">
 
-A retailer requests a trip offer collection where trhe first mile can be made via an On-Demand-Service. The retailer expects a complete offer and the distributor to handle the connection to the provider of the On-Demand-Service.
+A consumer of a trip offer collection where the first mile can be made via an On-Demand-Service. The retailer expects a complete offer and the distributor to handle the connection to the provider of the On-Demand-Service.
 
+The consumer can search for available vehicles that can provide the service. He can select a service which becomes blocked for other consumers. 
+The consumer can start the usage of the service with the allocated vehicle.
+The consumer can end the usage of the service with the vehicle in use.
+
+The providers may have implemented different pricing and payment schemes:
+
+        - prepayed fixed price or included in an overall admission booking part
+        - prepayed with pay per use and a refund on unused time or distance
+        - postpayment with pay per use based on time or distance
 
 ### offer/booking <a name="booking">
 
