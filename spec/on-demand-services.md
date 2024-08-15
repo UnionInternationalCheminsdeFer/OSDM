@@ -193,6 +193,7 @@ end usage on continuous service usage by id
                       - time limit to end the usage
                       - time of ending the usage
                       - geo-coordinate to end the usage / place?
+                      - geo-coordinate of the current location
                       - descriptions from the ServiceVehicle
                       - bookingPartId                                          --> fulfillments for billing, refund of unused prepayed amount
                       - remaining amount for prepayed usage                    --> in corresponding booking part?
