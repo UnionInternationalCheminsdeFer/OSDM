@@ -36,19 +36,22 @@ Case 1: Additional Offer to an existing booking:
               - allocation procedure description
               - usage procedure description
               - description on handling accidents/damages/irregularities     
-        
+
+        find a service vehicle, allocate it, start using it, end using it
 
 Case 2: Initial Offer
 
         Request an offer 
         Search for available services nearby before confirming the offer based on offerpartid
 
+        find a service vehicle, allocate it, start using it, end using it
 
 
 Case 3: book the service and allocate the service later
 
         search for services referes to bookingpart
 
+        find a service vehicle, allocate it, start using it, end using it
 
 
 payment alternatives:
@@ -67,39 +70,43 @@ payment alternatives:
 
 search for available ContinuousServices by:
 
-     - JourneyId/trip section  (from Trip)
-     - bookingId (context of a booking or a prebooked service) / offerId (context of an offer without booking)
-     - passengerRef  (multiple passengers in case of taxi, self driving shuttle)
-     - BookingPartId of a previous booking (special price as add on to booked timed services, ..)
-     - geo-coordinate of requested pick-up place
-     - geo-coordinate of requestor
+    PATCH continuousServices
+             ContinuousServiceVediclesSearcRequest:
+                     - JourneyId/trip section  (from Trip)
+                     - bookingId (context of a booking or a prebooked service) / offerId (context of an offer without booking)
+                     - passengerRef  (multiple passengers in case of taxi, self driving shuttle) or number of passengers?
+                     - BookingPartId of a previous booking (special price as add on to booked timed services, ..)
+                     - geo-coordinate of requested pick-up place
+                     - geo-coordinate of requestor
 
-    reply: list of available Continuous Services
-       generic
-           description
-              - service description (link to images)
-              - pricing description
-              - allocation procedure description
-              - usage procedure description
-              - description on handling accidents/damages/irregularitries       
-       per service vehicle:
-           id
-           description
-              - pricing
-              - allocation procedure description
-              - usage procedure description
-              - description on handling accidents/damages/irregularitries
-           available but not close enough for allocation / available for allocation
-           fee for allocation
-           time limit for blocking
-           geo-location of the service
-           estimated time of arrival at pick-up-place (taxi,..)
-           alternative pick-up-place
+            reply: list of available Continuous Service Vehicles
+                      - description
+                              - service description (link to images)
+                              - pricing description
+                              - allocation procedure description
+                              - usage procedure description
+                              - description on handling accidents/damages/irregularitries       
+                      - per service vehicle:
+                           id
+                           description
+                              - pricing
+                              - allocation procedure description
+                              - usage procedure description
+                              - description on handling accidents/damages/irregularitries
+                           available but not close enough for allocation / available for allocation
+                           fee for allocation
+                           time limit for blocking
+                           geo-location of the service vehicle
+                           estimated time of arrival at pick-up-place (taxi,..)
+                           alternative pick-up-place
 
-### allocate service
+### allocate service vehicle
 
-block ContinuousService by id:
-           POST /DerviceVehicle id 
+allocate Service Vehicle by id. The Service vehicle gets blocked for othre requests and the passenger(s) can start the usage of the vehicle
+
+           POST /ServiceVehicleUsage serviceVehicleId 
+           request:
+              passengerRef(s)
            
            return ServiceVehicleUsage:
               id
@@ -141,7 +148,7 @@ end usage on continuous service usage by id
              EndUsageRequest
                 id
                 image of parking situation
-          return ContinuousServiceUsage 
+          return ServiceVehicleUsage
              status
              refund of unused prepayed amount
 
@@ -159,11 +166,15 @@ GET ServiceVehicleUsage by id
               time limit to start the usage
               time of starting the usage
               time limit to end the usage
+              time of ending the usage
               geo-coordinate to end the usage / place?
               descriptions from the ServiceVehicle
-              bookingPartId --> fulfillments for billing, refund of unused prepayed amount
-              remaining amount for prepayed usage
-              used amount 
+              bookingPartId                                          --> fulfillments for billing, refund of unused prepayed amount
+              remaining amount for prepayed usage                    --> in corresponding booking part?
+              current refund amount if usage ends                    --> in corresponding booking part?
+              current amount used                                    --> in corresponding booking part?
+              current xyz used  /in case of fixed time or distance   --> in corresponding booking part?
+              current xyz left  /in case of fixed time or distance   --> in corresponding booking part?
 
 
 
