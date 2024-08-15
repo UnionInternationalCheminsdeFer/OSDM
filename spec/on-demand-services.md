@@ -183,7 +183,7 @@ end usage on continuous service usage by id
                           - ENDED
                       - usage procedure description
                       - descrition on end of usage
-                      - required technical support
+                      - technical features
                          - IMAGE_OF_PARKKING_REQUIRED
                          - NFC_PKPASS_SUPPORT_REQUIRED
                          - TIP_OPTION_SUPPORTED
