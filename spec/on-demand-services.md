@@ -115,6 +115,7 @@ search for available ContinuousServices by:
                            geo-location of the service vehicle
                            estimated time of arrival at pick-up-place (taxi,..)
                            alternative pick-up-place
+                           estimated price (in case of pay per use)
 
 ### allocate service vehicle
 
