@@ -4490,7 +4490,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/WarningCollection'
+            $ref: '#/components/schemas/ProblemCollection'
 
     ConflictResponse:
       description: |
@@ -4522,7 +4522,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/WarningCollection'
+            $ref: '#/components/schemas/ProblemCollection'
 
     InternalServerErrorResponse:
       description: |
@@ -5091,9 +5091,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -5917,9 +5914,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -5995,9 +5989,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -6011,9 +6002,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -6194,9 +6182,6 @@ components:
       required:
         - events
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -6350,9 +6335,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -6445,9 +6427,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -6549,9 +6528,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -6657,9 +6633,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -6698,9 +6671,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -6988,9 +6958,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -7062,9 +7029,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -7297,9 +7261,6 @@ components:
       properties:
         complaint:
           $ref: '#/components/schemas/Complaint'
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -7709,9 +7670,6 @@ components:
       required:
         - documents
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -7735,8 +7693,10 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         document:
           $ref: '#/components/schemas/Document'
 
@@ -8030,9 +7990,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -8140,9 +8097,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -8629,9 +8583,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -8895,9 +8846,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -9969,9 +9917,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -10011,7 +9956,7 @@ components:
 
         Individual offer mode means that each passenger is given individual admissions and reservations  to allow to refund individual passengers booked in a single booking.
 
-        If collective mode is not supported,  reverts back to the other mode and provides warning instead.
+        If collective mode is not supported, reverts back to the other mode and provides problem with warning message instead.
 
       type: string
       enum:
@@ -10282,9 +10227,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -10518,9 +10460,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -10810,9 +10749,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -10826,9 +10762,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -10841,9 +10774,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -10991,9 +10921,6 @@ components:
       required:
         - places
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -11232,6 +11159,16 @@ components:
             $ref: '#/components/schemas/ProblemPointer'
             nullable: true
           minItems: 0
+
+    ProblemCollection:
+      type: object
+      required:
+        - problems
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
 
     ProblemPointer:
       type: object
@@ -11474,9 +11411,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -11513,8 +11447,10 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         product:
           $ref: '#/components/schemas/Product'
 
@@ -11589,9 +11525,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -11676,9 +11609,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -11863,9 +11793,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -11930,9 +11857,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -12185,15 +12109,12 @@ components:
       required:
         - reimbursement
       properties:
-        reimbursement:
-          $ref: '#/components/schemas/Reimbursement'
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
             $ref: '#/components/schemas/Problem'
+        reimbursement:
+          $ref: '#/components/schemas/Reimbursement'
 
     ReimbursementStatus:
       type: string
@@ -12263,9 +12184,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -12312,9 +12230,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -13497,9 +13412,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -13785,9 +13697,6 @@ components:
       required:
         - id
       properties:
-        warning:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -14062,9 +13971,6 @@ components:
       required:
         - trip
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
@@ -14437,61 +14343,6 @@ components:
           type: string
           nullable: false
 
-    Warning:
-      type: object
-      additionalProperties: false
-      description: |
-        This element can be used to pass non-blocking information or events,
-        such as a price difference with the initially offered price at booking time.
-        It is inspired on the JSon problem structure.
-      required:
-        - code
-      properties:
-        code:
-          type: string
-          nullable: false
-        type:
-          description: |
-            An absolute URI that identifies the warning type. When dereferenced,
-            it SHOULD provide human-readable documentation for the problem type
-            (e.g., using HTML).
-          type: string
-          format: uri
-          nullable: true
-          default: 'about:blank'
-          example: https://example.com/warns/price-updated
-        detail:
-          description: |
-            A human readable explanation specific to this occurrence of the
-            warning.
-          type: string
-          nullable: true
-          example:
-            The price of the given offer part has been updated during the
-            booking operation
-        instance:
-          description: |
-            An absolute URI that identifies the specific occurrence of the warning.
-          type: string
-          format: uri
-          nullable: true
-          example: offers/offer1234
-
-    WarningCollection:
-      type: object
-      additionalProperties: false
-      description: |
-        List of warnings.
-
-      required:
-        - warnings
-      properties:
-        warnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Warning'
-          minItems: 1
-    
     Zone:
       type: object
       additionalProperties: false
@@ -14537,9 +14388,6 @@ components:
       type: object
       additionalProperties: false
       properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
           items:
