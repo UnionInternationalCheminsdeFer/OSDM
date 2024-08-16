@@ -7137,12 +7137,6 @@ components:
         registrationNumber:
           type: string
           nullable: false
-        legalAddress:
-          $ref: '#/components/schemas/Address'
-          deprecated: true
-          nullable: true
-          description: |
-            Deprecated in favor of `legalPostalAddress`
         legalPostalAddress:
           $ref: '#/components/schemas/PostalAddress'
         taxId:
@@ -7367,10 +7361,6 @@ components:
             Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g., in case of delays or interruptions .
           type: string
           nullable: true
-        address:
-          type: string
-          nullable: true
-          deprecated: true
         postalAddress:
           $ref: '#/components/schemas/PostalAddress'
           nullable: true
@@ -10678,12 +10668,6 @@ components:
           type: string
           deprecated: true
           nullable: true
-        address:
-          $ref: '#/components/schemas/Address'
-          nullable: true
-          deprecated: true
-          description: |
-            Deprecated in favor of `postalAddress`
         postalAddress:
           $ref: '#/components/schemas/PostalAddress'
           nullable: true
