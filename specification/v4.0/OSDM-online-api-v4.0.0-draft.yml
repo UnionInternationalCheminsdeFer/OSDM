@@ -5839,6 +5839,7 @@ components:
         The attribute 'offerSummary' is meaningful at trip-offer-collection response time only.
       required:
         - offerId
+        - products
       properties:
         offerId:
           type: string
@@ -5885,6 +5886,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Product'
+          minItems: 1  
 
     BookedOfferAncillaryRequest:
       type: object
