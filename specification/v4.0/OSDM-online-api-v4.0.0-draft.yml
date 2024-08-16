@@ -6585,11 +6585,11 @@ components:
           nullable: true
         dates:
           description: |
-            dates included in the calendar. In case no dates are provided the range is assumed to be valid. The date-time format is used to provide an offset to UTC per date.
+            dates included in the calendar.
           type: array
           items:
             type: string
-            format: date-time
+            format: date
           nullable: true
         utcOffset:
           description: |
