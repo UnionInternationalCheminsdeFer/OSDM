@@ -7695,10 +7695,10 @@ components:
           type: string
           format: byte
           maxLength: 4194304
-          nullable: true
+          nullable: false
         format:
           $ref: '#/components/schemas/DocumentFormat'
-          nullable: true
+          nullable: false
 
 
     DocumentCollectionResponse:
