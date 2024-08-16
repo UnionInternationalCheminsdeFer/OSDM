@@ -7674,6 +7674,20 @@ components:
           type: string
           format: date-time
           nullable: true
+        documentContent:
+          nullable: true
+          $ref: '#/components/schemas/DocumentContent'
+        type:
+          $ref: '#/components/schemas/DocumentType'
+        scope:
+          $ref: '#/components/schemas/DocumentScope'
+
+    DocumentContent:
+      type: object
+      required:
+        - content
+        - format
+      properties:
         content:
           description: |
             base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
@@ -7685,10 +7699,7 @@ components:
         format:
           $ref: '#/components/schemas/DocumentFormat'
           nullable: true
-        type:
-          $ref: '#/components/schemas/DocumentType'
-        scope:
-          $ref: '#/components/schemas/DocumentScope'
+
 
     DocumentCollectionResponse:
       type: object
