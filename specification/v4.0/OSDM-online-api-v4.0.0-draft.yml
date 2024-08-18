@@ -827,7 +827,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Passenger'
+              $ref: '#/components/schemas/PassengerSpecification'
       responses:
         '200':
           description: |
@@ -940,7 +940,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Purchaser'
+              $ref: '#/components/schemas/PurchaserSpecification'
       responses:
         '200':
           description: |
@@ -10573,12 +10573,6 @@ components:
         - firstName
         - lastName
       properties:
-        preferredLanguage:
-          description: |
-            ISO-639-1 language code
-          type: string
-          deprecated: true
-          nullable: true
         summary:
           description: |
             A human-readable description of the person.
@@ -10606,17 +10600,6 @@ components:
           type: string
           nullable: false
           example: 'Lopez'
-        email:
-          type: string
-          deprecated: true
-          nullable: true
-        phoneNumber:
-          description: |
-            Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g.,
-            in case of interruptions.
-          type: string
-          deprecated: true
-          nullable: true
         postalAddress:
           $ref: '#/components/schemas/PostalAddress'
           nullable: true
