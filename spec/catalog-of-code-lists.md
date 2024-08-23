@@ -28,11 +28,15 @@ rest of the OSDM community. To do so, an OSDM provider should then use the
 following format for the proprietary values it wishes to extend the code set
 with :
 
-urn: x\_<ascii alphanumeric letters code for the provider>:<codetype identifier>:<value>
+urn:
+x\_<ascii alphanumeric letters code for the provider>:<codetype identifier>:<value>
 
 For example: urn: x_zoo:paxtype:OLIPHANT
 
-[RFC 8141 Section 2.1](https://datatracker.ietf.org/doc/html/rfc8141#section-2.1) allows the domain part of the URN to be 30 ASCII alphanumeric letters at maximum including the `x_` prefix. URN treats the domain part as case-insensitive where OSDM mandates it to be always lower case.
+[RFC 8141 Section 2.1](https://datatracker.ietf.org/doc/html/rfc8141#section-2.1)
+allows the domain part of the URN to be 30 ASCII alphanumeric letters at maximum
+including the `x_` prefix. URN treats the domain part as case-insensitive where
+OSDM mandates it to be always lower case.
 
 ### Known proprietary code lists
 
@@ -111,7 +115,7 @@ of by the customer.
 | `EASY_ACCESS`           | Y                      | Y                | Y              | Place with easy access for PRMs                                                                  |                        |
 | `FACE_2_FACE`           | Y                      | Y                | Y              | places face to face (2 seats facing)                                                             | `PLACE_ALIGNMENT`      |
 | `EXCELLENCE`            | Y                      | Y                | Y              | Special Excellence Places (RhB)                                                                  |                        |
-| `FAMILY`                | N                      | Y                | Y              | Places in family area                                                                            | `FAMILY`               |
+| `FAMILY`                | Y                      | Y                | Y              | Places in family area                                                                            | `FAMILY`               |
 | `FRONT_VIEW`            | N                      | Y                | Y              | Seat with front-view                                                                             |                        |
 | `HISTORIC_COACH`        | Y                      | Y                | Y              | Seat in historic coach                                                                           |                        |
 | `INCLUDING_MEAL`        | Y                      | Y                | Y              | Meal at the place is included                                                                    |                        |
