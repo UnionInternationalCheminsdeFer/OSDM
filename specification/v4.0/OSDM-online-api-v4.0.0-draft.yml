@@ -108,8 +108,6 @@ paths:
       operationId: getPlaces
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/ifNoneMatch'
@@ -171,8 +169,6 @@ paths:
       operationId: postPlaces
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
       requestBody:
@@ -220,8 +216,6 @@ paths:
       operationId: getPlacesId
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: placeId
@@ -1104,8 +1098,6 @@ paths:
       operationId: deleteBookingBookedOffersId
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
@@ -1156,8 +1148,6 @@ paths:
       operationId: deleteBookingBookedOffersIdPassengerId
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
@@ -1275,8 +1265,6 @@ paths:
       operationId: deleteBookingBookedOffersReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
@@ -1395,8 +1383,6 @@ paths:
       operationId: deleteBookingBookedOffersAncillary
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
@@ -1455,8 +1441,6 @@ paths:
       operationId: deleteBookingBookedOffersAdmission
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
@@ -1692,8 +1676,6 @@ paths:
       operationId: deleteBookingsId
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
@@ -1894,8 +1876,6 @@ paths:
       operationId: splitBookings
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
@@ -2382,8 +2362,6 @@ paths:
       operationId: deleteRefundOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
@@ -2867,8 +2845,6 @@ paths:
       operationId: deleteCancelFulfillmentOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
@@ -3184,8 +3160,6 @@ paths:
       operationId: deleteBookingsExchangeOperation
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
@@ -3403,8 +3377,6 @@ paths:
       operationId: getCoachLayouts
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: page
@@ -3457,8 +3429,6 @@ paths:
       operationId: getCoachLayoutsLayoutId
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: layoutId
@@ -3514,8 +3484,6 @@ paths:
       operationId: getReductionCardTypes
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
@@ -3572,8 +3540,6 @@ paths:
       operationId: getZones
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
@@ -4104,8 +4070,6 @@ paths:
       operationId: getAvailabilitiesNearby
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: contextId
@@ -4193,8 +4157,6 @@ paths:
       operationId: getAvailabilitiesPreferences
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: contextId
@@ -4262,8 +4224,6 @@ paths:
       operationId: getProducts
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
@@ -4320,8 +4280,6 @@ paths:
       operationId: getProductsId
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
@@ -4615,15 +4573,6 @@ components:
           type: string
           format: date-time
           nullable: false
-        confirmableUntil:
-          deprecated: true
-          description: |
-            confirmationTimeLimit in booking should be used.
-            Date until the booking part needs to be confirmed. Must be provided for a booking part in PREBOOKED stated.
-            For later states, the value is ignored and can be null.
-          type: string
-          format: date-time
-          nullable: false
         validFrom:
           type: string
           format: date-time
@@ -4667,18 +4616,6 @@ components:
           type: string
           description: |
             The unique booking code for the part in the provider system.
-        distributorBookingRef:
-          description: |
-            reference to the booking in the downstream distributor system
-          type: string
-          nullable: true
-          deprecated: true
-        retailerBookingRef:
-          description: |
-            reference to the booking in the downstream distributor system
-          type: string
-          nullable: true
-          deprecated: true
         passengerIds:
           description: |
             Id of the passenger
@@ -4876,11 +4813,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PromotionCode'
-        appliedReductionCardTypes:
-          deprecated: true
-          type: array
-          items:
-            $ref: '#/components/schemas/ReductionCardType'
         regionalValiditySummary:
           $ref: '#/components/schemas/RegionalValiditySummary'
         indicatedConsumption:
@@ -5584,11 +5516,6 @@ components:
           nullable: false
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
-        appliedReductionCardTypes:
-          deprecated: true
-          type: array
-          items:
-            $ref: '#/components/schemas/ReductionCardType'
         appliedReductions:
           type: array
           items:
@@ -5938,13 +5865,6 @@ components:
           items:
             $ref: '#/components/schemas/OfferSelection'
           minItems: 1
-        passengers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Passenger'
-          deprecated: true
-          description: |
-            Existing passengers are linked with the given booking and do not need to be referenced in the request.
         additionalPassengerSpecifications:
           type: array
           items:
@@ -6397,16 +6317,6 @@ components:
           description: reference to the booking in the retailer system
           type: string
           nullable: true
-        distributorBookingRef:
-          description: |
-            reference to the booking in the downstream distributor system
-          type: string
-          nullable: true
-          deprecated: true
-        retailerBookingRef:
-          type: string
-          nullable: true
-          deprecated: true
         fulfillmentId:
           type: string
           nullable: true
@@ -8447,13 +8357,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Condition'
-        productCode:
-          description: |
-            The product code expressed in the provider system (could be a
-            mapping from an even lower-level provider).
-          type: string
-          nullable: true
-          deprecated: true
         productRef:
           type: string
           description: |
@@ -8724,12 +8627,10 @@ components:
     FulfillmentMediaType:
       description: |
         Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
-        Notice:`ALLOCATOR_APP` is deprecated and should not be used anymore. The `ALLOCATOR_APP` type is replaced by the `RETAILER_APP` type. `DISTRIBUTOR_APP` was introduced to distinguish between the different types of apps that can be used to fulfill a booking.
         Values from the [Fulfillment Media Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentMediaType)
         Listed values here are examples.
       type: string
       x-extensible-enum:
-        - 'ALLOCATOR_APP' # deprecated
         - 'DISTRIBUTOR_APP'
         - 'RETAILER_APP'
         - 'FULFILLMENT_PARTS'
