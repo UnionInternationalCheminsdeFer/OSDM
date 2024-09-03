@@ -82,7 +82,6 @@ implementations:
 | Offers              | `OFFER_INVALID_CHARACTERS`                   | A search criteria value contains invalid value or invalid characters      |
 | Offers              | `OFFER_SEARCH_CRITERIA_OUT_OF_BOUNDS`        | A search criteria lies outside accepted boundaries                        |
 | Offers              | `OFFER_PLACE_UNKNOWN`                        | A provided place is not known                                             |
-| Offers              | `OFFER_NO_RESULTS`                           | The trip search did not return any result                                 |
 | Offers              | `OFFER_SCHEDULE_MISMATCH`                    | Schedule mismatch between systems                                         |
 | Offers              | `BOOKING_RESERVATION_OPTION_NOT_AVAILABLE`   | The requested reservation option is not available on this vehicle         |
 | Offers              | `BOOKING_PASSENGER_PROPERTY_NOT_MODIFIABLE`  | Attempted to modify a read-only property (passenger)                      |
@@ -144,6 +143,7 @@ all implementations:
 | **Functional area** | **Warning Code**               | **Title**                    |
 | ------------------- | ------------------------------ | ---------------------------- |
 | Reservation         | `PLACE_PROPERTY_NOT_RESPECTED` | Place property not respected |
+| Offers              | `OFFER_NO_RESULTS`             | The trip search did not return any result  |
 | todo                | `todo`                         | todo                         |
 
 As for the warnings, an implementor is required to use these warning codes and
