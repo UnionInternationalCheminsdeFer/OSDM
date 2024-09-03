@@ -4587,6 +4587,8 @@ components:
           type: string
           format: date-time
           nullable: true
+        confirmedFulfillmentOptions:
+          $ref: '#/components/schemas/FulfillmentOption'
         price:
           $ref: '#/components/schemas/Price'
         refundAmount:
@@ -6238,6 +6240,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PromotionCode'
+        requestedFulfillmentType:
+          $ref: '#/components/schemas/FulfillmentType'
+        preferredFulfillmentMedia:
+          $ref: '#/components/schemas/FulfillmentMediaType'            
         embed:
           description: |
             Influences whether referenced resources are returned in full or as references only.
