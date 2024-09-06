@@ -222,7 +222,7 @@ To obtain the actual JW access token required to authenticate the functional OSD
 - `grant_type=client_credentials`
 - `client_id=<client_id>`
 - `client_secret=<client_secret>`
-- `scope=uic_osdm`
+- `scope=<scope as defined by provider>`
 
 The provider should set the **expires_in** attribute of the response, so that the consumer does not need to parse the token content.
 
