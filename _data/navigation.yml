@@ -40,6 +40,8 @@
       link: spec/offline-model/
     - name: Technical Principles
       link: spec/technical-principles/
+    - name: Authentication
+      link: spec/authentication/
     - name: Models
       link: spec/models/
     - name: State Models
