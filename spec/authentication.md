@@ -92,12 +92,14 @@ The identity token contains the following header fields. Where some fields are o
 | sub       | REQUIRED        | MANDATORY        | Identity of the client                    | defined by the OSDM provider (client id)                           |
 | aud       | REQUIRED        | MANDATORY        | URL login service endpoint                | defined by the OSDM provider                                       |
 | exp       | REQUIRED        | MANDATORY        | Timestamp when this request expires       | current time + grace period of at least 2 minutes (120 seconds)    |
-| scope     | OPTIONAL        | MANDATORY        | Usage of the token                        | fixed value "uic_osdm"                                             |
+| scope     | OPTIONAL        | MANDATORY        | Usage of the token                        | defined by the OSDM provider (recommended value: uic_osdm)         |
 | nbf       | OPTIONAL        | OPTIONAL         | Timestamp when request begins to be valid | current time - grace period of at least 2 minutes (120 seconds)    |
 | iat       | OPTIONAL        | OPTIONAL         | Timestamp of the creation of the token    | current time                                                       |
 | jti       | OPTIONAL        | MANDATORY        | Unique ID of the token to prevent replays | newly generated UUID                                               |
 
 Note: All timestamps are in "Unix epoch", which is defined as the number of seconds since 1st January, 1970 UTC.
+
+Note on the scope parameter: some IDP (Identity Provider) products need this value to be set to a specific value. Therefore, we cannot make the value 'uic_osdm' mandatory.
 
 #### JW identity token signature <a name="jw_identity_token_signature">
 
@@ -110,7 +112,7 @@ To obtain the actual JW access token required to authenticate the functional OSD
 - `grant_type=client_credentials`
 - `client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
 - `client_assertion=<JWT>`
-- `scope=uic_osdm`
+- `scope=<scope as defined by provider>`
 
 The `<JWT>` means the JW identity token which has been described above.
 
@@ -220,7 +222,7 @@ To obtain the actual JW access token required to authenticate the functional OSD
 - `grant_type=client_credentials`
 - `client_id=<client_id>`
 - `client_secret=<client_secret>`
-- `scope=uic_osdm`
+- `scope=<scope as defined by provider>`
 
 The provider should set the **expires_in** attribute of the response, so that the consumer does not need to parse the token content.
 
@@ -235,10 +237,13 @@ range of allowed IP addresses.
 
 Some configuration parameters need to be agreed upon bilaterally between the partners. They are listed in the following table.
 
-| Parameter      | Usage                                        | Explanation                                                   | Parameter flow             |
-| ---------------| ---------------------------------------------| ------------------------------------------------------------- | ---------------------------|
-| Client id      | Token request, parameter 'client_id'         | Identity of the client within the provider's system           | Defined by provider        |
-| Client secret  | Token request, parameter 'client_secret'     | Secet ('password') of the client within the provider's system | Defined by provider        |
+| Parameter      | Usage                                        | Explanation                                                    | Parameter flow                                    |
+| ---------------| ---------------------------------------------| -------------------------------------------------------------- | ------------------------------------------------- |
+| Client id      | Token request, parameter 'client_id'         | Identity of the client within the provider's system            | Defined by provider                               |
+| Client secret  | Token request, parameter 'client_secret'     | Secret ('password') of the client within the provider's system | Defined by provider                               |
+| Scope          | Token request, parameter 'scope'             | Scope (usage) of the token                                     | Defined by provider (recommended value: uic_osdm) |
+
+Note on the scope parameter: some IDP (Identity Provider) products need this value to be set to a specific value. Therefore, we cannot make the value 'uic_osdm' mandatory.
 
 When credentials need to be  **rotated** (which should happen on a regular basis), the provider needs to provide the consumer with a **second** client_id/client_secret pair and needs,
 for a limited time, to accept either for validation. When the consumer has switched to the new client_id/client_secret pair, the original pair should be disabled in the provider's system.
