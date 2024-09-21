@@ -6257,6 +6257,10 @@ components:
         or e-ticket and preferred fulfillment media.
         The latter is optional and relevant in some cases only.
       properties:
+        externalRef:
+          type: string
+          description: The unique booking reference in the distributor/retailer system. Usually refers to an order number or PNR.
+          nullable: true
         placeSelections:
           type: array
           items:
