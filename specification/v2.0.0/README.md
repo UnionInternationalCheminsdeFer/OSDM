@@ -18,3 +18,7 @@ Changes are none breaking.
 
 - Correct documentation of `PATCH /bookings/{bookingId}`
   - Updates the booking but does _not_ confirm the booking.
+
+## Changes in Version 2.0.8
+
+- back-port `RefundOfferBreakdown` in `RefundOffer`
