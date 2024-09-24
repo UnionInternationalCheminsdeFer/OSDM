@@ -38,7 +38,7 @@ permalink: /spec/technical-principles/
 ## Error Handling
 
 In order to communicate errors to a consumer we support
-[RFC7807](https://tools.ietf.org/html/rfc7807).
+[RFC 9457](https://tools.ietf.org/html/rfc9457).
 
 This RFC defines a "problem detail" as a way to carry machine- readable details
 of errors in a HTTP response to avoid the need to define new error response
@@ -97,7 +97,7 @@ These principles can be implemented as follows:
   approved a unique, technical "ClientId" results and will be passed to the
   consumer
 
-- A **login service** allows to request a valid token (for e.g. OAauth2) by the
+- A **login service** allows to request a valid token (for e.g. OAuth2) by the
   registered ClientId and related secret per configuration the validity duration
   of the token may be set (for e.g. 10min.), after that the token must be
   renewed by the consumer optionally the token might be revoked (for e.g. if
