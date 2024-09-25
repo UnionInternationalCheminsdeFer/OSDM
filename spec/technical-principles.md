@@ -45,7 +45,7 @@ permalink: /spec/technical-principles/
 
 ### Backporting
 
-Vendors may require to receive a newly requested feature to a lower version when there is project schedule in consideration. In such case, the backport is always provided as a new patch version of selected track. New patch versions are released for all minor version between the version where the feature was introduced and version to which it was requested by the vendor to be back-ported.
+Implementers may require to receive a newly requested feature to a lower version when there is project schedule in consideration. In such case, the backport is always provided as a new patch version of selected track. New patch versions are released for all minor version between the version where the feature was introduced and version to which it was requested by the implementers to be back-ported.
 
 Backport is never applied to already released patch versions.
 
