@@ -35,6 +35,38 @@ permalink: /spec/technical-principles/
 - Creation/ modification calls return the created/modified resource (not just an
   ok code)
 
+## Versioning
+
+[Semantic Versioning](https://semver.org/) is used to mark the OSDM releases. OSDM strictly adheres to the semantics as deviation may hinder implementation project schedules for carriers or distributors.
+
+* **Major** version is increased for any breaking change provided it is not a bug fix of an error that could not be implemented as valid behavior yet. All planned breaking changes are accumulated and a major version is usually developed each 2-3 years unless there is a industry or legal need for immediate breaking change, e.g. change in related open standards, change in technical regulation or change in consumer protection regulation.
+* **Minor** version is increased for any planned release that doesn't contain any breaking changes. Usually, there are 3-4 minor versions anually. Minor version doesn't remove or changes API in incompatible way, it may only add new capabilities or mark current capabilities as deprecated.
+* **Patch** version is increased for any bug fix of minor version, or backport of a feature from higher major/minor versions. Changes in patch versions retain all capabilities of the minor version and provides backport or bug fix. In terms of testing/certification, all patch versions may be treated as equal provided you check for the features that were corrected by the bug fix/added as backport from higher minor versions.
+
+### Backporting
+
+Implementers may require to receive a newly requested feature to a lower version when there is project schedule in consideration. In such case, the backport is always provided as a new patch version of selected track. New patch versions are released for all minor version between the version where the feature was introduced and version to which it was requested by the implementers to be back-ported.
+
+Backport is never applied to already released patch versions.
+
+### Versioning
+
+All versions are tracked in the `master` branch of the git repository. Each major.minor version has its own folder where all patch versions of that minor version are stored.
+
+### Development
+
+A pull request is expected to contain changes to the currently developed version.
+
+If a backport is expected, pull request must provide files for a new patch version of all versions being patched.
+
+### Release
+
+The openapi file is considered final when there is git tag and github release for given version that marks a respective commit where the final version of that file was saved.
+
+## Implementation principles
+
+Implementations must follow the tolerant reader pattern. Schema validations must allow new attributes and objects. All extensible enums must not fail on items not proposed from the openapi or specification.
+
 ## Error Handling
 
 In order to communicate errors to a consumer we support
