@@ -388,6 +388,54 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+  /trips:
+    post:
+      tags:
+        - Trips
+      summary: Returns a new trip for given OJP parameters based on an already existing trip
+      description: |
+        Returns a new trip for given OJP parameters based on an already existing trip.
+      operationId: postTripsChange
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      requestBody:
+        description: |
+          request for trips
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripChangeCriteria'
+      responses:
+        '200':
+          description: |
+            trips changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
   /trips/{tripId}:
     get:
       tags:
@@ -14184,6 +14232,15 @@ components:
         itModesToCover:
           $ref: '#/components/schemas/IndividualMode'
 
+    TripChangeCriteria:
+      type: object
+      additionalProperties: false
+      description: |
+        Trip change request structure. Provided by OJP.
+      properties:
+        TripResult:
+          $ref: '#/components/schemas/TripResult'
+
     TripResponse:
       type: object
       additionalProperties: false
@@ -14207,6 +14264,15 @@ components:
         - 'PLACES'
         - 'NONE'
       default: 'ALL'
+
+    TripResult:
+      type: object
+      additionalProperties: false
+      description: |
+        The trip result to be changed.
+      properties:        
+        TripSummary:
+          $ref: '#/components/schemas/TripSpecificationSummary'
 
     TripSearchCriteria:
       type: object
@@ -14334,6 +14400,26 @@ components:
           type: boolean
           nullable: true
           default: false
+
+    TripSpecificationSummary:
+      type: object
+      additionalProperties: false
+      description: |
+        Trip specification summary. Provided by OJP. 
+        It requires the id of an already existing trip to change and specifies the parameters which must be used to generate the new trip.
+      required:
+        - id
+      properties:
+        id:
+          description: |
+            The id of an already existing trip to change.
+          type: string
+          maxLength: 32768
+          nullable: false
+        origin:
+          $ref: '#/components/schemas/PlaceRef'
+        destination:
+          $ref: '#/components/schemas/PlaceRef'
 
     TripSummary:
       type: object
