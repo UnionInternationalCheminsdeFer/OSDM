@@ -570,7 +570,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | ![](../images/catalog-of-code-lists/graphics-icons/icon177r.png)	 | Door with right opening (traditional) 	 | 177	 | Right  |	—  |
 | ![](../images/catalog-of-code-lists/graphics-icons/icon177b.png)	 | Door with right opening (traditional) 	 | 177	 | Bottom  |	—  |
 | ![](../images/catalog-of-code-lists/graphics-icons/icon178l.png)	 | Door (sliding) 	 | 178	 | Left  |	bottom  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon178.tpng)	 | Door (sliding) 	 | 178	 | Top  |	right |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon178t.png)	 | Door (sliding) 	 | 178	 | Top  |	right |
 | ![](../images/catalog-of-code-lists/graphics-icons/icon179l.png)	 | Entrance 	 | 179	 | Left  |	—  |
 | ![](../images/catalog-of-code-lists/graphics-icons/icon179t.png)	 | Entrance	 | 179	 | Top  |	—  |
 | ![](../images/catalog-of-code-lists/graphics-icons/icon179r.png)	 | Entrance | 179	 | Right  |	—  |
