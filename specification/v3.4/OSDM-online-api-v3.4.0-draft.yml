@@ -8902,6 +8902,8 @@ components:
         format:
           $ref: '#/components/schemas/DocumentFormat'
           nullable: false
+        applicationProvider:
+          $ref: '#/components/schemas/CompanyRef'
 
     FulfillmentDocumentType:
       description: |
