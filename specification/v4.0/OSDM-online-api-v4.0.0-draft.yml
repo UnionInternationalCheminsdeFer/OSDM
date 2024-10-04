@@ -8160,6 +8160,12 @@ components:
       additionalProperties: false
       description: |
         The online representation of a fare.
+        In case the final product requires the indication of carriers it is obligatory to provide a 
+        carrierConstraint in the fare directly that includes the list of all carriers in the 
+        includedCarrier list. Whether the carrier must be indicated needs to be derived from the requetsted
+        total route and the location of the sales points for international sales. 
+        Whether the indication of carriers is obligatory is defined
+        in the Convention concerning International Carriage by Rail (COTIF).
       required:
         - id
         - type
