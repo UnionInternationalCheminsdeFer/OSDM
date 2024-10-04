@@ -7158,6 +7158,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachLayoutInternal'
+        directedInternals:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoachLayoutDirectedInternal'            
         compartmentNumbers:
           type: array
           items:
@@ -7219,6 +7223,25 @@ components:
           $ref: '#/components/schemas/MountingType'
         coords:
           $ref: '#/components/schemas/LayoutCoordinates'
+          
+    CoachLayoutDirectedInternal:
+      type: object
+      additionalProperties: false
+      required:
+        - icon
+        - coords
+      properties:
+        icon:
+          description: |
+            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
+          type: string
+          nullable: false
+        direction:
+          $ref: '#/components/schemas/DirectionType'          
+        mounting:
+          $ref: '#/components/schemas/MountingType'
+        coords:
+          $ref: '#/components/schemas/LayoutCoordinates'          
 
     CoachLayoutPlace:
       type: object
