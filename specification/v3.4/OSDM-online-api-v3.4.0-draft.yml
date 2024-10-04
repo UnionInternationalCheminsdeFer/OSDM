@@ -8046,6 +8046,8 @@ components:
           $ref: '#/components/schemas/AccountingRef'
         exchangePrice:
           $ref: '#/components/schemas/Price'
+        refundableAmount:
+          $ref: '#/components/schemas/Price'
         fulfillments:
           type: array
           items:
