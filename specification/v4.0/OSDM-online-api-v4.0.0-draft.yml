@@ -4441,7 +4441,7 @@ components:
         The requestor header contains detailed information about who is calling the API. It can include information such as channel, organization, sales unit or workstation id and be used to configure e.g. the fare range provided to the caller. The content of the string is part of a bilateral contract by the two parties and not standardized by OSDM. It is recommend to encrypt the information transferred.
       schema:
         type: string
-      required: false
+      required: true
 
     traceParent:
       name: traceparent
