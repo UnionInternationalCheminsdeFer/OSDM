@@ -113,6 +113,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/ifNoneMatch'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: page
           in: query
           description: |
@@ -224,6 +225,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: placeId
           in: path
           description: |
