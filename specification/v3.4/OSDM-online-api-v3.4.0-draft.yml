@@ -176,6 +176,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
       requestBody:
         required: true
         description: |
@@ -282,6 +283,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
       requestBody:
         required: true
         description: |
