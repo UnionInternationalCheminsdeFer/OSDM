@@ -1,14 +1,18 @@
-@startuml
+@startuml fulfillment-state-model
 title "Fulfillment State Model"
 [*] --> confirmed: POST /bookings/{id}/fulfillments
 [*] --> fulfilled: POST /bookings/{id}/fulfillments
 confirmed --> fulfilled: (time event)
 fulfilled --> checkedin: passenger check-in communicated 
 confirmed --> refunded: PATCH /bookings/{id}/refundOffer
+confirmed --> released: PATCH /bookings/{id}/release-offers/{rId}
 fulfilled --> refunded: PATCH /bookings/{id}/refundOffer
 fulfilled --> exchanged: PATCH /bookings/{id}/exchange-operations/{eId}
 fulfilled --> [*]: passenger never checked in
+fulfilled --> cancelled: PATCH /bookings/{id}/cancel-fulfillment-offers{cId}
 checkedin --> [*]
 refunded --> [*]
 exchanged --> [*]
+released --> [*]
+cancelled --> [*]
 @enduml
