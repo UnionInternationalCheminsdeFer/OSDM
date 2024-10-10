@@ -7932,6 +7932,10 @@ components:
       properties:
         warnings:
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         document:
           $ref: '#/components/schemas/Document'
 
@@ -11696,6 +11700,10 @@ components:
       properties:
         warnings:
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         product:
           $ref: '#/components/schemas/Product'
 
