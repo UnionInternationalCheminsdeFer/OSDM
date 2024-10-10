@@ -8376,23 +8376,6 @@ components:
         - 'NO'
         - 'WITH_CONDITION'
 
-    ExchangeOfferItem:
-      type: object
-      required:
-        - exchangeFee
-        - exchangePrice
-        - bookingParts
-      properties:
-        exchangeFee:
-          description: Amount kept by the carrier and/or the distributor
-          $ref: '#/components/schemas/Price'
-        exchangePrice:
-          $ref: '#/components/schemas/Price'
-        bookingParts:
-          type: array
-          items:
-            $ref: '#/components/schemas/BookingPartReference'
-
     ExcludedTimeRange:
       type: object
       additionalProperties: false
@@ -11051,23 +11034,6 @@ components:
             $ref: '#/components/schemas/Problem'
         vehicleAvailability:
           $ref: '#/components/schemas/PlaceAvailability'
-
-
-    PlaceAvailabilitiesResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
-        problems:
-          type: array
-          items:
-            $ref: '#/components/schemas/Problem'
-        vehicleAvailabilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlaceAvailability'
 
     PlaceParam:
       type: object
