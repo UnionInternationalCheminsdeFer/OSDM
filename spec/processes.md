@@ -1105,6 +1105,16 @@ Requesting an exchange offer is almost identical to requesting a standard offer.
 The only difference in the request is that the fulfillment that the API consumer
 wants to exchange, and an overrule code if relevant, are also provided.
 
+The exchange flow is following:
+
+- `POST /exchange-offers` to get alternative exchange offers (exchange operations) for the given fulfillments
+- `POST /bookings/{bookingId}/exchangeOperations` with selected exchange offer with a. information what to change on current booked offers, or b. to put a new offer (exchange operation) to the booking
+- `PATCH /bookings/{bookingId}/exchangeOperations/{exchangeOperationId}` to confirm the exchange. This will release the original booking parts and confirm parts offered in the exchange operation.
+- `POST /bookings/{bookingId}/fulfillments` to issue the new fulfillments for exchanged booking parts.
+- Optionally `PATCH /bookings/{bookingId}/fulfillments` if the asynchronous fulfillment requires that.
+
+It is a good practice to execute `DELETE /booking/{bookingId}/exchangeOperations/{exchangeOperationId}` to terminate the exchange operation without confirmation and release booked offers from the operation.
+
 ### Replacement of lost tickets and cards
 
 The replacement is used to replace physical cards and tickets. There is no
@@ -1113,7 +1123,7 @@ replacement for electronic tickets or anonymous tickets.
 #### Requesting a replacement for a lost ticket
 
 The replacement is requested similar to the request for a non-trip based offer.
-The search tags must include the key word CARD_LOST or TICKET_LOST. The provider
+The search tags must include the key word `CARD_LOST` or `TICKET_LOST`. The provider
 will ask for the required data of the lost card or ticket to be provided with
 the passengers card data (card number).
 
