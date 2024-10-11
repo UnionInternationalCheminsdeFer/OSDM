@@ -4454,6 +4454,24 @@ paths:
           in: query
           schema:
             type: string
+        - name: productCode
+          in: query
+          description: the productCode 
+          schema:
+            type: string
+        - name: issuingDate
+          in: query
+          description: to be used in combination with a productCode. Is the issuing date to take into account for product definition. If none is provided, today is assumed
+          schema:
+            type: string
+            format: date
+        - name: travelDate
+          description: to be used in combination with a productCode. Is the travel date to take into account for product definition. If none is provided, today is assumed
+          in: query
+          schema:
+            type: string
+            format: date
+        
       responses:
         '200':
           description: |
