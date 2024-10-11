@@ -396,7 +396,9 @@ paths:
     post:
       tags:
         - Trips
-      summary: Returns a new trip for given OJP parameters based on an already existing trip
+      summary:
+        Returns a new trip for given OJP parameters based on an already existing
+        trip
       description: |
         Returns a new trip for given OJP parameters based on an already existing trip.
       operationId: postTripsChange
@@ -574,7 +576,10 @@ paths:
     get:
       tags:
         - Offers
-      summary: Get additional offers of booked offer for a given booking. A provider can decide to allow or reject additional offers admissions, reservations or ancillaries on an confirmed booking.
+      summary:
+        Get additional offers of booked offer for a given booking. A provider
+        can decide to allow or reject additional offers admissions, reservations
+        or ancillaries on an confirmed booking.
       operationId: getBookingBookedOffersAdditionalOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1090,7 +1095,6 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-
   /bookings/{bookingId}/booked-offers:
     post:
       tags:
@@ -1319,7 +1323,10 @@ paths:
     post:
       tags:
         - BookingPart
-      summary: Adds a reservation to a booking. A provider can decide to allow or reject additional admissions, reservations or ancillaries on an confirmed booking.
+      summary:
+        Adds a reservation to a booking. A provider can decide to allow or
+        reject additional admissions, reservations or ancillaries on an
+        confirmed booking.
       operationId: createBookingBookedOffersReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1383,7 +1390,9 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes a reservation from a booking in case the reservation was not yet confirmed. On confirmed reservations use the refund.
+      summary:
+        Removes a reservation from a booking in case the reservation was not yet
+        confirmed. On confirmed reservations use the refund.
       operationId: deleteBookingBookedOffersReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1439,7 +1448,10 @@ paths:
     post:
       tags:
         - BookingPart
-      summary: Adds an ancillary to a booking. A provider can decide to allow or reject additional admissions, reservations or ancillaries on an confirmed booking.
+      summary:
+        Adds an ancillary to a booking. A provider can decide to allow or reject
+        additional admissions, reservations or ancillaries on an confirmed
+        booking.
       operationId: createBookingBookedOffersAncillaries
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1503,7 +1515,9 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes an ancillary from a booking in case the ancillary is not jet confirmed. On confirmed ancillaries use the refund.
+      summary:
+        Removes an ancillary from a booking in case the ancillary is not jet
+        confirmed. On confirmed ancillaries use the refund.
       operationId: deleteBookingBookedOffersAncillary
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1559,7 +1573,9 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes an admission from a booking. In case the admission is not confirmed. On a confirmed admission use the refund.
+      summary:
+        Removes an admission from a booking. In case the admission is not
+        confirmed. On a confirmed admission use the refund.
       description: |
         Removes an admission from pre-booked booking.It is up to the provider
         to change or remove dependent bookedOfferParts or to reject the request.
@@ -2125,7 +2141,7 @@ paths:
       summary: Optionally finalizes the fulfillments in asynchronous mode.
       description: |
         Optionally finalizes the fulfillment in case of an asynchronous fulfillment mode when the provider doesn't complete the asynchronous fulfillment automatically.
-        
+
         This step may be used as an indication of the `proof of delivery` to disallow the cancellation of booking.
       operationId: finalizeFulfillments
       parameters:
@@ -4454,6 +4470,30 @@ paths:
           in: query
           schema:
             type: string
+        - name: productCode
+          in: query
+          description: the product code
+          schema:
+            type: string
+        - name: issuingDate
+          in: query
+          description:
+            To be used in combination with a productCode. Is the issuing date to
+            take into account for product definition. If none is provided, today
+            is assumed.
+          schema:
+            type: string
+            format: date
+        - name: travelDate
+          description:
+            To be used in combination with a productCode. Is the travel date to
+            take into account for product definition. If none is provided, today
+            is assumed.
+          in: query
+          schema:
+            type: string
+            format: date
+
       responses:
         '200':
           description: |
@@ -4634,7 +4674,9 @@ components:
       name: x-accept-namespace
       in: header
       description:
-        The x-accept-namespace HTTP header indicates the URN namespace that the client prefers. The provider uses content-negotiation to apply the corresponding namespace(s) where applicable.
+        The x-accept-namespace HTTP header indicates the URN namespace that the
+        client prefers. The provider uses content-negotiation to apply the
+        corresponding namespace(s) where applicable.
       example: x_swe, uic, iata
       schema:
         type: string
@@ -4827,7 +4869,9 @@ components:
           $ref: '#/components/schemas/Price'
         refundAmount:
           $ref: '#/components/schemas/Price'
-          description: Amount refunded or to be refunded to the purchaser depending on the product conditions and status of the booking Part
+          description:
+            Amount refunded or to be refunded to the purchaser depending on the
+            product conditions and status of the booking Part
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         summaryProductId:
@@ -4887,7 +4931,7 @@ components:
           items:
             $ref: '#/components/schemas/AfterSaleCondition'
         afterSalesOverrideDetails:
-            $ref: '#/components/schemas/AfterSalesOverrideDetails'
+          $ref: '#/components/schemas/AfterSalesOverrideDetails'
         appliedCorporateCodes:
           type: array
           items:
@@ -5037,8 +5081,10 @@ components:
           $ref: '#/components/schemas/RequestedInformation'
         summaryProductId:
           type: string
-          description: Id of the product representing the commercial attributes of this offer part. Although not currently
-            mandatory, this attribute should in all cases be facilitate product based processing at the client
+          description:
+            Id of the product representing the commercial attributes of this
+            offer part. Although not currently mandatory, this attribute should
+            in all cases be facilitate product based processing at the client
         products:
           type: array
           items:
@@ -5135,98 +5181,98 @@ components:
       default: 'ANY_SEAT'
       nullable: false
       x-extensible-enum:
-        - "AISLE"
-        - "AIR-CONDITIONED"
-        - "ANY_SEAT"
-        - "BISTRO"
-        - "BICYCLE"
-        - "BUSINESS"
-        - "BUSINESS_COMFORT"
-        - "CABIN8"
-        - "CAR_SMALL"
-        - "CAR_LARGE"
-        - "CARRE"
-        - "CHILDREN_AREA"
-        - "CLUB"
-        - "CLUB_2"
-        - "CLUB_4"
-        - "COMPARTMENT"
-        - "COMPLETE"
-        - "CONFERENCE"
-        - "CONNECTING_DOOR"
-        - "COUCHETTE_2"
-        - "COUCHETTE_4"
-        - "COUCHETTE_5"
-        - "COUCHETTE_6"
-        - "COUCHETTE_COMFORT_4"
-        - "COUCHETTE_COMFORT_5"
-        - "COUCHETTE_COMFORT_6"
-        - "COUCHETTE_PRM_2"
-        - "COUCHETTE_PRM_3"
-        - "COUCHETTE_PRM_4"
-        - "DOUBLE"
-        - "DOUBLE_SWC"
-        - "DOUBLE_SWC_DB"
-        - "DOUBLE_S"
-        - "EASY_ACCESS"
-        - "FACE_2_FACE"
-        - "EXCELLENCE"
-        - "FAMILY"
-        - "FRONT_VIEW"
-        - "HISTORIC_COACH"
-        - "INCLUDING_MEAL"
-        - "INCLUDING_DRINK"
-        - "KIOSQUE"
-        - "LADIES"
-        - "LOWER_BED"
-        - "LOWER_DECK"
-        - "MEN"
-        - "MIDDLE_BED"
-        - "MIDDLE_SEAT"
-        - "MINI_SUITE"
-        - "MIXED"
-        - "MOTOR_CYCLE"
-        - "MOTOR_CYCLE_SC"
-        - "NEAR_ANIMALS"
-        - "NEAR_DINING"
-        - "NEAR_PLAY_AREA"
-        - "NEAR_BICYCLE_AREA"
-        - "NEAR_WHEELCHAIR"
-        - "OPEN_SPACE"
-        - "PANORAMA"
-        - "PHONE"
-        - "POWER"
-        - "PRAM"
-        - "PRAM_WITH_SEAT"
-        - "RESTAURANT"
-        - "SILENCE"
-        - "SINGLE"
-        - "SINGLE_SWC"
-        - "SINGLE_SWC_DOUBLE"
-        - "SIDE_BY_SIDE"
-        - "SALON"
-        - "SLEEPERETTE"
-        - "SLEEPER_DELUXE"
-        - "SOLO"
-        - "SOLO_COM"
-        - "SPECIAL_SLEEPER"
-        - "TABLE"
-        - "TANDEM"
-        - "TOURIST_SLEEPER_2"
-        - "TOURIST_SLEEPER_3"
-        - "TOURIST_SLEEPER_4"
-        - "TOURIST_SLEEPER_3_SWC"
-        - "UPPER_BED"
-        - "UPPER_DECK"
-        - "VIDEO"
-        - "WHEELCHAIR"
-        - "WHEELCHAIR_AND_SEAT"
-        - "WHEELCHAIR_NO_SEAT"
-        - "WIFI"
-        - "WINDOW"
-        - "WITH_ANIMALS"
-        - "WITH_SMALL_CHILDREN"
-        - "WITHOUT_ANIMALS"
+        - 'AISLE'
+        - 'AIR-CONDITIONED'
+        - 'ANY_SEAT'
+        - 'BISTRO'
+        - 'BICYCLE'
+        - 'BUSINESS'
+        - 'BUSINESS_COMFORT'
+        - 'CABIN8'
+        - 'CAR_SMALL'
+        - 'CAR_LARGE'
+        - 'CARRE'
+        - 'CHILDREN_AREA'
+        - 'CLUB'
+        - 'CLUB_2'
+        - 'CLUB_4'
+        - 'COMPARTMENT'
+        - 'COMPLETE'
+        - 'CONFERENCE'
+        - 'CONNECTING_DOOR'
+        - 'COUCHETTE_2'
+        - 'COUCHETTE_4'
+        - 'COUCHETTE_5'
+        - 'COUCHETTE_6'
+        - 'COUCHETTE_COMFORT_4'
+        - 'COUCHETTE_COMFORT_5'
+        - 'COUCHETTE_COMFORT_6'
+        - 'COUCHETTE_PRM_2'
+        - 'COUCHETTE_PRM_3'
+        - 'COUCHETTE_PRM_4'
+        - 'DOUBLE'
+        - 'DOUBLE_SWC'
+        - 'DOUBLE_SWC_DB'
+        - 'DOUBLE_S'
+        - 'EASY_ACCESS'
+        - 'FACE_2_FACE'
+        - 'EXCELLENCE'
+        - 'FAMILY'
+        - 'FRONT_VIEW'
+        - 'HISTORIC_COACH'
+        - 'INCLUDING_MEAL'
+        - 'INCLUDING_DRINK'
+        - 'KIOSQUE'
+        - 'LADIES'
+        - 'LOWER_BED'
+        - 'LOWER_DECK'
+        - 'MEN'
+        - 'MIDDLE_BED'
+        - 'MIDDLE_SEAT'
+        - 'MINI_SUITE'
+        - 'MIXED'
+        - 'MOTOR_CYCLE'
+        - 'MOTOR_CYCLE_SC'
+        - 'NEAR_ANIMALS'
+        - 'NEAR_DINING'
+        - 'NEAR_PLAY_AREA'
+        - 'NEAR_BICYCLE_AREA'
+        - 'NEAR_WHEELCHAIR'
+        - 'OPEN_SPACE'
+        - 'PANORAMA'
+        - 'PHONE'
+        - 'POWER'
+        - 'PRAM'
+        - 'PRAM_WITH_SEAT'
+        - 'RESTAURANT'
+        - 'SILENCE'
+        - 'SINGLE'
+        - 'SINGLE_SWC'
+        - 'SINGLE_SWC_DOUBLE'
+        - 'SIDE_BY_SIDE'
+        - 'SALON'
+        - 'SLEEPERETTE'
+        - 'SLEEPER_DELUXE'
+        - 'SOLO'
+        - 'SOLO_COM'
+        - 'SPECIAL_SLEEPER'
+        - 'TABLE'
+        - 'TANDEM'
+        - 'TOURIST_SLEEPER_2'
+        - 'TOURIST_SLEEPER_3'
+        - 'TOURIST_SLEEPER_4'
+        - 'TOURIST_SLEEPER_3_SWC'
+        - 'UPPER_BED'
+        - 'UPPER_DECK'
+        - 'VIDEO'
+        - 'WHEELCHAIR'
+        - 'WHEELCHAIR_AND_SEAT'
+        - 'WHEELCHAIR_NO_SEAT'
+        - 'WIFI'
+        - 'WINDOW'
+        - 'WITH_ANIMALS'
+        - 'WITH_SMALL_CHILDREN'
+        - 'WITHOUT_ANIMALS'
 
     AccommodationType:
       type: string
@@ -5237,11 +5283,11 @@ components:
       default: 'SEAT'
       nullable: false
       x-extensible-enum:
-        - "SEAT"
-        - "COUCHETTE"
-        - "BERTH"
-        - "VEHICLE"
-        - "STORAGE"
+        - 'SEAT'
+        - 'COUCHETTE'
+        - 'BERTH'
+        - 'VEHICLE'
+        - 'STORAGE'
 
     ActualPassengerType:
       description: |
@@ -5369,37 +5415,37 @@ components:
       properties:
         countryName:
           description: |
-                Country of the address.
+            Country of the address.
           type: string
           nullable: true
           example: The Netherlands
         countryCode:
-            $ref: '#/components/schemas/CountryCode'
+          $ref: '#/components/schemas/CountryCode'
         postCode:
-            description: |
-                Postal code of the address.
-            type: string
-            nullable: true
-            example: 2265CA
+          description: |
+            Postal code of the address.
+          type: string
+          nullable: true
+          example: 2265CA
         city:
-            description: |
-                City name
-            type: string
-            nullable: true
-            example: Leidschendam
+          description: |
+            City name
+          type: string
+          nullable: true
+          example: Leidschendam
         street:
-            description: |
-              Street name of the address. Can also contain the house number.
-            type: string
-            nullable: true
-            example: Oude Trambaan
+          description: |
+            Street name of the address. Can also contain the house number.
+          type: string
+          nullable: true
+          example: Oude Trambaan
         houseNumber:
-            description: |
-              House number of the address. House number can either be in this separate field, or can be
-              contained in the street field.
-            type: string
-            nullable: true
-            example: 7
+          description: |
+            House number of the address. House number can either be in this separate field, or can be
+            contained in the street field.
+          type: string
+          nullable: true
+          example: 7
 
     Admission:
       description: |
@@ -5517,7 +5563,7 @@ components:
           default: false
 
     AfterSalesOverrideDetails:
-      description: | 
+      description: |
         If initial after sales conditions have been overwritten this object provides details on the original
         conditions and an explanation text for the customer
       type: object
@@ -5527,7 +5573,8 @@ components:
           items:
             $ref: '#/components/schemas/AfterSaleCondition'
         overrideDescription:
-          description: Description for the change of conditions for the customer.
+          description:
+            Description for the change of conditions for the customer.
           type: string
         validFrom:
           type: string
@@ -5739,7 +5786,7 @@ components:
         - 'BOOKING'
         - 'TRIP'
         - 'OFFERPART'
-        - 'SEAT_SELECTION' :  (https://osdm.io/spec/processes/#SeatSelectionFees)
+        - 'SEAT_SELECTION': (https://osdm.io/spec/processes/#SeatSelectionFees)
 
     TransactionContextType:
       type: string
@@ -5792,18 +5839,21 @@ components:
 
     AvailabilityScope:
       type: object
-      description: fare or offerParts which should be covered by the available seats
+      description:
+        fare or offerParts which should be covered by the available seats
       required:
         - partReferences
       properties:
         singleSelectionMapsRequired:
-          description: if true the place map must include places for a single reservation or fare only
+          description:
+            if true the place map must include places for a single reservation
+            or fare only
           type: boolean
           default: true
         partReferences:
           type: array
           items:
-             $ref: '#/components/schemas/PartReference'
+            $ref: '#/components/schemas/PartReference'
 
     PartReference:
       type: object
@@ -5880,9 +5930,15 @@ components:
             graphical reservation is supported, interface type 'WITH_FEE', 'NO', (https://osdm.io/spec/processes/#SeatSelectionFees)
           type: string
           x-extensible-enum:
-             - 'WITHOUT_FEE' : No additional fees will be added during seat selection. All fees are already linked with the reservation offer or booking
-             - 'WITH_FEE' : Additional selection fees might be applied in the seat selection. In case selection fees are applied this must be indicated here (https://osdm.io/spec/processes/#SeatSelectionFees)
-             - 'NO': No graphical reservation supported
+            - 'WITHOUT_FEE':
+                No additional fees will be added during seat selection. All fees
+                are already linked with the reservation offer or booking
+            - 'WITH_FEE':
+                Additional selection fees might be applied in the seat
+                selection. In case selection fees are applied this must be
+                indicated here
+                (https://osdm.io/spec/processes/#SeatSelectionFees)
+            - 'NO': No graphical reservation supported
           nullable: true
 
     BackOfficeStatus:
@@ -6029,7 +6085,9 @@ components:
           type: string
           maxLength: 32768
           nullable: false
-          description: Note that the offerId returned does not necessarily match the offerId given in the Booking Request.
+          description:
+            Note that the offerId returned does not necessarily match the
+            offerId given in the Booking Request.
         externalRef:
           description: |
             A stable reference to the id of the booked offer in the caller's system. When received in input of a request, it must be persisted and echoed back in the response.
@@ -6481,7 +6539,9 @@ components:
       properties:
         externalRef:
           type: string
-          description: The unique booking reference in the distributor/retailer system. Usually refers to an order number or PNR.
+          description:
+            The unique booking reference in the distributor/retailer system.
+            Usually refers to an order number or PNR.
           nullable: true
         placeSelections:
           type: array
@@ -6674,15 +6734,15 @@ components:
           nullable: false
         provisionalPrice:
           description: |
-             price of all unconfirmed pre-booked parts in the booking
+            price of all unconfirmed pre-booked parts in the booking
           $ref: '#/components/schemas/Price'
         provisionalRefundAmount:
           description: |
-             sum of the refund amounts of all unconfirmed pre-booked refunds and exchanges
+            sum of the refund amounts of all unconfirmed pre-booked refunds and exchanges
           $ref: '#/components/schemas/Price'
         confirmedPrice:
           description: |
-             sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts.
+            sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts.
           $ref: '#/components/schemas/Price'
         bookedOfferSummaries:
           type: array
@@ -7165,7 +7225,7 @@ components:
         directedInternals:
           type: array
           items:
-            $ref: '#/components/schemas/CoachLayoutDirectedInternal'            
+            $ref: '#/components/schemas/CoachLayoutDirectedInternal'
         compartmentNumbers:
           type: array
           items:
@@ -7227,7 +7287,7 @@ components:
           $ref: '#/components/schemas/MountingType'
         coords:
           $ref: '#/components/schemas/LayoutCoordinates'
-          
+
     CoachLayoutDirectedInternal:
       type: object
       additionalProperties: false
@@ -7241,11 +7301,11 @@ components:
           type: string
           nullable: false
         direction:
-          $ref: '#/components/schemas/DirectionType'          
+          $ref: '#/components/schemas/DirectionType'
         mounting:
           $ref: '#/components/schemas/MountingType'
         coords:
-          $ref: '#/components/schemas/LayoutCoordinates'          
+          $ref: '#/components/schemas/LayoutCoordinates'
 
     CoachLayoutPlace:
       type: object
@@ -7270,7 +7330,7 @@ components:
         remarkId:
           $ref: '#/components/schemas/RemarkType'
         coords:
-          $ref: '#/components/schemas/LayoutCoordinates'   
+          $ref: '#/components/schemas/LayoutCoordinates'
 
     CoachLayoutResponse:
       type: object
@@ -7304,7 +7364,9 @@ components:
           $ref: '#/components/schemas/LayoutCoordinates'
 
     CoachLayoutCompartmentNumber:
-      description: Layout item to place a compartment number. The number has no icon, it only places the number
+      description:
+        Layout item to place a compartment number. The number has no icon, it
+        only places the number
       type: object
       additionalProperties: false
       required:
@@ -7408,7 +7470,7 @@ components:
         serviceClass:
           $ref: '#/components/schemas/ServiceClassType'
         selectionFee:
-          $ref: '#/components/schemas/SelectionFee'               
+          $ref: '#/components/schemas/SelectionFee'
 
     Complaint:
       type: object
@@ -8425,7 +8487,7 @@ components:
         includedCarrier list. Whether the carrier must be indicated needs to be derived from the requetsted
         total route and the location of the sales points for international sales. 
         Whether the indication of carriers is obligatory is defined
-        in the Convention concerning International Carriage by Rail (COTIF).        
+        in the Convention concerning International Carriage by Rail (COTIF).
       required:
         - id
         - type
@@ -9091,7 +9153,10 @@ components:
       properties:
         issuingLanguage:
           type: string
-          description: the desired issuing language (ISO-639-1 language code). If not provided or not available, will default to (one of) the language(s) of the issuing country
+          description:
+            the desired issuing language (ISO-639-1 language code). If not
+            provided or not available, will default to (one of) the language(s)
+            of the issuing country
 
     FulfillmentResponse:
       type: object
@@ -9242,8 +9307,8 @@ components:
             ids of the passengers that were granted the reduction
           type: array
           items:
-             type: string
-             nullable: false
+            type: string
+            nullable: false
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         appliedPassengerTypes:
@@ -9262,8 +9327,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PromotionCode'
-
-
 
     HistoryStatus:
       type: string
@@ -11097,7 +11160,7 @@ components:
           items:
             $ref: '#/components/schemas/PlaceProperty'
         selectionFee:
-          $ref: '#/components/schemas/SelectionFee'                  
+          $ref: '#/components/schemas/SelectionFee'
 
     PlacePreSelection:
       type: object
@@ -11144,7 +11207,7 @@ components:
     PlaceProperty:
       type: string
       description: |
-         Values from the [Place Property Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
+        Values from the [Place Property Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
       nullable: false
       example: Power Connection
 
@@ -11482,22 +11545,19 @@ components:
             A pointer to the attribute in the request for the problem.
           type: string
           nullable: true
-          example:
-            "#/offers[1]/placeSelections[1]/reservationId"
+          example: '#/offers[1]/placeSelections[1]/reservationId'
         responsePointer:
           description: |
             A pointer to the attribute in the response for the problem.
           type: string
           nullable: true
-          example:
-            "#/booking/bookedOffers[4]/reservations[1]/id"
+          example: '#/booking/bookedOffers[4]/reservations[1]/id'
         originator:
           description: |
             Identifier to the origin server for this occurrence of the problem.
           type: string
           nullable: true
-          example:
-            IMS1
+          example: IMS1
 
     Product:
       type: object
@@ -11581,11 +11641,14 @@ components:
           items:
             $ref: '#/components/schemas/CombinationTag'
         productTags:
-          description: product tags associated with the product that can be used to search for offers. This can be omitted outside of the product master data service
+          description:
+            product tags associated with the product that can be used to search
+            for offers. This can be omitted outside of the product master data
+            service
           type: array
           items:
-             type: string
-             nullable: true
+            type: string
+            nullable: true
         _links:
           description: |
             Java Property Name: 'links'
@@ -11893,11 +11956,11 @@ components:
           type: string
           nullable: false
         shortCode:
-          description:  |
+          description: |
             reduction card code to be used in bar codes. The code is defined within
             the context of the issuer and is required to be very short (usually 1-4 positions).
             The code is used in ticket bar codes to indicate required checks of this reduction card during travel.
-          type: string          
+          type: string
           nullable: true
         issuer:
           $ref: '#/components/schemas/CompanyRef'
@@ -12017,7 +12080,7 @@ components:
             breakdown of the refund offer
           type: array
           items:
-             $ref: '#/components/schemas/RefundOfferBreakdownItem'
+            $ref: '#/components/schemas/RefundOfferBreakdownItem'
         reimbursementMethod:
           $ref: '#/components/schemas/ReimbursementMethod'
         _links:
@@ -12490,7 +12553,7 @@ components:
             To do a partial release repeat the fulfillmentIds affected and point out what to release
           type: array
           items:
-            $ref: '#/components/schemas/RefundSpecification'            
+            $ref: '#/components/schemas/RefundSpecification'
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
 
@@ -12568,12 +12631,16 @@ components:
               items:
                 $ref: '#/components/schemas/BookingPartReference'
             availablePlacePreferences:
-              description: options for place selection in case the place selection is made after the pre-booking.
+              description:
+                options for place selection in case the place selection is made
+                after the pre-booking.
               type: array
               items:
                 $ref: '#/components/schemas/AvailablePlacePreferences'
             graphicalReservationSupported:
-              description: more detailed information on options for place selection and possible fees are part of availablePlacePreferences
+              description:
+                more detailed information on options for place selection and
+                possible fees are part of availablePlacePreferences
               type: boolean
               nullable: true
               default: false
@@ -12963,7 +13030,9 @@ components:
 
     SelectionFee:
       type: object
-      description: selection fee that will be applied when selecting the place in a graphical seat map. (https://osdm.io/spec/processes/#SeatSelectionFees)
+      description:
+        selection fee that will be applied when selecting the place in a
+        graphical seat map. (https://osdm.io/spec/processes/#SeatSelectionFees)
       properties:
         price:
           $ref: '#/components/schemas/Price'
@@ -14281,7 +14350,7 @@ components:
       additionalProperties: false
       description: |
         The trip result to be changed.
-      properties:        
+      properties:
         TripSummary:
           $ref: '#/components/schemas/TripSpecificationSummary'
 
@@ -14716,7 +14785,7 @@ components:
           items:
             $ref: '#/components/schemas/Warning'
           minItems: 1
-    
+
     Zone:
       type: object
       additionalProperties: false
