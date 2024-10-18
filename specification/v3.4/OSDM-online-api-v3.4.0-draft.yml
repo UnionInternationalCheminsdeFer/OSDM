@@ -5779,6 +5779,8 @@ components:
             $ref: '#/components/schemas/CardReference'
         gender:
           $ref: '#/components/schemas/Gender'
+        residency:
+          $ref: '#/components/schemas/CountryCode'
 
     ApplicabilityType:
       type: string
