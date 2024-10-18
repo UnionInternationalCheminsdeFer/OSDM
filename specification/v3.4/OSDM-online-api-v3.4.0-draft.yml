@@ -6654,7 +6654,7 @@ components:
         destination:
           $ref: '#/components/schemas/PlaceRef'
         passenger:
-          $ref: '#/components/schemas/PersonSearchRequest'
+          $ref: '#/components/schemas/PassengerSearchRequest'
         purchaser:
           $ref: '#/components/schemas/PurchaserSearchRequest'
         bookingId:
@@ -10967,10 +10967,16 @@ components:
           nullable: true
           example: CZ1234567890
 
-    PersonSearchRequest:
+    PassengerSearchRequest:
       type: object
       additionalProperties: false
       properties:
+        externalRef:
+          description: |
+            A stable reference to a person from other elements, or from caller system.
+            When received in input of a request, it must be echoed back in the response.
+          type: string
+          nullable: true
         firstName:
           type: string
           nullable: true
@@ -11859,6 +11865,12 @@ components:
       type: object
       additionalProperties: false
       properties:
+        externalRef:
+          description: |
+            A stable reference to a purchaser from other elements, or from caller system.
+            When received in input of a request, it must be echoed back in the response.
+          type: string
+          nullable: true
         companyName:
           type: string
           nullable: true
@@ -11874,6 +11886,7 @@ components:
           type: string
           format: date
           nullable: true
+          deprecated: true
         phoneNumber:
           type: string
           nullable: true
