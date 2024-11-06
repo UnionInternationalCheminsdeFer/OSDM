@@ -33,9 +33,6 @@ The following self explanatory file layout is used:
 │   └── 2020-12-17-OSDM-Online-V-1.0-released.md
 ├── assets
 │   └── css
-├── docs
-│   ├── IRS-90918-10-V2020.docx
-│   └── IRS-90918-10-V2020.pdf
 ├── favicon.png
 ├── images
 │   ├── fare-data-structure
@@ -70,4 +67,4 @@ After forking or cloning the repository, perform the following steps to generate
 
 This documentation copyrighted by [UIC](https://www.uic.org) is published
 under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.html)
-Open Source Licence.
+Open Source License.
