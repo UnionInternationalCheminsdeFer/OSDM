@@ -97,7 +97,9 @@ Proofing that the specification is not bound to rail,
 [Bileto](https://www.bileto.com/en) is successfully using the standard for the
 distribution of bus rides.
 
-Advisors from **CER**, **CIT**, **ECTAA**, **EU Traveltech** and sounding boards
+Advisors from [CER](https://www.cer.be/), [CIT](https://www.cit-rail.org/en/),
+[ECTAA](https://www.ectaa.org/en), [eu travel tech](https://eutraveltech.eu/),
+[OpenRail Association](https://openrailassociation.org/) and sounding boards
 from the **European Commission** as well as the **European Rail Agency** were
 involved from the start and guided the effort.
 
