@@ -4,14 +4,14 @@ title: Specification
 permalink: /spec/
 ---
 
-The [OSDM specification](./) is structured into two parts sharing common data
+The OSDM specification is structured into two parts sharing common data
 structures:
 
 ## Common Data Structures
 
 The [Common Data Structures](./common-data-structures/) are shared between the
 Offline Model and the Online API. Here, of special interest is the
-[relationships between offers, offerparts, products and fares](./relationship-offer-offerpart-product-and-fare/).
+[relationships between offers, offer parts, products and fares](./relationship-offer-offerpart-product-and-fare/).
 
 ## Part I: Offline Model
 
