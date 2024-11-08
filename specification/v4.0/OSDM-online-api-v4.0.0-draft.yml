@@ -4925,8 +4925,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PromotionCode'
-        regionalValiditySummary:
-          $ref: '#/components/schemas/RegionalValiditySummary'
         indicatedConsumption:
           $ref: '#/components/schemas/IndicatedConsumption'
         grantedReductionAmounts:
@@ -5298,6 +5296,8 @@ components:
         - type: object
           additionalProperties: false
           properties:
+            regionalValiditySummary:
+              $ref: '#/components/schemas/RegionalValiditySummary'
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
             isReservationRequired:
@@ -5494,6 +5494,10 @@ components:
           required:
             - type
           properties:
+            regionalValiditySummary:
+              $ref: '#/components/schemas/RegionalValiditySummary'
+            regionalValidity:
+              $ref: '#/components/schemas/RegionalValidity'
             feeRefs:
               type: array
               items:
