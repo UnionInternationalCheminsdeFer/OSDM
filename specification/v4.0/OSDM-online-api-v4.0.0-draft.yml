@@ -11861,22 +11861,18 @@ components:
         Request for a refund offer.
         Fulfillments can be provided in case the booking contains multiple individual fulfillments.
       required:
-        - fulfillmentIds
+        - refundSpecifications
       properties:
-        fulfillmentIds:
-          description: |
-            ids of the fulfillments to refund
-          type: array
-          items:
-            type: string
-          minItems: 1
-          nullable: false
         refundSpecifications:
           description: |
-            To do a partial refund repeat the fulfillmentIds affected and point out what to refund
+            Specification of Fulfillment IDs to refund.
+
+            To do a partial refund, include booking part IDs to refund from the fulfillment.
           type: array
           items:
             $ref: '#/components/schemas/RefundSpecification'
+          minItems: 1
+          nullable: false
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
         refundDate:
