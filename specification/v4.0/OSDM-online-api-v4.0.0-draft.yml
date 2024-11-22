@@ -149,8 +149,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -198,8 +196,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -252,8 +248,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -303,8 +297,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -374,8 +366,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -501,8 +491,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -553,8 +541,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -611,8 +597,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -665,8 +649,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -723,8 +705,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -771,8 +751,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -833,8 +811,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -898,8 +874,7 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
+
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -953,8 +928,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1011,8 +984,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1130,8 +1101,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1189,8 +1158,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1234,8 +1201,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1289,8 +1254,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1355,8 +1318,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1407,8 +1368,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1473,8 +1432,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1525,8 +1482,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1583,8 +1538,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1639,8 +1592,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1703,8 +1654,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1759,8 +1708,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1808,8 +1755,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1860,8 +1805,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1907,8 +1850,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1964,8 +1905,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2019,8 +1958,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2085,8 +2022,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2145,8 +2080,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2201,8 +2134,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2261,8 +2192,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2321,8 +2250,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2383,8 +2310,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2451,8 +2376,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2501,8 +2424,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2564,8 +2485,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2620,8 +2539,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2688,8 +2605,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2740,8 +2655,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2806,8 +2719,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2866,8 +2777,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2934,8 +2843,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2983,8 +2890,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -3052,8 +2957,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3106,8 +3009,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3181,8 +3082,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3249,8 +3148,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -3299,8 +3196,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -3350,8 +3245,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3406,8 +3299,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3462,8 +3353,7 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
+
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -3517,8 +3407,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3572,8 +3460,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3630,8 +3516,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3691,8 +3575,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3748,8 +3630,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3806,8 +3686,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3851,8 +3729,7 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
+
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -3913,8 +3790,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3973,8 +3848,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4038,8 +3911,7 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
+
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -4104,8 +3976,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4158,8 +4028,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4245,8 +4113,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4314,8 +4180,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4370,8 +4234,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4429,8 +4291,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4595,14 +4455,6 @@ components:
     InternalServerErrorResponse:
       description: |
         Internal Server Error (500)
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-
-    NotAcceptableResponse:
-      description: |
-        Not Acceptable (406)
       content:
         application/problem+json:
           schema:
