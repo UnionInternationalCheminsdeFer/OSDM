@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.4.1
+  version: 3.4.2
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
 
@@ -13283,6 +13283,12 @@ components:
         noAlightingAtStop:
           description: |
             Alighting will not be allowed at this stop of this journey.
+          type: boolean
+          nullable: true
+          default: false
+        isBorderPoint:
+          description: |
+            Indicates whether the stop is recognized by the system as a border point between two or more countries.
           type: boolean
           nullable: true
           default: false
