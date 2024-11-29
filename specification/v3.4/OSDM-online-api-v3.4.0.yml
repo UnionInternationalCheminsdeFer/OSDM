@@ -13282,6 +13282,12 @@ components:
           type: boolean
           nullable: true
           default: false
+        isBorderPoint:
+          description: |
+            Indicates whether the stop is recognized by the system as a border point between two or more countries.
+          type: boolean
+          nullable: true
+          default: false
 
     StopPlace:
       description: |
