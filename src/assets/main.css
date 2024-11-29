@@ -1,0 +1,17 @@
+@import '@sbb-esta/lyne-elements/standard-theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sbb-color-red: #4caf50; /* A nice green */
+  --sbb-color-red-alpha-0: rgba(76, 175, 80, 0); /* Transparent green */
+  --sbb-color-red-alpha-20: rgba(76, 175, 80, 0.2); /* 20% opacity green */
+  --sbb-color-red-alpha-90: rgba(76, 175, 80, 0.9); /* 90% opacity green */
+  --sbb-color-red-mode-dark: #388e3c; /* A darker green */
+  --sbb-color-red125: #2e7d32; /* A slightly darker shade of green */
+  --sbb-color-red125-alpha-0: rgba(46, 125, 50, 0); /* Transparent dark green */
+  --sbb-color-red125-alpha-20: rgba(46, 125, 50, 0.2); /* 20% opacity dark green */
+  --sbb-color-red150: #1b5e20; /* Even darker green */
+}
