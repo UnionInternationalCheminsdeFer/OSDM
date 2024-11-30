@@ -2,7 +2,14 @@
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'osdm-accent': 'var(--sbb-color-red)',
+        'osdm-accent-dark': 'var(--sbb-color-red150)',
+        'osdm-bg-primary': '#FFFFFF',
+        'osdm-text-inverted': '#FFFFFF',
+      },
+    },
   },
   plugins: [],
 }

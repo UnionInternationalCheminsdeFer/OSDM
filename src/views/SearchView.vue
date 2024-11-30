@@ -1,5 +1,16 @@
 <template>
-  <main>Search</main>
+  <main>
+    <SearchBar />
+  </main>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts">
+import SearchBar from '@/components/molecules/SearchBar.vue'
+import { SbbButtonElement } from '@sbb-esta/lyne-elements/button'
+
+export default {
+  components: {
+    SearchBar,
+  },
+}
+</script>

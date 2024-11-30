@@ -1,5 +1,10 @@
 <template>
-  <RouterView />
+  <div>
+    <header class="bg-osdm-accent text-osdm-text-inverted flex justify-center p-4">
+      OSDM-Demo-App
+    </header>
+    <RouterView />
+  </div>
 </template>
 
 <script lang="ts">
