@@ -57,6 +57,11 @@ export default {
       inputValue: '',
     }
   },
+  mounted() {
+    if (this.selectedPlace) {
+      ;(this.$refs.input as HTMLInputElement).value = this.selectedPlace.name
+    }
+  },
   methods: {
     handleInput(input: Event) {
       this.inputValue = (input.target as HTMLInputElement).value

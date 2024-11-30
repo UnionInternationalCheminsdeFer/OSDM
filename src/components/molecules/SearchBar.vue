@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-osdm-accent flex justify-center p-4">
     <sbb-card>
       <div class="flex gap-4">
         <InputPlace name="Origin" :select-callback="setOrigin" :selected-place="origin" />
@@ -8,9 +8,21 @@
           :select-callback="setDestination"
           :selected-place="destination"
         />
-        <InputDate name="Date" :select-callback="setDate" />
-        <InputTime name="Time" :select-callback="setTime" />
-        <sbb-button @click="handleSearchTrip">Search</sbb-button>
+        <InputDate name="Date" :value="date" :select-callback="setDate" />
+        <InputTime name="Time" :value="date" :select-callback="setTime" />
+        <sbb-button
+          icon-name="arrow-right-small"
+          @click="handleSearchTrip"
+          :disabled="!origin || !destination"
+        >
+          <span v-if="!loading">Search</span>
+          <sbb-loading-indicator
+            v-else
+            variant="circle"
+            size="s"
+            color="white"
+          ></sbb-loading-indicator>
+        </sbb-button>
       </div>
     </sbb-card>
   </div>
@@ -19,12 +31,14 @@
 <script lang="ts">
 import { SbbButtonElement as SbbButton } from '@sbb-esta/lyne-elements/button'
 import { SbbCardElement as SbbCard } from '@sbb-esta/lyne-elements/card'
+import { SbbLoadingIndicatorElement as SbbLoadingIndicator } from '@sbb-esta/lyne-elements/loading-indicator'
 import InputDate from '../atoms/InputDate.vue'
 import InputPlace from '../atoms/InputPlace.vue'
 import InputTime from '../atoms/InputTime.vue'
 import type { components } from '@/schemas/schema'
 import { osdmClientKey, requestorHeaderKey } from '@/types/symbols'
 import { inject } from 'vue'
+import { TripListError, useTripsStore } from '@/stores/trips'
 
 export default {
   components: {
@@ -33,6 +47,7 @@ export default {
     InputTime,
     SbbButton,
     SbbCard,
+    SbbLoadingIndicator,
   },
   setup() {
     const OSDM = inject(osdmClientKey)
@@ -45,10 +60,15 @@ export default {
     date: Date
   } {
     return {
-      origin: undefined,
-      destination: undefined,
-      date: new Date(Date.now()),
+      origin: useTripsStore().search?.origin,
+      destination: useTripsStore().search?.destination,
+      date: useTripsStore().search?.date ?? new Date(Date.now()),
     }
+  },
+  computed: {
+    loading() {
+      return useTripsStore().loading
+    },
   },
   methods: {
     setOrigin(selectedValue: components['schemas']['Place']) {
@@ -70,6 +90,7 @@ export default {
     },
     handleSearchTrip() {
       if (this.origin && this.destination) {
+        useTripsStore().setLoading(true)
         this.OSDM?.POST('/trips-collection', {
           params: {
             header: {
@@ -81,9 +102,37 @@ export default {
             destination: this.getOnlyRef(this.destination),
             departureTime: this.date.toISOString().split('Z')[0],
           },
-        }).then((response) => {
-          console.log(response)
         })
+          .then((response) => {
+            if (response.data?.trips) {
+              useTripsStore().setTrips(response.data.trips)
+            } else if (response.data) {
+              useTripsStore().setError(
+                new TripListError(
+                  'No results',
+                  'No trips could be found for your search request',
+                  'binoculars-large',
+                ),
+              )
+            }
+            useTripsStore().setError(
+              new TripListError(
+                'An error occurred',
+                'The Server returned an error',
+                'sign-exclamation-point-medium',
+              ),
+            )
+          })
+          .finally(() => {
+            if (this.origin && this.destination) {
+              this.$router.push('trips')
+              useTripsStore().setSearchCriteria({
+                origin: this.origin,
+                destination: this.destination,
+                date: this.date,
+              })
+            }
+          })
       }
     },
     getOnlyRef(place: components['schemas']['Place']) {

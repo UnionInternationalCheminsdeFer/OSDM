@@ -3,7 +3,7 @@
     <label>{{ name }}</label>
     <sbb-datepicker-toggle></sbb-datepicker-toggle>
     <input />
-    <sbb-datepicker @change="handleChange"></sbb-datepicker>
+    <sbb-datepicker ref="input" @change="handleChange"></sbb-datepicker>
   </sbb-form-field>
 </template>
 
@@ -17,6 +17,7 @@ import {
 export default {
   props: {
     name: String,
+    value: Date,
     selectCallback: {
       type: Function,
       required: true,
@@ -26,6 +27,11 @@ export default {
     SbbFormField,
     SbbDatepicker,
     SbbDatepickerToggle,
+  },
+  mounted() {
+    if (this.value) {
+      this.$refs.input.setValueAsDate(this.value)
+    }
   },
   methods: {
     handleChange(event: Event) {

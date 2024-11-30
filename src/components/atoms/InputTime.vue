@@ -1,8 +1,8 @@
 <template>
   <sbb-form-field width="collapse">
     <label>{{ name }}</label>
-    <sbb-time-input @input="handleInput"></sbb-time-input>
-    <input />
+    <sbb-time-input @input="handleInput" ref="input"></sbb-time-input>
+    <input class="min-w-20" />
   </sbb-form-field>
 </template>
 
@@ -13,6 +13,7 @@ import { SbbFormErrorElement as SbbFormError } from '@sbb-esta/lyne-elements/for
 export default {
   props: {
     name: String,
+    value: Date,
     selectCallback: {
       type: Function,
       required: true,
@@ -22,6 +23,11 @@ export default {
     SbbTimeInput,
     SbbFormField,
     SbbFormError,
+  },
+  mounted() {
+    if (this.value) {
+      this.$refs.input.setValueAsDate(this.value)
+    }
   },
   methods: {
     handleInput(event: Event) {
