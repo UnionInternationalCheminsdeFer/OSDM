@@ -90,55 +90,21 @@ export default {
     },
     handleSearchTrip() {
       if (this.origin && this.destination) {
-        useTripsStore().setLoading(true)
-        this.OSDM?.POST('/trips-collection', {
-          params: {
-            header: {
-              Requestor: this.Requestor,
-            },
-          },
-          body: {
-            origin: this.getOnlyRef(this.origin),
-            destination: this.getOnlyRef(this.destination),
-            departureTime: this.date.toISOString().split('Z')[0],
+        this.$router.push({
+          name: 'trips',
+          query: {
+            o: btoa(JSON.stringify(this.getOnlyRef(this.origin))),
+            d: btoa(JSON.stringify(this.getOnlyRef(this.destination))),
+            t: this.date.toISOString(),
           },
         })
-          .then((response) => {
-            if (response.data?.trips) {
-              useTripsStore().setTrips(response.data.trips)
-            } else if (response.data) {
-              useTripsStore().setError(
-                new TripListError(
-                  'No results',
-                  'No trips could be found for your search request',
-                  'binoculars-large',
-                ),
-              )
-            }
-            useTripsStore().setError(
-              new TripListError(
-                'An error occurred',
-                'The Server returned an error',
-                'sign-exclamation-point-medium',
-              ),
-            )
-          })
-          .finally(() => {
-            if (this.origin && this.destination) {
-              this.$router.push('trips')
-              useTripsStore().setSearchCriteria({
-                origin: this.origin,
-                destination: this.destination,
-                date: this.date,
-              })
-            }
-          })
       }
     },
     getOnlyRef(place: components['schemas']['Place']) {
       return {
         objectType: place.objectType,
         stopPlaceRef: place.id,
+        name: place.name,
       }
     },
   },

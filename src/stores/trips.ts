@@ -23,10 +23,12 @@ export const useTripsStore = defineStore('trips', {
   state: (): {
     search: SearchCriteria | undefined
     trips: components['schemas']['Trip'][]
+    selectedTrip: components['schemas']['Trip'] | undefined
     error: TripListError | undefined
     loading: boolean
   } => ({
     search: undefined,
+    selectedTrip: undefined,
     loading: false,
     error: undefined,
     trips: [],
@@ -42,6 +44,9 @@ export const useTripsStore = defineStore('trips', {
     },
     setLoading(value: boolean) {
       this.loading = value
+    },
+    selectTrip(value: components['schemas']['Trip']) {
+      this.selectedTrip = value
     },
     setError(error: TripListError) {
       this.error = error

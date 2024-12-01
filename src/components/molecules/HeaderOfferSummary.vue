@@ -1,6 +1,6 @@
 <template>
   <sbb-card>
-    <div class="flex flex-col items-center gap-2">
+    <div class="flex flex-col items-center">
       <div class="self-start mb-4">
         <p
           v-for="(description, index) in getOfferPartSummary(offer.admissionOfferParts)"
@@ -11,42 +11,36 @@
         </p>
       </div>
       <div class="flex justify-between w-full">
-        <sbb-chip size="s" color="Granite">
+        <sbb-chip size="xs" color="Granite">
           <div class="flex items-center">
             <sbb-icon name="tickets-class-small"></sbb-icon>
             {{ normalizeClassText(offer.offerSummary.overallTravelClass) }}
           </div>
         </sbb-chip>
-        <sbb-chip size="s" color="Milk">
+        <sbb-chip size="xs" color="Milk">
           <div class="flex items-center">
             <sbb-icon name="hand-heart-small"></sbb-icon>
             {{ normalizeText(offer.offerSummary.overallServiceClass.name) }}
           </div>
         </sbb-chip>
-        <sbb-chip size="s" color="Milk">
+        <sbb-chip size="xs" color="Milk">
           <div class="flex items-center">
             <sbb-icon name="arrows-circle-small"></sbb-icon>
             {{ normalizeText(offer.offerSummary.overallFlexibility) }}
           </div>
         </sbb-chip>
       </div>
-      <hr class="w-full my-4" />
+      <hr class="w-full my-4" v-if="addedAncillaries.length > 0" />
       <div
-        v-for="ancillaryOffer in offer.ancillaryOfferParts"
+        v-for="ancillaryOffer in addedAncillaries"
         :key="`desc-${ancillaryOffer.id}`"
         class="flex justify-between w-full items-center"
       >
-        <button
-          :class="addedAncillaries.includes(ancillaryOffer) ? 'btn' : 'btn btn-unselected'"
-          @click="() => handleTogglAncillary(ancillaryOffer)"
-        >
-          <span v-if="addedAncillaries.includes(ancillaryOffer)">-</span>
-          <span v-else>+</span>
-        </button>
+        +
         <span> {{ displayPrice(ancillaryOffer.price) }}</span>
         <p>{{ getOfferPartSummary([ancillaryOffer]).join(' ') }}</p>
       </div>
-      <hr class="w-full my-4" />
+      <hr class="w-full my-2" />
       <div class="w-full flex justify-end gap-14 items-center">
         <span class="text-lg font-bold">{{
           displayPrice(
@@ -54,7 +48,6 @@
             addedAncillaries.map((aa) => aa.price),
           )
         }}</span>
-        <sbb-button icon-name="chevron-right-small" @click="handleSelect"></sbb-button>
       </div>
     </div>
   </sbb-card>
@@ -63,7 +56,6 @@
 <script lang="ts">
 import { displayPrice } from '@/helpers/price'
 import type { components } from '@/schemas/schema'
-import { useOfferStore } from '@/stores/offers'
 import { SbbCardElement as SbbCard } from '@sbb-esta/lyne-elements/card'
 import { SbbChipElement as SbbChip } from '@sbb-esta/lyne-elements/chip'
 
@@ -77,33 +69,15 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  data(): { addedAncillaries: components['schemas']['AncillaryOfferPart'][] } {
-    return {
-      addedAncillaries: [],
-    }
+    addedAncillaries: {
+      type: Array<components['schemas']['AncillaryOfferPart']>,
+      required: true,
+    },
   },
   setup() {
     return { displayPrice }
   },
   methods: {
-    handleSelect() {
-      useOfferStore().setSelectOfferAndAncillaries(this.offer, this.addedAncillaries)
-      this.$router.push({
-        name: 'details',
-        query: {
-          offerId: this.offer.offerId,
-          ancillariesIds: this.addedAncillaries.map((aa) => aa.id),
-        },
-      })
-    },
-    handleTogglAncillary(ancillary: components['schemas']['AncillaryOfferPart']) {
-      if (this.addedAncillaries.includes(ancillary)) {
-        this.addedAncillaries = this.addedAncillaries.filter((a) => a !== ancillary)
-        return
-      }
-      this.addedAncillaries.push(ancillary)
-    },
     getOfferPartSummary(offerParts: components['schemas']['AbstractOfferPart'][]) {
       const productIds = offerParts.flatMap((op) => op.products.map((prod) => prod.productId))
       return productIds?.map(

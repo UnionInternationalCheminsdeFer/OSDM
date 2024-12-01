@@ -1,16 +1,16 @@
 <template>
   <main class="h-full">
-    <TripBar />
+    <HeaderBar />
     <TripList />
   </main>
 </template>
 
 <script lang="ts">
-import TripBar from '@/components/molecules/TripBar.vue'
+import HeaderBar from '@/components/molecules/HeaderBar.vue'
 import TripList from '@/components/molecules/TripList.vue'
 export default {
   components: {
-    TripBar,
+    HeaderBar,
     TripList,
   },
 }

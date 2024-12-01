@@ -25,3 +25,11 @@ body,
   --sbb-color-red150: #1b5e20; /* Even darker green */
   --osdm-gray: #f1f1f1;
 }
+
+.btn {
+  @apply cursor-pointer bg-osdm-accent border-none text-osdm-text-inverted text-xl pb-1 rounded-full w-14 h-14 flex items-center justify-center transition-all;
+}
+
+.btn-unselected {
+  @apply bg-gray-100 border-2 border-dashed border-gray-500 text-gray-500;
+}
