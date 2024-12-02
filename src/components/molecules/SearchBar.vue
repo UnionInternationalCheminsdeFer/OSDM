@@ -3,25 +3,12 @@
     <sbb-card>
       <div class="flex gap-4">
         <InputPlace name="Origin" :select-callback="setOrigin" :selected-place="origin" />
-        <InputPlace
-          name="Destination"
-          :select-callback="setDestination"
-          :selected-place="destination"
-        />
+        <InputPlace name="Destination" :select-callback="setDestination" :selected-place="destination" />
         <InputDate name="Date" :value="date" :select-callback="setDate" />
         <InputTime name="Time" :value="date" :select-callback="setTime" />
-        <sbb-button
-          icon-name="arrow-right-small"
-          @click="handleSearchTrip"
-          :disabled="!origin || !destination"
-        >
+        <sbb-button icon-name="arrow-right-small" @click="handleSearchTrip" :disabled="!origin || !destination">
           <span v-if="!loading">Search</span>
-          <sbb-loading-indicator
-            v-else
-            variant="circle"
-            size="s"
-            color="white"
-          ></sbb-loading-indicator>
+          <sbb-loading-indicator v-else variant="circle" size="s" color="white"></sbb-loading-indicator>
         </sbb-button>
       </div>
     </sbb-card>
@@ -36,9 +23,8 @@ import InputDate from '../atoms/InputDate.vue'
 import InputPlace from '../atoms/InputPlace.vue'
 import InputTime from '../atoms/InputTime.vue'
 import type { components } from '@/schemas/schema'
-import { osdmClientKey, requestorHeaderKey } from '@/types/symbols'
 import { inject } from 'vue'
-import { TripListError, useTripsStore } from '@/stores/trips'
+import { placeToSearchCriteriaLocation, TripListError, useTripsStore } from '@/stores/trips'
 
 export default {
   components: {
@@ -48,11 +34,6 @@ export default {
     SbbButton,
     SbbCard,
     SbbLoadingIndicator,
-  },
-  setup() {
-    const OSDM = inject(osdmClientKey)
-    const Requestor = inject(requestorHeaderKey) ?? ''
-    return { OSDM, Requestor }
   },
   data(): {
     origin: components['schemas']['Place'] | undefined
@@ -93,18 +74,11 @@ export default {
         this.$router.push({
           name: 'trips',
           query: {
-            o: btoa(JSON.stringify(this.getOnlyRef(this.origin))),
-            d: btoa(JSON.stringify(this.getOnlyRef(this.destination))),
+            o: btoa(JSON.stringify(placeToSearchCriteriaLocation(this.origin))),
+            d: btoa(JSON.stringify(placeToSearchCriteriaLocation(this.destination))),
             t: this.date.toISOString(),
           },
         })
-      }
-    },
-    getOnlyRef(place: components['schemas']['Place']) {
-      return {
-        objectType: place.objectType,
-        stopPlaceRef: place.id,
-        name: place.name,
       }
     },
   },

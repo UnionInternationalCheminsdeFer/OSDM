@@ -1,26 +1,15 @@
 <template>
   <div class="bg-osdm-accent flex justify-center p-4 gap-5 items-stretch">
-    <sbb-button
-      class="self-center"
-      negative=""
-      icon-name="arrow-left-small"
-      @click="handleGoBack"
-    ></sbb-button>
+    <sbb-button class="self-center" negative="" icon-name="arrow-left-small" @click="handleGoBack"></sbb-button>
     <sbb-card>
       <div>
-        <sbb-journey-header
-          :origin="searchCriteria?.origin.name"
-          :destination="searchCriteria?.destination.name"
-        ></sbb-journey-header>
+        <sbb-journey-header :origin="searchCriteria?.origin.name"
+          :destination="searchCriteria?.destination.name"></sbb-journey-header>
         <span>{{ searchCriteria?.date.toLocaleDateString() }}</span>
         <TripPearlChain v-if="selectedTrip" :trip="selectedTrip" />
       </div>
     </sbb-card>
-    <OfferSummary
-      v-if="selectedOffer"
-      :offer="selectedOffer"
-      :addedAncillaries="selectedAncilleries"
-    />
+    <OfferSummary v-if="selectedOffer" :offer="selectedOffer" :addedAncillaries="selectedAncilleries" />
   </div>
 </template>
 
@@ -60,8 +49,10 @@ export default {
       if (this.selectedOffer) {
         useOfferStore().unselectOffer()
       }
-      if (useTripsStore().trips.length > 0) {
-        this.$router.go(-1)
+      if (this.$route.query.offerId) {
+        this.$router.push({ name: 'offers', query: { ...this.$route.query, offerId: undefined, ancillariesIds: undefined } })
+      } else if (this.$route.query.trip) {
+        this.$router.push({ name: 'trips', query: { ...this.$route.query, trip: undefined } })
       } else {
         this.$router.push({ name: 'search' })
       }

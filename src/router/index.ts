@@ -4,12 +4,11 @@ import TripsView from '@/views/TripsView.vue'
 import OffersView from '@/views/OffersView.vue'
 import DetailsView from '@/views/DetailsView.vue'
 import TicketView from '@/views/TicketView.vue'
-import { searchTrips } from '@/api/trips'
-import { searchOffers } from '@/api/offers'
 import { usePassengerStore } from '@/stores/passengers'
 import { useTripsStore } from '@/stores/trips'
 import BookingView from '@/views/BookingView.vue'
-import { placeBooking } from '@/api/booking'
+import { inject } from 'vue'
+import { osdmClientKey } from '@/types/symbols'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,9 +47,23 @@ const router = createRouter({
 })
 
 router.beforeResolve(async (to) => {
+  const OSDM = inject(osdmClientKey)
+  if (to.query.o && to.query.d && to.query.t) {
+    useTripsStore().setSearchCriteria({
+      origin: JSON.parse(atob(to.query.o.toString())),
+      destination: JSON.parse(atob(to.query.d.toString())),
+      date: new Date(to.query.t.toString()),
+    })
+  }
+
+  if (to.query.trip) {
+    const trip = JSON.parse(atob(to.query.trip.toString()))
+    useTripsStore().selectTrip(trip)
+  }
+
   if (to.name == 'trips') {
     if (to.query.o && to.query.d && to.query.t) {
-      await searchTrips({
+      await OSDM?.trip.searchTrips({
         origin: JSON.parse(atob(to.query.o.toString())),
         destination: JSON.parse(atob(to.query.d.toString())),
         date: new Date(to.query.t.toString()),
@@ -61,16 +74,15 @@ router.beforeResolve(async (to) => {
   } else if (to.name == 'offers') {
     if (to.query.trip) {
       const trip = JSON.parse(atob(to.query.trip.toString()))
-      useTripsStore().selectTrip(trip)
       const passengers = usePassengerStore().passengers
-      await searchOffers(trip, passengers)
+      await OSDM?.offer.searchOffers(trip, passengers)
     } else {
       // GoTo Search
     }
   } else if (to.name == 'ticket') {
     if (to.query.offerId && to.query.ancilleryIds) {
       const passengers = usePassengerStore().passengers
-      await placeBooking(
+      await OSDM?.booking.placeBooking(
         to.query.offerId.toString(),
         JSON.parse(to.query.ancilleryIds.toString()),
         passengers,

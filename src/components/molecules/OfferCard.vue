@@ -2,11 +2,8 @@
   <sbb-card>
     <div class="flex flex-col items-center gap-2">
       <div class="self-start mb-4">
-        <p
-          v-for="(description, index) in getOfferPartSummary(offer.admissionOfferParts)"
-          :key="`desc-offer-${offer.id}-${index}`"
-          class="text-lg font-bold"
-        >
+        <p v-for="(description, index) in getOfferPartSummary(offer.admissionOfferParts)"
+          :key="`desc-offer-${offer.id}-${index}`" class="text-lg font-bold">
           {{ description }}
         </p>
       </div>
@@ -31,15 +28,10 @@
         </sbb-chip>
       </div>
       <hr class="w-full my-4" />
-      <div
-        v-for="ancillaryOffer in offer.ancillaryOfferParts"
-        :key="`desc-${ancillaryOffer.id}`"
-        class="flex justify-between w-full items-center"
-      >
-        <button
-          :class="addedAncillaries.includes(ancillaryOffer) ? 'btn' : 'btn btn-unselected'"
-          @click="() => handleTogglAncillary(ancillaryOffer)"
-        >
+      <div v-for="ancillaryOffer in offer.ancillaryOfferParts" :key="`desc-${ancillaryOffer.id}`"
+        class="flex justify-between w-full items-center">
+        <button :class="addedAncillaries.includes(ancillaryOffer) ? 'btn' : 'btn btn-unselected'"
+          @click="() => handleTogglAncillary(ancillaryOffer)">
           <span v-if="addedAncillaries.includes(ancillaryOffer)">-</span>
           <span v-else>+</span>
         </button>
@@ -94,6 +86,7 @@ export default {
         query: {
           offerId: this.offer.offerId,
           ancillariesIds: this.addedAncillaries.map((aa) => aa.id),
+          ...this.$route.query
         },
       })
     },

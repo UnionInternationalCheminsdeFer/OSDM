@@ -24,6 +24,7 @@ body,
   --sbb-color-red125-alpha-20: rgba(46, 125, 50, 0.2); /* 20% opacity dark green */
   --sbb-color-red150: #1b5e20; /* Even darker green */
   --osdm-gray: #f1f1f1;
+  --sbb-pearl-chain-color-past: #eeeded;
 }
 
 .btn {

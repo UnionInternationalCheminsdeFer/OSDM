@@ -25,9 +25,9 @@ import {
 } from '@sbb-esta/lyne-elements/form-field'
 import { SbbAutocompleteElement as SbbAutocomplete } from '@sbb-esta/lyne-elements/autocomplete'
 import { SbbOptionElement as SbbOption } from '@sbb-esta/lyne-elements/option'
-import { inject } from 'vue'
-import { osdmClientKey, requestorHeaderKey } from '@/types/symbols'
-import levenshtein from 'js-levenshtein'
+import { osdmClientKey, requestorHeaderKey } from "@/types/symbols"
+import { inject } from "vue"
+import { findPlaces } from '@/api/place'
 import type { components } from '@/schemas/schema'
 
 export default {
@@ -45,11 +45,6 @@ export default {
     SbbAutocomplete,
     SbbOption,
   },
-  setup() {
-    const OSDM = inject(osdmClientKey)
-    const Requestor = inject(requestorHeaderKey) ?? ''
-    return { OSDM, Requestor }
-  },
   data(): { places: components['schemas']['Place'][]; active: boolean; inputValue: string } {
     return {
       places: [],
@@ -57,7 +52,12 @@ export default {
       inputValue: '',
     }
   },
+  setup() {
+    const OSDM = inject(osdmClientKey)
+    return { OSDM }
+  },
   mounted() {
+    this.findPlaces('')
     if (this.selectedPlace) {
       ;(this.$refs.input as HTMLInputElement).value = this.selectedPlace.name
     }
@@ -65,31 +65,13 @@ export default {
   methods: {
     handleInput(input: Event) {
       this.inputValue = (input.target as HTMLInputElement).value
-      this.loadPlaces(this.inputValue)
+      this.findPlaces(this.inputValue)
     },
-    loadPlaces(input: string) {
-      this.OSDM?.POST('/places', {
-        params: {
-          header: {
-            Requestor: this.Requestor,
-          },
-        },
-        body: {
-          placeInput: {
-            name: input,
-          },
-        },
-      }).then((response) => {
-        if (response.data && response.data.places) {
-          const places = response.data.places
-          places.sort((a, b) => levenshtein(a.name, input) - levenshtein(b.name, input))
-          this.places = places
-        }
-      })
+    findPlaces(input: string) {
+      this.OSDM.place.findPlaces(input).then((result) => this.places = result)
     },
     handleActivate() {
       this.inputValue = ''
-      this.loadPlaces(this.inputValue)
       this.active = true
     },
     handleDeactivate() {

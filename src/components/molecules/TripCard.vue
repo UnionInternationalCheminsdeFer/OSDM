@@ -28,6 +28,7 @@ export default {
         name: 'offers',
         query: {
           trip: btoa(JSON.stringify(this.$props.trip)),
+          ...this.$route.query
         },
       })
     },

@@ -1,20 +1,27 @@
-import type { components } from '@/schemas/schema'
+import type { components, paths } from '@/schemas/schema'
 import { OfferListError, useOfferStore } from '@/stores/offers'
-import { osdmClientKey, requestorHeaderKey } from '@/types/symbols'
-import { inject } from 'vue'
+import { TripListError, useTripsStore, type SearchCriteria } from '@/stores/trips'
+import type { Client } from 'openapi-fetch'
 
-export const searchOffers = async (
-  trip: components['schemas']['Trip'],
-  passengers: components['schemas']['Passenger'][],
-) => {
-  const OSDM = inject(osdmClientKey)
-  const requestor = inject(requestorHeaderKey) ?? ''
+export class OSDMOffer {
+  client: Client<paths>
+  requestor: string
+
+  constructor(client: Client<paths>, requestor: string) {
+      this.client = client;
+      this.requestor = requestor;
+  }
+
+  async searchOffers (
+    trip: components['schemas']['Trip'],
+    passengers: components['schemas']['Passenger'][],
+  ) {
 
   useOfferStore().setLoading(true)
-  const response = await OSDM?.POST('/offers', {
+  const response = await this.client?.POST('/offers', {
     params: {
       header: {
-        Requestor: requestor,
+        Requestor: this.requestor,
       },
     },
     body: {
@@ -48,4 +55,5 @@ export const searchOffers = async (
       'sign-exclamation-point-medium',
     ),
   )
+}
 }

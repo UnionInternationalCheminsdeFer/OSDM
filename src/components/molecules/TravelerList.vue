@@ -1,12 +1,8 @@
 <template>
   <div class="bg-osdm-bg-secondary w-full h-full flex flex-col items-center gap-2 p-4">
     <div class="flex mb-4">
-      <TravelerInput
-        v-for="(passenger, index) in passengers"
-        :key="`pas-${passenger.id}`"
-        :passenger="passenger"
-        :passengerStoreIndex="index"
-      />
+      <TravelerInput v-for="(passenger, index) in passengers" :key="`pas-${passenger.id}`" :passenger="passenger"
+        :passengerStoreIndex="index" />
     </div>
     <sbb-button @click="handlePurchase">Buy for {{ totalPrice }}</sbb-button>
   </div>
@@ -38,6 +34,7 @@ export default {
         query: {
           offerId: useOfferStore().selectedOffer?.offerId,
           ancilleryIds: JSON.stringify(useOfferStore().selectedAncilleries.map((sa) => sa.id)),
+          ...this.$route.query
         },
       })
     },

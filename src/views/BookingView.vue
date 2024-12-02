@@ -32,7 +32,11 @@ export default {
     },
   },
   mounted() {
-    this.$router.push({ name: 'ticket', query: this.$route.query })
+    if (!this.$route.query.offerId) {
+      this.$router.push({ name: 'offers', query: this.$route.query })
+    } else {
+      this.$router.push({ name: 'ticket', query: this.$route.query })
+    }
   },
 }
 </script>

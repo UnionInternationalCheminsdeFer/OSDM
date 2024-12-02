@@ -13,9 +13,23 @@ export class TripListError {
   }
 }
 
+export type SearchCriteriaLocation = {
+  objectType: string,
+  id: string,
+  name: string,
+}
+
+export const placeToSearchCriteriaLocation = (place: components['schemas']['Place']): SearchCriteriaLocation => {
+  return {
+    objectType: place.objectType,
+    id: place.id,
+    name: place.name,
+  }
+}
+
 export type SearchCriteria = {
-  origin: components['schemas']['Place']
-  destination: components['schemas']['Place']
+  origin: SearchCriteriaLocation
+  destination: SearchCriteriaLocation
   date: Date
 }
 
