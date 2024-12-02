@@ -6,12 +6,8 @@
 
     <sbb-form-field-clear />
     <sbb-autocomplete @optionSelected="handleSelect">
-      <sbb-option
-        v-for="place in places"
-        :key="`option-${place.id}`"
-        :icon-name="getIconByType(place.objectType)"
-        :value="place.id"
-      >
+      <sbb-option v-for="place in places" :key="`option-${place.id}`" :icon-name="getIconByType(place.objectType)"
+        :value="place.id">
         {{ place.name }}
       </sbb-option>
     </sbb-autocomplete>
@@ -25,9 +21,8 @@ import {
 } from '@sbb-esta/lyne-elements/form-field'
 import { SbbAutocompleteElement as SbbAutocomplete } from '@sbb-esta/lyne-elements/autocomplete'
 import { SbbOptionElement as SbbOption } from '@sbb-esta/lyne-elements/option'
-import { osdmClientKey, requestorHeaderKey } from "@/types/symbols"
+import { osdmClientKey } from "@/types/symbols"
 import { inject } from "vue"
-import { findPlaces } from '@/api/place'
 import type { components } from '@/schemas/schema'
 
 export default {
@@ -59,7 +54,7 @@ export default {
   mounted() {
     this.findPlaces('')
     if (this.selectedPlace) {
-      ;(this.$refs.input as HTMLInputElement).value = this.selectedPlace.name
+      ; (this.$refs.input as HTMLInputElement).value = this.selectedPlace.name
     }
   },
   methods: {
@@ -68,7 +63,7 @@ export default {
       this.findPlaces(this.inputValue)
     },
     findPlaces(input: string) {
-      this.OSDM.place.findPlaces(input).then((result) => this.places = result)
+      this.OSDM.place.findPlaces(input).then((result) => this.places = result.slice(0, 5))
     },
     handleActivate() {
       this.inputValue = ''
@@ -82,7 +77,7 @@ export default {
       const selectedItem = this.places.find((place) => place.id === selectedId)
       this.$props.selectCallback(selectedItem)
       this.active = false
-      ;(this.$refs.input as HTMLInputElement).value = selectedItem?.name ?? ''
+        ; (this.$refs.input as HTMLInputElement).value = selectedItem?.name ?? ''
     },
     getIconByType(placeType: string) {
       if (placeType === 'StopPlace') {

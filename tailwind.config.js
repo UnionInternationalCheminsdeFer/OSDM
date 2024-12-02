@@ -6,7 +6,7 @@ export default {
       colors: {
         'osdm-accent': 'var(--sbb-color-red)',
         'osdm-accent-dark': 'var(--sbb-color-red150)',
-        'osdm-bg-primary': '#FFFFFF',
+        'osdm-bg-primary': 'var(--osdm-bg-primary)',
         'osdm-bg-secondary': 'var(--osdm-gray)',
         'osdm-text-inverted': '#FFFFFF',
       },

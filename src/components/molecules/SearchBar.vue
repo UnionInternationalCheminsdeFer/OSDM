@@ -1,15 +1,30 @@
 <template>
-  <div class="bg-osdm-accent flex justify-center p-4">
+  <div class="bg-osdm-bg-primary flex justify-center p-4">
     <sbb-card>
       <div class="flex gap-4">
-        <InputPlace name="Origin" :select-callback="setOrigin" :selected-place="origin" />
-        <InputPlace name="Destination" :select-callback="setDestination" :selected-place="destination" />
+        <div>
+          <div class="flex gap-4">
+            <InputPlace name="Origin" :select-callback="setOrigin" :selected-place="origin" />
+            <InputPlace name="Destination" :select-callback="setDestination" :selected-place="destination" />
+          </div>
+        </div>
         <InputDate name="Date" :value="date" :select-callback="setDate" />
-        <InputTime name="Time" :value="date" :select-callback="setTime" />
-        <sbb-button icon-name="arrow-right-small" @click="handleSearchTrip" :disabled="!origin || !destination">
+        <div class="flex flex-col gap-2">
+
+          <InputTime name="Time" :value="date" :select-callback="setTime" />
+          <sbb-toggle value="Value 1" size="s">
+            <sbb-toggle-option value="Value 1">Departure</sbb-toggle-option>
+            <sbb-toggle-option value="Value 2">Arrival</sbb-toggle-option>
+          </sbb-toggle>
+        </div>
+        <sbb-button class="self-center" icon-name="arrow-right-small" @click="handleSearchTrip"
+          :disabled="!origin || !destination">
           <span v-if="!loading">Search</span>
           <sbb-loading-indicator v-else variant="circle" size="s" color="white"></sbb-loading-indicator>
         </sbb-button>
+      </div>
+      <div>
+
       </div>
     </sbb-card>
   </div>
@@ -18,6 +33,7 @@
 <script lang="ts">
 import { SbbButtonElement as SbbButton } from '@sbb-esta/lyne-elements/button'
 import { SbbCardElement as SbbCard } from '@sbb-esta/lyne-elements/card'
+import { SbbToggleElement as SbbToggle } from '@sbb-esta/lyne-elements/toggle'
 import { SbbLoadingIndicatorElement as SbbLoadingIndicator } from '@sbb-esta/lyne-elements/loading-indicator'
 import InputDate from '../atoms/InputDate.vue'
 import InputPlace from '../atoms/InputPlace.vue'
@@ -31,6 +47,7 @@ export default {
     InputDate,
     InputPlace,
     InputTime,
+    SbbToggle,
     SbbButton,
     SbbCard,
     SbbLoadingIndicator,

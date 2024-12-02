@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-osdm-accent flex justify-center p-4 gap-5 items-stretch">
+  <div class="bg-osdm-bg-primary flex justify-center p-4 gap-5 items-stretch">
     <sbb-button class="self-center" negative="" icon-name="arrow-left-small" @click="handleGoBack"></sbb-button>
     <sbb-card>
       <div>
