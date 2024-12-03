@@ -808,8 +808,14 @@ by a specific carrier:
 | `UIC_RIT_1_2`             | \*     | RIT reduction for RIT 1 members Second Class | REDUCTION_CARD |                        |
 | `UIC_RIT_2_2`             | \*     | RIT reduction for RIT 2 members Second Class | REDUCTION_CARD |                        |
 | `UIC_RIT_3_2`             | \*     | RIT reduction for RIT 3 members Second Class | REDUCTION_CARD |                        |
-| `UIC_EU_DISABILITY_CARD`  | \*     | EU Disabled Card                             |                |
+| `UIC_EU_DISABILITY_CARD`  | \*     | EU Disabled Card                             |                |                        |
+| `UIC_EU_DISABILITY_CARD_BLIND`  | \*     | EU Disabled Card for a blind person  |                |                        |
+| `UIC_EU_DISABILITY_CARD_WHEELCHAIR`  | \*     | EU Disabled Card for a person using a wheelchair                            |                |                        |
 | `UIC_INT_DISABILITY_CARD` | \*     | International Disabled Card                  | REDUCTION_CARD | UIC_EU_DISABILITY_CARD |
+| `UIC_INT_DISABILITY_CARD_BLIND` | \*     | International Disabled Card for a blind person                     | REDUCTION_CARD | UIC_EU_DISABILITY_CARD_BLIND |
+| `UIC_INT_DISABILITY_CARD_WHEELCHAIR` | \*     | International Disabled Card for a person using a wheelchair   | REDUCTION_CARD | UIC_EU_DISABILITY_CARD_WHEELCHAIR |
+
+Note: A card associated with a person in a request might result in a reduction applied to an accompagning person or pet.
 
 Other cards should start with the RICS code of the issuer.
 
