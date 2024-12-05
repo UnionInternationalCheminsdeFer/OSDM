@@ -51,6 +51,9 @@ export class OSDMBooking {
           },
         ],
         passengerSpecifications: passengers,
+        purchaser: {
+          detail: passengers[0].detail ?? {firstName: '', lastName: ''},
+        }
       },
     })
     if (response?.data?.booking) {

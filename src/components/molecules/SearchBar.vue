@@ -99,10 +99,10 @@ export default {
         this.$router.push({
           name: 'trips',
           query: {
-            o: btoa(JSON.stringify(placeToSearchCriteriaLocation(this.origin))),
-            d: btoa(JSON.stringify(placeToSearchCriteriaLocation(this.destination))),
+            o: btoa(encodeURIComponent(JSON.stringify(placeToSearchCriteriaLocation(this.origin)))),
+            d: btoa(encodeURIComponent(JSON.stringify(placeToSearchCriteriaLocation(this.destination)))),
             t: this.date.toISOString(),
-            v: btoa(JSON.stringify(this.vias.map((sv) => placeToSearchCriteriaLocation(sv)))),
+            v: btoa(encodeURIComponent(JSON.stringify(this.vias.map((sv) => placeToSearchCriteriaLocation(sv))))),
           },
         })
       }

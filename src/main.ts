@@ -7,12 +7,13 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import { OSDM } from './api/main'
+import { AuthMiddleware } from './auth'
 
 const osdm = new OSDM(import.meta.env.VITE_OSDM_SERVER, import.meta.env.VITE_REQUESTOR_HEADER)
 
 // // To inject Authentication use a openapi-fetch middleware:
 // // https://openapi-ts.dev/openapi-fetch/middleware-auth
-// osdm.use(AuthMiddleware)
+osdm.use(AuthMiddleware)
 
 const app = createApp(App)
 

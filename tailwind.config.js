@@ -11,6 +11,7 @@ export default {
         'osdm-bg-primary': 'var(--osdm-bg-primary)',
         'osdm-bg-secondary': 'var(--osdm-gray)',
         'osdm-bg-white': '#FFFFFF',
+        'osdm-text': '#000000',
         'osdm-text-inverted': '#FFFFFF',
       },
     },
