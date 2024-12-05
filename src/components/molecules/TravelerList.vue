@@ -4,7 +4,9 @@
       <TravelerInput v-for="(passenger, index) in passengers" :key="`pas-${passenger.id}`" :passenger="passenger"
         :passengerStoreIndex="index" />
     </div>
-    <sbb-button @click="handlePurchase">Buy for {{ totalPrice }}</sbb-button>
+    <sbb-button @click="handlePurchase">
+      <span v-if="!loading">Buy for {{ totalPrice }}</span>
+      <sbb-loading-indicator v-else variant="circle" size="s" color="white"></sbb-loading-indicator></sbb-button>
   </div>
 </template>
 
@@ -13,6 +15,7 @@ import { usePassengerStore } from '@/stores/passengers'
 import TravelerInput from './TravelerInput.vue'
 import { SbbButtonElement as SbbButton } from '@sbb-esta/lyne-elements/button'
 import { useOfferStore } from '@/stores/offers'
+import { useBookingStore } from '@/stores/booking';
 
 export default {
   components: {
@@ -26,6 +29,9 @@ export default {
     totalPrice() {
       return useOfferStore().totalPriceOfSelection
     },
+    loading() {
+      return useBookingStore().loading
+    }
   },
   methods: {
     handlePurchase() {

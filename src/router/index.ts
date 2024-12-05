@@ -81,13 +81,21 @@ router.beforeResolve(async (to) => {
     } else {
       // GoTo Search
     }
-  } else if (to.name == 'ticket') {
+  } else if (to.name == 'booking') {
     if (to.query.offerId && to.query.ancilleryIds) {
       const passengers = usePassengerStore().passengers
       await OSDM?.booking.placeBooking(
         to.query.offerId.toString(),
         JSON.parse(to.query.ancilleryIds.toString()),
         passengers,
+      )
+    } else {
+      // GoTo Search
+    }
+  } else if (to.name == 'ticket') {
+    if (to.query.bookingId) {
+      await OSDM?.booking.fulfillBooking(
+        to.query.bookingId.toString()
       )
     } else {
       // GoTo Search

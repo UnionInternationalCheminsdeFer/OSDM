@@ -49,6 +49,8 @@ export class OSDM {
     }
 
     use(middleware: Middleware) {
+        // To inject Authentication use a openapi-fetch middleware:
+        // https://openapi-ts.dev/openapi-fetch/middleware-auth
         this._client.use(middleware)
         this._middlewares.push(middleware)
     }

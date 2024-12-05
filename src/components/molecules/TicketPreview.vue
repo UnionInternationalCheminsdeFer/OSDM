@@ -34,7 +34,9 @@
 
         <div v-for="(fulfillmentDocument, index) in fulfillment.fulfillmentDocuments"
           :key="`ful-doc-${fulfillment.id}-${index}`">
-          <a v-if="fulfillmentDocument.downloadLink" href="{{ fulfillmentDocument.downloadLink }}"
+          <sbb-loading-indicator v-if="fulfillment.status == 'ON_HOLD'" variant="circle" size="s"
+            color="white"></sbb-loading-indicator>
+          <a v-if="fulfillmentDocument.downloadLink" :href="fulfillmentDocument.downloadLink" target="_blank"
             class="text-blue-500 hover:underline">Download Ticket</a>
         </div>
 

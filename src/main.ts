@@ -11,8 +11,6 @@ import { AuthMiddleware } from './auth'
 
 const osdm = new OSDM(import.meta.env.VITE_OSDM_SERVER, import.meta.env.VITE_REQUESTOR_HEADER)
 
-// // To inject Authentication use a openapi-fetch middleware:
-// // https://openapi-ts.dev/openapi-fetch/middleware-auth
 osdm.use(AuthMiddleware)
 
 const app = createApp(App)

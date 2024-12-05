@@ -11,17 +11,29 @@ export class OSDMBooking {
       this.requestor = requestor;
   }
 
-  async fulfillBooking(booking: components['schemas']['Booking']) {
-    await this.client?.POST('/bookings/{bookingId}/fulfillments', {
+  fulfillBooking(bookingId: string) {
+    return this.client?.POST('/bookings/{bookingId}/fulfillments', {
       params: {
         header: {
           Requestor: this.requestor,
         },
         path: {
-          bookingId: booking.id,
+          bookingId,
         },
       },
-      body: {},
+    })
+  }
+
+  getBooking(bookingId: string) {
+    return this.client?.GET('/bookings/{bookingId}', {
+      params: {
+        header: {
+          Requestor: this.requestor,
+        },
+        path: {
+          bookingId,
+        },
+      }
     })
   }
 
@@ -57,9 +69,7 @@ export class OSDMBooking {
       },
     })
     if (response?.data?.booking) {
-      this.fulfillBooking(response.data.booking)
       useBookingStore().setBooking(response.data.booking)
-      // useBookingStore().setFulfillment(fulfillment)
       return
     } else if (response?.data) {
       useBookingStore().setError(
