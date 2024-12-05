@@ -1,7 +1,5 @@
 import './assets/main.css'
 
-import createClient from 'openapi-fetch'
-import type { paths } from './schemas/schema'
 import { osdmClientKey } from './types/symbols'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

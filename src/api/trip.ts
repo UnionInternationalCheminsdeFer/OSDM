@@ -22,6 +22,8 @@ export class OSDMTrip {
     );
 
     useTripsStore().setLoading(true)
+      const vias = searchCriteria.vias.map((v) => ({viaPlace: toStopRef(v)}));
+      const viasRequest = vias.length > 0 ? vias : undefined;
       const response = await this.client?.POST('/trips-collection', {
         params: {
           header: {
@@ -31,6 +33,7 @@ export class OSDMTrip {
         body: {
           origin: toStopRef(searchCriteria.origin),
           destination: toStopRef(searchCriteria.destination),
+          vias: viasRequest,
           departureTime: searchCriteria.date.toISOString().split('Z')[0],
         },
       })

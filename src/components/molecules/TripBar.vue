@@ -3,10 +3,8 @@
     <sbb-button negative="" icon-name="arrow-left-small" @click="handleGoBack"></sbb-button>
     <sbb-card>
       <div>
-        <sbb-journey-header
-          :origin="searchCriteria?.origin.name"
-          :destination="searchCriteria?.destination.name"
-        ></sbb-journey-header>
+        <sbb-journey-header :origin="searchCriteria?.origin.name"
+          :destination="searchCriteria?.destination.name"></sbb-journey-header>
         <span>{{ searchCriteria?.date.toLocaleDateString() }}</span>
       </div>
     </sbb-card>

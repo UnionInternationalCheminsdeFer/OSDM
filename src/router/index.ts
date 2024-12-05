@@ -48,10 +48,11 @@ const router = createRouter({
 
 router.beforeResolve(async (to) => {
   const OSDM = inject(osdmClientKey)
-  if (to.query.o && to.query.d && to.query.t) {
+  if (to.query.o && to.query.d && to.query.t && to.query.v) {
     useTripsStore().setSearchCriteria({
       origin: JSON.parse(atob(to.query.o.toString())),
       destination: JSON.parse(atob(to.query.d.toString())),
+      vias: JSON.parse(atob(to.query.v.toString())),
       date: new Date(to.query.t.toString()),
     })
   }
@@ -62,10 +63,11 @@ router.beforeResolve(async (to) => {
   }
 
   if (to.name == 'trips') {
-    if (to.query.o && to.query.d && to.query.t) {
+    if (to.query.o && to.query.d && to.query.t&& to.query.v) {
       await OSDM?.trip.searchTrips({
         origin: JSON.parse(atob(to.query.o.toString())),
         destination: JSON.parse(atob(to.query.d.toString())),
+        vias: JSON.parse(atob(to.query.v.toString())),
         date: new Date(to.query.t.toString()),
       })
     } else {

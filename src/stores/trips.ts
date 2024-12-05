@@ -30,6 +30,7 @@ export const placeToSearchCriteriaLocation = (place: components['schemas']['Plac
 export type SearchCriteria = {
   origin: SearchCriteriaLocation
   destination: SearchCriteriaLocation
+  vias: SearchCriteriaLocation[],
   date: Date
 }
 

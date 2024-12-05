@@ -27,7 +27,7 @@
           </div>
         </sbb-chip>
       </div>
-      <hr class="w-full my-4" />
+      <hr class="w-full my-4" v-if="offer.ancillaryOfferParts && offer.ancillaryOfferParts.length > 0" />
       <div v-for="ancillaryOffer in offer.ancillaryOfferParts" :key="`desc-${ancillaryOffer.id}`"
         class="flex justify-between w-full items-center">
         <button :class="addedAncillaries.includes(ancillaryOffer) ? 'btn' : 'btn btn-unselected'"
