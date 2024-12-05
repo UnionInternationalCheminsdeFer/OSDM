@@ -5350,6 +5350,10 @@ components:
               $ref: '#/components/schemas/RegionalValiditySummary'
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
+            reservations:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReservationRelation'
             feeRefs:
               type: array
               items:
