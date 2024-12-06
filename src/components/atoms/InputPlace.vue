@@ -63,7 +63,14 @@ export default {
       this.findPlaces(this.inputValue)
     },
     findPlaces(input: string) {
-      this.OSDM.place.findPlaces(input).then((result) => this.places = result.slice(0, 5))
+
+      const request = {
+        placeInput: {
+          name: input,
+        },
+      };
+
+      this.OSDM?.place.findPlaces(request).then((result) => this.places = result.slice(0, 5))
     },
     handleActivate() {
       this.inputValue = ''

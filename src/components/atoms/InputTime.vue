@@ -9,7 +9,6 @@
 <script lang="ts">
 import { SbbTimeInputElement as SbbTimeInput } from '@sbb-esta/lyne-elements/time-input'
 import { SbbFormFieldElement as SbbFormField } from '@sbb-esta/lyne-elements/form-field'
-import { SbbFormErrorElement as SbbFormError } from '@sbb-esta/lyne-elements/form-error.js'
 export default {
   props: {
     name: String,
@@ -22,16 +21,21 @@ export default {
   components: {
     SbbTimeInput,
     SbbFormField,
-    SbbFormError,
   },
   mounted() {
     if (this.value) {
-      this.$refs.input.setValueAsDate(this.value)
+      // ToDo: Fix type
+      // SbbTimeInput element
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (this.$refs.input as any).setValueAsDate(this.value)
     }
   },
   methods: {
     handleInput(event: Event) {
-      this.selectCallback(event.target.getValueAsDate())
+      // ToDo: Fix type
+      // SbbTimeInput element
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.selectCallback((event.target as any).getValueAsDate())
     },
   },
 }

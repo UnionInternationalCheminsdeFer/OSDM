@@ -33,11 +33,13 @@
         <span>Control Number: {{ fulfillment.controlNumber }}</span>
 
         <div v-for="(fulfillmentDocument, index) in fulfillment.fulfillmentDocuments"
-          :key="`ful-doc-${fulfillment.id}-${index}`">
-          <sbb-loading-indicator v-if="fulfillment.status == 'ON_HOLD'" variant="circle" size="s"
-            color="white"></sbb-loading-indicator>
+          :key="`ful-doc-${fulfillment.id}-${index}`" class="flex flex-col">
           <a v-if="fulfillmentDocument.downloadLink" :href="fulfillmentDocument.downloadLink" target="_blank"
             class="text-blue-500 hover:underline">Download Ticket</a>
+          <img v-if="fulfillmentDocument.downloadLink?.endsWith('.png')" :src="fulfillmentDocument.downloadLink"
+            class="self-center m-4" />
+          <sbb-loading-indicator v-else-if="fulfillment.status == 'ON_HOLD'" variant="circle" size="s" color="white"
+            class="self-center m-4"></sbb-loading-indicator>
         </div>
 
       </div>

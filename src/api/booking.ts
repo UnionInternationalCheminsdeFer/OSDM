@@ -37,56 +37,16 @@ export class OSDMBooking {
     })
   }
 
-  async placeBooking (
-    offerId: string,
-    ancillaryId: string[],
-    passengers: components['schemas']['Passenger'][],
+  placeBooking (
+    request: components['schemas']['BookingRequest']
   ) {
-
-    useBookingStore().setLoading(true)
-    const response = await this.client?.POST('/bookings', {
+    return this.client?.POST('/bookings', {
       params: {
         header: {
           Requestor: this.requestor,
         },
       },
-      body: {
-        offers: [
-          {
-            offerId: offerId,
-            afterSaleByRetailerOnly: null,
-            passengerRefs: passengers.map((p) => p.externalRef),
-            optionalAncillarySelections: ancillaryId.map((aID) => ({
-              ancillaryId: aID,
-              passengerRefs: passengers.map((p) => p.externalRef),
-            })),
-          },
-        ],
-        passengerSpecifications: passengers,
-        purchaser: {
-          detail: passengers[0].detail ?? {firstName: '', lastName: ''},
-        }
-      },
+      body: request,
     })
-    if (response?.data?.booking) {
-      useBookingStore().setBooking(response.data.booking)
-      return
-    } else if (response?.data) {
-      useBookingStore().setError(
-        new BookingError(
-          'No results',
-          'No booking could be created for the specified offer',
-          'sign-exclamation-point-medium',
-        ),
-      )
-      return
-    }
-    useBookingStore().setError(
-      new BookingError(
-        'An error occurred',
-        'The Server returned an error',
-        'sign-exclamation-point-medium',
-      ),
-    )
   }
 }

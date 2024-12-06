@@ -30,7 +30,9 @@ export default {
   },
   mounted() {
     if (this.value) {
-      this.$refs.input.setValueAsDate(this.value)
+      // Sbb-datepicker element
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (this.$refs.input as any).setValueAsDate(this.value)
     }
   },
   methods: {
