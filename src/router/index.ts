@@ -5,7 +5,7 @@ import OffersView from '@/views/OffersView.vue'
 import DetailsView from '@/views/DetailsView.vue'
 import TicketView from '@/views/TicketView.vue'
 import { usePassengerStore } from '@/stores/passengers'
-import { useTripsStore } from '@/stores/trips'
+import { DateReferenceType, useTripsStore } from '@/stores/trips'
 import BookingView from '@/views/BookingView.vue'
 import { inject } from 'vue'
 import { osdmClientKey } from '@/types/symbols'
@@ -48,12 +48,13 @@ const router = createRouter({
 
 router.beforeResolve(async (to) => {
   const OSDM = inject(osdmClientKey)
-  if (to.query.o && to.query.d && to.query.t && to.query.v) {
+  if (to.query.o && to.query.d && to.query.t && to.query.v && to.query.tr) {
     useTripsStore().setSearchCriteria({
       origin: JSON.parse(decodeURIComponent(atob(to.query.o.toString()))),
       destination: JSON.parse(decodeURIComponent(atob(to.query.d.toString()))),
       vias: JSON.parse(decodeURIComponent(atob(to.query.v.toString()))),
       date: new Date(to.query.t.toString()),
+      dateReferenceType: !!JSON.parse(to.query.tr.toString()) ? DateReferenceType.DEPARTURE : DateReferenceType.ARRIVAL,
     })
   }
 
@@ -63,12 +64,13 @@ router.beforeResolve(async (to) => {
   }
 
   if (to.name == 'trips') {
-    if (to.query.o && to.query.d && to.query.t&& to.query.v) {
+    if (to.query.o && to.query.d && to.query.t&& to.query.v && to.query.tr) {
       await OSDM?.trip.searchTrips({
         origin: JSON.parse(decodeURIComponent(atob(to.query.o.toString()))),
         destination: JSON.parse(decodeURIComponent(atob(to.query.d.toString()))),
         vias: JSON.parse(decodeURIComponent(atob(to.query.v.toString()))),
         date: new Date(to.query.t.toString()),
+        dateReferenceType: !!JSON.parse(to.query.tr.toString()) ? DateReferenceType.DEPARTURE : DateReferenceType.ARRIVAL,
       })
     } else {
       // GoTo Search

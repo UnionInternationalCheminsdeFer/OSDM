@@ -1,5 +1,5 @@
 import type { paths } from '@/schemas/schema'
-import { TripListError, useTripsStore, type SearchCriteria, type SearchCriteriaLocation } from '@/stores/trips'
+import { DateReferenceType, TripListError, useTripsStore, type SearchCriteria, type SearchCriteriaLocation } from '@/stores/trips'
 import type { Client } from 'openapi-fetch'
 
 export class OSDMTrip {
@@ -34,7 +34,8 @@ export class OSDMTrip {
           origin: toStopRef(searchCriteria.origin),
           destination: toStopRef(searchCriteria.destination),
           vias: viasRequest,
-          departureTime: searchCriteria.date.toISOString().split('Z')[0],
+          departureTime: searchCriteria.dateReferenceType == DateReferenceType.DEPARTURE ? searchCriteria.date.toISOString().split('Z')[0] : undefined,
+          arrivalTime: searchCriteria.dateReferenceType == DateReferenceType.ARRIVAL ? searchCriteria.date.toISOString().split('Z')[0] : undefined,
         },
       })
       if (response?.data?.trips) {

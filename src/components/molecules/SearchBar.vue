@@ -15,9 +15,9 @@
         </div>
         <div class="flex flex-col gap-2">
           <InputTime name="Time" :value="date" :select-callback="setTime" />
-          <sbb-toggle value="Value 1" size="s">
-            <sbb-toggle-option value="Value 1">Departure</sbb-toggle-option>
-            <sbb-toggle-option value="Value 2">Arrival</sbb-toggle-option>
+          <sbb-toggle v-model="dateReferenceTypeString" size="s">
+            <sbb-toggle-option value="DEPARTURE">Departure</sbb-toggle-option>
+            <sbb-toggle-option value="ARRIVAL">Arrival</sbb-toggle-option>
           </sbb-toggle>
         </div>
         <sbb-button class="self-center" icon-name="arrow-right-small" @click="handleSearchTrip"
@@ -39,7 +39,7 @@ import InputDate from '../atoms/InputDate.vue'
 import InputPlace from '../atoms/InputPlace.vue'
 import InputTime from '../atoms/InputTime.vue'
 import type { components } from '@/schemas/schema'
-import { placeToSearchCriteriaLocation, useTripsStore } from '@/stores/trips'
+import { DateReferenceType, placeToSearchCriteriaLocation, useTripsStore } from '@/stores/trips'
 import PassengerInput from './PassengerInput.vue'
 import ViasInput from './ViasInput.vue'
 import { usePassengerStore } from '@/stores/passengers'
@@ -60,13 +60,15 @@ export default {
     origin: components['schemas']['Place'] | undefined
     destination: components['schemas']['Place'] | undefined
     vias: components['schemas']['Place'][]
-    date: Date
+    date: Date,
+    dateReferenceType: DateReferenceType,
   } {
     return {
       origin: useTripsStore().search?.origin,
       destination: useTripsStore().search?.destination,
       vias: useTripsStore().search?.vias ?? [],
       date: useTripsStore().search?.date ?? new Date(Date.now()),
+      dateReferenceType: DateReferenceType.DEPARTURE,
     }
   },
   computed: {
@@ -76,6 +78,18 @@ export default {
     passengers() {
       return usePassengerStore().passengers
     },
+    dateReferenceTypeString: {
+      get() {
+        return this.dateReferenceType == DateReferenceType.DEPARTURE ? "DEPARTURE" : "ARRIVAL";
+      },
+      set(value: string) {
+        if (value == "ARRIVAL") {
+          this.dateReferenceType = DateReferenceType.ARRIVAL
+        } else {
+          this.dateReferenceType = DateReferenceType.DEPARTURE
+        }
+      }
+    }
   },
   methods: {
     setOrigin(selectedValue: components['schemas']['Place']) {
@@ -109,6 +123,7 @@ export default {
             o: btoa(encodeURIComponent(JSON.stringify(placeToSearchCriteriaLocation(this.origin)))),
             d: btoa(encodeURIComponent(JSON.stringify(placeToSearchCriteriaLocation(this.destination)))),
             t: this.date.toISOString(),
+            tr: JSON.stringify(this.dateReferenceType == DateReferenceType.DEPARTURE),
             v: btoa(encodeURIComponent(JSON.stringify(this.vias.map((sv) => placeToSearchCriteriaLocation(sv))))),
           },
         })

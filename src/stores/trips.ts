@@ -27,11 +27,17 @@ export const placeToSearchCriteriaLocation = (place: components['schemas']['Plac
   }
 }
 
+export enum DateReferenceType {
+  DEPARTURE,
+  ARRIVAL
+}
+
 export type SearchCriteria = {
   origin: SearchCriteriaLocation
   destination: SearchCriteriaLocation
   vias: SearchCriteriaLocation[],
   date: Date,
+  dateReferenceType: DateReferenceType,
 }
 
 export const useTripsStore = defineStore('trips', {
