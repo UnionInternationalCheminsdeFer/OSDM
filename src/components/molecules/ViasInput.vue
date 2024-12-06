@@ -7,11 +7,12 @@
             </button>
         </div>
         <div v-if="expanded"
-            class="absolute w-fit bg-osdm-bg-white shadow-lg rounded-lg p-4 right-0 flex flex-col gap-2" ref="popout">
+            class="absolute w-fit bg-osdm-bg-white shadow-lg rounded-lg p-4 border right-0 flex flex-col gap-2"
+            ref="popout">
             <div class="flex  items-center gap-4" v-for="(_entry, index) in selectedVias ? [...selectedVias, -1] : [-1]"
                 :key="`via-${index}`">
                 <span>via</span>
-                <InputPlace name="Via 1" :select-callback="(via) => setVia(via, index)"
+                <InputPlace :name="`Via ${index + 1}`" :select-callback="(via) => setVia(via, index)"
                     :selected-place="selectedVias && selectedVias[index]" />
                 <button v-if="index < (selectedVias?.length ?? 0)" @click="() => removeVia(index)">
                     <sbb-icon name="trash-small" />

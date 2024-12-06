@@ -2,26 +2,14 @@
   <sbb-card>
     <div class="flex flex-col gap-4 pb-4">
       <h1>Passenger {{ passengerStoreIndex + 1 }}</h1>
-      <InputText
-        name="First Name"
-        :value="passenger.details?.firstName"
-        @input="(event) => updatePassengerProperty('firstName', event)"
-      />
-      <InputText
-        name="Last Name"
-        :value="passenger.details?.lastName"
-        @input="(event) => updatePassengerProperty('lastName', event)"
-      />
-      <InputPhone
-        name="Phone Number"
-        :value="passenger.details?.lastName"
-        @input="(event) => updatePassengerProperty('phoneNumber', event)"
-      />
-      <InputEmail
-        name="E-Mail"
-        :value="passenger.details?.lastName"
-        @input="(event) => updatePassengerProperty('email', event)"
-      />
+      <InputText name="First Name" :value="passenger.details?.firstName"
+        @input="(event) => updatePassengerProperty('firstName', event)" />
+      <InputText name="Last Name" :value="passenger.details?.lastName"
+        @input="(event) => updatePassengerProperty('lastName', event)" />
+      <InputPhone name="Phone Number" :value="passenger.details?.lastName"
+        @input="(event) => updatePassengerProperty('phoneNumber', event)" />
+      <InputEmail name="E-Mail" :value="passenger.details?.lastName"
+        @input="(event) => updatePassengerProperty('email', event)" />
     </div>
   </sbb-card>
 </template>

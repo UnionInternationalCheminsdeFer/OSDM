@@ -11,7 +11,7 @@
         </div>
         <div class="flex flex-col gap-2">
           <InputDate name="Date" :value="date" :select-callback="setDate" />
-          <PassengerInput />
+          <PassengerInput :select-callback="setPassengers" :selected-passengers="passengers" />
         </div>
         <div class="flex flex-col gap-2">
           <InputTime name="Time" :value="date" :select-callback="setTime" />
@@ -42,6 +42,7 @@ import type { components } from '@/schemas/schema'
 import { placeToSearchCriteriaLocation, useTripsStore } from '@/stores/trips'
 import PassengerInput from './PassengerInput.vue'
 import ViasInput from './ViasInput.vue'
+import { usePassengerStore } from '@/stores/passengers'
 
 export default {
   components: {
@@ -72,6 +73,9 @@ export default {
     loading() {
       return useTripsStore().loading
     },
+    passengers() {
+      return usePassengerStore().passengers
+    },
   },
   methods: {
     setOrigin(selectedValue: components['schemas']['Place']) {
@@ -93,6 +97,9 @@ export default {
     },
     setVias(selectedValue: components['schemas']['Place'][]) {
       this.vias = selectedValue
+    },
+    setPassengers(passengers: components['schemas']['Passenger'][]) {
+      usePassengerStore().definePassengers(passengers)
     },
     handleSearchTrip() {
       if (this.origin && this.destination) {

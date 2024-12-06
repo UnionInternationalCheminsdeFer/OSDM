@@ -14,6 +14,9 @@ export const usePassengerStore = defineStore('passenger', {
     ],
   }),
   actions: {
+    definePassengers(passengers: components['schemas']['Passenger'][]) {
+      this.passengers = passengers
+    },
     setPassengerDetails(index: number, passenger: components['schemas']['Passenger']) {
       this.passengers[index] = passenger
     },

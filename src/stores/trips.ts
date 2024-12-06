@@ -31,7 +31,7 @@ export type SearchCriteria = {
   origin: SearchCriteriaLocation
   destination: SearchCriteriaLocation
   vias: SearchCriteriaLocation[],
-  date: Date
+  date: Date,
 }
 
 export const useTripsStore = defineStore('trips', {

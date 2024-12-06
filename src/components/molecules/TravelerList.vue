@@ -1,6 +1,6 @@
 <template>
   <div class="bg-osdm-bg-secondary w-full h-full flex flex-col items-center gap-2 p-4">
-    <div class="flex mb-4">
+    <div class="flex mb-4 gap-4">
       <TravelerInput v-for="(passenger, index) in passengers" :key="`pas-${passenger.id}`" :passenger="passenger"
         :passengerStoreIndex="index" />
     </div>
