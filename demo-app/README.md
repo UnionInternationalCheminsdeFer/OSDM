@@ -1,5 +1,7 @@
-# Demo App provided by xatellite
+# OSDM Demo App 
 
-## HoW to install
+Implemented & provided by [xatellite](https://xatellite.space).
+
+## How to install
 
 lorem ipsum
