@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-osdm-bg-primary flex justify-center p-4">
+  <div class="bg-osdm-bg-primary flex flex-row justify-center p-4">
     <sbb-card>
-      <div class="grid  sm:grid-cols-1  md:grid-cols-3 justify-center align-middle gap-4">
+      <div class="grid grid-cols-1 justify-center align-middle gap-4">
         <div class="gap-2">
           <InputPlace name="Origin" aria-placeholder="origin" :select-callback="setOrigin" :selected-place="origin" />
         </div>
@@ -10,36 +10,34 @@
             :selected-place="destination" />
         </div>
         <div class="gap-2">
-          <ViasInput aria-placeholder="Vias" :select-callback="setVias" :selectedVias="vias" />
+          <ViasInput aria-placeholder="vias" :select-callback="setVias" :selectedVias="vias" />
         </div>
         <div class="gap-2">
-          <InputDate name="Date" :value="date" :select-callback="setDate" />
+          <InputDate aria-placeholder="date" name="Date" :value="date" :select-callback="setDate" />
         </div>
         <div class="gap-2">
-          <InputTime name="Time" :value="date" :select-callback="setTime" />
+          <InputTime aria-placeholder="time" name="Time" :value="date" :select-callback="setTime" />
         </div>
-        <div class="gap-1">
-          <sbb-toggle v-model="dateReferenceTypeString" size="s">
+        <div class="gap-1 flex justify-center">
+          <sbb-toggle aria-placeholder="isArrival" v-model="dateReferenceTypeString" size="s">
             <sbb-toggle-option value="DEPARTURE">Departure</sbb-toggle-option>
             <sbb-toggle-option value="ARRIVAL">Arrival</sbb-toggle-option>
           </sbb-toggle>
         </div>
-        <div class="gap-2">
-          <div class="flex flex-col">
-            <div class="gap-1">
-              <PassengerInput :select-callback="setPassengers" :selected-passengers="passengers" />
-            </div>
-          </div>
+        <div class="gap-2 flex justify-center">
+          <PassengerInput aria-placeholder="passengers" :select-callback="setPassengers"
+            :selected-passengers="passengers" />
         </div>
-        <div class="gap-2">
-          <sbb-button class="self-center" icon-name="arrow-right-small" @click="handleSearchTrip"
-            :disabled="!origin || !destination">
+        <div class="gap-2 flex justify-center">
+          <sbb-button aria-placeholder="search" class="self-center" size="m
+           " icon-name="arrow-right-small" @click="handleSearchTrip" :disabled="!origin || !destination">
             <span v-if="!loading">Search</span>
             <sbb-loading-indicator v-else variant="circle" size="s" color="white"></sbb-loading-indicator>
           </sbb-button>
         </div>
       </div>
     </sbb-card>
+
   </div>
 </template>
 
