@@ -1,13 +1,12 @@
 <template>
     <div class="relative">
-        <div class="w-full flex">
-            <div class="flex-1" />
-            <button class="flex-1 text-left pl-4" @click="toggleVias" v-if="!expanded">
+        <div class="w-full flex justify-end">
+            <button class="text-left pl-4" @click="toggleVias">
                 {{ summaryString(selectedVias) }}
             </button>
         </div>
         <div v-if="expanded"
-            class="absolute w-fit bg-osdm-bg-white shadow-lg rounded-lg p-4 border right-0 flex flex-col gap-2"
+            class="absolute w-fit bg-osdm-bg-white shadow-lg rounded-lg p-4 border right-0 flex flex-col gap-2 z-20 top-0"
             ref="popout">
             <div class="flex  items-center gap-4" v-for="(_entry, index) in selectedVias ? [...selectedVias, -1] : [-1]"
                 :key="`via-${index}`">

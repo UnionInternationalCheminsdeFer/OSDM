@@ -13,7 +13,7 @@
             </button>
         </div>
         <div v-if="expanded"
-            class="absolute w-fit bg-osdm-bg-white shadow-lg rounded-lg p-4 border left-0 top-full mt-2 flex flex-col gap-2 min-w-48"
+            class="absolute w-fit bg-osdm-bg-white shadow-lg rounded-lg p-4 border left-0 top-full mt-2 flex flex-col gap-2 min-w-48 z-20"
             ref="popout">
             <div class="flex items-center justify-between">
                 <h2>Passengers</h2>
