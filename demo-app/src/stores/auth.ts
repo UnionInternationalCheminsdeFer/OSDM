@@ -1,3 +1,4 @@
+import { AccessToken } from '@/auth'
 import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore('auth', {
@@ -5,12 +6,12 @@ export const useAuthStore = defineStore('auth', {
     sandboxURL: string,
     clientSecret: string,
     clientId: string,
-    accessToken: string
+    accessToken: AccessToken
   } => ({
     sandboxURL: '',
     clientSecret: '',
     clientId: '',
-    accessToken: '',
+    accessToken: new AccessToken(),
   }),
   actions: {
     setAccessDetails(sandboxURL: string, clientId: string, clientSecret: string,) {

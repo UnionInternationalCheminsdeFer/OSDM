@@ -9,7 +9,7 @@ import router from './router'
 import { OSDM } from './api/main'
 import { AuthMiddleware } from './auth'
 
-const osdm = new OSDM(import.meta.env.VITE_OSDM_SERVER, import.meta.env.VITE_REQUESTOR_HEADER)
+const osdm = new OSDM("https://osdm.io/not-a-sandbox", import.meta.env.VITE_REQUESTOR_HEADER)
 
 osdm.use(AuthMiddleware)
 
