@@ -14,7 +14,7 @@ body,
 }
 
 :root {
-  --sbb-color-red: #0090d7; /* A nice green */
+  --sbb-color-red: #3434D8; /* A nice green */
   --sbb-color-red-alpha-0: rgba(76, 175, 80, 0); /* Transparent green */
   --sbb-color-red-alpha-20: #037cb818; /* 20% opacity green */
   --sbb-color-red-alpha-90: #037cb8ec; /* 90% opacity green */
@@ -26,7 +26,7 @@ body,
   --sbb-pearl-chain-color-past: #eeeded;
   --sbb-pearl-chain-bullet-color-past: #eeeded;
   --osdm-gray: #f1f1f1;
-  --osdm-bg-primary: #5db87b;
+  --osdm-bg-primary: #92d050;
   --sbb-typo-font-family: 'Poppins', sans-serif;
 }
 
