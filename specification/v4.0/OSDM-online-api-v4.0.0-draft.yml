@@ -413,8 +413,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -5171,10 +5169,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/RegulatoryCondition'
-            includedReservations:
-              type: array
-              items:
-                $ref: '#/components/schemas/ReservationOfferPart'
             throughTicketTags:
               type: array
               items:
@@ -12251,6 +12245,10 @@ components:
         - minGroupItemsToBeBooked
         - reservationGroup
       properties:
+        isIncluded:
+          description: The reservation(s) linked via this relation are included in the parent offer part.
+          type: boolean
+          default: false
         minGroupItemsToBeBooked:
           type: integer
           format: int32
