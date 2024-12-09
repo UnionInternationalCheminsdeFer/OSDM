@@ -1026,6 +1026,12 @@ reimbursement method (e.g. lower refund fee when a voucher is accepted).
 In case of multiple refundOffers for the same set of fulfillments, confirming
 one of them will delete the other refundOffers for the same set of fulfillments.
 
+Once a refundOffer has been confirmed, it still can be retrieved via a
+GET /bookings/{bookingId} request.
+
+The attribute refundableAmount of confirmed refundOffers will contain the refunded amount
+of this particular refund.
+
 #### Multiple Refund Offers
 
 Once a refundOffer has been successfully requested, no more refundOffers can be
