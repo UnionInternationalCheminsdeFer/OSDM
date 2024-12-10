@@ -1288,7 +1288,7 @@
 			"properties": {
 				"id": {
 					"type": "string"
-				},
+				},		
 				"includedCarrier": {
 					"type": "array",
 					"items": {
@@ -1298,9 +1298,12 @@
 				},
 				"includedCarrierGroup": {
 					"description": "description of the goup of carriers where this constraint applies.",
-					"$ref": "#/definitions/CarrierGroup"
+					"carrierGroupRef": {
+						"type": "string"
+					}
 				},
 				"excludedCarrier": {
+					"deprecated": "true",
 					"type": "array",
 					"items": {
 						"description": "company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x",
@@ -2639,7 +2642,12 @@
 				"id": {
 					"type": "string"
 				},
+				"code": {
+					"type": "string"
+					"description": "code of the carrier group e.g. used in IRS 90918-4 / ETCD to grant access to involved carriers"
+				},					
 				"name": {
+					"description":"Name of the carrier group thai can be used in communication with passengers"
 					"type": "string"
 				},
 				"legacyCode": {
