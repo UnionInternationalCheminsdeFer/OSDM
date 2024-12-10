@@ -344,9 +344,9 @@ return.
 ### Reservation <a name="Reservation">
 
 Reservation offers are part of the offer but the selection of places is an
-additionl intermediate step after the prebooking of offers. The selection of
+additional intermediate step after the pre-booking of offers. The selection of
 places can be made via a graphical display of available places or via the
-specifcation of customer requirements (at a table, at the window, etc..).
+specification of customer requirements (at a table, at the window, etc..).
 
 The basic flow is shown here:
 
@@ -535,7 +535,13 @@ that last name and first name are set to proceed`RequestedInformation` would be
 
 `passengerSpecifications[<uuid>].detail.firstName AND passengerSpecifiations[<uuid>].detail.lastName`
 
-The concept of *leading passenger* is also expressed using such requested information. Though the API doesn't include boolean indicator which passenger is the leading one, the provider system will identify the first eligible one (based on age or other business rules) and request necessary information using the `RequestedInformation` pattern. Removing this passenger during partial refund or exchange may be impossible in the aftersale if none other passenger is eligible for this role, or system doesn't support change of the leading passenger.
+The concept of _leading passenger_ is also expressed using such requested
+information. Though the API doesn't include boolean indicator which passenger is
+the leading one, the provider system will identify the first eligible one (based
+on age or other business rules) and request necessary information using the
+`RequestedInformation` pattern. Removing this passenger during partial refund or
+exchange may be impossible in the after sale if none other passenger is eligible
+for this role, or system doesn't support change of the leading passenger.
 
 Another example, if on top of first and last names, at least one email or one
 phone number is needed:
@@ -796,11 +802,6 @@ The **Distributor** will have to
 - build the fulfillments
 - update relevant booking properties as described above.
 
-A fare provider will rarely provide real fulfillments as the distributors is
-responsible to create the fulfillments of the combined offers. However the fare
-provider has the option to provide fulfillment parts (e.g. visual security
-elements,..) to be integrated by the distributor in the combined fulfillment.
-
 #### Fulfillment Process of Multi-Journey Products
 
 Multi-journey products provide the right to travel on multiple journeys. These
@@ -947,16 +948,16 @@ information)
 
 These are the required information needed per process step for major parties
 
-| Distributor         | Pre-booking Step                                                                                                                                                                                                                                                                                               | Booking Step                                                                                                                            |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| **Bene**            |                                                                                                                                                                                                                                                                                                                | `firstName` and `lastName`                                                                                                              |
-| **DB**              |                                                                                                                                                         | For electronic tickets, `firstName` and `lastName`, regardless of the number of passengers. In case of some regional train tariffs, however, all names and surnames are needed. For tickets printed on value paper (only few tariffs remain that allow this), no names are needed.                 |
-| **öBB**             | Both `firstName` and `lastName` are needed. `dateOfBirth` date may be needed. Some reduction cards require the number to be provided at pre-booking time, in order to be pre-checked. In other cases, the cards are simply checked on-board `phoneNumber` or `eMail` (once per order - as contact information) | `phoneNumber` or `eMail` (once per order - as contact information)                                                                      |
-| **RENFE**           | Per passenger: `firstName`, `lastName`, surname document type and identity document (DNI, NIE or passport). A `phoneNumber` or `eMail`.                                                                                                                                                                        | Per passenger: `firstName`, `lastName`, surname document type and Identity document. (DNI, NIE or passport) A `phoneNumber` or `eMail`. |
-| **SBB**             | Per passenger: `name` and `first name` and `dateOfBirth`. Additional sales parameters for some products such as `phoneNumber`or`eMail` for reservations.                                                                                                                                                       |                                                                                                                                         |
-| **SJ**              | Todo                                                                                                                                                                                                                                                                                                           |                                                                                                                                         |
-| **SNCF**            | `dateOfBirth` is mandatory, a fake date can be used at offer time, but the real one must be provided at pre-booking time                                                                                                                                                                                       |                                                                                                                                         |
-| **Eurostar/Thalys** | `firstName` and `lastName`                                                                                                                                                                                                                                                                                     | Thalys loyalty card number                                                                                                              |
+| Distributor         | Pre-booking Step                                                                                                                                                                                                                                                                                               | Booking Step                                                                                                                                                                                                                                                                       |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Bene**            |                                                                                                                                                                                                                                                                                                                | `firstName` and `lastName`                                                                                                                                                                                                                                                         |
+| **DB**              |                                                                                                                                                                                                                                                                                                                | For electronic tickets, `firstName` and `lastName`, regardless of the number of passengers. In case of some regional train tariffs, however, all names and surnames are needed. For tickets printed on value paper (only few tariffs remain that allow this), no names are needed. |
+| **öBB**             | Both `firstName` and `lastName` are needed. `dateOfBirth` date may be needed. Some reduction cards require the number to be provided at pre-booking time, in order to be pre-checked. In other cases, the cards are simply checked on-board `phoneNumber` or `eMail` (once per order - as contact information) | `phoneNumber` or `eMail` (once per order - as contact information)                                                                                                                                                                                                                 |
+| **RENFE**           | Per passenger: `firstName`, `lastName`, surname document type and identity document (DNI, NIE or passport). A `phoneNumber` or `eMail`.                                                                                                                                                                        | Per passenger: `firstName`, `lastName`, surname document type and Identity document. (DNI, NIE or passport) A `phoneNumber` or `eMail`.                                                                                                                                            |
+| **SBB**             | Per passenger: `name` and `first name` and `dateOfBirth`. Additional sales parameters for some products such as `phoneNumber`or`eMail` for reservations.                                                                                                                                                       |                                                                                                                                                                                                                                                                                    |
+| **SJ**              | Todo                                                                                                                                                                                                                                                                                                           |                                                                                                                                                                                                                                                                                    |
+| **SNCF**            | `dateOfBirth` is mandatory, a fake date can be used at offer time, but the real one must be provided at pre-booking time                                                                                                                                                                                       |                                                                                                                                                                                                                                                                                    |
+| **Eurostar/Thalys** | `firstName` and `lastName`                                                                                                                                                                                                                                                                                     | Thalys loyalty card number                                                                                                                                                                                                                                                         |
 
 ### Add parts to a booking <a name=AddPartsToABookings>
 
@@ -1026,11 +1027,11 @@ reimbursement method (e.g. lower refund fee when a voucher is accepted).
 In case of multiple refundOffers for the same set of fulfillments, confirming
 one of them will delete the other refundOffers for the same set of fulfillments.
 
-Once a refundOffer has been confirmed, it still can be retrieved via a
-GET /bookings/{bookingId} request.
+Once a refundOffer has been confirmed, it still can be retrieved via a GET
+/bookings/{bookingId} request.
 
-The attribute refundableAmount of confirmed refundOffers will contain the refunded amount
-of this particular refund.
+The attribute refundableAmount of confirmed refundOffers will contain the
+refunded amount of this particular refund.
 
 #### Multiple Refund Offers
 
@@ -1113,13 +1114,23 @@ wants to exchange, and an overrule code if relevant, are also provided.
 
 The exchange flow is following:
 
-- `POST /exchange-offers` to get alternative exchange offers (exchange operations) for the given fulfillments
-- `POST /bookings/{bookingId}/exchangeOperations` with selected exchange offer with a. information what to change on current booked offers, or b. to put a new offer (exchange operation) to the booking
-- `PATCH /bookings/{bookingId}/exchangeOperations/{exchangeOperationId}` to confirm the exchange. This will release the original booking parts and confirm parts offered in the exchange operation.
-- `POST /bookings/{bookingId}/fulfillments` to issue the new fulfillments for exchanged booking parts.
-- Optionally `PATCH /bookings/{bookingId}/fulfillments` if the asynchronous fulfillment requires that.
+- `POST /exchange-offers` to get alternative exchange offers (exchange
+  operations) for the given fulfillments
+- `POST /bookings/{bookingId}/exchangeOperations` with selected exchange offer
+  with a. information what to change on current booked offers, or b. to put a
+  new offer (exchange operation) to the booking
+- `PATCH /bookings/{bookingId}/exchangeOperations/{exchangeOperationId}` to
+  confirm the exchange. This will release the original booking parts and confirm
+  parts offered in the exchange operation.
+- `POST /bookings/{bookingId}/fulfillments` to issue the new fulfillments for
+  exchanged booking parts.
+- Optionally `PATCH /bookings/{bookingId}/fulfillments` if the asynchronous
+  fulfillment requires that.
 
-It is a good practice to execute `DELETE /booking/{bookingId}/exchangeOperations/{exchangeOperationId}` to terminate the exchange operation without confirmation and release booked offers from the operation.
+It is a good practice to execute
+`DELETE /booking/{bookingId}/exchangeOperations/{exchangeOperationId}` to
+terminate the exchange operation without confirmation and release booked offers
+from the operation.
 
 ### Replacement of lost tickets and cards
 
@@ -1129,9 +1140,9 @@ replacement for electronic tickets or anonymous tickets.
 #### Requesting a replacement for a lost ticket
 
 The replacement is requested similar to the request for a non-trip based offer.
-The search tags must include the key word `CARD_LOST` or `TICKET_LOST`. The provider
-will ask for the required data of the lost card or ticket to be provided with
-the passengers card data (card number).
+The search tags must include the key word `CARD_LOST` or `TICKET_LOST`. The
+provider will ask for the required data of the lost card or ticket to be
+provided with the passengers card data (card number).
 
 The offer for a replacement returned might include a fee. The replacement offer
 needs to be accepted and booked the same way as a usual offer.
