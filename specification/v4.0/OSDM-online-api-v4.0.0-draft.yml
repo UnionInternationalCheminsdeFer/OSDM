@@ -8172,6 +8172,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CompanyRef'
+        accountingRef:
+          $ref: '#/components/schemas/AccountingRef'
         legacyAccountingIdentifier:
           $ref: '#/components/schemas/LegacyAccountingIdentifier'
         legacyReservationParameter:
