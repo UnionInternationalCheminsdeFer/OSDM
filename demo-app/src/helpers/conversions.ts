@@ -15,9 +15,9 @@ export type FareConnectionPointRef = {
     fareConnectionPointRef: string,
 }
 
-export type GeoPostionRef = {
-    objectType: "GeoPostionRef";
-    geoPostionRef: string,
+export type GeoPositionRef = {
+    objectType: "GeoPositionRef";
+    geoPositionRef: string,
 }
 
 export type PointOfInterestRef = {
@@ -26,7 +26,7 @@ export type PointOfInterestRef = {
 }
 
 // SearchCriteriaLocation can be replaced with components["schema"]["Place"]
-export const convertPlaceToRef = (place: SearchCriteriaLocation):  StopPlaceRef | AddressRef | FareConnectionPointRef | GeoPostionRef | PointOfInterestRef => {
+export const convertPlaceToRef = (place: SearchCriteriaLocation):  StopPlaceRef | AddressRef | FareConnectionPointRef | GeoPositionRef | PointOfInterestRef => {
     switch (place.objectType) {
         case 'StopPoint': {
             return {
@@ -46,10 +46,10 @@ export const convertPlaceToRef = (place: SearchCriteriaLocation):  StopPlaceRef 
                 fareConnectionPointRef: place.id
             }
         }
-        case 'GeoPostion': {
+        case 'GeoPosition': {
             return {
-                objectType: "GeoPostionRef",
-                geoPostionRef: place.id
+                objectType: "GeoPositionRef",
+                geoPositionRef: place.id
             }
         }
         case 'PointOfInterest': {
@@ -59,5 +59,5 @@ export const convertPlaceToRef = (place: SearchCriteriaLocation):  StopPlaceRef 
             }
         }
     }
-    throw Error(`Place Type unknown found ${place.objectType} it should be within [ StopPlace | Address | FareConnectionPoint | GeoPostion | PointOfInterest]`)
+    throw Error(`Place Type unknown found ${place.objectType} it should be within [ StopPlace | Address | FareConnectionPoint | GeoPosition | PointOfInterest]`)
 }
