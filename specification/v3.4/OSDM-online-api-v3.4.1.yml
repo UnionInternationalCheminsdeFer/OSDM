@@ -2113,8 +2113,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/FulfillmentCollectionResponse'
         '202':
-          $ref: '#/components/responses/FulfillmentRequestAcceptedResponse'
-
+          description: |
+            Fulfillment successfully completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentCollectionResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
