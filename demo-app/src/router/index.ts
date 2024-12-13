@@ -11,6 +11,7 @@ import { inject } from 'vue'
 import { osdmClientKey } from '@/types/symbols'
 import { BookingError, useBookingStore } from '@/stores/booking'
 import { OfferListError, useOfferStore } from '@/stores/offers'
+import { convertPlaceToRef } from '@/helpers/conversions'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,13 +53,6 @@ const router = createRouter({
 const handleTripCollection = async (to: RouteLocationNormalizedGeneric) => {
   if (to.query.o && to.query.d && to.query.t&& to.query.v && to.query.tr) {
     const OSDM = inject(osdmClientKey)
-    const toStopRef = (scl: SearchCriteriaLocation) => (
-      {
-        objectType: scl.objectType,
-        stopPlaceRef: scl.id,
-        name: scl.name,
-      }
-    );
 
     const origin = JSON.parse(decodeURIComponent(atob(to.query.o.toString())));
     const destination = JSON.parse(decodeURIComponent(atob(to.query.d.toString())));
@@ -66,15 +60,15 @@ const handleTripCollection = async (to: RouteLocationNormalizedGeneric) => {
     const date = new Date(to.query.t.toString())
     const dateReferenceType = !!JSON.parse(to.query.tr.toString()) ? DateReferenceType.DEPARTURE : DateReferenceType.ARRIVAL
 
-    const viasRef = vias.map((v: SearchCriteriaLocation) => ({viaPlace: toStopRef(v)}));
+    const viasRef = vias.map((v: SearchCriteriaLocation) => ({viaPlace: convertPlaceToRef(v)}));
     const viasRequest = viasRef.length > 0 ? viasRef : undefined;
 
     const request = {
-      origin: toStopRef(origin),
-      destination: toStopRef(destination),
+      origin: convertPlaceToRef(origin),
+      destination: convertPlaceToRef(destination),
       vias: viasRequest,
-      departureTime: dateReferenceType == DateReferenceType.DEPARTURE ? date.toISOString().split('Z')[0] : undefined,
-      arrivalTime: dateReferenceType == DateReferenceType.ARRIVAL ? date.toISOString().split('Z')[0] : undefined,
+      departureTime: dateReferenceType == DateReferenceType.DEPARTURE ? date.toISOString().split('Z')[0].split('.')[0] : undefined,
+      arrivalTime: dateReferenceType == DateReferenceType.ARRIVAL ? date.toISOString().split('Z')[0].split('.')[0] : undefined,
     }
 
     useTripsStore().setLoading(true)
@@ -109,7 +103,7 @@ const handleTripCollection = async (to: RouteLocationNormalizedGeneric) => {
 const handleOfferSearch = async (to: RouteLocationNormalizedGeneric) => {
   if (to.query.trip) {
     const OSDM = inject(osdmClientKey)
-    const trip = JSON.parse(atob(to.query.trip.toString()))
+    const trip = JSON.parse(decodeURIComponent(atob(to.query.trip.toString())))
     const passengers = usePassengerStore().passengers
 
     const request = {
@@ -216,7 +210,7 @@ router.beforeResolve(async (to) => {
     })
   }
   if (to.query.trip) {
-    const trip = JSON.parse(atob(to.query.trip.toString()))
+    const trip = JSON.parse(decodeURIComponent(atob(to.query.trip.toString())))
     useTripsStore().selectTrip(trip)
   }
 

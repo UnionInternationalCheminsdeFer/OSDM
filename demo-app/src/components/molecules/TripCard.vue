@@ -27,7 +27,7 @@ export default {
       this.$router.push({
         name: 'offers',
         query: {
-          trip: btoa(JSON.stringify(this.$props.trip)),
+          trip: btoa(encodeURIComponent(JSON.stringify(this.$props.trip))),
           ...this.$route.query
         },
       })
