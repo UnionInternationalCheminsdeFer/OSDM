@@ -28,7 +28,7 @@ export type PointOfInterestRef = {
 // SearchCriteriaLocation can be replaced with components["schema"]["Place"]
 export const convertPlaceToRef = (place: SearchCriteriaLocation):  StopPlaceRef | AddressRef | FareConnectionPointRef | GeoPositionRef | PointOfInterestRef => {
     switch (place.objectType) {
-        case 'StopPoint': {
+        case 'StopPlace': {
             return {
                 objectType: "StopPlaceRef",
                 stopPlaceRef: place.id
@@ -59,5 +59,5 @@ export const convertPlaceToRef = (place: SearchCriteriaLocation):  StopPlaceRef 
             }
         }
     }
-    throw Error(`Place Type unknown found ${place.objectType} it should be within [ StopPlace | Address | FareConnectionPoint | GeoPosition | PointOfInterest]`)
+    throw Error(`Unknown Place Type ${place.objectType} found. One of [ StopPlace | Address | FareConnectionPoint | GeoPosition | PointOfInterest] are expected.`)
 }
