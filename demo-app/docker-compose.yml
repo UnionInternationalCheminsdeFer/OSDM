@@ -1,0 +1,5 @@
+services:
+  osdm-demo:
+    build: .
+    ports:
+      - "8080:80"
