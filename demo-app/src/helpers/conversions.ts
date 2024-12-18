@@ -1,3 +1,4 @@
+import type { components } from "@/schemas/schema";
 import type { SearchCriteriaLocation } from "@/stores/trips";
 
 export type StopPlaceRef = {
@@ -61,3 +62,22 @@ export const convertPlaceToRef = (place: SearchCriteriaLocation):  StopPlaceRef 
     }
     throw Error(`Unknown Place Type ${place.objectType} found. One of [ StopPlace | Address | FareConnectionPoint | GeoPosition | PointOfInterest] are expected.`)
 }
+
+export const convertDateToOsdmDateTime = (date: Date): string => {
+    return date.toISOString().split('Z')[0].split('.')[0]
+}
+
+export const convertDateToOsdmDate = (date: Date): string => {
+    return date.toISOString().split('T')[0]
+}
+
+export const convertOsdmDateToDate = (osdmDate: string): Date => {
+    return new Date(osdmDate)
+}
+
+
+export const convertPassengerToAnonymousPassengerSpecification = (passenger: components['schemas']['Passenger']): components['schemas']['AnonymousPassengerSpecification'] => ({
+    externalRef: passenger.externalRef,
+    type: passenger.type,
+    dateOfBirth: passenger.dateOfBirth,
+});

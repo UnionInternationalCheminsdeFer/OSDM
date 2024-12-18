@@ -1,5 +1,5 @@
 <template>
-  <sbb-form-field>
+  <sbb-form-field :size="size">
     <label>{{ name }}</label>
     <sbb-datepicker-toggle></sbb-datepicker-toggle>
     <input />
@@ -18,6 +18,10 @@ export default {
   props: {
     name: String,
     value: Date,
+    size: {
+      type: String,
+      default: ''
+    },
     selectCallback: {
       type: Function,
       required: true,

@@ -11,7 +11,7 @@ import { inject } from 'vue'
 import { osdmClientKey } from '@/types/symbols'
 import { BookingError, useBookingStore } from '@/stores/booking'
 import { OfferListError, useOfferStore } from '@/stores/offers'
-import { convertPlaceToRef } from '@/helpers/conversions'
+import { convertDateToOsdmDateTime, convertPassengerToAnonymousPassengerSpecification, convertPlaceToRef } from '@/helpers/conversions'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,14 +62,14 @@ const handleTripCollection = async (to: RouteLocationNormalizedGeneric) => {
 
     const viasRef = vias.map((v: SearchCriteriaLocation) => ({viaPlace: convertPlaceToRef(v)}));
     const viasRequest = viasRef.length > 0 ? viasRef : undefined;
-    const tripSearchCriteriaEmbeds = ['TRIPS'];
+    const tripSearchCriteriaEmbeds: ['TRIPS'] = ['TRIPS'];
 
     const request = {
       origin: convertPlaceToRef(origin),
       destination: convertPlaceToRef(destination),
       vias: viasRequest,
-      departureTime: dateReferenceType == DateReferenceType.DEPARTURE ? date.toISOString().split('Z')[0].split('.')[0] : undefined,
-      arrivalTime: dateReferenceType == DateReferenceType.ARRIVAL ? date.toISOString().split('Z')[0].split('.')[0] : undefined,
+      departureTime: dateReferenceType == DateReferenceType.DEPARTURE ? convertDateToOsdmDateTime(date) : undefined,
+      arrivalTime: dateReferenceType == DateReferenceType.ARRIVAL ? convertDateToOsdmDateTime(date) : undefined,
       embed: tripSearchCriteriaEmbeds,
     }
 
@@ -109,7 +109,7 @@ const handleOfferSearch = async (to: RouteLocationNormalizedGeneric) => {
     const passengers = usePassengerStore().passengers
 
     const request = {
-      anonymousPassengerSpecifications: passengers,
+      anonymousPassengerSpecifications: passengers.map((p) => convertPassengerToAnonymousPassengerSpecification(p)),
       tripSpecifications: [
         {
           externalRef: trip.externalRef,
