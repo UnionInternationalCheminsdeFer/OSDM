@@ -68,9 +68,9 @@ export default {
     PassengerInput,
   },
   data(): {
-    origin: components['schemas']['Place'] | undefined
-    destination: components['schemas']['Place'] | undefined
-    vias: components['schemas']['Place'][]
+    origin: components['schemas']['StopPlace'] | undefined
+    destination: components['schemas']['StopPlace'] | undefined
+    vias: components['schemas']['StopPlace'][]
     date: Date
     dateReferenceType: DateReferenceType
   } {
@@ -103,10 +103,10 @@ export default {
     },
   },
   methods: {
-    setOrigin(selectedValue: components['schemas']['Place']) {
+    setOrigin(selectedValue: components['schemas']['StopPlace']) {
       this.origin = selectedValue
     },
-    setDestination(selectedValue: components['schemas']['Place']) {
+    setDestination(selectedValue: components['schemas']['StopPlace']) {
       this.destination = selectedValue
     },
     setDate(selectedDate: Date) {
@@ -120,7 +120,7 @@ export default {
         this.date.setMinutes(setTime.getMinutes())
       }
     },
-    setVias(selectedValue: components['schemas']['Place'][]) {
+    setVias(selectedValue: components['schemas']['StopPlace'][]) {
       this.vias = selectedValue
     },
     setPassengers(passengers: components['schemas']['Passenger'][]) {

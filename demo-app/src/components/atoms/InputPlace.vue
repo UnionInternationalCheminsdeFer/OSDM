@@ -40,7 +40,7 @@ export default {
     SbbAutocomplete,
     SbbOption,
   },
-  data(): { places: components['schemas']['Place'][]; active: boolean; inputValue: string } {
+  data(): { places: components['schemas']['StopPlace'][]; active: boolean; inputValue: string } {
     return {
       places: [],
       active: false,
@@ -70,7 +70,7 @@ export default {
         },
       };
 
-      this.OSDM?.place.findPlaces(request).then((result) => this.places = result.slice(0, 5))
+      this.OSDM?.place.findPlaces(request).then((result) => this.places = result.filter((p) => p.objectType == "StopPlace").slice(0, 5))
     },
     handleActivate() {
       this.inputValue = ''

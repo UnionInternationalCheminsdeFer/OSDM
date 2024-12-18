@@ -1,5 +1,4 @@
 import type { components } from "@/schemas/schema";
-import type { SearchCriteriaLocation } from "@/stores/trips";
 
 export type StopPlaceRef = {
     objectType: "StopPlaceRef";
@@ -26,8 +25,7 @@ export type PointOfInterestRef = {
     pointOfInterestRef: string,
 }
 
-// SearchCriteriaLocation can be replaced with components["schema"]["Place"]
-export const convertPlaceToRef = (place: SearchCriteriaLocation):  StopPlaceRef | AddressRef | FareConnectionPointRef | GeoPositionRef | PointOfInterestRef => {
+export const convertPlaceToRef = (place: components["schemas"]["Place"]):  StopPlaceRef | AddressRef | FareConnectionPointRef | GeoPositionRef | PointOfInterestRef => {
     switch (place.objectType) {
         case 'StopPlace': {
             return {

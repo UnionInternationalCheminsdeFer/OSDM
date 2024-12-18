@@ -22,15 +22,15 @@ export class OSDMPlace {
           })
         
         if (response?.data?.places) {
-            const places = response.data.places
-              places.sort((a, b) => 
-                {
-                  if (request.placeInput && request.placeInput.name) {
-                    return levenshtein(a.name, request.placeInput.name) - levenshtein(b.name, request.placeInput.name)
-                  }
-                  return -1
+            const places = response.data.places.filter((p) => p.objectType == "StopPlace") as components['schemas']['StopPlace'][];
+            places.sort((a, b) => 
+              {
+                if (request.placeInput && request.placeInput.name) {
+                  return levenshtein(a.name, request.placeInput.name) - levenshtein(b.name, request.placeInput.name)
                 }
-              )
+                return -1
+              }
+            )
             return places
         }
     

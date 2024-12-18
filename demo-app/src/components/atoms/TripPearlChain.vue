@@ -1,10 +1,7 @@
 <template>
   <div class="flex-1 flex flex-col min-w-64">
-    <sbb-pearl-chain-time
-      :legs="calculateSBBLegsFromTrip(trip)"
-      :arrival-time="trip.endTime"
-      :departure-time="trip.startTime"
-    ></sbb-pearl-chain-time>
+    <sbb-pearl-chain-time :legs="calculateSBBLegsFromTrip(trip as components['schemas']['Trip'])"
+      :arrival-time="trip.endTime" :departure-time="trip.startTime"></sbb-pearl-chain-time>
     <div>
       <span>{{
         trip.transfers == 0
