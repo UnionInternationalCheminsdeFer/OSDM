@@ -62,6 +62,7 @@ const handleTripCollection = async (to: RouteLocationNormalizedGeneric) => {
 
     const viasRef = vias.map((v: SearchCriteriaLocation) => ({viaPlace: convertPlaceToRef(v)}));
     const viasRequest = viasRef.length > 0 ? viasRef : undefined;
+    const tripSearchCriteriaEmbeds = ['TRIPS'];
 
     const request = {
       origin: convertPlaceToRef(origin),
@@ -69,6 +70,7 @@ const handleTripCollection = async (to: RouteLocationNormalizedGeneric) => {
       vias: viasRequest,
       departureTime: dateReferenceType == DateReferenceType.DEPARTURE ? date.toISOString().split('Z')[0].split('.')[0] : undefined,
       arrivalTime: dateReferenceType == DateReferenceType.ARRIVAL ? date.toISOString().split('Z')[0].split('.')[0] : undefined,
+      embed: tripSearchCriteriaEmbeds,
     }
 
     useTripsStore().setLoading(true)
