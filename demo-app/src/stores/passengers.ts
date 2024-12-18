@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import type { components } from '@/schemas/schema'
-import { convertDateToOsdmDateTime } from '@/helpers/conversions';
+import { convertDateToOsdmDate } from '@/helpers/conversions';
 
 export const usePassengerStore = defineStore('passenger', {
   state: (): {
@@ -14,7 +14,7 @@ export const usePassengerStore = defineStore('passenger', {
       {
         id: 'passenger_01',
         externalRef: 'passenger_01',
-        dateOfBirth: convertDateToOsdmDateTime(dummyBirthdate),
+        dateOfBirth: convertDateToOsdmDate(dummyBirthdate),
         type: 'PERSON',
       },
     ],
