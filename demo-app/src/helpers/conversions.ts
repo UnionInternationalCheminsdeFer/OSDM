@@ -1,3 +1,4 @@
+import type { components } from "@/schemas/schema";
 import type { SearchCriteriaLocation } from "@/stores/trips";
 
 export type StopPlaceRef = {
@@ -73,3 +74,10 @@ export const convertDateToOsdmDate = (date: Date): string => {
 export const convertOsdmDateToDate = (osdmDate: string): Date => {
     return new Date(osdmDate)
 }
+
+
+export const convertPassengerToAnonymousPassengerSpecification = (passenger: components['schemas']['Passenger']): components['schemas']['AnonymousPassengerSpecification'] => ({
+    externalRef: passenger.externalRef,
+    type: passenger.type,
+    dateOfBirth: passenger.dateOfBirth,
+});

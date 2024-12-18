@@ -11,7 +11,7 @@ import { inject } from 'vue'
 import { osdmClientKey } from '@/types/symbols'
 import { BookingError, useBookingStore } from '@/stores/booking'
 import { OfferListError, useOfferStore } from '@/stores/offers'
-import { convertDateToOsdmDateTime, convertPlaceToRef } from '@/helpers/conversions'
+import { convertDateToOsdmDateTime, convertPassengerToAnonymousPassengerSpecification, convertPlaceToRef } from '@/helpers/conversions'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -109,7 +109,7 @@ const handleOfferSearch = async (to: RouteLocationNormalizedGeneric) => {
     const passengers = usePassengerStore().passengers
 
     const request = {
-      anonymousPassengerSpecifications: passengers,
+      anonymousPassengerSpecifications: passengers.map((p) => convertPassengerToAnonymousPassengerSpecification(p)),
       tripSpecifications: [
         {
           externalRef: trip.externalRef,
