@@ -8,9 +8,9 @@ export const useAuthStore = defineStore('auth', {
     clientId: string,
     accessToken: AccessToken
   } => ({
-    sandboxURL: '',
-    clientSecret: '',
-    clientId: '',
+    sandboxURL: localStorage.getItem("sandboxURL") ?? '',
+    clientSecret: localStorage.getItem("clientSecret") ?? '',
+    clientId: localStorage.getItem("clientId") ?? '',
     accessToken: new AccessToken(),
   }),
   actions: {
@@ -18,6 +18,9 @@ export const useAuthStore = defineStore('auth', {
       this.sandboxURL = sandboxURL
       this.clientSecret = clientSecret
       this.clientId = clientId
+      localStorage.setItem("sandboxURL", sandboxURL);
+      localStorage.setItem("clientSecret", clientSecret);
+      localStorage.setItem("clientId", clientId);
     },
   },
 })

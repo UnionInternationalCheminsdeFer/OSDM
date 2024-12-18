@@ -64,6 +64,10 @@ export default {
     mounted() {
         if (useAuthStore().sandboxURL.length <= 0) {
             (this.$refs.overlay as SbbOverlay).open();
+        } else {
+            this.serverURL = useAuthStore().sandboxURL;
+            this.clientId = useAuthStore().clientId;
+            this.clientSecret = useAuthStore().clientSecret;
         }
     },
     methods: {
