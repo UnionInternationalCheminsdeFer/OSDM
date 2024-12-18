@@ -8,7 +8,8 @@
     </header>
     <RouterView />
     <footer class="bg-osdm-bg-primary text-sm text-osdm-text-inverted flex justify-center p-4">
-      <p>Kindly brought to you by <a href="https://xatellite.space">xatellite</a>.</p>
+      <p>Developed with ♥ for OSDM by <a href="https://xatellite.space" target="_blank">xatellite</a> and <a
+          href="https://bileto.cz" target="_blank">bileto</a>.</p>
     </footer>
   </div>
 </template>

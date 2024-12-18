@@ -20,13 +20,19 @@
                 <sbb-button icon-name="plus-small" size="s" @click="addPassenger"></sbb-button>
             </div>
             <hr class="my-2">
-            <div class="flex  items-center gap-4" v-for="(passenger, index) in selectedPassengers"
+            <div class="flex flex-col gap-2" v-for="(passenger, index) in selectedPassengers"
                 :key="`passenger-${index}`">
+                <hr class="my-1 border-dashed" v-if="index != 0">
+                <div class="flex gap-2 w-full justify-between">
 
-                {{ `Passenger ${index + 1}` }}
-                <button v-if="index > 0" @click="() => removePassenger(index)">
-                    <sbb-icon name="trash-small" />
-                </button>
+                    {{ `Passenger ${index + 1}` }}
+                    <button v-if="index > 0" @click="() => removePassenger(index)">
+                        <sbb-icon name="trash-small" />
+                    </button>
+                </div>
+
+                <InputDate size="s" name="Birthday" :value="getBirthdate(passenger)"
+                    :select-callback="(selectedDate: Date) => updatePassenger(selectedDate, index)" />
             </div>
         </div>
     </div>
@@ -35,10 +41,13 @@
 <script lang="ts">
 import type { components } from '@/schemas/schema';
 import { SbbIconElement as SbbIcon } from '@sbb-esta/lyne-elements/icon'
+import InputDate from '../atoms/InputDate.vue';
+import { convertDate, convertDateToOsdmDate, convertOsdmDateToDate } from '@/helpers/conversions';
 
 export default {
     components: {
         SbbIcon,
+        InputDate,
     },
     props: {
         selectedPassengers: {
@@ -83,12 +92,29 @@ export default {
             this.expanded = false;
             window.removeEventListener("click", this.checkClickOutside)
         },
+        getDummyDate() {
+            const dummyBirthdate = new Date(Date.now());
+            dummyBirthdate.setFullYear(dummyBirthdate.getFullYear() - 27)
+            return dummyBirthdate
+        },
         addPassenger() {
             this.selectCallback([...this.selectedPassengers, {
                 id: `passenger_0${this.selectedPassengers.length}`,
                 externalRef: `passenger_0${this.selectedPassengers.length}`,
+                dateOfBirth: convertDateToOsdmDate(this.getDummyDate()),
                 type: 'PERSON',
             }])
+        },
+        updatePassenger(selectedDate: Date, index: number) {
+            const updatedPassengers = [...this.selectedPassengers];
+            updatedPassengers[index].dateOfBirth = convertDateToOsdmDate(selectedDate);
+            this.selectCallback(updatedPassengers)
+        },
+        getBirthdate(passenger: components['schemas']['Passenger']) {
+            if (passenger.dateOfBirth) {
+                return convertOsdmDateToDate(passenger.dateOfBirth)
+            }
+            return this.getDummyDate()
         },
         removePassenger(index: number) {
             if (index > 0) {
