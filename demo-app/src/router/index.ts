@@ -110,13 +110,7 @@ const handleOfferSearch = async (to: RouteLocationNormalizedGeneric) => {
 
     const request = {
       anonymousPassengerSpecifications: passengers.map((p) => convertPassengerToAnonymousPassengerSpecification(p)),
-      tripSpecifications: [
-        {
-          externalRef: trip.externalRef,
-          legs: trip.legs,
-          isPartOfInternationalTrip: null,
-        },
-      ],
+      tripIds: [trip.id],
     };
 
     useOfferStore().setLoading(true)
