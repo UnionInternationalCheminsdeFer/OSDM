@@ -10,7 +10,6 @@ export class OSDMTrip {
       this.requestor = requestor;
   }
   
-
   searchTrips(request: components['schemas']['TripSearchCriteria']) {
       return this.client?.POST('/trips-collection', {
         params: {
