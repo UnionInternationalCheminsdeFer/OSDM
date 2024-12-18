@@ -11,7 +11,6 @@
 </template>
 
 <script lang="ts">
-import type { components } from '@/schemas/schema'
 import { SbbIconElement as SbbIcon } from '@sbb-esta/lyne-elements/icon'
 import OfferCard from './OfferCard.vue'
 import { useOfferStore } from '@/stores/offers'

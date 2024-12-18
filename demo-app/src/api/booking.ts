@@ -1,5 +1,4 @@
 import type { components, paths } from '@/schemas/schema'
-import { BookingError, useBookingStore } from '@/stores/booking'
 import type { Client } from 'openapi-fetch'
 
 export class OSDMBooking {

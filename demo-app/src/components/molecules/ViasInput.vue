@@ -11,7 +11,8 @@
             <div class="flex  items-center gap-4" v-for="(_entry, index) in selectedVias ? [...selectedVias, -1] : [-1]"
                 :key="`via-${index}`">
                 <span>via</span>
-                <InputPlace :name="`Via ${index + 1}`" :select-callback="(via) => setVia(via, index)"
+                <InputPlace :name="`Via ${index + 1}`"
+                    :select-callback="(via: components['schemas']['StopPlace']) => setVia(via, index)"
                     :selected-place="selectedVias && selectedVias[index]" />
                 <button v-if="index < (selectedVias?.length ?? 0)" @click="() => removeVia(index)">
                     <sbb-icon name="trash-small" />
@@ -57,7 +58,7 @@ export default {
             }
             return `via ${vias.map((v) => v.name).join(', ')}`
         },
-        setVia(via: components['schemas']['Place'], index: number) {
+        setVia(via: components['schemas']['StopPlace'], index: number) {
             if (!this.selectedVias) {
                 this.selectCallback([placeToSearchCriteriaLocation(via)])
             } else if (this.selectedVias.length == index) {
