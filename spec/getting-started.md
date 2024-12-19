@@ -12,7 +12,7 @@ OSDM (Open Sales and Distribution Model) defines an API to enable and simplify t
 products. The API allows Retailers to access transport products provided by distributors. It also allows 
 distributors to access transport product bricks provided by carriers or fare providers to build 
 combined transport products. The aim of OSDM is to provide a simple API to access required information 
-online, however OSDM also rovides an offline data exchange of fares.
+online, however OSDM also provides an offline data exchange of fares.
 
 The API covers the full sales process including time table / offer serch, prebooking and booking, refund, 
 exchange including special processes to handle delays, change of material and compensation. 
@@ -91,8 +91,7 @@ this segment. On this segment this is a ICE train operated by SBB.
 
   Next, the simplest way to receive offers is to pass in _origin_,
   _destination_, _departureTime_ as well as the _passenger's_ date of birth by
-  calling. The birth date is necessary to return e.g. senior fares where
-  sensible.
+  calling:
 
   `POST /offers`
 
@@ -118,6 +117,8 @@ this segment. On this segment this is a ICE train operated by SBB.
   }
   ```
 
+  The birth date is necessary to return e.g. senior fares where sensible.
+
   As a result you get a set of offers, with exact information about the trip
   covered for the given set of passengers.
 
@@ -142,7 +143,7 @@ this segment. On this segment this is a ICE train operated by SBB.
 
   On this train a valid offer consists of an admission with a optional
   reservation. As no reduction card has been submitted, the second class is full
-  price, thus 68.00 CHF. Other valid offers for this trip, e.g. for super safer
+  price, thus 68.00 CHF. Other valid offers for this trip, e.g. for super saver
   fares (in CH: "Sparbillett") or for first class are returned.
 
   ```json
@@ -256,7 +257,7 @@ this segment. On this segment this is a ICE train operated by SBB.
   }
   ```
 
-  The number of available seat or bike place can be included in offers and
+  The number of available seats or bike places can be included in offers and
   expressed by the `"numericAvailability"` attribute.
 
   If your overwhelmed by the numbers of offers you are getting, you can filter
@@ -572,9 +573,10 @@ this information as part of the offer information.
 
 It would be in the spirit of REST to search for
 `GET /bookings?firstName=John&lastName=Doe` to return all bookings of John Doe.
-As such a call would be logged by any involved system, this collection of data
-violates GDPR regulations. We have reviewed all our services and decided to us
-POST in such cases and thus support privacy by design.
+As the path, including the search terms would be logged by any involved system,
+this collection of data violates GDPR regulations. We have reviewed all our
+services and decided to use POST in such cases and thus support privacy by
+design.
 
 ### How are IRTs modeled?
 
