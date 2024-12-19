@@ -8,10 +8,12 @@ import App from './App.vue'
 import router from './router'
 import { OSDM } from './api/main'
 import { AuthMiddleware } from './auth'
+import { JSONMimeTypeMiddleware } from './mime'
 
 const osdm = new OSDM(localStorage.getItem("sandboxURL") ?? "https://osdm.io/not-a-sandbox", import.meta.env.VITE_REQUESTOR_HEADER)
 
 osdm.use(AuthMiddleware)
+osdm.use(JSONMimeTypeMiddleware)
 
 const app = createApp(App)
 
