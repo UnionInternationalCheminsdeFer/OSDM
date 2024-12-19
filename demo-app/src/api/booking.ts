@@ -15,11 +15,13 @@ export class OSDMBooking {
       params: {
         header: {
           Requestor: this.requestor,
+          'Content-Type': 'application/json',
         },
         path: {
           bookingId,
         },
       },
+      body: {},
     })
   }
 
