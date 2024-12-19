@@ -42,7 +42,7 @@
 import type { components } from '@/schemas/schema';
 import { SbbIconElement as SbbIcon } from '@sbb-esta/lyne-elements/icon'
 import InputDate from '../atoms/InputDate.vue';
-import { convertDate, convertDateToOsdmDate, convertOsdmDateToDate } from '@/helpers/conversions';
+import { convertDateToOsdmDate, convertOsdmDateToDate } from '@/helpers/conversions';
 
 export default {
     components: {
