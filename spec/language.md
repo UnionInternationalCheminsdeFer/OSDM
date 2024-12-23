@@ -19,4 +19,4 @@
 
 - In case a language was specified but could not be satisfied, fallback to one of the languages of the issuing country and add a warning to the response.
 
-- Fulfillment resources receive a fulfillmentLanguage attribute that indicates which language was used to generate that fulfillment.
+- Fulfillment resources receive a "issuingLanguage" attribute that indicates which language was used to generate that fulfillment.
