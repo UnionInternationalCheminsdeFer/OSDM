@@ -28,7 +28,7 @@ The following standard HTTP error codes are used in the specification:
 
 The OSDM API makes use of the JSON Problem structure to return information about
 functional errors in the handling of a request. The problem structure is defined
-in [RfC-9457](https://tools.ietf.org/html/rfc9457) which defines a way to carry
+in [RFC9457](https://tools.ietf.org/html/rfc9457) which defines a way to carry
 machine-readable details of errors in a HTTP response to avoid the need to
 define new error response formats for HTTP APIs.
 

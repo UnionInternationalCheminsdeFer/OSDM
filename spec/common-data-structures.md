@@ -28,7 +28,7 @@ The following general data types shall be used:
 ### Versioning
 
 The specification (open api specification and schema files for offline data) are
-published as mayor versions in case they are not interoperable. Minor versions
+published as major versions in case they are not interoperable. Minor versions
 will include interoperable changes on the data structure which also includes
 providing additional data elements that are optional. Implementers must be able
 to ignore additional elements.
