@@ -13,9 +13,10 @@
 - Language mismatch between requested languages and available languages does not lead to an error. Instead the provider will provide localized content in english, or if not available, one of the official languages of the issuing country, with a warning in the response.
 
 ## Fulfillment language
-- To specify the desired language for generating the fulfillment, a specific field "fulfillmentLanguage" is available in the verbs leading to generation. That field is optional.
+- To specify the desired language for generating the fulfillment, a specific "issuingLanguage" field is available in the verbs leading to generation. This field is optional.
 
-- If omitted or not available, (one of) the language(s) of the issuing country is used as default in case a language was specified but could not be satisfied (fallback to one of the languages of the issuing country, a warning is added to the response.
+- If omitted or not available, (one of) the language(s) of the issuing country is used as default.
 
-- Fulfillment resources receive a fulfillmentLanguage attribute that indicates which language was used to generate that fulfillmentFor fulfillment language,  Add an issue language field on the fulfillment
-      
+- In case a language was specified but could not be satisfied, fallback to one of the languages of the issuing country and add a warning to the response.
+
+- Fulfillment resources receive a fulfillmentLanguage attribute that indicates which language was used to generate that fulfillment.
