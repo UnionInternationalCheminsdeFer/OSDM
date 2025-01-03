@@ -30,14 +30,46 @@ search for ContinuousServices by:
        per service:
            id
            description
-           available
+           time to arrival to next pick-up-place (taxi,..)
+
+### offer for continuousService
+
+     
+     offer reply: ContinuousServiceOfferPart:
+       per service:
+           id
+           description
+           available number of services
            available for blocking
-           fee for blocking
-           time limit for blocking
+           time limit for blocking 
            allocation procedure description
-           geo-location of the service
+           usage ends automatically (e.g. by locking the service)
+           geo-location of the service (pick-up-place)
            time to arrival at pick-up-place (taxi,..)
-           alternative pick-up-place
+       alternative pick-up-places: 
+            services per alternative pick-up-place:
+                id
+                description
+                available
+                available for blocking
+                time limit for blocking
+                allocation procedure description
+                geo-location of the service
+                time to arrival at pick-up-place (taxi,..)
+
+### booking
+     booking reply: ContinuousServiceBookingPart:
+     - no price
+
+
+### confirm booking
+     Fullfillment with:
+          option 1: smart link to mobility provider app
+
+          option 2: activate fulfillment for blocking a service
+                    return:  ContinuousServiceOfferPart
+                             + fee for blocking (in Fee Object)
+
 
 ### block service
 
@@ -45,26 +77,39 @@ block ContinuousService by id
            return ContinuousServiceUsage:
               id
               usage procedure description
-              descrition on end of usage
+              description on end of usage
               credentials to start the usage  (e.g. nfc-enabled pkpass, ...)
               time limit for start of usage
+              + fee for blocking (in Fee Object)
 
 ### start and end usage
 
+in patch fulfillment/{id}/continuousServices/{id}:
 start usage on continuous service usage by id
+          request:
+                status
+                id
           return ContinuousServiceUsage: 
               usage procedure description
               descrition on end of usage        
-    
+
+in patch fulfillment/{id}/continuousServices/{id}:
 end usage on continuous service usage by id
           request:
-             EndUsageRequest
+                status
                 id
                 image of parking situation
           return ContinuousServiceUsage 
              status
              refund of unused prepayed amount
+             new ContinuousServiceBookingPart including the price
 
+
+reembourcement:
+          additional reason codes
+
+
+not needed (optional):
 get usage of continuous service
          return ContinuousServiceUsage 
                status
