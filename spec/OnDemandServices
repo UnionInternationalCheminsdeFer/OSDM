@@ -186,9 +186,10 @@ In case of a shallow integration the OSDM flow ends here.
                return ContinuousServiceUsage 
                   status
 
-                  new ContinuousServiceBookingPart added in the booking:
-                    - including the price incase of post-payment
-                    - including a refund in case of pre-payment
+                  in case of post-payment: new ContinuousServiceBookingPart added in the booking:
+                    - including the price                     (alternative: update existing booking part and extend the state model)
+                  in case of pre-payment: 
+                    - including a new refund on the existing ContinuousServiceBookingPart
 
 
 reembourcement:
