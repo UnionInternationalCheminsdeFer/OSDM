@@ -117,21 +117,6 @@ the on-demand service will be used.
 
 In case of a shallow integration the OSDM flow ends here.
 
-
-### activate the fulfillment of the on demand service
-
-      PATCH /fulfillments/{fulfillmentId}  activates the fulfillment and requests a new offer part to block the service
-
-          request:
-                   intended start of usage (already included) 
-
-          reply:
-                   ContinuousServiceOfferPart  for the usage of the vehicle
-                   + fee for blocking (in Fee Object)
-
-
-
-
 ### block a vehicle for the service
 
      GET /availabilities/continuousServiceBookingPart/{id}    to get an updated list of available pick-up places and vehicles
