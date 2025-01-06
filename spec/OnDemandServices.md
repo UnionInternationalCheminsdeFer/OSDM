@@ -68,9 +68,12 @@ Schedules services which need to be confirmed (e.g. by phone) to stop are not co
 
 ### offer for continuousService
 
-The offer for the continuous service is provided as cContinuousServiceOfferPart inheriting from AbstarctOfferPart
+The offer for the continuous service is provided as cContinuousServiceOfferPart inheriting from AbstractOfferPart
+
+TODO: new ContinuousOfferPart included in Offer.
      
 ContinuousServiceOfferPart:
+
        pick-up-place 
            id
            description
@@ -84,6 +87,7 @@ ContinuousServiceOfferPart:
               - deep integration
               - prepayed
               - postpayed
+              - usage starts automatically (e.g. by entering a key code at the vehicle)
               - usage ends automatically (e.g. by locking the service) - The end of the usage does not need to be handled via OSDM
               - updates provided before pick-up (e.g. current location of a taxi)
               - updates provided after pick-up (e.g. price for current consumption)
@@ -99,17 +103,28 @@ GET /availabilities/continuousServiceOfferPart/{id}    to get an updated list of
 
 ### booking
 
-     POST bookings ctreates an ContinuousServiceBookingPart
+Creates an bookingPart for the continuousServiceOfferPart. 
+
+     TODO new ContinuousServiceBookingPart:
+
+     POST bookings
 
      ContinuousServiceBookingPart
      - no price in case of post payment
      + elements from the offer part
 
 
-     GET /availabilities/continuousServiceBookingPart/{id}    to get an updated list of available vehicles and pick-up places
+
+To get an updated list of available vehicles and pick-up places:
+
+    GET /availabilities/continuousServiceBookingPart/{id}   
+
+       
 
 
 ### confirm booking
+
+The confirmation creates fulfillments for the continuousServiceBookingPart(s)
 
      POST /bookings/{bookingId}/fulfillments  creates a Fullfillment with:
 
@@ -126,7 +141,13 @@ In case of a shallow integration the OSDM flow ends here.
 
 ### block a vehicle for the service
 
-     GET /availabilities/continuousServiceBookingPart/{id}    to get an updated list of available pick-up places and vehicles
+Blocking a vehicle reserves the vehicle for some time to walk to the pick-up-place or untiol the car arrives. 
+
+To get an updated list of available pick-up places and vehicles:
+
+     GET /availabilities/continuousServiceBookingPart/{id}    
+
+To block the vehicle:
 
      PATCH /fulfillments/{fulfillmentId}
 
@@ -136,7 +157,9 @@ In case of a shallow integration the OSDM flow ends here.
            - device type (e-bike, normal bike, ...)
 
      Reply:
-           TODO: additional the fulfillmentId(s) updated or created:
+           the fulfillmentId(s) updated:
+
+           TODO: include an ContinuousServiceUsage Object in the fulfillment
     
            fulfillment updated to include:
                ContinuousServiceUsage(s)
@@ -153,11 +176,15 @@ In case of a shallow integration the OSDM flow ends here.
                  time limit for start of usage
                  + fee for blocking (in Fee Object)
 
-### delete a blocking in case you change your mind or the vehicle is broken
+### delete 
+
+Delete a blocking in case you change your mind or the vehicle is broken
 
          DELETE fulfillment/{id}/continuousServiceUsage/{id}
 
 ### start usage
+
+Start using the vehicle. This might as well been triggered by the vehicle itself. 
 
          PATCH fulfillment/{id}/continuousServiceUsage/{id}:
 
@@ -168,7 +195,9 @@ In case of a shallow integration the OSDM flow ends here.
                return    
                     changed fulfillment(s)
 
-### end usage on continuous service usage by id
+### end usage 
+
+This ends the usage. This might as well be triggered by the vehicle itself (e.g. be locking the vehicle).
 
             PATCH fulfillment/{id}/continuousServiceUsage/{id}:
                request:
@@ -178,6 +207,9 @@ In case of a shallow integration the OSDM flow ends here.
                return ContinuousServiceUsage 
                   status
 
+
+At the end of the usage the provider updates the booking to reflect the required payment:
+
                   in case of post-payment: new ContinuousServiceBookingPart added in the booking:
                     - including the price                     (alternative: update existing booking part and extend the state model)
                     - fulfillment documents on the pricing / calculation of costs
@@ -186,13 +218,18 @@ In case of a shallow integration the OSDM flow ends here.
                     - fulfillment documents on the pricing / calculation of costs
 
 
-reembourcement:
-          additional reason codes needed
+### reembourcement:
+
+   Reemborcement uses the already defined reembourcement flow.
+
+   TODO:   additional reason codes needed
                - vehicle broken
                - vehicle battery empty
                - vehicle not found
                - vehicle did not arrive
 
+
+### tracking
 
 optional: get updates on the usage status:
 
