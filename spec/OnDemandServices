@@ -9,6 +9,7 @@ permalink: /spec/processes/
 
 1. [Introduction](#introduction)
 2. [Use Cased](#usecases)
+2. [Process](#process)
 
 ## Introduction <a name="introduction">
 
@@ -37,112 +38,177 @@ The initial booking does notrequire a payment. In case the price is provided at 
 
 The existing reembourcement flow is used to handle claims due to issues with the devices like damages, empty batteries, ...)
 
+### Get updates on the service usage (optional)
+
+Information on time till arrival at pick-up, costs of usage, ...
 
 
-## Message flow
+## Process <a name="process">
 
 
-### find services
+### find on-demand service in trip search
 
-search for ContinuousServices by:
+The trip search provides on-demand services as continuous services. The continuous service provides the possibility for using this service, not the individual device (e.g. bicycle). 
 
-     - JourneyId  (from Trip)
-     - bookingId (context of a booking)
-     - passengerRef  (multiple ones in case of taxi, self driving taxi)
-     - BookingPartId of a previous booking (special price as add on to booked timed services, ..)
-     - geo-coordinate of requested pick-up place
-     - geo-coordinate of requestor
+TODO: 
+ - The ModeFilter needs additional values to exclude bicycles, taxis or scooters from the search
+ - The IndiviualMode needs additional values to indicate electric bicycles
 
-    reply: list of available Continuous Services
-       per service:
-           id
-           description
-           time to arrival to next pick-up-place (taxi,..)
+
+Schedules services which need to be confirmed (e.g. by phone) to stop are not considered here, they follow the existing OSDM sales flow.
+
+
 
 ### offer for continuousService
 
+The offer for the continuous service is provided as cContinuousServiceOfferPart inheriting from AbstarctOfferPart
      
-     offer reply: ContinuousServiceOfferPart:
-       per service:
+ContinuousServiceOfferPart:
+       pick-up-place 
            id
            description
-           available number of services
-           available for blocking
-           time limit for blocking 
            allocation procedure description
-           usage ends automatically (e.g. by locking the service)
+           available number of service devices (bicycles, scooters, taxis, large taxis, ...)
+               - list of types and numbers
+           available for blocking - is the device already available for blocking until the usage starts
+           time limit for blocking - who long can the device be blocked until the usage starts
+           process indications - indication how the service usage is handled
+              - shallow integration
+              - deep integration
+              - prepayed
+              - postpayed
+              - usage ends automatically (e.g. by locking the service) - The end of the usage does not need to be handled via OSDM
+              - updates provided before pick-up (e.g. current location of a taxi)
+              - updates provided after pick-up (e.g. price for current consumption)
+              - parking image required
            geo-location of the service (pick-up-place)
-           time to arrival at pick-up-place (taxi,..)
+           time to arrival at pick-up-place (taxi,..) - When is the devide to be expected at the pic-up place
        alternative pick-up-places: 
-            services per alternative pick-up-place:
-                id
-                description
-                available
-                available for blocking
-                time limit for blocking
-                allocation procedure description
-                geo-location of the service
-                time to arrival at pick-up-place (taxi,..)
+           - same as for the initial pick-up-place
+
+
+GET /availabilities/continuousServiceOfferPart/{id}    to get an updated list of available vehicles and pick-up places
+
 
 ### booking
-     booking reply: ContinuousServiceBookingPart:
-     - no price
+
+     POST bookings ctreates an ContinuousServiceBookingPart
+
+     ContinuousServiceBookingPart
+     - no price in case of post payment
+     + elements from the offer part
+
+
+     GET /availabilities/continuousServiceBookingPart/{id}    to get an updated list of available vehicles and pick-up places
 
 
 ### confirm booking
-     Fullfillment with:
-          option 1: smart link to mobility provider app
 
-          option 2: activate fulfillment for blocking a service
-                    return:  ContinuousServiceOfferPart
-                             + fee for blocking (in Fee Object)
+     POST /bookings/{bookingId}/fulfillments  creates a Fullfillment with:
+
+          In case of a shallow integration
+                    a smart link to the mobility provider app
+
+          In case of a deep integration
+                    a fulfillment that needs to be activated to block the vehicle for the service
+
+Up to here the spteps are made together with the booking of the other booking parts. In case of a combined long distance journey the next steps would follow shortly before 
+the on-demand service will be used.
+
+In case of a shallow integration the OSDM flow ends here.
 
 
-### block service
+### activate the fulfillment of the on demand service
 
-block ContinuousService by id
-           return ContinuousServiceUsage:
-              id
-              usage procedure description
-              description on end of usage
-              credentials to start the usage  (e.g. nfc-enabled pkpass, ...)
-              time limit for start of usage
-              + fee for blocking (in Fee Object)
+      PATCH /fulfillments/{fulfillmentId}  activates the fulfillment and requests a new offer part to block the service
 
-### start and end usage
-
-in patch fulfillment/{id}/continuousServices/{id}:
-start usage on continuous service usage by id
           request:
-                status
-                id
-          return ContinuousServiceUsage: 
-              usage procedure description
-              descrition on end of usage        
+                   intended start of usage (already included) 
 
-in patch fulfillment/{id}/continuousServices/{id}:
-end usage on continuous service usage by id
-          request:
-                status
-                id
-                image of parking situation
-          return ContinuousServiceUsage 
-             status
-             refund of unused prepayed amount
-             new ContinuousServiceBookingPart including the price
+          reply:
+                   ContinuousServiceOfferPart  for the usage of the vehicle
+                   + fee for blocking (in Fee Object)
+
+
+
+
+### block a vehicle for the service
+
+     GET /availabilities/continuousServiceBookingPart/{id}    to get an updated list of available pick-up places and vehicles
+
+     PATCH /fulfillments/{fulfillmentId}
+
+     Request:
+        TODO additional selection elements in the request:
+           - pick-up-location
+           - device type (e-bike, normal bike, ...)
+
+     Reply:
+           TODO: additional the fulfillmentId(s) updated or created:
+    
+           fulfillment updated to include:
+               ContinuousServiceUsage(s)
+                 id
+                 status
+                    - vehicle-blocked
+                    - usage-started
+                    - blocking-time-out
+                    - usage-ended
+                    - usage-time-out
+                 usage procedure description
+                 description on end of usage
+                 credentials to start the usage  (e.g. nfc-enabled pkpass, ...)
+                 time limit for start of usage
+                 + fee for blocking (in Fee Object)
+
+### delete a blocking in case you change your mind or the vehicle is broken
+
+         DELETE fulfillment/{id}/continuousServiceUsage/{id}
+
+### start usage
+
+         PATCH fulfillment/{id}/continuousServiceUsage/{id}:
+
+         start usage on continuous service usage by id
+               request:
+                     status = start
+                     id
+               return    
+                    changed fulfillment(s)
+
+### end usage on continuous service usage by id
+
+            PATCH fulfillment/{id}/continuousServiceUsage/{id}:
+               request:
+                     status = end
+                     id
+                     image of parking situation
+               return ContinuousServiceUsage 
+                  status
+
+                  new ContinuousServiceBookingPart added in the booking:
+                    - including the price incase of post-payment
+                    - including a refund in case of pre-payment
 
 
 reembourcement:
-          additional reason codes
+          additional reason codes needed
+               - vehicle broken
+               - vehicle battery empty
+               - vehicle not found
+               - vehicle did not arrive
 
 
-not needed (optional):
-get usage of continuous service
-         return ContinuousServiceUsage 
+optional: get updates on the usage status:
+
+          GET fulfillment/{id}/continuousServiceUsage/{id}:
+          return ContinuousServiceUsage
                status
-               amount to pay
+               geo-location of the vehicle
+               amount to pay (at the current usage)
                remaining amount for prepayed usage
-               time to arrival at pick-up-place (taxi,..)
+               time till arrival at pick-up-place (taxi,..)
+
 
 
 
