@@ -15,6 +15,33 @@ permalink: /spec/processes/
 
 ## Use Cases <a name="usecases">
 
+### Shallow Integration of on-demand services
+
+The OSDM API provides the trip including the continuous services and also provides initial offers for the service. This service can be booked in OSDM, but the 
+fulfillment only includes a link to the application providing the service. The actual booking and payment of the service is made in the application of the service provider. 
+The traveller needs to install the provider app (or use a web interface if possible) and he needs to register there.    
+
+### Deep Integration of on-demand services
+
+The OSDM API handles the complete process of booking a continuous service, searching for the decices, starting and ending the usae of the devices and providing the pricing information.
+
+### Deep Integration of on-demand services - pre-payment
+
+The initial booking requires a payment. In case the usage does not cover the full amount a refund is created.
+
+### Deep Integration of on-demand services - post-payment
+
+The initial booking does notrequire a payment. In case the price is provided at the end of the usage of the service.
+
+### Reembourcement
+
+The existing reembourcement flow is used to handle claims due to issues with the devices like damages, empty batteries, ...)
+
+
+
+## Message flow
+
+
 ### find services
 
 search for ContinuousServices by:
