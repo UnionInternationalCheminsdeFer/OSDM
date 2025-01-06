@@ -13,6 +13,13 @@ permalink: /spec/processes/
 
 ## Introduction <a name="introduction">
 
+The process described covers unscheduled on-demand transport modes. These include:
+
+   - bicycles (e-bike, bike, cargo bike, scooter)
+   - cars (taxis, self-driving vehicles,..)
+
+The initial booking follows the OSDM flow from offer to fulfillment. The additional processes to allocate the devide are handled in the fulfillment resource. Pos-Payment is 
+handled via an additional booking part generated on the provider side at the end of the usage of the vehicle.
 
 ## Use Cases <a name="usecases">
 
