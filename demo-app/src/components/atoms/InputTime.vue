@@ -2,7 +2,7 @@
   <sbb-form-field width="collapse">
     <label>{{ name }}</label>
     <sbb-time-input @input="handleInput" ref="input"></sbb-time-input>
-    <input class="min-w-20" />
+    <input type="time" class="min-w-20" />
   </sbb-form-field>
 </template>
 

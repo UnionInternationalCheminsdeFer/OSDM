@@ -8,7 +8,7 @@
             :selected-place="destination" />
           <ViasInput aria-placeholder="vias" :select-callback="setVias" :selectedVias="vias" />
         </div>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 w-full xl:w-auto">
           <InputDate aria-placeholder="date" name="Date" :value="date" :select-callback="setDate" />
           <PassengerInput class="hidden xl:block" aria-placeholder="passengers" :select-callback="setPassengers"
             :selected-passengers="passengers" />
