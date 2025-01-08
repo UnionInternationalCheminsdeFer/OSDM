@@ -7,9 +7,10 @@
       </div>
     </header>
     <RouterView />
-    <footer class="bg-osdm-bg-primary text-sm text-osdm-text-inverted flex justify-center p-4">
-      <p>Developed with ♥ for OSDM by <a href="https://xatellite.space" target="_blank">xatellite</a> and <a
-          href="https://bileto.cz" target="_blank">bileto</a>.</p>
+    <footer class="flex flex-col bg-osdm-bg-primary text-sm text-osdm-text-inverted justify-center items-center p-4">
+      <span>Developed with ♥ for OSDM by <a href="https://xatellite.space" target="_blank">xatellite</a> and <a
+          href="https://bileto.cz" target="_blank">bileto</a>.</span>
+      <span>{{ version }}</span>
     </footer>
   </div>
 </template>
@@ -22,6 +23,11 @@ export default {
   components: {
     RouterView,
     SandboxSettings,
+  },
+  data() {
+    return {
+      version: __VERSION__,
+    }
   },
 }
 </script>
