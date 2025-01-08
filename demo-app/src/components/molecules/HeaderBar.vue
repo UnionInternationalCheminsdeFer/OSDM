@@ -1,6 +1,7 @@
 <template>
   <div class="bg-osdm-bg-primary flex justify-center p-4 gap-5 items-stretch">
-    <sbb-button class="self-center" negative="" icon-name="arrow-left-small" @click="handleGoBack"></sbb-button>
+    <sbb-button class="absolute z-10 top-4 left-4 md:relative md:left-auto md:top-auto self-center" negative=""
+      icon-name="arrow-left-small" @click="handleGoBack"></sbb-button>
     <sbb-card>
       <div>
         <sbb-journey-header :origin="searchCriteria?.origin.name"
