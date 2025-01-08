@@ -1,32 +1,32 @@
 <template>
     <div>
         <sbb-button @click="openOverlay" icon-name="hammer-wrench-medium" />
-        <sbb-overlay ref="overlay" class="max-w-fit " accessibilitycloselabel="Close overlay"
+        <sbb-overlay ref="overlay" class="max-w-fit" accessibilitycloselabel="Close overlay"
             accessibilitybacklabel="Go back">
-            <div class="text-osdm-text flex flex-col w-screen md:w-auto">
-                <h1 class="self-center text-2xl mb-5">
+            <div class="text-osdm-text flex flex-col w-screen md:w-auto pr-8">
+                <h1 class="self-center text-base sm:text-xl md:text-2xl mb-5 font-medium">
                     Welcome to the OSDM-DEMO-APP
                 </h1>
-                <p class="text-md mb-5 font-normal">
+                <p class="text-sm md:text-base mb-5 font-normal">
                     Welcome. Below you can configure the used endpoint and user credentials within the demo.
                     You can find documentation about the authentication <a class="text-osdm-bg-primary"
                         href="https://osdm.io/spec/authentication/#jwts" target="_blank">here</a>.
                     Please enter the details of your test system or sandbox below.
                 </p>
-                <h2 style="margin-block-end: var(--sbb-spacing-fixed-4x)">
-                    Connection details for authentication flow:
-                </h2>
                 <form class="flex flex-col gap-4 items-center">
-                    <sbb-form-field error-space="none" size="m" class="w-64 md:w-96">
+                    <h2 style="margin-block-end: var(--sbb-spacing-fixed-4x)" class="text-base sm:text-xl">
+                        Connection details:
+                    </h2>
+                    <sbb-form-field error-space="none" size="m" class="md:w-96">
                         <label>Server base URL</label>
                         <input placeholder="https://osdm-5.platform.bileto.zone/api/" name="message"
                             v-model="serverURL" />
                     </sbb-form-field>
-                    <sbb-form-field error-space="none" size="m" class="w-64 md:w-96">
+                    <sbb-form-field error-space="none" size="m" class="md:w-96">
                         <label>Client Id</label>
                         <input placeholder="00000-00000-00000-00000" v-model="clientId" name="message" />
                     </sbb-form-field>
-                    <sbb-form-field error-space="none" size="m" class="w-64 md:w-96">
+                    <sbb-form-field error-space="none" size="m" class="md:w-96">
                         <label>Client Secret</label>
                         <input type="password" placeholder="0000000000" v-model="clientSecret" name="message" />
                     </sbb-form-field>
