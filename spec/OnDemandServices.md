@@ -92,6 +92,7 @@ ContinuousServiceOfferPart:
               - updates provided before pick-up (e.g. current location of a taxi)
               - updates provided after pick-up (e.g. price for current consumption)
               - parking image required
+              - tip supported
            geo-location of the service (pick-up-place)
            time to arrival at pick-up-place (taxi,..) - When is the devide to be expected at the pic-up place
        alternative pick-up-places: 
@@ -170,6 +171,10 @@ To block the vehicle:
                     - blocking-time-out
                     - usage-ended
                     - usage-time-out
+                 pricing status (post payment)
+                   - final (default)
+                   - no charges jet
+                   - accumulating prices
                  usage procedure description
                  description on end of usage
                  credentials to start the usage  (e.g. nfc-enabled pkpass, ...)
@@ -210,8 +215,9 @@ This ends the usage. This might as well be triggered by the vehicle itself (e.g.
 
 At the end of the usage the provider updates the booking to reflect the required payment:
 
-                  in case of post-payment: new ContinuousServiceBookingPart added in the booking:
-                    - including the price                     (alternative: update existing booking part and extend the state model)
+                  in case of post-payment: update ContinuousServiceBookingPart in the booking:
+                    - including the price                   
+                    - pricing status --> final
                     - fulfillment documents on the pricing / calculation of costs
                   in case of pre-payment: 
                     - including a new refund on the existing ContinuousServiceBookingPart
