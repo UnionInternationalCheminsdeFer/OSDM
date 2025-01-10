@@ -1,8 +1,8 @@
 <template>
   <sbb-card>
-    <div class="flex items-center gap-5">
+    <div class="flex items-center gap-2 md:gap-5">
       <TripPearlChain :trip="trip" />
-      <sbb-button icon-name="chevron-right-small" @click="handleSelect"></sbb-button>
+      <sbb-button icon-name="chevron-right-small" size="s" @click="handleSelect"></sbb-button>
     </div>
   </sbb-card>
 </template>
