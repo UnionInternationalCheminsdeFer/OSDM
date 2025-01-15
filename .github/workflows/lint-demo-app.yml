@@ -1,0 +1,36 @@
+name: Lint and Type-Check Demo-App
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'demo-app/**'
+
+jobs:
+  lint-and-type-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          cd ./demo-app
+          npm install
+
+      - name: Run lint
+        run: |
+          cd ./demo-app
+          npm run lint
+
+      - name: Run type-check
+        run: |
+          cd ./demo-app
+          npm run type-check

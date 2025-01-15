@@ -111,6 +111,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/ifNoneMatch'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: page
           in: query
           description: |
@@ -148,8 +149,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -171,7 +170,9 @@ paths:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
       requestBody:
+        required: true
         description: |
           request for place
         content:
@@ -195,8 +196,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -217,6 +216,7 @@ paths:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: placeId
           in: path
           description: |
@@ -248,8 +248,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -273,7 +271,9 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
       requestBody:
+        required: true
         description: |
           request for trips
         content:
@@ -297,8 +297,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -368,8 +366,53 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+  /trips:
+    post:
+      tags:
+        - Trips
+      summary: Returns a new trip for given OJP parameters based on an already existing trip
+      description: |
+        Returns a new trip for given OJP parameters based on an already existing trip.
+      operationId: postTripsChange
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      requestBody:
+        description: |
+          request for trips
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripChangeCriteria'
+      responses:
+        '200':
+          description: |
+            trips changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripResponse'
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -446,8 +489,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -470,6 +511,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -497,8 +539,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -555,8 +595,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -609,8 +647,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -667,8 +703,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -715,8 +749,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -777,8 +809,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -814,10 +844,11 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Passenger'
+              $ref: '#/components/schemas/PassengerSpecification'
       responses:
         '200':
           description: |
@@ -841,8 +872,7 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
+
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -896,8 +926,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -926,10 +954,11 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Purchaser'
+              $ref: '#/components/schemas/PurchaserSpecification'
       responses:
         '200':
           description: |
@@ -953,8 +982,63 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+    post:
+      tags:
+        - Purchaser
+      summary: Allows creating a purchaser for a booking already existing.
+      operationId: postBookingPurchaser
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking the purchaser is in.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Purchaser'
+      responses:
+        '200':
+          description: |
+            purchaser posted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaserResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1015,8 +1099,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1074,8 +1156,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1119,8 +1199,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1174,8 +1252,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1240,8 +1316,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1292,8 +1366,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1358,8 +1430,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1410,8 +1480,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1468,8 +1536,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1524,8 +1590,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1588,8 +1652,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1644,8 +1706,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1693,8 +1753,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -1745,8 +1803,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1792,8 +1848,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1849,8 +1903,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1904,8 +1956,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -1946,7 +1996,7 @@ paths:
             type: string
 
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:
@@ -1960,8 +2010,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/FulfillmentCollectionResponse'
         '202':
-          $ref: '#/components/responses/FulfillmentRequestAcceptedResponse'
-
+          description: |
+            Fulfillment successfully completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentCollectionResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1970,8 +2024,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2030,8 +2082,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2086,8 +2136,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2146,8 +2194,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2206,8 +2252,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2268,8 +2312,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2336,8 +2378,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2386,8 +2426,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2449,8 +2487,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2505,8 +2541,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2573,8 +2607,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2625,8 +2657,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2663,6 +2693,7 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -2690,8 +2721,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2750,8 +2779,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2818,8 +2845,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2867,8 +2892,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -2935,8 +2958,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2988,8 +3009,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3062,8 +3081,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3101,6 +3118,7 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -3128,8 +3146,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -3178,8 +3194,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -3207,10 +3221,11 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Complaint'
+              $ref: '#/components/schemas/ComplaintRequest'
       responses:
         '200':
           description: |
@@ -3228,8 +3243,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3284,8 +3297,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3318,6 +3329,7 @@ paths:
             type: string
             format: uuid
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -3339,8 +3351,7 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
+
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -3394,8 +3405,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3449,8 +3458,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3461,14 +3468,14 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /reduction-cards:
+  /reduction-card-types:
     get:
       tags:
         - Master Data
       summary: Returns all reduction card definitions.
       description: |
         returns a collection of reduction card definitions
-      operationId: getReductionCards
+      operationId: getReductionCardTypes
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
@@ -3485,7 +3492,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReductionCardCollectionResponse'
+                $ref: '#/components/schemas/ReductionCardTypeCollectionResponse'
           headers:
             Cache-Control:
               schema:
@@ -3507,8 +3514,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3568,8 +3573,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3625,8 +3628,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3683,8 +3684,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3728,8 +3727,7 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
+
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -3789,8 +3787,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3847,8 +3843,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3910,8 +3904,7 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
+
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
@@ -3976,8 +3969,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -3989,74 +3980,6 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
   /availabilities/place-map:
-    get:
-      tags:
-        - Availabilities
-      summary: Get place map including availabilities.
-      description: |
-        Get place map including availabilities.
-      operationId: getAvailabilitiesPlaceMap
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - name: contextId
-          in: query
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-        - name: contextType
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/ContextType'
-        - name: resourceId
-          in: query
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-        - name: resourceType
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/ResourceType'
-      responses:
-        '200':
-          description: |
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PlaceAvailabilityResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: |
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
     post:
       tags:
         - Availabilities
@@ -4082,10 +4005,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                maxItems: 50
-                items:
-                  $ref: '#/components/schemas/PlaceAvailability'
+                $ref: '#/components/schemas/PlaceAvailabilitiesResponse'
           headers:
             Content-Language:
               schema:
@@ -4101,8 +4021,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4188,8 +4106,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4257,8 +4173,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4313,8 +4227,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4372,8 +4284,6 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -4437,7 +4347,7 @@ components:
         The requestor header contains detailed information about who is calling the API. It can include information such as channel, organization, sales unit or workstation id and be used to configure e.g. the fare range provided to the caller. The content of the string is part of a bilateral contract by the two parties and not standardized by OSDM. It is recommend to encrypt the information transferred.
       schema:
         type: string
-      required: true
+      required: false
 
     traceParent:
       name: traceparent
@@ -4504,7 +4414,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/WarningCollection'
+            $ref: '#/components/schemas/ProblemCollection'
 
     ConflictResponse:
       description: |
@@ -4536,19 +4446,11 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/WarningCollection'
+            $ref: '#/components/schemas/ProblemCollection'
 
     InternalServerErrorResponse:
       description: |
         Internal Server Error (500)
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-
-    NotAcceptableResponse:
-      description: |
-        Not Acceptable (406)
       content:
         application/problem+json:
           schema:
@@ -4641,6 +4543,8 @@ components:
             - "string"
             - "null"
           format: date-time
+        confirmedFulfillmentOptions:
+          $ref: '#/components/schemas/FulfillmentOption'
         price:
           $ref: '#/components/schemas/Price'
         refundAmount:
@@ -5159,8 +5063,8 @@ components:
               examples: 
                 - 7
             ref:
-              $ref: '#/components/schemas/AddressRef'
-
+              $ref: '#/components/schemas/AddressRef
+             
     AddressRef:
       description: |
         Reference to an Address.
@@ -5230,6 +5134,8 @@ components:
         - type: object
           additionalProperties: false
           properties:
+            regionalValidity:
+              $ref: '#/components/schemas/RegionalValidity'
             isReservationRequired:
               type: 
                 - "boolean"
@@ -5261,6 +5167,10 @@ components:
         - type: object
           additionalProperties: false
           properties:
+            regionalValiditySummary:
+              $ref: '#/components/schemas/RegionalValiditySummary'
+            regionalValidity:
+              $ref: '#/components/schemas/RegionalValidity'
             isReservationRequired:
               type: 
                 - "boolean"
@@ -5281,10 +5191,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/RegulatoryCondition'
-            includedReservations:
-              type: array
-              items:
-                $ref: '#/components/schemas/ReservationOfferPart'
             throughTicketTags:
               type: array
               items:
@@ -5463,6 +5369,14 @@ components:
           required:
             - type
           properties:
+            regionalValiditySummary:
+              $ref: '#/components/schemas/RegionalValiditySummary'
+            regionalValidity:
+              $ref: '#/components/schemas/RegionalValidity'
+            reservations:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReservationRelation'
             feeRefs:
               type: array
               items:
@@ -5559,6 +5473,8 @@ components:
             $ref: '#/components/schemas/CardReference'
         gender:
           $ref: '#/components/schemas/Gender'
+        residency:
+          $ref: '#/components/schemas/CountryCode'
 
     ApplicabilityType:
       type: string
@@ -5858,6 +5774,7 @@ components:
         The attribute 'offerSummary' is meaningful at trip-offer-collection response time only.
       required:
         - offerId
+        - products
       properties:
         offerId:
           type: string
@@ -5903,6 +5820,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Product'
+          minItems: 1  
 
     BookedOfferAncillaryRequest:
       type: object
@@ -6283,6 +6201,10 @@ components:
         or e-ticket and preferred fulfillment media.
         The latter is optional and relevant in some cases only.
       properties:
+        externalRef:
+          type: string
+          description: The unique booking reference in the distributor/retailer system. Usually refers to an order number or PNR.
+          nullable: true
         placeSelections:
           type: array
           items:
@@ -6323,6 +6245,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PromotionCode'
+        requestedFulfillmentType:
+          $ref: '#/components/schemas/FulfillmentType'
+        preferredFulfillmentMedia:
+          $ref: '#/components/schemas/FulfillmentMediaType'            
         embed:
           description: |
             Influences whether referenced resources are returned in full or as references only.
@@ -6564,7 +6490,7 @@ components:
             - "null"
           items:
             type: string
-            format: date-time
+            format: date
         utcOffset:
           description: |
             offset to UTC in minutes (number of minutes to be added to get UTC dates)
@@ -6943,6 +6869,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachLayoutInternal'
+        directedInternals:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoachLayoutDirectedInternal'               
         compartmentNumbers:
           type: array
           items:
@@ -6999,6 +6929,25 @@ components:
         coords:
           $ref: '#/components/schemas/LayoutCoordinates'
 
+    CoachLayoutDirectedInternal:
+      type: object
+      additionalProperties: false
+      required:
+        - icon
+        - coords
+      properties:
+        icon:
+          description: |
+            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
+          type: string
+          nullable: false
+        direction:
+          $ref: '#/components/schemas/DirectionType'          
+        mounting:
+          $ref: '#/components/schemas/MountingType'
+        coords:
+          $ref: '#/components/schemas/LayoutCoordinates'            
+
     CoachLayoutPlace:
       type: object
       additionalProperties: false
@@ -7021,8 +6970,6 @@ components:
           $ref: '#/components/schemas/RemarkType'
         coords:
           $ref: '#/components/schemas/LayoutCoordinates'
-        selectionFee:
-          $ref: '#/components/schemas/SelectionFee'          
 
     CoachLayoutResponse:
       type: object
@@ -7147,6 +7094,17 @@ components:
           $ref: '#/components/schemas/TravelClass'
         serviceClass:
           $ref: '#/components/schemas/ServiceClassType'
+        selectionFee:
+          $ref: '#/components/schemas/SelectionFee'               
+
+    ComplaintRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - customerComplaint
+      properties:
+        customerComplaint:
+           $ref: '#/components/schemas/CustomerComplaint'
 
     Complaint:
       type: object
@@ -7360,7 +7318,7 @@ components:
             - "null"
           format: duration
           examples: 
-            - 1800S
+            - "PT10M"
         situationFullRefs:
           type: array
           items:
@@ -7470,6 +7428,10 @@ components:
     CustomerComplaint:
       type: object
       additionalProperties: false
+      required:
+        - applicationTime
+        - journeyDetails
+        - affectedPassengers
       description: |
         complaint details provided by the passengers
       properties:
@@ -7488,6 +7450,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
+          minItems: 1  
         supportingDocuments:
           type: array
           items:
@@ -7636,6 +7599,20 @@ components:
              - "string"
              - "null"
           format: date-time
+        documentContent:
+          nullable: true
+          $ref: '#/components/schemas/DocumentContent'
+        type:
+          $ref: '#/components/schemas/DocumentType'
+        scope:
+          $ref: '#/components/schemas/DocumentScope'
+
+    DocumentContent:
+      type: object
+      required:
+        - content
+        - format
+      properties:
         content:
           description: |
             base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
@@ -7647,10 +7624,6 @@ components:
           maxLength: 4194304
         format:
           $ref: '#/components/schemas/DocumentFormat'
-        type:
-          $ref: '#/components/schemas/DocumentType'
-        scope:
-          $ref: '#/components/schemas/DocumentScope'
 
     DocumentCollectionResponse:
       type: object
@@ -7806,6 +7779,7 @@ components:
       required:
         - exchangeFee
         - exchangePrice
+        - refundableAmount
         - fulfillments
         - offerId
         - createdOn
@@ -7820,6 +7794,8 @@ components:
             Accounting information for the exchange fee
           $ref: '#/components/schemas/AccountingRef'
         exchangePrice:
+          $ref: '#/components/schemas/Price'
+        refundableAmount:
           $ref: '#/components/schemas/Price'
         fulfillments:
           type: array
@@ -8113,23 +8089,6 @@ components:
         - 'NO'
         - 'WITH_CONDITION'
 
-    ExchangeOfferItem:
-      type: object
-      required:
-        - exchangeFee
-        - exchangePrice
-        - bookingParts
-      properties:
-        exchangeFee:
-          description: Amount kept by the carrier and/or the distributor
-          $ref: '#/components/schemas/Price'
-        exchangePrice:
-          $ref: '#/components/schemas/Price'
-        bookingParts:
-          type: array
-          items:
-            $ref: '#/components/schemas/BookingPartReference'
-
     ExcludedTimeRange:
       type: object
       additionalProperties: false
@@ -8164,6 +8123,12 @@ components:
       additionalProperties: false
       description: |
         The online representation of a fare.
+        In case the final product requires the indication of carriers it is obligatory to provide a 
+        carrierConstraint in the fare directly that includes the list of all carriers in the 
+        includedCarrier list. Whether the carrier must be indicated needs to be derived from the requetsted
+        total route and the location of the sales points for international sales. 
+        Whether the indication of carriers is obligatory is defined
+        in the Convention concerning International Carriage by Rail (COTIF).
       required:
         - id
         - type
@@ -8246,6 +8211,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CompanyRef'
+        accountingRef:
+          $ref: '#/components/schemas/AccountingRef'
         legacyAccountingIdentifier:
           $ref: '#/components/schemas/LegacyAccountingIdentifier'
         legacyReservationParameter:
@@ -8336,8 +8303,6 @@ components:
               items:
                 $ref: '#/components/schemas/StationSet'
               minItems: 1
-            ref:
-              $ref: '#/components/schemas/FareConnectionPointRef'
 
     FareConnectionPointRef:
       description: |
@@ -8504,6 +8469,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentPart'
+        contentComplete:
+          type: boolean
+          nullable: true
+          default: false
+          description: |
+            Indicates whether the fulfillment has all documents or parts generated (if any needed) or they are still pending generation.
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         _links:
@@ -8642,6 +8613,8 @@ components:
           maxLength: 4194304
         format:
           $ref: '#/components/schemas/DocumentFormat'
+        applicationProvider:
+          $ref: '#/components/schemas/CompanyRef'
 
     FulfillmentDocumentType:
       description: |
@@ -8703,7 +8676,6 @@ components:
     FulfillmentMediaType:
       description: |
         Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
-        Notice:`ALLOCATOR_APP` is deprecated and should not be used anymore. The `ALLOCATOR_APP` type is replaced by the `RETAILER_APP` type. `DISTRIBUTOR_APP` was introduced to distinguish between the different types of apps that can be used to fulfill a booking.
         Values from the [Fulfillment Media Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentMediaType)
         Listed values here are examples.
       type: string
@@ -8883,6 +8855,7 @@ components:
       description: |
         The gender of the passenger, which is important in the case of night trains.
       type: string
+      nullable: true
       enum:
         - 'MALE'
         - 'FEMALE'
@@ -9962,7 +9935,7 @@ components:
 
         Individual offer mode means that each passenger is given individual admissions and reservations  to allow to refund individual passengers booked in a single booking.
 
-        If collective mode is not supported,  reverts back to the other mode and provides warning instead.
+        If collective mode is not supported, reverts back to the other mode and provides problem with warning message instead.
 
       type: string
       enum:
@@ -10685,6 +10658,10 @@ components:
             type: string
         geoPosition:
           $ref: '#/components/schemas/GeoPosition'
+        ref:
+          description: |
+            Reference to another a place, e.g. to link address information. Provided by OJP.
+          $ref: '#/components/schemas/PlaceRef'
         _links:
           description: |
             Java Property Name: 'links'
@@ -10774,6 +10751,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceAvailability'
+          maxItems: 50
 
     PlaceParam:
       type: object
@@ -10828,6 +10806,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceProperty'
+        selectionFee:
+          $ref: '#/components/schemas/SelectionFee'                  
 
     PlacePreSelection:
       type: object
@@ -11091,10 +11071,10 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Problem Details for HTTP APIs (RFC 9547) defines a 'problem detail' as a way
+        Problem Details for HTTP APIs (RFC 9457) defines a 'problem detail' as a way
         to carry machine-readable details of errors in a HTTP response to avoid
         the need to define new error response formats for HTTP APIs.
-        See: https://tools.ietf.org/html/rfc9547
+        See: https://tools.ietf.org/html/rfc9457
       properties:
         code:
           description: |
@@ -11160,14 +11140,24 @@ components:
             $ref: '#/components/schemas/ProblemPointer'
           minItems: 0
 
+    ProblemCollection:
+      type: object
+      required:
+        - problems
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+
     ProblemPointer:
       type: object
       additionalProperties: false
       description: |
-        Problem Details for HTTP APIs (RFC 9547) defines a 'problem detail' as a way
+        Problem Details for HTTP APIs (RFC 9457) defines a 'problem detail' as a way
         to carry machine-readable details of errors in a HTTP response to avoid
         the need to define new error response formats for HTTP APIs.
-        See: https://tools.ietf.org/html/rfc9547
+        See: https://tools.ietf.org/html/rfc9457
       properties:
         code:
           description: |
@@ -11619,7 +11609,7 @@ components:
             type:
               $ref: '#/components/schemas/ReductionCardType'
 
-    ReductionCardCollectionResponse:
+    ReductionCardTypeCollectionResponse:
       type: object
       additionalProperties: false
       properties:
@@ -11674,6 +11664,13 @@ components:
           items:
             $ref: '#/components/schemas/ServiceClassType'
           maxItems: 4
+        travelClassTypes:
+          description: |
+            list of travel classes where this card applies
+          type: array
+          items:
+            $ref: '#/components/schemas/TravelClass'
+          maxItems: 2
         _links:
           description: |
             Java Property Name: 'links'
@@ -11833,21 +11830,18 @@ components:
         Request for a refund offer.
         Fulfillments can be provided in case the booking contains multiple individual fulfillments.
       required:
-        - fulfillmentIds
+        - refundSpecifications
       properties:
-        fulfillmentIds:
-          description: |
-            ids of the fulfillments to refund
-          type: array
-          items:
-            type: string
-          minItems: 1
         refundSpecifications:
           description: |
-            To do a partial refund repeat the fulfillmentIds affected and point out what to refund
+            Specification of Fulfillment IDs to refund.
+
+            To do a partial refund, include booking part IDs to refund from the fulfillment.
           type: array
           items:
             $ref: '#/components/schemas/RefundSpecification'
+          minItems: 1
+          nullable: false
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
         refundDate:
@@ -12116,12 +12110,12 @@ components:
       required:
         - reimbursement
       properties:
-        reimbursement:
-          $ref: '#/components/schemas/Reimbursement'
         problems:
           type: array
           items:
             $ref: '#/components/schemas/Problem'
+        reimbursement:
+          $ref: '#/components/schemas/Reimbursement'
 
     ReimbursementStatus:
       type: string
@@ -12363,6 +12357,10 @@ components:
         - minGroupItemsToBeBooked
         - reservationGroup
       properties:
+        isIncluded:
+          description: The reservation(s) linked via this relation are included in the parent offer part.
+          type: boolean
+          default: false
         minGroupItemsToBeBooked:
           type: integer
           format: int32
@@ -12935,6 +12933,12 @@ components:
             - "boolean"
             - "null"
           default: false
+        isBorderPoint:
+          description: |
+            Indicates whether the stop is recognized by the system as a border point between two or more countries.
+          type: boolean
+          nullable: true
+          default: false
 
     StopPlace:
       description: |
@@ -12948,8 +12952,6 @@ components:
           required:
             - name
           properties:
-            ref:
-              $ref: '#/components/schemas/StopPlaceRef'
             name:
               description: |
                 Name of this stop place for use in passenger information.
@@ -13026,7 +13028,6 @@ components:
       description: |
         Directly included text in case of online services. Text must be encoded in UTF-8 format.
       required:
-        - id
         - text
       properties:
         id:
@@ -13977,6 +13978,15 @@ components:
         itModesToCover:
           $ref: '#/components/schemas/IndividualMode'
 
+    TripChangeCriteria:
+      type: object
+      additionalProperties: false
+      description: |
+        Trip change request structure. Provided by OJP.
+      properties:
+        TripResult:
+          $ref: '#/components/schemas/TripResult'
+
     TripResponse:
       type: object
       additionalProperties: false
@@ -13998,6 +14008,15 @@ components:
         - 'NONE'
       default: 'ALL'
 
+    TripResult:
+      type: object
+      additionalProperties: false
+      description: |
+        The trip result to be changed.
+      properties:        
+        TripSummary:
+          $ref: '#/components/schemas/TripSpecificationSummary'
+
     TripSearchCriteria:
       type: object
       additionalProperties: false
@@ -14009,14 +14028,14 @@ components:
       properties:
         departureTime:
           description: |
-            Needs to in local date time format.
+             Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
           type: 
             - "string"
             - "null"
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
         arrivalTime:
           description: |
-            Needs to in local date time format. If arrival time is provided the departure time must be omitted.
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
           type: 
             - "string"
             - "null"
@@ -14132,6 +14151,26 @@ components:
             - "boolean"
             - "null"
           default: false
+
+    TripSpecificationSummary:
+      type: object
+      additionalProperties: false
+      description: |
+        Trip specification summary. Provided by OJP. 
+        It requires the id of an already existing trip to change and specifies the parameters which must be used to generate the new trip.
+      required:
+        - id
+      properties:
+        id:
+          description: |
+            The id of an already existing trip to change.
+          type: string
+          maxLength: 32768
+          nullable: false
+        origin:
+          $ref: '#/components/schemas/PlaceRef'
+        destination:
+          $ref: '#/components/schemas/PlaceRef'
 
     TripSummary:
       type: object
@@ -14377,7 +14416,7 @@ components:
           description: |
             voucher code provided by the issuer
           type: string
-    
+
     Zone:
       type: object
       additionalProperties: false

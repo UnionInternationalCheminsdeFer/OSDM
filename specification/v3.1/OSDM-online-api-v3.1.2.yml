@@ -7189,6 +7189,8 @@ components:
           $ref: '#/components/schemas/Price'
         exchangePrice:
           $ref: '#/components/schemas/Price'
+        refundableAmount:
+          $ref: '#/components/schemas/Price'
         exchangeOfferBreakDown:
           type: array
           items:

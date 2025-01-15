@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.2.2
+  version: 3.4.0
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
 
@@ -27,6 +27,9 @@ servers:
   - url: https://osdm-5.platform.bileto.zone/api
     description: |
       Bileto Sandbox (osdm.cz)
+  - url: https://benerail-stg-apim.azure-api.net
+    description: |
+      benerail Sandbox
 
 tags:
   - name: Places
@@ -106,9 +109,11 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/ifNoneMatch'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: page
           in: query
           description: |
@@ -168,9 +173,12 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
       requestBody:
+        required: true
         description: |
           request for place
         content:
@@ -215,8 +223,10 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: placeId
           in: path
           description: |
@@ -273,7 +283,9 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
       requestBody:
+        required: true
         description: |
           request for trips
         content:
@@ -323,6 +335,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: tripsCollectionId
           in: path
           description: |
@@ -379,6 +392,56 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+  /trips:
+    post:
+      tags:
+        - Trips
+      summary:
+        Returns a new trip for given OJP parameters based on an already existing
+        trip
+      description: |
+        Returns a new trip for given OJP parameters based on an already existing trip.
+      operationId: postTripsChange
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      requestBody:
+        description: |
+          request for trips
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripChangeCriteria'
+      responses:
+        '200':
+          description: |
+            trips changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
   /trips/{tripId}:
     get:
       tags:
@@ -393,6 +456,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: tripId
           in: path
           description: |
@@ -400,6 +464,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: stopBehavior
           in: query
           description: |
@@ -466,8 +531,8 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -511,13 +576,17 @@ paths:
     get:
       tags:
         - Offers
-      summary: Get additional offers of booked offer for a given booking.
+      summary:
+        Get additional offers of booked offer for a given booking. A provider
+        can decide to allow or reject additional offers admissions, reservations
+        or ancillaries on an confirmed booking.
       operationId: getBookingBookedOffersAdditionalOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           required: true
@@ -528,6 +597,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '200':
           description: |
@@ -621,7 +691,7 @@ paths:
     patch:
       tags:
         - On Hold
-      summary: Confirms an on hold offer.
+      summary: Confirms the on hold offer.
       operationId: confirmOnHoldOffer
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -639,6 +709,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       requestBody:
         required: true
         content:
@@ -653,6 +724,54 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OnHoldOfferResponse'
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+    delete:
+      tags:
+        - On Hold
+      summary: Deletes the on hold offer
+      operationId: deleteOnHoldOffer
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: onHoldOfferId
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 32768
+      responses:
+        '204':
+          description: |
+            In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
 
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -746,7 +865,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -762,6 +880,7 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -866,7 +985,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -875,6 +993,7 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -917,6 +1036,65 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
+    post:
+      tags:
+        - Purchaser
+      summary: Allows creating a purchaser for a booking already existing.
+      operationId: postBookingPurchaser
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking the purchaser is in.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Purchaser'
+      responses:
+        '200':
+          description: |
+            purchaser posted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaserResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
   /bookings/{bookingId}/booked-offers:
     post:
       tags:
@@ -929,6 +1107,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           required: true
@@ -987,6 +1166,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           required: true
@@ -997,6 +1177,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '200':
           description: |
@@ -1040,6 +1221,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
@@ -1052,6 +1234,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -1090,6 +1273,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
@@ -1102,6 +1286,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: passengerId
           in: path
           required: true
@@ -1138,7 +1323,10 @@ paths:
     post:
       tags:
         - BookingPart
-      summary: Adds an optional reservation to a pre-booked booking.
+      summary:
+        Adds a reservation to a booking. A provider can decide to allow or
+        reject additional admissions, reservations or ancillaries on an
+        confirmed booking.
       operationId: createBookingBookedOffersReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1156,6 +1344,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       requestBody:
         required: true
         content:
@@ -1201,14 +1390,16 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes an optional reservation from pre-booked booking.
+      summary:
+        Removes a reservation from a booking in case the reservation was not yet
+        confirmed. On confirmed reservations use the refund.
       operationId: deleteBookingBookedOffersReservations
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           required: true
@@ -1219,11 +1410,13 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: reservationId
           in: path
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -1255,7 +1448,10 @@ paths:
     post:
       tags:
         - BookingPart
-      summary: Adds an ancillary to a pre-booked booking.
+      summary:
+        Adds an ancillary to a booking. A provider can decide to allow or reject
+        additional admissions, reservations or ancillaries on an confirmed
+        booking.
       operationId: createBookingBookedOffersAncillaries
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1273,6 +1469,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       requestBody:
         required: true
         content:
@@ -1318,14 +1515,16 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes an ancillary from pre-booked booking.
+      summary:
+        Removes an ancillary from a booking in case the ancillary is not jet
+        confirmed. On confirmed ancillaries use the refund.
       operationId: deleteBookingBookedOffersAncillary
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           required: true
@@ -1336,11 +1535,13 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: ancillaryId
           in: path
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -1372,7 +1573,9 @@ paths:
     delete:
       tags:
         - BookingPart
-      summary: Removes an admission from pre-booked booking.
+      summary:
+        Removes an admission from a booking. In case the admission is not
+        confirmed. On a confirmed admission use the refund.
       description: |
         Removes an admission from pre-booked booking.It is up to the provider
         to change or remove dependent bookedOfferParts or to reject the request.
@@ -1381,9 +1584,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           required: true
@@ -1394,11 +1597,13 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: admissionId
           in: path
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -1438,6 +1643,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
       requestBody:
         required: true
         content:
@@ -1490,6 +1696,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -1555,7 +1762,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -1614,9 +1821,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -1661,7 +1868,7 @@ paths:
       operationId: postBookingCleanup
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
+
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
@@ -1700,7 +1907,7 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
-          $ref: '#/components/responses/DefaultErrorResponse'         
+          $ref: '#/components/responses/DefaultErrorResponse'
   /bookings/{bookingId}/history:
     get:
       tags:
@@ -1759,7 +1966,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: page
           in: query
           schema:
@@ -1816,6 +2023,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
@@ -1873,7 +2081,7 @@ paths:
 
         If the fulfillments are created synchronously the service directly returns the fulfillments. The fulfillments are then in state FULFILLED.
 
-        If the fulfillments are created asynchronously the service starts the creation of the fulfillments. No fulfillmentIds are returned. The fulfillments are in stage CONFIRMED. The booking needs to be retrieved later to obtain the fulfillments.
+        If the fulfillments are created asynchronously the service starts the creation of the fulfillments. The fulfillmentIds may or may not returned. The fulfillments are in stage CONFIRMED. The booking needs to be retrieved later to obtain the fulfillments.
       operationId: postFulfillments
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1881,6 +2089,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -1888,6 +2097,13 @@ paths:
           required: true
           schema:
             type: string
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentPostRequest'
       responses:
         '200':
           description: |
@@ -1922,9 +2138,11 @@ paths:
     patch:
       tags:
         - Fulfillments
-      summary: Finalizes the fulfillments in asynchronous mode.
+      summary: Optionally finalizes the fulfillments in asynchronous mode.
       description: |
-        Finalizes the fulfillment in case of an asynchronous fulfillment mode.
+        Optionally finalizes the fulfillment in case of an asynchronous fulfillment mode when the provider doesn't complete the asynchronous fulfillment automatically.
+
+        This step may be used as an indication of the `proof of delivery` to disallow the cancellation of booking.
       operationId: finalizeFulfillments
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1932,6 +2150,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -1989,6 +2208,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: fulfillmentId
           in: path
           description: |
@@ -2044,6 +2264,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: fulfillmentId
           in: path
           required: true
@@ -2107,6 +2328,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -2160,6 +2382,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -2174,6 +2397,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '200':
           description: |
@@ -2220,6 +2444,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -2234,6 +2459,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       requestBody:
         required: true
         content:
@@ -2285,9 +2511,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -2341,6 +2567,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -2400,6 +2627,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -2410,10 +2638,11 @@ paths:
         - name: releaseOfferId
           in: path
           description: |
-            id of the refund offer to get.
+            id of the release offer to get.
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '200':
           description: |
@@ -2454,6 +2683,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -2464,10 +2694,11 @@ paths:
         - name: releaseOfferId
           in: path
           description: |
-            id of the refund offer
+            id of the release offer
           required: true
           schema:
             type: string
+            maxLength: 32768
       requestBody:
         required: true
         content:
@@ -2521,7 +2752,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -2532,10 +2762,11 @@ paths:
         - name: releaseOfferId
           in: path
           description: |
-            id of the refund offer
+            id of the release offer
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -2578,6 +2809,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -2586,6 +2818,7 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -2636,6 +2869,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -2648,6 +2882,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '200':
           description: |
@@ -2694,6 +2929,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -2704,10 +2940,11 @@ paths:
         - name: cancelFulfillmentsOfferId
           in: path
           description: |
-            id of the refund offer
+            id of the cancel fulfillment offer
           required: true
           schema:
             type: string
+            maxLength: 32768
       requestBody:
         required: true
         content:
@@ -2759,9 +2996,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -2774,6 +3011,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
       responses:
         '204':
           description: |
@@ -2880,6 +3118,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           required: true
@@ -2935,6 +3174,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -3006,6 +3246,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: bookingId
           in: path
           description: |
@@ -3022,6 +3263,7 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -3071,9 +3313,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           description: |
@@ -3130,6 +3372,7 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -3241,6 +3484,7 @@ paths:
             type: string
             format: uuid
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -3288,6 +3532,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: page
@@ -3341,6 +3586,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: layoutId
@@ -3397,8 +3643,10 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: page
           in: query
           schema:
@@ -3453,8 +3701,10 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: page
           in: query
           schema:
@@ -3630,7 +3880,6 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
           required: true
@@ -3866,6 +4115,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: issuer
           in: query
           required: true
@@ -3936,6 +4186,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: contextType
           in: query
           required: true
@@ -3946,6 +4197,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: resourceType
           in: query
           required: true
@@ -4012,7 +4264,7 @@ paths:
               schema:
                 type: array
                 maxItems: 50
-                items:                 
+                items:
                   $ref: '#/components/schemas/PlaceAvailability'
           headers:
             Content-Language:
@@ -4020,7 +4272,7 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -4040,7 +4292,7 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
-          $ref: '#/components/responses/DefaultErrorResponse'          
+          $ref: '#/components/responses/DefaultErrorResponse'
   /availabilities/nearby:
     get:
       tags:
@@ -4052,6 +4304,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: contextId
@@ -4061,6 +4314,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: contextType
           in: query
           required: true
@@ -4073,6 +4327,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: resourceType
           in: query
           required: true
@@ -4138,6 +4393,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: contextId
@@ -4145,6 +4401,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: contextType
           in: query
           required: true
@@ -4155,6 +4412,7 @@ paths:
           required: true
           schema:
             type: string
+            maxLength: 32768
         - name: resourceType
           in: query
           required: true
@@ -4204,12 +4462,38 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: page
           in: query
           schema:
             type: string
+        - name: productCode
+          in: query
+          description: the product code
+          schema:
+            type: string
+        - name: issuingDate
+          in: query
+          description:
+            To be used in combination with a productCode. Is the issuing date to
+            take into account for product definition. If none is provided, today
+            is assumed.
+          schema:
+            type: string
+            format: date
+        - name: travelDate
+          description:
+            To be used in combination with a productCode. Is the travel date to
+            take into account for product definition. If none is provided, today
+            is assumed.
+          in: query
+          schema:
+            type: string
+            format: date
+
       responses:
         '200':
           description: |
@@ -4260,8 +4544,10 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: productId
           in: path
           description: |
@@ -4341,9 +4627,12 @@ components:
       in: header
       description: |
         The HTTP Idempotency request header field can be used to carry idempotency key in order to make
-        non-idempotent HTTP methods such as POST or PATCH fault-tolerant.
+        non-idempotent HTTP methods such as POST or PATCH fault-tolerant. Servers should keep the idempotency
+        key for as long as the result of the underlying operation is valid. Idempotency keys should be 
+        globally unique.
       schema:
         type: string
+        format: uuid
 
     ifNoneMatch:
       name: If-None-Match
@@ -4360,7 +4649,7 @@ components:
         The requestor header contains detailed information about who is calling the API. It can include information such as channel, organization, sales unit or workstation id and be used to configure e.g. the fare range provided to the caller. The content of the string is part of a bilateral contract by the two parties and not standardized by OSDM. It is recommend to encrypt the information transferred.
       schema:
         type: string
-      required: true
+      required: false
 
     traceParent:
       name: traceparent
@@ -4378,6 +4667,17 @@ components:
       description: |
         The tracestate extends traceparent with vendor-specific data represented by a set of name/value pairs.
         Storing information in tracestate is optional (see W3C Trace Context).
+      schema:
+        type: string
+
+    acceptNamespace:
+      name: x-accept-namespace
+      in: header
+      description:
+        The x-accept-namespace HTTP header indicates the URN namespace that the
+        client prefers. The provider uses content-negotiation to apply the
+        corresponding namespace(s) where applicable.
+      example: x_swe, uic, iata
       schema:
         type: string
 
@@ -4529,6 +4829,7 @@ components:
           type: string
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           type: string
@@ -4540,7 +4841,9 @@ components:
           format: date-time
           nullable: false
         confirmableUntil:
+          deprecated: true
           description: |
+            confirmationTimeLimit in booking should be used.
             Date until the booking part needs to be confirmed. Must be provided for a booking part in PREBOOKED stated.
             For later states, the value is ignored and can be null.
           type: string
@@ -4560,11 +4863,15 @@ components:
           type: string
           format: date-time
           nullable: true
+        confirmedFulfillmentOptions:
+          $ref: '#/components/schemas/FulfillmentOption'
         price:
           $ref: '#/components/schemas/Price'
         refundAmount:
           $ref: '#/components/schemas/Price'
-          description: Amount refunded or to be refunded to the purchaser depending on the product conditions and status of the booking Part
+          description:
+            Amount refunded or to be refunded to the purchaser depending on the
+            product conditions and status of the booking Part
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         summaryProductId:
@@ -4623,6 +4930,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AfterSaleCondition'
+        afterSalesOverrideDetails:
+          $ref: '#/components/schemas/AfterSalesOverrideDetails'
         appliedCorporateCodes:
           type: array
           items:
@@ -4643,6 +4952,8 @@ components:
           $ref: '#/components/schemas/IndicatedConsumption'
         accountingRef:
           $ref: '#/components/schemas/AccountingRef'
+        grantedReductionAmounts:
+          $ref: '#/components/schemas/GrantedReductionAmounts'
 
     AccountingRef:
       description: |
@@ -4687,6 +4998,7 @@ components:
           type: string
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -4769,8 +5081,10 @@ components:
           $ref: '#/components/schemas/RequestedInformation'
         summaryProductId:
           type: string
-          description: Id of the product representing the commercial attributes of this offer part. Although not currently
-            mandatory, this attribute should in all cases be facilitate product based processing at the client
+          description:
+            Id of the product representing the commercial attributes of this
+            offer part. Although not currently mandatory, this attribute should
+            in all cases be facilitate product based processing at the client
         products:
           type: array
           items:
@@ -4802,6 +5116,8 @@ components:
           $ref: '#/components/schemas/RegionalValiditySummary'
         indicatedConsumption:
           $ref: '#/components/schemas/IndicatedConsumption'
+        grantedReductionAmounts:
+          $ref: '#/components/schemas/GrantedReductionAmounts'
         _links:
           description: |
             Java Property Name: 'links'
@@ -4859,120 +5175,127 @@ components:
     AccommodationSubType:
       type: string
       description: |
-        Accommodation sub type definition out of the Accommodation Sub Type Code List
+        Accommodation sub type definition out of the 
+        [Accommodation Sub Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
+        Listed values here are examples.
       default: 'ANY_SEAT'
       nullable: false
       x-extensible-enum:
-        - "AISLE"
-        - "AIR-CONDITIONED"
-        - "ANY_SEAT"
-        - "BISTRO"
-        - "BICYCLE"
-        - "BUSINESS"
-        - "BUSINESS_COMFORT"
-        - "CABIN8"
-        - "CAR_SMALL"
-        - "CAR_LARGE"
-        - "CARRE"
-        - "CHILDREN_AREA"
-        - "CLUB"
-        - "CLUB_2"
-        - "CLUB_4"
-        - "COMPARTMENT"
-        - "COMPLETE"
-        - "CONFERENCE"
-        - "CONNECTING_DOOR"
-        - "COUCHETTE_2"
-        - "COUCHETTE_4"
-        - "COUCHETTE_5"
-        - "COUCHETTE_6"
-        - "COUCHETTE_COMFORT_4"
-        - "COUCHETTE_COMFORT_5"
-        - "COUCHETTE_COMFORT_6"
-        - "COUCHETTE_PRM_2"
-        - "COUCHETTE_PRM_3"
-        - "COUCHETTE_PRM_4"
-        - "DOUBLE"
-        - "DOUBLE_SWC"
-        - "DOUBLE_SWC_DB"
-        - "DOUBLE_S"
-        - "EASY_ACCESS"
-        - "FACE_2_FACE"
-        - "EXCELLENCE"
-        - "FAMILY"
-        - "FRONT_VIEW"
-        - "HISTORIC_COACH"
-        - "INCLUDING_MEAL"
-        - "INCLUDING_DRINK"
-        - "KIOSQUE"
-        - "LADIES"
-        - "LOWER_BED"
-        - "LOWER_DECK"
-        - "MEN"
-        - "MIDDLE_BED"
-        - "MIDDLE_SEAT"
-        - "MINI_SUITE"
-        - "MIXED"
-        - "MOTOR_CYCLE"
-        - "MOTOR_CYCLE_SC"
-        - "NEAR_ANIMALS"
-        - "NEAR_DINING"
-        - "NEAR_PLAY_AREA"
-        - "NEAR_BICYCLE_AREA"
-        - "NEAR_WHEELCHAIR"
-        - "OPEN_SPACE"
-        - "PANORAMA"
-        - "PHONE"
-        - "POWER"
-        - "PRAM"
-        - "PRAM_WITH_SEAT"
-        - "RESTAURANT"
-        - "SILENCE"
-        - "SINGLE"
-        - "SINGLE_SWC"
-        - "SINGLE_SWC_DOUBLE"
-        - "SIDE_BY_SIDE"
-        - "SALON"
-        - "SLEEPERETTE"
-        - "SLEEPER_DELUXE"
-        - "SOLO"
-        - "SOLO_COM"
-        - "SPECIAL_SLEEPER"
-        - "TABLE"
-        - "TANDEM"
-        - "TOURIST_SLEEPER_2"
-        - "TOURIST_SLEEPER_3"
-        - "TOURIST_SLEEPER_4"
-        - "TOURIST_SLEEPER_3_SWC"
-        - "UPPER_BED"
-        - "UPPER_DECK"
-        - "VIDEO"
-        - "WHEELCHAIR"
-        - "WHEELCHAIR_AND_SEAT"
-        - "WHEELCHAIR_NO_SEAT"
-        - "WIFI"
-        - "WINDOW"
-        - "WITH_ANIMALS"
-        - "WITH_SMALL_CHILDREN"
-        - "WITHOUT_ANIMALS"
+        - 'AISLE'
+        - 'AIR-CONDITIONED'
+        - 'ANY_SEAT'
+        - 'BISTRO'
+        - 'BICYCLE'
+        - 'BUSINESS'
+        - 'BUSINESS_COMFORT'
+        - 'CABIN8'
+        - 'CAR_SMALL'
+        - 'CAR_LARGE'
+        - 'CARRE'
+        - 'CHILDREN_AREA'
+        - 'CLUB'
+        - 'CLUB_2'
+        - 'CLUB_4'
+        - 'COMPARTMENT'
+        - 'COMPLETE'
+        - 'CONFERENCE'
+        - 'CONNECTING_DOOR'
+        - 'COUCHETTE_2'
+        - 'COUCHETTE_4'
+        - 'COUCHETTE_5'
+        - 'COUCHETTE_6'
+        - 'COUCHETTE_COMFORT_4'
+        - 'COUCHETTE_COMFORT_5'
+        - 'COUCHETTE_COMFORT_6'
+        - 'COUCHETTE_PRM_2'
+        - 'COUCHETTE_PRM_3'
+        - 'COUCHETTE_PRM_4'
+        - 'DOUBLE'
+        - 'DOUBLE_SWC'
+        - 'DOUBLE_SWC_DB'
+        - 'DOUBLE_S'
+        - 'EASY_ACCESS'
+        - 'FACE_2_FACE'
+        - 'EXCELLENCE'
+        - 'FAMILY'
+        - 'FRONT_VIEW'
+        - 'HISTORIC_COACH'
+        - 'INCLUDING_MEAL'
+        - 'INCLUDING_DRINK'
+        - 'KIOSQUE'
+        - 'LADIES'
+        - 'LOWER_BED'
+        - 'LOWER_DECK'
+        - 'MEN'
+        - 'MIDDLE_BED'
+        - 'MIDDLE_SEAT'
+        - 'MINI_SUITE'
+        - 'MIXED'
+        - 'MOTOR_CYCLE'
+        - 'MOTOR_CYCLE_SC'
+        - 'NEAR_ANIMALS'
+        - 'NEAR_DINING'
+        - 'NEAR_PLAY_AREA'
+        - 'NEAR_BICYCLE_AREA'
+        - 'NEAR_WHEELCHAIR'
+        - 'OPEN_SPACE'
+        - 'PANORAMA'
+        - 'PHONE'
+        - 'POWER'
+        - 'PRAM'
+        - 'PRAM_WITH_SEAT'
+        - 'RESTAURANT'
+        - 'SILENCE'
+        - 'SINGLE'
+        - 'SINGLE_SWC'
+        - 'SINGLE_SWC_DOUBLE'
+        - 'SIDE_BY_SIDE'
+        - 'SALON'
+        - 'SLEEPERETTE'
+        - 'SLEEPER_DELUXE'
+        - 'SOLO'
+        - 'SOLO_COM'
+        - 'SPECIAL_SLEEPER'
+        - 'TABLE'
+        - 'TANDEM'
+        - 'TOURIST_SLEEPER_2'
+        - 'TOURIST_SLEEPER_3'
+        - 'TOURIST_SLEEPER_4'
+        - 'TOURIST_SLEEPER_3_SWC'
+        - 'UPPER_BED'
+        - 'UPPER_DECK'
+        - 'VIDEO'
+        - 'WHEELCHAIR'
+        - 'WHEELCHAIR_AND_SEAT'
+        - 'WHEELCHAIR_NO_SEAT'
+        - 'WIFI'
+        - 'WINDOW'
+        - 'WITH_ANIMALS'
+        - 'WITH_SMALL_CHILDREN'
+        - 'WITHOUT_ANIMALS'
 
     AccommodationType:
       type: string
       description: |
-        Accommodation type definition out of the Accommodation Type Code List
+        Accommodation type definition out of the 
+        [Accommodation Type Code List](https://osdm.io/spec/catalog-of-code-lists/#AccomodationType)
+        Listed values here are examples.
       default: 'SEAT'
       nullable: false
       x-extensible-enum:
-        - "SEAT"
-        - "COUCHETTE"
-        - "BERTH"
-        - "VEHICLE"
-        - "STORAGE"
+        - 'SEAT'
+        - 'COUCHETTE'
+        - 'BERTH'
+        - 'VEHICLE'
+        - 'STORAGE'
 
     ActualPassengerType:
       description: |
-        Actual Passenger type according to UIC passenger, i.e. passenger type list. Returns the passenger type according to the underlying fare system. E.g. a passenger of type PERSON is categorized as a ADULT or YOUTH.
-
+        Actual Passenger type according to UIC passenger, i.e. passenger type list. 
+        Returns the passenger type according to the underlying fare system. 
+        E.g. a passenger of type PERSON is categorized as a ADULT or YOUTH.
+        Values from the [Passenger Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'DOG'
@@ -5000,7 +5323,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         offers:
           type: array
           items:
@@ -5067,8 +5395,6 @@ components:
               type: string
               nullable: true
               example: 7
-            ref:
-              $ref: '#/components/schemas/AddressRef'
 
     AddressRef:
       description: |
@@ -5083,6 +5409,43 @@ components:
             addressRef:
               type: string
               nullable: false
+
+    PostalAddress:
+      type: object
+      properties:
+        countryName:
+          description: |
+            Country of the address.
+          type: string
+          nullable: true
+          example: The Netherlands
+        countryCode:
+          $ref: '#/components/schemas/CountryCode'
+        postCode:
+          description: |
+            Postal code of the address.
+          type: string
+          nullable: true
+          example: 2265CA
+        city:
+          description: |
+            City name
+          type: string
+          nullable: true
+          example: Leidschendam
+        street:
+          description: |
+            Street name of the address. Can also contain the house number.
+          type: string
+          nullable: true
+          example: Oude Trambaan
+        houseNumber:
+          description: |
+            House number of the address. House number can either be in this separate field, or can be
+            contained in the street field.
+          type: string
+          nullable: true
+          example: 7
 
     Admission:
       description: |
@@ -5198,6 +5561,33 @@ components:
           type: boolean
           nullable: true
           default: false
+
+    AfterSalesOverrideDetails:
+      description: |
+        If initial after sales conditions have been overwritten this object provides details on the original
+        conditions and an explanation text for the customer
+      type: object
+      properties:
+        initialAftersalesConditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AfterSaleCondition'
+        overrideDescription:
+          description:
+            Description for the change of conditions for the customer.
+          type: string
+        validFrom:
+          type: string
+          format: date-time
+          nullable: true
+        validUntil:
+          type: string
+          format: date-time
+          nullable: true
+        initialExchangeableType:
+          $ref: '#/components/schemas/ExchangeableType'
+        initialRefundType:
+          $ref: '#/components/schemas/RefundType'
 
     Alight:
       type: object
@@ -5332,6 +5722,7 @@ components:
       properties:
         ancillaryId:
           type: string
+          maxLength: 32768
           nullable: false
         passengerRefs:
           type: array
@@ -5341,10 +5732,12 @@ components:
           nullable: false
 
     AncillaryType:
+      description: |
+        Values from the [Ancillary Category Code List](https://osdm.io/spec/catalog-of-code-lists/#AncillaryCategory)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
-        - 'MEAL'
-        - 'BEVERAGE'
+        - 'FOOD_ON_BOARD'
 
     AnonymousPassengerSpecification:
       type: object
@@ -5386,6 +5779,8 @@ components:
             $ref: '#/components/schemas/CardReference'
         gender:
           $ref: '#/components/schemas/Gender'
+        residency:
+          $ref: '#/components/schemas/CountryCode'
 
     ApplicabilityType:
       type: string
@@ -5393,6 +5788,7 @@ components:
         - 'BOOKING'
         - 'TRIP'
         - 'OFFERPART'
+        - 'SEAT_SELECTION': (https://osdm.io/spec/processes/#SeatSelectionFees)
 
     TransactionContextType:
       type: string
@@ -5433,7 +5829,7 @@ components:
         appliedReductions:
           type: array
           items:
-            $ref: '#/components/schemas/CardReference'            
+            $ref: '#/components/schemas/CardReference'
 
     AttachableItemType:
       description: |
@@ -5442,39 +5838,44 @@ components:
       x-extensible-enum:
         - ROOF_RACK
         - BICYCLE_STAND
-        
+
     AvailabilityScope:
       type: object
-      description: fare or offerParts which should be covered by the available seats
-      required: 
-        - partReferences   
+      description:
+        fare or offerParts which should be covered by the available seats
+      required:
+        - partReferences
       properties:
         singleSelectionMapsRequired:
-          description: if true the place map must include places for a single reservation or fare only 
+          description:
+            if true the place map must include places for a single reservation
+            or fare only
           type: boolean
           default: true
         partReferences:
           type: array
           items:
-             $ref: '#/components/schemas/PartReference' 
-          
+            $ref: '#/components/schemas/PartReference'
+
     PartReference:
       type: object
-      description: reference to a fare or offerPart  
-      required: 
+      description: reference to a fare or offerPart
+      required:
         - contextId
         - contextType
         - resourceId
-        - resourceType    
+        - resourceType
       properties:
         contextId:
           type: string
+          maxLength: 32768
         contextType:
-          $ref: '#/components/schemas/ContextType' 
+          $ref: '#/components/schemas/ContextType'
         resourceId:
           type: string
+          maxLength: 32768
         resourceType:
-          $ref: '#/components/schemas/ResourceType'            
+          $ref: '#/components/schemas/ResourceType'
 
     AvailabilityStatus:
       description: |
@@ -5528,8 +5929,18 @@ components:
             $ref: '#/components/schemas/PlacePreferenceGroup'
         graphicalReservation:
           description: |
-            graphical reservation is supported, interface type 'NO','UIC_918',..
+            graphical reservation is supported, interface type 'WITH_FEE', 'NO', (https://osdm.io/spec/processes/#SeatSelectionFees)
           type: string
+          x-extensible-enum:
+            - 'WITHOUT_FEE':
+                No additional fees will be added during seat selection. All fees
+                are already linked with the reservation offer or booking
+            - 'WITH_FEE':
+                Additional selection fees might be applied in the seat
+                selection. In case selection fees are applied this must be
+                indicated here
+                (https://osdm.io/spec/processes/#SeatSelectionFees)
+            - 'NO': No graphical reservation supported
           nullable: true
 
     BackOfficeStatus:
@@ -5586,6 +5997,8 @@ components:
     BarCodeType:
       description: |
         Item according to IRS 90918-9: FCB, TLB, SSB
+        Values from the [Barcode Type Code List](https://osdm.io/spec/catalog-of-code-lists/#BarcodeType)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'FCB'
@@ -5672,8 +6085,16 @@ components:
       properties:
         offerId:
           type: string
+          maxLength: 32768
           nullable: false
-          description: Note that the offerId returned does not necessarily match the offerId given in the Booking Request.
+          description:
+            Note that the offerId returned does not necessarily match the
+            offerId given in the Booking Request.
+        externalRef:
+          description: |
+            A stable reference to the id of the booked offer in the caller's system. When received in input of a request, it must be persisted and echoed back in the response.
+          type: string
+          nullable: false
         summary:
           description: |
             A human-readable description of the booked offer.
@@ -5695,11 +6116,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fee'
-        refundFees:
-          type: array
-          items:
-            $ref: '#/components/schemas/Fee'
-          description: Fee(s) applied by after sales
         fares:
           type: array
           items:
@@ -5725,9 +6141,11 @@ components:
       properties:
         offerId:
           type: string
+          maxLength: 32768
           nullable: false
         ancillaryOfferId:
           type: string
+          maxLength: 32768
           nullable: false
         passengerRefs:
           type: array
@@ -5743,7 +6161,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         bookedOffers:
           type: array
           items:
@@ -5791,9 +6214,11 @@ components:
       properties:
         offerId:
           type: string
+          maxLength: 32768
           nullable: false
         reservationOfferId:
           type: string
+          maxLength: 32768
           nullable: false
         passengerRefs:
           type: array
@@ -5814,7 +6239,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         bookedOffers:
           type: array
           items:
@@ -5825,7 +6255,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         bookedOffer:
           $ref: '#/components/schemas/BookedOffer'
           deprecated: true
@@ -5833,6 +6268,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 32768
           description: |
             IDs of offers booked by the request. Will be always provided, single of the booked offer may not be provided in bookedOffer attribute.
 
@@ -5846,6 +6282,7 @@ components:
       properties:
         offerId:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           type: string
@@ -5895,8 +6332,16 @@ components:
         purchaser:
           $ref: '#/components/schemas/Purchaser'
         provisionalPrice:
+          description: |
+            Price of all unconfirmed pre-booked parts in the booking
+          $ref: '#/components/schemas/Price'
+        provisionalRefundAmount:
+          description: |
+            Sum of the refund amounts of all unconfirmed pre-booked refunds and exchanges
           $ref: '#/components/schemas/Price'
         confirmedPrice:
+          description: |
+            Sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts.
           $ref: '#/components/schemas/Price'
         bookedOffers:
           type: array
@@ -5953,6 +6398,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExchangeOperation'
+        onHoldOffer:
+          $ref: '#/components/schemas/OnHoldOffer'
         relatedBookingIds:
           description: |
             If this booking has been split, this attribute references the newly created bookingIds.
@@ -5991,7 +6438,12 @@ components:
         - events
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         events:
           type: array
           items:
@@ -6002,17 +6454,18 @@ components:
       type: object
       additionalProperties: false
       description: |
-        References all the offer part elements in an uniform format.
-        In its part, an OfferPartReference can refer to reservation, admission, ancillary or fee.
+        References all the booking part elements in an uniform format.
+        In its part, a BookingPartReference can refer to reservation, admission, ancillary or fee.
       required:
         - id
       properties:
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
-            A human-readable description of the offer part reference.
+            A human-readable description of the booking part reference.
           type: string
           nullable: true
         _links:
@@ -6056,6 +6509,7 @@ components:
       properties:
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           type: string
@@ -6085,6 +6539,12 @@ components:
         or e-ticket and preferred fulfillment media.
         The latter is optional and relevant in some cases only.
       properties:
+        externalRef:
+          type: string
+          description:
+            The unique booking reference in the distributor/retailer system.
+            Usually refers to an order number or PNR.
+          nullable: true
         placeSelections:
           type: array
           items:
@@ -6125,6 +6585,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PromotionCode'
+        requestedFulfillmentType:
+          $ref: '#/components/schemas/FulfillmentType'
+        preferredFulfillmentMedia:
+          $ref: '#/components/schemas/FulfillmentMediaType'
         embed:
           description: |
             Influences whether referenced resources are returned in full or as references only.
@@ -6140,7 +6604,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         booking:
           $ref: '#/components/schemas/Booking'
 
@@ -6187,7 +6656,7 @@ components:
         destination:
           $ref: '#/components/schemas/PlaceRef'
         passenger:
-          $ref: '#/components/schemas/PersonSearchRequest'
+          $ref: '#/components/schemas/PassengerSearchRequest'
         purchaser:
           $ref: '#/components/schemas/PurchaserSearchRequest'
         bookingId:
@@ -6230,7 +6699,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         bookingSearchResults:
           type: array
           items:
@@ -6260,9 +6734,17 @@ components:
         id:
           type: string
           nullable: false
-        confirmedPrice:
-          $ref: '#/components/schemas/Price'
         provisionalPrice:
+          description: |
+            price of all unconfirmed pre-booked parts in the booking
+          $ref: '#/components/schemas/Price'
+        provisionalRefundAmount:
+          description: |
+            sum of the refund amounts of all unconfirmed pre-booked refunds and exchanges
+          $ref: '#/components/schemas/Price'
+        confirmedPrice:
+          description: |
+            sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts.
           $ref: '#/components/schemas/Price'
         bookedOfferSummaries:
           type: array
@@ -6321,7 +6803,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         bookingSplitResult:
           $ref: '#/components/schemas/BookingSplitResult'
 
@@ -6351,7 +6838,7 @@ components:
           nullable: true
         dates:
           description: |
-            dates included in the calendar. In case no dates are provided the range is assumed to be valid
+            dates included in the calendar. In case no dates are provided the range is assumed to be valid. The date-time format is used to provide an offset to UTC per date.
           type: array
           items:
             type: string
@@ -6377,8 +6864,9 @@ components:
       properties:
         id:
           description: |
-            id of the refund offer
+            id of the cancel fulfillments offer
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -6423,7 +6911,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         cancelFulfillmentOffers:
           type: array
           items:
@@ -6459,7 +6952,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         cancelFulfillmentsOffer:
           $ref: '#/components/schemas/CancelFulfillmentsOffer'
 
@@ -6528,6 +7026,7 @@ components:
         code:
           description: |
             Code of the card type according to issuer. E.g. BahnCard50.
+            Predefined values from the [Reduction Card Code List](https://osdm.io/spec/catalog-of-code-lists/#ReductionCard)
           type: string
           nullable: true
         number:
@@ -6648,26 +7147,22 @@ components:
       type: object
       additionalProperties: false
       required:
-        - compartments
         - number
-        - status
         - layoutId
       properties:
         compartments:
           type: array
           items:
             $ref: '#/components/schemas/Compartment'
-          minItems: 1
         number:
           description: |
             coach number
           type: string
           nullable: false
-        status:
-          $ref: '#/components/schemas/AvailabilityStatus'
         layoutId:
           description: |
-            id to identify the coach layout
+            Id to identify the coach layout. In case of two deck vehicles, 
+            both upper and lower deck layouts are provided next to each other.
           type: string
           nullable: false
         layoutIdUpperDeck:
@@ -6690,8 +7185,8 @@ components:
           description: |
             references to the reservations/fares for which all places in the coach can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
           type: array
-          items: 
-            type: string   
+          items:
+            type: string
 
     CoachLayout:
       type: object
@@ -6729,10 +7224,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachLayoutInternal'
+        directedInternals:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoachLayoutDirectedInternal'
         compartmentNumbers:
           type: array
           items:
-            $ref: '#/components/schemas/CoachLayoutCompartmentNumber'            
+            $ref: '#/components/schemas/CoachLayoutCompartmentNumber'
         gridSize:
           $ref: '#/components/schemas/CoachLayoutGridSize'
         _links:
@@ -6747,7 +7246,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         layouts:
           type: array
           items:
@@ -6777,8 +7281,29 @@ components:
         - coords
       properties:
         icon:
+          description: |
+            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
           type: string
           nullable: false
+        mounting:
+          $ref: '#/components/schemas/MountingType'
+        coords:
+          $ref: '#/components/schemas/LayoutCoordinates'
+
+    CoachLayoutDirectedInternal:
+      type: object
+      additionalProperties: false
+      required:
+        - icon
+        - coords
+      properties:
+        icon:
+          description: |
+            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
+          type: string
+          nullable: false
+        direction:
+          $ref: '#/components/schemas/DirectionType'
         mounting:
           $ref: '#/components/schemas/MountingType'
         coords:
@@ -6795,8 +7320,7 @@ components:
         icon:
           type: string
           description: |
-            Icon type of the graphical item type. Code list according to UIC90918-1
-            graphical item type e.g. seat = 1
+            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
           nullable: false
         number:
           description: |
@@ -6815,7 +7339,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         coachLayout:
           $ref: '#/components/schemas/CoachLayout'
 
@@ -6828,17 +7357,18 @@ components:
       properties:
         icon:
           description: |
-            Icon type of the graphical item type. Code list according to UIC90918-1
-            graphical item type e.g. silence area sign = 116
+            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
           type: string
           nullable: false
         direction:
-          $ref: '#/components/schemas/DirectionType'          
+          $ref: '#/components/schemas/DirectionType'
         coords:
           $ref: '#/components/schemas/LayoutCoordinates'
 
     CoachLayoutCompartmentNumber:
-      description: Layout item to place a compartment number. The number has no icon, it only places the number  
+      description:
+        Layout item to place a compartment number. The number has no icon, it
+        only places the number
       type: object
       additionalProperties: false
       required:
@@ -6848,7 +7378,7 @@ components:
         number:
           type: string
         coords:
-          $ref: '#/components/schemas/LayoutCoordinates'   
+          $ref: '#/components/schemas/LayoutCoordinates'
 
     CombinationTag:
       type: object
@@ -6889,6 +7419,12 @@ components:
           nullable: false
         legalAddress:
           $ref: '#/components/schemas/Address'
+          deprecated: true
+          nullable: true
+          description: |
+            Deprecated in favor of `legalPostalAddress`
+        legalPostalAddress:
+          $ref: '#/components/schemas/PostalAddress'
         taxId:
           type: string
           nullable: false
@@ -6908,7 +7444,6 @@ components:
         as a whole. Usual areas would be classic compartments.
       required:
         - places
-        - status
       properties:
         places:
           type: array
@@ -6928,14 +7463,16 @@ components:
           description: |
             references to the reservations/fares for which this place can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
           type: array
-          items: 
-            type: string          
+          items:
+            type: string
         status:
           $ref: '#/components/schemas/AvailabilityStatus'
         travelClass:
           $ref: '#/components/schemas/TravelClass'
         serviceClass:
           $ref: '#/components/schemas/ServiceClassType'
+        selectionFee:
+          $ref: '#/components/schemas/SelectionFee'
 
     Complaint:
       type: object
@@ -6957,6 +7494,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 32768
           nullable: true
         decision:
           $ref: '#/components/schemas/ComplaintDecision'
@@ -7035,7 +7573,12 @@ components:
         complaint:
           $ref: '#/components/schemas/Complaint'
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
 
     Condition:
       type: object
@@ -7098,6 +7641,10 @@ components:
         address:
           type: string
           nullable: true
+          deprecated: true
+        postalAddress:
+          $ref: '#/components/schemas/PostalAddress'
+          nullable: true
 
     ContextType:
       type: string
@@ -7139,7 +7686,7 @@ components:
           type: string
           format: duration
           nullable: true
-          example: 1800S
+          example: PT10M
         situationFullRefs:
           type: array
           items:
@@ -7197,14 +7744,16 @@ components:
     ControlSecurityType:
       description: |
         Known Values:
-        - 'SiP': secure paper tickets
-        - 'SiD': security in data (signed bar code)
-        - 'SiS': security in system
+        - 'SIP': secure paper tickets
+        - 'SID': security in data (signed bar code)
+        - 'SIS': security in system
+        Values from the [Control Security Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ControlSecurityType)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
-        - 'SiP'
-        - 'SiD'
-        - 'SiS'
+        - 'SIP'
+        - 'SID'
+        - 'SIS'
 
     CorporateCode:
       type: object
@@ -7374,7 +7923,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Non travel document created. Either downloadLink + downloadExpiry or content + format must be provided.
+        Non travel document created. Either downloadLink + downloadExpiry or content must be provided.
       required:
         - id
         - type
@@ -7383,6 +7932,9 @@ components:
         id:
           type: string
           nullable: false
+        summary:
+          type: string
+          nullable: true
         passengerRef:
           description: |
             Reference to a passenger, to be specified when the document related to an individual passenger.
@@ -7400,16 +7952,15 @@ components:
           nullable: true
         content:
           description: |
-            base64 encoded binary of the actual fulfillment document
+            base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw document cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
         format:
-          description: |
-            Physical format of the document provided in the content field in Mime-Type format, e.g. application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
-          type: string
+          $ref: '#/components/schemas/DocumentFormat'
           nullable: true
-          example: application/pdf
         type:
           $ref: '#/components/schemas/DocumentType'
         scope:
@@ -7422,7 +7973,12 @@ components:
         - documents
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         documents:
           type: array
           items:
@@ -7444,6 +8000,10 @@ components:
       properties:
         warnings:
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         document:
           $ref: '#/components/schemas/Document'
 
@@ -7457,7 +8017,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Non travel document created. Either downloadLink + downloadExpiry or content + format must be provided.
+        Non travel document created. Either downloadLink + downloadExpiry or content must be provided.
       required:
         - scope
         - type
@@ -7469,16 +8029,15 @@ components:
           nullable: true
         content:
           description: |
-            base64 encoded binary of the actual fulfillment document
+            base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw document cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
         format:
-          description: |
-            Physical format of the document provided in the content field in Mime-Type format, e.g. application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
-          type: string
+          $ref: '#/components/schemas/DocumentFormat'
           nullable: true
-          example: application/pdf
         scope:
           $ref: '#/components/schemas/DocumentScope'
         type:
@@ -7576,14 +8135,14 @@ components:
       properties:
         exchangeFee:
           $ref: '#/components/schemas/Price'
+        accountingRef:
+          description: |
+            Accounting information for the exchange fee
+          $ref: '#/components/schemas/AccountingRef'
         exchangePrice:
           $ref: '#/components/schemas/Price'
         refundableAmount:
           $ref: '#/components/schemas/Price'
-        exchangeOfferBreakDown:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExchangeOfferItem'
         fulfillments:
           type: array
           items:
@@ -7591,6 +8150,7 @@ components:
           minItems: 1
         offerId:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -7621,9 +8181,15 @@ components:
             $ref: '#/components/schemas/Product'
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        exchangeOfferBreakdown:
+          description: |
+            Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
+          type: array
+          items:
+            $ref: '#/components/schemas/ExchangeBreakdownItem'
         admissionOfferParts:
           type: array
-          items:        
+          items:
             $ref: '#/components/schemas/AdmissionOfferPart'
         reservationOfferParts:
           type: array
@@ -7637,8 +8203,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fee'
-        exchangeBreakdown:
-          $ref: '#/components/schemas/ExchangeBreakDown'
         fares:
           type: array
           items:
@@ -7650,16 +8214,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-
-    ExchangeBreakDown:
-      type: object
-      description: breakdown of fees taken in a refund
-      properties:
-        refundItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExchangeBreakdownItem'
-          minItems: 1
 
     ExchangeBreakdownItem:
       type: object
@@ -7707,6 +8261,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 32768
           nullable: true
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
@@ -7745,7 +8300,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         exchangeOffers:
           type: array
           items:
@@ -7850,7 +8410,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         exchangeOperation:
           $ref: '#/components/schemas/ExchangeOperation'
 
@@ -7882,23 +8447,6 @@ components:
         - 'YES'
         - 'NO'
         - 'WITH_CONDITION'
-
-    ExchangeOfferItem:
-      type: object
-      required:
-        - exchangeFee
-        - exchangePrice
-        - bookingParts
-      properties:
-        exchangeFee:
-          description: Amount kept by the carrier and/or the distributor
-          $ref: '#/components/schemas/Price'
-        exchangePrice:
-          $ref: '#/components/schemas/Price'
-        bookingParts:
-          type: array
-          items:
-            $ref: '#/components/schemas/BookingPartReference'
 
     ExcludedTimeRange:
       type: object
@@ -7936,6 +8484,12 @@ components:
       additionalProperties: false
       description: |
         The online representation of a fare.
+        In case the final product requires the indication of carriers it is obligatory to provide a 
+        carrierConstraint in the fare directly that includes the list of all carriers in the 
+        includedCarrier list. Whether the carrier must be indicated needs to be derived from the requetsted
+        total route and the location of the sales points for international sales. 
+        Whether the indication of carriers is obligatory is defined
+        in the Convention concerning International Carriage by Rail (COTIF).
       required:
         - id
         - type
@@ -7958,6 +8512,8 @@ components:
           $ref: '#/components/schemas/Text'
         description:
           $ref: '#/components/schemas/Text'
+        status:
+          $ref: '#/components/schemas/BookingPartStatus'
         prices:
           description: |
             allows specifying a price in multiple currencies
@@ -8007,7 +8563,7 @@ components:
           items:
             type: string
           minItems: 1
-          nullable: false          
+          nullable: false
         passengerConstraints:
           description: |
             passenger constraint to be included in bar codes
@@ -8107,8 +8663,6 @@ components:
               items:
                 $ref: '#/components/schemas/StationSet'
               minItems: 1
-            ref:
-              $ref: '#/components/schemas/FareConnectionPointRef'
 
     FareConnectionPointRef:
       description: |
@@ -8153,11 +8707,12 @@ components:
     FareType:
       description: |
         Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
+        Values from the [Fare Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FareType)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'ADMISSION'
         - 'RESERVATION'
-        - 'INTEGRATED_RESERVATION'
         - 'ANCILLARY'
 
     Fee:
@@ -8171,6 +8726,7 @@ components:
       properties:
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -8272,12 +8828,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentDocument'
+        issuingLanguage:
+          type: string
+          description: the issuing language (ISO-639-1 language code).
         fulfillmentParts:
           description: |
             Fulfillment items to be integrated into tickets (distributor mode).
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentPart'
+        contentComplete:
+          type: boolean
+          nullable: true
+          default: false
+          description: |
+            Indicates whether the fulfillment has all documents or parts generated (if any needed) or they are still pending generation.
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         _links:
@@ -8329,7 +8894,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         fulfillments:
           type: array
           items:
@@ -8377,7 +8947,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Document created for fulfillment. Either downloadLink + downloadExpiry or content + format must
+        Document created for fulfillment. Either downloadLink + downloadExpiry or content must
         be provided.
       required:
         - medium
@@ -8401,17 +8971,17 @@ components:
           nullable: true
         content:
           description: |
-            base64 encoded binary of the actual fulfillment document
+            base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw document cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
         format:
-          description: |
-            Physical format of the document provided in the content field in Mime-Type format, e.g.
-            application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
-          type: string
+          $ref: '#/components/schemas/DocumentFormat'
           nullable: false
-          example: application/pdf
+        applicationProvider:
+          $ref: '#/components/schemas/CompanyRef'
 
     FulfillmentDocumentType:
       description: |
@@ -8423,6 +8993,19 @@ components:
         - 'INFORMATION'
         - 'TICKET'
         - 'VOUCHER'
+
+    DocumentFormat:
+      description: |
+        Physical format of the document provided in the content field in Mime-Type format, e.g.
+        application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
+      type: string
+      enum:
+        - 'application/pdf'
+        - 'application/vnd.apple.pkpass'
+        - 'image/jpeg'
+        - 'image/png'
+        - 'text/calendar'
+        - 'text/html'
 
     FulfillmentId:
       type: string
@@ -8436,9 +9019,11 @@ components:
           $ref: '#/components/schemas/SecurityFeatureType'
         data:
           description: |
-            base 64 encoded data
+            base64 encoded data. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw data cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
 
     FulfillmentItemSecurityFeatureLinks:
@@ -8457,9 +9042,14 @@ components:
     FulfillmentMediaType:
       description: |
         Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
+        Notice:`ALLOCATOR_APP` is deprecated and should not be used anymore. The `ALLOCATOR_APP` type is replaced by the `RETAILER_APP` type. `DISTRIBUTOR_APP` was introduced to distinguish between the different types of apps that can be used to fulfill a booking.
+        Values from the [Fulfillment Media Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentMediaType)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
-        - 'ALLOCATOR_APP'
+        - 'ALLOCATOR_APP' # deprecated
+        - 'DISTRIBUTOR_APP'
+        - 'RETAILER_APP'
         - 'FULFILLMENT_PARTS'
         - 'PDF_A4'
         - 'PKPASS'
@@ -8557,16 +9147,37 @@ components:
           items:
             $ref: '#/components/schemas/FulfillmentId'
 
+    FulfillmentPostRequest:
+      type: object
+      additionalProperties: false
+      description: |
+        Creates the fulfillment in the requested language
+      properties:
+        issuingLanguage:
+          type: string
+          description:
+            the desired issuing language (ISO-639-1 language code). If not
+            provided or not available, will default to (one of) the language(s)
+            of the issuing country
+
     FulfillmentResponse:
       type: object
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         fulfillment:
           $ref: '#/components/schemas/Fulfillment'
 
     FulfillmentType:
+      description: |
+        Values from the [Fulfillment Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentType)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'ETICKET'
@@ -8613,6 +9224,7 @@ components:
       description: |
         The gender of the passenger, which is important in the case of night trains.
       type: string
+      nullable: true
       enum:
         - 'MALE'
         - 'FEMALE'
@@ -8663,6 +9275,60 @@ components:
               $ref: '#/components/schemas/Latitude'
             longitude:
               $ref: '#/components/schemas/Longitude'
+
+    GrantedReductionAmounts:
+      type: object
+      additionalProperties: false
+      description: |
+        granted reduction amounts
+      properties:
+        grantedReductionAmount:
+          type: array
+          items:
+            $ref: '#/components/schemas/GrantedReductionAmount'
+
+    GrantedReductionAmount:
+      type: object
+      additionalProperties: false
+      description: |
+        Applied passenger types and reductions per passenger, per offerpart, booking part and per part of the trip. 
+        Passengers might be omitted in case the reduction applies to the complete booking part.
+      required:
+        - grantedAmount
+        - description
+      properties:
+        description:
+          description: |
+            Clear text representation of the actual passenger type, suitable to be presented to a client.
+          type: string
+          nullable: false
+        grantedAmount:
+          $ref: '#/components/schemas/Price'
+        passengerRefs:
+          description: |
+            ids of the passengers that were granted the reduction
+          type: array
+          items:
+            type: string
+            nullable: false
+        tripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
+        appliedPassengerTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActualPassengerType'
+        appliedReductions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardReference'
+        appliedCorporateCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CorporateCode'
+        appliedPromotionCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromotionCode'
 
     HistoryStatus:
       type: string
@@ -8917,7 +9583,8 @@ components:
               - value 0: lowest layer usually used for walls
               - value 1: middle layer usually used by places
               - value 2: top layer usually used by icons
-          type: string
+          type: integer
+          format: int32
           nullable: false
 
     LegAttribute:
@@ -9122,6 +9789,7 @@ components:
           description: |
             Allows to provide a value to the link, for example id of the targeted resource or displayable representation for the link.
           type: string
+          maxLength: 32768
           format: uri
           nullable: false
         type:
@@ -9134,6 +9802,7 @@ components:
           description: |
             Allows to provide a value to the link, for example id of the targeted resource or displayable representation for the link.
           type: string
+          maxLength: 32768
           nullable: true
 
     Longitude:
@@ -9449,6 +10118,7 @@ components:
       properties:
         offerId:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -9526,6 +10196,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 32768
           nullable: true
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
@@ -9566,7 +10237,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         offers:
           type: array
           items:
@@ -9620,6 +10296,7 @@ components:
       properties:
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -9699,6 +10376,12 @@ components:
         offerId:
           description: |
             id of the selected offer or exchangeOffer
+          type: string
+          maxLength: 32768
+          nullable: false
+        externalRef:
+          description: |
+            A stable reference to the id of the offer in the caller's system. When received in input of a request, it must be persisted and echoed back in the response.
           type: string
           nullable: false
         optionalReservationSelections:
@@ -9803,6 +10486,7 @@ components:
       properties:
         id:
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           type: string
@@ -9866,7 +10550,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         onHoldOffer:
           $ref: '#/components/schemas/OnHoldOffer'
 
@@ -9935,7 +10624,8 @@ components:
       description: |
         Reason for and type of an after sale, code list in IRS 90918-10.
         The PRM_SUPPORT_UNAVAILABLE overrule code shall only be used by the UIC PRM ABT tool.
-        Known Values:
+        Values from the [Overrule Codes Code List](https://osdm.io/spec/catalog-of-code-lists/#OverruleCode)
+        Listed values here are examples.   
         - 'CONNECTION_BROKEN'
         - 'DEATH'
         - 'EQUIPMENT_FAILURE'
@@ -9983,6 +10673,8 @@ components:
     PTMode:
       description: |
         TAP-TSI/UIC contains a sensible subset of SIRI Transport Modes.
+        Values from the [Transport Mode Code List](https://osdm.io/spec/catalog-of-code-lists/#TransportMode)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'HIGH_SPEED_TRAIN'
@@ -10065,7 +10757,6 @@ components:
             $ref: '#/components/schemas/PRMNeedType'
         _links:
           description: |
-
             Java Property Name: 'links'
           type: array
           items:
@@ -10095,7 +10786,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         passenger:
           $ref: '#/components/schemas/Passenger'
 
@@ -10104,7 +10800,6 @@ components:
       additionalProperties: false
       description: |
         Minimal specification of a passenger to request offers.
-
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
       required:
         - externalRef
@@ -10150,7 +10845,8 @@ components:
     PassengerType:
       description: |
         Passenger type according to UIC passenger, i.e. passenger type list.
-        See https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
+        Values from the [Passenger Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)
+        Listed values here are examples.   
         Proposed default PERSON
       type: string
       x-extensible-enum:
@@ -10255,6 +10951,14 @@ components:
         address:
           $ref: '#/components/schemas/Address'
           nullable: true
+          deprecated: true
+          description: |
+            Deprecated in favor of `postalAddress`
+        postalAddress:
+          $ref: '#/components/schemas/PostalAddress'
+          nullable: true
+          description: |
+            Address of the physical person for issuing an invoice or receipt
         contact:
           $ref: '#/components/schemas/ContactDetail'
         taxId:
@@ -10265,10 +10969,16 @@ components:
           nullable: true
           example: CZ1234567890
 
-    PersonSearchRequest:
+    PassengerSearchRequest:
       type: object
       additionalProperties: false
       properties:
+        externalRef:
+          description: |
+            A stable reference to a person from other elements, or from caller system.
+            When received in input of a request, it must be echoed back in the response.
+          type: string
+          nullable: true
         firstName:
           type: string
           nullable: true
@@ -10318,9 +11028,12 @@ components:
           nullable: true
         geoPosition:
           $ref: '#/components/schemas/GeoPosition'
+        ref:
+          description: |
+            Reference to another a place, e.g. to link address information. Provided by OJP.
+          $ref: '#/components/schemas/PlaceRef'
         _links:
           description: |
-
             Java Property Name: 'links'
           type: array
           items:
@@ -10361,7 +11074,7 @@ components:
         - vehicle
       properties:
         reference:
-          $ref: '#/components/schemas/PartReference'   
+          $ref: '#/components/schemas/PartReference'
         vehicle:
           $ref: '#/components/schemas/Vehicle'
         preSelections:
@@ -10370,14 +11083,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlacePreSelection'
-            
 
     PlaceAvailabilityCollectionResponse:
       type: object
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         availablePlaces:
           type: array
           items:
@@ -10388,21 +11105,14 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
-        vehicleAvailability:
-          $ref: '#/components/schemas/PlaceAvailability'
-          
-          
-    PlaceAvailabilitiesResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        warning:
-          $ref: '#/components/schemas/WarningCollection'
-        vehicleAvailabilities:
+        problems:
           type: array
           items:
-            $ref: '#/components/schemas/PlaceAvailability'
+            $ref: '#/components/schemas/Problem'
+        vehicleAvailability:
+          $ref: '#/components/schemas/PlaceAvailability'
 
     PlaceParam:
       type: object
@@ -10447,37 +11157,36 @@ components:
           nullable: false
         status:
           $ref: '#/components/schemas/AvailabilityStatus'
-        isSelectable:
-          description: |
-            Flag to indicate individual places as non-selectable in
-            case complete compartments must be selected.
-          type: boolean
-          nullable: true
-          default: true
         reservationRefs:
           description: |
-            references to the reservations for which this place nca be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+            references to the reservations for which this place can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
           type: array
-          items: 
+          items:
             type: string
         placeProperties:
           type: array
           items:
             $ref: '#/components/schemas/PlaceProperty'
+        selectionFee:
+          $ref: '#/components/schemas/SelectionFee'
 
     PlacePreSelection:
       type: object
       additionalProperties: false
+      required:
+        - coach
+        - place
       properties:
         reservationId:
-          description: id of the reservation in case the places have already been selected and the customer now wants to change the selection.
+          description: |
+            id of the reservation in case the places have already been selected and the customer now wants to change the selection.
           type: string
         coach:
           type: string
-          nullable: true
+          nullable: false
         place:
           type: string
-          nullable: true
+          nullable: false
 
     PlacePreferenceGroup:
       type: object
@@ -10487,21 +11196,26 @@ components:
         - preferences
       properties:
         preferenceGroup:
+          description: |
+            Values from the [Reservation Preference Group Code List](https://osdm.io/spec/catalog-of-code-lists/#ReservationPreferenceGroup)
           type: string
           nullable: false
-          example: 'SEAT_DIRECTION'
+          example: 'BERTH_LOCATION'
         preferences:
+          description: |
+            Place preferences in the group. 
+            Values from the [Place Property Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
           type: array
           items:
             type: string
           minItems: 1
           nullable: false
-          example: 'FORWARD_FACING'
+          example: 'WINDOW'
 
     PlaceProperty:
       type: string
       description: |
-        see code list
+        Values from the [Place Property Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
       nullable: false
       example: Power Connection
 
@@ -10538,7 +11252,12 @@ components:
         - places
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         places:
           type: array
           items:
@@ -10616,8 +11335,6 @@ components:
                 id of the Point of Interest.
               type: string
               nullable: false
-            ref:
-              $ref: '#/components/schemas/PointOfInterestRef'
 
     PointOfInterestCategory:
       type: object
@@ -10718,10 +11435,10 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Problem Details for HTTP APIs (RFC 7807) defines a 'problem detail' as a way
+        Problem Details for HTTP APIs (RFC 9457) defines a 'problem detail' as a way
         to carry machine-readable details of errors in a HTTP response to avoid
         the need to define new error response formats for HTTP APIs.
-        See: https://tools.ietf.org/html/rfc7807
+        See: https://tools.ietf.org/html/rfc9457
       properties:
         code:
           description: |
@@ -10769,6 +11486,86 @@ components:
           type: string
           format: uri
           nullable: true
+        pointers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProblemPointer'
+            nullable: true
+          minItems: 0
+
+    ProblemPointer:
+      type: object
+      additionalProperties: false
+      description: |
+        Problem Details for HTTP APIs (RFC 9457) defines a 'problem detail' as a way
+        to carry machine-readable details of errors in a HTTP response to avoid
+        the need to define new error response formats for HTTP APIs.
+        See: https://tools.ietf.org/html/rfc9457
+      properties:
+        code:
+          description: |
+            optional in version 3.1, will be made mandatory in upcoming releases
+          type: string
+          nullable: true
+        type:
+          description: |
+            An absolute URI that identifies the problem type. When dereferenced,
+            it SHOULD provide human-readable documentation for the problem type
+            (e.g., using HTML).
+          type: string
+          format: uri
+          nullable: true
+          default: 'about:blank'
+          example: https://example.com/probs/passenger-too-young
+        title:
+          description: |
+            A short, summary of the problem type. Written in English and readable
+            for engineers (usually not suited for non technical stakeholders and
+            not localized);
+          type: string
+          nullable: true
+          example: Service Unavailable
+        status:
+          description: |
+            The HTTP status code generated by the origin server for this occurrence
+            of the problem.
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 599
+          nullable: true
+          example: 503
+        detail:
+          description: |
+            A human readable explanation specific to this occurrence
+            of the problem.
+          type: string
+          nullable: true
+          example: Connection to database timed out
+        instance:
+          description: |
+            An absolute URI that identifies the specific occurrence of the problem.
+          type: string
+          format: uri
+          nullable: true
+        requestPointer:
+          description: |
+            A pointer to the attribute in the request for the problem.
+          type: string
+          nullable: true
+          example: '#/offers[1]/placeSelections[1]/reservationId'
+        responsePointer:
+          description: |
+            A pointer to the attribute in the response for the problem.
+          type: string
+          nullable: true
+          example: '#/booking/bookedOffers[4]/reservations[1]/id'
+        originator:
+          description: |
+            Identifier to the origin server for this occurrence of the problem.
+          type: string
+          nullable: true
+          example: IMS1
 
     Product:
       type: object
@@ -10852,11 +11649,14 @@ components:
           items:
             $ref: '#/components/schemas/CombinationTag'
         productTags:
-          description: product tags associated with the product that can be used to search for offers. This can be omitted outside of the product master data service
+          description:
+            product tags associated with the product that can be used to search
+            for offers. This can be omitted outside of the product master data
+            service
           type: array
-          items:         
-             type: string
-             nullable: true
+          items:
+            type: string
+            nullable: true
         _links:
           description: |
             Java Property Name: 'links'
@@ -10879,6 +11679,8 @@ components:
     ProductType:
       description: |
         General product types harmonized across fare providers. (More to be added, use null for types not listed yet.)
+        Values from the [Product Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ProductTypes)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'ADMISSION_PASS'
@@ -10933,7 +11735,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         products:
           description: |
             The list of all products available to the caller.
@@ -10968,6 +11775,10 @@ components:
       properties:
         warnings:
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         product:
           $ref: '#/components/schemas/Product'
 
@@ -11043,7 +11854,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         purchaser:
           $ref: '#/components/schemas/Purchaser'
 
@@ -11051,6 +11867,12 @@ components:
       type: object
       additionalProperties: false
       properties:
+        externalRef:
+          description: |
+            A stable reference to a purchaser from other elements, or from caller system.
+            When received in input of a request, it must be echoed back in the response.
+          type: string
+          nullable: true
         companyName:
           type: string
           nullable: true
@@ -11066,6 +11888,7 @@ components:
           type: string
           format: date
           nullable: true
+          deprecated: true
         phoneNumber:
           type: string
           nullable: true
@@ -11125,7 +11948,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         reductionCardTypes:
           type: array
           items:
@@ -11142,6 +11970,13 @@ components:
         code:
           type: string
           nullable: false
+        shortCode:
+          description: |
+            reduction card code to be used in bar codes. The code is defined within
+            the context of the issuer and is required to be very short (usually 1-4 positions).
+            The code is used in ticket bar codes to indicate required checks of this reduction card during travel.
+          type: string
+          nullable: true
         issuer:
           $ref: '#/components/schemas/CompanyRef'
         name:
@@ -11190,6 +12025,7 @@ components:
           description: |
             id of the refund offer
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -11246,14 +12082,20 @@ components:
           $ref: '#/components/schemas/Price'
           description: |
             Amount kept by the carrier and/or distributor
+        accountingRef:
+          description: |
+            Accounting information for the refund fee
+          $ref: '#/components/schemas/AccountingRef'
         refundableAmount:
           $ref: '#/components/schemas/Price'
           description: |
             Amount refunded to the purchaser
         refundOfferBreakdown:
+          description: |
+            breakdown of the refund offer
           type: array
           items:
-            $ref: '#/components/schemas/RefundOfferItem'
+            $ref: '#/components/schemas/RefundOfferBreakdownItem'
         reimbursementMethod:
           $ref: '#/components/schemas/ReimbursementMethod'
         _links:
@@ -11263,7 +12105,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    RefundOfferItem:
+    RefundOfferBreakdownItem:
       type: object
       required:
         - refundFee
@@ -11286,7 +12128,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         refundOffers:
           type: array
           items:
@@ -11348,7 +12195,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         refundOffer:
           $ref: '#/components/schemas/RefundOffer'
 
@@ -11366,6 +12218,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 32768
         passengerIds:
           type: array
           description: ids of passengers to be removed from the fulfillment
@@ -11599,7 +12452,12 @@ components:
         reimbursement:
           $ref: '#/components/schemas/Reimbursement'
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
 
     ReimbursementStatus:
       type: string
@@ -11621,8 +12479,9 @@ components:
       properties:
         id:
           description: |
-            id of the refund offer
+            id of the release offer
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           description: |
@@ -11669,7 +12528,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         releaseOffers:
           type: array
           items:
@@ -11699,6 +12563,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentId'
+        releaseSpecifications:
+          description: |
+            To do a partial release repeat the fulfillmentIds affected and point out what to release
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundSpecification'
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
 
@@ -11707,7 +12577,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         releaseOffer:
           $ref: '#/components/schemas/ReleaseOffer'
 
@@ -11741,6 +12616,7 @@ components:
 
     RequestedInformation:
       type: string
+      maxLength: 32768
       description: |
         Boolean-expression indicating the data that must be set in the data model in order to proceed to next step of the process. 
 
@@ -11769,7 +12645,17 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/BookingPartReference'
+            availablePlacePreferences:
+              description:
+                options for place selection in case the place selection is made
+                after the pre-booking.
+              type: array
+              items:
+                $ref: '#/components/schemas/AvailablePlacePreferences'
             graphicalReservationSupported:
+              description:
+                more detailed information on options for place selection and
+                possible fees are part of availablePlacePreferences
               type: boolean
               nullable: true
               default: false
@@ -11982,6 +12868,7 @@ components:
           type: array
           items:
             type: string
+            maxLength: 32768
           nullable: true
         outwardOfferTag:
           description: |
@@ -12056,6 +12943,7 @@ components:
         externalTripRef:
           description: reference to a trip in case multiple trips are provided
           type: string
+          maxLength: 32768
           nullable: true
 
     SecurityElementFormat:
@@ -12155,6 +13043,17 @@ components:
           type: string
           nullable: false
 
+    SelectionFee:
+      type: object
+      description:
+        selection fee that will be applied when selecting the place in a
+        graphical seat map. (https://osdm.io/spec/processes/#SeatSelectionFees)
+      properties:
+        price:
+          $ref: '#/components/schemas/Price'
+      required:
+        - price
+
     ServiceBrandCode:
       type: string
       description: |
@@ -12201,6 +13100,8 @@ components:
     ServiceClassType:
       description: |
         Type of quality level, finer grained than the comfort class.
+        Values from the [Service Class Code List](https://osdm.io/spec/catalog-of-code-lists/#ServiceClass)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'BEST'
@@ -12294,6 +13195,10 @@ components:
           nullable: true
 
     SiSType:
+      description: |
+        Type of the exchange of control data for security in system implementations.
+        Values from the [Control Data Exchange Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ControlDataExchangeType)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'REGISTRY'
@@ -12390,8 +13295,6 @@ components:
           required:
             - name
           properties:
-            ref:
-              $ref: '#/components/schemas/StopPlaceRef'
             name:
               description: |
                 Name of this stop place for use in passenger information.
@@ -12419,7 +13322,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        The supporting document helps to supporting the claim.  Either downloadLink + downloadExpiry or content + format must be provided.
+        The supporting document helps to supporting the claim.  Either downloadLink + downloadExpiry or content must be provided.
       required:
         - title
         - downloadExpiry
@@ -12440,17 +13343,15 @@ components:
           nullable: false
         content:
           description: |
-            base64 encoded binary of the actual document
+            base64 encoded binary of the actual document. The length restriction of 4 MBytes applies to the encoded
+            string, so the raw document cannot exceed 3 MBytes in size.
           type: string
           format: byte
+          maxLength: 4194304
           nullable: true
         format:
-          description: |
-            Physical format of the document provided in the content field in Mime-Type format, e.g. 
-            application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
-          type: string
+          $ref: '#/components/schemas/DocumentFormat'
           nullable: false
-          example: application/pdf
 
     Symbology:
       description: |
@@ -12482,6 +13383,7 @@ components:
             $ref: '#/components/schemas/Translation'
         text:
           type: string
+          maxLength: 32768
           nullable: false
         shortText:
           type: string
@@ -12502,6 +13404,7 @@ components:
             Full version of the text for display when sufficient space is available.
           type: string
           minLength: 1
+          maxLength: 32768
           nullable: false
         shortDescription:
           description: |
@@ -12821,7 +13724,9 @@ components:
 
     TransportableType:
       description: |
-        Subset of the values from the passenger type code list IRS 90918-10
+        Subset of the values from 
+        the [Passenger Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'PET'
@@ -12864,7 +13769,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         travelAccount:
           $ref: '#/components/schemas/AbstractTravelAccount'
 
@@ -12897,13 +13807,15 @@ components:
       description: |
         indication of the direction of travel standard direction is left
         to right with ascending coordinates in the layout values.
+        Values from the [Travel Direction Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelDirection)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'UNSPECIFIED'
         - 'IN_DIRECTION'
         - 'OPPOSITE_DIRECTION'
         - 'CHANGING'
-        - 'STARING_IN_DIRECTION'
+        - 'STARTING_IN_DIRECTION'
 
     TravelPassAccount:
       allOf:
@@ -12993,8 +13905,9 @@ components:
       properties:
         id:
           description: |
-            Id of this trip for referencing purposes. Unique within a trip.
+            Id of this trip for referencing purposes. Unique within a trip list.
           type: string
+          maxLength: 32768
           nullable: false
         externalRef:
           description: |
@@ -13144,7 +14057,12 @@ components:
         - id
       properties:
         warning:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         id:
           type: string
           nullable: false
@@ -13181,6 +14099,7 @@ components:
       properties:
         coveredTripId:
           type: string
+          maxLength: 32768
           nullable: false
         sectionIndex:
           description: |
@@ -13310,6 +14229,7 @@ components:
       properties:
         tripId:
           type: string
+          maxLength: 32768
           nullable: false
         legId:
           type: string
@@ -13407,6 +14327,15 @@ components:
         itModesToCover:
           $ref: '#/components/schemas/IndividualMode'
 
+    TripChangeCriteria:
+      type: object
+      additionalProperties: false
+      description: |
+        Trip change request structure. Provided by OJP.
+      properties:
+        TripResult:
+          $ref: '#/components/schemas/TripResult'
+
     TripResponse:
       type: object
       additionalProperties: false
@@ -13414,7 +14343,12 @@ components:
         - trip
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         trip:
           $ref: '#/components/schemas/Trip'
 
@@ -13425,6 +14359,15 @@ components:
         - 'PLACES'
         - 'NONE'
       default: 'ALL'
+
+    TripResult:
+      type: object
+      additionalProperties: false
+      description: |
+        The trip result to be changed.
+      properties:
+        TripSummary:
+          $ref: '#/components/schemas/TripSpecificationSummary'
 
     TripSearchCriteria:
       type: object
@@ -13437,13 +14380,13 @@ components:
       properties:
         departureTime:
           description: |
-            Needs to in local date time format.
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
           nullable: true
         arrivalTime:
           description: |
-            Needs to in local date time format. If arrival time is provided the departure time must be omitted.
+            Needs to in be local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
           nullable: true
@@ -13459,7 +14402,7 @@ components:
 
             TripDataFilters given at a via apply to the section after that via. To apply a TripDataFilter for 
             the first section (between the origin and the first via), use the TripDataFilter within the
-            TripParameters structure.   
+            TripParameters structure.
           type: array
           items:
             $ref: '#/components/schemas/TripVia'
@@ -13488,6 +14431,7 @@ components:
       properties:
         tripId:
           type: string
+          maxLength: 32768
           nullable: false
         coveredSection:
           $ref: '#/components/schemas/Section'
@@ -13552,6 +14496,26 @@ components:
           nullable: true
           default: false
 
+    TripSpecificationSummary:
+      type: object
+      additionalProperties: false
+      description: |
+        Trip specification summary. Provided by OJP. 
+        It requires the id of an already existing trip to change and specifies the parameters which must be used to generate the new trip.
+      required:
+        - id
+      properties:
+        id:
+          description: |
+            The id of an already existing trip to change.
+          type: string
+          maxLength: 32768
+          nullable: false
+        origin:
+          $ref: '#/components/schemas/PlaceRef'
+        destination:
+          $ref: '#/components/schemas/PlaceRef'
+
     TripSummary:
       type: object
       additionalProperties: false
@@ -13564,6 +14528,7 @@ components:
           description: |
             Id of this trip for referencing purposes. Unique within trip response.
           type: string
+          maxLength: 32768
           nullable: false
         summary:
           type: string
@@ -13613,7 +14578,6 @@ components:
       additionalProperties: false
       description: |
         Via restrictions for a trip. Provided by OJP.
-
         A TripDataFilter given applies to the section after this via.
       required:
         - viaPlace
@@ -13694,8 +14658,8 @@ components:
 
     ValidityType:
       description: |
-        Type of usage, either as single trip or multiple trips. Unrestricted fares might be combined 
-        into single trips if appropriate.
+        Type of usage, either as single trip or multiple trips. Unrestricted fares might be combined into single trips if appropriate. Values from the [Travel Validity Type Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelValidityType) 
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'SINGLE_TRIP'
@@ -13704,7 +14668,9 @@ components:
 
     VatScope:
       description: |
-        scope where the VAT applies
+        scope where the VAT applies.
+        Values from the [Tax Scope Code List](https://osdm.io/spec/catalog-of-code-lists/#TaxScope)
+        Listed values here are examples.
       type: string
       x-extensible-enum:
         - 'INTERNATIONAL'
@@ -13718,14 +14684,11 @@ components:
       description: |
         List of the coaches in a vehicle run ordered according to the physical
         ordering of the vehicle.
-      required:
-        - coaches
       properties:
         coaches:
           type: array
           items:
             $ref: '#/components/schemas/Coach'
-          minItems: 1
         reservationRefs:
           description: |
             References to the reservations/fares for which all places in the vehicle can be selected. 
@@ -13733,8 +14696,9 @@ components:
             requested the available places and the consumer must accept a list by setting 
             singleSelectionMapsRequired to false
           type: array
-          items: 
-            type: string     
+          items:
+            type: string
+
     VehicleFilter:
       type: object
       additionalProperties: false
@@ -13883,7 +14847,12 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
         zones:
           type: array
           items:
