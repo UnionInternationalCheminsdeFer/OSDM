@@ -5063,7 +5063,7 @@ components:
               examples: 
                 - 7
             ref:
-              $ref: '#/components/schemas/AddressRef
+              $ref: '#/components/schemas/AddressRef'
              
     AddressRef:
       description: |
@@ -6202,9 +6202,10 @@ components:
         The latter is optional and relevant in some cases only.
       properties:
         externalRef:
-          type: string
+          type: 
+            - "string"
+            - "null"
           description: The unique booking reference in the distributor/retailer system. Usually refers to an order number or PNR.
-          nullable: true
         placeSelections:
           type: array
           items:
@@ -6939,8 +6940,9 @@ components:
         icon:
           description: |
             Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
-          type: string
-          nullable: false
+          type: 
+            - "string"
+            - "null"
         direction:
           $ref: '#/components/schemas/DirectionType'          
         mounting:
@@ -7600,7 +7602,6 @@ components:
              - "null"
           format: date-time
         documentContent:
-          nullable: true
           $ref: '#/components/schemas/DocumentContent'
         type:
           $ref: '#/components/schemas/DocumentType'
@@ -8470,8 +8471,9 @@ components:
           items:
             $ref: '#/components/schemas/FulfillmentPart'
         contentComplete:
-          type: boolean
-          nullable: true
+          type: 
+            - "boolean"
+            - "null"
           default: false
           description: |
             Indicates whether the fulfillment has all documents or parts generated (if any needed) or they are still pending generation.
@@ -8854,8 +8856,9 @@ components:
     Gender:
       description: |
         The gender of the passenger, which is important in the case of night trains.
-      type: string
-      nullable: true
+      type: 
+        - "string"
+        - "null"
       enum:
         - 'MALE'
         - 'FEMALE'
@@ -11841,7 +11844,6 @@ components:
           items:
             $ref: '#/components/schemas/RefundSpecification'
           minItems: 1
-          nullable: false
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
         refundDate:
@@ -12936,8 +12938,9 @@ components:
         isBorderPoint:
           description: |
             Indicates whether the stop is recognized by the system as a border point between two or more countries.
-          type: boolean
-          nullable: true
+          type: 
+            - "boolean"
+            - "null"
           default: false
 
     StopPlace:
@@ -14166,7 +14169,6 @@ components:
             The id of an already existing trip to change.
           type: string
           maxLength: 32768
-          nullable: false
         origin:
           $ref: '#/components/schemas/PlaceRef'
         destination:
