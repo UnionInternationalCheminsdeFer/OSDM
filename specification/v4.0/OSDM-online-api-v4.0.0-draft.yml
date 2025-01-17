@@ -2188,7 +2188,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FulfillmentActivationPatchRequest'
+              $ref: '#/components/schemas/FulfillmentPatchRequest'
       responses:
         '200':
           description: |
@@ -7671,9 +7671,9 @@ components:
                 $ref: '#/components/schemas/ContinuousServicePickUpPlace'
               minItems: 1
             tipRef:
-              description: id of a fee including the tip
+              description: id of the tip for staff (e.g. taxi)
               type: string
-              maxLength: 32768
+              maxLength: 1024
 
     ContinousServiceOfferPart:
       description: |
@@ -7778,7 +7778,7 @@ components:
           format: byte
           maxLength: 4194304
         tip:
-          $ref: '#/components/schemas/IndicatedConsumption'
+          $ref: '#/components/schemas/Tip'
 
     ContinousServiceVehicleSelection:
       type: object
@@ -13775,6 +13775,37 @@ components:
           $ref: '#/components/schemas/AlightSpecification'
         service:
           $ref: '#/components/schemas/DatedJourney'
+
+    Tip:
+      type: object
+      additionalProperties: false
+      description: |
+        Tips for staff can be included e.g. for taxi drivers. The Tip will be part of the payment in case ofpost payment scenarios.
+      required:
+        - id
+        - price
+      properties:
+        id:
+          type: string
+          maxLength: 1024
+        summary:
+          description: |
+            A human-readable description of the tip.
+          type:
+            - 'string'
+            - 'null'
+        bookingPartRef:
+          $ref: '#/components/schemas/BookingPartReference'        
+        price:
+          $ref: '#/components/schemas/Price'
+        distributorBookingRef:
+          description: |
+            reference to the booking in the downstream distributor system
+          type:
+            - 'string'
+            - 'null'
+        accountingRef:
+          $ref: '#/components/schemas/AccountingRef'
 
     Trailer:
       type: object
