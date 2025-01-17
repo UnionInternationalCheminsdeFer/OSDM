@@ -11712,7 +11712,7 @@ components:
             $ref: '#/components/schemas/ServiceBrandCode'
         description:
           description:
-            text describing the rduction granted. In the context of master data translations should be provided.
+            text describing the reduction granted. In the context of master data translations should be provided.
           $ref: '#/components/schemas/Text'
         percentage:
           type:  "number"
