@@ -2647,7 +2647,7 @@
 					"description": "code of the carrier group e.g. used in IRS 90918-4 / ETCD to grant access to involved carriers"
 				},					
 				"name": {
-					"description":"Name of the carrier group thai can be used in communication with passengers"
+					"description":"Name of the carrier group that can be used in communication with passengers"
 					"type": "string"
 				},
 				"legacyCode": {
