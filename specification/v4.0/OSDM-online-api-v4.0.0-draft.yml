@@ -2225,11 +2225,11 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-  /fulfillments/{fulfillmentId}/continuous-service-usage/{continousServiceUsageId}:
+  /fulfillments/{fulfillmentId}/continuous-service-usage/{continuousServiceUsageId}:
     get:
       tags:
         - Fulfillments
-        - On Demand Services
+        - On-Demand Services
       summary: return the continuous service usage including latest updates
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -2244,21 +2244,21 @@ paths:
           required: true
           schema:
             type: string
-        - name: continousServiceUsageId
+        - name: continuousServiceUsageId
           in: path
           description: |
-            id of the continous service usage to get.
+            id of the continuous service usage to get.
           required: true
           schema:
             type: string
       responses:
         '200':
           description: |
-            continous service usage found
+            continuous service usage found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContinousServiceUsage'
+                $ref: '#/components/schemas/ContinuousServiceUsage'
           headers:
             Content-Language:
               schema:
@@ -2287,12 +2287,12 @@ paths:
     patch:
       tags:
         - Fulfillments
-        - On Demand Services
+        - On-Demand Services
       summary:
         start or end the usage of a continuous service of an demand vehicle
       description: |
         Changes the fulfillment to status AVAILABLE. In the case of multi-journey product, one of the fulfillment is now 'activated' and can be used to travel.
-      operationId: patchContinousServiceUsageId
+      operationId: patchContinuousServiceUsageId
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -2305,10 +2305,10 @@ paths:
           required: true
           schema:
             type: string
-        - name: continousServiceUsageId
+        - name: continuousServiceUsageId
           in: path
           description: |
-            id of the continous service usage to get.
+            id of the continuous service usage to get.
           required: true
           schema:
             type: string
@@ -2317,7 +2317,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ContinousServiceUsagePatchRequest'
+              $ref: '#/components/schemas/ContinuousServiceUsagePatchRequest'
       responses:
         '200':
           description: |
@@ -2325,7 +2325,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContinousServiceUsage'
+                $ref: '#/components/schemas/ContinuousServiceUsage'
           headers:
             Content-Language:
               schema:
@@ -4336,11 +4336,11 @@ paths:
     get:
       tags:
         - Availabilities
-        - On Demand Services
-      summary: Get availabilities of an on demand service.
+        - On-Demand Services
+      summary: Get availabilities of an on-demand service.
       description: |
-        Get availabilities of an on demand services.
-      operationId: getAvailabilitiesContinousServices
+        Get availabilities of an on-demand services.
+      operationId: getAvailabilitiesContinuousServices
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
@@ -4374,7 +4374,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContinousServicesAvailabilityResponse'
+                $ref: '#/components/schemas/ContinuousServicesAvailabilityResponse'
           headers:
             Content-Language:
               schema:
@@ -6072,10 +6072,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Ancillary'
-        continousServices:
+        continuousServices:
           type: array
           items:
-            $ref: '#/components/schemas/ContinousServiceBookingPart'
+            $ref: '#/components/schemas/ContinuousServiceBookingPart'
         fees:
           type: array
           items:
@@ -6466,7 +6466,7 @@ components:
         - 'ADMISSION'
         - 'RESERVATION'
         - 'ANCILLARY'
-        - 'CONTINOUS_SERVICE'
+        - 'CONTINUOUS_SERVICE'
 
     BookingPatchRequest:
       type: object
@@ -7652,7 +7652,7 @@ components:
         destinationText:
           type: string
 
-    ContinousServiceBookingPart:
+    ContinuousServiceBookingPart:
       description: |
         A booking part for a continuous on-demand service.
       allOf:
@@ -7675,7 +7675,7 @@ components:
               type: string
               maxLength: 1024
 
-    ContinousServiceOfferPart:
+    ContinuousServiceOfferPart:
       description: |
         An offer part for a continuous on-demand service.
       allOf:
@@ -7694,7 +7694,7 @@ components:
               minItems: 1
               maxItems: 500
 
-    ContinousServiceUsage:
+    ContinuousServiceUsage:
       description: Usage of a continuos service vehicle
       type: object
       additionalProperties: false
@@ -7708,7 +7708,7 @@ components:
           type: string
           maxLength: 1024
         status:
-          $ref: '#/components/schemas/ContinousServiceUsageStatus'
+          $ref: '#/components/schemas/ContinuousServiceUsageStatus'
         geoPosition:
           $ref: '#/components/schemas/GeoPosition'
         startUsageDescription:
@@ -7742,7 +7742,7 @@ components:
           type: string
           format: date-time
 
-    ContinousServiceUsageStatus:
+    ContinuousServiceUsageStatus:
       description: status of the usage of a vehicle
       type: string
       x-extensible-enum:
@@ -7756,7 +7756,7 @@ components:
             the traveler did not end the usage but the maximal length of the
             usage was reached.
 
-    ContinousServiceUsagePatchRequest:
+    ContinuousServiceUsagePatchRequest:
       description: Usage of a continuos service vehicle
       type: object
       additionalProperties: false
@@ -7768,7 +7768,7 @@ components:
           type: string
           maxLength: 1024
         status:
-          $ref: '#/components/schemas/ContinousServiceUsageStatus'
+          $ref: '#/components/schemas/ContinuousServiceUsageStatus'
         parkingImage:
           description: |
             base64 encoded binary of the jpg image of the parked vehicle when ending the usage.
@@ -7780,7 +7780,7 @@ components:
         tip:
           $ref: '#/components/schemas/Tip'
 
-    ContinousServiceVehicleSelection:
+    ContinuousServiceVehicleSelection:
       type: object
       additionalProperties: false
       required:
@@ -7792,9 +7792,9 @@ components:
           type: string
           maxLength: 1024
         vehicleType:
-          $ref: '#/components/schemas/ContinousServiceVehicleType'
+          $ref: '#/components/schemas/ContinuousServiceVehicleType'
 
-    ContinousServicesAvailabilityResponse:
+    ContinuousServicesAvailabilityResponse:
       type: object
       additionalProperties: false
       required:
@@ -7802,7 +7802,7 @@ components:
       properties:
         pickUpPlaces:
           description: |
-            list of pick-up places for on demand vehicles. The list might include more or other pick up places than mentioned originally in the trip specification.
+            list of pick-up places for on-demand vehicles. The list might include more or other pick up places than mentioned originally in the trip specification.
           type: array
           items:
             $ref: '#/components/schemas/ContinuousServicePickUpPlace'
@@ -7832,7 +7832,7 @@ components:
           examples:
             - 'Taxi Stand Main Station East Exit'
         accessDescription:
-          description: 'description on how to access the on demand vehicle'
+          description: 'description on how to access the on-demand vehicle'
           type: string
           maxLength: 32768
           examples:
@@ -7854,7 +7854,7 @@ components:
             - PT30M
         processIndication:
           description:
-            Machine readable indications on how the on demand process should be
+            Machine readable indications on how the on-demand process should be
             handled.
           type: array
           items:
@@ -7872,8 +7872,8 @@ components:
 
     ContinuousServiceProcessIndication:
       description: |
-        Process indications for on demand services  
-        [On Demand Vehicle Types](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleProcesses)
+        Process indications for on-demand services  
+        [On-Demand Vehicle Types](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleProcesses)
       type: string
       x-extensible-enum:
         - 'PRE_ALLOCATION_REQUIRED'
@@ -7909,13 +7909,13 @@ components:
           examples:
             - 'Scooter up to 120 kg traveler weight'
         vehicleType:
-          $ref: '#/components/schemas/ContinousServiceVehicleType'
+          $ref: '#/components/schemas/ContinuousServiceVehicleType'
         availableVehicles:
           description: number of available vehicles
           type: integer
           format: int32
 
-    ContinousServiceVehicleType:
+    ContinuousServiceVehicleType:
       description: |
         [Vehicle types from code list of on-demand vehicle types](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleTypes)
       type: string
@@ -9033,8 +9033,8 @@ components:
             Indicates whether the fulfillment has all documents or parts generated (if any needed) or they are still pending generation.
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
-        continousServiceUsage:
-          $ref: '#/components/schemas/ContinousServiceUsage'
+        continuousServiceUsage:
+          $ref: '#/components/schemas/ContinuousServiceUsage'
         _links:
           description: |
             Java Property Name: 'links'
@@ -9079,8 +9079,8 @@ components:
             - 'null'
           items:
             type: string
-        continousServiceVehicleSelection:
-          $ref: '#/components/schemas/ContinousServiceVehileSelection'
+        continuousServiceVehicleSelection:
+          $ref: '#/components/schemas/ContinuousServiceVehileSelection'
 
     FulfillmentCollectionResponse:
       type: object
@@ -10387,10 +10387,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AncillaryOfferPart'
-        continousServiceOfferParts:
+        continuousServiceOfferParts:
           type: array
           items:
-            $ref: '#/components/schemas/ContinousServiceOfferPart'
+            $ref: '#/components/schemas/ContinuousServiceOfferPart'
         fees:
           type: array
           items:
@@ -10550,7 +10550,7 @@ components:
         - 'FARE_ADMISSION'
         - 'FARE_RESERVATION'
         - 'FARE_ANCILLARY'
-        - 'CONTINOUS_SERVICE'
+        - 'CONTINUOUS_SERVICE'
         - 'ALL'
 
     OfferSearchCriteria:
@@ -13516,7 +13516,7 @@ components:
           minimum: 0
         requestStop:
           description: |
-            The vehicle journey calls at this stop only on demand.
+            The vehicle journey calls at this stop only on-demand.
           type:
             - 'boolean'
             - 'null'
