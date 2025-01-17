@@ -12011,12 +12011,12 @@ components:
             $ref: '#/components/schemas/ServiceClassType'
           maxItems: 4
         reductionsGranted:
-         description: reductions that will be granted by this reduction card type
-           type: array
-           items:
+          description: reductions that will be granted by this reduction card type
+          type: array
+          items:
              $ref: '#/components/schemas/ReductionGranted'
-           minItems: 1
-           maxItems: 500  
+          minItems: 1
+          maxItems: 500  
         _links:
           description: |
             Java Property Name: 'links'
