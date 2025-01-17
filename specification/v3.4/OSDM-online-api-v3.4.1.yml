@@ -12010,13 +12010,51 @@ components:
           items:
             $ref: '#/components/schemas/ServiceClassType'
           maxItems: 4
+        reductionGranted:
+         description: reductions that will be granted by this reduction card type
+           type: array
+           items:
+             $ref: '#/components/schemas/ReductionsGranted'
+           minItems: 1
+           maxItems: 500  
         _links:
           description: |
-
             Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    ReductionGranted:
+      type: object
+      additionalProperties: false
+      description: |
+        reductions granted by a reduction card type. Eigther carrier or country must be provided. 
+      required:
+        - description
+      properties:
+        carrier:
+          $ref: '#/components/schemas/CompanyRef'
+        country:
+          $ref: '#/components/schemas/CountryCode'
+        transportModes:
+          description: transport modes where the reduction is granted, any mode of the carrier in case the list is not provided.       
+          type: array
+          items:
+            $ref: '#/components/schemas/Mode'        
+        serviceBands:
+          description: ServiceBrands where the reduction is granted, any service brand of the carrier in case the list is not provided.
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceBrandCode'
+        description:
+          description:
+            text describing the rduction granted. In the context of master data translations should be provided.
+          $ref: '#/components/schemas/Text'
+        percentage:
+          type:  "number"
+          format: float
+
+
 
     RefundOffer:
       type: object
