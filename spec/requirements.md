@@ -221,7 +221,7 @@ Support for round trips consisting of one or two products need to be supported.
 
 ### Requirements on Booking
 
-A booking consists of a selected offer and optionally reservations or optional
+A booking consists of one or more selected offers and optionally reservations or optional
 ancillaries.
 
 It must be possible to search for bookings:
@@ -232,11 +232,11 @@ It must be possible to search for bookings:
 - Travel date or end
 - Origin or destination
 
-To support stateless booking a explicit pre-booking step is _not_ supported by
+To support stateless booking an explicit pre-booking step is _not_ supported by
 design.
 
-A booking has a purchaser which has booked the booking. The booking can but most
-not be a passenger.
+A booking has a purchaser which has booked the booking. The purchaser may, but does not have to
+be a passenger.
 
 Booking must be supported by all parties.
 
