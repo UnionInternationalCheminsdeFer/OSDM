@@ -78,6 +78,8 @@
       link: spec/compliance/
     - name: Language
       link: spec/language/
+    - name: Special Features - Continuous Services
+      link: spec/on-demand-services/      
 
 - name: Tools
   link: tools/
