@@ -78,27 +78,27 @@ of by the customer.
 | Code                    | Accommodation Sub Type | Place Preference | Place Property | Description                                                                                      | Place Preference Group |
 | ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | ---------------------- |
 | `AISLE`                 | N                      | Y                | Y              | Place at the aisle                                                                               | `PLACE_LOCATION`       |
-| `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area                                                                    |                        |
+| `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area                                                                    | `PLACE_LOCATION`       |
 | `ANY_SEAT`              | Y                      | N                | Y              | Indicates within a place preference group explicitly that the selection is optional              |                        |
-| `BISTRO`                | Y                      | Y                | Y              | Places in a coach with self-service bistro                                                       |                        |
+| `BISTRO`                | Y                      | Y                | Y              | Places in a coach with self-service bistro                                                       | `PLACE_LOCATION`       |
 | `BICYCLE`               | Y                      | Y                | Y              | Bicycle hook                                                                                     |                        |
-| `BICYCLE_LOW`           | Y                      | Y                | Y              | Bicycle hook, no or slight lift only of front wheel needed                                       |                        |
-| `BICYCLE_MIDDLE`        | Y                      | Y                | Y              | Bicycle hook, waist high lift of bike needed                                                     |                        |
-| `BICYCLE_HIGH`          | Y                      | Y                | Y              | Bicycle hook, complete lift of bike needed to reach hook                                         |                        |
-| `BUSINESS`              | Y                      | Y                | Y              | Manager compartment/business                                                                     |                        |
-| `BUSINESS_COMFORT`      | Y                      | Y                | N              | Business Comfort – business seat with reduced service                                            |                        |
-| `CABIN8`                | N                      | Y                | Y              | Special place group in TGV                                                                       |                        |
-| `CAR_SMALL`             | Y                      | N                | Y              | Vehicle parking place category 1-3                                                               |                        |
-| `CAR_LARGE`             | Y                      | N                | Y              | Vehicle parking place category 6-8                                                               |                        |
-| `CARRE`                 | N                      | Y                | Y              | Carré (4 seats facing normally 2nd Class)                                                        |                        |
+| `BICYCLE_LOW`           | Y                      | Y                | Y              | Bicycle hook, no or slight lift only of front wheel needed                                       | `BICYCLE_LOCATION`     |
+| `BICYCLE_MIDDLE`        | Y                      | Y                | Y              | Bicycle hook, waist high lift of bike needed                                                     | `BICYCLE_LOCATION`     |
+| `BICYCLE_HIGH`          | Y                      | Y                | Y              | Bicycle hook, complete lift of bike needed to reach hook                                         | `BICYCLE_LOCATION`     |
+| `BUSINESS`              | Y                      | Y                | Y              | Manager compartment/business                                                                     | `PLACE_LOCATION`       |
+| `BUSINESS_COMFORT`      | Y                      | Y                | N              | Business Comfort – business seat with reduced service                                            | `PLACE_LOCATION`       |
+| `CABIN8`                | N                      | Y                | Y              | Special place group in TGV                                                                       | `PLACE_LOCATION`       |
+| `CAR_SMALL`             | Y                      | N                | Y              | Vehicle parking place category 1-3                                                               | `CAR_SIZE`             |
+| `CAR_LARGE`             | Y                      | N                | Y              | Vehicle parking place category 6-8                                                               | `CAR_SIZE`             |
+| `CARRE`                 | N                      | Y                | Y              | Carré (4 seats facing normally 2nd Class)                                                        | `PLACE_LOCATION`       |
 | `CHILDREN_AREA`         | Y                      | Y                | Y              | Places in children area                                                                          | `FAMILY`               |
 | `CLUB`                  | Y                      | N                | Y              | Club Category (RENFE)                                                                            |                        |
-| `CLUB_2`                | N                      | Y                | Y              | Club Duo (2 seats facing in a separate compartment)                                              |                        |
-| `CLUB_4`                | N                      | Y                | Y              | Club 4 (4 seats facing)                                                                          |                        |
-| `COMPARTMENT`           | Y                      | N                | Y              | places in a compartment                                                                          | `PLACE_GROUPING`       |
+| `CLUB_2`                | N                      | Y                | Y              | Club Duo (2 seats facing in a separate compartment)                                              | `PLACE_LOCATION`       |
+| `CLUB_4`                | N                      | Y                | Y              | Club 4 (4 seats facing)                                                                          | `PLACE_LOCATION`       |
+| `COMPARTMENT`           | Y                      | N                | Y              | places in a compartment                                                                          |                        |
 | `COMPLETE`              | Y                      | N                | Y              | all places in a compartment are included, no other passengers will be located in the compartment |                        |
 | `CONFERENCE`            | Y                      | N                | Y              | Conference compartment                                                                           |                        |
-| `CONNECTING_DOOR`       | N                      | Y                | Y              | Compartments with connecting door (in sleepers)                                                  |                        |
+| `CONNECTING_DOOR`       | N                      | Y                | Y              | Compartments with connecting door (in sleepers)                                                  | `BERTH_LOCATION`       |
 | `COUCHETTE_2`           | Y                      | N                | Y              | Two person couchette cabin                                                                       |                        |
 | `COUCHETTE_4`           | Y                      | N                | Y              | Couchette Four-berth                                                                             |                        |
 | `COUCHETTE_5`           | Y                      | N                | Y              | Couchette Five-berth                                                                             |                        |
@@ -113,23 +113,23 @@ of by the customer.
 | `DOUBLE_SWC`            | Y                      | N                | Y              | Double sleeper compartment with shower & WC                                                      |                        |
 | `DOUBLE_SWC_DB`         | Y                      | N                | Y              | Double sleeper compartment with shower & WC & double bed                                         |                        |
 | `DOUBLE_S`              | Y                      | N                | Y              | Double sleeper compartment with shower                                                           |                        |
-| `EASY_ACCESS`           | Y                      | Y                | Y              | Place with easy access for PRMs                                                                  |                        |
+| `EASY_ACCESS`           | Y                      | Y                | Y              | Place with easy access for PRMs                                                                  | `PRM`                  |
 | `FACE_2_FACE`           | Y                      | Y                | Y              | places face to face (2 seats facing)                                                             | `PLACE_ALIGNMENT`      |
-| `EXCELLENCE`            | Y                      | Y                | Y              | Special Excellence Places (RhB)                                                                  |                        |
+| `EXCELLENCE`            | Y                      | Y                | Y              | Special Excellence Places (RhB)                                                                  | `PLACE_LOCATION`       |
 | `FAMILY`                | Y                      | Y                | Y              | Places in family area                                                                            | `FAMILY`               |
 | `FRONT_VIEW`            | N                      | Y                | Y              | Seat with front-view                                                                             |                        |
 | `HISTORIC_COACH`        | Y                      | Y                | Y              | Seat in historic coach                                                                           |                        |
 | `INCLUDING_MEAL`        | Y                      | Y                | Y              | Meal at the place is included                                                                    |                        |
 | `INCLUDING_DRINK`       | Y                      | Y                | Y              | A drink is included at the place                                                                 |                        |
 | `KIOSQUE`               | N                      | Y                | Y              | Kiosque (special seats in edge area of a TGV)                                                    |                        |
-| `LADIES`                | N                      | Y                | Y              | Ladies compartment                                                                               |                        |
-| `LOWER_BED`             | N                      | Y                | Y              | Lower bed or couchette                                                                           | `PLACE_LOCATION`       |
+| `LADIES`                | N                      | Y                | Y              | Ladies compartment                                                                               | `BERTH_GENDER`         |
+| `LOWER_BED`             | N                      | Y                | Y              | Lower bed or couchette                                                                           | `BED_LOCATION`         |
 | `LOWER_DECK`            | N                      | Y                | Y              | Lower deck in a double deck train                                                                | `DECK`                 |
-| `MEN`                   | N                      | Y                | Y              | Men compartment in night train                                                                   |                        |
-| `MIDDLE_BED`            | N                      | Y                | Y              | Middle bed or couchette                                                                          | `PLACE_LOCATION`       |
+| `MEN`                   | N                      | Y                | Y              | Men compartment in night train                                                                   | `BERTH_GENDER`         |
+| `MIDDLE_BED`            | N                      | Y                | Y              | Middle bed or couchette                                                                          | `BED_LOCATION`         |
 | `MIDDLE_SEAT`           | N                      | Y                | Y              | Middle seat                                                                                      | `PLACE_LOCATION`       |
 | `MINI_SUITE`            | Y                      | N                | Y              | Mini Suite - single person couchette compartment (Capsule)                                       |                        |
-| `MIXED`                 | N                      | Y                | Y              | Mixed compartment in night train                                                                 |                        |
+| `MIXED`                 | N                      | Y                | Y              | Mixed compartment in night train                                                                 | `BERTH_GENDER`         |
 | `MOTOR_CYCLE`           | Y                      | N                | Y              | Motorcycle                                                                                       |                        |
 | `MOTOR_CYCLE_SC`        | Y                      | N                | Y              | Motorcycle with sidecar                                                                          |                        |
 | `NEAR_ANIMALS`          | N                      | N                | Y              | Places close to place with animals                                                               |                        |
@@ -162,7 +162,7 @@ of by the customer.
 | `TOURIST_SLEEPER_3`     | Y                      | N                | Y              | T3 sleeper compartment                                                                           |                        |
 | `TOURIST_SLEEPER_4`     | Y                      | N                | Y              | T4 sleeper compartment                                                                           |                        |
 | `TOURIST_SLEEPER_3_SWC` | Y                      | N                | Y              | T3 sleeper compartment with shower & WC                                                          |                        |
-| `UPPER_BED`             | N                      | Y                | Y              | Upper bed or couchette                                                                           | `PLACE_LOCATION`       |
+| `UPPER_BED`             | N                      | Y                | Y              | Upper bed or couchette                                                                           | `BED_LOCATION`         |
 | `UPPER_DECK`            | N                      | Y                | Y              | Upper deck in a double deck train                                                                | `DECK`                 |
 | `VIDEO`                 | N                      | Y                | Y              | Place with video entertainment                                                                   |                        |
 | `WHEELCHAIR`            | Y                      | Y                | Y              | Wheel chair place                                                                                |                        |
@@ -170,9 +170,9 @@ of by the customer.
 | `WHEELCHAIR_NO_SEAT`    | Y                      | Y                | Y              | Wheelchair space without additional seat                                                         |                        |
 | `WIFI`                  | N                      | Y                | Y              | Places with WiFi access point                                                                    |                        |
 | `WINDOW`                | N                      | Y                | Y              | place at the window                                                                              | `PLACE_LOCATION`       |
-| `WITH_ANIMALS`          | Y                      | Y                | Y              | Place with animals (animals allowed)                                                             |                        |
+| `WITH_ANIMALS`          | Y                      | Y                | Y              | Place with animals (animals allowed)                                                             | `ANIMALS`              |
 | `WITH_SMALL_CHILDREN`   | N                      | Y                | Y              | Places for passengers with small children                                                        | `FAMILY`               |
-| `WITHOUT_ANIMALS`       | N                      | Y                | Y              | Place in an area where animals are not allowed                                                   |                        |
+| `WITHOUT_ANIMALS`       | N                      | Y                | Y              | Place in an area where animals are not allowed                                                   | `ANIMALS`              |
 
 ## Ancillary category <a name="AncillaryCategory">
 
@@ -821,16 +821,21 @@ Other cards should start with the RICS code of the issuer.
 
 ## Reservation Preference Group <a name="ReservationPreferenceGroup">
 
-| Code             | Description                                     |
-| ---------------- | ----------------------------------------------- |
-| `ACC_VEHICLE`    | Different types of accompanying vehicles        |
-| `BERTH_LOCATION` | Location of a berth or couchette                |
-| `FAMILY`         | Different types of places for families          |
-| `LEVEL`          | Upper or lower deck                             |
-| `PLACE_GROUPING` | Compartment / Open Space                        |
-| `PLACE_LOCATION` | Place location (Aisle, Window)                  |
-| `USAGE`          | Different usage types for different coach areas |
-| `VEHICLE`        | Different types of vehicles                     |
+| Code               | Description                                     |
+| ------------------ | ----------------------------------------------- |
+| `ACC_VEHICLE`      | Different types of accompanying vehicles        |
+| `ANIMALS`          | Animals are allowed or disallowed               |
+| `BED_LOCATION`     | Bed location (Lower/Middle/Upper)               |
+| `BERTH_GENDER`     | Gender of compartment in night train            |
+| `BERTH_LOCATION`   | Location of a berth or couchette                |
+| `BICYCLE_LOCATION` | Location of bicycle hook                        |
+| `CAR_SIZE`         | Size of car for parking space selection         |
+| `FAMILY`           | Different types of places for families          |
+| `LEVEL`            | Upper or lower deck                             |
+| `PLACE_GROUPING`   | Compartment / Open Space                        |
+| `PLACE_LOCATION`   | Place location (Aisle, Window)                  |
+| `USAGE`            | Different usage types for different coach areas |
+| `VEHICLE`          | Different types of vehicles                     |
 
 ## Service Brands <a name="ServiceBrands">
 
