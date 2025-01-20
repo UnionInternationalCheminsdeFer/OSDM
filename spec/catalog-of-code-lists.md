@@ -635,6 +635,34 @@ units. E.g.:
 | `BE21`  | Prov. (2) Antwerpen |
 | `BE211` | Arr. Antwerpen      |
 
+## On Demand Vehicle Types <a name="OnDemandVehicleTypes">
+
+| Code                          | Description                                                                            |
+| ----------------------------- | -------------------------------------------------------------------------------------- |
+| `BICYCLE`                     |                                                                                        |
+| `ELECTRIC_BICYCLE`            |                                                                                        |
+| `CARGO_BICYCLE`               |                                                                                        |
+| `SCOOTER`                     |                                                                                        |
+| `TAXI`                        |                                                                                        |
+| `SELF_DRIVING_CAR`            |                                                                                        |
+
+
+## On Demand Vehicle Processes <a name="OnDemandVehicleProcesses">
+
+| Code                          | Description                                                                            |
+| ----------------------------- | -------------------------------------------------------------------------------------- |
+| `PRE_ALLOCATION_REQUIRED`     |                                                                                        |
+| `SHALLOW_INTEGRATION`     |                                                                                        |
+| `DEEP_INTEGRATION`     |                                                                                        |
+| `PREPAID`     |                                                                                        |
+| `POSTPAID`     |                                                                                        |
+| `AUTO_START_USAGE`     |  usage starts automatically (e.g. by entering a key code at the vehicle)      |
+| `AUTO_END_USAGE`     |  usage ends automatically (e.g. by locking the service), the end of the usage does not need to be handled via OSDM  |
+| `BLOCKING_TRACKING`     |     updates provided before pick-up (e.g. current location of a taxi)        |
+| `USAGE_TRACKING`     | updates provided after pick-up (e.g. price for current usage)                   |
+| `PARKING_IMAGE_REQUIRED`     |  parking image required at the end of the usage                         |
+| `TIP_SUPPORTED`   |  a driver tip is supported                                                         |
+
 ## Overrule Code <a name="OverruleCode">
 
 | Code                          | Description                                                                            |
@@ -1219,6 +1247,14 @@ Corresponding to numerical codes in TAP-TSI (B.2.3) / UIC
 | `COACH_GROUP`      | Group of coaches included in multiple trains (through coaches) | 31                 |
 | `SHIP`             |                                                                | 33                 |
 | `BUS`              |                                                                | 32                 |
+| 'ON_DEMAND_SERVICE'|                                                                | -                  |
+| `BICYCLE'          |                                                                | -                  |
+| 'ELECTRIC_BICYCLE' |                                                                | -                  |
+| 'CARGO_BICYCLE'    |                                                                | -                  |
+| 'SCOOTER'          |                                                                | -                  |
+| 'TAXI'             |                                                                | -                  |
+| 'SELF_DRIVING_CAR' |                                                                | -                  |
+
 
 ## TransactionType <a name="TransactionType">
 
