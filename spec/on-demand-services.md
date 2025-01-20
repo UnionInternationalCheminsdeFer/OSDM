@@ -31,7 +31,7 @@ The traveller needs to install the provider app (or use a web interface if possi
 
 ### Deep Integration of on-demand services
 
-The OSDM API handles the complete process of booking a continuous service, searching for the decices, starting and ending the usae of the devices and providing the pricing information.
+The OSDM API handles the complete process of booking a continuous service, searching for the devices, starting and ending the usage of the devices and providing the pricing information.
 
 ### Deep Integration of on-demand services - pre-payment
 
@@ -39,7 +39,7 @@ The initial booking requires a payment. In case the usage does not cover the ful
 
 ### Deep Integration of on-demand services - post-payment
 
-The initial booking does notrequire a payment. In case the price is provided at the end of the usage of the service.
+The initial booking does not require a payment. In case the price is provided at the end of the usage of the service.
 
 ### Reembourcement
 
@@ -127,7 +127,7 @@ To get an updated list of available vehicles and pick-up places:
 
 The confirmation creates fulfillments for the continuousServiceBookingPart(s)
 
-     POST /bookings/{bookingId}/fulfillments  creates a Fullfillment with:
+     POST /bookings/{bookingId}/fulfillments  creates a Fulfillment with:
 
           In case of a shallow integration
                     a smart link to the mobility provider app
@@ -135,14 +135,14 @@ The confirmation creates fulfillments for the continuousServiceBookingPart(s)
           In case of a deep integration
                     a fulfillment that needs to be activated to block the vehicle for the service
 
-Up to here the spteps are made together with the booking of the other booking parts. In case of a combined long distance journey the next steps would follow shortly before 
+Up to here the steps are made together with the booking of the other booking parts. In case of a combined long distance journey the next steps would follow shortly before
 the on-demand service will be used.
 
 In case of a shallow integration the OSDM flow ends here.
 
 ### block a vehicle for the service
 
-Blocking a vehicle reserves the vehicle for some time to walk to the pick-up-place or untiol the car arrives. 
+Blocking a vehicle reserves the vehicle for some time to walk to the pick-up-place or until the car arrives.
 
 To get an updated list of available pick-up places and vehicles:
 
