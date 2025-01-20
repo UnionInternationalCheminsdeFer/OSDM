@@ -12705,9 +12705,7 @@ components:
         - 'CONTINUOUS_SERVICE_VEHICLE_DID_NOT_ARRIVE'
         - 'CONTINUOUS_SERVICE_USAGE_STARTING_FAILED'
         - 'CONTINUOUS_SERVICE_USAGE_ENDING_FAILED'
-        - 'CONTINUOUS_SERVICE_USAGE_REPORT_WRONG':
-            wrong accounting of post or prepayment
-
+        - 'CONTINUOUS_SERVICE_USAGE_REPORT_WRONG'
     ReimbursementRequest:
       type: object
       additionalProperties: false
