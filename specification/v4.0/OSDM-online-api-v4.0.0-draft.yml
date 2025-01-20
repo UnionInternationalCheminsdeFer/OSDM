@@ -98,7 +98,10 @@ tags:
   - name: Master Data
     description: |
       resources to get master data
-      
+  - name: On-Demand Services
+    description: |
+      resources to handle contiuous on n-demand servces (e.g. scooter)
+
 paths:
   /places:
     get:
@@ -2079,7 +2082,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FulfillmentPatchRequest'
+              $ref: '#/components/schemas/FulfillmentsPatchRequest'
       responses:
         '200':
           description: |
@@ -2291,7 +2294,7 @@ paths:
       summary:
         start or end the usage of a continuous service of an demand vehicle
       description: |
-        Changes the fulfillment to status AVAILABLE. In the case of multi-journey product, one of the fulfillment is now 'activated' and can be used to travel.
+        start or end the usage of a continuous service of an demand vehicle
       operationId: patchContinuousServiceUsageId
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -4333,7 +4336,7 @@ paths:
           $ref: '#/components/responses/DefaultErrorResponse'
 
   /availabilities/on-demand-services:
-    get:
+    post:
       tags:
         - Availabilities
         - On-Demand Services
@@ -4367,6 +4370,12 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/ResourceType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContinuousServiceAvailabilityScope'
       responses:
         '200':
           description: |
@@ -7652,6 +7661,16 @@ components:
         destinationText:
           type: string
 
+    ContinuousServiceAvailabilityScope:
+      description:
+        search parameter so get available pick-up places for continuous on-demand services.
+      type: object
+      properties:   
+        geoLocation:
+          $ref: '#/components/schemas/GeoPosition'
+        vehicleType:
+          $ref: '#/components/schemas/ContinuousServiceVehicleType'  
+
     ContinuousServiceBookingPart:
       description: |
         A booking part for a continuous on-demand service.
@@ -9042,12 +9061,12 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    FulfillmentActivationPatchRequest:
+    FulfillmentPatchRequest:
       type: object
       additionalProperties: false
       description: |
         Changes the fulfillment to status AVAILABLE. In the case of multi-journey  product, one of the fulfillment is
-        now 'activated' and can be used to travel.
+        now 'activated' and can be used to travel. Selects on-demand vehicles. Selects pick-up place and vehicle type for continuous services.
       required:
         - startOfUsage
       properties:
@@ -9080,7 +9099,9 @@ components:
           items:
             type: string
         continuousServiceVehicleSelection:
-          $ref: '#/components/schemas/ContinuousServiceVehileSelection'
+          description: | 
+              selection of a pick-up place and vehicle type for continuous services.
+          $ref: '#/components/schemas/ContinuousServiceVehicleSelection'
 
     FulfillmentCollectionResponse:
       type: object
@@ -9332,7 +9353,7 @@ components:
         - 'EXCHANGED'
         - 'EXPIRED'
 
-    FulfillmentPatchRequest:
+    FulfillmentsPatchRequest:
       type: object
       additionalProperties: false
       description: |
