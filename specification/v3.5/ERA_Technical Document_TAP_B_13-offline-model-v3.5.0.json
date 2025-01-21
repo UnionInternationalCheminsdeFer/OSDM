@@ -1296,7 +1296,14 @@
 						"$ref": "#/definitions/CompanyDef"
 					}
 				},
+				"includedCarrierGroup": {
+					"description": "description of the goup of carriers where this constraint applies.",
+					"carrierGroupRef": {
+						"type": "string"
+					}
+				},
 				"excludedCarrier": {
+					"deprecated": "true",				
 					"type": "array",
 					"items": {
 						"description": "company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x",
@@ -2623,5 +2630,43 @@
                         "REDUCTION_CARD"
                         ]
                  }
+		"CarrierGroup": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"code": {
+					"type": "string"
+					"description": "code of the carrier group e.g. used in IRS 90918-4 / ETCD to grant access to involved carriers"
+				},					
+				"name": {
+					"description":"Name of the carrier group that can be used in communication with passengers"
+					"type": "string"
+				},
+				"legacyCode": {
+					"description": "legacy code used in 108.1 data to represent the group",
+					"type": "string"
+				},
+				"description": {
+					"$ref": "#/definitions/TextDef"
+				},
+				"companies": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/CompanyDef"
+					},
+					"minitems": 1,
+					"maxitems": 500
+				}
+			},
+			"required": [
+				"id",
+				"name",
+				"description",
+				"companies"
+			],
+			"additionalProperties": false
+		}		
 	}
 }
