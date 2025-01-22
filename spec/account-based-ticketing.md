@@ -15,7 +15,7 @@ permalink: /spec/account-based-ticketing/
 
 The processes and the OSDM features to implement account based ticketing are described.
 
-OSDM upports the booking process where all or part of the offer and booking is made on an existing account of a provider. OSDM does not implement the creation of an account.
+OSDM supports the booking process where all or part of the offer and booking is made on an existing account of a provider. OSDM does not implement the creation of an account.
 
 Travel accounts in OSDM can be: 
 
@@ -37,7 +37,7 @@ All travel Accounts include:
 
 - the issuer of the account
 - the person owning the account
-- the numer identifying the account
+- the number identifying the account
 
 
 The consumption on an account can be in money or any self-defined unit.
