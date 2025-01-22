@@ -98,6 +98,9 @@ tags:
   - name: Master Data
     description: |
       resources to get master data
+  - name: On-Demand Services
+    description: |
+      resources to handle contiuous on n-demand servces (e.g. scooter)     
 
 paths:
   /places:
@@ -109,7 +112,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/ifNoneMatch'
@@ -2317,6 +2319,134 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+          
+  /fulfillments/{fulfillmentId}/continuous-service-usage/{continuousServiceUsageId}:
+    get:
+      tags:
+        - Fulfillments
+        - On-Demand Services
+      summary: return the continuous service usage including latest updates
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: fulfillmentId
+          in: path
+          description: |
+            id of the fulfillment to get.
+          required: true
+          schema:
+            type: string
+        - name: continuousServiceUsageId
+          in: path
+          description: |
+            id of the continuous service usage to get.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |
+            continuous service usage found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContinuousServiceUsage'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+    patch:
+      tags:
+        - Fulfillments
+        - On-Demand Services
+      summary:
+        start or end the usage of a continuous service of an demand vehicle
+      description: |
+        start or end the usage of a continuous service of an demand vehicle
+      operationId: patchContinuousServiceUsageId
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: fulfillmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: continuousServiceUsageId
+          in: path
+          description: |
+            id of the continuous service usage to get.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContinuousServiceUsagePatchRequest'
+      responses:
+        '200':
+          description: |
+            fulfillment patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContinuousServiceUsage'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
   /bookings/{bookingId}/refund-offers:
     post:
       tags:
@@ -4457,6 +4587,82 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+  /availabilities/on-demand-services:
+    post:
+      tags:
+        - Availabilities
+        - On-Demand Services
+      summary: Get availabilities of an on-demand service.
+      description: |
+        Get availabilities of an on-demand services.
+      operationId: getAvailabilitiesContinuousServices
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: contextId
+          in: query
+          required: true
+          schema:
+            type: string
+            maxLength: 32768
+        - name: contextType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ContextType'
+        - name: resourceId
+          in: query
+          required: true
+          schema:
+            type: string
+            maxLength: 32768
+        - name: resourceType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ResourceType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContinuousServiceAvailabilityScope'
+      responses:
+        '200':
+          description: |
+            pick up places
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContinuousServicesAvailabilityResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
+          
   /products:
     get:
       tags:
@@ -4894,6 +5100,14 @@ components:
             $ref: '#/components/schemas/ProductLegAssociation'
         status:
           $ref: '#/components/schemas/BookingPartStatus'
+        pricingStatus:
+          description: payment status in post-payment scenarios
+          type: string
+          default: 'PRICING_FINAL'
+          x-extensible-enum:
+            - 'PRICING_UPCOMING': post payment scenario, no costs yet
+            - 'PRICING_ONGOING': post payment scenario, costs are collected
+            - 'PRICING_FINAL': pricing is final          
         offerMode:
           $ref: '#/components/schemas/OfferMode'
         bookingPartCode:
@@ -6120,6 +6334,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Ancillary'
+        continuousServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContinuousServiceBookingPart'            
         fees:
           type: array
           items:
@@ -6538,6 +6756,7 @@ components:
         - 'ADMISSION'
         - 'RESERVATION'
         - 'ANCILLARY'
+        - 'CONTINUOUS_SERVICE'
 
     BookingPatchRequest:
       type: object
@@ -7749,6 +7968,289 @@ components:
           type: string
           nullable: false
 
+    ContinuousServiceAvailabilityScope:
+      description:
+        search parameter so get available pick-up places for continuous on-demand services.
+      type: object
+      properties:   
+        geoLocation:
+          $ref: '#/components/schemas/GeoPosition'
+        vehicleType:
+          $ref: '#/components/schemas/ContinuousServiceVehicleType'  
+
+    ContinuousServiceBookingPart:
+      description: |
+        A booking part for a continuous on-demand service.
+      allOf:
+        - $ref: '#/components/schemas/AbstractBookingPart'
+        - type: object
+          additionalProperties: false
+          required:
+            - pickUpPlaces
+          properties:
+            pickUpPlaces:
+              description: |
+                List of pick-up places for on-demand vehicles.
+                The list might include more or other pick up places than mentioned originally in the trip specification.
+              type: array
+              items:
+                $ref: '#/components/schemas/ContinuousServicePickUpPlace'
+              minItems: 1
+            tipRef:
+              description: id of the tip for staff (e.g. taxi)
+              type: string
+              maxLength: 1024
+
+    ContinuousServiceOfferPart:
+      description: |
+        An offer part for a continuous on-demand service.
+      allOf:
+        - $ref: '#/components/schemas/AbstractBookingPart'
+        - type: object
+          additionalProperties: false
+          required:
+            - pickUpPlaces
+          properties:
+            pickUpPlaces:
+              description: |
+                List of pick up places for on-demand vehicles. The list might include more or other pick up places than mentioned originally in the trip specification.
+              type: array
+              items:
+                $ref: '#/components/schemas/ContinuousServicePickUpPlace'
+              minItems: 1
+              maxItems: 500
+
+    ContinuousServiceUsage:
+      description: Usage of a continuos service vehicle
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - status
+        - startUsageDescription
+        - endUsageDescription
+      properties:
+        id:
+          type: string
+          maxLength: 1024
+        status:
+          $ref: '#/components/schemas/ContinuousServiceUsageStatus'
+        geoPosition:
+          $ref: '#/components/schemas/GeoPosition'
+        startUsageDescription:
+          description: start usage procedure description
+          type: string
+          maxLength: 32768
+        endUsageDescription:
+          description: end usage procedure description
+          type: string
+          maxLength: 32768
+        startUsageCredentials:
+          description: credentials to start the usage, e.g. nfc-enabled pkpass
+          $ref: '#/components/schemas/FulfillmentDocument'
+        startUsageTimeLimit:
+          description: time limit to start the usage
+          type: string
+          format: date-time
+        blockingFeeRef:
+          description: id of the fee taken on blocking the vehicle
+          type: string
+          maxLength: 1024
+        tipRef:
+          description: id of the tip provided to staff
+          type: string
+          maxLength: 1024
+        consumptionForPostPayment:
+          $ref: '#/components/schemas/IndicatedConsumption'
+        remainingConsumptionFromPrePayment:
+          $ref: '#/components/schemas/IndicatedConsumption'
+        estimatedTimeOfArrivalAtPickUpPlace:
+          type: string
+          format: date-time
+
+    ContinuousServiceUsageStatus:
+      description: status of the usage of a vehicle
+      type: string
+      x-extensible-enum:
+        - 'VEHICLE_BLOCKED': vehicle is blocked
+        - 'USAGE_STARTED': the traveler started to use the vehicle
+        - 'USAGE_ENDED': the traveler ended the to use of the vehicle
+        - 'BLOCKING_TIME_OUT':
+            the traveler did not start the usage in time and the vehicle is
+            available for other customers.
+        - 'USAGE_TIME_OUT':
+            the traveler did not end the usage but the maximal length of the
+            usage was reached.
+
+    ContinuousServiceUsagePatchRequest:
+      description: Usage of a continuos service vehicle
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - status
+      properties:
+        id:
+          type: string
+          maxLength: 1024
+        status:
+          $ref: '#/components/schemas/ContinuousServiceUsageStatus'
+        parkingImage:
+          description: |
+            base64 encoded binary of the jpg image of the parked vehicle when ending the usage.
+          type: string
+          format: byte
+          maxLength: 4194304
+        tip:
+          $ref: '#/components/schemas/Tip'
+
+    ContinuousServiceVehicleSelection:
+      type: object
+      additionalProperties: false
+      required:
+        - pickUpPlaceRef
+        - vehicleType
+      properties:
+        pickUpPlaceRef:
+          description: id of the selected pick-up place
+          type: string
+          maxLength: 1024
+        vehicleType:
+          $ref: '#/components/schemas/ContinuousServiceVehicleType'
+
+    ContinuousServicesAvailabilityResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - pickUpPlaces
+      properties:
+        pickUpPlaces:
+          description: |
+            list of pick-up places for on-demand vehicles. The list might include more or other pick up places than mentioned originally in the trip specification.
+          type: array
+          items:
+            $ref: '#/components/schemas/ContinuousServicePickUpPlace'
+          minItems: 1
+          maxItems: 500
+
+    ContinuousServicePickUpPlace:
+      description: |
+        Pick-up places for on-demand vehicles like taxis, bicycles or scooters
+      required:
+        - description
+        - geoPosition
+        - availableVehicles
+      properties:
+        id:
+          description: 'id of the pick-up place'
+          type: string
+          maxLength: 32768
+        description:
+          description: 'description of the pick-up place'
+          type: string
+          maxLength: 32768
+        name:
+          description: 'name of the pick-up place'
+          type: string
+          maxLength: 32768
+          examples:
+            - 'Taxi Stand Main Station East Exit'
+        accessDescription:
+          description: 'description on how to access the on-demand vehicle'
+          type: string
+          maxLength: 32768
+          examples:
+            - 'Scooter to be unlocked by SMS code'
+        geoPosition:
+          $ref: '#/components/schemas/GeoPosition'
+        availableVehicles:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContinuousServiceVehicleAvailability'
+          maxItems: 500
+        preAllocationTimeLimit:
+          description:
+            Duration for which the vehicle can be blocked until the usage
+            starts.
+          type: string
+          format: duration
+          examples:
+            - PT30M
+        processIndication:
+          description:
+            Machine readable indications on how the on-demand process should be
+            handled.
+          type: array
+          items:
+            $ref: '#/components/schemas/ContinuousServiceProcessIndication'
+        estimatedVehicleArrivalAtPickUp:
+          description: |
+            Time until when the vehicle is expected to arrive at the pick-up place (taxi,..)
+          type: string
+          format: date-time
+        estimatedUserArrivalAtPickUp:
+          description: |
+            Time until when the user of the service is expected to arrive at the pick-up place.
+          type: string
+          format: date-time
+
+    ContinuousServiceProcessIndication:
+      description: |
+        Process indications for on-demand services  
+        [On-Demand Vehicle Types](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleProcesses)
+      type: string
+      x-extensible-enum:
+        - 'PRE_ALLOCATION_REQUIRED'
+        - 'SHALLOW_INTEGRATION'
+        - 'DEEP_INTEGRATION'
+        - 'PREPAID'
+        - 'POSTPAID'
+        - 'AUTO_START_USAGE':
+            usage starts automatically (e.g. by entering a key code at the
+            vehicle)
+        - 'AUTO_END_USAGE':
+            usage ends automatically (e.g. by locking the service), the end of
+            the usage does not need to be handled via OSDM
+        - 'BLOCKING_TRACKING':
+            updates provided before pick-up (e.g. current location of a taxi)
+        - 'USAGE_TRACKING':
+            updates provided after pick-up (e.g. price for current usage)
+        - 'PARKING_IMAGE_REQUIRED':
+            parking image required at the end of the usage
+        - 'TIP_SUPPORTED': a driver tip is supported
+
+    ContinuousServiceVehicleAvailability:
+      description: |
+        number and type of available vehicles
+      required:
+        - vehicleDescription
+        - vehicleType
+        - availableVehicles
+      properties:
+        vehicleDescription:
+          type: string
+          maxLength: 32768
+          examples:
+            - 'Scooter up to 120 kg traveler weight'
+        vehicleType:
+          $ref: '#/components/schemas/ContinuousServiceVehicleType'
+        availableVehicles:
+          description: number of available vehicles
+          type: integer
+          format: int32
+
+    ContinuousServiceVehicleType:
+      description: |
+        [Vehicle types from code list of on-demand vehicle types](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleTypes)
+      type: string
+      x-extensible-enum:
+        - 'BICYCLE'
+        - 'ELECTRIC_BICYCLE'
+        - 'CARGO_BICYCLE'
+        - 'SCOOTER'
+        - 'TAXI'
+        - 'SELF_DRIVING_CAR'
+
     ControlSecurityType:
       description: |
         Known Values:
@@ -8855,6 +9357,8 @@ components:
             Indicates whether the fulfillment has all documents or parts generated (if any needed) or they are still pending generation.
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        continuousServiceUsage:
+          $ref: '#/components/schemas/ContinuousServiceUsage'          
         _links:
           description: |
 
@@ -8868,7 +9372,7 @@ components:
       additionalProperties: false
       description: |
         Changes the fulfillment to status AVAILABLE. In the case of multi-journey  product, one of the fulfillment is
-        now 'activated' and can be used to travel.
+        now 'activated' and can be used to travel. Selects on-demand vehicles. Selects pick-up place and vehicle type for continuous services.
       required:
         - startOfUsage
       properties:
@@ -8898,6 +9402,10 @@ components:
           items:
             type: string
           nullable: true
+        continuousServiceVehicleSelection:
+          description: | 
+              selection of a pick-up place and vehicle type for continuous services.
+          $ref: '#/components/schemas/ContinuousServiceVehicleSelection'          
 
     FulfillmentCollectionResponse:
       type: object
@@ -9476,6 +9984,10 @@ components:
         - 'CAR_SHARING'
         - 'CYCLE_SHARING'
         - 'SCOOTER_SHARING'
+        - 'BICYCLE'
+        - 'ELECTRIC_BICYCLE'
+        - 'CARGO_BICYCLE'
+        - 'SCOOTER'        
 
     InitialPlaceInput:
       type: object
@@ -10171,6 +10683,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AncillaryOfferPart'
+        continuousServiceOfferParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContinuousServiceOfferPart'         
         fees:
           type: array
           items:
@@ -10334,6 +10850,7 @@ components:
         - 'FARE_ADMISSION'
         - 'FARE_RESERVATION'
         - 'FARE_ANCILLARY'
+        - 'CONTINUOUS_SERVICE'        
         - 'ALL'
 
     OfferSearchCriteria:
@@ -10704,6 +11221,10 @@ components:
         - 'COACH_GROUP'
         - 'SHIP'
         - 'BUS'
+        - 'ON_DEMAND_SERVICE'
+        - 'BICYCLE'
+        - 'SCOOTER'
+        - 'TAXI'        
 
     Passenger:
       type: object
@@ -12451,6 +12972,13 @@ components:
       x-extensible-enum:
         - 'STRIKE'
         - 'TICKET_NOT_USED'
+        - 'CONTINUOUS_SERVICE_VEHICLE_BATTRY_EMPTY'
+        - 'CONTINUOUS_SERVICE_VEHICLE_BROKEN'
+        - 'CONTINUOUS_SERVICE_VEHICLE_NOT_FOUND'
+        - 'CONTINUOUS_SERVICE_VEHICLE_DID_NOT_ARRIVE'
+        - 'CONTINUOUS_SERVICE_USAGE_STARTING_FAILED'
+        - 'CONTINUOUS_SERVICE_USAGE_ENDING_FAILED'
+        - 'CONTINUOUS_SERVICE_USAGE_REPORT_WRONG'        
 
     ReimbursementRequest:
       type: object
@@ -13557,6 +14085,34 @@ components:
           $ref: '#/components/schemas/AlightSpecification'
         service:
           $ref: '#/components/schemas/DatedJourney'
+
+    Tip:
+      type: object
+      additionalProperties: false
+      description: |
+        Tips for staff can be included e.g. for taxi drivers. The Tip will be part of the payment in case ofpost payment scenarios.
+      required:
+        - id
+        - price
+      properties:
+        id:
+          type: string
+          maxLength: 1024
+        summary:
+          description: |
+            A human-readable description of the tip.
+          type: string
+        bookingPartRef:
+          $ref: '#/components/schemas/BookingPartReference'        
+        price:
+          $ref: '#/components/schemas/Price'
+        distributorBookingRef:
+          description: |
+            reference to the booking in the downstream distributor system
+          type: string
+          nullable: true
+        accountingRef:
+          $ref: '#/components/schemas/AccountingRef'
 
     Trailer:
       type: object
