@@ -1296,14 +1296,12 @@
 						"$ref": "#/definitions/CompanyDef"
 					}
 				},
-				"includedCarrierGroup": {
-					"description": "description of the goup of carriers where this constraint applies.",
-					"carrierGroupRef": {
-						"type": "string"
-					}
+				"includedCarrierGroupRef": {
+					"description": "reference to the description of the group of carriers where this constraint applies.",
+          				"type": "string"
 				},
 				"excludedCarrier": {
-					"deprecated": "true",				
+					"deprecated": true,				
 					"type": "array",
 					"items": {
 						"description": "company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x",
@@ -2637,11 +2635,11 @@
 					"type": "string"
 				},
 				"code": {
+					"description": "code of the carrier group e.g. used in IRS 90918-4 / ETCD to grant access to involved carriers",					
 					"type": "string"
-					"description": "code of the carrier group e.g. used in IRS 90918-4 / ETCD to grant access to involved carriers"
 				},					
 				"name": {
-					"description":"Name of the carrier group that can be used in communication with passengers"
+					"description":"Name of the carrier group that can be used in communication with passengers",
 					"type": "string"
 				},
 				"legacyCode": {
