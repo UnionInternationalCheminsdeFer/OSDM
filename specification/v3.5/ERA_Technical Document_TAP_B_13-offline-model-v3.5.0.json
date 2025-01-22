@@ -1296,11 +1296,9 @@
 						"$ref": "#/definitions/CompanyDef"
 					}
 				},
-				"includedCarrierGroup": {
-					"description": "description of the goup of carriers where this constraint applies.",
-					"carrierGroupRef": {
-						"type": "string"
-					}
+				"includedCarrierGroupRef": {
+					"description": "reference to the description of the group of carriers where this constraint applies.",
+          				"type": "string"
 				},
 				"excludedCarrier": {
 					"deprecated": true,				
