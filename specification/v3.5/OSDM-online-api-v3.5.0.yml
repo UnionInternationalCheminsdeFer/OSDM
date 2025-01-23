@@ -8653,6 +8653,8 @@ components:
           $ref: '#/components/schemas/Price'
         refundableAmount:
           $ref: '#/components/schemas/Price'
+        appliedOverruleCode:
+          $ref: '#/components/schemas/OverruleCode'
         fulfillments:
           type: array
           items:
