@@ -8153,14 +8153,12 @@ components:
           description: 'name of the pick-up place'
           type: string
           maxLength: 32768
-          examples:
-            - 'Taxi Stand Main Station East Exit'
+          example: 'Taxi Stand Main Station East Exit'
         accessDescription:
           description: 'description on how to access the on-demand vehicle'
           type: string
           maxLength: 32768
-          examples:
-            - 'Scooter to be unlocked by SMS code'
+          example: 'Scooter to be unlocked by SMS code'
         geoPosition:
           $ref: '#/components/schemas/GeoPosition'
         availableVehicles:
@@ -8174,8 +8172,7 @@ components:
             starts.
           type: string
           format: duration
-          examples:
-            - PT30M
+          example: 'PT30M'
         processIndication:
           description:
             Machine readable indications on how the on-demand process should be
@@ -8230,8 +8227,7 @@ components:
         vehicleDescription:
           type: string
           maxLength: 32768
-          examples:
-            - 'Scooter up to 120 kg traveler weight'
+          example: 'Scooter up to 120 kg traveler weight'
         vehicleType:
           $ref: '#/components/schemas/ContinuousServiceVehicleType'
         availableVehicles:
