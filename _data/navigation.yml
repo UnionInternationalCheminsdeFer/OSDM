@@ -82,12 +82,11 @@
       link: spec/compliance/
     - name: Language
       link: spec/language/
-    - name: Special Features  
-      dropdown:
-       - name: Continuous On-Demand Services
-         link: spec/on-demand-services/
-       - name: Account Based Ticketing
-         link: spec/account-based-ticketing/      
+    - name: Special Features:
+    - name: Continuous On-Demand Services
+      link: spec/on-demand-services/
+    - name: Account Based Ticketing
+      link: spec/account-based-ticketing/      
 
 - name: Tools
   link: tools/
