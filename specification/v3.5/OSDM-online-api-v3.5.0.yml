@@ -14399,10 +14399,11 @@ components:
     TravelAccountType:
       type: string
       enum:
+        - 'LINKED_TICKET'
         - 'LOYALTY_CARD'
-        - 'TRAVEL_PASS'
         - 'MULTI_RIDE'
         - 'REDUCTION_CARD'
+        - 'TRAVEL_PASS'
 
     TravelClass:
       description: |
