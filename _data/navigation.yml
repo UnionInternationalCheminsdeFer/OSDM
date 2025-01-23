@@ -36,8 +36,6 @@
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.5/OSDM-online-api-v3.5.0.yml
     - name: Online API v3.5.0 (draft version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.5/OSDM-online-api-v3.5.0.yml&nocors  
-    - name: Online API v4.0.0 Webhook (draft version) - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-webhook-v4.0.0-draft.yml&nocors
     - name: Online API v4.0.0 (draft version) - Swagger
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-api-v4.0.0-draft.yml
     - name: Online API v4.0.0 (draft version) - Redoc
@@ -52,14 +50,12 @@
       link: spec/requirements/
     - name: Business Capabilities
       link: spec/business-capabilities
+    - name: Technical Principles
+      link: spec/technical-principles/
     - name: Common Data Structures
       link: spec/common-data-structures/
     - name: Offline Model
       link: spec/offline-model/
-    - name: Technical Principles
-      link: spec/technical-principles/
-    - name: Authentication
-      link: spec/authentication/
     - name: Models
       link: spec/models/
     - name: State Models
@@ -68,6 +64,8 @@
       link: spec/roles/
     - name: Processes
       link: spec/processes/
+    - name: Authentication
+      link: spec/authentication/      
     - name: Pagination
       link: spec/pagination/
     - name: Synchronization
@@ -84,6 +82,12 @@
       link: spec/compliance/
     - name: Language
       link: spec/language/
+    - name: Special Features  
+      dropdown:
+       - name: Continuous On-Demand Services
+         link: spec/on-demand-services/
+       - name: Account Based Ticketing
+         link: spec/account-based-ticketing/      
 
 - name: Tools
   link: tools/
