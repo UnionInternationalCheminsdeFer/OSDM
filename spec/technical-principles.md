@@ -20,8 +20,9 @@ permalink: /spec/technical-principles/
   returned in full or as references.
 - Follow
   [Zalando RESTful API and Event Scheme guidelines](https://opensource.zalando.com/restful-api-guidelines/)
-- Use of the JSON Problem element
-- Standard Patch operations (not JSON PATCH)
+- Use of the JSON Problem element [RFC9457](https://tools.ietf.org/html/rfc9457).
+  See also [Errors and Problems](../errors-problems/).
+- Standard Patch operations ([RFC7396](https://datatracker.ietf.org/doc/html/rfc7396)) - not JSON PATCH ([RFC6902](https://datatracker.ietf.org/doc/html/rfc6902))
 - A resource is either represented in full or as a reference. The reference
   element has the name of the resource post-fixed with "Ref". References
   normally only contains the URL to the referenced resource and a title element
@@ -31,6 +32,7 @@ permalink: /spec/technical-principles/
   freedom to modify it to best suit his needs.
 - Enumerations for very stable entities with limited set only, otherwise code
   lists. Stations codes are code lists.
+  See also [Catalog of code lists](../catalog-of-code-lists/).
 - Where possible, existing UIC code lists should be favored.
 - Creation/ modification calls return the created/modified resource (not just an
   ok code)
