@@ -54,24 +54,24 @@
       link: spec/technical-principles/
     - name: Common Data Structures
       link: spec/common-data-structures/
-    - name: Offline Model
-      link: spec/offline-model/
-    - name: Data Models
+    - name: Online Data Models
       link: spec/models/
+    - name: Offline Data Models
+      link: spec/offline-model/
     - name: State Models
       link: spec/state-models/
+    - name: Catalog of Code Lists
+      link: spec/catalog-of-code-lists/         
     - name: Roles
       link: spec/roles/
     - name: Processes
       link: spec/processes/
-    - name: Catalog of Code Lists
-      link: spec/catalog-of-code-lists/
     - name: Continuous On-Demand Services
       link: spec/on-demand-services/
     - name: Account Based Ticketing
       link: spec/account-based-ticketing/      
     - name: Dual Approaches
-      link: spec/dual-approaches/
+      link: spec/dual-approaches/  
     - name: Synchronization
       link: spec/synchronization/      
     - name: Language
