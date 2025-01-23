@@ -56,7 +56,7 @@
       link: spec/common-data-structures/
     - name: Offline Model
       link: spec/offline-model/
-    - name: Models
+    - name: Data Models
       link: spec/models/
     - name: State Models
       link: spec/state-models/
@@ -64,30 +64,30 @@
       link: spec/roles/
     - name: Processes
       link: spec/processes/
-    - name: Authentication
-      link: spec/authentication/      
-    - name: Pagination
-      link: spec/pagination/
-    - name: Synchronization
-      link: spec/synchronization/
-    - name: Errors & Problems
-      link: spec/errors-problems/
     - name: Catalog of Code Lists
       link: spec/catalog-of-code-lists/
-    - name: Non-Functional Requirements
-      link: spec/non-functional-requirements/
-    - name: Dual Approaches
-      link: spec/dual-approaches/
-    - name: Compliance
-      link: spec/compliance/
-    - name: Language
-      link: spec/language/
-    - name: Special Features:
     - name: Continuous On-Demand Services
       link: spec/on-demand-services/
     - name: Account Based Ticketing
       link: spec/account-based-ticketing/      
+    - name: Dual Approaches
+      link: spec/dual-approaches/
+    - name: Synchronization
+      link: spec/synchronization/      
+    - name: Language
+      link: spec/language/
+    - name: Authentication
+      link: spec/authentication/      
+    - name: Pagination
+      link: spec/pagination/
+    - name: Errors & Problems
+      link: spec/errors-problems/      
+    - name: Non-Functional Requirements
+      link: spec/non-functional-requirements/      
+    - name: Compliance
+      link: spec/compliance/
 
+      
 - name: Tools
   link: tools/
   dropdown:
