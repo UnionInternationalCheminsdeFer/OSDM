@@ -108,7 +108,14 @@ The API informs authorized listener of the fact that changes have occurred using
 
 - `PURCHASER_CHANGED`
 
-  A passenger has been updated by `PATCH /bookings/{id}/purchaser`.
+  A purchaser has been updated by `PATCH /bookings/{id}/purchaser`.
+
+  The recommended action is to retrieve the booking and update the local
+  representation.
+
+- `PASSENGER_CHANGED`
+
+  A passenger has been updated by `PATCH /bookings/{id}/passenger`.
 
   The recommended action is to retrieve the booking and update the local
   representation.
