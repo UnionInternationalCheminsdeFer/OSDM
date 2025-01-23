@@ -12359,7 +12359,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        purchaser information
+        Purchaser information. Exactly one of `detail` or `companyDetails` must be provided.
       properties:
         externalRef:
           description: |
@@ -12431,9 +12431,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Minimal specification of a purchaser to request booking of an offer.
-      required:
-        - detail
+        Minimal specification of a purchaser to request booking of an offer. Exactly one of `detail` or `companyDetails` must be provided.
       properties:
         externalRef:
           description: |
@@ -12442,8 +12440,10 @@ components:
           nullable: true
         detail:
           $ref: '#/components/schemas/PersonDetail'
+          nullable: true
         companyDetails:
           $ref: '#/components/schemas/CompanyDetail'
+          nullable: true
 
     Quantity:
       type: object
