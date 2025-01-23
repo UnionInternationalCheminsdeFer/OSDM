@@ -2,7 +2,7 @@
 layout: page
 title: On Demand Services
 hide_hero: true
-permalink: /spec/processes/
+permalink: /spec/on-demand-services/
 ---
 
 ## Table of contents
