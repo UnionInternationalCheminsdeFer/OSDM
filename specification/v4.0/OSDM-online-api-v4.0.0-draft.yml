@@ -11506,7 +11506,6 @@ components:
         - selected places from a graphical place selection
       required:
         - reservationId
-        - tripLegCoverage
       properties:
         reservationId:
           type: string
@@ -11520,8 +11519,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SelectedPlace'
-        tripLegCoverage:
-          $ref: '#/components/schemas/TripLegCoverage'
 
     PlaceType:
       description: |

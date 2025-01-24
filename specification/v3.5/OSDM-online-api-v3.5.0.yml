@@ -11805,6 +11805,7 @@ components:
         - reference place for adjacent reservation
         - selected optional place properties
         - selected places from a graphical place selection
+        `tripLegCoverage` is deprecated and can be retrerived by the `reservationId`
       required:
         - reservationId
         - tripLegCoverage
@@ -11824,6 +11825,7 @@ components:
             $ref: '#/components/schemas/SelectedPlace'
         tripLegCoverage:
           $ref: '#/components/schemas/TripLegCoverage'
+          deprecated: true
 
     PlaceType:
       description: |
