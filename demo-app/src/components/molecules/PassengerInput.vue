@@ -99,8 +99,8 @@ export default {
         },
         addPassenger() {
             this.selectCallback([...this.selectedPassengers, {
-                id: `passenger_0${this.selectedPassengers.length}`,
-                externalRef: `passenger_0${this.selectedPassengers.length}`,
+                id: `passenger_0${this.selectedPassengers.length + 1}`,
+                externalRef: `passenger_0${this.selectedPassengers.length + 1}`,
                 dateOfBirth: convertDateToOsdmDate(this.getDummyDate()),
                 type: 'PERSON',
             }])

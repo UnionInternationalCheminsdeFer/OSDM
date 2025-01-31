@@ -17,6 +17,8 @@ const getCurrencySymbol = (currency: string) => {
     return 'dkr'
   } else if (currency === 'HRK') {
     return 'kn'
+  } else if (currency === 'PLN') {
+    return 'zł'
   } else {
     return '€'
   }
