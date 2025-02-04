@@ -1726,7 +1726,7 @@
 					"items": {
 						"$ref": "#/definitions/CarrierGroup"
 					}
-				},					
+				}			
 			},
 			"required": [
 				"calendars",
