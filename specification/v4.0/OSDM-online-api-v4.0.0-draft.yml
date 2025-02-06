@@ -1882,6 +1882,7 @@ paths:
     post:
       tags:
         - Bookings Search
+        - Search
       summary: Search for bookings based on search parameters.
       operationId: searchBookings
       parameters:
@@ -4522,6 +4523,66 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+  /products-search:
+    post:
+      tags:
+        - Product
+        - Search
+      summary: Search for products based on search parameters.
+      operationId: searchProducts
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: page
+          in: query
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductSearchRequest'
+      responses:
+        '200':
+          description: |
+            booking search results found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
 
 security:
   - oAuth2ClientCredentials: []
@@ -12099,6 +12160,72 @@ components:
             $ref: '#/components/schemas/Problem'
         product:
           $ref: '#/components/schemas/Product'
+
+    ProductSearchRequest:
+      type: object
+      additionalProperties: false
+      description: |
+        Search criteria to search for products
+      properties:
+        id:
+          description: |
+            id of the product
+          type: string
+          nullable: false
+        types:
+          type: array
+          items:          
+            $ref: '#/components/schemas/ProductType'
+        codes:
+          description: |
+            The product codees to be searched.
+          type: array
+          items:      
+            type: string
+        flexibilities:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Flexibility'
+        serviceClasses:
+          type: array
+          items:           
+            $ref: '#/components/schemas/ServiceClass'
+        travelClasses:
+          type: array
+          items:           
+            $ref: '#/components/schemas/TravelClass'
+        fulfillmentOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOption'
+        productTags:
+          description:
+            product tags associated with the product
+          type: array
+          items:
+            type: string
+            nullable: true
+
+    ProductSearchResponse:
+      type: object
+      additionalProperties: false
+      description: |
+        Result of a product search
+      required:
+        - products
+      properties:
+        products:
+          type: array
+          minItems: 1
+          maxItems: 500
+          items:
+            $ref: '#/components/schemas/Product'
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     ProductSummary:
       type: object
