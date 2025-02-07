@@ -5677,6 +5677,7 @@ components:
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
             isReservationRequired:
+              deprecated: true
               type: boolean
               nullable: true
               default: false
@@ -5709,6 +5710,7 @@ components:
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
             isReservationRequired:
+              deprecated: true
               type: boolean
               nullable: true
             reservations:

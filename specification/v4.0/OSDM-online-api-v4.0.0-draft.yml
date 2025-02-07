@@ -5403,11 +5403,6 @@ components:
           properties:
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
-            isReservationRequired:
-              type:
-                - 'boolean'
-                - 'null'
-              default: false
             feeRefs:
               type: array
               items:
@@ -5438,10 +5433,6 @@ components:
               $ref: '#/components/schemas/RegionalValiditySummary'
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
-            isReservationRequired:
-              type:
-                - 'boolean'
-                - 'null'
             reservations:
               type: array
               items:
