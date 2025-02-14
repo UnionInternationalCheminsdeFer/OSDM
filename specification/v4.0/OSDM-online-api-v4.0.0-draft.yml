@@ -8359,9 +8359,17 @@ components:
             Accounting information for the exchange fee
           $ref: '#/components/schemas/AccountingRef'
         exchangePrice:
+          description: | 
+            price of the new booking parts 
           $ref: '#/components/schemas/Price'
         refundableAmount:
+          description: |
+            amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.        
           $ref: '#/components/schemas/Price'
+        amountToBePaid:
+          description: |
+            amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.  
+          $ref: '#/components/schemas/Price'      
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
         fulfillments:
