@@ -33,8 +33,9 @@ permalink: /spec/processes/
    3. [Partial Refund](#PartialRefund)
    4. [Cancel Fulfillment](#CancelFulfillment)
    5. [Exchange](#Exchange)
-   6. [Complaints](#Complaints)
-   7. [Reimbursement](#Reimbursement)
+   6. [Overruling After Sales Rules](#Overrule)
+   7. [Complaints](#Complaints)
+   8. [Reimbursement](#Reimbursement)
 
 ## Introduction <a name="introduction">
 
@@ -1146,6 +1147,29 @@ provided with the passengers card data (card number).
 
 The offer for a replacement returned might include a fee. The replacement offer
 needs to be accepted and booked the same way as a usual offer.
+
+### Overruling After Sales Rules <a name="Overrule">
+
+In some cases the after sales rules need to be bypassed. For these use cases an overrule code is used in:
+
+- /refund-offers
+- /exchange-offers
+- /release-offers
+- /bookings/{bookingId}/cleanup (No offer list is returned)
+
+The oberrule code provides the reason to overrule after-sales rules and supress fees. 
+
+In case the provider applies a different overrule code this must be indicated in the appliedOverruleCode in the response.
+
+Some overrule codes might not be supported or accepted by the provider.
+
+- Overrule Code Unsupported 
+- Overrule Code Not Applicable (e.g. code strike was provided but no strike occured) 
+- No Overrule Code Given & no offers are available for that product
+
+In this case an HTTP 200 reply is provided without offer but including a problem description. 
+
+Overrule Codes are defined in the ![code list documentation] (../catalog-of-code-lists/#OverruleCode).
 
 ### Complaints <a name="Complaints">
 
