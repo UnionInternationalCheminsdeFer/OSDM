@@ -95,13 +95,19 @@ tags:
   - name: Travel Account
     description: |
       resource to get a travel account
-  - name: Master Data
-    description: |
-      resources to get master data
   - name: On-Demand Services
     description: |
       resources to handle contiuous on n-demand servces (e.g. scooter)     
-
+  - name: Search
+    description: |
+      search resources
+  - name: Master Data
+    description: |
+      resources to get master data
+  - name: Product
+    description: |
+      resources to get product and product related master data
+      
 paths:
   /places:
     get:
