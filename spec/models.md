@@ -18,10 +18,12 @@ permalink: /spec/models/
 8. [Products](#products)
 9. [Fares](#fares)
 10. [Complaint](#complaint)
-11. [Reimbursement](#reimbursement)
-12. [Release](#release)
-13. [Putting Prebooking on Hold](#onHold)
-14. [Ids and References](#ids)
+11. [Coach Layout](#coachLayout)
+12. [Reimbursement](#reimbursement)
+13. [Release](#release)
+14. [Putting Prebooking on Hold](#onHold)
+15. [Ids and References](#ids)
+    
 
 
 ## Introduction <a name="introduction">
@@ -572,6 +574,27 @@ have 2 additional attributes for the exchange fee and exchange balance (= the
 difference between the value that can be returned form the fulfillment and the
 value of the current offers + the exchange fees = the total amount to be paid or
 refunded if/when confirming the exchange)
+
+## Coach Layout <a name="coachLayout">
+
+Coach layouts describe the static layout of a coach and are used for graphical reservation. 
+
+Coordinates are horizontal left to right with x=0,y=0 in the top left corner:
+
+![Coach Layout Koordinates](../images/models/coach-layout-coordinates.png)
+
+
+Width is defined on the x-axis. Orientation (see catalog of code list) of an icon is relative to the landscape layout mode. Landscape rendering means that the width of coach is layouted/rendered vertically.
+coach layouts which are defined in portrait layout mode should be transformed, so that all parties get layouts in landscape mode via the OSDM APIs.
+
+The graphics items to be placed in the layout are defindedin : [code lists: graphics items](../catalog-of-code-lists#GraphicsItems)).
+
+The icons, internals and places orientation is defined as:
+
+- RIGHT facing y-axis positive direction
+- LEFT facing y-axis negative direction
+- UP facing x-axis negative direction
+- DOWN facing x-axis positive direction
 
 ## Complaint <a name="complaint">
 
