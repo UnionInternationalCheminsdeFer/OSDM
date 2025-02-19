@@ -338,7 +338,7 @@
 			}
 		},
 		"TimeUnitDef": {
-			"description": "Time units: 
+			"description": "Time units",
 			"type": "string",
 			"enum": [
 				"MONTHS",				
