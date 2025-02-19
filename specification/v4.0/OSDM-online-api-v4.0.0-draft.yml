@@ -8600,14 +8600,8 @@ components:
         criteria, or based on trip-search and offer search criteria. At least one
         of the trip or tripSearchCriteria must be set.
       required:
-        - fulfillmentIds
         - anonymousPassengerSpecifications
       properties:
-        fulfillmentIds:
-          type: array
-          items:
-            type: string
-          minItems: 1
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
         tripSpecifications:
