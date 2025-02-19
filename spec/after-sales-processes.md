@@ -28,6 +28,9 @@ The main purpose of this document is therefore to help a quicker understanding
 of the API and its underlying concepts. As such, some of the details of how the
 information is structured in the API are not represented.
 
+Please be advised that following the confirmation of the refund and exchange operation or addition of an offerPart to the booking, the retailer or distributor 
+must update the fulfilments and documents (e.g. receipts) and the API consumer is required to take an action to retrieve the full booking to retrieve it.
+
 
 ## Overview of Services for After Sales <a name="OverviewofServices">
 
