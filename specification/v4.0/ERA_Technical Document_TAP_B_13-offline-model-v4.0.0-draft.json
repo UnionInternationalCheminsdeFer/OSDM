@@ -338,8 +338,10 @@
 			}
 		},
 		"TimeUnitDef": {
+			"description": "Time units: 
 			"type": "string",
 			"enum": [
+				"MONTHS",				
 				"DAYS",
 				"HOURS",
 				"MINUTES"
@@ -356,24 +358,7 @@
 					"$ref": "#/definitions/CalendarDef"
 				},
 				"validityRange": {
-					"type": "object",
-					"properties": {
-						"timeUnit": {
-							"$ref": "#/definitions/TimeUnitDef"
-						},
-						"value": {
-							"type": "number"
-						},
-						"hoursAfterMidnight": {
-							"description": "validity extended after midnight",
-							"type": "number"
-						}
-					},
-					"required": [
-						"timeUnit",
-						"value"
-					],
-					"additionalProperties": false
+					"$ref": "#/definitions/ValidityRange"
 				},
 				"excludedTimeRange": {
 					"description": "time ranges excluded from the validity (e.g. off peak fulfillments)",
@@ -485,6 +470,28 @@
 			],
 			"additionalProperties": false
 		},
+		"ValidityRange": {
+			"type": "object",
+			"properties": {
+				"timeUnit": {
+					"$ref": "#/definitions/TimeUnitDef"
+				},
+				"value": {
+					"type": "integer"
+					"format": "int32"
+				},
+				"hoursAfterMidnight": {
+					"description": "validity extended after midnight",
+					"type": "number"
+				}
+			},
+			"required": [
+				"timeUnit",
+				"value"
+			],
+			"additionalProperties": false
+		},
+		
 		"TripInterruptionProcess": {
 			"description": "MANUAL: passenger needs manual confirmation of train or station staff to interrupt the trip. ACTIVATION: Passenger needs to deactivate the ticket during the interruption (via an app).",
 			"type": "string",
