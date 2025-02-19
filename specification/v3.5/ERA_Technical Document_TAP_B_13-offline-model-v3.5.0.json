@@ -1864,7 +1864,7 @@
 								"$ref": "#/definitions/TravelerTypeDef"
 							},
 							"passengerConstraintRef": {
-								"description": "Reference to a passenger constraint defining the passengers to be included for free. The referenced passenger constraint must not itself contain included free passengers",
+								"description": "Reference to a passenger constraint defining the passengers",
 								"type": "string"
 							}
 						},
