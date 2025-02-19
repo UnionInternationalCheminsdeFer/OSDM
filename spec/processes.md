@@ -27,14 +27,7 @@ permalink: /spec/processes/
    6. [Payment information and Payment Vouchers](#PaymentInformation)
    7. [Interlude: Requested Information per Process Step](Interlude)
    8. [Add parts to a booking](#AddPartsToABookings)
-8. [After Sales Processes](#AfterSalesProcesses)
-   1. [Refund](#Refund)
-   2. [Release a Booking](#Refund)
-   3. [Partial Refund](#PartialRefund)
-   4. [Cancel Fulfillment](#CancelFulfillment)
-   5. [Exchange](#Exchange)
-   6. [Complaints](#Complaints)
-   7. [Reimbursement](#Reimbursement)
+
 
 ## Introduction <a name="introduction">
 
@@ -46,6 +39,14 @@ The main purpose of this document is therefore to help a quicker understanding
 of the API and its underlying concepts. As such, some of the details of how the
 information is structured in the API are not represented or simplified in the
 data models.
+
+Some more complex preocesses are decribed in separate chapters:
+
+- ![After Sales Processes](../after-sales-processes/)
+- ![Handling On-Demand Services](../on-demand-services/)
+- ![Account Based Ticketing](../account-based-ticketing/)
+
+
 
 ## Overview of Services <a name="OverviewofServices">
 
@@ -990,201 +991,3 @@ Reservation and Ancillary Booking Parts are added and deleted via:
 
 ![Adding parts to an existing booking](../images/processes/seq-add-parts-2-booking-2.png)
 
-## After Sales Processes <a name="AfterSalesProcesses">
-
-### Refund <a name="Refund">
-
-#### Request a Refund Offer
-
-![Request a Refund Offer](../images/processes/seq-request-a-refund-offer.png)
-
-On a confirmed booking, and if it is allowed, after sales operations are also
-possible via the OSDM API. In OSDM, the refunds are taking place based on
-fulfillment resources. There is no partial refund of one fulfillment possible.
-This also means that in case of collective ticketing, all passengers will be
-refunded in one go.
-
-In order to perform a refund, the API consumer first has to create a refundOffer
-in the booking where the fulfillments to refund are located with a
-`POST refundOffer`. If the set of fulfillments provided is a valid set for
-refund, the operation creates a refundOffer that contains the information that
-is relevant to the refund operation at the moment the refund offer was created.
-This includes information such as the amount that will be refunded, any
-potential refund fee, etc (see the model for more details).
-
-A provider may return multiple refundOffers for the same request, which may
-differ e.g. in the validity time (validFrom/validUntil attribute pair) or in the
-reimbursement method (e.g. lower refund fee when a voucher is accepted).
-
-#### Cancel a Refund Offer
-
-![Cancel a Refund Offer](../images/processes/seq-cancel-a-refund-offer.png)
-
-#### Confirm a Refund Offer
-
-![Confirm a Refund Offer](../images/processes/seq-confirm-a-refund-offer.png)
-
-In case of multiple refundOffers for the same set of fulfillments, confirming
-one of them will delete the other refundOffers for the same set of fulfillments.
-
-Once a refundOffer has been confirmed, it still can be retrieved via a GET
-/bookings/{bookingId} request.
-
-The attribute refundableAmount of confirmed refundOffers will contain the
-refunded amount of this particular refund.
-
-#### Multiple Refund Offers
-
-Once a refundOffer has been successfully requested, no more refundOffers can be
-requested until the original refundOffer(s) have either been (a) cancelled (b)
-confirmed or have (c) expired (i.e. the "validUntil" time has passed).
-
-### Release a Booking <a name="ReleaseBooking">
-
-#### Request a release Offer
-
-![Request a Release Offer](../images/processes/seq-request-a-release-offer.png)
-
-The release of a ticket is an intermediate step towards a refund. The release
-invalidates the admission and frees resources such as reserved seats. It does
-not refund the money to the customer as this is done later on at the retailer.
-This intermediate step allows other parties to initiate the refund process (e.g.
-one of the involved carriers) and to reuse the resources. The customer benefits
-as the time for calculating the refund amount wll be the time of the release.
-
-The process of releasing a ticket is similar to the refund process. A release
-offer is requested and needs to be confirmed to be applied.
-
-#### Cancel a Release Offer
-
-![Cancel a Release Offer](../images/processes/seq-cancel-a-release-offer.png)
-
-#### Confirm a Release Offer
-
-![Confirm a Release Offer](../images/processes/seq-confirm-a-release-offer.png)
-
-### Partial Refund <a name="PartialRefund">
-
-Partial refunds of passengers and booking parts included in one fulfllment
-(Collective ticketing) are possible with version 3.2 onwards. The parts to be
-refunded need to be specified in the RefundSpecification.
-
-A partial refund will result in new fulfilments after the confirmation of the
-refund offer and booking.
-
-### Cancel Fulfillment <a name="CancelFulfillment">
-
-#### Cancel Fulfillment request
-
-![Request a cancelFulfillment Offer](../images/processes/seq-request-a-cancelFulfillment-offer.png)
-
-A fulfillment can be cancelled and regenerated. This might be necessary in case
-of fulfillments linked to physical items (secure paper, phones or cards). The
-cancelled fulfillment can be recreated later on.
-
-To cancel a fulfillment a cancel fulfillment offer needs to be requested. This
-offer can be confirmed to delete the fulfillment.
-
-#### Cancel a CancelFulfillment Offer
-
-![Cancel a Cancel a cancelFulfillment Offer](../images/processes/seq-cancel-a-cancelFulfilment-offer.png)
-
-#### Confirm a CancelFulfillment Offer
-
-![Confirm a CancelFulfillment Offer](../images/processes/seq-confirm-a-cancelFulfillment-offer.png)
-
-### On Hold Bookings <a name="OnHoldBookings">
-
-An unconfirmed booking will expire after the time limit of the booking. An
-extension of the time limit can be requested as a OnHold-Offer. The offer can be
-requested and needs to be confirmed to extend the time limit. The OnHold offer
-might be subject to a fee.
-
-### Example End-to-end Interaction <a name="ExampleEnd-To-End">
-
-![Example End to End Interaction](../images/processes/seq-end-to-end-interaction.png)
-
-### Exchange <a name="Exchange">
-
-#### Requesting an exchange offer
-
-Requesting an exchange offer is almost identical to requesting a standard offer.
-The only difference in the request is that the fulfillment that the API consumer
-wants to exchange, and an overrule code if relevant, are also provided.
-
-The exchange flow is following:
-
-- `POST /exchange-offers` to get alternative exchange offers (exchange
-  operations) for the given fulfillments
-- `POST /bookings/{bookingId}/exchangeOperations` with selected exchange offer
-  with a. information what to change on current booked offers, or b. to put a
-  new offer (exchange operation) to the booking
-- `PATCH /bookings/{bookingId}/exchangeOperations/{exchangeOperationId}` to
-  confirm the exchange. This will release the original booking parts and confirm
-  parts offered in the exchange operation.
-- `POST /bookings/{bookingId}/fulfillments` to issue the new fulfillments for
-  exchanged booking parts.
-- Optionally `PATCH /bookings/{bookingId}/fulfillments` if the asynchronous
-  fulfillment requires that.
-
-It is a good practice to execute
-`DELETE /booking/{bookingId}/exchangeOperations/{exchangeOperationId}` to
-terminate the exchange operation without confirmation and release booked offers
-from the operation.
-
-### Replacement of lost tickets and cards
-
-The replacement is used to replace physical cards and tickets. There is no
-replacement for electronic tickets or anonymous tickets.
-
-#### Requesting a replacement for a lost ticket
-
-The replacement is requested similar to the request for a non-trip based offer.
-The search tags must include the key word `CARD_LOST` or `TICKET_LOST`. The
-provider will ask for the required data of the lost card or ticket to be
-provided with the passengers card data (card number).
-
-The offer for a replacement returned might include a fee. The replacement offer
-needs to be accepted and booked the same way as a usual offer.
-
-### Complaints <a name="Complaints">
-
-Complaints can be provided on behalf of a passenger. Complaints might concern a
-delay of a train or a service degradation on the journey. The handling of
-complaints is subject to the EU PRR and COTIV where minimal compensation amounts
-and time lines for the decision of a claim are defined. According to PRR the
-customer can decide whether he wants to be compensated by money or would accept
-vouchers.
-
-The handling of a claim is an asynchronous process, where the claim is placed
-and decided by the carriers/fare provides involved later-on.
-
-![Complaint](../images/processes/seq-complaintManagement1.png)
-
-As the distributor is usually also involved as a carrier and then responsible to
-keep the legal time lines he can decide to compensate and inform the fare
-provides/carriers on his decision if the time line would otherwise can not be
-held.
-
-![Complaint](../images/processes/seq-complaintManagement2.png)
-
-### Reimbursement <a name="Reimbursement">
-
-Customers who have bought a ticket which allows reimbursement and which have not
-traveled or traveled partially only can claim to be reimbursed. The customer
-must prove that he has not or only partially used the ticket. A partial use
-might be a only a part of the trip was traveled or only some of the travelers
-were traveling or a combination of both.
-
-The non use of a ticket might be proven by documents that were provided to the
-passenger on a train or at a station. This prove can also be provided in
-electronic form by a carrier or TCO (UIC IRS 909181-4 / TAP-TSI B.14).
-
-The customer must be able to make the reimbursement claim via a retailer to the
-distributor which needs to request the reimbursement from the involved fare
-providers / carriers.
-
-The reimbursement process is very similar to the complaint process where instead
-of a complaint a reimbursement request is created. If the reimbursement request
-is valid the special overrule code `TICKET_UNUSED` can be used in the refund
-process to refund otherwise non-refundable bookings.
