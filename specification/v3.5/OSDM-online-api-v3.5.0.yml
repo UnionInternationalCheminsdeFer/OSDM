@@ -12505,7 +12505,7 @@ components:
           maxlength: 1024          
         description:
           $ref: '#/components/schemas/Text'
-      productTags:
+        productTags:
           type: array
           minItems: 1
           maxItems: 10000
