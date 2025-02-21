@@ -1157,7 +1157,7 @@ In some cases the after sales rules need to be bypassed. For these use cases an 
 - /release-offers
 - /bookings/{bookingId}/cleanup (No offer list is returned)
 
-The oberrule code provides the reason to overrule after-sales rules and supress fees. 
+The overrule code provides the reason to overrule after-sales rules and supress fees. 
 
 In case the provider applies a different overrule code this must be indicated in the appliedOverruleCode in the response.
 
