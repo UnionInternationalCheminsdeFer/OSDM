@@ -1167,7 +1167,8 @@ Some overrule codes might not be supported or accepted by the provider.
 - Overrule Code Not Applicable (e.g. code strike was provided but no strike occured) 
 - No Overrule Code Given & no offers are available for that product
 
-In this case an HTTP 200 reply is provided without offer but including a problem description. 
+In this case an HTTP 200 reply is provided including a problem description with a problem code indicating that the
+overrule code was not accepted or not supported. The reply might include a refund offer where the over rule code was not applied. 
 
 Overrule Codes are defined in the ![code list documentation] (../catalog-of-code-lists/#OverruleCode).
 
