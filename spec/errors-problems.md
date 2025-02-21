@@ -196,6 +196,8 @@ all implementations:
 | ------------------- | ------------------------------ | ----------------------------------------- |
 | Reservation         | `PLACE_PROPERTY_NOT_RESPECTED` | Place property not respected              |
 | Offers              | `OFFER_NO_RESULTS`             | The trip search did not return any result |
+| Booking             | `OVERRULE_CODE_NOT_ACCEPTED`   | The overrule code provided was not accepted |
+| Booking             | `OVERRULE_CODE_NOT_SUPPORTED`  | The overrule code provided is not supported |
 | todo                | `todo`                         | todo                                      |
 
 As for the warnings, an implementor is required to use these warning codes and
