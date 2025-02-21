@@ -281,28 +281,32 @@ compared to admission products:
   - `SelectedPlaces` indicates selection of specific places (probably only
     relevant in case of graphical place selection.
 
-#### Modelling Lump Sum Reservations
+#### Modelling Lump Sum Reservations <a name="lumpSumReservations">
 
-For some trains, especially in Germany and Austria today, a specific form of
+
+For some trains, especially in Germany, Austria and Switzerland today, a specific form of
 reservation booking can be found where the price for adding an optional or
 mandatory (but not free) reservation remains the same regardless of the number
-of reservations actually booked. In order to represent this type of reservation
+of legs, i.e. changes. So, the price for the reservation is the same if the trip is A-B B-C or
+A-C without change. In order to represent this type of reservation
 with the current model, two approaches are proposed to implementers:
 
-- Generate two distinct offers: one with all (available) reservations proposed
-  as included, the lump sum for the reservations being integrated in the
-  admission price. In this approach it is assumed that a passenger will always
-  book all available reservation, since the price is the same anyway. This
-  approach also allows to not propose a reservation if there is none available
-  on one of the tripLeg, while still offering the offer for the complete trip
-  with reservations on all tripLegs where it is available
+- Generate one reservation offer part per leg with a price of zero, and add the
+  total cost for all reservations to to the admission offer part. This would be
+  the regular case for IRT (Integrated Reservation Ticket). The disadvantage of this
+  approach is that the customer cannot opt out of all reservations and lump sum.
 
-- Propose all reservations as optional reservations with an identical unit price
-  equals to 0 or to the reservation lump sum, associated with specific
-  information in the product conditions or the offer messages. At booking time,
-  a price update (increase or decrease) is then applied so that the lump sum is
-  counted once and only once, associated with a booking message warning that the
-  price update took place.
+- Generate one reservation offer part per leg with a price of zero, and generate
+  a [fee offer part](#fees) object in addition to this which carries the reservation price. The
+  reservation offer parts link to the (common) fee offer part. With this approach the
+  customer can opt out of all reservations and, if they choose to do so, do not have
+  to pay the reservation fee.
+
+These approaches allow to not propose reservations if there are none available
+on one of the tripLegs, while still offering the offer for the complete trip
+with reservations on all tripLegs where it is available. Customers can also elect to
+not reserve seats on single legs (e.g. short legs if they cannot be bothered to search for
+the correct coach number).
 
 ### Offer Parts - Ancillaries <a name="ancillaries">
 
@@ -320,7 +324,8 @@ ancillary.
 Fees are used to represent additional costs for services or products. Offer
 parts of type "fee" can be applied to the booking process (e.g. a service fee),
 the trip (e.g. a reservation fee which is applied to all reservations in trains
-running in the same direction, namely outward or inward travel) or other offer
+running in the same direction, namely outward or inward travel, 
+see [Modelling Lump Sum Reservations](#exchangeOffers)) or other offer
 parts. In contrast to other offer parts in OSDM, the customer is not free
 whether to choose a fee or not: fees are generated and applied to other services
 or products by the provider system.
