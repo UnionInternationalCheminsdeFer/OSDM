@@ -8614,6 +8614,10 @@ components:
           $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
           $ref: '#/components/schemas/FulfillmentMediaType'
+        usedPaymentMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethod'          
         embed:
           description: |
             Influences whether referenced resources are returned in full or as references only.
