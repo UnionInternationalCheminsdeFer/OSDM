@@ -2234,6 +2234,7 @@ paths:
         - Fulfillments
         - On-Demand Services
       summary: return the continuous service usage including latest updates
+      operationId: getContinuousServiceUsageId           
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
