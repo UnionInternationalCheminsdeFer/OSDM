@@ -747,7 +747,10 @@ required.
 | Code              | Description                                                                                                                                                                                                                                                                                                                                                                                              |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SPLIT_RESERVATION | Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation Without this indication the provider is not allowed to use the SplitSection Object inside a reservation. The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover a full leg multiple reservations as offerParts should be created. |
-| Product Types     | All product types can be used as Product Tags in the search                                                                                                                                                                                                                                                                                                                                              |
+| Product Types     | All product types can be used as Product Tags in the search                                                  |      
+| CARD_LOST         | Tag used to request a non-trip offer to replace a lost card. This applies to physical cards only. | 
+| TICKET_LOST       | Tag used to request a non-trip offer to replace a lost ticket. This applies to physical tickts only. |    
+
 
 ## Product Types <a name="ProductTypes">
 
