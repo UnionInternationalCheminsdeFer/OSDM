@@ -11989,7 +11989,7 @@ components:
       required:  
         - originalCurrency
         - origionalAmount
-      properites:
+      properties:
         description:
           description: |
             description of the conversion, e.g. rate, rounding rules, reference to rules
