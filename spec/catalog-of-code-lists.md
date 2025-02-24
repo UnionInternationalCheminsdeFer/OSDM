@@ -51,7 +51,7 @@ OSDM mandates it to be always lower case.
 | ----------- | -------------------------------------------------------------------- |
 | `SEAT`      |                                                                      |
 | `COUCHETTE` | Night trains only                                                    |
-| `BERTH`     | Night trains only                                                    |
+| `BERTH`     | Night trains only (in sleeper cabin)                                 |
 | `VEHICLE`   | Place for vehicles, e.g. in car carriage trains                      |
 | `STORAGE`   | Storage place for items, e.g. a hook for bicyles or space for a pram |
 
