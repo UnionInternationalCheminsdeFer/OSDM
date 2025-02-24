@@ -86,19 +86,19 @@ of by the customer.
 | `BICYCLE_MIDDLE`        | Y                      | Y                | Y              | Bicycle hook, waist high lift of bike needed                                                     | `BICYCLE_LOCATION`               |
 | `BICYCLE_HIGH`          | Y                      | Y                | Y              | Bicycle hook, complete lift of bike needed to reach hook                                         | `BICYCLE_LOCATION`               |
 | `BUSINESS`              | Y                      | Y                | Y              | Manager compartment/business                                                                     | `COMPARTMENT_TYPE`               |
-| `BUSINESS_COMFORT`      | Y                      | Y                | N              | Business Comfort – business seat with reduced service                                            | `COMPARTMENT_TYPE`               |
-| `CABIN8`                | N                      | Y                | Y              | Special place group in TGV                                                                       | `COMPARTMENT_TYPE`               |
+| `BUSINESS_COMFORT`      | Y                      | Y                | Y              | Business Comfort – business seat with reduced service                                            | `COMPARTMENT_TYPE`               |
+| `CABIN8`                | Y                      | Y                | Y              | Special place group in TGV                                                                       | `COMPARTMENT_TYPE`               |
 | `CAR`                   | Y                      | N                | Y              | Vehicle parking place category 4-5                                                               | `SPECIAL_COMPARTMENT_TYPE`       |
 | `CAR_LARGE`             | Y                      | N                | Y              | Vehicle parking place category 6-8                                                               | `SPECIAL_COMPARTMENT_TYPE`       |
 | `CAR_SMALL`             | Y                      | N                | Y              | Vehicle parking place category 1-3                                                               | `SPECIAL_COMPARTMENT_TYPE`       |
-| `CARRE`                 | N                      | Y                | Y              | Carré (4 seats facing normally 2nd Class)                                                        | `COMPARTMENT_TYPE`               |
+| `CARRE`                 | Y                      | Y                | Y              | Carré (4 seats facing normally 2nd Class)                                                        | `COMPARTMENT_TYPE`               |
 | `CHILDREN_AREA`         | Y                      | Y                | Y              | Places in children area                                                                          | `PLACE_OR_COMPARTMENT_POSITION`  |
 | `CLUB`                  | Y                      | N                | Y              | Club Category (RENFE)                                                                            | `COMPARTMENT_TYPE`               |
-| `CLUB_2`                | N                      | Y                | Y              | Club Duo (2 seats facing in a separate compartment)                                              | `COMPARTMENT_TYPE`               |
-| `CLUB_4`                | N                      | Y                | Y              | Club 4 (4 seats facing)                                                                          | `COMPARTMENT_TYPE`               |
+| `CLUB_2`                | Y                      | Y                | Y              | Club Duo (2 seats facing in a separate compartment)                                              | `COMPARTMENT_TYPE`               |
+| `CLUB_4`                | Y                      | Y                | Y              | Club 4 (4 seats facing)                                                                          | `COMPARTMENT_TYPE`               |
 | `COMPARTMENT`           | Y                      | Y                | Y              | Places in a compartment                                                                          | `COMPARTMENT_TYPE`               |
-| `COMPLETE`              | Y                      | N                | Y              | All places in a compartment are included, no other passengers will be located in the compartment | `COMPLETE_COMPARTMENT`           |
-| `CONFERENCE`            | Y                      | N                | Y              | Conference compartment                                                                           | `COMPLETE_COMPARTMENT`           |
+| `COMPLETE`              | N                      | N                | Y              | All places in a compartment are included, no other passengers will be located in the compartment | `COMPLETE_COMPARTMENT`           |
+| `CONFERENCE`            | N                      | N                | Y              | Conference compartment                                                                           | `COMPLETE_COMPARTMENT`           |
 | `CONNECTING_DOOR`       | N                      | Y                | Y              | Compartments with connecting door (in sleepers)                                                  | `PLACE_OR_COMPARTMENT_ALIGNMENT` |
 | `COUCHETTE_2`           | Y                      | N                | Y              | Two person couchette cabin                                                                       | `COMPARTMENT_TYPE`               |
 | `COUCHETTE_4`           | Y                      | N                | Y              | Couchette Four-berth                                                                             | `COMPARTMENT_TYPE`               |
@@ -115,14 +115,14 @@ of by the customer.
 | `DOUBLE_SWC_DB`         | Y                      | N                | Y              | Double sleeper compartment with shower & WC & double bed                                         | `COMPARTMENT_TYPE`               |
 | `DOUBLE_S`              | Y                      | N                | Y              | Double sleeper compartment with shower                                                           | `COMPARTMENT_TYPE`               |
 | `EASY_ACCESS`           | Y                      | Y                | Y              | Place with easy access for PRMs                                                                  | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `FACE_2_FACE`           | Y                      | Y                | Y              | places face to face (2 seats facing)                                                             | `PLACE_OR_COMPARTMENT_ALIGNMENT` |
+| `FACE_2_FACE`           | N                      | Y                | Y              | places face to face (2 seats facing)                                                             | `PLACE_OR_COMPARTMENT_ALIGNMENT` |
 | `EXCELLENCE`            | Y                      | Y                | Y              | Special Excellence Places (RhB)                                                                  | `COMPARTMENT_TYPE`               |
 | `FAMILY`                | Y                      | Y                | Y              | Places in family area                                                                            | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `FRONT_VIEW`            | N                      | Y                | Y              | Seat with front-view                                                                             | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `FRONT_VIEW`            | Y                      | Y                | Y              | Seat with front-view                                                                             | `PLACE_OR_COMPARTMENT_POSITION`  |
 | `HISTORIC_COACH`        | Y                      | Y                | Y              | Seat in historic coach                                                                           | `COMPARTMENT_TYPE`               |
-| `INCLUDING_MEAL`        | Y                      | Y                | Y              | Meal at the place is included                                                                    | `PLACE_ATTRIBUTES`               |
-| `INCLUDING_DRINK`       | Y                      | Y                | Y              | A drink is included at the place                                                                 | `PLACE_ATTRIBUTES`               |
-| `KIOSQUE`               | N                      | Y                | Y              | Kiosque (special seats in edge area of a TGV)                                                    | `COMPARTMENT_TYPE`               |
+| `INCLUDING_MEAL`        | N                      | Y                | Y              | Meal at the place is included                                                                    | `PLACE_OR_COMPARTMENT_FEATURE`   |
+| `INCLUDING_DRINK`       | N                      | Y                | Y              | A drink is included at the place                                                                 | `PLACE_OR_COMPARTMENT_FEATURE`   |
+| `KIOSQUE`               | Y                      | Y                | Y              | Kiosque (special seats in edge area of a TGV)                                                    | `COMPARTMENT_TYPE`               |
 | `LADIES`                | N                      | Y                | Y              | Ladies compartment                                                                               | `GENDER`                         |
 | `LOWER_BED`             | N                      | Y                | Y              | Lower bed or couchette                                                                           | `PLACE_OR_COMPARTMENT_LOCATION`  |
 | `LOWER_DECK`            | N                      | Y                | Y              | Lower deck in a double deck train                                                                | `PLACE_OR_COMPARTMENT_LOCATION`  |
@@ -134,11 +134,11 @@ of by the customer.
 | `MIXED`                 | N                      | Y                | Y              | Mixed compartment in night train                                                                 | `GENDER`                         |
 | `MOTOR_CYCLE`           | Y                      | N                | Y              | Motorcycle                                                                                       | `SPECIAL_COMPARTMENT_TYPE`       |
 | `MOTOR_CYCLE_SC`        | Y                      | N                | Y              | Motorcycle with sidecar                                                                          | `SPECIAL_COMPARTMENT_TYPE`       |
-| `NEAR_ANIMALS`          | N                      | N                | Y              | Places close to place with animals                                                               | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `NEAR_DINING`           | N                      | Y                | Y              | Places near the dining car                                                                       | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `NEAR_PLAY_AREA`        | N                      | Y                | Y              | Places near a child play area                                                                    | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `NEAR_ANIMALS`          | Y                      | Y                | Y              | Places close to place with animals                                                               | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `NEAR_DINING`           | Y                      | Y                | Y              | Places near the dining car                                                                       | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `NEAR_PLAY_AREA`        | Y                      | Y                | Y              | Places near a child play area                                                                    | `PLACE_OR_COMPARTMENT_POSITION`  |
 | `NEAR_BICYCLE_AREA`     | Y                      | Y                | Y              | Places near the bicycle storage space                                                            | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `NEAR_WHEELCHAIR`       | Y                      | Y                | N              | Used to indicate places near the wheelchair when booked by an accompanying person                | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `NEAR_WHEELCHAIR`       | Y                      | Y                | Y              | Used to indicate places near the wheelchair when booked by an accompanying person                | `PLACE_OR_COMPARTMENT_POSITION`  |
 | `OPEN_SPACE`            | Y                      | Y                | Y              | Places in open space area                                                                        | `COMPARTMENT_TYPE`               |
 | `PANORAMA`              | Y                      | Y                | Y              | Places in a panorama coach                                                                       | `COMPARTMENT_TYPE`               |
 | `PHONE`                 | N                      | Y                | Y              | Places in an area with mobile phone amplifier                                                    | `PLACE_OR_COMPARTMENT_FEATURE`   |
@@ -147,16 +147,16 @@ of by the customer.
 | `PRAM_WITH_SEAT`        | Y                      | N                | Y              | Seat with space for a pram                                                                       | `SPECIAL_COMPARTMENT_TYPE`       |
 | `PREMIUM`               | Y                      | Y                | Y              | Seat with premium comfort (higher than first class)                                              | `SPECIAL_COMPARTMENT_TYPE`       |
 | `RESTAURANT`            | Y                      | Y                | Y              | Restaurant (places in a dining car)                                                              | `COMPARTMENT_TYPE`               |
+| `SALON`                 | Y                      | Y                | Y              | Salon (6 seats facing in a separate compartment)                                                 | `COMPARTMENT_TYPE`               |
 | `SILENCE`               | Y                      | Y                | Y              | Quiet Compartment (Seat)                                                                         | `PLACE_OR_COMPARTMENT_POSITION`  |
 | `SINGLE`                | Y                      | N                | Y              | Single sleeper compartment                                                                       | `COMPARTMENT_TYPE`               |
 | `SINGLE_SWC`            | Y                      | N                | Y              | Single sleeper compartment with shower & WC                                                      | `COMPARTMENT_TYPE`               |
 | `SINGLE_SWC_DOUBLE`     | Y                      | N                | Y              | Single compartment with shower & WC & double bed                                                 | `COMPARTMENT_TYPE`               |
 | `SIDE_BY_SIDE`          | N                      | Y                | Y              | Places side by side (2 seats side by side)                                                       | `PLACE_OR_COMPARTMENT_ALIGNMENT` |
-| `SALON`                 | N                      | Y                | Y              | Salon (6 seats facing in a separate compartment)                                                 | `COMPARTMENT_TYPE`               |
 | `SLEEPERETTE`           | Y                      | N                | Y              | Sleeperette (reclining seat)                                                                     | `COMPARTMENT_TYPE`               |
 | `SLEEPER_DELUXE`        | Y                      | N                | Y              | Berth deluxe                                                                                     | `COMPARTMENT_TYPE`               |
 | `SOLO`                  | Y                      | Y                | Y              | Separate place without neighbor seat                                                             | `COMPARTMENT_TYPE`               |
-| `SOLO_COM`              | N                      | Y                | Y              | Special separate place without neighbor seat (e.g. in TGV)                                       | `COMPARTMENT_TYPE`               |
+| `SOLO_COM`              | Y                      | Y                | Y              | Special separate place without neighbor seat (e.g. in TGV)                                       | `COMPARTMENT_TYPE`               |
 | `SPECIAL_SLEEPER`       | Y                      | N                | Y              | Special Sleeper Compartment, one Person sleeper compartment smaller than a Single                | `COMPARTMENT_TYPE`               |
 | `TABLE`                 | N                      | Y                | Y              | Places at a table                                                                                | `PLACE_OR_COMPARTMENT_FEATURE`   |
 | `TANDEM`                | Y                      | Y                | Y              | Tandem Bicycle                                                                                   | `SPECIAL_COMPARTMENT_TYPE`       |
@@ -173,8 +173,8 @@ of by the customer.
 | `WIFI`                  | N                      | Y                | Y              | Place with WiFi access point                                                                     | `PLACE_OR_COMPARTMENT_FEATURE`   |
 | `WINDOW_SEAT`           | N                      | Y                | Y              | Place at the window                                                                              | `PLACE_OR_COMPARTMENT_LOCATION`  |
 | `WITH_ANIMALS`          | Y                      | Y                | Y              | Place with animals (animals allowed)                                                             | `SPECIAL_COMPARTMENT_TYPE`       |
-| `WITH_SMALL_CHILDREN`   | N                      | Y                | Y              | Place for passengers with small children                                                         | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `WITHOUT_ANIMALS`       | N                      | Y                | Y              | Place in an area where animals are not allowed                                                   | `SPECIAL_COMPARTMENT_TYPE`       |
+| `WITH_SMALL_CHILDREN`   | Y                      | Y                | Y              | Place for passengers with small children                                                         | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `WITHOUT_ANIMALS`       | Y                      | Y                | Y              | Place in an area where animals are not allowed                                                   | `SPECIAL_COMPARTMENT_TYPE`       |
 
 ## Ancillary category <a name="AncillaryCategory">
 
@@ -823,20 +823,14 @@ Other cards should start with the RICS code of the issuer.
 
 ## Reservation Preference Group <a name="ReservationPreferenceGroup">
 
-| Code               | Description                                     |
-| ------------------ | ----------------------------------------------- |
-| `ANIMALS`          | Animals are allowed or disallowed               |
-| `BED_LOCATION`     | Bed location (Lower/Middle/Upper)               |
-| `BERTH_GENDER`     | Gender of compartment in night train            |
-| `BERTH_LOCATION`   | Location of a berth or couchette                |
-| `BICYCLE_LOCATION` | Location of bicycle hook                        |
-| `FAMILY`           | Different types of places for families          |
-| `LEVEL`            | Upper or lower deck                             |
-| `PLACE_ALIGNMENT`  | Facing / Side by Side                           |
-| `PLACE_ATTRIBUTES` | Miscellaneous attributes of seats               |
-| `PLACE_GROUPING`   | Compartment / Open Space                        |
-| `PLACE_LOCATION`   | Place location (Aisle, Window)                  |
-| `VEHICLE`          | Different types of vehicles                     |
+| Code                             | Description                                                     |
+| -------------------------------- | --------------------------------------------------------------- |
+| `COMPARTMENT_TYPE`               | Type of seat or compartment                                     |
+| `SPECIAL_COMPARTMENT_TYPE`       | Type of seat, compartment or vehicle storage for specific needs |
+| `PLACE_OR_COMPARTMENT_POSITION`  | Positioning of seat or compartment relative to other items      |
+| `PLACE_OR_COMPARTMENT_ALIGNMENT` | Facing / Side by Side                                           |
+| `PLACE_OR_COMPARTMENT_FEATURE`   | Miscellaneous attributes of seats or compartments               |
+| `PLACE_OR_COMPARTMENT_LOCATION`  | Place or compartment location (Aisle, Window, Uppper, Lower)    |
 
 ## Service Brands <a name="ServiceBrands">
 
