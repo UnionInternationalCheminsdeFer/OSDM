@@ -2241,6 +2241,7 @@ paths:
         - Fulfillments
         - On-Demand Services
       summary: return the continuous service usage including latest updates
+      operationId: getContinuousServiceUsageId           
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -5530,11 +5531,6 @@ components:
           properties:
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
-            isReservationRequired:
-              type:
-                - 'boolean'
-                - 'null'
-              default: false
             feeRefs:
               type: array
               items:
@@ -5565,10 +5561,6 @@ components:
               $ref: '#/components/schemas/RegionalValiditySummary'
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
-            isReservationRequired:
-              type:
-                - 'boolean'
-                - 'null'
             reservations:
               type: array
               items:
@@ -8495,9 +8487,17 @@ components:
             Accounting information for the exchange fee
           $ref: '#/components/schemas/AccountingRef'
         exchangePrice:
+          description: | 
+            price of the new booking parts 
           $ref: '#/components/schemas/Price'
         refundableAmount:
+          description: |
+            amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.        
           $ref: '#/components/schemas/Price'
+        amountToBePaid:
+          description: |
+            amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.  
+          $ref: '#/components/schemas/Price'      
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
         fulfillments:
@@ -8576,9 +8576,17 @@ components:
         exchangeFee:
           $ref: '#/components/schemas/Price'
         exchangePrice:
+          description: | 
+            price of the new booking parts 
           $ref: '#/components/schemas/Price'
         refundableAmount:
+          description: |
+            amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.        
           $ref: '#/components/schemas/Price'
+        amountToBePaid:
+          description: |
+            amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.  
+          $ref: '#/components/schemas/Price'      
         bookingPartIds:
           type: array
           items:
@@ -8733,6 +8741,10 @@ components:
           $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
           $ref: '#/components/schemas/FulfillmentMediaType'
+        usedPaymentMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethod'          
         embed:
           description: |
             Influences whether referenced resources are returned in full or as references only.
@@ -11787,6 +11799,41 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VAT'
+        appliedCurrenyConversion:
+            $ref: '#/components/schemas/CurrencyConversion'
+          
+    CurrencyConversion:
+      description: | 
+        details on a currency conversion applied
+      required:  
+        - originalCurrency
+        - origionalAmount
+      properites:
+        description:
+          description: |
+            description of the conversion, e.g. rate, rounding rules, reference to rules
+          type: string
+        originalCurrency:
+          $ref: '#/components/schemas/Currency'
+        originalAamount:
+          description: |
+            amount in cents
+          type: integer
+          format: int32
+          nullable: false
+        scale:
+          description: |
+            scale of the amount - the number of positions after the comma
+          type: integer
+          format: int32
+          nullable: true
+          default: 2
+        appliedRate:
+          type: number         
+        originalVats:
+          type: array
+          items:
+            $ref: '#/components/schemas/VAT'     
 
     Problem:
       type: object
@@ -11859,7 +11906,7 @@ components:
             - 'null'
           items:
             $ref: '#/components/schemas/ProblemPointer'
-          minItems: 0
+
 
     ProblemCollection:
       type: object

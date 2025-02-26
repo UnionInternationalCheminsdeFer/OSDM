@@ -2335,7 +2335,7 @@ paths:
         - Fulfillments
         - On-Demand Services
       summary: return the continuous service usage including latest updates
-      operationId: getContinuousServiceUsageId
+      operationId: getContinuousServiceUsageId      
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -5807,6 +5807,7 @@ components:
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
             isReservationRequired:
+              deprecated: true
               type: boolean
               nullable: true
               default: false
@@ -5839,6 +5840,7 @@ components:
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
             isReservationRequired:
+              deprecated: true
               type: boolean
               nullable: true
             reservations:
@@ -8776,9 +8778,17 @@ components:
             Accounting information for the exchange fee
           $ref: '#/components/schemas/AccountingRef'
         exchangePrice:
+          description: | 
+            price of the new booking parts 
           $ref: '#/components/schemas/Price'
         refundableAmount:
+          description: |
+            amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.        
           $ref: '#/components/schemas/Price'
+        amountToBePaid:
+          description: |
+            amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.  
+          $ref: '#/components/schemas/Price'          
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
         fulfillments:
@@ -8863,9 +8873,17 @@ components:
         exchangeFee:
           $ref: '#/components/schemas/Price'
         exchangePrice:
+          description: | 
+            price of the new booking parts 
           $ref: '#/components/schemas/Price'
         refundableAmount:
+          description: |
+            amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.        
           $ref: '#/components/schemas/Price'
+        amountToBePaid:
+          description: |
+            amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.  
+          $ref: '#/components/schemas/Price'      
         bookingPartIds:
           type: array
           items:
@@ -12091,6 +12109,41 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VAT'
+        appliedCurrenyConversion:
+            $ref: '#/components/schemas/CurrencyConversion'
+          
+    CurrencyConversion:
+      description: | 
+        details on a currency conversion applied
+      required:  
+        - originalCurrency
+        - origionalAmount
+      properties:
+        description:
+          description: |
+            description of the conversion, e.g. rate, rounding rules, reference to rules
+          type: string
+        originalCurrency:
+          $ref: '#/components/schemas/Currency'
+        originalAamount:
+          description: |
+            amount in cents
+          type: integer
+          format: int32
+          nullable: false
+        scale:
+          description: |
+            scale of the amount - the number of positions after the comma
+          type: integer
+          format: int32
+          nullable: true
+          default: 2
+        appliedRate:
+          type: number         
+        originalVats:
+          type: array
+          items:
+            $ref: '#/components/schemas/VAT'      
 
     Problem:
       type: object
