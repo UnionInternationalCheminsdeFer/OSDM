@@ -8600,8 +8600,10 @@ components:
         criteria, or based on trip-search and offer search criteria. At least one
         of the trip or tripSearchCriteria must be set.
       required:
-        - anonymousPassengerSpecifications
+        - exchangeSpecification
       properties:
+        exchangeSpecification:
+          $ref: '#/components/schemas/ExchangeSpecification'
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
         tripSpecifications:
@@ -8625,11 +8627,6 @@ components:
             $ref: '#/components/schemas/Section'
         offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
-        anonymousPassengerSpecifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnonymousPassengerSpecification'
-          minItems: 1
         corporateCodes:
           type: array
           items:
@@ -8786,6 +8783,32 @@ components:
         - 'CONFIRMED'
         - 'FULFILLED'
         - 'ERROR'
+
+    ExchangeSpecification:
+      description: specification of parts or passengers to be exchanged
+      type: object
+      properties:
+        fulfillmentIds:
+          description: |
+            ids of the fulfillments where some part(s) should be exchanged
+          type: string
+          maxLength: 32768
+        bookingPartIds:
+          description: ids of booking parts to be exchanged
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+        removedPassengerIds:
+          type: array
+          description: ids of passengers to be removed 
+          items:
+            type: string     
+        addedPassengerSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnonymousPassengerSpecification'
+            
 
     ExchangeableType:
       description: |
