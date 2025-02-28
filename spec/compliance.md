@@ -43,13 +43,14 @@ The following services/features are mandatory/optional to implement:
 | `/bookings/{bookingId}/purchaser`     | Resources to manipulate a purchasers information at every stage of the flow | **Mandatory**                                          |
 | `/bookings/{bookingId}/fulfillments`  | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets.            |
 | `/bookings/{bookingId}/refund-offers` | Resources to get and accept a refund offer                                  | **Mandatory** is to support full refund.               |
-| `/bookings-search/`                   | Resources to search for bookings                                            | **Optional**                                          |
+| `/bookings-search/`                   | Resources to search for bookings                                            | _Optional_                                             |
+| `/products-search/`                   | Resources to search for products                                            | _Optional_                                             |
 | `/fulfillments`                       | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets.            |
 
 | Trip planning Resources | Description                     | Need to Support |
 | ----------------------- | ------------------------------- | --------------- |
-| `/places`               | Resources to search for a place | **Optional**    |
-| `/trips`                | Resources to search for trips   | **Optional**    |
+| `/places`               | Resources to search for a place | _Optional_      |
+| `/trips`                | Resources to search for trips   | _Optional_      |
 
 | Booking Modifications Resources                                    | Description                                                           | Need to Support                                                               |
 | ------------------------------------------------------------------ | --------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
@@ -60,14 +61,14 @@ The following services/features are mandatory/optional to implement:
 | --------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `/availabilities`     | Resources to get information on available seats for a booking | _Conditional_; mandatory to be supported in case seat assignment is provided. |
 
-| Advanced After Sales Resources                  | Description                                                                                       | Need to Support |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------- |
-| `/bookings/{bookingId}/documents`               | Resources to add documents to a booking                                                           | _Optional_      |
-| `/bookings/{bookingId}/exchange-operations`     | Resources to manage exchange operations                                                           | _Optional_      |
-| `/bookings/{bookingId}/release-offers`          | Resources to get and accept a release offer to return a ticket as a preliminary step for a refund | _Optional_      |
-| `/bookings/{bookingId}/reimbursements`          | Resources to manage reimbursements of unused tickets                                              | _Optional_      |
-| `/bookings/{bookingId}/onHoldOffers`            | Resources to manage on hold offers (extensions of the booking time limit)                         | _Optional_      |
-| `/bookings/{bookingId}/cancelFulFillmentOffers` | Resources to cancel a fulfillment                                                                 | _Optional_      |
+| Advanced After Sales Resources                    | Description                                                                                       | Need to Support |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------- |
+| `/bookings/{bookingId}/documents`                 | Resources to add documents to a booking                                                           | _Optional_      |
+| `/bookings/{bookingId}/exchange-operations`       | Resources to manage exchange operations                                                           | _Optional_      |
+| `/bookings/{bookingId}/release-offers`            | Resources to get and accept a release offer to return a ticket as a preliminary step for a refund | _Optional_      |
+| `/bookings/{bookingId}/reimbursements`            | Resources to manage reimbursements of unused tickets                                              | _Optional_      |
+| `/bookings/{bookingId}/on-hold-offers`            | Resources to manage on hold offers (extensions of the booking time limit)                         | _Optional_      |
+| `/bookings/{bookingId}/cancel-fulfillment-offers` | Resources to cancel a fulfillment                                                                 | _Optional_      |
 
 | Complaint Resources | Description                    | Need to Support |
 | ------------------- | ------------------------------ | --------------- |
@@ -75,10 +76,12 @@ The following services/features are mandatory/optional to implement:
 
 | Master Data Resources | Description                                                        | Need to Support |
 | --------------------- | ------------------------------------------------------------------ | --------------- |
-| `/coach-layouts`      | Resources to get layouts of coaches                                | _Optional_      |
+| `/coach-layouts`      | Resources to get layouts of coaches (deprecated as of V.3.5)       | _Optional_      |
+| `/coach-deck-layouts` | Resources to get coach deck layouts                                | _Optional_      |
 | `/places`             | Resources to get all places                                        | _Optional_      |
 | `/products`           | Resources to retrieve products information on one or more products | _Optional_      |
-| `/reduction-cards`    | Resources to retrieve reduction                                    | _Optional_      |
+| `/product-tags`       | Resources to retrieve products tags and their grouping             | _Optional_      |
+| `/reduction-cards`    | Resources to retrieve reduction cards                              | _Optional_      |
 | `/zones`              | Resources to retrieve zone information                             | _Optional_      |
 
 All [non-functional requirements](../non-functional-requirements) defined in the
@@ -101,13 +104,14 @@ The following services/features are mandatory/optional to implement:
 | `/bookings/{bookingId}/purchaser`    | Resources to manipulate a purchasers information at every stage of the flow | **Mandatory**                               |
 | `/bookings/{bookingId}/fulfillments` | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets. |
 | `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer                                  | **Mandatory** is to support full refund.    |
-| `/booking-search/`                   | Resources to search for bookings                                            | **Optional**                               |
+| `/booking-search/`                   | Resources to search for bookings                                            | _Optional_                                  |
+| `/products-search/`                  | Resources to search for products                                            | _Optional_                                  |
 | `/fulfillments`                      | Resources to retrieve fulfillments, e.g. tickets                            | **Mandatory** is to support A4 PDF tickets. |
 
 | Trip planning Resources | Description                     | Need to Support |
 | ----------------------- | ------------------------------- | --------------- |
-| `/places`               | Resources to search for a place | **Optional**    |
-| `/trips`                | Resources to search for trips   | **Optional**    |
+| `/places`               | Resources to search for a place | _Optional_      |
+| `/trips`                | Resources to search for trips   | _Optional_      |
 
 | Booking Modifications Resources                                    | Description                                                           | Need to Support                                                               |
 | ------------------------------------------------------------------ | --------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
@@ -134,9 +138,11 @@ The following services/features are mandatory/optional to implement:
 | Master Data Resources | Description                                                        | Need to Support |
 | --------------------- | ------------------------------------------------------------------ | --------------- |
 | `/coach-layouts`      | Resources to get layouts of coaches                                | _Optional_      |
+| `/coach-deck-layouts` | Resources to get coach deck layouts                                | _Optional_      |
 | `/places`             | Resources to get all places                                        | _Optional_      |
 | `/products`           | Resources to retrieve products information on one or more products | _Optional_      |
-| `/reduction-cards`    | Resources to retrieve reduction                                    | _Optional_      |
+| `/product-tags`       | Resources to retrieve products tags and their grouping             | _Optional_      |
+| `/reduction-cards`    | Resources to retrieve reduction cards                              | _Optional_      |
 | `/zones`              | Resources to retrieve zone information                             | _Optional_      |
 
 All [non-functional requirements](../non-functional-requirements) defined in the
