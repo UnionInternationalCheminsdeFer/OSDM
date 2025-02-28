@@ -325,7 +325,7 @@ Fees are used to represent additional costs for services or products. Offer
 parts of type "fee" can be applied to the booking process (e.g. a service fee),
 the trip (e.g. a reservation fee which is applied to all reservations in trains
 running in the same direction, namely outward or inward travel, 
-see [Modelling Lump Sum Reservations](#exchangeOffers)) or other offer
+see [Modelling Lump Sum Reservations](#lumpSumReservations)) or other offer
 parts. In contrast to other offer parts in OSDM, the customer is not free
 whether to choose a fee or not: fees are generated and applied to other services
 or products by the provider system.
