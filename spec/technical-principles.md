@@ -22,7 +22,7 @@ permalink: /spec/technical-principles/
   [Zalando RESTful API and Event Scheme guidelines](https://opensource.zalando.com/restful-api-guidelines/)
 - Use of the JSON Problem element [RFC9457](https://tools.ietf.org/html/rfc9457).
   See also [Errors and Problems](../errors-problems/).
-- Standard Patch operations ([RFC7396](https://datatracker.ietf.org/doc/html/rfc7396)) - not JSON PATCH ([RFC6902](https://datatracker.ietf.org/doc/html/rfc6902))
+- Standard Patch operations ([RFC7396](https://datatracker.ietf.org/doc/html/rfc7396)) - not JSON PATCH ([RFC6902](https://datatracker.ietf.org/doc/html/rfc6902)) (see [PATCH behaviour](#PatchBehaviour))
 - A resource is either represented in full or as a reference. The reference
   element has the name of the resource post-fixed with "Ref". References
   normally only contains the URL to the referenced resource and a title element
@@ -68,6 +68,14 @@ The openapi file is considered final when there is git tag and github release fo
 ## Implementation principles
 
 Implementations must follow the tolerant reader pattern. Schema validations must allow new attributes and objects. All extensible enums must not fail on items not proposed from the openapi or specification.
+
+## PATCH behaviour<a name="PatchBehaviour">
+
+As specified above, PATCH within OSDM is consistent with JSON Merge Patch ([RFC7396](https://datatracker.ietf.org/doc/html/rfc7396)). This means
+- absent attributes are ignored (i.e. the attribute retains its previous value/state)
+- null attributes will be removed
+- present attributes will be updated
+- new attributes will be added
 
 ## Error Handling
 
