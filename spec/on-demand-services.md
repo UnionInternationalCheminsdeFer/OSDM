@@ -263,9 +263,9 @@ At the end of the usage the provider updates the booking to reflect the required
   - fulfillment documents on the pricing / calculation of costs
 
 
-### Reembourcement <a name="Reembourcement">
+### Reimbursement <a name="Reimbursement">
 
-Reemborcement uses the already defined reembourcement flow.
+Reimbursement uses the already defined reimbursement flow.
 
 Additional reasons for reembourcement can be set:
   - vehicle broken

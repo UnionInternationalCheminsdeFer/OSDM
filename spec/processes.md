@@ -28,7 +28,6 @@ permalink: /spec/processes/
    7. [Interlude: Requested Information per Process Step](Interlude)
    8. [Add parts to a booking](#AddPartsToABookings)
 
-
 ## Introduction <a name="introduction">
 
 This page shows a representation of the data models underlying the API
@@ -990,4 +989,3 @@ Reservation and Ancillary Booking Parts are added and deleted via:
 - DELETE /bookings/{bookingId}/booked-offers/{bookedOfferId}
 
 ![Adding parts to an existing booking](../images/processes/seq-add-parts-2-booking-2.png)
-
