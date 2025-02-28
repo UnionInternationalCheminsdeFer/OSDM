@@ -8,64 +8,66 @@ permalink: /spec/after-sale-processes/
 ## Table of contents
 
 1. [Introduction](#introduction)
-2. [Overview of Services](#OverviewofServices)
-3. [Overview of After Sale Processes](#OverviewofProcesses)
-8. [After Sales Processes](#AfterSalesProcesses)
-   1. [Refund](#Refund)
-   2. [Release a Booking](#ReleaseBooking)
-   3. [Partial Refund](#PartialRefund)
-   4. [Cancel Fulfillment](#CancelFulfillment)
-   5. [Exchange](#Exchange)
-   6. [Complaints](#Complaints)
-   7. [Reimbursement](#Reimbursement)
-   8. [Card Replacement](#CardReplacement)
+2. [Overview of Services](#overviewOfServices)
+3. [Overview of After Sale Processes](#overviewOfProcesses)
+4. [After Sales Processes](#afterSalesProcesses)
+   1. [Refund](#refund)
+   2. [Release a Booking](#releaseBooking)
+   3. [Partial Refund](#partialRefund)
+   4. [Cancel Fulfillment](#cancelFulfillment)
+   5. [Exchange](#exchange)
+   6. [Complaint](#complaint)
+   7. [Reimbursement](#reimbursement)
+   8. [Card Replacement](#cardReplacement)
 
 ## Introduction <a name="introduction">
 
-This page explains the available after sales processes and theit implementation in OSDM.
+This page explains the available after sales processes and their implementation
+in OSDM.
 
-The main purpose of this document is therefore to help a quicker understanding
-of the API and its underlying concepts. As such, some of the details of how the
-information is structured in the API are not represented.
+The main purpose is to get a quicker understanding of the API and its underlying
+concepts. As such, some of the details of how the information is structured in
+the API are not represented in full detail.
 
-Please be advised that following the confirmation of the refund and exchange operation or addition of an offerPart to the booking, the retailer or distributor 
-must update the fulfilments and documents (e.g. receipts) and the API consumer is required to take an action to retrieve the full booking to retrieve it.
+Please be advised that after the confirmation of the refund and exchange
+operation or addition of an offerPart to the booking, the retailer or
+distributor must update the fulfillments and documents (e.g. receipts) and the
+API consumer is required to take an action to retrieve the full booking to
+retrieve it.
 
+## Overview of Services for After Sales <a name="overviewOfServices">
 
-## Overview of Services for After Sales <a name="OverviewofServices">
+| Resources                                          | Description                                                   |
+| -------------------------------------------------- | ------------------------------------------------------------- |
+| `/bookings/{bookingId}/reimbursements`             | resources to reimburse unused tickets                         |
+| `/bookings/{bookingId}/release-offers`             | resources to release tickets                                  |
+| `/bookings/{bookingId}/cancel-fulfillments-offers` | resources to cancel fulfillments                              |
+| `/bookings/{bookingId}/refund-offers`              | resources to get and accept a refund offer                    |
+| `/bookings/{bookingId}/exchange-operations`        | resources to get and accept a exchange offer                  |
+| `/bookings/{bookingId}/exchange-offers`            | _dito_                                                        |
+| `/bookings/{bookingId}/release-offers`             | resources to get, accept or delete a release offer            |
+| `/bookings/{bookingId}/cancel-fulfillment-offers`  | resources to get, accept or delete a cancel fulfillment offer |
+| `/complaints`                                      | resources to create and manipulate complaints                 |
 
-| Resources                                          | Description                                                            |
-| -------------------------------------------------- | ---------------------------------------------------------------------- |
-| `/bookings/{bookingId}/reimbursements`             | resources to reimburse unused tickets                                  |
-| `/bookings/{bookingId}/release-offers`             | resources to release tickets                                           |
-| `/bookings/{bookingId}/cancel-fulfillments-offers` | resources to cancel fulfillments                                       |
-| `/bookings/{bookingId}/refund-offers`              | Resources to get and accept a refund offer                             |
-| `/bookings/{bookingId}/exchange-operations`        | Resources to get and accept a exchange offer                           |
-| `/bookings/{bookingId}/exchange-offers`            | _dito_                                                                 |
-| `/bookings/{bookingId}/release-offers`             | Resources to get, accept or delete a release offer                     |
-| `/bookings/{bookingId}/cancel-fulfillment-offers`  | Resources to get, accept or delete a cancelFulfillment offer           |
-| `/complaints`                                      | resources to create and manipulate complaints                          |
+## Overview of After Sales Processes <a name="overviewOfProcesses">
 
-## Overview of After Sales Processes <a name="OverviewofProcesses">
+After sales processes operate on and potentially change already confirmed
+booking parts.
 
-After sales processes are processes to operate on and potentially change already confirmed booking parts.
+| Resources          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Refund             | The refund flow cancels one or more confirmed booking parts. The after sales rules on refund initiated by the purchaser apply unless the request is made with an overrule code. The refund with overrule code can be used to handle compensation payments in cases where the claim can be accepted automatically and the passenger is the purchaser (compensation needs to be paid to the traveler).                                                                   |
+| Release            | The release flow removes the permission to travel and releases technical resources blocked by the booking (e.g. seats on a train). The release does not provide the refund amounts to the purchaser. A release needs to be completed later on by a refund to provide the refund amount to the purchaser. A release can be initiated by a company different from the original retailer. The time of the release defines the time for the calculation of refund amounts. |
+| Partial Refund     | A partial refund is triggered by the passenger. The refund might include some of the travelers, a section of the trip or one half of a return trip. Depending on the commercial conditions this might require an exchange of some or all fulfillments.                                                                                                                                                                                                                 |
+| Cancel Fulfillment | The cancel fulfillment flow cancels a fulfillment to recreate it. This might be necessary in case of secure paper and printer errors where the printed ticket has to be regenerated with a specific paper stock control number.                                                                                                                                                                                                                                        |
+| Exchange           | The exchange flow replaces the old booking parts with new booking parts usually for a different trip. This is usually triggered by a request of the purchaser but might also be triggered by a retailer in case of cancelled services. In this case the overrule code is used.                                                                                                                                                                                         |
+| Complaint          | A complaint is filed by the traveler due to a service that was not provided as promised. The handling of complaints is subject to deadlines defined by the EU PRR. The payments for complaints must be made to the passenger, not to the purchaser.                                                                                                                                                                                                                    |
+| Reimbursement      | A reimbursement flow handles refunds where the purchaser needs to provide additional proof or investigation. This concerns usually refunds due to unused or partially unused tickets. The refunded amount is provided to the original purchaser.                                                                                                                                                                                                                       |
+| Card Replacement   | A replacement of a physical ticket or card. This does not apply to electronic tickets.                                                                                                                                                                                                                                                                                                                                                                                 |
 
+## After Sales Processes <a name="afterSalesProcesses">
 
-| Resources                                          | Description                                                            |
-| -------------------------------------------------- | ---------------------------------------------------------------------- |
-| Refund                                             | Cancel one or more confirmed booking parts. The after sales rules on refund initiated by the purchaser apply unless the request is made with an overrule code. The refund with overrule code can be used to handle compensation paiments in cases where the claim can be accepted automaticallyand the traveller is the purchaser (compensation needs to be paid to the traveler).  |
-| Release                                            | A release removes the permission to travel and releases technical resources blocked by the booking (e.g. seats on a train). The release does not provide the refund amounts to the purchaser. A release needs to be completed lateron by a refund to provide the refund amount to the purchaser. A release can be initiated by a company different from the original retailer. The time of the release deefines the time for the calculation of refund amounts. |
-| Partial Refund                                     | A partial refund triggered by the traveller. The refund might include some of the travelers, a section of the trip or one half of  a return trip. Depending on the comercial conditions this might require an exchange of some or all fulfillments.  |
-| CancelFulfillment                                  | Cancel fulfillment cancells a fulfillment to recreate it. This might be necessary in case of secure paper and printer errors where the printed ticket has to be regenerated with a specific paper stock control number.  |
-| Exchange                                           | An exchange replaces the old booking parts with new booking parts usually for a different trip. This is usually triggered by a request of the purchaser but might also be triggered by a retailer in case of cancelled services. In this case theoverrule code is used.  |
-| Complaints                                         | Complaints are complaints filed by the traveler due to a service that was not provided as promissed. The handling of complaints is subject to deadlines defined by the EU PRR. The payments for complaints must be made to the traveller, not to the purchaser. |
-| Reimboursements                                    | Reimbursements handle refunds where the purchaser needs to provide additional proof or investigation. This concerns usually refunds due to unused or partially unused tickets. The refunded amount is provided to the original purchaser. |
-| Card Replacement                                   | Replacement of a physical ticket or card. This does not apply to electronic tickets.           |
-
-
-## After Sales Processes <a name="AfterSalesProcesses">
-
-### Refund <a name="Refund">
+### Refund <a name="refund">
 
 #### Request a Refund Offer
 
@@ -100,19 +102,19 @@ reimbursement method (e.g. lower refund fee when a voucher is accepted).
 In case of multiple refundOffers for the same set of fulfillments, confirming
 one of them will delete the other refundOffers for the same set of fulfillments.
 
-Once a refundOffer has been confirmed, it still can be retrieved via a GET
-/bookings/{bookingId} request.
+Once a `refundOffer` has been confirmed, it still can be retrieved via a
+`GET /bookings/{bookingId}` request.
 
 The attribute refundableAmount of confirmed refundOffers will contain the
 refunded amount of this particular refund.
 
 #### Multiple Refund Offers
 
-Once a refundOffer has been successfully requested, no more refundOffers can be
-requested until the original refundOffer(s) have either been (a) cancelled (b)
-confirmed or have (c) expired (i.e. the "validUntil" time has passed).
+Once a `refundOffer` has been successfully requested, no more refundOffers can
+be requested until the original refundOffer(s) have either been (a) cancelled
+(b) confirmed or have (c) expired (i.e. the "validUntil" time has passed).
 
-### Release a Booking <a name="ReleaseBooking">
+### Release a Booking <a name="releaseBooking">
 
 #### Request a release Offer
 
@@ -136,16 +138,16 @@ offer is requested and needs to be confirmed to be applied.
 
 ![Confirm a Release Offer](../images/processes/seq-confirm-a-release-offer.png)
 
-### Partial Refund <a name="PartialRefund">
+### Partial Refund <a name="partialRefund">
 
-Partial refunds of passengers and booking parts included in one fulfllment
-(Collective ticketing) are possible with version 3.2 onwards. The parts to be
+Partial refunds of passengers and booking parts included in one fulfillment
+(collective ticketing) are possible with version 3.2 onwards. The parts to be
 refunded need to be specified in the RefundSpecification.
 
-A partial refund will result in new fulfilments after the confirmation of the
+A partial refund results in new fulfillments after the confirmation of the
 refund offer and booking.
 
-### Cancel Fulfillment <a name="CancelFulfillment">
+### Cancel Fulfillment <a name="cancelFulfillment">
 
 #### Cancel Fulfillment request
 
@@ -166,18 +168,18 @@ offer can be confirmed to delete the fulfillment.
 
 ![Confirm a CancelFulfillment Offer](../images/processes/seq-confirm-a-cancelFulfillment-offer.png)
 
-### On Hold Bookings <a name="OnHoldBookings">
+### On Hold Bookings <a name="onHoldBookings">
 
 An unconfirmed booking will expire after the time limit of the booking. An
-extension of the time limit can be requested as a OnHold-Offer. The offer can be
-requested and needs to be confirmed to extend the time limit. The OnHold offer
-might be subject to a fee.
+extension of the time limit can be requested as a `OnHoldOffer`. The offer can
+be requested and needs to be confirmed to extend the time limit. The
+`OnHoldOffer` might be subject to a fee.
 
-### Example End-to-end Interaction <a name="ExampleEnd-To-End">
+### Example End-to-end Interaction <a name="exampleEnd-To-End">
 
 ![Example End to End Interaction](../images/processes/seq-end-to-end-interaction.png)
 
-### Exchange <a name="Exchange">
+### Exchange <a name="exchange">
 
 #### Requesting an exchange offer
 
@@ -205,14 +207,14 @@ It is a good practice to execute
 terminate the exchange operation without confirmation and release booked offers
 from the operation.
 
-### Complaints <a name="Complaints">
+### Complaint <a name="complaint">
 
-Complaints can be provided on behalf of a passenger. Complaints might concern a
-delay of a train or a service degradation on the journey. The handling of
-complaints is subject to the EU PRR and COTIV where minimal compensation amounts
+A complaint can be provided on behalf of a passenger. A complaint might concern
+a delay of a train or a service degradation on the journey. The handling of a
+complaint is subject to the EU PRR and COTIV where minimal compensation amounts
 and time lines for the decision of a claim are defined. According to PRR the
-customer can decide whether he wants to be compensated by money or would accept
-vouchers.
+customer can decide whether he or she wants to be compensated by money or would
+accept vouchers.
 
 The handling of a claim is an asynchronous process, where the claim is placed
 and decided by the carriers/fare provides involved later-on.
@@ -226,7 +228,7 @@ held.
 
 ![Complaint](../images/processes/seq-complaintManagement2.png)
 
-### Reimbursement <a name="Reimbursement">
+### Reimbursement <a name="reimbursement">
 
 Customers who have bought a ticket which allows reimbursement and which have not
 traveled or traveled partially only can claim to be reimbursed. The customer
@@ -247,15 +249,15 @@ of a complaint a reimbursement request is created. If the reimbursement request
 is valid the special overrule code `TICKET_UNUSED` can be used in the refund
 process to refund otherwise non-refundable bookings.
 
-### Replacement of lost tickets and cards <a name="CardReplacement">
+### Replacement of lost tickets and cards <a name="cardReplacement">
 
-The replacement is used to replace physical cards and tickets. There is no
+The replacement flow is used to replace physical cards and tickets. There is no
 replacement for electronic tickets or anonymous tickets.
 
 #### Requesting a replacement for a lost ticket
 
-The replacement is requested similar to the request for a non-trip based offer.
-The search tags must include the tag `CARD_LOST` or `TICKET_LOST`. The
+The replacement flow is requested similar to the request for a non-trip based
+offer. The search tags must include the tag `CARD_LOST` or `TICKET_LOST`. The
 provider will ask for the required data of the lost card or ticket to be
 provided with the passengers card data (card number).
 
