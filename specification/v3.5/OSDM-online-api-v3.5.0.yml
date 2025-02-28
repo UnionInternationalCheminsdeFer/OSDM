@@ -8793,7 +8793,7 @@ components:
       description: |
         A coach deck
       properties:
-        layoutID:
+        layoutId:
           description: |
             Identifies the coach deck layout. It is recommended to import coach deck layout master data periodically by calling GET /coach-deck-layouts
           type: string
@@ -13899,6 +13899,13 @@ components:
               type: boolean
               nullable: true
               default: false
+              deprecated: true
+            supportedPlaceSelectionFlows:
+              description: |
+                Supported place selection flows might depend on available places.
+              type: array
+              items:
+                $ref: '#/components/schemas/PlaceSelectionFlow'
 
     ReservationGroup:
       type: object
@@ -13953,10 +13960,6 @@ components:
             supportedPlaceSelectionFlows:
               description: |
                 Supported place selection flows might depend on available places.
-                Example:
-                A seat reservation for 4 persons has been requested. There are 4 distributed seats available. The passengers cannot be seated together. 
-                - MANUAL_PLACE_SELECTION_WITH_FEE and/or MANUAL_PLACE_SELECTION_WITHOUT_FEE is returned as its up to the passengers to decide whether the available seats meet their needs.
-                - AUTOMATIC_PLACE_SELECTION is NOT returned as the requested passengers must be seated together in automatic place selection mode.
               type: array
               items:
                 $ref: '#/components/schemas/PlaceSelectionFlow'
