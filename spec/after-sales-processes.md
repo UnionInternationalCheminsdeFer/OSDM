@@ -2,7 +2,7 @@
 layout: page
 title: After Sale Processes
 hide_hero: true
-permalink: /spec/after-sale-processes/
+permalink: /spec/after-sales-processes/
 ---
 
 ## Table of contents
