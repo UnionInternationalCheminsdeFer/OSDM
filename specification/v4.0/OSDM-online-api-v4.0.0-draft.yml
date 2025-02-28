@@ -6489,17 +6489,7 @@ components:
       description: |
         Request to cleanup a complete booking.
         Unconfirmed items will be deleted, any confirmed items will be refunded. There is no confirmation required.
-      properties:
-        overruleCode:
-          $ref: '#/components/schemas/OverruleCode'
-        refundDate:
-          description: |
-            Indicates for passes the date taken as reference to compute possible partial refund. It is also the date taken
-            as reference to invalidate the pass partially refunded.
-          type:
-            - 'string'
-            - 'null'
-          format: date-time
+      
 
     BookingHistoryResponse:
       type: object
