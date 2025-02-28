@@ -456,6 +456,16 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | `PASS_CHIP`      | Fulfillment loaded on pass          |
 | `PASS_REFERENCE` | Reference to booking loaded on pass |
 
+## FulfillmentDocumentType <a name="FulfillmentDocumentType">
+
+| Code               | Description                                |
+| ------------------ | ------------------------------------------ |
+| `BOARDING_PASS`    | Boarding Pass - not a ticket               | 
+| `BOOKING_RECEIPT`  | Financial receipt for a booking            |
+| `INFORMATION`      | Miscellaneous information, e.g. CO2 Report |
+| `TICKET`           | Ticket - valid for travel                  |
+| `VOUCHER`          | Voucher - e.g. for non-cash refunds        |
+
 ## FulfillmentMediaType <a name="FulfillmentMediaType">
 
 | Code              | Description                                                                                 |
