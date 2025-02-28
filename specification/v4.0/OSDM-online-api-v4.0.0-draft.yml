@@ -95,12 +95,18 @@ tags:
   - name: Travel Account
     description: |
       resource to get a travel account
+  - name: On-Demand Services
+    description: |
+      resources to handle contiuous on n-demand servces (e.g. scooter)     
+  - name: Search
+    description: |
+      search resources
   - name: Master Data
     description: |
       resources to get master data
-  - name: On-Demand Services
+  - name: Product
     description: |
-      resources to handle contiuous on n-demand servces (e.g. scooter)
+      resources to get product and product related master data
 
 paths:
   /places:
@@ -1882,6 +1888,7 @@ paths:
     post:
       tags:
         - Bookings Search
+        - Search
       summary: Search for bookings based on search parameters.
       operationId: searchBookings
       parameters:
@@ -4415,6 +4422,7 @@ paths:
     get:
       tags:
         - Master Data
+        - Product
       summary: Returns all products.
       operationId: getProducts
       parameters:
@@ -4465,10 +4473,12 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+          
   /products/{productId}:
     get:
       tags:
         - Master Data
+        - Product
       summary: Returns a product for the provided id.
       operationId: getProductsId
       parameters:
@@ -4522,6 +4532,123 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+  /product-tags:
+    get:
+      tags:
+        - Master Data
+        - Product
+      summary: Returns all product tags and their grouping.
+      operationId: getProductTags
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
+
+      responses:
+        '200':
+          description: |
+            Product-Tags found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductTagsResponse'
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                default: 'public, max-age=10000'
+                description: |
+                  Resource is fairly persistent and has a medium time to live to allow short-term caching.
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
+  /products-search:
+    post:
+      tags:
+        - Product
+        - Search
+      summary: Search for products based on search parameters.
+      operationId: searchProducts
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: page
+          in: query
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductSearchRequest'
+      responses:
+        '200':
+          description: |
+            booking search results found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
 
 security:
   - oAuth2ClientCredentials: []
@@ -6362,17 +6489,7 @@ components:
       description: |
         Request to cleanup a complete booking.
         Unconfirmed items will be deleted, any confirmed items will be refunded. There is no confirmation required.
-      properties:
-        overruleCode:
-          $ref: '#/components/schemas/OverruleCode'
-        refundDate:
-          description: |
-            Indicates for passes the date taken as reference to compute possible partial refund. It is also the date taken
-            as reference to invalidate the pass partially refunded.
-          type:
-            - 'string'
-            - 'null'
-          format: date-time
+      
 
     BookingHistoryResponse:
       type: object
@@ -12099,6 +12216,129 @@ components:
             $ref: '#/components/schemas/Problem'
         product:
           $ref: '#/components/schemas/Product'
+
+    ProductSearchRequest:
+      type: object
+      additionalProperties: false
+      description: |
+        Search criteria to search for products
+      properties:
+        id:
+          description: |
+            id of the product
+          type: 
+            - string
+            - 'null'
+        types:
+          type: array
+          items:          
+            $ref: '#/components/schemas/ProductType'
+        codes:
+          description: |
+            The product codees to be searched.
+          type: array
+          items:      
+            type: string
+        flexibilities:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Flexibility'
+        serviceClasses:
+          type: array
+          items:           
+            $ref: '#/components/schemas/ServiceClass'
+        travelClasses:
+          type: array
+          items:           
+            $ref: '#/components/schemas/TravelClass'
+        fulfillmentOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOption'
+        productTags:
+          description:
+            product tags associated with the product
+          type: array
+          items:
+            type: 
+              - string
+              - 'null'
+
+    ProductSearchResponse:
+      type: object
+      additionalProperties: false
+      description: |
+        Result of a product search
+      required:
+        - products
+      properties:
+        products:
+          type: array
+          minItems: 1
+          maxItems: 500
+          items:
+            $ref: '#/components/schemas/Product'
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+
+    ProductTagsResponse:
+      type: object
+      additionalProperties: false
+      description: |
+        Result of a product search
+      required:
+        - productTagNames
+        - productTagGroupNames
+        - productTagGroupings
+      properties:
+        productTagNames:
+          type: array
+          minItems: 1
+          maxItems: 1000
+          items:
+            $ref: '#/components/schemas/ProductTagName'        
+        productTagGroups:
+          type: array
+          minItems: 1
+          maxItems: 500
+          items:
+            $ref: '#/components/schemas/ProductTagGroup'
+
+
+    ProductTagName:
+      description: |
+        Product tags including a description,  The short text of the description should serve as a name on a button.
+      required:
+        - tag
+        - description  
+      properties:
+        tag:
+          $ref: '#/components/schemas/ProductTag'  
+        description:
+          $ref: '#/components/schemas/Text'              
+
+    ProductTagGroup:
+      description: |
+        Group of product tags with a description. 
+      required:
+        - code
+        - description          
+      properties:
+        code:
+          type: string  
+          maxLength: 1024          
+        description:
+          $ref: '#/components/schemas/Text'
+        productTags:
+          type: array
+          minItems: 1
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/ProductTag'      
 
     ProductSummary:
       type: object
