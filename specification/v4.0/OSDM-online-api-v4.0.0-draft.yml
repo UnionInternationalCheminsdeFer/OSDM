@@ -12340,7 +12340,7 @@ components:
       properties:
         code:
           type: string  
-          maxlength: 1024          
+          maxLength: 1024          
         description:
           $ref: '#/components/schemas/Text'
         productTags:
