@@ -8633,7 +8633,7 @@ components:
         requestedSections:
           type: array
           items:
-            $ref: '#/components/schemas/Section'a      
+            $ref: '#/components/schemas/Section'      
         offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
         corporateCodes:
