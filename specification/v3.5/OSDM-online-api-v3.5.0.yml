@@ -6782,9 +6782,11 @@ components:
         Attention point: refundDate and overruleCode are deprecated request attributes and will be ignored
       properties:
         overruleCode:
+          deprecated: true
           $ref: '#/components/schemas/OverruleCode'
           description: --Deprecated -- 
         refundDate:
+          deprecated: true
           description: |
             --Deprecated -- Indicates for passes the date taken as reference to compute possible partial refund. It is also the date taken
             as reference to invalidate the pass partially refunded.
