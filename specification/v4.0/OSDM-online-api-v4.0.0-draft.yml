@@ -8603,7 +8603,16 @@ components:
         - exchangeSpecification
       properties:
         exchangeSpecification:
-          $ref: '#/components/schemas/ExchangeSpecification'
+          description: specification of the fulfillments (or individual parts / passengers of fulfillments) that need to be exchanged.
+          type: array
+          maxItems: 1024
+          items:
+            $ref: '#/components/schemas/ExchangeSpecification'
+        addedPassengerSpecifications:
+          description: specifications of new passengers to be added
+          type: array
+          items:
+            $ref: '#/components/schemas/AnonymousPassengerSpecification'                   
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
         tripSpecifications:
@@ -8624,7 +8633,7 @@ components:
         requestedSections:
           type: array
           items:
-            $ref: '#/components/schemas/Section'
+            $ref: '#/components/schemas/Section'a      
         offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
         corporateCodes:
@@ -8788,26 +8797,28 @@ components:
       description: specification of parts or passengers to be exchanged
       type: object
       properties:
-        fulfillmentIds:
+        fulfillmentId:
           description: |
             ids of the fulfillments where some part(s) should be exchanged
           type: string
           maxLength: 32768
         bookingPartIds:
-          description: ids of booking parts to be exchanged
+          description: | 
+            Ids of booking parts of the fulfillment to be exchanged. The new offers will not contain these parts.
+            In case no booking parts are provided all booking parts will be exchanged.
           type: array
+          maxItems: 1024
           items:
             type: string
             maxLength: 32768
         removedPassengerIds:
           type: array
-          description: ids of passengers to be removed 
+          description: | 
+             Ids of passengers to be exchanged. The new offers will not contain these passengers.
+             In case no passengers refs are provided all passengers on the fulfillment will be exchanged.
+          maxItems: 1024             
           items:
             type: string     
-        addedPassengerSpecifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnonymousPassengerSpecification'
             
 
     ExchangeableType:
