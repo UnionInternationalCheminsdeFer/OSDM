@@ -12710,15 +12710,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VAT'
-        appliedCurrenyConversion:
+        appliedCurrencyConversion:
             $ref: '#/components/schemas/CurrencyConversion'
           
     CurrencyConversion:
       description: | 
-        details on a currency conversion applied
+        details on the currency conversion
       required:  
         - originalCurrency
-        - origionalAmount
+        - originalAmount
       properties:
         description:
           description: |
@@ -12726,12 +12726,16 @@ components:
           type: string
         originalCurrency:
           $ref: '#/components/schemas/Currency'
-        originalAamount:
+        originalAmount:
           description: |
             amount in cents
           type: integer
           format: int32
           nullable: false
+        originalVats:
+          type: array
+          items:
+            $ref: '#/components/schemas/VAT'   
         scale:
           description: |
             scale of the amount - the number of positions after the comma
@@ -12741,10 +12745,6 @@ components:
           default: 2
         appliedRate:
           type: number         
-        originalVats:
-          type: array
-          items:
-            $ref: '#/components/schemas/VAT'      
 
     Problem:
       type: object
