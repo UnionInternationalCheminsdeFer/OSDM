@@ -7674,10 +7674,6 @@ components:
     CoachDeckLayoutCollectionResponse:
       type: object
       additionalProperties: false
-      required:
-        - page
-        - size
-        - hasMore
       properties:
         problems:
           type: array
@@ -7687,17 +7683,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachDeckLayout'
-        page:
-          type: integer
-          format: int32
-          nullable: false
-        size:
-          type: integer
-          format: int32
-          nullable: false
-        hasMore:
-          type: boolean
-          nullable: false
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     CoachDeckLayoutResponse:
       type: object
@@ -10257,10 +10248,10 @@ components:
           $ref: '#/components/schemas/RectangleGeometry'
         orientation:
           $ref: '#/components/schemas/Orientation'
-        type:
-          $ref: '#/components/schemas/GraphicElementType'
+        code:
+          $ref: '#/components/schemas/GraphicElementCode'
 
-    GraphicElementType:
+    GraphicElementCode:
       type: string
       description: |
         An element in the coach layout. It has a type, a position, an orientation and a dimension. The graphic elements have no properties except a type and exist for visualization purposes only.
@@ -14413,10 +14404,10 @@ components:
       properties:
         rectangle:
           $ref: '#/components/schemas/RectangleGeometry'
-        type:
-          $ref: '#/components/schemas/ServiceIconType'
+        code:
+          $ref: '#/components/schemas/ServiceIconCode'
 
-    ServiceIconType:
+    ServiceIconCode:
       type: string
       description: |
         An icon representing a service which has a type, a position and a dimension. A Service Icon has no properties. See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
