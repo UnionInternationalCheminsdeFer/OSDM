@@ -3670,20 +3670,8 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - name: page
           in: query
-          description: |
-            Index of the page that should be returned.
           schema:
-            type: integer
-            format: int32
-            default: 0
-        - name: size
-          in: query
-          description: |
-            Size of the page that should be returned.
-          schema:
-            type: integer
-            format: int32
-            default: 1000
+            type: string
       responses:
         '200':
           description: |
