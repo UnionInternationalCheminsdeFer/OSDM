@@ -5857,6 +5857,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Offer'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     Address:
       description: |
@@ -7849,6 +7856,13 @@ components:
         hasMore:
           type: boolean
           nullable: false
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     CoachDeckLayoutResponse:
       type: object
@@ -7929,6 +7943,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachLayout'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     CoachLayoutGridSize:
       type: object
@@ -9021,6 +9042,13 @@ components:
           items:
             $ref: '#/components/schemas/Document'
           minItems: 1
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     DocumentRequest:
       type: object
@@ -9971,6 +9999,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VoucherInformation'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     FulfillmentConstraint:
       type: object
@@ -12252,6 +12287,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlace'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     PlaceAvailabilityMapRequest:
       type: object
@@ -13184,6 +13226,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Product'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     ProductLegAssociation:
       type: object
@@ -13409,6 +13458,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReductionCardType'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     ReductionCardType:
       type: object
@@ -16501,6 +16557,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ZoneDefinition'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     ZoneDefinition:
       type: object
