@@ -12704,15 +12704,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VAT'
-        appliedCurrenyConversion:
-          $ref: '#/components/schemas/CurrencyConversion'
-
+        appliedCurrencyConversion:
+            $ref: '#/components/schemas/CurrencyConversion'
+            
     CurrencyConversion:
       description: |
         details on a currency conversion applied
       required:
         - originalCurrency
-        - origionalAmount
+        - originalAmount
       properties:
         description:
           description: |
@@ -12720,7 +12720,7 @@ components:
           type: string
         originalCurrency:
           $ref: '#/components/schemas/Currency'
-        originalAamount:
+        originalAmount:
           description: |
             amount in cents
           type: integer
