@@ -107,7 +107,7 @@ tags:
   - name: Product
     description: |
       resources to get product and product related master data
-      
+
 paths:
   /places:
     get:
@@ -2330,14 +2330,14 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-          
+
   /fulfillments/{fulfillmentId}/continuous-service-usage/{continuousServiceUsageId}:
     get:
       tags:
         - Fulfillments
         - On-Demand Services
       summary: return the continuous service usage including latest updates
-      operationId: getContinuousServiceUsageId      
+      operationId: getContinuousServiceUsageId
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -3677,27 +3677,12 @@ paths:
       operationId: getCoachDeckLayouts
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/acceptNamespace'
         - name: page
           in: query
-          description: |
-            Index of the page that should be returned.
           schema:
-            type: integer
-            format: int32
-            default: 0
-          deprecated: true
-        - name: size
-          in: query
-          description: |
-            Size of the page that should be returned.
-          schema:
-            type: integer
-            format: int32
-            default: 1000
+            type: string
       responses:
         '200':
           description: |
@@ -3705,7 +3690,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CoachDeckLayoutCollectionResponse'  
+                $ref: '#/components/schemas/CoachDeckLayoutCollectionResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3737,10 +3722,8 @@ paths:
       operationId: getCoachDeckLayout
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/acceptNamespace'
         - name: layoutId
           in: path
           description: |
@@ -3757,7 +3740,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CoachDeckLayoutResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3777,7 +3760,7 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
-          $ref: '#/components/responses/DefaultErrorResponse'          
+          $ref: '#/components/responses/DefaultErrorResponse'
 
   /coach-layouts:
     get:
@@ -3788,7 +3771,7 @@ paths:
         Retrieve the coach layout description needed for graphical reservation. The coach
         layouts can either be retrieved as a complete list or specificity for a train identified via offerId and reservationId or fareId.
         <br><br>
-        Deprecated: Substituted by getCoachDeckLayouts (since: 3.5.0, removed with: 4.0.0) 
+        Deprecated: Substituted by getCoachDeckLayouts (since: 3.5.0, removed with: 4.0.0)
       operationId: getCoachLayouts
       deprecated: true
       parameters:
@@ -4465,7 +4448,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlaceAvailabilityMapResponse'
-    
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -4495,7 +4478,7 @@ paths:
       description: |
         Get place map including availabilities.
         <br><br>
-        Deprecated: Substituted by getAvailabilitiesVehiclePlaceMap (since: 3.5.0, removed with: 4.0.0) 
+        Deprecated: Substituted by getAvailabilitiesVehiclePlaceMap (since: 3.5.0, removed with: 4.0.0)
       operationId: getAvailabilitiesPlaceMap
       deprecated: true
       parameters:
@@ -4853,7 +4836,6 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-          
   /products:
     get:
       tags:
@@ -5415,7 +5397,7 @@ components:
           x-extensible-enum:
             - 'PRICING_UPCOMING': post payment scenario, no costs yet
             - 'PRICING_ONGOING': post payment scenario, costs are collected
-            - 'PRICING_FINAL': pricing is final          
+            - 'PRICING_FINAL': pricing is final
         offerMode:
           $ref: '#/components/schemas/OfferMode'
         bookingPartCode:
@@ -6655,7 +6637,7 @@ components:
         continuousServices:
           type: array
           items:
-            $ref: '#/components/schemas/ContinuousServiceBookingPart'            
+            $ref: '#/components/schemas/ContinuousServiceBookingPart'
         fees:
           type: array
           items:
@@ -7372,7 +7354,7 @@ components:
           items:
             $ref: '#/components/schemas/BookingSplit'
           minItems: 1
-    
+
     BorderRadius:
       type: object
       additionalProperties: false
@@ -7829,15 +7811,11 @@ components:
         - SINGLE_DECK
         - LOWER_DECK
         - MIDDLE_DECK
-        - UPPER_DECK       
+        - UPPER_DECK
 
     CoachDeckLayoutCollectionResponse:
       type: object
       additionalProperties: false
-      required:
-        - page
-        - size
-        - hasMore
       properties:
         problems:
           type: array
@@ -7847,20 +7825,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachDeckLayout'
-        page:
-          type: integer
-          format: int32
-          nullable: false
-        size:
-          type: integer
-          format: int32
-          nullable: false
-        hasMore:
-          type: boolean
-          nullable: false
         _links:
           description: |
-
             Java Property Name: 'links'
           type: array
           items:
@@ -7876,6 +7842,23 @@ components:
             $ref: '#/components/schemas/Problem'
         coachDeckLayout:
           $ref: '#/components/schemas/CoachDeckLayout'
+
+    CoachGroupAvailability:
+      type: object
+      additionalProperties: false
+      description: |
+        A group of coaches for which place availabilities were requested.
+      properties:
+        number: 
+          description: |
+            Number of the coach group
+          type: string
+        coaches:
+          description: |
+            List of the coaches in a coach group ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
+          type: array
+          items:
+            $ref: '#/components/schemas/CoachAvailability'
 
     CoachLayout:
       type: object
@@ -8506,13 +8489,14 @@ components:
 
     ContinuousServiceAvailabilityScope:
       description:
-        search parameter so get available pick-up places for continuous on-demand services.
+        search parameter so get available pick-up places for continuous
+        on-demand services.
       type: object
-      properties:   
+      properties:
         geoLocation:
           $ref: '#/components/schemas/GeoPosition'
         vehicleType:
-          $ref: '#/components/schemas/ContinuousServiceVehicleType'  
+          $ref: '#/components/schemas/ContinuousServiceVehicleType'
 
     ContinuousServiceBookingPart:
       description: |
@@ -8950,7 +8934,7 @@ components:
       description: |
         A coach deck
       properties:
-        layoutID:
+        layoutId:
           description: |
             Identifies the coach deck layout. It is recommended to import coach deck layout master data periodically by calling GET /coach-deck-layouts
           type: string
@@ -9207,17 +9191,17 @@ components:
             Accounting information for the exchange fee
           $ref: '#/components/schemas/AccountingRef'
         exchangePrice:
-          description: | 
-            price of the new booking parts 
+          description: |
+            price of the new booking parts
           $ref: '#/components/schemas/Price'
         refundableAmount:
           description: |
-            amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.        
+            amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.
           $ref: '#/components/schemas/Price'
         amountToBePaid:
           description: |
-            amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.  
-          $ref: '#/components/schemas/Price'          
+            amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.
+          $ref: '#/components/schemas/Price'
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
         fulfillments:
@@ -9302,17 +9286,17 @@ components:
         exchangeFee:
           $ref: '#/components/schemas/Price'
         exchangePrice:
-          description: | 
-            price of the new booking parts 
+          description: |
+            price of the new booking parts
           $ref: '#/components/schemas/Price'
         refundableAmount:
           description: |
-            amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.        
+            amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.
           $ref: '#/components/schemas/Price'
         amountToBePaid:
           description: |
-            amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.  
-          $ref: '#/components/schemas/Price'      
+            amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.
+          $ref: '#/components/schemas/Price'
         bookingPartIds:
           type: array
           items:
@@ -9933,7 +9917,7 @@ components:
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         continuousServiceUsage:
-          $ref: '#/components/schemas/ContinuousServiceUsage'          
+          $ref: '#/components/schemas/ContinuousServiceUsage'
         _links:
           description: |
 
@@ -9978,9 +9962,9 @@ components:
             type: string
           nullable: true
         continuousServiceVehicleSelection:
-          description: | 
-              selection of a pick-up place and vehicle type for continuous services.
-          $ref: '#/components/schemas/ContinuousServiceVehicleSelection'          
+          description: |
+            selection of a pick-up place and vehicle type for continuous services.
+          $ref: '#/components/schemas/ContinuousServiceVehicleSelection'
 
     FulfillmentCollectionResponse:
       type: object
@@ -10444,10 +10428,10 @@ components:
           $ref: '#/components/schemas/RectangleGeometry'
         orientation:
           $ref: '#/components/schemas/Orientation'
-        type:
-          $ref: '#/components/schemas/GraphicElementType'
+        code:
+          $ref: '#/components/schemas/GraphicElementCode'
 
-    GraphicElementType:
+    GraphicElementCode:
       type: string
       description: |
         An element in the coach layout. It has a type, a position, an orientation and a dimension. The graphic elements have no properties except a type and exist for visualization purposes only.
@@ -10637,7 +10621,7 @@ components:
         - 'BICYCLE'
         - 'ELECTRIC_BICYCLE'
         - 'CARGO_BICYCLE'
-        - 'SCOOTER'        
+        - 'SCOOTER'
 
     InitialPlaceInput:
       type: object
@@ -11336,7 +11320,7 @@ components:
         continuousServiceOfferParts:
           type: array
           items:
-            $ref: '#/components/schemas/ContinuousServiceOfferPart'         
+            $ref: '#/components/schemas/ContinuousServiceOfferPart'
         fees:
           type: array
           items:
@@ -11500,7 +11484,7 @@ components:
         - 'FARE_ADMISSION'
         - 'FARE_RESERVATION'
         - 'FARE_ANCILLARY'
-        - 'CONTINUOUS_SERVICE'        
+        - 'CONTINUOUS_SERVICE'
         - 'ALL'
 
     OfferSearchCriteria:
@@ -11883,7 +11867,7 @@ components:
         - 'ON_DEMAND_SERVICE'
         - 'BICYCLE'
         - 'SCOOTER'
-        - 'TAXI'        
+        - 'TAXI'
 
     Passenger:
       type: object
@@ -12320,7 +12304,7 @@ components:
           items:
             $ref: '#/components/schemas/Problem'
         vehicle:
-          $ref: '#/components/schemas/VehicleAvailability'        
+          $ref: '#/components/schemas/VehicleAvailability'
 
     PlaceAvailabilityResponse:
       type: object
@@ -12357,6 +12341,8 @@ components:
       properties:
         serviceClass:
           $ref: '#/components/schemas/ServiceClassType'
+        accommodationType:
+          $ref: '#/components/schemas/AccommodationType'
         accommodationSubType:
           $ref: '#/components/schemas/AccommodationSubType'
         places:
@@ -12391,7 +12377,7 @@ components:
             Static place properties
           type: array
           items:
-            $ref: '#/components/schemas/PlaceProperty'       
+            $ref: '#/components/schemas/PlaceProperty'
 
     PlaceParam:
       type: object
@@ -12756,11 +12742,11 @@ components:
             $ref: '#/components/schemas/VAT'
         appliedCurrencyConversion:
             $ref: '#/components/schemas/CurrencyConversion'
-          
+            
     CurrencyConversion:
-      description: | 
+      description: |
         details on a currency conversion applied
-      required:  
+      required:
         - originalCurrency
         - originalAmount
       properties:
@@ -13510,12 +13496,13 @@ components:
             $ref: '#/components/schemas/ServiceClassType'
           maxItems: 4
         reductionsGranted:
-          description: reductions that will be granted by this reduction card type
+          description:
+            reductions that will be granted by this reduction card type
           type: array
           items:
-             $ref: '#/components/schemas/ReductionGranted'
+            $ref: '#/components/schemas/ReductionGranted'
           minItems: 1
-          maxItems: 500  
+          maxItems: 500
         _links:
           description: |
             Java Property Name: 'links'
@@ -13527,7 +13514,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        reductions granted by a reduction card type. Eigther carrier or country must be provided. 
+        reductions granted by a reduction card type. Eigther carrier or country must be provided.
       required:
         - description
       properties:
@@ -13536,24 +13523,27 @@ components:
         country:
           $ref: '#/components/schemas/CountryCode'
         transportModes:
-          description: transport modes where the reduction is granted, any mode of the carrier in case the list is not provided.       
+          description:
+            transport modes where the reduction is granted, any mode of the
+            carrier in case the list is not provided.
           type: array
           items:
-            $ref: '#/components/schemas/Mode'        
+            $ref: '#/components/schemas/Mode'
         serviceBands:
-          description: ServiceBrands where the reduction is granted, any service brand of the carrier in case the list is not provided.
+          description:
+            ServiceBrands where the reduction is granted, any service brand of
+            the carrier in case the list is not provided.
           type: array
           items:
             $ref: '#/components/schemas/ServiceBrandCode'
         description:
           description:
-            text describing the reduction granted. In the context of master data translations should be provided.
+            text describing the reduction granted. In the context of master data
+            translations should be provided.
           $ref: '#/components/schemas/Text'
         percentage:
-          type:  "number"
+          type: 'number'
           format: float
-
-
 
     RefundOffer:
       type: object
@@ -13956,7 +13946,7 @@ components:
         - 'CONTINUOUS_SERVICE_VEHICLE_DID_NOT_ARRIVE'
         - 'CONTINUOUS_SERVICE_USAGE_STARTING_FAILED'
         - 'CONTINUOUS_SERVICE_USAGE_ENDING_FAILED'
-        - 'CONTINUOUS_SERVICE_USAGE_REPORT_WRONG'        
+        - 'CONTINUOUS_SERVICE_USAGE_REPORT_WRONG'
 
     ReimbursementRequest:
       type: object
@@ -14213,6 +14203,13 @@ components:
               type: boolean
               nullable: true
               default: false
+              deprecated: true
+            supportedPlaceSelectionFlows:
+              description: |
+                Supported place selection flows might depend on available places.
+              type: array
+              items:
+                $ref: '#/components/schemas/PlaceSelectionFlow'
 
     ReservationGroup:
       type: object
@@ -14267,10 +14264,6 @@ components:
             supportedPlaceSelectionFlows:
               description: |
                 Supported place selection flows might depend on available places.
-                Example:
-                A seat reservation for 4 persons has been requested. There are 4 distributed seats available. The passengers cannot be seated together. 
-                - MANUAL_PLACE_SELECTION_WITH_FEE and/or MANUAL_PLACE_SELECTION_WITHOUT_FEE is returned as its up to the passengers to decide whether the available seats meet their needs.
-                - AUTOMATIC_PLACE_SELECTION is NOT returned as the requested passengers must be seated together in automatic place selection mode.
               type: array
               items:
                 $ref: '#/components/schemas/PlaceSelectionFlow'
@@ -14734,10 +14727,10 @@ components:
       properties:
         rectangle:
           $ref: '#/components/schemas/RectangleGeometry'
-        type:
-          $ref: '#/components/schemas/ServiceIconType'
+        code:
+          $ref: '#/components/schemas/ServiceIconCode'
 
-    ServiceIconType:
+    ServiceIconCode:
       type: string
       description: |
         An icon representing a service which has a type, a position and a dimension. A Service Icon has no properties. See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
@@ -15162,7 +15155,7 @@ components:
             A human-readable description of the tip.
           type: string
         bookingPartRef:
-          $ref: '#/components/schemas/BookingPartReference'        
+          $ref: '#/components/schemas/BookingPartReference'
         price:
           $ref: '#/components/schemas/Price'
         distributorBookingRef:
@@ -16384,14 +16377,17 @@ components:
       type: object
       additionalProperties: false
       description: |
-        A vehicle run for which place availabilities where requested.
+        A vehicle run for which place availabilities were requested.
       properties:
-        coaches:
+        coachGroups:
           description: |
-            List of the coaches in a vehicle run ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
+            List of the coach groups in a vehicle run ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
           type: array
           items:
-            $ref: '#/components/schemas/CoachAvailability'
+            $ref: '#/components/schemas/CoachGroupAvailability'
+        passthrough:
+          description: |
+            Can travelers pass between coach groups while the train is not stopped
         preSelectedPlaces:
           type: array
           items:
