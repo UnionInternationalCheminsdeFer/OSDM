@@ -13022,7 +13022,7 @@ components:
             $ref: '#/components/schemas/ProductType'
         codes:
           description: |
-            The product codees to be searched.
+            The product codes to be searched.
           type: array
           items:      
             type: string
