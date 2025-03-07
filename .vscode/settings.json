@@ -1,26 +1,29 @@
 {
-    "cSpell.words": [
-        "Andreas",
-
-        "BOOKEDOFFERS",
-        "Eurail",
-        "Halbtax",
-        "Hosa",
-        "idempotency",
-        "klosters",
-        "küblis",
-        "Landquart",
-        "Loisir",
-        "Lyria",
-        "Milano",
-        "offerpart",
-        "OFFERPARTS",
-        "Platz",
-        "rics",
-        "Sargans",
-        "SIRI",
-        "traceparent",
-        "tracestate",
-        "TRIPOFFERS"
-    ]
+  "cSpell.words": [
+    "Andreas",
+    "BOOKEDOFFERS",
+    "Eurail",
+    "Halbtax",
+    "Hosa",
+    "idempotency",
+    "klosters",
+    "küblis",
+    "Landquart",
+    "Leidschendam",
+    "Loisir",
+    "Lyria",
+    "Milano",
+    "Nederland",
+    "offerpart",
+    "OFFERPARTS",
+    "Oude",
+    "Platz",
+    "rics",
+    "Sargans",
+    "SIRI",
+    "traceparent",
+    "tracestate",
+    "Trambaan",
+    "TRIPOFFERS"
+  ]
 }

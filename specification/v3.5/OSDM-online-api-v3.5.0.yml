@@ -97,7 +97,7 @@ tags:
       resource to get a travel account
   - name: On-Demand Services
     description: |
-      resources to handle contiuous on n-demand servces (e.g. scooter)     
+      resources to handle continuous services (e.g. bike, scooter)
   - name: Search
     description: |
       search resources
@@ -2081,7 +2081,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-          
+
   /bookings/{bookingId}/fulfillments:
     post:
       tags:
@@ -4979,7 +4979,6 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-
   /product-tags:
     get:
       tags:
@@ -5036,7 +5035,6 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-
 
   /products-search:
     post:
@@ -6947,7 +6945,7 @@ components:
         overruleCode:
           deprecated: true
           $ref: '#/components/schemas/OverruleCode'
-          description: --Deprecated -- 
+          description: --Deprecated --
         refundDate:
           deprecated: true
           description: |
@@ -7845,7 +7843,7 @@ components:
       description: |
         A group of coaches for which place availabilities were requested.
       properties:
-        number: 
+        number:
           description: |
             Number of the coach group
           type: string
@@ -9551,7 +9549,7 @@ components:
         The online representation of a fare.
         In case the final product requires the indication of carriers it is obligatory to provide a 
         carrierConstraint in the fare directly that includes the list of all carriers in the 
-        includedCarrier list. Whether the carrier must be indicated needs to be derived from the requetsted
+        includedCarrier list. Whether the carrier must be indicated needs to be derived from the requested
         total route and the location of the sales points for international sales. 
         Whether the indication of carriers is obligatory is defined
         in the Convention concerning International Carriage by Rail (COTIF).
@@ -12737,8 +12735,8 @@ components:
           items:
             $ref: '#/components/schemas/VAT'
         appliedCurrencyConversion:
-            $ref: '#/components/schemas/CurrencyConversion'
-            
+          $ref: '#/components/schemas/CurrencyConversion'
+
     CurrencyConversion:
       description: |
         details on a currency conversion applied
@@ -13018,33 +13016,32 @@ components:
           nullable: false
         types:
           type: array
-          items:          
+          items:
             $ref: '#/components/schemas/ProductType'
         codes:
           description: |
             The product codes to be searched.
           type: array
-          items:      
+          items:
             type: string
         flexibilities:
           type: array
-          items: 
+          items:
             $ref: '#/components/schemas/Flexibility'
         serviceClasses:
           type: array
-          items:           
+          items:
             $ref: '#/components/schemas/ServiceClass'
         travelClasses:
           type: array
-          items:           
+          items:
             $ref: '#/components/schemas/TravelClass'
         fulfillmentOptions:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentOption'
         productTags:
-          description:
-            product tags associated with the product
+          description: product tags associated with the product
           type: array
           items:
             type: string
@@ -13070,7 +13067,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-
 
     ProductTag:
       description: |
@@ -13099,7 +13095,7 @@ components:
           minItems: 1
           maxItems: 1000
           items:
-            $ref: '#/components/schemas/ProductTagName'        
+            $ref: '#/components/schemas/ProductTagName'
         productTagGroups:
           type: array
           minItems: 1
@@ -13107,29 +13103,28 @@ components:
           items:
             $ref: '#/components/schemas/ProductTagGroup'
 
-
     ProductTagName:
       description: |
         Product tags including a description,  The short text of the description should serve as a name on a button.
       required:
         - tag
-        - description  
+        - description
       properties:
         tag:
-          $ref: '#/components/schemas/ProductTag'  
+          $ref: '#/components/schemas/ProductTag'
         description:
-          $ref: '#/components/schemas/Text'              
+          $ref: '#/components/schemas/Text'
 
     ProductTagGroup:
       description: |
-        Group of product tags with a description. 
+        Group of product tags with a description.
       required:
         - code
-        - description          
+        - description
       properties:
         code:
-          type: string  
-          maxLength: 1024          
+          type: string
+          maxLength: 1024
         description:
           $ref: '#/components/schemas/Text'
         productTags:
@@ -13137,7 +13132,7 @@ components:
           minItems: 1
           maxItems: 10000
           items:
-            $ref: '#/components/schemas/ProductTag'          
+            $ref: '#/components/schemas/ProductTag'
 
     ProductType:
       description: |
@@ -13510,7 +13505,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        reductions granted by a reduction card type. Eigther carrier or country must be provided.
+        reductions granted by a reduction card type. Either carrier or country must be provided.
       required:
         - description
       properties:
@@ -13936,7 +13931,7 @@ components:
       x-extensible-enum:
         - 'STRIKE'
         - 'TICKET_NOT_USED'
-        - 'CONTINUOUS_SERVICE_VEHICLE_BATTRY_EMPTY'
+        - 'CONTINUOUS_SERVICE_VEHICLE_BATTERY_EMPTY'
         - 'CONTINUOUS_SERVICE_VEHICLE_BROKEN'
         - 'CONTINUOUS_SERVICE_VEHICLE_NOT_FOUND'
         - 'CONTINUOUS_SERVICE_VEHICLE_DID_NOT_ARRIVE'
@@ -15138,7 +15133,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Tips for staff can be included e.g. for taxi drivers. The Tip will be part of the payment in case ofpost payment scenarios.
+        Tips for staff can be included e.g. for taxi drivers. The tip is part of the payment in a post payment scenario.
       required:
         - id
         - price
