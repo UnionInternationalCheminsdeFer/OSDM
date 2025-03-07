@@ -124,10 +124,9 @@ paths:
         - $ref: '#/components/parameters/acceptNamespace'
         - name: page
           in: query
-          description: |
-            can be used for pagination
           schema:
             type: string
+          deprecated: true
       responses:
         '200':
           description: |
@@ -355,6 +354,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
         - name: embed
           in: query
           description: |
@@ -1981,6 +1981,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       requestBody:
         required: true
         content:
@@ -3688,6 +3689,7 @@ paths:
             type: integer
             format: int32
             default: 0
+          deprecated: true
         - name: size
           in: query
           description: |
@@ -3799,6 +3801,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       responses:
         '200':
           description: |
@@ -3914,6 +3917,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       responses:
         '200':
           description: |
@@ -3972,6 +3976,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       responses:
         '200':
           description: |
@@ -4867,6 +4872,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
         - name: productCode
           in: query
           description: the product code
@@ -5067,10 +5073,6 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
-        - name: page
-          in: query
-          schema:
-            type: string
       requestBody:
         required: true
         content:
