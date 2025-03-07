@@ -12306,6 +12306,31 @@ components:
         vehicle:
           $ref: '#/components/schemas/VehicleAvailability'
 
+    PlaceAvailabilityMapRequest:
+      type: object
+      additionalProperties: false
+      description: |
+        Reservation offer/bookingParts or reservation fares for which place availabilities shall be returned.
+      required:
+        - placeRestrictions
+      properties:
+        placeRestrictions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceRestriction'
+          minItems: 1
+
+    PlaceAvailabilityMapResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        vehicle:
+          $ref: '#/components/schemas/VehicleAvailability'
+
     PlaceAvailabilityResponse:
       type: object
       additionalProperties: false
