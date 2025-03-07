@@ -15489,7 +15489,7 @@ components:
         - 'OPPOSITE_DIRECTION'
         - 'CHANGING'
         - 'STARTING_IN_DIRECTION'
-        - STARTING_OPPOSITE_TO_DIRECTION
+        - 'STARTING_OPPOSITE_TO_DIRECTION'
 
     TravelPassAccount:
       allOf:
