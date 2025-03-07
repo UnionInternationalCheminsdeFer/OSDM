@@ -6087,6 +6087,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AfterSaleCondition'
+          deprecated: true
+        initialAfterSalesConditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AfterSaleCondition'
         overrideDescription:
           description:
             Description for the change of conditions for the customer.
@@ -6230,7 +6235,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Is some cases one out of a set of ancillary offerparts must be booked.
+        Is some cases one out of a set of ancillary offer parts must be booked.
       required:
         - ancillaryId
         - passengerRefs
@@ -12558,7 +12563,7 @@ components:
         - reference place for adjacent reservation
         - selected optional place properties
         - selected places from a graphical place selection
-        `tripLegCoverage` is deprecated and can be retrerived by the `reservationId`
+        `tripLegCoverage` is deprecated and can be retrieved by the `reservationId`
       required:
         - reservationId
         - tripLegCoverage
@@ -12585,7 +12590,7 @@ components:
         Known Values:
         - MANUAL_PLACE_SELECTION_WITH_FEE: Manual/graphical place selection. A seat selection fee is charged for certain places. /availabilities/vehicle-place-map must be called before the /bookings call.
         - MANUAL_PLACE_SELECTION_WITHOUT_FEE: Manual/graphical place selection. No seat selection fee is charged for certain places. /availabilities/vehicle-place-map must be called before the /bookings call.
-        - AUTOMATIC_PLACE_SELECTION: Automatic place selection based on selected accommodation (sub) types and place properties (see BookingRequest.placeSelections[].accomodations[]). It is not necessary to call /availabilities/* before the /bookings call.
+        - AUTOMATIC_PLACE_SELECTION: Automatic place selection based on selected accommodation (sub) types and place properties (see BookingRequest.placeSelections[].accommodations[]). It is not necessary to call /availabilities/* before the /bookings call.
         - AUTOMATIC_PLACE_SELECTION_NEARBY: Automatic place selection nearby a given place. /availabilities/nearby must be called before the /bookings call.
         - AUTOMATIC_PLACE_SELECTION_PREFERENCES: Automatic place selection based on available place preferences. /availabilities/preferences must be called before the /bookings call.
       type: string
