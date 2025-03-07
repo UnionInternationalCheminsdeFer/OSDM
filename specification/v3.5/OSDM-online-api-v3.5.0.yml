@@ -7835,6 +7835,23 @@ components:
         coachDeckLayout:
           $ref: '#/components/schemas/CoachDeckLayout'
 
+    CoachGroupAvailability:
+      type: object
+      additionalProperties: false
+      description: |
+        A group of coaches for which place availabilities were requested.
+      properties:
+        number: 
+          description: |
+            Number of the coach group
+          type: string
+        coaches:
+          description: |
+            List of the coaches in a coach group ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
+          type: array
+          items:
+            $ref: '#/components/schemas/CoachAvailability'
+
     CoachLayout:
       type: object
       additionalProperties: false
@@ -16310,14 +16327,17 @@ components:
       type: object
       additionalProperties: false
       description: |
-        A vehicle run for which place availabilities where requested.
+        A vehicle run for which place availabilities were requested.
       properties:
-        coaches:
+        coachGroups:
           description: |
-            List of the coaches in a vehicle run ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
+            List of the coach groups in a vehicle run ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
           type: array
           items:
-            $ref: '#/components/schemas/CoachAvailability'
+            $ref: '#/components/schemas/CoachGroupAvailability'
+        passthrough:
+          description: |
+            Can travelers pass between coach groups while the train is not stopped
         preSelectedPlaces:
           type: array
           items:
