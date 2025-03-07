@@ -3679,10 +3679,6 @@ paths:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - name: page
-          in: query
-          schema:
-            type: string
       responses:
         '200':
           description: |
@@ -12280,31 +12276,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-
-    PlaceAvailabilityMapRequest:
-      type: object
-      additionalProperties: false
-      description: |
-        Reservation offer/bookingParts or reservation fares for which place availabilities shall be returned.
-      required:
-        - placeRestrictions
-      properties:
-        placeRestrictions:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlaceRestriction'
-          minItems: 1
-
-    PlaceAvailabilityMapResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        problems:
-          type: array
-          items:
-            $ref: '#/components/schemas/Problem'
-        vehicle:
-          $ref: '#/components/schemas/VehicleAvailability'
 
     PlaceAvailabilityMapRequest:
       type: object
