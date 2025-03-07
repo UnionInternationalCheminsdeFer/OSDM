@@ -124,10 +124,9 @@ paths:
         - $ref: '#/components/parameters/acceptNamespace'
         - name: page
           in: query
-          description: |
-            can be used for pagination
           schema:
             type: string
+          deprecated: true
       responses:
         '200':
           description: |
@@ -355,6 +354,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
         - name: embed
           in: query
           description: |
@@ -1981,6 +1981,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       requestBody:
         required: true
         content:
@@ -3678,10 +3679,6 @@ paths:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - name: page
-          in: query
-          schema:
-            type: string
       responses:
         '200':
           description: |
@@ -3783,6 +3780,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       responses:
         '200':
           description: |
@@ -3898,6 +3896,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       responses:
         '200':
           description: |
@@ -3956,6 +3955,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       responses:
         '200':
           description: |
@@ -4850,6 +4850,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
         - name: productCode
           in: query
           description: the product code
@@ -5050,10 +5051,6 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
-        - name: page
-          in: query
-          schema:
-            type: string
       requestBody:
         required: true
         content:
@@ -5840,6 +5837,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Offer'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     Address:
       description: |
@@ -7920,6 +7924,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachLayout'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     CoachLayoutGridSize:
       type: object
@@ -9013,6 +9024,13 @@ components:
           items:
             $ref: '#/components/schemas/Document'
           minItems: 1
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     DocumentRequest:
       type: object
@@ -9963,6 +9981,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VoucherInformation'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     FulfillmentConstraint:
       type: object
@@ -12244,6 +12269,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlace'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     PlaceAvailabilityMapRequest:
       type: object
@@ -13178,6 +13210,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Product'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     ProductLegAssociation:
       type: object
@@ -13403,6 +13442,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReductionCardType'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     ReductionCardType:
       type: object
@@ -15439,7 +15485,7 @@ components:
         - 'OPPOSITE_DIRECTION'
         - 'CHANGING'
         - 'STARTING_IN_DIRECTION'
-        - STARTING_OPPOSITE_TO_DIRECTION
+        - 'STARTING_OPPOSITE_TO_DIRECTION'
 
     TravelPassAccount:
       allOf:
@@ -16505,6 +16551,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ZoneDefinition'
+        _links:
+          description: |
+
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     ZoneDefinition:
       type: object
