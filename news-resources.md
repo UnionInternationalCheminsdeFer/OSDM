@@ -8,6 +8,8 @@ permalink: /news-resources/
 
 - 28.02.2025
   [Rail Market](https://de.railmarket.com/news/technology-innovation/7020-transport-for-new-south-wales-with-a-new-turnit-software-from-estonia?region=na) _New South Wales is providing the OSDM API in their new system implemented by Turnit._
+- 25.02.2025
+  [Rynek Kolejowy](https://www.rynek-kolejowy.pl/wiadomosci/sprzedazowa-rewolucja-w-pkp-intercity-na-horyzoncie-122292.html) _PKP is implementing OSDM._
 - 05.07.2024
   [Mia-Platform](https://mia-platform.eu/blog/open-sales-distribution-model-osdm/)
   _Discovering OSDM: A Comprehensive Guide to Understanding and Implementing Data Standards_
