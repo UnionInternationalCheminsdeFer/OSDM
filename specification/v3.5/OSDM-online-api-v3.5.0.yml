@@ -16381,7 +16381,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachGroupAvailability'
-        passthrough:
+        providesPassage:
+          type: boolean
+          default: true
           description: |
             Can travelers pass between coach groups while the train is not stopped
         preSelectedPlaces:
