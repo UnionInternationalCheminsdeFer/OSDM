@@ -262,6 +262,10 @@ At the end of the usage the provider updates the booking to reflect the required
   - including a new refund on the existing ContinuousServiceBookingPart
   - fulfillment documents on the pricing / calculation of costs
 
+### continous service usage - state model 
+
+![Continous Service Usage State Model](../images/on-demand-services/continous-service-usage-state-model.png)
+
 
 ### Reimbursement <a name="Reimbursement">
 
