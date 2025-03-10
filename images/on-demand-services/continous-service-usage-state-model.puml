@@ -1,0 +1,22 @@
+@startuml
+title "Continous service usage"
+
+state blocked
+state started
+state ended
+state paused  #LightBlue
+
+[*] --> blocked: PATCH /fulfillments/{id}
+blocked --> [*]: DELETE fulfillment/{id}/continuousServiceUsage/{id}
+blocked --> blockingTimeOut: traveler never started the usage
+blockingTimeOut --> [*]
+blocked --> started: PATCH fulfillment/{id}/continuousServiceUsage/{id}
+started --> paused:  PATCH fulfillment/{id}/continuousServiceUsage/{id}
+paused  --> usageTimeOut: traveler exceeded usage time limit
+paused  --> started:  PATCH fulfillment/{id}/continuousServiceUsage/{id}
+started --> ended:  PATCH fulfillment/{id}/continuousServiceUsage/{id}
+started --> usageTimeOut: traveler exceeded usage time limit
+usageTimeOut --> [*]
+ended --> [*]
+
+@enduml
