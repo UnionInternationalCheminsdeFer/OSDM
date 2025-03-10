@@ -12278,6 +12278,10 @@ components:
           maxItems: 500
           items:
             $ref: '#/components/schemas/Product'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'             
         _links:
           description: |
             Java Property Name: 'links'
@@ -12307,6 +12311,10 @@ components:
           maxItems: 500
           items:
             $ref: '#/components/schemas/ProductTagGroup'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'             
 
 
     ProductTagName:
