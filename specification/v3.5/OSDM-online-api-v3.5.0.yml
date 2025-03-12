@@ -7755,6 +7755,12 @@ components:
           nullable: false
         travelDirection:
           $ref: '#/components/schemas/TravelDirectionType'
+        noPassageToNextCoach:
+          description: |
+            Indicates that there is no passage to the next coach.
+          type: boolean
+          default: false
+          nullable: true
         decks:
           description: |
             The decks of a coach ordered in ascending order from the lowest to the highest deck. Optional as for some coaches (especially special/not reservable coach types) no coach layout might exist.
@@ -7841,23 +7847,6 @@ components:
             $ref: '#/components/schemas/Problem'
         coachDeckLayout:
           $ref: '#/components/schemas/CoachDeckLayout'
-
-    CoachGroupAvailability:
-      type: object
-      additionalProperties: false
-      description: |
-        A group of coaches for which place availabilities were requested.
-      properties:
-        number:
-          description: |
-            Number of the coach group
-          type: string
-        coaches:
-          description: |
-            List of the coaches in a coach group ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
-          type: array
-          items:
-            $ref: '#/components/schemas/CoachAvailability'
 
     CoachLayout:
       type: object
@@ -16382,17 +16371,12 @@ components:
       description: |
         A vehicle run for which place availabilities were requested.
       properties:
-        coachGroups:
+        coaches:
           description: |
-            List of the coach groups in a vehicle run ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
+            List of the coaches in a vehicle run ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
           type: array
           items:
-            $ref: '#/components/schemas/CoachGroupAvailability'
-        providesPassage:
-          type: boolean
-          default: true
-          description: |
-            Can travelers pass between coach groups while the train is not stopped
+            $ref: '#/components/schemas/CoachAvailability'
         preSelectedPlaces:
           type: array
           items:
