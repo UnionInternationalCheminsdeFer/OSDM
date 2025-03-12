@@ -13179,13 +13179,9 @@ components:
       type: object
       additionalProperties: false
       properties:
-        fulfillmentIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentId'
         releaseSpecifications:
           description: |
-            To do a partial release repeat the fulfillmentIds affected and point out what to release
+            To do a partial release provide the fulfillmentIds affected and point out what to release
           type: array
           items:
             $ref: '#/components/schemas/RefundSpecification'
