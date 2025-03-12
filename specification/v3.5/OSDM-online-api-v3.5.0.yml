@@ -10417,11 +10417,11 @@ components:
       type: object
       additionalProperties: false
       description: |
-        An element in the coach deck layout (e.g. table, stair, toilet etc.). Graphic elements have no properties except a type and exist for visualization purposes only.
+        An element in the coach deck layout (e.g. table, stair, toilet etc.). Graphic elements have no properties except a code and exist for visualization purposes only.
       required:
         - rectangle
         - orientation
-        - type
+        - code
       properties:
         rectangle:
           $ref: '#/components/schemas/RectangleGeometry'
@@ -10433,7 +10433,7 @@ components:
     GraphicElementCode:
       type: string
       description: |
-        An element in the coach layout. It has a type, a position, an orientation and a dimension. The graphic elements have no properties except a type and exist for visualization purposes only.
+        An element in the coach layout. It has a code, a position, an orientation and a dimension. The graphic elements have no properties except a code and exist for visualization purposes only.
         See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
       nullable: false
       example: DRIVER_AREA
@@ -13069,7 +13069,7 @@ components:
         problems:
           type: array
           items:
-            $ref: '#/components/schemas/Problem'          
+            $ref: '#/components/schemas/Problem'
         _links:
           description: |
             Java Property Name: 'links'
@@ -13114,7 +13114,7 @@ components:
         problems:
           type: array
           items:
-            $ref: '#/components/schemas/Problem'            
+            $ref: '#/components/schemas/Problem'
 
     ProductTagName:
       description: |
@@ -14724,10 +14724,10 @@ components:
       type: object
       additionalProperties: false
       description: |
-        An icon representing a service. Service icons have no properties except a type and exist for visualization purposes only.
+        An icon representing a service. Service icons have no properties except a code and exist for visualization purposes only.
       required:
         - rectangle
-        - type
+        - code
       properties:
         rectangle:
           $ref: '#/components/schemas/RectangleGeometry'
@@ -14737,7 +14737,7 @@ components:
     ServiceIconCode:
       type: string
       description: |
-        An icon representing a service which has a type, a position and a dimension. A Service Icon has no properties. See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
+        An icon representing a service which has a code, a position and a dimension. A Service Icon has no properties. See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
       nullable: false
       example: TOILET_ICON
 
