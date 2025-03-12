@@ -10417,7 +10417,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        An element in the coach deck layout (e.g. table, stair, toilet etc.). Graphic elements have no properties except a code and exist for visualization purposes only.
+        An element in the coach deck layout (e.g. table, stair, toilet etc.).
       required:
         - rectangle
         - orientation
@@ -10433,7 +10433,6 @@ components:
     GraphicElementCode:
       type: string
       description: |
-        An element in the coach layout. It has a code, a position, an orientation and a dimension. The graphic elements have no properties except a code and exist for visualization purposes only.
         See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
       nullable: false
       example: DRIVER_AREA
@@ -14724,7 +14723,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        An icon representing a service. Service icons have no properties except a code and exist for visualization purposes only.
+        An icon representing a service.
       required:
         - rectangle
         - code
@@ -14737,7 +14736,7 @@ components:
     ServiceIconCode:
       type: string
       description: |
-        An icon representing a service which has a code, a position and a dimension. A Service Icon has no properties. See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
+        See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
       nullable: false
       example: TOILET_ICON
 
