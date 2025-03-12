@@ -1877,7 +1877,6 @@ paths:
       operationId: postBookingCleanup
       parameters:
         - $ref: '#/components/parameters/requestor'
-
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
@@ -3679,6 +3678,7 @@ paths:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
       responses:
         '200':
           description: |
@@ -3720,6 +3720,7 @@ paths:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: layoutId
           in: path
           description: |
@@ -3776,6 +3777,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: page
           in: query
           schema:
@@ -3834,6 +3836,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: layoutId
           in: path
           description: |
@@ -7755,6 +7758,12 @@ components:
           nullable: false
         travelDirection:
           $ref: '#/components/schemas/TravelDirectionType'
+        noPassageToNextCoach:
+          description: |
+            Indicates that there is no passage to the next coach.
+          type: boolean
+          default: false
+          nullable: true
         decks:
           description: |
             The decks of a coach ordered in ascending order from the lowest to the highest deck. Optional as for some coaches (especially special/not reservable coach types) no coach layout might exist.
@@ -7841,23 +7850,6 @@ components:
             $ref: '#/components/schemas/Problem'
         coachDeckLayout:
           $ref: '#/components/schemas/CoachDeckLayout'
-
-    CoachGroupAvailability:
-      type: object
-      additionalProperties: false
-      description: |
-        A group of coaches for which place availabilities were requested.
-      properties:
-        number:
-          description: |
-            Number of the coach group
-          type: string
-        coaches:
-          description: |
-            List of the coaches in a coach group ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
-          type: array
-          items:
-            $ref: '#/components/schemas/CoachAvailability'
 
     CoachLayout:
       type: object
@@ -10417,11 +10409,11 @@ components:
       type: object
       additionalProperties: false
       description: |
-        An element in the coach deck layout (e.g. table, stair, toilet etc.). Graphic elements have no properties except a type and exist for visualization purposes only.
+        An element in the coach deck layout (e.g. table, stair, toilet etc.).
       required:
         - rectangle
         - orientation
-        - type
+        - code
       properties:
         rectangle:
           $ref: '#/components/schemas/RectangleGeometry'
@@ -10433,7 +10425,6 @@ components:
     GraphicElementCode:
       type: string
       description: |
-        An element in the coach layout. It has a type, a position, an orientation and a dimension. The graphic elements have no properties except a type and exist for visualization purposes only.
         See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
       nullable: false
       example: DRIVER_AREA
@@ -13069,7 +13060,7 @@ components:
         problems:
           type: array
           items:
-            $ref: '#/components/schemas/Problem'          
+            $ref: '#/components/schemas/Problem'
         _links:
           description: |
             Java Property Name: 'links'
@@ -13114,7 +13105,7 @@ components:
         problems:
           type: array
           items:
-            $ref: '#/components/schemas/Problem'            
+            $ref: '#/components/schemas/Problem'
 
     ProductTagName:
       description: |
@@ -14724,10 +14715,10 @@ components:
       type: object
       additionalProperties: false
       description: |
-        An icon representing a service. Service icons have no properties except a type and exist for visualization purposes only.
+        An icon representing a service.
       required:
         - rectangle
-        - type
+        - code
       properties:
         rectangle:
           $ref: '#/components/schemas/RectangleGeometry'
@@ -14737,7 +14728,7 @@ components:
     ServiceIconCode:
       type: string
       description: |
-        An icon representing a service which has a type, a position and a dimension. A Service Icon has no properties. See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
+        See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
       nullable: false
       example: TOILET_ICON
 
@@ -16383,17 +16374,12 @@ components:
       description: |
         A vehicle run for which place availabilities were requested.
       properties:
-        coachGroups:
+        coaches:
           description: |
-            List of the coach groups in a vehicle run ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
+            List of the coaches in a vehicle run ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
           type: array
           items:
-            $ref: '#/components/schemas/CoachGroupAvailability'
-        providesPassage:
-          type: boolean
-          default: true
-          description: |
-            Can travelers pass between coach groups while the train is not stopped
+            $ref: '#/components/schemas/CoachAvailability'
         preSelectedPlaces:
           type: array
           items:
