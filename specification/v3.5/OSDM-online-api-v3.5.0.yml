@@ -1877,7 +1877,6 @@ paths:
       operationId: postBookingCleanup
       parameters:
         - $ref: '#/components/parameters/requestor'
-
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
@@ -3679,6 +3678,7 @@ paths:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
       responses:
         '200':
           description: |
@@ -3720,6 +3720,7 @@ paths:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: layoutId
           in: path
           description: |
@@ -3776,6 +3777,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: page
           in: query
           schema:
@@ -3834,6 +3836,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: layoutId
           in: path
           description: |
