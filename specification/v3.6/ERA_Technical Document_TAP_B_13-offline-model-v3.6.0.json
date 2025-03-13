@@ -1,6 +1,6 @@
 {
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
-	"$id": "http://uic.org//schemas/passenger/eticket/v3.5/offlineOSDM.json",
+	"$id": "http://uic.org//schemas/passenger/eticket/v3.6/offlineOSDM.json",
 	"title": "OSDM Offline Fare Delivery",
 	"description": "OSDM extract of offline fare delivery",
 	"type": "object",
