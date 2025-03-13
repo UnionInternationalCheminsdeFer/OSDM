@@ -4,7 +4,7 @@ servers:
     url: https://localhost:8080
 info:
   title: UIC 90918-10 - OSDM webhooks
-  version: 3.5.0
+  version: 3.6.0
   description: |
     Specifications for the OSDM API standard. The OSDM webhook specification allows an allocator to inform a distributor about changes to a booking or a complaint.
   contact:
