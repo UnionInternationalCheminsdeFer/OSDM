@@ -32,4 +32,4 @@ For any further questions or support please contact:
 
 [xatellite - David Prenninger](mailto:david@xatellite.space)
 
-<img src="./images/logo/xatellite-logo.png" height="40px">
+<img src="https://osdm.io/images/logo/xatellite-logo.png" height="40px">
