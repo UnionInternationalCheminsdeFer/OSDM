@@ -16,7 +16,7 @@ The first Demo-App implementation has been implemented by [SBB](https://www.sbb.
 The current implementation of the [**OSDM-Demo-App**](https://github.com/UnionInternationalCheminsdeFer/OSDM-demo-app) has been developed as a web-application by [xatellite](https://xatellite.space) and [bileto](https://bileto.cz/), following up to the corresponding challenge at the 2024 Drei-Länder-Hack.
 
 
-## Live-Demo
+## Online-Demo
 
 A deployed version of the demo application can be found here: [https://osdm-demo.xatellite.space/](https://osdm-demo.xatellite.space/)
 
