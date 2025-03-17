@@ -88,8 +88,8 @@ of by the customer.
 | `BUSINESS`              | Y                      | Y                | Y              | Manager compartment/business                                                                     | `COMPARTMENT_TYPE`               |
 | `BUSINESS_COMFORT`      | Y                      | Y                | Y              | Business Comfort – business seat with reduced service                                            | `COMPARTMENT_TYPE`               |
 | `CABIN8`                | Y                      | Y                | Y              | Special place group in TGV                                                                       | `COMPARTMENT_TYPE`               |
-| `CAR_LARGE`             | Y                      | N                | Y              | Vehicle parking place category 6-8                                                               | `SPECIAL_COMPARTMENT_TYPE`       |
-| `CAR_SMALL`             | Y                      | N                | Y              | Vehicle parking place category 1-3                                                               | `SPECIAL_COMPARTMENT_TYPE`       |
+| `CAR_LARGE`             | Y                      | N                | Y              | Vehicle place category formotor vehicle between 4,42 m up to 5,30 m and with a roof width between 1,36 m and 1,55 m  | `SPECIAL_COMPARTMENT_TYPE`       |
+| `CAR_SMALL`             | Y                      | N                | Y              | Vehicle place for motor vehicle between 4,42 m up to 5,30 m and with a roof width up to 1,35 m.  | `SPECIAL_COMPARTMENT_TYPE`       |
 | `CARRE`                 | Y                      | Y                | Y              | Carré (4 seats facing normally 2nd Class)                                                        | `COMPARTMENT_TYPE`               |
 | `CHILDREN_AREA`         | Y                      | Y                | Y              | Places in children area                                                                          | `PLACE_OR_COMPARTMENT_POSITION`  |
 | `CLUB`                  | Y                      | N                | Y              | Club Category (RENFE)                                                                            | `COMPARTMENT_TYPE`               |
@@ -112,7 +112,6 @@ of by the customer.
 | `DOUBLE`                | Y                      | N                | Y              | Two person sleeper compartment                             | `COMPARTMENT_TYPE`               |
 | `DOUBLE_WC`             | Y                      | N                | Y              | Two person sleeper compartment with WC                     | `COMPARTMENT_TYPE`               |
 | `DOUBLE_SWC`            | Y                      | N                | Y              | Double sleeper compartment with shower & WC                | `COMPARTMENT_TYPE`               |
-| `DOUBLE_SWC_DB`         | Y                      | N                | Y              | Double sleeper compartment with shower & WC & double bed   | `COMPARTMENT_TYPE`               |
 | `DOUBLE_S`              | Y                      | N                | Y              | Double sleeper compartment with shower                     | `COMPARTMENT_TYPE`               |
 | `EASY_ACCESS`           | Y                      | Y                | Y              | Place with easy access for PRMs                            | `PLACE_OR_COMPARTMENT_POSITION`  |
 | `FACE_2_FACE`           | N                      | Y                | Y              | places face to face (2 seats facing)                                                             | `PLACE_OR_COMPARTMENT_ALIGNMENT` |
@@ -153,10 +152,8 @@ of by the customer.
 | `SINGLE`                | Y                      | N                | Y              | Single sleeper compartment                       | `COMPARTMENT_TYPE`               |
 | `SINGLE_WC`             | Y                      | N                | Y              | Single sleeper compartment with WC               | `COMPARTMENT_TYPE`               |
 | `SINGLE_SWC`            | Y                      | N                | Y              | Single sleeper compartment with shower & WC      | `COMPARTMENT_TYPE`               |
-| `SINGLE_SWC_DOUBLE`     | Y                      | N                | Y              | Single compartment with shower & WC & double bed | `COMPARTMENT_TYPE`               |
 | `SIDE_BY_SIDE`          | N                      | Y                | Y              | Places side by side (2 seats side by side)       | `PLACE_OR_COMPARTMENT_ALIGNMENT` |
 | `SLEEPERETTE`           | Y                      | N                | Y              | Sleeperette (reclining seat)                     | `COMPARTMENT_TYPE`               |
-| `SLEEPER_DELUXE`        | Y                      | N                | Y              | Berth deluxe                                     | `COMPARTMENT_TYPE`               |
 | `SOLO`                  | Y                      | Y                | Y              | Separate place without neighbor seat             | `COMPARTMENT_TYPE`               |
 | `SOLO_COM`              | Y                      | Y                | Y              | Special separate place without neighbor seat (e.g. in TGV)   | `COMPARTMENT_TYPE` |
 | `SPECIAL_SLEEPER`       | Y                      | N                | Y              | Special Sleeper Compartment, one Person sleeper compartment smaller than a Single | `COMPARTMENT_TYPE`               |
