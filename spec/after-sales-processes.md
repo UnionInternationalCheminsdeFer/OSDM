@@ -147,6 +147,16 @@ refunded need to be specified in the RefundSpecification.
 A partial refund results in new fulfillments after the confirmation of the
 refund offer and booking.
 
+Partial Refund Use Cses:
+
+
+| Use Case                  | Description                             | Implementation in RefundOfferRequest               |
+|---------------------------|-----------------------------------------|----------------------------------------------------|
+| Cancel persons            | Remove some passengers from the booking | In case of individual ticketing: list the affected fulfillmentIds. <br/> In case of collective ticketing: list the affected fulfillment ids and provide the passenger ids in the refund specification. |
+| Cancel a bicycle          | Remove a bicycle from a booking of persons with bikes. |  In case of individual ticketing: list the affected fulfillmentIds. <br/> In case of collective ticketing: list the affected fulfillment ids and provide the passenger ids of the bicycles in the refund specification.  |
+| Cancel a trip             | Cancel one part of a return trip        | list the affected fulfillment ids and provide the booking part ids of the trip in the refund specification.  |
+| Cancel ancillaries        | Cancel optional ancillaries             | list the affected fulfillment ids and provide the booking part ids of the ancillaries in the refund specification.  |
+
 ### Cancel Fulfillment <a name="cancelFulfillment">
 
 #### Cancel Fulfillment request
