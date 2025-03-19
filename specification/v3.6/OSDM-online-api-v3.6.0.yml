@@ -7270,6 +7270,16 @@ components:
         id:
           type: string
           nullable: false
+        bookingCode:
+          type: string
+          description:
+            The unique booking code in the provider system. Usually refers to an
+            order number or PNR.
+        externalRef:
+          description: |
+            The unique booking reference in the provider system. Usually refers to an order number or PNR.
+          type: string
+          nullable: true
         provisionalPrice:
           description: |
             price of all unconfirmed pre-booked parts in the booking
