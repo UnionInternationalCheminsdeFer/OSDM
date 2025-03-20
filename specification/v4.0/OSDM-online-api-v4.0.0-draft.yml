@@ -5886,6 +5886,20 @@ components:
         - 'OFFERPART'
         - 'SEAT_SELECTION': (https://osdm.io/spec/processes/#SeatSelectionFees)
 
+    AppliedFee:
+      description: |
+        Fees are used to represent additional costs for services or products. In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the providing system.   
+      allOf:
+        - $ref: '#/components/schemas/AbstractBookingPart'
+        - type: object
+          additionalProperties: false
+          properties:
+            applicability:
+              $ref: '#/components/schemas/ApplicabilityType'
+            transactionContext:
+              $ref: '#/components/schemas/TransactionContextType'
+
+
     TransactionContextType:
       type: string
       x-extensible-enum:
@@ -6222,7 +6236,7 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/Fee'
+            $ref: '#/components/schemas/AppliedFee'
         fares:
           type: array
           items:
@@ -9136,14 +9150,6 @@ components:
           $ref: '#/components/schemas/ApplicabilityType'
         transactionContext:
           $ref: '#/components/schemas/TransactionContextType'
-        status:
-          $ref: '#/components/schemas/FeeStatus'
-        distributorBookingRef:
-          description: |
-            reference to the booking in the downstream distributor system
-          type:
-            - 'string'
-            - 'null'
         refundable:
           $ref: '#/components/schemas/RefundType'
         conditions:
@@ -9156,8 +9162,6 @@ components:
           type: string
           description: |
             Reference to the Product representing the Fee
-        accountingRef:
-          $ref: '#/components/schemas/AccountingRef'
 
     Flexibility:
       type: string
