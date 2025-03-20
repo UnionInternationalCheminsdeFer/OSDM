@@ -114,7 +114,7 @@ type URI.
 ## Functional Errors and Error Codes
 
 In order that OSDM implementations behave consistently in error situations, a
-list of [error codes and warnings](../errors-warnings/) have been defined that
+list of [error codes and problem codes](../errors-problems/) have been defined that
 must be supported in case of functional errors by all implementations.
 
 ## Authentication
