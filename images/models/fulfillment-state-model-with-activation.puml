@@ -7,7 +7,7 @@ available --> expired: timer 1 expired
 onHold --> available: timer 2 expired
 fulfilled --> checkedin: passenger check-in communicated 
 fulfilled --> refunded: PATCH /bookings/{id}/refundOffer
-fulfilled --> exchanged: PATCH /bookings/{id}/exchange-operations/{eId}
+fulfilled --> exchanged: POST /booking/{id}/fulfillments 
 checkedin --> [*]
 fulfilled --> [*]: passenger never checked ind
 refunded --> [*]
