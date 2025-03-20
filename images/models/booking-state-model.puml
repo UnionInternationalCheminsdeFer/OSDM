@@ -25,7 +25,7 @@ confirmed --> fulfilled: PATCH /bookings/{id}/fulfillments \n all fulfillments a
 confirmed --> error: unrecoverable error at fulfillment \n of a confirmed booking
 
 fulfilled --> refunded: POST /bookings/{id}/refundOffers \n followed by confirm
-fulfilled --> exchangeOngoing: POST /exchangeOffers \n followed by confirm
+fulfilled --> exchangeOngoing: POST /exchangeOffers 
 fulfilled --> released: POST /bookings/{id}/releaseOffers \n followed by confirm
 fulfilled --> [*] : archiving
 
@@ -33,7 +33,7 @@ cancelled --> [*]
 
 refunded --> [*]
 
-exchangeOngoing --> exchanged: POST /bookings/{id}/exchangeOperations \n followed by POST /booking/{id}/fulfillments
+exchangeOngoing --> exchanged: POST /booking/{id}/fulfillments
 exchangeOngoing --> fulfilled: exchange is not finalized
 
 exchanged --> [*]
