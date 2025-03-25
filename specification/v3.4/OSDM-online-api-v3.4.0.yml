@@ -30,6 +30,9 @@ servers:
   - url: https://benerail-stg-apim.azure-api.net
     description: |
       benerail Sandbox
+  - url: https://api.sandbox.turnit.tech/retailer
+    description: |
+      Turnit Sandbox      
 
 tags:
   - name: Places
