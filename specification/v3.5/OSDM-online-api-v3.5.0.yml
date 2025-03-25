@@ -32,7 +32,7 @@ servers:
       benerail Sandbox
   - url: https://api.sandbox.turnit.tech/retailer
     description: |
-      Turnit Sandbox      
+      Turnit Sandbox     
 
 tags:
   - name: Places
