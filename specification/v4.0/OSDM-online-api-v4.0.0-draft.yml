@@ -10800,17 +10800,13 @@ components:
           description: |
             A stable reference to the id of the offer in the caller's system. When received in input of a request, it must be persisted and echoed back in the response.
           type: string
-        optionalReservationSelections:
-          description: |
-            Mandatory reservations are booked when the booking is being booked.
-          type: array
-          items:
-            $ref: '#/components/schemas/ReservationSelection'
         optionalAncillarySelections:
           type: array
           items:
             $ref: '#/components/schemas/AncillarySelection'
-        placeSelections:
+        reservationSelections:
+          description: |
+            Selected reservations for booking.
           type: array
           items:
             $ref: '#/components/schemas/PlaceSelection'
@@ -12017,7 +12013,7 @@ components:
             - 'string'
             - 'null'
           examples:
-            - '#/offers[1]/placeSelections[1]/reservationId'
+            - '#/offers[1]/reservationSelections[1]/reservationId'
         responsePointer:
           description: |
             A pointer to the attribute in the response for the problem.
@@ -13340,15 +13336,6 @@ components:
           format: int32
         reservationGroup:
           $ref: '#/components/schemas/ReservationGroup'
-
-    ReservationSelection:
-      type: object
-      additionalProperties: false
-      required:
-        - reservationId
-      properties:
-        reservationId:
-          type: string
 
     ReservedPlace:
       type: object
