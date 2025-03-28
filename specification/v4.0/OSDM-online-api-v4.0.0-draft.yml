@@ -8600,14 +8600,19 @@ components:
         criteria, or based on trip-search and offer search criteria. At least one
         of the trip or tripSearchCriteria must be set.
       required:
-        - fulfillmentIds
-        - anonymousPassengerSpecifications
+        - exchangeSpecification
       properties:
-        fulfillmentIds:
+        exchangeSpecification:
+          description: specification of the fulfillments (or individual parts / passengers of fulfillments) that need to be exchanged.
+          type: array
+          maxItems: 1024
+          items:
+            $ref: '#/components/schemas/ExchangeSpecification'
+        addedPassengerSpecifications:
+          description: specifications of new passengers to be added
           type: array
           items:
-            type: string
-          minItems: 1
+            $ref: '#/components/schemas/AnonymousPassengerSpecification'                   
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
         tripSpecifications:
@@ -8628,14 +8633,9 @@ components:
         requestedSections:
           type: array
           items:
-            $ref: '#/components/schemas/Section'
+            $ref: '#/components/schemas/Section'      
         offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
-        anonymousPassengerSpecifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnonymousPassengerSpecification'
-          minItems: 1
         corporateCodes:
           type: array
           items:
@@ -8792,6 +8792,34 @@ components:
         - 'CONFIRMED'
         - 'FULFILLED'
         - 'ERROR'
+
+    ExchangeSpecification:
+      description: specification of parts or passengers to be exchanged
+      type: object
+      properties:
+        fulfillmentId:
+          description: |
+            ids of the fulfillments where some part(s) should be exchanged
+          type: string
+          maxLength: 32768
+        bookingPartIds:
+          description: | 
+            Ids of booking parts of the fulfillment to be exchanged. The new offers will not contain these parts.
+            In case no booking parts are provided all booking parts will be exchanged.
+          type: array
+          maxItems: 1024
+          items:
+            type: string
+            maxLength: 32768
+        removedPassengerIds:
+          type: array
+          description: | 
+             Ids of passengers to be exchanged. The new offers will not contain these passengers.
+             In case no passengers refs are provided all passengers on the fulfillment will be exchanged.
+          maxItems: 1024             
+          items:
+            type: string     
+            
 
     ExchangeableType:
       description: |
@@ -13151,13 +13179,9 @@ components:
       type: object
       additionalProperties: false
       properties:
-        fulfillmentIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentId'
         releaseSpecifications:
           description: |
-            To do a partial release repeat the fulfillmentIds affected and point out what to release
+            To do a partial release provide the fulfillmentIds affected and point out what to release
           type: array
           items:
             $ref: '#/components/schemas/RefundSpecification'
