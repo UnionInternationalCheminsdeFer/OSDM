@@ -12767,6 +12767,10 @@ components:
           $ref: '#/components/schemas/Price'
           description: |
             Amount kept by the carrier and/or distributor
+        refundFeeRef:
+          description: reference to an Applied Fee covering the refund fee. Providing the reference is mandatory when the refund was confirmed.
+          type: string
+          maxLength: 1024
         accountingRef:
           description: |
             Accounting information for the refund fee
