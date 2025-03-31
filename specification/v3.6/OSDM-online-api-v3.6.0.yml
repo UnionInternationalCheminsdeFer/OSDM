@@ -6864,15 +6864,15 @@ components:
           $ref: '#/components/schemas/Purchaser'
         provisionalPrice:
           description: |
-            Price of all unconfirmed pre-booked parts in the booking
+            Price of all unconfirmed pre-booked parts in the booking. The provisional price must be provided if the booking includes unconfirmed pre-booked parts.
           $ref: '#/components/schemas/Price'
         provisionalRefundAmount:
           description: |
-            Sum of the refund amounts of all unconfirmed pre-booked refunds and exchanges
+            Sum of the refund amounts of all unconfirmed pre-booked refunds and exchanges. The provisional refund amount must be provided if the booking includes unconfirmed pre-booked refunds or exchange operations.
           $ref: '#/components/schemas/Price'
         confirmedPrice:
           description: |
-            Sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts.
+            Sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts. The confirmed price must be provided if the booking includes confirmed parts.
           $ref: '#/components/schemas/Price'
         bookedOffers:
           type: array
