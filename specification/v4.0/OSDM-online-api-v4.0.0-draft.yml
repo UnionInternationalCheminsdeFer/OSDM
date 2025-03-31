@@ -8740,6 +8740,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExchangeOffer'
+        appliedFeesRefs:
+          description: references to the fees applied with this exchnage oepration. It is mandatory to provide the refs when the fees have been applied.
+          type: array
+          items:
+            type: string
+            maxLength: 1024
         ticketTimeLimit:
           type:
             - 'string'
