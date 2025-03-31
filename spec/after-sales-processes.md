@@ -91,6 +91,12 @@ A provider may return multiple refundOffers for the same request, which may
 differ e.g. in the validity time (validFrom/validUntil attribute pair) or in the
 reimbursement method (e.g. lower refund fee when a voucher is accepted).
 
+However, a provider **may not** return multiple refundOffers for a request to
+refund multiple fulfillments where each of the returned refundOffers only covers
+a subset of the requested fulfillments. In other words, the refundOffers returned
+must always cover **all** of the still refundable fulfillments from the refundOffer
+request.
+
 #### Cancel a Refund Offer
 
 ![Cancel a Refund Offer](../images/processes/seq-cancel-a-refund-offer.png)
