@@ -773,10 +773,8 @@ specifies the means of payment, is as follows:
    Should the value of the vouchers exceed the value of the booking, an
    Ancillary Offer will have been added to the booking which represents a new
    voucher covering the overpayment.
-4. Add the payment information for the balance of the booking (should there be
-   any) in another `PATCH /bookings` call
-5. The booking is now "balanced", i.e. the sum of all payments equals the sum of
-   all offers
+4. Add if needed the payment information (used payment methods) to the booking in another `PATCH /bookings` call
+
 
 ## Confirmation and Fulfillment Processes
 
@@ -788,7 +786,8 @@ The fulfillment is the final step of the booking. In most cases, the booking
 will be confirmed and fulfilled in one step from the API consumer standpoint:
 
 - fulfillments elements are created with the appropriate status (see below)
-- the provisional balance becomes confirmed
+- the bookingParts become confirmed
+- the value of the provisional price on booking level is added to the confirmed price and the providional price is removed or set to zero.
 - the status of the booking changes to `FULFILLED` (for most systems) or
   `CONFIRMED` (see below)
 - if relevant the documents elements in the fulfillment resources are created
@@ -878,8 +877,8 @@ following specific characteristics:
 
 - the returned booking has an `ERROR` status
 - fulfillment is available/fulfilled only for some of the `OfferParts`
-- the confirmed balance amount only totals offer parts where the confirmation
-  actually succeeded, while the provisional balance amounts to the total of the
+- the confirmed price amount only totals offer parts where the confirmation
+  actually succeeded, while the provisional price amounts to the total of the
   offer parts where the error occurred (or where the confirmation was never
   attempted because the error came too soon)
 
@@ -897,7 +896,7 @@ The following options are then available to the API Consumer:
     do so by sending a PATCH on the booking where the `cleanupPartialBooking`
     property set on TRUE. This will result in
     - the cancellation of all non confirmed content,
-    - adaptation of the balance values (provisional balance = 0, confirm balance
+    - adaptation of the prices on booking level (provisional price = 0, confirmed price
       = sum of confirmed products)
     - a reset of the booking status to `FULFILLED` (or `CONFIRMED`, depending on
       the confirmed content fulfillment status)
@@ -934,8 +933,8 @@ If this check is successful, then the execution of the confirm can start:
   in parallel or sequentially
 - The ticket-time-limit is invalidated (set to 0)
 - The state of the booking is set to `CONFIRMED`
-- The provisional balance is set to 0
-- The confirmed balance is set to the total amount of the booking
+- The provisional price is set to 0
+- The confirmed price is set to the total amount of the booking
 - Response is sent to the API consumer
 
 As of that point, cancelling the order becomes impossible (except for cleaning
