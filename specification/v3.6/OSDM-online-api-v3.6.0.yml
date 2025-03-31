@@ -9890,7 +9890,7 @@ components:
           type: string
           nullable: true
         bookingParts:
-          description: reference to all booking parts taht contributed to this fulfillment. If the fulfillment is made based on booking parts these references must be provided.
+          description: reference to all booking parts that contributed to this fulfillment. If the fulfillment is made based on booking parts these references must be provided.
           type: array
           items:
             $ref: '#/components/schemas/BookingPartReference'
