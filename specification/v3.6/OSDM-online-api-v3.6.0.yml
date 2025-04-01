@@ -6919,6 +6919,7 @@ components:
           description: |
             Refund offers are created with the details of the to-be-confirmed refund operation.
             One refund offer can then be confirmed, which turns it into a refund.
+            Refund offers in state PROPOSED might not be available in the Booking but only via the get endpoint. Confirmed refund offers must be listed here.
           type: array
           items:
             $ref: '#/components/schemas/RefundOffer'
