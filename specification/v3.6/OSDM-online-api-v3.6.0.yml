@@ -2655,6 +2655,11 @@ paths:
       tags:
         - Refund
       summary: Deletes a refundOffer without waiting for expiry.
+      description: | 
+               In case the unconfimed refund offer is not sored in the booking 
+               object the delete request must return an ok (http 204). In case the 
+               refund offer is already confirmed and can not be deleted the reply 
+               must be an error (http 409 conflict).
       operationId: deleteRefundOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
