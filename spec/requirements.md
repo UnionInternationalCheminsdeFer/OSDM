@@ -122,7 +122,7 @@ reductions has been applied.
 
 An admission is linked to one or more passengers.
 
-An admission is in state **CONFIRMED, FULFILLED, USED, REFUNDED.**
+For the possible states of an admission, refer to the [state model](../state-models#bookingPart) for booking parts.
 
 In general, there’s a one-to-one relationship between offer and product. Only
 for some combinations of TGV and TER in France an offer must support referencing
@@ -137,14 +137,14 @@ A reservation provides the right to sit or lay on dedicated place in a vehicle.
 
 A reservation has a price.
 
-A reservation can be **OPTIONAL, MANDATORY,INCLUDED** to an admission.
+A reservation can be **OPTIONAL, MANDATORY, INCLUDED** to an admission.
 
 A reservation offer is valid for a given time. An admission offer shows which
 reductions have been applied.
 
 A reservation is linked to one or more passengers.
 
-A reservation is in state **CONFIRMED, FULFILLED, USED, REFUNDED.**
+For the possible states of a reservation, refer to the [state model](../state-models#bookingPart) for booking parts.
 
 A reservation has a one-to-one relationship to a product.
 
@@ -165,7 +165,8 @@ An ancillary offer is valid for a given time.
 
 An ancillary is linked to one or more passengers.
 
-An ancillary is in state **CONFIRMED, FULFILLED, USED, REFUNDED.**
+For the possible states of an ancillary, refer to 
+the [state model](../state-models#bookingPart) for booking parts.
 
 An ancillary has a one-to-one relationship to a product.
 
@@ -260,9 +261,13 @@ instantiation of a product.
 
 ### Requirements on Fulfillment
 
-A fulfillment must be in a well-defined state (**CONFIRMED, FULFILLED,
-CHECKED_IN, REFUNDED**) and have a unique control number. The fulfillment must
+A fulfillment must be in a well-defined state and have a unique control number. The fulfillment must
 reference the offer parts covered by the fulfillment.
+
+For the possible states of a fulfillment, refer to the relevant state
+models:
+- [regular fulfillments](../state-models#fulfillment)
+- [fulfillments with activation](../state-models#fulfillmentActivation)
 
 A fulfillment must reference fulfillment documents (aka. tickets). Fulfillment
 documents in form of a UIC PDF ticket most be supported by all parties. A
