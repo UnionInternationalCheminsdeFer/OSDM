@@ -2,12 +2,12 @@
 title "Fullfillment State Diagram With Activation"
 [*] --> available: POST /bookings/{id}/fulfillments
 [*] --> onHold: POST /bookings/{id}/fulfillments
-available --> fulfilled: PATCH /bookings/{id}/fulfillments
+available --> fulfilled: PATCH /fulfillments/{fId}
 available --> expired: timer 1 expired
 onHold --> available: timer 2 expired
 fulfilled --> checkedin: passenger check-in communicated 
 fulfilled --> refunded: PATCH /bookings/{id}/refundOffer
-fulfilled --> exchanged: PATCH /bookings/{id}/exchange-operations/{eId}
+fulfilled --> exchanged: POST /bookings/{id}/fulfillments \n where fulfillment is affected by exchange operations
 checkedin --> [*]
 fulfilled --> [*]: passenger never checked ind
 refunded --> [*]
