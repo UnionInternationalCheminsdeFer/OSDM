@@ -206,15 +206,19 @@ wants to exchange, and an overrule code if relevant, are also provided.
 The exchange flow is following:
 
 - `POST /exchange-offers` to get alternative exchange offers (exchange
-  operations) for the given fulfillments
+  operations) for the given fulfillments. This does not change the state of the
+  booking.
 - `POST /bookings/{bookingId}/exchangeOperations` with selected exchange offer
   with a. information what to change on current booked offers, or b. to put a
-  new offer (exchange operation) to the booking
-- `PATCH /bookings/{bookingId}/exchangeOperations/{exchangeOperationId}` to
-  confirm the exchange. This will release the original booking parts and confirm
-  parts offered in the exchange operation.
-- `POST /bookings/{bookingId}/fulfillments` to issue the new fulfillments for
-  exchanged booking parts.
+  new offer (exchange operation) to the booking. This 'pre-books' the new elements
+  but does not otherwise affect the state of the booking. In particular, the existing
+  (pre-exchange) fulfillments are not affected and keep their previous state.
+- Optionally `PATCH /bookings/{bookingId}/exchangeOperations/{exchangeOperationId}` to
+  modify the fulfillment options for the new fulfillments which will be issued when
+  the exchange is confirmed.
+- `POST /bookings/{bookingId}/fulfillments` to confirm the exchange and to issue
+  the new fulfillments for exchanged booking parts. This will release the original
+  booking parts and confirm parts offered in the exchange operation.
 - Optionally `PATCH /bookings/{bookingId}/fulfillments` if the asynchronous
   fulfillment requires that.
 
@@ -222,6 +226,8 @@ It is a good practice to execute
 `DELETE /booking/{bookingId}/exchangeOperations/{exchangeOperationId}` to
 terminate the exchange operation without confirmation and release booked offers
 from the operation.
+
+See also the relevant [State Models](../state-models).
 
 ### Complaint <a name="complaint">
 
