@@ -1,13 +1,19 @@
 @startuml
 title "Exchange Operation State Model"
 
-[*] --> prebooked: PATCH /bookings/id {exchangeOfferId}
-prebooked --> confirmed: POST /bookings/id/fulfillments \n where at least 1 fulfillment in the exchange is confirmed
-prebooked --> [*]: DELETE /bookings/id/ExchangeOperation/id
-prebooked --> [*]: ExchangeOperation TicketTimeLimit reached
+[*] --> prebooked: POST /bookings/{id}/exchange-operations
+
+prebooked --> prebooked: PATCH /bookings/{id}/exchange-operations/{eId}
+prebooked --> confirmed: POST /bookings/{id}/fulfillments \n where at least 1 fulfillment in the exchange is confirmed
 prebooked --> error: unrecoverable error at fulfillment < of a prebooked exchangeOperation
+
+prebooked --> [*]: DELETE /bookings/{id}/exchange-operations/{eId}
+prebooked --> [*]: ExchangeOperation TicketTimeLimit reached
+
 confirmed --> fulfilled: PATCH /bookings/id/fulfillments \n <all fulfillments are now fulfilled>
+confirmed --> fulfilled: (time event)
 confirmed --> error: unrecoverable error at fulfillment \n <of a confirmed exchangeOperation>
+
 confirmed --> [*] : archiving
 fulfilled --> [*] : archiving
 error --> [*] : archiving

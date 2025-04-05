@@ -10,31 +10,39 @@ state exchangeOngoing #LightBlue
 state exchanged #LightBlue
 
 [*] --> prebooked : POST /bookings with offer ids, optional accommodation / ancillariy ids
+prebooked --> prebooked: POST /bookings/{id}/booked-offers \n with additional offers
 prebooked --> confirmed: POST /bookings/{id}/fulfillments \n where at least 1 fulfillment is confirmed
 prebooked --> cancelled: DELETE /bookings/{id}
 prebooked --> cancelled: ttl reached
 prebooked --> error: unrecoverable error \nat confirmation/fulfillment
 prebooked --> fulfilled: POST /bookings/{id}/fulfillments \n where all fulfillments are fulfilled
 prebooked --> onhold: PATCH /bookings/{id}/onhold-offer
+prebooked --> cancelled: POST /bookings/{id}/cleanup
 
 onhold --> confirmed: PATCH /bookings/{id}/fulfillments
 onhold --> cancelled: extended ttl reached
-onhold --> error: onrecoverable error 
+onhold --> error: unrecoverable error 
 
 confirmed --> fulfilled: PATCH /bookings/{id}/fulfillments \n all fulfillments are now fulfilled
+confirmed --> fulfilled: (time event)
 confirmed --> error: unrecoverable error at fulfillment \n of a confirmed booking
+confirmed --> confirmed: POST /bookings/{id}/exchange-offers 
+confirmed --> exchangeOngoing: POST /bookings/{id}/exchange-operations
 
-fulfilled --> refunded: POST /bookings/{id}/refundOffers \n followed by confirm
-fulfilled --> exchangeOngoing: POST /exchangeOffers \n followed by confirm
-fulfilled --> released: POST /bookings/{id}/releaseOffers \n followed by confirm
+fulfilled --> refunded: POST /bookings/{id}/refund-offers \n followed by confirm
+fulfilled --> fulfilled: POST /bookings/{id}/exchange-offers 
+fulfilled --> exchangeOngoing: POST /bookings/{id}/exchange-operations
+fulfilled --> released: POST /bookings/{id}/release-offers \n followed by confirm
 fulfilled --> [*] : archiving
 
 cancelled --> [*]
 
 refunded --> [*]
 
-exchangeOngoing --> exchanged: POST /bookings/{id}/exchangeOperations \n followed by POST /booking/{id}/fulfillments
-exchangeOngoing --> fulfilled: exchange is not finalized
+exchangeOngoing --> exchangeOngoing: PATCH /bookings/{id}/exchange-operations/{eId}
+exchangeOngoing --> exchanged: POST /booking/{id}/fulfillments
+exchangeOngoing --> fulfilled: DELETE /bookings/{id}/exchange-operations/{eId}
+exchangeOngoing --> fulfilled: (time event)
 
 exchanged --> [*]
 

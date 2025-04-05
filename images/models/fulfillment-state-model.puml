@@ -2,14 +2,19 @@
 title "Fulfillment State Model"
 [*] --> confirmed: POST /bookings/{id}/fulfillments
 [*] --> fulfilled: POST /bookings/{id}/fulfillments
+
 confirmed --> fulfilled: (time event)
-fulfilled --> checkedin: passenger check-in communicated 
+confirmed --> fulfilled: PATCH /bookings/{id}/fulfillments/{fId}
 confirmed --> refunded: PATCH /bookings/{id}/refundOffer
+confirmed --> exchanged: POST /bookings/{id}/fulfillments \n where fulfillment is affected by exchange operations
 confirmed --> released: PATCH /bookings/{id}/release-offers/{rId}
+
+fulfilled --> checkedin: passenger check-in communicated 
 fulfilled --> refunded: PATCH /bookings/{id}/refundOffer
-fulfilled --> exchanged: PATCH /bookings/{id}/exchange-operations/{eId}
-fulfilled --> [*]: passenger never checked in
+fulfilled --> exchanged: POST /bookings/{id}/fulfillments \n where fulfillment is affected by exchange operations
 fulfilled --> cancelled: PATCH /bookings/{id}/cancel-fulfillment-offers{cId}
+fulfilled --> [*]: passenger never checked in
+
 checkedin --> [*]
 refunded --> [*]
 exchanged --> [*]
