@@ -294,6 +294,11 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
+        - name: stopBehavior
+          in: query
+          schema:
+            $ref: '#/components/schemas/StopBehavior'
+          required: false
       requestBody:
         required: true
         description: |
@@ -353,6 +358,11 @@ paths:
           required: true
           schema:
             type: string
+        - name: stopBehavior
+          in: query
+          schema:
+            $ref: '#/components/schemas/StopBehavior'
+          required: false
         - name: page
           in: query
           schema:
@@ -418,6 +428,11 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - name: stopBehavior
+          in: query
+          schema:
+            $ref: '#/components/schemas/StopBehavior'
+          required: false
       requestBody:
         description: |
           request for trips
@@ -478,13 +493,9 @@ paths:
             maxLength: 32768
         - name: stopBehavior
           in: query
-          description: |
-            Influences what stops are to be returned in response
-            (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
-            REAL_BOARDING_ALIGHTING returns all stops except virtual stops).
-            Default value: ORIGIN_DESTINATION_ONLY
           schema:
             $ref: '#/components/schemas/StopBehavior'
+          required: false
         - name: embed
           in: query
           description: |
@@ -11370,6 +11381,8 @@ components:
           nullable: true
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
+        tripResponseParameters:
+          $ref: '#/components/schemas/TripResponseParameters'
         nonTripSearchCriteria:
           $ref: '#/components/schemas/NonTripSearchCriteria'
         requestedSections:
@@ -14881,6 +14894,9 @@ components:
       enum:
         - 'ORIGIN_DESTINATION_ONLY'
         - 'REAL_BOARDING_ALIGHTING'
+      default: 'ORIGIN_DESTINATION_ONLY'
+      description: |
+         Influences what stops are to be returned in response (ORIGIN_DESTINATION_ONLY returns no intermediate stops; REAL_BOARDING_ALIGHTING returns all stops except virtual stops). Default value: ORIGIN_DESTINATION_ONLY
 
     StopCallStatus:
       type: object
@@ -16057,6 +16073,15 @@ components:
       properties:
         TripSummary:
           $ref: '#/components/schemas/TripSpecificationSummary'
+
+    TripResponseParameters:
+      type: object
+      additionalProperties: false
+      description: |
+        Options to control response contents on Trip objects.
+      properties:
+        stopBehavior:
+          $ref: '#/components/schemas/StopBehavior'
 
     TripSearchCriteria:
       type: object
