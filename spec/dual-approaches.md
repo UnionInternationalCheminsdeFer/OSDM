@@ -1,3 +1,10 @@
+---
+layout: page
+title: Dual Approaches for use cases
+hide_hero: true
+permalink: /spec/dual-approaches/
+---
+
 ## Table of contents
 
 1. [Requesting Offers for known Vehicle Number](#RequestingOffersforknownVehicleNumber)

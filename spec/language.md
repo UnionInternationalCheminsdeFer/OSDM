@@ -1,3 +1,10 @@
+---
+layout: page
+title: Languages specifications and usage
+hide_hero: true
+permalink: /spec/language/
+---
+
 # Languages specifications and usage in OSDM
 
 ## Table of contents
