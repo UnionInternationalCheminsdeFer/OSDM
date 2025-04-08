@@ -1,18 +1,49 @@
 # Open Sales and Distribution Model OSDM
 
+## Table of contents
+
+   1. [International Railway Solution to be classified in volumes of UIC 9](#InternationalRailwaySolutiontobeclassifiedinvolumesofUIC9)
+   2. [Application](#Application)
+   3. [Record of Updates](#RecordofUpdates)
+   4. [Licensing](#Licensing)
+1. [The International Railway Solutions](#TheInternationalRailwaySolutions)
+2. [Current Situation](#CurrentSituation)
+   1. [Offline Distribution](#OfflineDistribution)
+   2. [Online Distribution](#OnlineDistribution)
+3. [Objectives](#Objectives)
+   1. [Objectives for Offline Distribution](#ObjectivesforOfflineDistribution)
+   2. [Objectives for Online Distribution](#ObjectivesforOnlineDistribution)
+4. [Summary](#Summary)
+5. [Normative References](#NormativeReferences)
+   1. [UIC Leaflets](#UICLeaflets)
+      1. [International Union of Railway (UIC)](#InternationalUnionofRailway(UIC))
+   2. [International Rail Standards](#InternationalRailStandards)
+      1. [International Union of Railway (UIC)](#InternationalUnionofRailway(UIC))
+      2. [CIT Manual for International Rail Tickets (MIRT)\*\*](#CITManualforInternationalRailTickets(MIRT)\*\*)
+      3. [CIT Guidelines on Protection of Privacy and Processing of Personal Data used in International Passenger Traffic by Rail (GDP CIT)](#CITGuidelinesonProtectionofPrivacyandProcessingofPersonalDatausedinInternationalPassengerTrafficbyRail(GDPCIT))
+      4. [International Union of Railway (UIC)/PSS](#InternationalUnionofRailway(UIC)PSS)
+   3. [International Standards](#InternationalStandards)
+      1. [International Organization for Standardization (ISO)\*\*](#InternationalOrganizationforStandardization(ISO)\*\*)
+      2. [European Union Agency for Railways (ERA)](#EuropeanUnionAgencyforRailways(ERA))
+      3. [European Union (EU)](#EuropeanUnion(EU))
+      4. [International Civil Aviation Organization (ICAO)](#InternationalCivilAviationOrganization(ICAO))
+6. [Terms and Definitions](#TermsandDefinitions)
+7. [Acronyms](#Acronyms)
+
+
 _This IRS is to be published only in English_
 
-### International Railway Solution to be classified in volumes of UIC 9
+### International Railway Solution to be classified in volumes of UIC 9 <a name="InternationalRailwaySolutiontobeclassifiedinvolumesofUIC9">
 
 - Information, Technology, Miscellaneous
 
-### Application
+### Application <a name="Application">
 
 With effect from 1st April 2020
 
 All members of the International Union of Railways
 
-### Record of Updates
+### Record of Updates <a name="RecordofUpdates">
 
 - **2020 March** Version 1.0 Fares only released
 - **2020 December** Version 1.0 OSDM released
@@ -25,7 +56,7 @@ All members of the International Union of Railways
 - **2023 November** Version 3.1 OSDM released
 - **2024 February** Version 3.2 OSDM released
 
-### Licensing
+### Licensing <a name="Licensing">
 
 **Licensed under the Apache License, Version 2.0 (the "License"); you may not
 use this file except in compliance with the License. You may obtain a copy of
@@ -41,7 +72,7 @@ License.**
 
 Printed by the International Union of Railways (UIC)
 
-## The International Railway Solutions
+## The International Railway Solutions <a name="TheInternationalRailwaySolutions">
 
 The International Railway Solutions (IRS) are structured in a General Part and
 in some eventual Application Parts.
@@ -64,9 +95,9 @@ services in Europe and those linked with Europe.
 
 # Foreword
 
-## Current Situation
+## Current Situation <a name="CurrentSituation">
 
-### Offline Distribution
+### Offline Distribution <a name="OfflineDistribution">
 
 The first main goal of this specification is to addresses the difficulties in
 the fare data exchange and sales with the current data exchange formats
@@ -79,7 +110,7 @@ specified in UIC leaflet 108.1 and 2. Some of the difficulties are:
 - Data exchange possible only once a year
 - Mapping of fares to passengers is difficult
 
-### Online Distribution
+### Online Distribution <a name="OnlineDistribution">
 
 The second main goal of this specification is to address the lack of a unified
 interface for distribution of admissions (i.e., tickets), reservations,
@@ -92,11 +123,11 @@ Furthermore, for a customer the booking of a rail ticket is unnecessarily
 complicated. This fact weakens rail as a convenient and ecological means of
 transportation.
 
-## Objectives
+## Objectives <a name="Objectives">
 
 The main objectives guiding this specification are:
 
-### Objectives for Offline Distribution
+### Objectives for Offline Distribution <a name="ObjectivesforOfflineDistribution">
 
 - Create a new tariff model to enable the NRT-carriers/operators to offer
   customer-friendly and competitive prices for international travel, preferably
@@ -113,7 +144,7 @@ The main objectives guiding this specification are:
 
 - The reservation should be fully integrated in the new technology.
 
-### Objectives for Online Distribution
+### Objectives for Online Distribution <a name="ObjectivesforOnlineDistribution">
 
 - To provide a convenient way for a customer to book an international train
   service, including refund and exchange processes.
@@ -130,7 +161,7 @@ The main objectives guiding this specification are:
 - To reduce unnecessary message conversions between callers as they provide no
   business value.
 
-## Summary
+## Summary <a name="Summary">
 
 The specification covers two aspects:
 
@@ -172,11 +203,11 @@ experts), we are confident that the OSDM online standard is powerful enough to
 support the distribution of existing or upcoming commercial products and can be
 implemented and supported at reasonable cost.
 
-## Normative References
+## Normative References <a name="NormativeReferences">
 
-### UIC Leaflets
+### UIC Leaflets <a name="UICLeaflets">
 
-#### International Union of Railway (UIC)
+#### International Union of Railway (UIC) <a name="InternationalUnionofRailway(UIC)">
 
 - _UIC Leaflet 920-1: Standard numerical coding for railway undertakings,
   infrastructure managers and other companies involved in rail-transport chains_
@@ -184,9 +215,9 @@ implemented and supported at reasonable cost.
 - _UIC Leaflet 920-14: Standard numerical country coding for use in railway
   traffic_
 
-### International Rail Standards
+### International Rail Standards <a name="InternationalRailStandards">
 
-#### International Union of Railway (UIC)
+#### International Union of Railway (UIC) <a name="InternationalUnionofRailway(UIC)">
 
 - _IRS 30301: Accountancy regulations for international "Passenger" traffic_
 - _IRS 90918-0: Electronic seat/berth reservation and electronic production of
@@ -196,23 +227,23 @@ implemented and supported at reasonable cost.
 - _IRS 90918-4: e-Ticket Exchange for Control_
 - _IRS 90918-9: Digital Security Elements for Rail Passenger Ticketing_
 
-#### CIT Manual for International Rail Tickets (MIRT)\*\*
+#### CIT Manual for International Rail Tickets (MIRT)\*\* <a name="CITManualforInternationalRailTickets(MIRT)\*\*">
 
-#### CIT Guidelines on Protection of Privacy and Processing of Personal Data used in International Passenger Traffic by Rail (GDP CIT)
+#### CIT Guidelines on Protection of Privacy and Processing of Personal Data used in International Passenger Traffic by Rail (GDP CIT) <a name="CITGuidelinesonProtectionofPrivacyandProcessingofPersonalDatausedinInternationalPassengerTrafficbyRail(GDPCIT)">
 
-#### International Union of Railway (UIC)/PSS
+#### International Union of Railway (UIC)/PSS <a name="InternationalUnionofRailway(UIC)PSS">
 
 - _Implementation guide reservation systems_
 
-### International Standards
+### International Standards <a name="InternationalStandards">
 
-#### International Organization for Standardization (ISO)\*\*
+#### International Organization for Standardization (ISO)\*\* <a name="InternationalOrganizationforStandardization(ISO)\*\*">
 
 - _ISO 3166:2006: Codes for the representation of names of countries and their
   subdivisions,_ 2006
 - _ISO 4217:2001: Codes for the representation of currencies and funds,_ 08-2001
 
-#### European Union Agency for Railways (ERA)
+#### European Union Agency for Railways (ERA) <a name="EuropeanUnionAgencyforRailways(ERA)">
 
 - _ERA TAP TSI Technical Document B.6: Electronic seat/berth reservation and
   electronic_
@@ -224,20 +255,20 @@ implemented and supported at reasonable cost.
   rail-transport chains_
 - _ERA TAP TSI Technical Document B.9: Standard numerical coding of locations_
 
-#### European Union (EU)
+#### European Union (EU) <a name="EuropeanUnion(EU)">
 
 - _Regulation (EU) 2016/679 of the European Parliament and of the Council of 27
   April 2016 on the protection of natural persons regarding the processing of
   personal data and on the free movement of such data, and repealing Directive
   95/46/EC (General Data Protection Regulation)_
 
-#### International Civil Aviation Organization (ICAO)
+#### International Civil Aviation Organization (ICAO) <a name="InternationalCivilAviationOrganization(ICAO)">
 
 - _Doc 9303 Machine Readable Travel Documents - Part 3: Specifications Common to
   all_
 - _MRTDs,_ 7th edition, 2015
 
-## Terms and Definitions
+## Terms and Definitions <a name="TermsandDefinitions">
 
 | Term                                    | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -261,7 +292,7 @@ implemented and supported at reasonable cost.
 | Station fee                             | A station fee is a fee for the use of a station by a passenger. It might be included in the fare provider offer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | Station                                 | A station is a is a location where trains or busses regularly stop to load or unload passengers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
-## Acronyms
+## Acronyms <a name="Acronyms">
 
 | Acronyms | Acronym Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
