@@ -5,7 +5,7 @@ hide_hero: true
 permalink: /spec/business-capabilities/
 ---
 
-## Table of Contents
+## Table of contents
 
 1. [Actor Model and Business Use Cases](#ActorModelandBusinessUseCases)
    1. [Actors in OSDM](#ActorsinOSDM)

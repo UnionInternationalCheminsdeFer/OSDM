@@ -5,7 +5,7 @@ hide_hero: true
 permalink: /spec/catalog-of-code-lists/
 ---
 
-## Table of Contents
+## Table of contents
 
 1. [URNs for code lists](#URNsforcodelists)
 2. [Proprietary values](#Proprietaryvalues)
