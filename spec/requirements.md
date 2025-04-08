@@ -5,6 +5,8 @@ hide_hero: true
 permalink: /spec/requirements/
 ---
 
+## Table of contents
+
 1. [Common Functional Requirements](#CommonFunctionalRequirements)
    1. [Requirements on Product Range](#RequirementsonProductRange)
    2. [Requirements on Price](#RequirementsonPrice)
