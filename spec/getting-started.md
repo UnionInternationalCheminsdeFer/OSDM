@@ -6,7 +6,28 @@ permalink: /spec/getting-started/
 
 # A Gentle Introduction to OSDM
 
-## Introduction
+## Table of contents
+
+1. [Introduction](#Introduction)
+   1. [Booking a Ticket](#BookingaTicket)
+   2. [What is in a Booking?](#WhatisinaBooking?)
+   3. [Reserving a Seat](#ReservingaSeat)
+   4. [Traveling a Bit Further](#TravelingaBitFurther)
+   5. [Refunding an Offer](#RefundinganOffer)
+2. [Where to Go From Here](#WheretoGoFromHere)
+3. [FAQ](#FAQ)
+   1. [Why is there no pre-booking resource?](#Whyistherenoprebookingresource?)
+   2. [Why are you using POST when there should be a GET?](#WhyareyouusingPOSTwhenthereshouldbeaGET?)
+   3. [How are IRTs modeled?](#HowareIRTsmodeled?)
+   4. [How many seats are available on the train?](#Howmanyseatsareavailableonthetrain?)
+   5. [When to pass in which passenger attributes?](#Whentopassinwhichpassengerattributes?)
+4. [Advanced Topics](#AdvancedTopics)
+   1. [Choosing Your Seat](#ChoosingYourSeat)
+   2. [How to book a pass?](#Howtobookapass?)
+   3. [What are fares?](#Whatarefares?)
+
+
+## Introduction <a name="Introduction">
 
 OSDM (Open Sales and Distribution Model) defines an API to enable and simplify the sale of transport 
 products. The API allows Retailers to access transport products provided by distributors. It also allows 
@@ -36,7 +57,7 @@ optional or mandatory to have a certain seat reservation or ancillary on a given
 vehicle. In an open system (e.g. Switzerland) having a reservation is optional.
 In contrast on a closed system (e.g. France) a seat reservation is a mandatory.
 
-### Booking a Ticket
+### Booking a Ticket <a name="BookingaTicket">
 
 We will start with booking a ticket, i.e. admission on a very simple trip:
 _Basel_ - _Chur_. We assume there's no changing of trains, thus one segment
@@ -390,7 +411,7 @@ this segment. On this segment this is a ICE train operated by SBB.
 
   **That's it**.
 
-### What is in a Booking?
+### What is in a Booking? <a name="WhatisinaBooking?">
 
 Once a booking has been created, you can get detailed information about it
 calling the booking resource:
@@ -401,7 +422,7 @@ The response gives you detailed information about the state and the price of the
 booking as well as the trip, the passengers and - if in state fulfilled - its
 fulfillments. Spend some time understanding it structure.
 
-### Reserving a Seat
+### Reserving a Seat <a name="ReservingaSeat">
 
 In the offer response of Step 2 you will see, that additionally to a admission,
 there are also seat reservations returned on this trip. The seat reservation has
@@ -457,7 +478,7 @@ then choose a seat for you. In this case, the place 25 in coach 3 was booked.
 }
 ```
 
-### Traveling a Bit Further
+### Traveling a Bit Further <a name="TravelingaBitFurther">
 
 Assuming you are hungry and want to see a scenic landscape, let's change the
 trip slightly: We travel from _Basel_ to _Chur_ and then switch train from
@@ -491,7 +512,7 @@ just pass in the id in the booking step.
 }
 ```
 
-### Refunding an Offer
+### Refunding an Offer <a name="RefundinganOffer">
 
 If a customer wants to refund its ticket, the flow is a two step process
 analogously to the booking flow. If a booking (i.e. its underlying product) is
@@ -531,7 +552,7 @@ the booking is non refundable an offer of 0 CHF is returned.
 
   **Again, that's it**
 
-## Where to Go From Here
+## Where to Go From Here <a name="WheretoGoFromHere">
 
 This short introduction should help you getting started and assure you that OSDM
 is simple to use. While it's simple to use it's powerful to handle all kind of
@@ -546,9 +567,9 @@ To fully understand OSDM we recommend you to have a look at the
 Another good start is to study the **API** itself. Or you can ask the OSDM
 technical group for an introduction.
 
-## FAQ
+## FAQ <a name="FAQ">
 
-### Why is there no pre-booking resource?
+### Why is there no pre-booking resource? <a name="Whyistherenoprebookingresource?">
 
 In some countries, super saver fares are loaded as promotions into the system at
 a given date, which can lead to millions of request for offers within a short
@@ -569,7 +590,7 @@ If your system thus not support this magic, you probably don't need it and can
 of course work cache the offers on the server side for a given time and return
 this information as part of the offer information.
 
-### Why are you using POST when there should be a GET?
+### Why are you using POST when there should be a GET? <a name="WhyareyouusingPOSTwhenthereshouldbeaGET?">
 
 It would be in the spirit of REST to search for
 `GET /bookings?firstName=John&lastName=Doe` to return all bookings of John Doe.
@@ -578,7 +599,7 @@ this collection of data violates GDPR regulations. We have reviewed all our
 services and decided to use POST in such cases and thus support privacy by
 design.
 
-### How are IRTs modeled?
+### How are IRTs modeled? <a name="HowareIRTsmodeled?">
 
 IRT stands for _integrated rail ticket_ and stands for a group of products where
 the admission includes a seat as reservation. For example given, IRT are
@@ -590,7 +611,7 @@ reservation_, i.e., the seat reservation have an `"optionality": INCLUDED`. The
 admission with the included reservation have to be treated atomically by any
 implementation.
 
-### How many seats are available on the train?
+### How many seats are available on the train? <a name="Howmanyseatsareavailableonthetrain?">
 
 The availability on a given train is bound to the products available on the
 train. I.e. the number of available bike reservations on a train is expressed on
@@ -602,7 +623,7 @@ This feature is optional to support by implementors, some railways decide not
 give insight into the numeric availability of product (especially super saver
 fares) on their trains.
 
-### When to pass in which passenger attributes?
+### When to pass in which passenger attributes? <a name="Whentopassinwhichpassengerattributes?">
 
 We take special care not to violate passenger personal rights and build in
 privacy by design. Thus we collect as little information as possible at every step,
@@ -612,9 +633,9 @@ gathered. To indicate which information is needed there is a
 in small DSL for
 [requested information](https://osdm.io/spec/requested-information-grammar.html).
 
-## Advanced Topics
+## Advanced Topics <a name="AdvancedTopics">
 
-### Choosing Your Seat
+### Choosing Your Seat <a name="ChoosingYourSeat">
 
 The easiest option is to book a place near to a given place:
 
@@ -733,7 +754,7 @@ you to download the layout. As a distributor you can now use this information to
 build a slick reservation UI that allows your customer to choose the seat or
 bed.
 
-### How to book a pass?
+### How to book a pass? <a name="Howtobookapass?">
 
 Offers for a pass for a certain origin and destination can be requested by using
 the `productTags` filter:
@@ -750,7 +771,7 @@ the `productTags` filter:
 }
 ```
 
-### What are fares?
+### What are fares? <a name="Whatarefares?">
 
 Fares are priced segments which can be used to create offers for a given trips
 constrained by fare combination constraints. In the role as a retailer you don't
