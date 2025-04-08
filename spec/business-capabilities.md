@@ -20,14 +20,14 @@ permalink: /spec/business-capabilities/
    5. [Pre-book Offers](#PrebookOffers)
    6. [Book pre-booked Booking](#BookprebookedBooking)
    7. [Fulfill Booking](#FulfillBooking)
-   8. [Get Booking](#GetBooking)
-   9. [Refund Booking](#RefundBooking)
+   8. [Get Booking](#GetBookingRetail)
+   9. [Refund Booking](#RefundBookingRetail)
    10. [Exchange Booking](#ExchangeBooking)
    11. [Graphical Seat Reservation](#GraphicalSeatReservation)
    12. [Edit Passenger Information](#EditPassengerInformation)
    13. [Retrieve Product Information](#RetrieveProductInformation)
    14. [Retrieve Stored Personal Data](#RetrieveStoredPersonalData)
-   15. [Manage complaints](#Managecomplaints)
+   15. [Manage complaints](#ManagecomplaintsRetail)
    16. [Provide Masterdata](#ProvideMasterdata)
       1. [Reduction Card Definitions](#ReductionCardDefinitions)
 4. [Business Capabilities for Fare Allocation](#BusinessCapabilitiesforFareAllocation)
@@ -40,15 +40,15 @@ permalink: /spec/business-capabilities/
    7. [Reservation](#Reservation)
       1. [Option/Step 1: Using old messages for reservation](#OptionStep1Usingoldmessagesforreservation)
       2. [Option/Step 2: Using REST services for all services](#OptionStep2UsingRESTservicesforallservices)
-   8. [Get Booking](#GetBooking)
-   9. [Refund Booking](#RefundBooking)
+   8. [Get Booking](#GetBookingFare)
+   9. [Refund Booking](#RefundBookingFare)
    10. [Exchange booking](#Exchangebooking)
    11. [Accounting](#Accounting)
       1. [direct accounting](#directaccounting)
    12. [Graphical seat reservation](#Graphicalseatreservation)
    13. [Passenger information](#Passengerinformation)
    14. [Retrieve stored personal data](#Retrievestoredpersonaldata)
-   15. [Manage complaints](#Managecomplaints)
+   15. [Manage complaints](#ManagecomplaintsFare)
    16. [Manage reimbourcements](#Managereimbourcements)
 
 
@@ -160,12 +160,12 @@ changed to “fulfilled”.
 Multiple formats and media are supported including pdf, pkpass. Parts to be included 
 in a fulfillment (visual security elements, separate bar code) can be used as well in case of fares.
 
-### Get Booking <a name="GetBooking">
+### Get Booking <a name="GetBookingRetail">
 
 To get the booking of a customer a service is needed. Specially care
 needs to be taken into account that privacy regulations are respected.
 
-### Refund Booking <a name="RefundBooking">
+### Refund Booking <a name="RefundBookingRetail">
 
 If a customer wants to refund a booking a service to refund a booking is
 needed. The service calculates a refund offer including fees and amount
@@ -217,7 +217,7 @@ There is no specific service to retrieve the stored personal data. The booking c
 to get the passenger references and then the passengers can be retireved.
 This will provide all stored personal data.
 
-### Manage complaints <a name="Managecomplaints">
+### Manage complaints <a name="ManagecomplaintsRetail">
 
 Complaints can be created on behalf of the passenger by Retailers. The distributor can request 
 additional documents to proof the complaint. The passenger can add documents to prove the claim and 
@@ -287,12 +287,12 @@ resolution data for fare or reservation are included in the bulk data
 3. pre-booking NRT / reservation (REST service)
 4. confirm booking of reservation / NRT (REST service)
 
-### Get Booking <a name="GetBooking">
+### Get Booking <a name="GetBookingFare">
 
 To get the booking of a customer a service is needed. Specially care
 needs to be taken into account that privacy regulations are respected.
 
-### Refund Booking <a name="RefundBooking">
+### Refund Booking <a name="RefundBookingFare">
 
 If a customer wants to refund a booking a service to refund a booking is
 needed. The service calculates a refund offer including fees and amount
@@ -415,7 +415,7 @@ There is no specific service to retrieve stored personal data. The booking can b
 to get the passenger references and then the passengers can be retireved.
 This will provide all stored personal data.
 
-### Manage complaints <a name="Managecomplaints">
+### Manage complaints <a name="ManagecomplaintsFare">
 
 Complaints can be created on behalf of the passenger by the reteiler. The distributor and the carrier 
 can request additional documents to proof the complaint. The passenger can add documents to 
