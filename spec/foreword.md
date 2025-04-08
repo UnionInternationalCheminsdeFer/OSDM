@@ -2,33 +2,28 @@
 
 ## Table of contents
 
-   1. [International Railway Solution to be classified in volumes of UIC 9](#InternationalRailwaySolutiontobeclassifiedinvolumesofUIC9)
-   2. [Application](#Application)
-   3. [Record of Updates](#RecordofUpdates)
-   4. [Licensing](#Licensing)
-1. [The International Railway Solutions](#TheInternationalRailwaySolutions)
-2. [Current Situation](#CurrentSituation)
-   1. [Offline Distribution](#OfflineDistribution)
-   2. [Online Distribution](#OnlineDistribution)
-3. [Objectives](#Objectives)
-   1. [Objectives for Offline Distribution](#ObjectivesforOfflineDistribution)
-   2. [Objectives for Online Distribution](#ObjectivesforOnlineDistribution)
-4. [Summary](#Summary)
-5. [Normative References](#NormativeReferences)
-   1. [UIC Leaflets](#UICLeaflets)
-      1. [International Union of Railway (UIC)](#InternationalUnionofRailway(UIC))
-   2. [International Rail Standards](#InternationalRailStandards)
-      1. [International Union of Railway (UIC)](#InternationalUnionofRailway(UIC))
-      2. [CIT Manual for International Rail Tickets (MIRT)\*\*](#CITManualforInternationalRailTickets(MIRT)\*\*)
-      3. [CIT Guidelines on Protection of Privacy and Processing of Personal Data used in International Passenger Traffic by Rail (GDP CIT)](#CITGuidelinesonProtectionofPrivacyandProcessingofPersonalDatausedinInternationalPassengerTrafficbyRail(GDPCIT))
-      4. [International Union of Railway (UIC)/PSS](#InternationalUnionofRailway(UIC)PSS)
-   3. [International Standards](#InternationalStandards)
-      1. [International Organization for Standardization (ISO)\*\*](#InternationalOrganizationforStandardization(ISO)\*\*)
-      2. [European Union Agency for Railways (ERA)](#EuropeanUnionAgencyforRailways(ERA))
-      3. [European Union (EU)](#EuropeanUnion(EU))
-      4. [International Civil Aviation Organization (ICAO)](#InternationalCivilAviationOrganization(ICAO))
-6. [Terms and Definitions](#TermsandDefinitions)
-7. [Acronyms](#Acronyms)
+1. [Foreword](#Foreword)
+   1. [Current Situation](#CurrentSituation)
+      1. [Offline Distribution](#OfflineDistribution)
+      2. [Online Distribution](#OnlineDistribution)
+   2. [Objectives](#Objectives)
+      1. [Objectives for Offline Distribution](#ObjectivesforOfflineDistribution)
+      2. [Objectives for Online Distribution](#ObjectivesforOnlineDistribution)
+   3. [Summary](#Summary)
+   4. [Normative References](#NormativeReferences)
+      1. [UIC Leaflets](#UICLeaflets)
+      2. [International Rail Standards](#InternationalRailStandards)
+         1. [International Union of Railway (UIC)](#InternationalUnionofRailway)
+         2. [CIT Manual for International Rail Tickets (MIRT)\*\*](#CITManualforInternationalRailTickets)
+         3. [CIT Guidelines on Protection of Privacy and Processing of Personal Data used in International Passenger Traffic by Rail (GDP CIT)](#GDP_CIT)
+         4. [International Union of Railway (UIC)/PSS](#UIC_PSS)
+      3. [International Standards](#InternationalStandards)
+         1. [International Organization for Standardization (ISO)\*\*](#ISO)
+         2. [European Union Agency for Railways (ERA)](#ERA)
+         3. [European Union (EU)](#EU)
+         4. [International Civil Aviation Organization (ICAO)](#ICAO)
+   5. [Terms and Definitions](#TermsandDefinitions)
+   6. [Acronyms](#Acronyms)
 
 
 _This IRS is to be published only in English_
@@ -93,7 +88,7 @@ services in Europe and those linked with Europe.
 
 **GENERAL PART**
 
-# Foreword
+# Foreword <a name="Foreword">
 
 ## Current Situation <a name="CurrentSituation">
 
@@ -207,8 +202,6 @@ implemented and supported at reasonable cost.
 
 ### UIC Leaflets <a name="UICLeaflets">
 
-#### International Union of Railway (UIC) <a name="InternationalUnionofRailway(UIC)">
-
 - _UIC Leaflet 920-1: Standard numerical coding for railway undertakings,
   infrastructure managers and other companies involved in rail-transport chains_
 - _UIC Leaflet 920-2: Standard numerical coding of locations_
@@ -217,7 +210,7 @@ implemented and supported at reasonable cost.
 
 ### International Rail Standards <a name="InternationalRailStandards">
 
-#### International Union of Railway (UIC) <a name="InternationalUnionofRailway(UIC)">
+#### International Union of Railway (UIC) <a name="InternationalUnionofRailway">
 
 - _IRS 30301: Accountancy regulations for international "Passenger" traffic_
 - _IRS 90918-0: Electronic seat/berth reservation and electronic production of
@@ -227,23 +220,23 @@ implemented and supported at reasonable cost.
 - _IRS 90918-4: e-Ticket Exchange for Control_
 - _IRS 90918-9: Digital Security Elements for Rail Passenger Ticketing_
 
-#### CIT Manual for International Rail Tickets (MIRT)\*\* <a name="CITManualforInternationalRailTickets(MIRT)\*\*">
+#### CIT Manual for International Rail Tickets (MIRT)\*\* <a name="CITManualforInternationalRailTickets">
 
-#### CIT Guidelines on Protection of Privacy and Processing of Personal Data used in International Passenger Traffic by Rail (GDP CIT) <a name="CITGuidelinesonProtectionofPrivacyandProcessingofPersonalDatausedinInternationalPassengerTrafficbyRail(GDPCIT)">
+#### CIT Guidelines on Protection of Privacy and Processing of Personal Data used in International Passenger Traffic by Rail (GDP CIT) <a name="GDP_CIT">
 
-#### International Union of Railway (UIC)/PSS <a name="InternationalUnionofRailway(UIC)PSS">
+#### International Union of Railway (UIC)/PSS <a name="UIC_PSS">
 
 - _Implementation guide reservation systems_
 
 ### International Standards <a name="InternationalStandards">
 
-#### International Organization for Standardization (ISO)\*\* <a name="InternationalOrganizationforStandardization(ISO)\*\*">
+#### International Organization for Standardization (ISO)\*\* <a name="ISO">
 
 - _ISO 3166:2006: Codes for the representation of names of countries and their
   subdivisions,_ 2006
 - _ISO 4217:2001: Codes for the representation of currencies and funds,_ 08-2001
 
-#### European Union Agency for Railways (ERA) <a name="EuropeanUnionAgencyforRailways(ERA)">
+#### European Union Agency for Railways (ERA) <a name="ERA">
 
 - _ERA TAP TSI Technical Document B.6: Electronic seat/berth reservation and
   electronic_
@@ -255,14 +248,14 @@ implemented and supported at reasonable cost.
   rail-transport chains_
 - _ERA TAP TSI Technical Document B.9: Standard numerical coding of locations_
 
-#### European Union (EU) <a name="EuropeanUnion(EU)">
+#### European Union (EU) <a name="EU">
 
 - _Regulation (EU) 2016/679 of the European Parliament and of the Council of 27
   April 2016 on the protection of natural persons regarding the processing of
   personal data and on the free movement of such data, and repealing Directive
   95/46/EC (General Data Protection Regulation)_
 
-#### International Civil Aviation Organization (ICAO) <a name="InternationalCivilAviationOrganization(ICAO)">
+#### International Civil Aviation Organization (ICAO) <a name="ICAO">
 
 - _Doc 9303 Machine Readable Travel Documents - Part 3: Specifications Common to
   all_
