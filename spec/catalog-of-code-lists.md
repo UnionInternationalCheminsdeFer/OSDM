@@ -46,7 +46,7 @@ permalink: /spec/catalog-of-code-lists/
 36. [Reservation Preference Group](#ReservationPreferenceGroup)
 37. [Service Brands](#ServiceBrands)
 38. [Service Class](#ServiceClass)
-39. [Service Facilities / Leg Attributes](#serviceFacilities)
+39. [Service Facilities / Leg Attributes](#ServiceFacilities)
 40. [Stations](#Station)
 41. [Supported Online Services](#SupportedOnlineServices)
 42. [TaxScope](#TaxScope)
@@ -685,7 +685,7 @@ Language codes used in OSDM are based on the [ISO
 
 ## Leg Attributes <a name="LegAttributes">
 
-Service Facilities <a name="serviceFacilities">
+See [Service Facilities](#ServiceFacilities).
 
 ## Nationality <a name="Nationality">
 
@@ -1058,7 +1058,7 @@ List](https://uic.org/passenger/passenger-services-group/article/service-brand-c
 | `STANDARD` |                       |
 | `BASIC`    | Standard second class |
 
-## Service Facilities / Leg Attributes <a name="serviceFacilities">
+## Service Facilities / Leg Attributes <a name="ServiceFacilities">
 
 | OSDM code                       | Description                                                                                                    | TAP-TSI code list | TAP-TSI code |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------- | ------------ |
