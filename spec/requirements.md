@@ -5,15 +5,92 @@ hide_hero: true
 permalink: /spec/requirements/
 ---
 
-## Common Functional Requirements
+1. [Common Functional Requirements](#CommonFunctionalRequirements)
+   1. [Requirements on Product Range](#RequirementsonProductRange)
+   2. [Requirements on Price](#RequirementsonPrice)
+   3. [Requirements on Personal Data](#RequirementsonPersonalData)
+2. [Functional Requirements of the Retailer](#FunctionalRequirementsoftheRetailer)
+   1. [Requirements on Passenger](#RequirementsonPassenger)
+   2. [Requirements on Location](#RequirementsonLocation)
+   3. [Requirements on Trip](#RequirementsonTrip)
+   4. [Requirements on Offers](#RequirementsonOffers)
+      1. [Requirements on Admission](#RequirementsonAdmission)
+      2. [Requirements on Reservation](#RequirementsonReservation)
+      3. [Requirements on Ancillary](#RequirementsonAncillary)
+      4. [Requirements on Fees](#RequirementsonFees)
+   5. [Requirements on Prolonging an Offer](#RequirementsonProlonginganOffer)
+   6. [Requirements on Offer Combination](#RequirementsonOfferCombination)
+   7. [Requirements on Round Trips](#RequirementsonRoundTrips)
+   8. [Requirements on Booking](#RequirementsonBooking)
+   9. [Requirements on Products](#RequirementsonProducts)
+   10. [Requirements on Fulfillment](#RequirementsonFulfillment)
+   11. [Requirements on Documents](#RequirementsonDocuments)
+   12. [Requirements on Refund](#RequirementsonRefund)
+   13. [Requirements on Partial Refund ](#RequirementsonPartialRefund)
+   14. [Requirements on Exchange](#RequirementsonExchange)
+   15. [Requirements on Seat Change](#RequirementsonSeatChange)
+   16. [Requirement to Release Allocated Resources](#RequirementtoReleaseAllocatedResources)
+   17. [Requirement to Cancel a Fulfillment](#RequirementtoCancelaFulfillment)
+   18. [Requirements on Complaints](#RequirementsonComplaints)
+   19. [Requirements on Reimbursements](#RequirementsonReimbursements)
+3. [Functional Requirements of a Distributor](#FunctionalRequirementsofaDistributor)
+   1. [Requirements on regional validity](#Requirementsonregionalvalidity)
+      1. [Station](#Station)
+      2. [Fare reference station set (virtual pricing point)](#Farereferencestationset(virtualpricingpoint))
+      3. [Route](#Route)
+         1. [Are routes used as line routes or as bubble routes?](#Areroutesusedaslineroutesorasbubbleroutes?)
+      4. [Areas](#Areas)
+      5. [Connection Point](#ConnectionPoint)
+   2. [Requirements on Allowed Service](#RequirementsonAllowedService)
+      1. [Allowed Services](#AllowedServices)
+      2. [Class of Service](#ClassofService)
+   3. [Requirements on availability for purchase](#Requirementsonavailabilityforpurchase)
+   4. [Requirements on validity for usage](#Requirementsonvalidityforusage)
+   5. [Requirements on validity for passengers / transportables](#Requirementsonvalidityforpassengerstransportables)
+   6. [Requirements on validity for reductions](#Requirementsonvalidityforreductions)
+   7. [Requirements on prices](#Requirementsonprices)
+   8. [Requirements on the basic fare structure](#Requirementsonthebasicfarestructure)
+   9. [Requirements on the after sales conditions](#Requirementsontheaftersalesconditions)
+   10. [Requirements on conditions on fulfillment](#Requirementsonconditionsonfulfillment)
+   11. [Requirements on dynamic fares and train linked tickets](#Requirementsondynamicfaresandtrainlinkedtickets)
+      1. [Indication of dynamic fares available online](#Indicationofdynamicfaresavailableonline)
+      2. [Indication of train links on the ticket](#Indicationoftrainlinksontheticket)
+      3. [Request for online fares](#Requestforonlinefares)
+   12. [Requirements on combining fares](#Requirementsoncombiningfares)
+      1. [SEPARATE_CONTRACTS model](#SEPARATE_CONTRACTSmodel)
+         1. [Implementation Aspect](#ImplementationAspectSeparate)
+         2. [Business Rule](#BusinessRuleSeparate)
+      2. [CLUSTERING model](#CLUSTERINGmodel)
+         1. [Implementation Aspect](#ImplementationAspectCluster)
+         2. [Business Rule](#BusinessRuleCluster)
+      3. [COMBINATION model](#COMBINATIONmodel)
+      4. [Implementation Aspect](#ImplementationAspectCombination)
+   13. [Requirements on Reservation](#RequirementsonReservationDist)
+   14. [Requirements on Trip Interruptions](#RequirementsonTripInterruptions)
+   15. [Requirements on Multi-Journeys Tickets](#RequirementsonMultiJourneysTickets)
+   16. [Requirements on Fare Exchange](#RequirementsonFareExchange)
+4. [Architectural Requirements](#ArchitecturalRequirements)
+   1. [Requirements on aligned processes end to end](#Requirementsonalignedprocessesendtoend)
+   2. [Requirements on aligned services](#Requirementsonalignedservices)
+   3. [Requirements on messages](#Requirementsonmessages)
+   4. [Requirements on extendibility](#Requirementsonextendibility)
+   5. [Requirements on security](#Requirementsonsecurity)
+5. [Legal Requirements](#LegalRequirements)
+   1. [Rail PRR Regulation (EC) 1371/2007 on Rail Passengers’ Rights and Obligations](#RailPRRRegulation(EC)13712007onRailPassengers’RightsandObligations)
+   2. [GDPR: Regulation (EU) 2016/679 on data protection](#GDPRRegulation(EU)2016679ondataprotection)
+      1. [Art. 101§1 TFEU (Competition Law)](#Art.101§1TFEU(CompetitionLaw))
+6. [Requirements not in Scope](#RequirementsnotinScope)
 
-### Requirements on Product Range
+
+## Common Functional Requirements <a name="CommonFunctionalRequirements">
+
+### Requirements on Product Range <a name="RequirementsonProductRange">
 
 It must be possible to distribute and sell all existing products on a fare as
 well as on an offer basis. Existing products include admissions (a.k.a Tickets),
 reservations and ancillaries.
 
-### Requirements on Price
+### Requirements on Price <a name="RequirementsonPrice">
 
 A price has a currency, an amount and a scale. Per default the scale is set to
 two.
@@ -21,14 +98,14 @@ two.
 A price has a set of value added taxes. A tax is valid for a country and has
 amount.
 
-### Requirements on Personal Data
+### Requirements on Personal Data <a name="RequirementsonPersonalData">
 
 The needed personal data must be indicated. Only personal data needed for the
 given business process can be transferred between the parties involved.
 
-## Functional Requirements of the Retailer
+## Functional Requirements of the Retailer <a name="FunctionalRequirementsoftheRetailer">
 
-### Requirements on Passenger
+### Requirements on Passenger <a name="RequirementsonPassenger">
 
 A passenger is the person travailing on a vehicle. A passenger may not
 necessarily be the person who has performed the booking, i.e. the customer.
@@ -56,7 +133,7 @@ A passenger can have a set of reduction cards.
 A passenger can further transport dogs, bicycles, cars, motorcycles or trailers
 if this is supported by the transport vehicle.
 
-### Requirements on Location
+### Requirements on Location <a name="RequirementsonLocation">
 
 A location uniquely identifies a place in space. A location can be of type
 station, point-of-interest, address or geo-coordinate.
@@ -65,7 +142,7 @@ For railway stations the UIC station codes most be supported.
 
 To support other means of transportation the types can potentially be extended.
 
-### Requirements on Trip
+### Requirements on Trip <a name="RequirementsonTrip">
 
 A trip must contain the following information.
 
@@ -94,7 +171,7 @@ A vehicle is defined by a number or line and a service brand.
 
 A transfer is a special kind of tripLeg, defining how long the transfer takes.
 
-### Requirements on Offers
+### Requirements on Offers <a name="RequirementsonOffers">
 
 An overall offer presented to a retailer or a distributer bundles offers that
 contain admissions, reservation and ancillaries.
@@ -111,7 +188,7 @@ An offer can be pre-booked.
 An offer should span at least one tripLeg of the trip and include all needed
 services.
 
-#### Requirements on Admission
+#### Requirements on Admission <a name="RequirementsonAdmission">
 
 An admission provides the right to travel on a vehicle.
 
@@ -131,7 +208,7 @@ product.
 
 An admission may be linked mandatorily or optionally to one or more reservations.
 
-#### Requirements on Reservation
+#### Requirements on Reservation <a name="RequirementsonReservation">
 
 A reservation provides the right to sit or lay on dedicated place in a vehicle.
 
@@ -151,7 +228,7 @@ A reservation has a one-to-one relationship to a product.
 An integrated reservation shall be modelled as an admission with an included
 reservation.
 
-#### Requirements on Ancillary
+#### Requirements on Ancillary <a name="RequirementsonAncillary">
 
 An ancillary is a service that can be offered to a customer. Examples for
 ancillary services: Wifi access or on-board meal.
@@ -170,7 +247,7 @@ the [state model](../state-models#bookingPart) for booking parts.
 
 An ancillary has a one-to-one relationship to a product.
 
-#### Requirements on Fees
+#### Requirements on Fees <a name="RequirementsonFees">
 
 Fees of a distributor or a carrier can be required upon the sale of
 reservations, admissions or ancillaries or collectively for a set of
@@ -188,7 +265,7 @@ Whether a fee is refundable is defined by the tariff.
 
 The state of a fee depends on the state of the associated product.
 
-### Requirements on Prolonging an Offer
+### Requirements on Prolonging an Offer <a name="RequirementsonProlonginganOffer">
 
 _Optional requirement_
 
@@ -202,7 +279,7 @@ hold offer to put an offer on hold for given time period.
 If accepted a deposit will be charged from the requestor. Additionally, a fee
 can be requested once the prolonged offer is actually booked.
 
-### Requirements on Offer Combination
+### Requirements on Offer Combination <a name="RequirementsonOfferCombination">
 
 Offers from different providers might have a restriction to be sold in
 combination only.
@@ -213,14 +290,14 @@ can be sold stand alone.
 
 The combination logic needs to be fast (<20ms).
 
-### Requirements on Round Trips
+### Requirements on Round Trips <a name="RequirementsonRoundTrips">
 
 Round trip offers should be possible considering both trips when making the
 offer.
 
 Support for round trips consisting of one or two products need to be supported.
 
-### Requirements on Booking
+### Requirements on Booking <a name="RequirementsonBooking">
 
 A booking consists of one or more selected offers and optionally reservations or optional
 ancillaries.
@@ -241,7 +318,7 @@ be a passenger.
 
 Booking must be supported by all parties.
 
-### Requirements on Products
+### Requirements on Products <a name="RequirementsonProducts">
 
 A product must contain the following information:
 
@@ -259,7 +336,7 @@ A product must contain the following information:
 A product does not have a price, as the price is bound to an offer as an
 instantiation of a product.
 
-### Requirements on Fulfillment
+### Requirements on Fulfillment <a name="RequirementsonFulfillment">
 
 A fulfillment must be in a well-defined state and have a unique control number. The fulfillment must
 reference the offer parts covered by the fulfillment.
@@ -277,7 +354,7 @@ FulfillmentMedia specifying the format (e.g. `RCT2`).
 **In distributor mode only:** A fulfillment may reference fulfillment items such
 as visual security elements, additional bar codes or control key.
 
-### Requirements on Documents
+### Requirements on Documents <a name="RequirementsonDocuments">
 
 It must be possible to add and delete a document to a booking. Such a document
 can be a booking receipt, a CO2 report, a explanatory documentation to a
@@ -285,7 +362,7 @@ complaint or any other general document.
 
 A document can reference a booking or a passenger in a booking.
 
-### Requirements on Refund
+### Requirements on Refund <a name="RequirementsonRefund">
 
 For a given a booking a refund can be requested.
 
@@ -298,7 +375,7 @@ Cancellation must be supported by all parties.
 
 Total refund must be supported by all parties.
 
-### Requirements on Partial Refund 
+### Requirements on Partial Refund  <a name="RequirementsonPartialRefund">
 
 Partial refund allows to remove passengers and booking parts (only if supported by the
 underlying tarif) from a booking.
@@ -307,7 +384,7 @@ A partial refund can have a fee.
 
 Partial refund may be supported by all parties.
 
-### Requirements on Exchange
+### Requirements on Exchange <a name="RequirementsonExchange">
 
 Exchange allows to change trip and passengers.
 
@@ -315,7 +392,7 @@ An exchange can have a fee.
 
 Exchange may be supported by all parties.
 
-### Requirements on Seat Change
+### Requirements on Seat Change <a name="RequirementsonSeatChange">
 
 _Optional requirement_
 
@@ -337,21 +414,21 @@ Some providers give the possibility to up-sell to a better seat after booking.
 This is an adjacent but not equivalent case, as the change of seat should not
 affect allocation or update the inventory.
 
-### Requirement to Release Allocated Resources
+### Requirement to Release Allocated Resources <a name="RequirementtoReleaseAllocatedResources">
 
 _Optional requirement_
 
 For some systems (e.g in the French or Swedish market) it must be possible to
 allocated resources such as places, meal or others.
 
-### Requirement to Cancel a Fulfillment
+### Requirement to Cancel a Fulfillment <a name="RequirementtoCancelaFulfillment">
 
 _Optional requirement_
 
 For some systems (e.g. in the French) it must be possible to cancel a
 fulfillment (_Void PNR_).
 
-### Requirements on Complaints
+### Requirements on Complaints <a name="RequirementsonComplaints">
 
 It must be possible to manage a complaint according to (EU) **2021/782**.
 
@@ -390,7 +467,7 @@ It must be possible for a distributor to inform the fare provider that the claim
 was accepted because the fare provider missed a legal timeline to handling the
 claim.
 
-### Requirements on Reimbursements
+### Requirements on Reimbursements <a name="RequirementsonReimbursements">
 
 Customers who have bought a ticket which allows reimbursement and which have not
 traveled or traveled partially only can claim to be reimbursed. The customer
@@ -406,13 +483,13 @@ electronic form by a carrier.
 The customer must be able to make the claim via a retailer to the distributor
 who needs to forward the request to the involved carriers.
 
-## Functional Requirements of a Distributor
+## Functional Requirements of a Distributor <a name="FunctionalRequirementsofaDistributor">
 
 The requirements covered by this specification are listed here with references
 to the implementation. Changes in the requirements during the lifecycle of this
 specification might lead to changes in the corresponding implementations.
 
-### Requirements on regional validity
+### Requirements on regional validity <a name="Requirementsonregionalvalidity">
 
 Users of the data:
 
@@ -432,17 +509,17 @@ Non-functional:
 
 Functional concepts:
 
-#### Station
+#### Station <a name="Station">
 
 A station which could be used in timetable data to embark and/or disembark
 passengers.
 
-#### Fare reference station set (virtual pricing point)
+#### Fare reference station set (virtual pricing point) <a name="Farereferencestationset(virtualpricingpoint)">
 
 A fare reference station is a list of stations where the fare is valid with a
 common name.
 
-#### Route
+#### Route <a name="Route">
 
 A route is defined as an ordered list of stations or “fare reference stations”
 along a possible travel route. In the human readable form, the stations are
@@ -455,7 +532,7 @@ The end of a route of one carrier when combined to another route of another
 carrier might be indicated with an additional text (e.g. FR or GR) in the human
 readable form if it is not at a “real” station.
 
-##### Are routes used as line routes or as bubble routes?
+##### Are routes used as line routes or as bubble routes? <a name="Areroutesusedaslineroutesorasbubbleroutes?">
 
 ![Line- vs. Bubble Route interpretation](../images/business-capabilities/line-vs-buble-route.png)
 
@@ -468,7 +545,7 @@ areas
 
 More than two alternative routes must be possible in the route description.
 
-#### Areas
+#### Areas <a name="Areas">
 
 Areas for the regional validity are needed. The areas defined in IRS 90918-4
 (control) and IRS 90918-9 (bar codes) will be available for the fares as well:
@@ -504,7 +581,7 @@ Route for dynamic fares:
   - Train bound offer until the border point/connection point
   - Route description from the border point/connection point onwards
 
-#### Connection Point
+#### Connection Point <a name="ConnectionPoint">
 
 Regions (routes) of different carriers can be connected at defined connection
 points. The old concept of a central predefined list of points (as part of
@@ -528,9 +605,9 @@ As on both sides of a connection multiple small stations could be connected and
 not all of them might be in the timetable of a train the connection point should
 allow to connect sets of stations.
 
-### Requirements on Allowed Service
+### Requirements on Allowed Service <a name="RequirementsonAllowedService">
 
-#### Allowed Services
+#### Allowed Services <a name="AllowedServices">
 
 Open tickets - not linked to a train - might be valid for some carriers or
 services on the route only.
@@ -541,7 +618,7 @@ data.
 
 Carriers and service brands can be included or excluded.
 
-#### Class of Service
+#### Class of Service <a name="ClassofService">
 
 List of classes allowed in the ticket. Railways use different notions and names
 on service classes on their trains. A common type is needed to combine different
@@ -562,7 +639,7 @@ the more detailed products available via reservation.
 In case NRT and Reservation needs to be combined, rules are needed which service
 levels of the reservation are allowed in combination with a fare.
 
-### Requirements on availability for purchase
+### Requirements on availability for purchase <a name="Requirementsonavailabilityforpurchase">
 
 An offer is available a specific time range before the start of travel at the
 first departure station in the time zone of the departure station.
@@ -623,7 +700,7 @@ The following rules can be defined (and combined):
 
 - A specific range of days in the time zone of the sales location
 
-### Requirements on validity for usage
+### Requirements on validity for usage <a name="Requirementsonvalidityforusage">
 
 The validity of usage defines the time when the passenger is allowed to use a
 fare. To define this time there is a need to:
@@ -684,7 +761,7 @@ possible.
   - Valid Saturday – Sunday and public holidays from 00:00 until 03:00 the
     following day
 
-### Requirements on validity for passengers / transportables
+### Requirements on validity for passengers / transportables <a name="Requirementsonvalidityforpassengerstransportables">
 
 Transportables can be different types of passengers, animals or other items
 carried by a passenger.
@@ -704,7 +781,7 @@ fares):
 
 The passenger weight of each passenger type needs to be considered.
 
-### Requirements on validity for reductions
+### Requirements on validity for reductions <a name="Requirementsonvalidityforreductions">
 
 Reductions are price reductions due to a reduction “card” an existing ticket or
 a pass which the passenger already holds. It might be that the physical card
@@ -727,7 +804,7 @@ reductions to a fare.
   together with the card. Pricing data are needed for the free travel area to
   get the route description.
 
-### Requirements on prices
+### Requirements on prices <a name="Requirementsonprices">
 
 Prices might be needed in more than one currency.
 
@@ -763,13 +840,13 @@ Possible Price formats are:
 _Decision_: The price will be delivered also in case of reductions or
 kilometers. No calculation is needed at the receiver side of the data.
 
-### Requirements on the basic fare structure
+### Requirements on the basic fare structure <a name="Requirementsonthebasicfarestructure">
 
 The basic fare element links the constraints and the price.
 
 A name of the fare needs to be provided.
 
-### Requirements on the after sales conditions
+### Requirements on the after sales conditions <a name="Requirementsontheaftersalesconditions">
 
 After sales conditions define fees to be taken in case of an aftersales
 transaction on behalf of a customer. The after sales transactions considered
@@ -797,7 +874,7 @@ received, …).
 
 The refund fee can be claimed by the carrier.
 
-### Requirements on conditions on fulfillment
+### Requirements on conditions on fulfillment <a name="Requirementsonconditionsonfulfillment">
 
 The fulfillment defines the required types of creating a ticket for the
 passenger and therefore especially the required types of security to be applied.
@@ -822,9 +899,9 @@ The Required personal data might depend on the fulfillment:
 Fares should provide the involved TCOs that need to have access to the ticket
 data for control of fulfillments.
 
-### Requirements on dynamic fares and train linked tickets
+### Requirements on dynamic fares and train linked tickets <a name="Requirementsondynamicfaresandtrainlinkedtickets">
 
-#### Indication of dynamic fares available online
+#### Indication of dynamic fares available online <a name="Indicationofdynamicfaresavailableonline">
 
 The distributor needs to find where he can request offers online.
 
@@ -840,7 +917,7 @@ The distributor needs to find where he can request offers online.
 
 _Decision_: The solution should be independent from the timetable.
 
-#### Indication of train links on the ticket
+#### Indication of train links on the ticket <a name="Indicationoftrainlinksontheticket">
 
 Tickets may be linked to the use of specific trains even in the case there is no
 seat reservation. There are different options on how to indicate this restriction:
@@ -862,7 +939,7 @@ Train link should include:
 - Departure Station (short name)
 - Arrival Station (short name)
 
-#### Request for online fares
+#### Request for online fares <a name="Requestforonlinefares">
 
 - The complete connection must be sent
 
@@ -875,7 +952,7 @@ Train link should include:
 
   - the station/connection point from and to where the offer is needed
 
-### Requirements on combining fares
+### Requirements on combining fares <a name="Requirementsoncombiningfares">
 
 Multiple models are defined for combining fares. The carrier defines in the fare
 data which model(s) the distributor can apply.
@@ -899,7 +976,7 @@ the combined offer:
 The combined price is always the sum of the prices of the parts. The distributor
 might add a handling fee.
 
-#### SEPARATE_CONTRACTS model
+#### SEPARATE_CONTRACTS model <a name="SEPARATE_CONTRACTSmodel">
 
 This is the model for not combining the fares in one ticket and not allowing the
 integration in one contract. The rules applied for this ticket are exactly the
@@ -908,7 +985,7 @@ rules defined by the carrier in the fare data.
 The distributor must ensure that it is clear for the customer that no common
 contract was established.
 
-##### Implementation Aspect
+##### Implementation Aspect <a name="ImplementationAspectSeparate">
 
 Relevant attributes:
 
@@ -918,7 +995,7 @@ Relevant attributes:
     FareCombinationConstraintDef.combinationModels.allowedCommonContracts;
 ```
 
-##### Business Rule
+##### Business Rule <a name="BusinessRuleSeparate">
 
 Let CC_A be the set of allowedCommonContracts for Fare A and let CC_B be the set
 of allowedCommonContracts for Fare B.
@@ -926,7 +1003,7 @@ of allowedCommonContracts for Fare B.
 **If** the intersection of two sets CC_A and CC_B is empty, **then** separate
 contracts most be issued. Otherwise a combined contract can be issued.
 
-#### CLUSTERING model
+#### CLUSTERING model <a name="CLUSTERINGmodel">
 
 The `CLUSTERING` model tries to simplify conditions and fares for the customer
 but sacrifices a part of the control of the carrier on its fares.
@@ -996,7 +1073,7 @@ cluster using the more restrictive rules for the combined offer, e.g.,
 - Minimum validity applies
 - Restricted combination with other cluster offers
 
-##### Implementation Aspect
+##### Implementation Aspect <a name="ImplementationAspectCluster">
 
 Relevant attributes:
 
@@ -1008,7 +1085,7 @@ Relevant attributes:
     FareCombinationConstraintDef.combinationModels.allowedDistributors;
 ```
 
-##### Business Rule
+##### Business Rule <a name="BusinessRuleCluster">
 
 Let A, B be fares.
 
@@ -1017,7 +1094,7 @@ provider of fare B is in A.combinableCarriers AND if the fare provider of fare A
 is in B.combinableCarriers **then** the fare A and B are combinable according to
 the CLUSTERING MODEL.
 
-#### COMBINATION model
+#### COMBINATION model <a name="COMBINATIONmodel">
 
 The `COMBINING` model tries to be close to the fare conditions defined by the
 carrier but sacrifices the simplicity of the fare towards the customer.
@@ -1054,7 +1131,7 @@ Example
 
 10€ + 180€ = 190€ fee 2 days before departure
 
-#### Implementation Aspect
+#### Implementation Aspect <a name="ImplementationAspectCombination">
 
 Relevant attributes:
 
@@ -1066,13 +1143,13 @@ Relevant attributes:
     AfterSalesCondition.afterSalesRules.applicationTime;
 ```
 
-### Requirements on Reservation
+### Requirements on Reservation <a name="RequirementsonReservationDist">
 
 It should be possible to book reservations within the same technology.
 
 The existing reservation services in IRS 90918-1 should also be supported.
 
-### Requirements on Trip Interruptions
+### Requirements on Trip Interruptions <a name="RequirementsonTripInterruptions">
 
 Restrictions oon allowed trip interruptions must be indicated in a fare.
 
@@ -1082,7 +1159,7 @@ and the maximal duration of interruptions.
 The fare must provide information whether the interruption has to be confirmed
 by staff of by deactivation of the electronic ticket.
 
-### Requirements on Multi-Journeys Tickets
+### Requirements on Multi-Journeys Tickets <a name="RequirementsonMultiJourneysTickets">
 
 The restrictions on the use of a multi-journey ticket for individual trips must
 be described in the fare.
@@ -1093,7 +1170,7 @@ The process to use an individual trip with a multi journey ticket must be
 indicated. These  
 include separate fulfillments per individual trips or activation for a trip.
 
-### Requirements on Fare Exchange
+### Requirements on Fare Exchange <a name="RequirementsonFareExchange">
 
 In principle prices for customers are created by addition of prices per fare
 provider. Nevertheless, bi-multilateral agreements may include other
@@ -1102,14 +1179,14 @@ regulations.
 Conversion from Euro into a national currency (if necessary, vice versa) is
 subject to national distribution systems of the carrier/distributor concerned.
 
-## Architectural Requirements
+## Architectural Requirements <a name="ArchitecturalRequirements">
 
-### Requirements on aligned processes end to end
+### Requirements on aligned processes end to end <a name="Requirementsonalignedprocessesendtoend">
 
 The processes must be are aligned over all actors to reduce overall complexity
 and thus costs.
 
-### Requirements on aligned services
+### Requirements on aligned services <a name="Requirementsonalignedservices">
 
 The services must be aligned such that there is a close mapping to the processes
 supported by the services.
@@ -1117,13 +1194,13 @@ supported by the services.
 The services must be aligned such that the call chain between the services does
 not involve unnecessary mappings between different actors.
 
-### Requirements on messages
+### Requirements on messages <a name="Requirementsonmessages">
 
 The messages of the online services must contain no unnecessary attributes or
 data structures. Unnecessary attributes are attributes that are not needed for
 the online processes.
 
-### Requirements on extendibility
+### Requirements on extendibility <a name="Requirementsonextendibility">
 
 The specification must be extendible in various dimensions:
 
@@ -1131,20 +1208,20 @@ The specification must be extendible in various dimensions:
 - Support of new processes, e.g. product-based distribution
 - Support of new modes of transportation, e.g. scooters or rail
 
-### Requirements on security
+### Requirements on security <a name="Requirementsonsecurity">
 
 The specification must include the protocols to ensure secure authentication and
 data transfer.
 
-## Legal Requirements
+## Legal Requirements <a name="LegalRequirements">
 
 The flowing legal regulations provide requirements that affect the solution:
 
-### Rail PRR Regulation (EC) 1371/2007 on Rail Passengers’ Rights and Obligations
+### Rail PRR Regulation (EC) 1371/2007 on Rail Passengers’ Rights and Obligations <a name="RailPRRRegulation(EC)13712007onRailPassengers’RightsandObligations">
 
 This regulation must be fulfilled.
 
-### GDPR: Regulation (EU) 2016/679 on data protection
+### GDPR: Regulation (EU) 2016/679 on data protection <a name="GDPRRegulation(EU)2016679ondataprotection">
 
 - The passenger must be informed on the use of his data and on passing his data
   to the carrier and TCO
@@ -1182,7 +1259,7 @@ This regulation must be fulfilled.
   3. Safeguards to prevent confusion
   4. Additional organizational and technical safeguards for processing
 
-#### Art. 101§1 TFEU (Competition Law)
+#### Art. 101§1 TFEU (Competition Law) <a name="Art.101§1TFEU(CompetitionLaw)">
 
 All agreements between undertakings, decisions by associations of undertakings
 and concerted practices which are restrictive of competition are prohibited and
@@ -1211,7 +1288,7 @@ The following guidelines apply:
   carriage as they are all involved in the contract. This does not apply in case
   of separate contracts.
 
-## Requirements not in Scope
+## Requirements not in Scope <a name="RequirementsnotinScope">
 
 - Payment procedures including payment procedures via private currencies alike
   bonus points
