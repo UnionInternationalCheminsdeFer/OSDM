@@ -5,7 +5,15 @@ hide_hero: true
 permalink: /spec/synchronization/
 ---
 
-## Synchronization
+## Table of contents
+
+1. [Synchronization](#Synchronization)
+2. [Event Types and Their Semantics](#EventTypesandTheirSemantics)
+   1. [Booking](#Booking)
+   2. [Complaints](#Complaints)
+3. [Subscribing to Events](#SubscribingtoEvents)
+
+## Synchronization <a name="Synchronization">
 
 For carriers or distributors to inform retailers about changes in a trip or a
 booking, we have added an API that a carrier or distributor system can inform a
@@ -18,9 +26,9 @@ changes to the trip, the booking or the complaint.
 The API informs authorized listener of the fact that changes have occurred using
 [Webhook](https://en.wikipedia.org/wiki/Webhook).
 
-## Event Types and Their Semantics
+## Event Types and Their Semantics <a name="EventTypesandTheirSemantics">
 
-### Booking
+### Booking <a name="Booking">
 
 - `BOOKING_TRIP_CONFIRMED`
 
@@ -122,7 +130,7 @@ The API informs authorized listener of the fact that changes have occurred using
   The recommended action is to retrieve the booking and update the local
   representation.
 
-### Complaints
+### Complaints <a name="Complaints">
 
 - `INITIATED`
 
@@ -149,7 +157,7 @@ The API informs authorized listener of the fact that changes have occurred using
 
   The recommended action is to retrieve the complaint and inform the customer.
 
-## Subscribing to Events
+## Subscribing to Events <a name="SubscribingtoEvents">
 
 A receiver has to provide the following information:
 
