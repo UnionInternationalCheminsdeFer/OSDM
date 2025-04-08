@@ -6821,8 +6821,9 @@ components:
         externalRef:
           description: |
             The unique booking reference in the provider system. Usually refers to an order number or PNR.
-          type: string
-          nullable: true
+          type: 
+            - string
+            - 'null'      
         provisionalPrice:
           description: |
             price of all unconfirmed pre-booked parts in the booking
@@ -8292,6 +8293,16 @@ components:
         - 'UP'
         - 'DOWN'
 
+    DistributionMode:
+      description: |
+         booking parts in product mode are provided as complete products where the tickets and conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assambled into tickes on the OSDM client side. In fare mode the conditions are defined on the client side the restrictions on conditions and combinability layed down in the booking part (fare). By definition admissions and in PRODUCT_MODE and fares are in FARE_MODE. Reservation might be in PRODUCT_MODE or in FARE_MODE. 
+      type: string
+      enum:
+        - 'PRODUCT_MODE'
+        - 'FARE_MODE'   
+      default:  'PRODUCT_MODE'        
+
+
     Document:
       type: object
       additionalProperties: false
@@ -8741,7 +8752,9 @@ components:
           items:
             $ref: '#/components/schemas/ExchangeOffer'
         appliedFeesRefs:
-          description: references to the fees applied with this exchnage oepration. It is mandatory to provide the refs when the fees have been applied.
+          description: |
+            references to the fees applied with this exchnage oepration. It is mandatory to
+            provide the refs when the fees have been applied.
           type: array
           items:
             type: string
@@ -8813,6 +8826,14 @@ components:
             $ref: '#/components/schemas/Problem'
         exchangeOperation:
           $ref: '#/components/schemas/ExchangeOperation'
+        appliedFees:
+          description: |
+            applied fees referenced in the exchange operation. Providing the applied fees is 
+            mandatory in case the an exchange operation is returned. The applied fees are stored in the booking and are returned here additionally for convenience.
+          type: array
+          items:
+             $ref: '#/components/schemas/AppliedFee'  
+
 
     ExchangeOperationResponseContent:
       description: |
@@ -12772,11 +12793,14 @@ components:
         refundFee:
           $ref: '#/components/schemas/Price'
           description: |
-            Amount kept by the carrier and/or distributor
-        refundFeeRef:
-          description: reference to an Applied Fee covering the refund fee. Providing the reference is mandatory when the refund was confirmed.
-          type: string
-          maxLength: 1024
+            Total Amount kept by the carrier and/or distributor
+        refundFeeRefs:
+          description: |
+            reference to Applied Fees covering the refund fee. Providing the reference is mandatory when the refund was confirmed.
+          type: array
+          items:
+            type: string
+            maxLength: 1024
         accountingRef:
           description: |
             Accounting information for the refund fee
@@ -12887,6 +12911,13 @@ components:
             $ref: '#/components/schemas/Problem'
         refundOffer:
           $ref: '#/components/schemas/RefundOffer'
+        appliedFees:
+          description: |
+            applied fees referenced in the refund offer. Providing the applied fees is 
+            mandatory in case the refund offer is confirmed. The applied fees are stored in the booking and are returned here additionally for convenience.
+          type: array
+          items:
+             $ref: '#/components/schemas/AppliedFee'   
 
     RefundSpecification:
       type: object
@@ -13327,6 +13358,8 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/AvailablePlacePreferences'
+            distributionMode:
+                $ref: '#/components/schemas/DistributionMode'    
 
     ReservationGroup:
       type: object
