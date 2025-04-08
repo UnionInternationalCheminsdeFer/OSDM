@@ -5,6 +5,12 @@ hide_hero: true
 permalink: /spec/non-functional-requirements/
 ---
 
+## Table of contents
+
+1. [Best Practices for Non-Functional Requirements](#BestPracticesforNonFunctionalRequirements)
+   1. [Non-Functional Requirements for a "Channel"](#NonFunctionalRequirementsfora"Channel")
+   2. [Non-Functional Requirements for the role "Fare Provider"](#NonFunctionalRequirementsfortherole"FareProvider")
+
 ## Best Practices for Non-Functional Requirements
 
 From a customer point of view, to book a trip he or she expects a seamless and
