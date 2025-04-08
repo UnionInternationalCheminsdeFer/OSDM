@@ -5,7 +5,59 @@ hide_hero: true
 permalink: /spec/common-data-structures/
 ---
 
-## Common Data Structures in Offline and Online Mode
+## Table of contents
+
+1. [General](#General)
+2. [Versioning](#Versioning)
+3. [Indication of personal data](#Indicationofpersonaldata)
+4. [Indication of required data](#Indicationofrequireddata)
+   1. [Detailed data structures](#Detaileddatastructures)
+5. [AfterSalesRules](#AfterSalesRules)
+   1. [Data Constraints on AfterSaleRule](#DataConstraintsonAfterSaleRule)
+6. [Calendar](#Calendar)
+   1. [Data Constraints on Calendar](#DataConstraintsonCalendar)
+7. [CarrierConstraint](#CarrierConstraint)
+   1. [Data Constraints on CarrierConstraint](#DataConstraintsonCarrierConstraint)
+8. [ConnectionPoint](#ConnectionPoint)
+   1. [Data Constraints on ConnectionPoint](#DataConstraintsonConnectionPoint)
+9. [Fare](#Fare)
+   1. [Data Constraints on Fare](#DataConstraintsonFare)
+10. [FareCombinationConstraint](#FareCombinationConstraint)
+   1. [Combination Model](#CombinationModel)
+   2. [Additional Clustering Model Data](#AdditionalClusteringModelData)
+   3. [Data Constraints on FareCombinationConstraint](#DataConstraintsonFareCombinationConstraint)
+11. [FareResourceLocation](#FareResourceLocation)
+   1. [Graphics Icons](#GraphicsIcons)
+   2. [Data constraints on FareResourceLocation](#DataconstraintsonFareResourceLocation)
+12. [FareReferenceStationSet](#FareReferenceStationSet)
+   1. [Data Constraints on FareReferenceStationSet](#DataConstraintsonFareReferenceStationSet)
+13. [FulfillmentConstraint](#FulfillmentConstraint)
+   1. [Data Constraints on FulfillmentConstraint](#DataConstraintsonFulfillmentConstraint)
+14. [Line](#Line)
+15. [PassengerConstraint](#PassengerConstraint)
+   1. [Data Constraints on PassengerConstraint](#DataConstraintsonPassengerConstraint)
+16. [PersonalDataConstraint](#PersonalDataConstraint)
+   1. [Overrule Code](#OverruleCode)
+17. [Price](#Price)
+   1. [Data Constraints on Price](#DataConstraintsonPrice)
+18. [ReductionCard](#ReductionCard)
+   1. [List of Carrier Cards](#ListofCarrierCards)
+19. [ReductionConstraint](#ReductionConstraint)
+20. [RegionalConstraint](#RegionalConstraint)
+   1. [Connecting Regional Validity to Trips](#ConnectingRegionalValiditytoTrips)
+21. [ReservationParameter](#ReservationParameter)
+22. [StationDetail](#StationDetail)
+23. [Text](#Text)
+24. [ServiceClass](#ServiceClass)
+25. [ServiceConstraint](#ServiceConstraint)
+   1. [Data Constraints on ServiceConstraint](#DataConstraintsonServiceConstraint)
+26. [ServiceLevel](#ServiceLevel)
+27. [TravelValidityConstraint](#TravelValidityConstraint)
+   1. [Data Constraints on TravelValidityConstraint](#DataConstraintsonTravelValidityConstraint)
+28. [ZoneDefinition](#ZoneDefinition)
+
+
+## Common Data Structures in Offline and Online Mode <a name="CommonDataStructuresinOfflineandOnlineMode">
 
 The following chapters contain the detailed description of data structures used
 to describe fares.
@@ -14,7 +66,7 @@ The data structure definitions are used in the bulk data exchange and the online
 services. The requirements listed in chapter “Requirements” reference the data
 structures that implement the requirement.
 
-### General
+### General <a name="General">
 
 The following general data types shall be used:
 
@@ -25,7 +77,7 @@ The following general data types shall be used:
 - Station Names: Station names should not include ”/”,”\*”. These characters are
   used to define routes and alternative routes in route descriptions.
 
-### Versioning
+### Versioning <a name="Versioning">
 
 The specification (open api specification and schema files for offline data) are
 published as major versions in case they are not interoperable. Minor versions
@@ -33,12 +85,12 @@ will include interoperable changes on the data structure which also includes
 providing additional data elements that are optional. Implementers must be able
 to ignore additional elements.
 
-### Indication of personal data
+### Indication of personal data <a name="Indicationofpersonaldata">
 
 Within the online part the required personal data are indicated. The general
 grammar to indicate required data is used.
 
-### Indication of required data
+### Indication of required data <a name="Indicationofrequireddata">
 
 Required data are indicated in a structured way using the following language:
 Data elements are indicated by their path to the resource separated by dots:
@@ -55,12 +107,12 @@ The required data elements can be combined using the logical operators:
 Brackets `(` and `)` can be used in the standard way as for logical expressions,
 e.g.: `passenger.gender AND (passenger.email OR passenger.phoneNumber)`
 
-#### Detailed data structures
+#### Detailed data structures <a name="Detaileddatastructures">
 
 The data structures to be used are defined in the schema and open api
 specification files. This section serves as additional documentation only.
 
-### AfterSalesRules
+### AfterSalesRules <a name="AfterSalesRules">
 
 After sales conditions define fees to be taken in case of an after sales
 transaction on behalf of a customer. The after sales transactions considered
@@ -109,14 +161,14 @@ An after sales fee is applied from a time before departure, after sale,..)
 In case multiple rules apply to the same after sales transaction the rule with
 the closest time in the future must be applied.
 
-#### Data Constraints on AfterSaleRule
+#### Data Constraints on AfterSaleRule <a name="DataConstraintsonAfterSaleRule">
 
 | Code                                       | Description                                                                                                                                                                                                                  |
 | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `fee/feeRef`                               | In online services a fee is included directly, in bulk data exchange a fee must be included in the list of prices and referenced by an id. The fee provided must include the currency € if not agreed bilaterally otherwise. |
 | `applicationTime` / `applicationTimeStamp` | An application time stamp can be used in online services only. If an application time stamp is provided the application time as relative time must not be included.                                                          |
 
-### Calendar
+### Calendar <a name="Calendar">
 
 A Calendar is referenced by a unique id which can be referenced from other data
 structures linked to the fare. A Calendar defines a list of days between two
@@ -127,14 +179,14 @@ additionally.
 
 ![Calendar](../images/common-data-structures/calendar.png)
 
-#### Data Constraints on Calendar
+#### Data Constraints on Calendar <a name="DataConstraintsonCalendar">
 
 | Code                    | Description                                                         |
 | ----------------------- | ------------------------------------------------------------------- |
 | `fromDate`, `untilDate` | fromDate and untilDate must be provided and `fromDate <= untilDate` |
 | `dates`                 | `fromDate` <= `date` <= `untilDate`                                 |
 
-### CarrierConstraint
+### CarrierConstraint <a name="CarrierConstraint">
 
 Carrier constraint limits an open fare - not linked to a train - to some
 carriers. The carriers can be specified either as exclusion list or
@@ -154,13 +206,13 @@ The included / excluded carriers are also part of the FCB barcode (_IRS
 The offline data structure includes an additional id to reference the constraint
 within a fare data delivery.
 
-#### Data Constraints on CarrierConstraint
+#### Data Constraints on CarrierConstraint <a name="DataConstraintsonCarrierConstraint">
 
 | Code                                | Description                                                                                                         |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `includedCarriers/excludedCarriers` | Either a list of included or a list of excluded carriers must be provided. It is not allowed to provide both lists. |
 
-### ConnectionPoint
+### ConnectionPoint <a name="ConnectionPoint">
 
 A connection point defines a point where two regional validities of different
 carriers can be connected. A connection point is implemented as the list of
@@ -206,14 +258,14 @@ The online data structure does not include the id and the legacy code.
 
 ![Fare Connection Point](../images/common-data-structures/fare-connection-point.png)
 
-#### Data Constraints on ConnectionPoint
+#### Data Constraints on ConnectionPoint <a name="DataConstraintsonConnectionPoint">
 
 | Code                    | Description                                                                                                                                                                           |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `stationSets`           | At least one set with one station must be provided in case the fare border is a real station. Two station sets must be provided in case the fare border is between two real stations. |
 | `legacyBorderPointCode` | The legacy border point code must be provided for the time being. New implementations should not use the border point code.                                                           |
 
-### Fare
+### Fare <a name="Fare">
 
 An elementary fare to create an offer linking all constraints to one price.
 
@@ -246,7 +298,7 @@ An elementary fare to create an offer linking all constraints to one price.
 
 ![Fare (Online)](../images/fare-data-structure/fare-online.png)
 
-#### Data Constraints on Fare
+#### Data Constraints on Fare <a name="DataConstraintsonFare">
 
 | Code                          | Description                                                                                                    |
 | ----------------------------- | -------------------------------------------------------------------------------------------------------------- |
@@ -257,7 +309,7 @@ An elementary fare to create an offer linking all constraints to one price.
 | `travelValidityConstraint`    | Must be provided for offline fares                                                                             |
 | `salesAvailabilityConstraint` | Must be provided for offline fares                                                                             |
 
-### FareCombinationConstraint
+### FareCombinationConstraint <a name="FareCombinationConstraint">
 
 The fare combination constraint defines the rules of combining fares from
 different carriers. It provides a list of combination models the distributor can
@@ -281,8 +333,9 @@ choose of.
 
 ![Fare Combination Constraint](../images/common-data-structures/fare-combination-constraint.png)
 
-#### Combination Model
+#### Combination Model <a name="CombinationModel">
 
+##### SEPARATE_CONTRACT Model <a name="SEPARATE_CONTRACTModel">
 ##### SEPARATE_CONTRACT Model
 
 This `SEPARATE_CONTRACT` model is the model for not combining the fares in one
@@ -292,6 +345,7 @@ this ticket are exactly the rules defined by the carrier in the fare data.
 The distributor must ensure that it is clear for the customer that no common
 contract was established.
 
+##### CLUSTERING Model <a name="CLUSTERINGModel">
 ##### CLUSTERING Model
 
 The `CLUSTERING` model tries to simplify conditions and fares for the customer
@@ -322,6 +376,7 @@ separately on the combined fare/offer:
 - class of service
 - passenger types
 
+##### COMBINING Model <a name="COMBININGModel">
 ##### COMBINING Model
 
 The `COMBINING` model tries to be close to the fare conditions defined by the
@@ -336,6 +391,7 @@ At any time, the after sales fees defined by the carriers are applied on the
 price part of these carriers only. The result is a list of times with increasing
 fees.
 
+###### COMBINING Model Example <a name="COMBININGModelExample">
 ###### COMBINING Model Example
 
 - Carrier 1: 10% 20 days before departure. Price: 100€
@@ -344,7 +400,7 @@ fees.
   - 10€ fee: 20 days before departure
   - 190€ fee: 2 days before departure
 
-#### Additional Clustering Model Data
+#### Additional Clustering Model Data <a name="AdditionalClusteringModelData">
 
 Fare clusters reflect the flexibility a fare provides to the customer.
 Flexibility is defined by the after sales conditions that apply when a passenger
@@ -363,6 +419,7 @@ listed in `allowedClusters`. However not all combinations would be provided to
 the customer. A fare will be combined with a fare of the same cluster and in
 case his is not available with one of the higher clusters.
 
+##### Clustering Model Example <a name="ClusteringModelExample">
 ##### Clustering Model Example
 
 - Carrier 1:
@@ -394,13 +451,13 @@ distributor. E.g.:
 
 - `FULL_FLEX` (Carrier 1 `BUSINESS` + Carrier 2 `BUSINESS`)
 
-#### Data Constraints on FareCombinationConstraint
+#### Data Constraints on FareCombinationConstraint <a name="DataConstraintsonFareCombinationConstraint">
 
 | Code               | Description                         |
 | ------------------ | ----------------------------------- |
 | `combinationModel` | At least one model must be provided |
 
-### FareResourceLocation
+### FareResourceLocation <a name="FareResourceLocation">
 
 Fare resource location provides data on where to find online services for fares.
 The fare location provides three options:
@@ -438,7 +495,7 @@ The online link provides information on:
 
 ![Fare Resource Location Type - Online Resource](../images/common-data-structures/fare-resource-location-type-online-resource.png)
 
-#### Graphics Icons
+#### Graphics Icons <a name="GraphicsIcons">
 
 Graphic icons are used to display a coach including its facilities based on the
 coach layout and availability of places. The graphical items include frames and
@@ -453,13 +510,13 @@ A large table spans two places, whereas a small table spans only one place. A
 small wall spans two places and a large wall spans 3 places. A very small wall
 spans one place only.
 
-#### Data constraints on FareResourceLocation
+#### Data constraints on FareResourceLocation <a name="DataconstraintsonFareResourceLocation">
 
 | Code     | Description                                                            |
 | -------- | ---------------------------------------------------------------------- |
 | `System` | For reservation interface 90810-1 the reservation system code is used. |
 
-### FareReferenceStationSet
+### FareReferenceStationSet <a name="FareReferenceStationSet">
 
 The fare reference station set defines a set of stations where the fare is valid
 for all included stations. This set can be used in the regionalValidity
@@ -480,14 +537,14 @@ A `legacyCode` can be provided to include the current code in the 108.1 data.
 
 ![Fare Reference Station Set](../images/common-data-structures/fare-reference-station-set.png)
 
-#### Data Constraints on FareReferenceStationSet
+#### Data Constraints on FareReferenceStationSet <a name="DataConstraintsonFareReferenceStationSet">
 
 | Code         | Description                                                                                         |
 | ------------ | --------------------------------------------------------------------------------------------------- |
 | `legacyCode` | A legacyCode must be provided for the time being. New implementations should not rely on that code. |
 | `name`       | The name should not include ”/”.”\*”.                                                               |
 
-### FulfillmentConstraint
+### FulfillmentConstraint <a name="FulfillmentConstraint">
 
 The fulfillment constraint limits the applicable types of fulfillment and
 defined whether control data need to be transferred via a standard interface
@@ -512,13 +569,13 @@ The following code list defines the card types for cards used
 - for bar codes: `BarcodeType`
 - for fulfillment: `ControlSecurityType`
 
-#### Data Constraints on FulfillmentConstraint
+#### Data Constraints on FulfillmentConstraint <a name="DataConstraintsonFulfillmentConstraint">
 
 | Code                      | Description                                             |
 | ------------------------- | ------------------------------------------------------- |
 | `acceptedFulfillmentType` | At least one accepted fulfillment type must be provided |
 
-### Line
+### Line <a name="Line">
 
 Line defines the regional validity on a specific line. It might have additional
 restrictions to enter or leave at specific stations or to be used within an area
@@ -528,7 +585,7 @@ or city only.
 
 ![Line](../images/common-data-structures/line.png)
 
-### PassengerConstraint
+### PassengerConstraint <a name="PassengerConstraint">
 
 Passenger constraint defines restrictions of a fare concerning passengers. In
 online services the structure is reduced to constraints that need to be passed
@@ -538,13 +595,13 @@ on for control to bar codes and control registries.
 
 ![Passenger Constraint](../images/common-data-structures/passenger-constraint.png)
 
-#### Data Constraints on PassengerConstraint
+#### Data Constraints on PassengerConstraint <a name="DataConstraintsonPassengerConstraint">
 
 | Code                             | Description                        |
 | -------------------------------- | ---------------------------------- |
 | `upperAgeLimit`, `lowerAgeLimit` | `upperAgeLimit` >= `lowerAgeLimit` |
 
-### PersonalDataConstraint
+### PersonalDataConstraint <a name="PersonalDataConstraint">
 
 Specification of personal data to be delivered to the carrier. Personal data
 might be included in:
@@ -562,7 +619,7 @@ specific border crossings.
 | `ticketHolderOnly` | Personal data are required for the ticket holder only                                                           |
 | `dataItem`         | Code of the data item required. Consists of `languageCode`, `overruleCode` (see below) and personal data items. |
 
-#### Overrule Code
+#### Overrule Code <a name="OverruleCode">
 
 | Code                | Description                                    |
 | ------------------- | ---------------------------------------------- |
@@ -582,7 +639,7 @@ specific border crossings.
 
 ![Personal Date - Cross Border Conditions](../images/common-data-structures/personal-data-cross-border-conditions.png)
 
-### Price
+### Price <a name="Price">
 
 The price data structure provides the price or a fee including the VAT details
 optionally in different currencies.
@@ -601,17 +658,17 @@ optionally in different currencies.
 
 Scope: see code list TaxScope
 
-#### Data Constraints on Price
+#### Data Constraints on Price <a name="DataConstraintsonPrice">
 
 | Code     | Description                      |
 | -------- | -------------------------------- |
 | `amount` | `Amount` >= `sum of VAT-amounts` |
 
-### ReductionCard
+### ReductionCard <a name="ReductionCard">
 
 The reduction cards of a carrier are listed in the bulk data.
 
-#### List of Carrier Cards
+#### List of Carrier Cards <a name="ListofCarrierCards">
 
 | Code             | Description                                                                                                                                                                                                                                                                             |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -626,7 +683,7 @@ The reduction cards of a carrier are listed in the bulk data.
 
 ![Reduction Card](../images/common-data-structures/reduction-card.png)
 
-### ReductionConstraint
+### ReductionConstraint <a name="ReductionConstraint">
 
 A fare associated with this constraint requires one of the listed cards to be
 presented by the passenger on the trip. Card Ids can be taken from the listed
@@ -641,7 +698,7 @@ Reduction “cards”.
 
 ![Reduction Card Reference](../images/common-data-structures/reduction-card-reference.png)
 
-### RegionalConstraint
+### RegionalConstraint <a name="RegionalConstraint">
 
 Definition of a regional validity of a fare. The regional validity constraint is
 defined by an entry connection point and an exit connection point to combine
@@ -675,7 +732,7 @@ in case it is displayed as one combined text:
 - Carrier 2: RegionalConstraint {Entry (A), RegionalValidity A – C/D – E}
 - _Result_: `X*Y/Z*A*A*C/D*E` --> `X*Y/Z*A*C/D*E`
 
-#### Connecting Regional Validity to Trips
+#### Connecting Regional Validity to Trips <a name="ConnectingRegionalValiditytoTrips">
 
 The regional constraint is connected to the timetable via the regional validity,
 the connection points are used to combine regional constraints.
@@ -720,7 +777,7 @@ Extended route data structure including fare reference station sets.
 
 ![Regional Constraint](../images/common-data-structures/regional-constraint.png)
 
-### ReservationParameter
+### ReservationParameter <a name="ReservationParameter">
 
 ReservationParameter provide data on how to combine reservations with NRT fares,
 how to book reservations via the _IRS 90918-1_ interface and which options a
@@ -749,7 +806,7 @@ Code Lists
 - Code list Preference Groups: see Preference groups
 - Code list Preferences: see Preferences of places
 
-### StationDetail
+### StationDetail <a name="StationDetail">
 
 Details on stations including codes and names. Codes must include the MERITS
 code in case it is defined for a station.
@@ -758,7 +815,7 @@ code in case it is defined for a station.
 
 ![Station Detail](../images/common-data-structures/station-detail.png)
 
-### Text
+### Text <a name="Text">
 
 Used for all textual descriptions where translations might be needed.
 
@@ -770,7 +827,7 @@ Used for all textual descriptions where translations might be needed.
 
 ![Translation](../images/common-data-structures/translation.png)
 
-### ServiceClass
+### ServiceClass <a name="ServiceClass">
 
 Service class provides textual descriptions for the predefined service classes.
 
@@ -778,7 +835,7 @@ Service class provides textual descriptions for the predefined service classes.
 
 ![Service Constraint](../images/common-data-structures/service-class-definition.png)
 
-### ServiceConstraint
+### ServiceConstraint <a name="ServiceConstraint">
 
 The service constraint limits a fare to specific service brands (train types).
 The constraint can either be defined as a list of service brands included or as
@@ -790,13 +847,13 @@ The online data structure will not provide the id.
 
 ![Service Constraint](../images/common-data-structures/service-constraint.png)
 
-#### Data Constraints on ServiceConstraint
+#### Data Constraints on ServiceConstraint <a name="DataConstraintsonServiceConstraint">
 
 | Code                                             | Description                                                       |
 | ------------------------------------------------ | ----------------------------------------------------------------- |
 | `includedServiceBrands`, `excludedServiceBrands` | Only one of the lists can be used. Using both lists is forbidden. |
 
-### ServiceLevel
+### ServiceLevel <a name="ServiceLevel">
 
 The service level data provide additional information (e.g. text) in the offline
 data exchange in case the reservation API of _IRS 90918-1_ is used.
@@ -820,12 +877,12 @@ berth in the service level for double Sleeper compartment).
 
 ![Service Level](../images/common-data-structures/service-level.png)
 
-### TravelValidityConstraint
+### TravelValidityConstraint <a name="TravelValidityConstraint">
 
 The travel validity constraint defines at which times the passenger is permitted
 to travel.
 
-#### Data Constraints on TravelValidityConstraint
+#### Data Constraints on TravelValidityConstraint <a name="DataConstraintsonTravelValidityConstraint">
 
 <!-- Figure 47 travel validity data structure -->
 
@@ -849,7 +906,7 @@ to travel.
 | `numberOfTravelDays` | A duration must be provided       |
 | `returnConstraint`   | `earliestReturn` < `latestReturn` |
 
-### ZoneDefinition
+### ZoneDefinition <a name="ZoneDefinition">
 
 Definition of zones used in regional validity.
 
