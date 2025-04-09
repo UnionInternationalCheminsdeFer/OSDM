@@ -5,7 +5,24 @@ hide_hero: true
 permalink: /spec/technical-principles/
 ---
 
-## Design Guidelines
+## Table of contents
+
+1. [Design Guidelines](#DesignGuidelines)
+2. [Derived Guidelines](#DerivedGuidelines)
+3. [Versioning](#Versioning)
+   1. [Backporting](#Backporting)
+   2. [Versioning](#Versioning)
+   3. [Development](#Development)
+   4. [Release](#Release)
+4. [Implementation principles](#Implementationprinciples)
+5. [PATCH behaviour](#PatchBehaviour)
+6. [Error Handling](#ErrorHandling)
+7. [Functional Errors and Error Codes](#FunctionalErrorsandErrorCodes)
+8. [Authentication](#Authentication)
+   1. [User Lookup](#UserLookup)
+
+
+## Design Guidelines <a name="DesignGuidelines">
 
 - **Do not reinvent the wheel** - Use existing concepts whenever possible (e.g.
   type system of OpenAPI, Problem details,...).
@@ -13,7 +30,7 @@ permalink: /spec/technical-principles/
   [REST maturity](https://martinfowler.com/articles/richardsonMaturityModel.html).
 - Use [semantic versioning](https://semver.org).
 
-## Derived Guidelines
+## Derived Guidelines <a name="DerivedGuidelines">
 
 - Whenever a resource returned in a response can contain embedded resources, the
   request must allow specifying whether and which embedded resources should be
@@ -37,7 +54,7 @@ permalink: /spec/technical-principles/
 - Creation/ modification calls return the created/modified resource (not just an
   ok code)
 
-## Versioning
+## Versioning <a name="Versioning">
 
 [Semantic Versioning](https://semver.org/) is used to mark the OSDM releases. OSDM strictly adheres to the semantics as deviation may hinder implementation project schedules for carriers or distributors.
 
@@ -45,27 +62,27 @@ permalink: /spec/technical-principles/
 * **Minor** version is increased for any planned release that doesn't contain any breaking changes. Usually, there are 3-4 minor versions anually. Minor version doesn't remove or changes API in incompatible way, it may only add new capabilities or mark current capabilities as deprecated.
 * **Patch** version is increased for any bug fix of minor version, or backport of a feature from higher major/minor versions. Changes in patch versions retain all capabilities of the minor version and provides backport or bug fix. In terms of testing/certification, all patch versions may be treated as equal provided you check for the features that were corrected by the bug fix/added as backport from higher minor versions.
 
-### Backporting
+### Backporting <a name="Backporting">
 
 Implementers may require to receive a newly requested feature to a lower version when there is project schedule in consideration. In such case, the backport is always provided as a new patch version of selected track. New patch versions are released for all minor version between the version where the feature was introduced and version to which it was requested by the implementers to be back-ported.
 
 Backport is never applied to already released patch versions.
 
-### Versioning
+### Versioning <a name="Versioning">
 
 All versions are tracked in the `master` branch of the git repository. Each major.minor version has its own folder where all patch versions of that minor version are stored.
 
-### Development
+### Development <a name="Development">
 
 A pull request is expected to contain changes to the currently developed version.
 
 If a backport is expected, pull request must provide files for a new patch version of all versions being patched.
 
-### Release
+### Release <a name="Release">
 
 The openapi file is considered final when there is git tag and github release for given version that marks a respective commit where the final version of that file was saved.
 
-## Implementation principles
+## Implementation principles <a name="Implementationprinciples">
 
 Implementations must follow the tolerant reader pattern. Schema validations must allow new attributes and objects. All extensible enums must not fail on items not proposed from the openapi or specification.
 
@@ -77,7 +94,7 @@ As specified above, PATCH within OSDM is consistent with JSON Merge Patch ([RFC7
 - present attributes will be updated
 - new attributes will be added
 
-## Error Handling
+## Error Handling <a name="ErrorHandling">
 
 In order to communicate errors to a consumer we support
 [RFC 9457](https://tools.ietf.org/html/rfc9457).
@@ -111,13 +128,13 @@ aware of the semantics of the URI and do not have the ability to discover them
 (e.g., offline log analysis). Consumers SHOULD NOT automatically dereference the
 type URI.
 
-## Functional Errors and Error Codes
+## Functional Errors and Error Codes <a name="FunctionalErrorsandErrorCodes">
 
 In order that OSDM implementations behave consistently in error situations, a
 list of [error codes and problem codes](../errors-problems/) have been defined that
 must be supported in case of functional errors by all implementations.
 
-## Authentication
+## Authentication <a name="Authentication">
 
 The following three design principles are binding for each implementor:
 
@@ -151,7 +168,7 @@ each environment separately.
 The detailed flow for machine-to-machine authentication can be found in
 [Authentication](../authentication/).
 
-### User Lookup
+### User Lookup <a name="UserLookup">
 
 From a devOps perspective it might by hard to control who uses your API (for
 e.g. `ClientId` and secret might by passed around or hacked).

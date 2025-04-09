@@ -5,10 +5,68 @@ hide_hero: true
 permalink: /spec/catalog-of-code-lists/
 ---
 
+## Table of contents
+
+1. [URNs for code lists](#URNsforcodelists)
+2. [Proprietary values](#Proprietaryvalues)
+   1. [Known proprietary code lists](#Knownproprietarycodelists)
+3. [Accommodation Type](#AccomodationType)
+4. [Accommodation Sub Type, Place Property, Reservation Place Preference](#PlaceProperty)
+5. [Ancillary category](#AncillaryCategory)
+6. [BarcodeType](#BarcodeType)
+7. [CardType](#CardType)
+8. [Company Code](#CompanyCode)
+9. [ControlDataExchangeType](#ControlDataExchangeType)
+10. [ControlSecurityType](#ControlSecurityType)
+11. [Currency](#Currency)
+12. [FareType](#FareType)
+13. [Fare CoachType](#FareCoachType)
+14. [Fare CompartmentTypeCode](#FareCompartmentTypeCode)
+15. [FulfillmentType](#FulfillmentType)
+16. [FulfillmentDocumentType](#FulfillmentDocumentType)
+17. [FulfillmentMediaType](#FulfillmentMediaType)
+18. [Gender](#Gender)
+19. [Graphics Items](#GraphicsItems)
+20. [Interface Type](#InterfaceType)
+21. [Language](#Language)
+22. [Leg Attributes](#LegAttributes)
+23. [Nationality](#Nationality)
+24. [NUTS codes](#NutsCodes)
+25. [Overrule Code](#OverruleCode)
+26. [Passenger Type (aka. Traveler Type)](#PassengerType)
+27. [Passport](#Passport)
+28. [Personal data items](#PersonalDataItems)
+29. [Personal data transfer types](#PersonalDataTransferType)
+30. [Personal data change reasons](#PersonalDataChangeReason)
+31. [Product Tags](#ProductTags)
+32. [Product Types](#ProductTypes)
+33. [Public Transportation Modes (ptMode)](#PublicTansportModes)
+34. [Point of Interest (POI)](#PointOfInterrest)
+35. [Reduction cards](#ReductionCard)
+36. [Reservation Preference Group](#ReservationPreferenceGroup)
+37. [Service Brands](#ServiceBrands)
+38. [Service Class](#ServiceClass)
+39. [Service Facilities / Leg Attributes](#ServiceFacilities)
+40. [Stations](#Station)
+41. [Supported Online Services](#SupportedOnlineServices)
+42. [TaxScope](#TaxScope)
+43. [TimeReference](#TimeReference)
+44. [TimeUnit](#TimeUNit)
+45. [Transfer Type](#TransferType)
+46. [Transport Mode](#TransportMode)
+47. [TransactionType](#TransactionType)
+48. [Travel Account Types](#TravelAccountType)
+49. [TravelDirection](#TravelDirection)
+50. [TravelValidityType](#TravelValidityType)
+51. [TripAllocationProcess](#TripAllocationProcess)
+52. [TripAllocationUnit](#TRipAllocationUnit)
+53. [TripInterruptionProcess](#TripInterruptionProcess)
+
+
 The mandatory code lists on enums and extensible enums are provided within the
 schema files.
 
-## URNs for code lists
+## URNs for code lists <a name="URNsforcodelists">
 
 | Code List                 | Name Space and domain | CodeList       | Description                                                                                                                                                                                                                                                                                                                                                      | example                    | base path for relative references |
 |---------------------------|-----------------------|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|-----------------------------------|
@@ -20,7 +78,7 @@ schema files.
 | currencies                | `urn:iso`             | `std:iso:4217` | ISO Currency Codes  https://en.wikipedia.org/wiki/ISO_4217  https://www.iso.org/iso-4217-currency-codes.html                                                                                                                                                                                                                                                     | `urn:iso:std:iso:4217:CFR` | `urn:iso:std:iso:4217:`           |
 | stations                  | `urn:iata`            | `li`           | IATA Location Identifiers for airports or rail stations defined in [IATA Airline Coding Directory (ACD)](https://www.iata.org/en/publications/manuals/airline-coding-directory/)                                                                                                                                                                                 | `urn:iata:li:XWC`          | `urn:iata:li:`                    |
 
-## Proprietary values
+## Proprietary values <a name="Proprietaryvalues">
 
 Be it to represent specific places, or any other type of reference data, some
 OSDM providers may need to extend a code set with proprietary values in order to
@@ -39,7 +97,7 @@ allows the domain part of the URN to be 30 ASCII alphanumeric letters at maximum
 including the `x_` prefix. URN treats the domain part as case-insensitive where
 OSDM mandates it to be always lower case.
 
-### Known proprietary code lists
+### Known proprietary code lists <a name="Knownproprietarycodelists">
 
 | Domain | Code List | Description         |
 | ------ | --------- | ------------------- |
@@ -440,11 +498,11 @@ Currency codes used in OSDM are based on the [ISO
 | `RESERVATION` | seat allocation might include a supplement |
 | `ANCILLARY`   | ancillary                                  |
 
-## Fare CoachType
+## Fare CoachType <a name="FareCoachType">
 
 Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.1 .
 
-## Fare CompartementTypeCode
+## Fare CompartmentTypeCode <a name="FareCompartmentTypeCode">
 
 Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
@@ -627,7 +685,7 @@ Language codes used in OSDM are based on the [ISO
 
 ## Leg Attributes <a name="LegAttributes">
 
-Service Facilities <a name="serviceFacilities">
+See [Service Facilities](#ServiceFacilities).
 
 ## Nationality <a name="Nationality">
 
@@ -736,7 +794,7 @@ required.
 | `CARD_ISSUER`              | Card issuer                                              |
 | `CARD_NUMBER`              | Card identifier                                          |
 
-## Personal data transfer types <a name="PersonalData TransferType">
+## Personal data transfer types <a name="PersonalDataTransferType">
 
 | Code           | Description                                                                            |
 | -------------- | -------------------------------------------------------------------------------------- |
@@ -1000,7 +1058,7 @@ List](https://uic.org/passenger/passenger-services-group/article/service-brand-c
 | `STANDARD` |                       |
 | `BASIC`    | Standard second class |
 
-## Service Facilities / Leg Attributes <a name="serviceFacilities">
+## Service Facilities / Leg Attributes <a name="ServiceFacilities">
 
 | OSDM code                       | Description                                                                                                    | TAP-TSI code list | TAP-TSI code |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------- | ------------ |

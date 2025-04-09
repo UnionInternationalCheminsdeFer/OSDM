@@ -5,7 +5,14 @@ hide_hero: true
 permalink: /spec/non-functional-requirements/
 ---
 
-## Best Practices for Non-Functional Requirements
+## Table of contents 
+
+1. [Best Practices for Non-Functional Requirements](#BestPracticesforNonFunctionalRequirements)
+   1. [Non-Functional Requirements for a "Channel"](#NFR_Channel")
+   2. [Non-Functional Requirements for the role "Fare Provider"](#NFR_FareProvider")
+
+
+## Best Practices for Non-Functional Requirements <a name="BestPracticesforNonFunctionalRequirements">
 
 From a customer point of view, to book a trip he or she expects a seamless and
 fluid user experience. Fundamental to achieving this goal are fast responses for
@@ -48,7 +55,7 @@ three response times are crucial.
 This observation leads to the following non-functional requirements for a given
 role.
 
-### Non-Functional Requirements for a "Channel"
+### Non-Functional Requirements for a "Channel" <a name="NFR_Channel">
 
 Mandatory service level requirements to be fulfilled by a channel.
 
@@ -71,7 +78,7 @@ the sender and receiver.
 | `/bookings/{id}/refundOffers`   | 0,5:1             | 1000                      | 2000                      |                                                                                                                                                                                                                                                                                                      |
 | `/bookings/{id}/exchangeOffers` | 0.01:1            | 1000                      | 2000                      |                                                                                                                                                                                                                                                                                                      |
 
-### Non-Functional Requirements for the role "Fare Provider"
+### Non-Functional Requirements for the role "Fare Provider" <a name="NFR_FareProvider">
 
 Mandatory service level requirements to be fulfilled by a fare provider /
 carrier.

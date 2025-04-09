@@ -5,6 +5,22 @@ layout: page
 permalink: /spec/relationship-offer-offerpart-product-and-fare/
 ---
 
+## Table of contents
+
+1. [Ways to Access Fares](#WaystoAccessFares)
+   1. [First Scenario: Complete Offline Import of Fares](#FirstScenarioCompleteOfflineImportofFares)
+   2. [Second Scenario: Import of Relevant Fares at Offer Step](#SecondScenarioImportofRelevantFaresatOfferStep)
+   3. [Third Scenario: No Explicit Import of Fares](#ThirdScenarioNoExplicitImportofFares)
+2. [Attributes of an Online Fare](#AttributesofanOnlineFare)
+3. [Roles of Fare Attributes in the Booking and After Sales Processes](#RolesofFareAttributesintheBookingandAfterSalesProcesses)
+   1. [Offer Creation Step](#OfferCreationStep)
+   2. [Booking Step](#BookingStep)
+   3. [Fulfillment Step](#FulfillmentStep)
+4. [After Sale](#AfterSale)
+   1. [Refund Offer Creation Step](#RefundOfferCreationStep)
+   2. [Exchange Offer Creation Step](#ExchangeOfferCreationStep)
+
+
 # Relationships between Offers, OfferParts, Products and Fares
 
 The entities `offer`, `offerpart`, `product` and `fare` represent different
@@ -26,11 +42,11 @@ to an offer.
 
 _Note_: This example assumes that the complete trip can be priced.
 
-## Ways to Access Fares
+## Ways to Access Fares <a name="WaystoAccessFares">
 
 There are three ways for a retailer to access fares.
 
-### First Scenario: Complete Offline Import of Fares
+### First Scenario: Complete Offline Import of Fares <a name="FirstScenarioCompleteOfflineImportofFares">
 
 A retailer imports all fares of a given railway using a batch import from the
 OSDM-Offline platform.
@@ -39,14 +55,14 @@ The fares contain all relevant information to create offers, bookings and
 fulfillments (aka. tickets). If a booking occurs the RU informs the RU of the
 fare sold using UIC 301.
 
-### Second Scenario: Import of Relevant Fares at Offer Step
+### Second Scenario: Import of Relevant Fares at Offer Step <a name="SecondScenarioImportofRelevantFaresatOfferStep">
 
 At offer time, a retailer looks up the fares for a given origin/destination in
 its database. If it doesn't find it the retailer imports the relevant fares
 online. If a booking occurs the RU informs the RU of the fare sold using
 UIC 301.
 
-### Third Scenario: No Explicit Import of Fares
+### Third Scenario: No Explicit Import of Fares <a name="ThirdScenarioNoExplicitImportofFares">
 
 For a given origin/destination and date of travel the relevant fares are
 returned as part of the `Offer`.
@@ -54,18 +70,18 @@ returned as part of the `Offer`.
 If the fare is sold as part of an offer then the fare is booked online at the
 offering retailer.
 
-## Attributes of an Online Fare
+## Attributes of an Online Fare <a name="AttributesofanOnlineFare">
 
 ![Attributes of An Online Fare](../images/models/attributes-online-fare.png)
 
-## Roles of Fare Attributes in the Booking and After Sales Processes
+## Roles of Fare Attributes in the Booking and After Sales Processes <a name="RolesofFareAttributesintheBookingandAfterSalesProcesses">
 
 The fare contains all information so that a retailer can calculate correct
 prizes, render a valid fulfillment and account correctly.
 
 The following sections describe which fare attributes are used at which step:
 
-### Offer Creation Step
+### Offer Creation Step <a name="OfferCreationStep">
 
 Relevant fare attributes for the offer creation step are:
 
@@ -172,7 +188,7 @@ Relevant fare attributes for the offer creation step are:
   A retailer has to create an offer that covers the whole trip from start
   location to end location.
 
-### Booking Step
+### Booking Step <a name="BookingStep">
 
 Relevant fare attributes for the booking process step are:
 
@@ -190,7 +206,7 @@ Relevant fare attributes for the booking process step are:
   The legacy accounting identifier information is used to write a correct 301
   record.
 
-### Fulfillment Step
+### Fulfillment Step <a name="FulfillmentStep">
 
 Relevant fare attributes for the fulfillment step are:
 
@@ -241,9 +257,9 @@ Relevant fare attributes for the fulfillment step are:
   The passenger constraint need to be communicated to the passengers(s), e.g.
   printed on the ticket.
 
-## After Sale
+## After Sale <a name="AfterSale">
 
-### Refund Offer Creation Step
+### Refund Offer Creation Step <a name="RefundOfferCreationStep">
 
 Relevant fare attributes for the creation of a refund offer are:
 
@@ -254,7 +270,7 @@ Relevant fare attributes for the creation of a refund offer are:
   A retailer can create offers only if the after sale condition support its
   creation.
 
-### Exchange Offer Creation Step
+### Exchange Offer Creation Step <a name="ExchangeOfferCreationStep">
 
 Relevant fare attributes for the creation of a refund offer are the
 `afterSaleConditions` as well as all the attributes for offer creation.

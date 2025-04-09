@@ -5,7 +5,16 @@ hide_hero: true
 permalink: /spec/compliance/
 ---
 
-## Compliance
+## Table of contents
+
+1. [Compliance](#Compliance)
+2. [Compliance with the Offline Part](#CompliancewiththeOfflinePart)
+3. [Compliance with the Online Part](#CompliancewiththeOnlinePart)
+   1. [Compliance as a Distributor](#ComplianceasaDistributor)
+   2. [Compliance as a Carrier aka. Fare Provider](#ComplianceasaCarrieraka.FareProvider)
+
+
+## Compliance <a name="Compliance">
 
 To be compliant with the OSDM specification in total a party must be compliant
 with the offline as well as the online part of the specification. However, a
@@ -14,7 +23,7 @@ online part online based on the role they want to play in the sales process.
 
 ![Compliance](../images/compliance/compliance.png)
 
-## Compliance with the Offline Part
+## Compliance with the Offline Part <a name="CompliancewiththeOfflinePart">
 
 An implementation of the bulk data exchange specification is compliant with the
 specification if
@@ -29,9 +38,9 @@ A system receiving data for a fare must be able to understand all features and
 rules of the fare defined in the data and obey these features and rules or must
 not sell such a fare.
 
-## Compliance with the Online Part
+## Compliance with the Online Part <a name="CompliancewiththeOnlinePart">
 
-### Compliance as a Distributor
+### Compliance as a Distributor <a name="ComplianceasaDistributor">
 
 The following services/features are mandatory/optional to implement:
 
@@ -92,7 +101,7 @@ integration pattern helps creating robust communication systems. The idea is to
 be as tolerant as possible when reading data from another service. This way,
 when the communication schema changes, the readers must not break.
 
-### Compliance as a Carrier aka. Fare Provider
+### Compliance as a Carrier aka. Fare Provider <a name="ComplianceasaCarrieraka.FareProvider">
 
 The following services/features are mandatory/optional to implement:
 

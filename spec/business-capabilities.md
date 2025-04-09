@@ -5,7 +5,54 @@ hide_hero: true
 permalink: /spec/business-capabilities/
 ---
 
-## Actor Model and Business Use Cases
+## Table of contents
+
+1. [Actor Model and Business Use Cases](#ActorModelandBusinessUseCases)
+   1. [Actors in OSDM](#ActorsinOSDM)
+2. [Common Business Capabilities](#CommonBusinessCapabilities)
+   1. [Powerful Fare Combination](#PowerfulFareCombination)
+   2. [Simple Sales](#SimpleSales)
+3. [Business Capabilities for Retailers](#BusinessCapabilitiesforRetailers)
+   1. [Lookup Location](#LookupLocation)
+   2. [Search Trips](#SearchTrips)
+   3. [Find Offers](#FindOffers)
+   4. [Offer combination](#Offercombination)
+   5. [Pre-book Offers](#PrebookOffers)
+   6. [Book pre-booked Booking](#BookprebookedBooking)
+   7. [Fulfill Booking](#FulfillBooking)
+   8. [Get Booking](#GetBookingRetail)
+   9. [Refund Booking](#RefundBookingRetail)
+   10. [Exchange Booking](#ExchangeBooking)
+   11. [Graphical Seat Reservation](#GraphicalSeatReservation)
+   12. [Edit Passenger Information](#EditPassengerInformation)
+   13. [Retrieve Product Information](#RetrieveProductInformation)
+   14. [Retrieve Stored Personal Data](#RetrieveStoredPersonalData)
+   15. [Manage complaints](#ManagecomplaintsRetail)
+   16. [Provide Masterdata](#ProvideMasterdata)
+      1. [Reduction Card Definitions](#ReductionCardDefinitions)
+4. [Business Capabilities for Fare Allocation](#BusinessCapabilitiesforFareAllocation)
+   1. [Combine Fares](#CombineFares)
+   2. [Service Resource Location  (Locate Dynamic Fares)](#ServiceResourceLocation(LocateDynamicFares))
+   3. [Provide Bulk Fare Data](#ProvideBulkFareData)
+   4. [Provide Dynamic Fare](#ProvideDynamicFare)
+   5. [Book Offer](#BookOffer)
+   6. [Fulfillment](#Fulfillment)
+   7. [Reservation](#Reservation)
+      1. [Option/Step 1: Using old messages for reservation](#OptionStep1Usingoldmessagesforreservation)
+      2. [Option/Step 2: Using REST services for all services](#OptionStep2UsingRESTservicesforallservices)
+   8. [Get Booking](#GetBookingFare)
+   9. [Refund Booking](#RefundBookingFare)
+   10. [Exchange booking](#Exchangebooking)
+   11. [Accounting](#Accounting)
+      1. [direct accounting](#directaccounting)
+   12. [Graphical seat reservation](#Graphicalseatreservation)
+   13. [Passenger information](#Passengerinformation)
+   14. [Retrieve stored personal data](#Retrievestoredpersonaldata)
+   15. [Manage complaints](#ManagecomplaintsFare)
+   16. [Manage reimbourcements](#Managereimbourcements)
+
+
+## Actor Model and Business Use Cases <a name="ActorModelandBusinessUseCases">
 
 Actors are defined according to the UML specification. An Actor models a type of role played by an entity that interacts with the subject (e.g., by exchanging signals and data), but which is external to the subject.
 
@@ -17,7 +64,7 @@ The following diagram shows the actors and principal use cases involved in rail 
 
 ![Actor Model](../images/business-capabilities/business-use-cases.png)
 
-### Actors in OSDM
+### Actors in OSDM <a name="ActorsinOSDM">
 
 | **Actor**   | **Description** | Motivation / Distinction to other roles |
 |-------------|-----------------|-----------------------------------------|
@@ -30,15 +77,15 @@ The following diagram shows the actors and principal use cases involved in rail 
 | Passenger   | The **passenger** is the person who travels using a travel contract. | The passenger and the customer can be to distinct person, e.g., if a mom buys a ticket for her daughter.
 | Ticket Controller | Person (train staff) or machine (e.g. gates) responsible for controling the ticket. The ticket controler is always part of a **ticket controlling organization** (**TCO**) acting on behalf ot the carrier. | 
 
-## Common Business Capabilities
+## Common Business Capabilities <a name="CommonBusinessCapabilities">
 
-### Powerful Fare Combination
+### Powerful Fare Combination <a name="PowerfulFareCombination">
 
 It must be possible to combine fare according to existing fare
 combinations (e.g. NRT) as well as new fare combination
 models.
 
-### Simple Sales
+### Simple Sales <a name="SimpleSales">
 
 It must be easily possible to sell existing and new products.
 Easily possible means two things: Firstly, for a customer it must be
@@ -47,20 +94,20 @@ Secondly, for the rail sector as a whole the complexity of distribution
 must be reduced to save costs both for development as well as
 distribution.
 
-## Business Capabilities for Retailers
+## Business Capabilities for Retailers <a name="BusinessCapabilitiesforRetailers">
 
-### Lookup Location
+### Lookup Location <a name="LookupLocation">
 
 In order to uniquely identify a place of origin and destination a
 service to look up the unique code is needed. For railway stations this
 code is the UIC station code.
 
-### Search Trips
+### Search Trips <a name="SearchTrips">
 
 A service to lookup possible trips from origin to destination is needed,
 especially as the most attractive offers are bound to trip.
 
-### Find Offers
+### Find Offers <a name="FindOffers">
 
 For a given trip possible offers spanning the complete trip need to be
 calculated to the customer. An offer has an overall flexibility, an
@@ -75,7 +122,7 @@ need to be supported. Some trains of the trip might not support all service clas
 Searching for non-trip based offers is supported by the same service. Search criteria can 
 be tags, regions, geo-coordiantes.
 
-### Offer combination
+### Offer combination <a name="Offercombination">
 
 Offers can provide tags to indicate that some products from a provider can be sold only when in conjunction 
 with product(s) from another provider using the same tag. At least one, not all, combinationTags must be in 
@@ -88,7 +135,7 @@ If offers have no combination restrictions they can be combined freely.
 However if business rule require, it must be to express combination constraints to
 secure the tariff validity.
 
-### Pre-book Offers
+### Pre-book Offers <a name="PrebookOffers">
 
 If a customer puts an offer into a basket on a retail channel, it
 most be possible to retain this offer for a given time using a prebook
@@ -97,12 +144,12 @@ the status “pre-booked”. If the pre-booked booking is not booked after a
 given time limit it well be freed which also includes freeing all
 eventual reservations on inventories.
 
-### Book pre-booked Booking
+### Book pre-booked Booking <a name="BookprebookedBooking">
 
 After the booking has been paid by the customer, he or she owns the
 booking and the booking is changed to “booked” by a booking service.
 
-### Fulfill Booking
+### Fulfill Booking <a name="FulfillBooking">
 
 After the booking process the customer needs a set of documents to
 travel and to prove to a ticket control organization that he or she is
@@ -113,12 +160,12 @@ changed to “fulfilled”.
 Multiple formats and media are supported including pdf, pkpass. Parts to be included 
 in a fulfillment (visual security elements, separate bar code) can be used as well in case of fares.
 
-### Get Booking
+### Get Booking <a name="GetBookingRetail">
 
 To get the booking of a customer a service is needed. Specially care
 needs to be taken into account that privacy regulations are respected.
 
-### Refund Booking
+### Refund Booking <a name="RefundBookingRetail">
 
 If a customer wants to refund a booking a service to refund a booking is
 needed. The service calculates a refund offer including fees and amount
@@ -134,7 +181,7 @@ process.
 **Scope**: Only support for total refund is mandatory in this version of
 the specification.
 
-### Exchange Booking
+### Exchange Booking <a name="ExchangeBooking">
 
 If a customer wants to exchange a booking a service to exchange is
 needed. Conceptually it takes the existing booking and a new trip and
@@ -142,25 +189,25 @@ calculates an exchange-offer. This exchange-offer can be booked and
 fulfilled similarly to refund-offer.
 
 
-### Graphical Seat Reservation
+### Graphical Seat Reservation <a name="GraphicalSeatReservation">
 
 In order to display the layout of a train to a customer a service to
 access coach layout data and availability pf places is needed.
 
 
-### Edit Passenger Information
+### Edit Passenger Information <a name="EditPassengerInformation">
 
 To add or in special cases edit passenger information a service is
 provided. This service is explicitly designed to be fully complaint to
 GDPR regulation.
 
-### Retrieve Product Information
+### Retrieve Product Information <a name="RetrieveProductInformation">
 
 A service to access the attributes of a product such as detailed sales
 and after-sales is optional. Product information is part of the offer or
 booking and is included there by default.
 
-### Retrieve Stored Personal Data
+### Retrieve Stored Personal Data <a name="RetrieveStoredPersonalData">
 
 A customer can request information on the stored personal data. This
 includes also information on personal data passed on to distributors. The
@@ -170,62 +217,62 @@ There is no specific service to retrieve the stored personal data. The booking c
 to get the passenger references and then the passengers can be retireved.
 This will provide all stored personal data.
 
-### Manage complaints
+### Manage complaints <a name="ManagecomplaintsRetail">
 
 Complaints can be created on behalf of the passenger by Retailers. The distributor can request 
 additional documents to proof the complaint. The passenger can add documents to prove the claim and 
 change his data (e.g. bank account). The Retailer is informed on changes on the claim.
 
 
-### Provide Masterdata
+### Provide Masterdata <a name="ProvideMasterdata">
 
-#### Reduction Card Definitions
+#### Reduction Card Definitions <a name="ReductionCardDefinitions">
 
 The Definitions of reduction cards are provided as Master Data. 
 The reduction card definitions can be used by the Retailers for selection 
 lists in the sales process or in customer accounts.
 
 
-## Business Capabilities for Fare Allocation
+## Business Capabilities for Fare Allocation <a name="BusinessCapabilitiesforFareAllocation">
 
-### Combine Fares
+### Combine Fares <a name="CombineFares">
 
 The distributor combines fares from different carriers into one offer. The
 rules on how to combine fares are part of the fare data.
 
-### Service Resource Location  (Locate Dynamic Fares)
+### Service Resource Location  (Locate Dynamic Fares) <a name="ServiceResourceLocation(LocateDynamicFares)">
 
 Dynamic fares must be requested online. The distributor needs to find the
 online resource where to request the offer and book. The fare data
 provide information on how to find the online service.
 
-### Provide Bulk Fare Data
+### Provide Bulk Fare Data <a name="ProvideBulkFareData">
 
 The carrier provides bulk data on his static fares and additional data
 for locating online services to the distributors.
 
-### Provide Dynamic Fare
+### Provide Dynamic Fare <a name="ProvideDynamicFare">
 
 The carrier provides an online service to retrieve dynamic fares.
 
-### Book Offer
+### Book Offer <a name="BookOffer">
 
 The carrier provides online services to book fares and cancel or
 exchange fares. 
 
-### Fulfillment
+### Fulfillment <a name="Fulfillment">
 
 All necessary information for an distributor to build a valid a ticket
 including necessary attributes and control elements most be included by
 the provider of the fare.
 
-### Reservation
+### Reservation <a name="Reservation">
 
 Reservation has been included in the online services and the inventory
 resolution data for fare or reservation are included in the bulk data
 (see FareResourceLocation).
 
-#### Option/Step 1: Using old messages for reservation
+#### Option/Step 1: Using old messages for reservation <a name="OptionStep1Usingoldmessagesforreservation">
 
 1. offer (REST service) à parameters for 90918-1 soap services are delivered
 2. reservation as-if (old soap service) / graphical place display (old soap service)
@@ -233,19 +280,19 @@ resolution data for fare or reservation are included in the bulk data
 4. pre-booking NRT (REST service)
 5. confirm booking NRT (REST service)
 
-#### Option/Step 2: Using REST services for all services
+#### Option/Step 2: Using REST services for all services <a name="OptionStep2UsingRESTservicesforallservices">
 
 1. offer (REST service)
 2. checkPreferences (REST service) / graphical place display (REST service)
 3. pre-booking NRT / reservation (REST service)
 4. confirm booking of reservation / NRT (REST service)
 
-### Get Booking
+### Get Booking <a name="GetBookingFare">
 
 To get the booking of a customer a service is needed. Specially care
 needs to be taken into account that privacy regulations are respected.
 
-### Refund Booking
+### Refund Booking <a name="RefundBookingFare">
 
 If a customer wants to refund a booking a service to refund a booking is
 needed. The service calculates a refund offer including fees and amount
@@ -258,7 +305,7 @@ booking with no penalties.
 By design, the refund process is modelled similarly to the offer/booking
 process.
 
-### Exchange booking
+### Exchange booking <a name="Exchangebooking">
 
 If a customer wants to exchange a booking a service to exchange is
 needed. Conceptually it takes the existing booking and a new trip and
@@ -266,7 +313,7 @@ calculates an exchange-offer. This exchange-offer can be booked and
 fulfilled similarly to refund-offer.
 
 
-### Accounting
+### Accounting <a name="Accounting">
 
 The specification of the accounting data is not part of this document,
 however some on the fare content defined in this specification must be
@@ -329,7 +376,7 @@ The carrier is responsible for the accounting. The data structure for
 IRT is used. The distributor will inform the carrier on the applied fees
 in the cancellation confirmation.
 
-#### direct accounting
+#### direct accounting <a name="directaccounting">
 
 In some cases the accounting is not done by the provider of the OSDM API itself but is done 
 from the provider of a train service booked via OSDM. The service provider that creates the accounting 
@@ -346,13 +393,13 @@ The accounting data send from C to A as billing will contain the accounting IDs 
 
 
 
-### Graphical seat reservation
+### Graphical seat reservation <a name="Graphicalseatreservation">
 
 In order to display the layout of a train to a customer a service to
 access coach layout data and availability of places is needed.
 
 
-### Passenger information
+### Passenger information <a name="Passengerinformation">
 
 Passenger names are supported with an element for fits names and an element for last names. As 
 an additional option it is possibe to provide a first and a last familiy name additionally. This is used to 
@@ -362,20 +409,20 @@ To add or in special cases edit passenger information a service is
 provided. This service is explicitly designed to be fully complaint to
 GDPR regulation.
 
-### Retrieve stored personal data
+### Retrieve stored personal data <a name="Retrievestoredpersonaldata">
 
 There is no specific service to retrieve stored personal data. The booking can be retrieved 
 to get the passenger references and then the passengers can be retireved.
 This will provide all stored personal data.
 
-### Manage complaints
+### Manage complaints <a name="ManagecomplaintsFare">
 
 Complaints can be created on behalf of the passenger by the reteiler. The distributor and the carrier 
 can request additional documents to proof the complaint. The passenger can add documents to 
 prove the claim and change his data (e.g. bank account). The distributor can decide on a claim 
 himself in case the carrier has not kept the legal time line.
 
-### Manage reimbourcements
+### Manage reimbourcements <a name="Managereimbourcements">
 
 Reimbourcements can be requested by the retailer to the distributor in case 
 the fare allows the reimbourcement of unused tickets. The distributor can forward the request to fare providers.
