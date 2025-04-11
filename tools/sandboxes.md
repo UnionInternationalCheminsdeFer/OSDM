@@ -63,3 +63,15 @@ The link to our form is available on
 [benerail OSDM sandbox](https://benerail.com/sandbox_osdm_api/).
 
 ![benerail](../images/logo/benerail-logo.jpg)
+
+## Turnit OSDM Sandbox
+
+[Turnit](https://www.turnit.com) is a provider of reservation, ticketing, and inventory management solutions for rail, ferry, and intercity bus operators. 
+
+They offer a sandbox for anyone interested in exploring and testing their implementation of the OSDM API. The sandbox covers rail and bus use cases, including night trains, on a fictional European network, with support for search, booking, fulfillment, refund, and exchange flows.
+
+Access is available upon request. Registered users receive API credentials, documentation of the sandbox content, and a Postman collection with example flows.
+
+To request access, please fill in the form at [Turnit OSDM Sandbox](https://turnit.com/osdm-sandbox/).
+![Turnit](../images/logo/turnit-logo-blue.png)
+
