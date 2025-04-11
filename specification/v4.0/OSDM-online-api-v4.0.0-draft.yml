@@ -8759,7 +8759,7 @@ components:
             $ref: '#/components/schemas/ExchangeOffer'
         appliedFeesRefs:
           description: |
-            references to the fees applied with this exchnage oepration. It is mandatory to
+            references to the fees applied with this exchange operation. It is mandatory to
             provide the refs when the fees have been applied.
           type: array
           items:
