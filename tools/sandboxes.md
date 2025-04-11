@@ -73,5 +73,5 @@ They offer a sandbox for anyone interested in exploring and testing their implem
 Access is available upon request. Registered users receive API credentials, documentation of the sandbox content, and a Postman collection with example flows.
 
 To request access, please fill in the form at [Turnit OSDM Sandbox](https://turnit.com/osdm-sandbox/).
-![Turnit](../images/logo/turnit-logo-blue.png)
+![Turnit](../images/logo/turnit-logo-blue-w200.png)
 
