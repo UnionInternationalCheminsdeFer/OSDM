@@ -4179,7 +4179,7 @@ paths:
       responses:
         '200':
           description: |
-            place availabilities for the requested fares and offer parts
+            place availabilities for the requested offer parts
           content:
             application/json:
               schema:
@@ -4234,19 +4234,14 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/ContextType'
-        - name: resourceId
+        - name: reservationId
           in: query
           description: |
-            denotes the reservationId wen resourceType is RESERVATION, fareId when resourceType is FARE
+            denotes the reservationId 
           required: true
           schema:
             type: string
             maxLength: 32768
-        - name: resourceType
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/ResourceType'
         - name: coachNumber
           in: query
           description: |
@@ -4317,17 +4312,12 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/ContextType'
-        - name: resourceId
+        - name: reservationId
           in: query
           required: true
           schema:
             type: string
             maxLength: 32768
-        - name: resourceType
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/ResourceType'
       responses:
         '200':
           description: |
@@ -4386,17 +4376,12 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/ContextType'
-        - name: resourceId
+        - name: reservationId
           in: query
           required: true
           schema:
             type: string
             maxLength: 32768
-        - name: resourceType
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/ResourceType'
       requestBody:
         required: true
         content:
@@ -4904,7 +4889,6 @@ components:
         - objectType
         - id
         - createdOn
-        - validFrom
         - price
         - status
         - passengerIds
@@ -4925,16 +4909,6 @@ components:
           description: |
             Validity of offer towards passenger
           type: string
-          format: date-time
-        validFrom:
-          type: string
-          format: date-time
-        validUntil:
-          description: |
-            Validity of offer towards passenger
-          type:
-            - 'string'
-            - 'null'
           format: date-time
         confirmedOn:
           type:
@@ -5055,7 +5029,6 @@ components:
         - objectType
         - id
         - createdOn
-        - validFrom
         - price
         - offerMode
         - passengerRefs
@@ -5078,18 +5051,6 @@ components:
           type: string
         createdOn:
           type: string
-          format: date-time
-        validFrom:
-          description: |
-            Time from which on the offer can be used, e.g. travel.
-          type: string
-          format: date-time
-        validUntil:
-          description: |
-            Time until the offer can be used, e.g. travel.
-          type:
-            - 'string'
-            - 'null'
           format: date-time
         price:
           $ref: '#/components/schemas/Price'
@@ -5544,6 +5505,18 @@ components:
         - type: object
           additionalProperties: false
           properties:
+            validFrom:
+              description: |
+                 Validity of Booking Part for travel            
+              type: string
+              format: date-time
+            validUntil:
+              description: |
+                 Validity of Booking Part for travel
+              type:
+                - 'string'
+                - 'null'
+              format: date-time          
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
             feeRefs:
@@ -5571,7 +5544,21 @@ components:
         - $ref: '#/components/schemas/AbstractOfferPart'
         - type: object
           additionalProperties: false
+          required:
+            - validFrom
           properties:
+            validFrom:
+              description: |
+                 Validity of Booking Part for travel            
+              type: string
+              format: date-time
+            validUntil:
+              description: |
+                 Validity of Booking Part for travel
+              type:
+                - 'string'
+                - 'null'
+              format: date-time  
             regionalValiditySummary:
               $ref: '#/components/schemas/RegionalValiditySummary'
             regionalValidity:
@@ -5735,13 +5722,35 @@ components:
         - $ref: '#/components/schemas/AbstractBookingPart'
         - type: object
           additionalProperties: false
-          required:
-            - type
           properties:
+            validFrom:
+              description: Validity of Booking Part for travel            
+              type: string
+              format: date-time
+            validUntil:
+              description: Validity of Booking Part for travel
+              type:
+                - 'string'
+                - 'null'
+              format: date-time            
+            regionalValiditySummary:
+              $ref: '#/components/schemas/RegionalValiditySummary'
+            regionalValidity:
+              $ref: '#/components/schemas/RegionalValidity'
+            reservations:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReservationRelation'
             feeRefs:
               type: array
               items:
                 $ref: '#/components/schemas/BookingPartReference'
+            category:
+              description: |
+                Categorization of the ancillary such as 'Meal' or 'Gift'.
+              type:
+                - 'string'
+                - 'null'
             type:
               $ref: '#/components/schemas/AncillaryType'
 
@@ -5771,6 +5780,18 @@ components:
           required:
             - type
           properties:
+            validFrom:
+              description: |
+                 Validity of Booking Part for travel            
+              type: string
+              format: date-time
+            validUntil:
+              description: |
+                 Validity of Booking Part for travel
+              type:
+                - 'string'
+                - 'null'
+              format: date-time            
             regionalValiditySummary:
               $ref: '#/components/schemas/RegionalValiditySummary'
             regionalValidity:
@@ -5886,6 +5907,20 @@ components:
         - 'OFFERPART'
         - 'SEAT_SELECTION': (https://osdm.io/spec/processes/#SeatSelectionFees)
 
+    AppliedFee:
+      description: |
+        Fees are used to represent additional costs for services or products. In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the providing system.   
+      allOf:
+        - $ref: '#/components/schemas/AbstractBookingPart'
+        - type: object
+          additionalProperties: false
+          properties:
+            applicability:
+              $ref: '#/components/schemas/ApplicabilityType'
+            transactionContext:
+              $ref: '#/components/schemas/TransactionContextType'
+
+
     TransactionContextType:
       type: string
       x-extensible-enum:
@@ -5933,7 +5968,7 @@ components:
       description:
         fare or offerParts which should be covered by the available seats
       required:
-        - partReferences
+        - reservationIds
       properties:
         singleSelectionMapsRequired:
           description:
@@ -5941,30 +5976,13 @@ components:
             or fare only
           type: boolean
           default: true
-        partReferences:
+        reservationIds:
           type: array
+          minItems: 1
           items:
-            $ref: '#/components/schemas/PartReference'
+            description: reference to the reservation offer part or reservation booking part
+            type: string
 
-    PartReference:
-      type: object
-      description: reference to a fare or offerPart
-      required:
-        - contextId
-        - contextType
-        - resourceId
-        - resourceType
-      properties:
-        contextId:
-          type: string
-          maxLength: 32768
-        contextType:
-          $ref: '#/components/schemas/ContextType'
-        resourceId:
-          type: string
-          maxLength: 32768
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
 
     AvailabilityStatus:
       description: |
@@ -6222,11 +6240,11 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/Fee'
+            $ref: '#/components/schemas/AppliedFee'
         fares:
           type: array
           items:
-            $ref: '#/components/schemas/Fare'
+            $ref: '#/components/schemas/FareBookingPart'
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         appliedThroughTicketTags:
@@ -6803,8 +6821,9 @@ components:
         externalRef:
           description: |
             The unique booking reference in the provider system. Usually refers to an order number or PNR.
-          type: string
-          nullable: true
+          type: 
+            - string
+            - 'null'      
         provisionalPrice:
           description: |
             price of all unconfirmed pre-booked parts in the booking
@@ -8274,6 +8293,22 @@ components:
         - 'UP'
         - 'DOWN'
 
+    DistributionMode:
+      description: |
+         booking parts in product mode are provided as complete products where the tickets and 
+         conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assambled 
+         into tickes on the OSDM client side. In fare mode the conditions are defined on the client 
+         side the restrictions on conditions and combinability layed down in the booking part (fare). 
+         By definition admissions and ancillaries are in PRODUCT_MODE and fares are in FARE_MODE. Reservation 
+         might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
+         requested in the offer part type list.
+      type: string
+      enum:
+        - 'PRODUCT_MODE'
+        - 'FARE_MODE'   
+      default:  'PRODUCT_MODE'        
+
+
     Document:
       type: object
       additionalProperties: false
@@ -8573,7 +8608,7 @@ components:
         fares:
           type: array
           items:
-            $ref: '#/components/schemas/Fare'
+            $ref: '#/components/schemas/FareOfferPart'
         _links:
           description: |
             Java Property Name: 'links'
@@ -8722,6 +8757,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExchangeOffer'
+        appliedFeesRefs:
+          description: |
+            references to the fees applied with this exchange operation. It is mandatory to
+            provide the refs when the fees have been applied.
+          type: array
+          items:
+            type: string
+            maxLength: 1024
         ticketTimeLimit:
           type:
             - 'string'
@@ -8789,6 +8832,14 @@ components:
             $ref: '#/components/schemas/Problem'
         exchangeOperation:
           $ref: '#/components/schemas/ExchangeOperation'
+        appliedFees:
+          description: |
+            applied fees referenced in the exchange operation. Providing the applied fees is 
+            mandatory in case the an exchange operation is returned. The applied fees are stored in the booking and are returned here additionally for convenience.
+          type: array
+          items:
+             $ref: '#/components/schemas/AppliedFee'  
+
 
     ExchangeOperationResponseContent:
       description: |
@@ -8876,7 +8927,8 @@ components:
         - 'START_OF_TRAVEL'
         - 'COMPLETE_RANGE'
 
-    Fare:
+
+    FareOfferPart:
       type: object
       additionalProperties: false
       description: |
@@ -8887,107 +8939,135 @@ components:
         total route and the location of the sales points for international sales. 
         Whether the indication of carriers is obligatory is defined
         in the Convention concerning International Carriage by Rail (COTIF).
-      required:
-        - id
-        - type
-        - prices
-        - regionalConstraint
-        - travelClass
-        - afterSalesCondition
-        - combinationConstraint
-        - travelValidityConstraint
-        - requiredCards
-      properties:
-        id:
-          description: |
-            id of the fare item to be included in accounting
-          type: string
-        type:
-          $ref: '#/components/schemas/FareType'
-        name:
-          $ref: '#/components/schemas/Text'
-        description:
-          $ref: '#/components/schemas/Text'
-        status:
-          $ref: '#/components/schemas/BookingPartStatus'
-        prices:
-          description: |
-            allows specifying a price in multiple currencies
-          type: array
-          items:
-            $ref: '#/components/schemas/Price'
-          minItems: 1
-        regionalConstraint:
-          $ref: '#/components/schemas/RegionalConstraint'
-        serviceConstraint:
-          $ref: '#/components/schemas/ServiceConstraint'
-        carrierConstraint:
-          $ref: '#/components/schemas/CarrierConstraint'
-        regulatoryConditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/RegulatoryCondition'
-        serviceClass:
-          $ref: '#/components/schemas/ServiceClass'
-        travelClass:
-          $ref: '#/components/schemas/TravelClass'
-        afterSalesCondition:
-          $ref: '#/components/schemas/AfterSalesConditionsLink'
-        combinationConstraint:
-          type: array
-          items:
-            $ref: '#/components/schemas/FareCombinationModel'
-          minItems: 1
-        fulfillmentConstraint:
-          $ref: '#/components/schemas/FulfillmentConstraint'
-        travelValidityConstraint:
-          $ref: '#/components/schemas/TravelValidity'
-        availablePlaces:
-          type: array
-          items:
-            $ref: '#/components/schemas/AvailablePlace'
-        placeSelection:
-          $ref: '#/components/schemas/PlaceSelection'
-        placeAllocation:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlaceAllocation'
-        coveredSection:
-          $ref: '#/components/schemas/Section'
-        passengerRefs:
-          type: array
-          items:
-            type: string
-          minItems: 1
-        passengerConstraints:
-          description: |
-            passenger constraint to be included in bar codes
-          type: array
-          items:
-            $ref: '#/components/schemas/PassengerConstraints'
-        involvedTCOs:
-          type: array
-          items:
-            $ref: '#/components/schemas/CompanyRef'
-        accountingRef:
-          $ref: '#/components/schemas/AccountingRef'
-        legacyAccountingIdentifier:
-          $ref: '#/components/schemas/LegacyAccountingIdentifier'
-        legacyReservationParameter:
-          $ref: '#/components/schemas/LegacyReservationParameter'
-        requiredCards:
-          description: |
-            One of the listed cards is required to be valid at the time of travel.
-          type: array
-          items:
-            $ref: '#/components/schemas/CardReference'
-          minItems: 1
-        luggageConstraint:
-          $ref: '#/components/schemas/LuggageConstraint'
-        availablePreferences:
-          type: array
-          items:
-            $ref: '#/components/schemas/AvailablePlacePreferences'
+      allOf:
+        - $ref: '#/components/schemas/AbstractOfferPart'
+        - type: object
+          additionalProperties: false            
+          required:
+            - type
+            - regionalConstraint
+            - travelClass
+            - afterSalesCondition
+            - combinationConstraint
+            - travelValidityConstraint
+          properties:
+            type:
+               $ref: '#/components/schemas/FareType'
+            regionalConstraint:
+               $ref: '#/components/schemas/RegionalConstraint'
+            serviceConstraint:
+               $ref: '#/components/schemas/ServiceConstraint'
+            carrierConstraint:
+               $ref: '#/components/schemas/CarrierConstraint'
+            regulatoryConditions:
+               type: array
+               items:
+                  $ref: '#/components/schemas/RegulatoryCondition'
+            serviceClass:
+               $ref: '#/components/schemas/ServiceClass'
+            travelClass:
+               $ref: '#/components/schemas/TravelClass'
+            afterSalesCondition:
+               $ref: '#/components/schemas/AfterSalesConditionsLink'
+            combinationConstraint:
+               type: array
+               minItems: 1
+               items:
+                   $ref: '#/components/schemas/FareCombinationModel'
+            fulfillmentConstraint:
+                $ref: '#/components/schemas/FulfillmentConstraint'
+            travelValidityConstraint:
+                $ref: '#/components/schemas/TravelValidity'
+            coveredSection:
+                $ref: '#/components/schemas/Section'
+            passengerConstraints:
+               description: |
+                  passenger constraint to be included in bar codes
+               type: array
+               items:
+                 $ref: '#/components/schemas/PassengerConstraints'
+            involvedTCOs:
+               type: array
+               items:
+                  $ref: '#/components/schemas/CompanyRef'
+            luggageConstraint:
+               $ref: '#/components/schemas/LuggageConstraint'
+            fareReservationRef:
+                description: |
+                  reference of the reservatioon offer that manages the places on a train. The referenced reservation is 
+                  following the comercial rules of a fare, it needs to be integrated in a fulfillment of the API consumer.
+                type: string      
+          
+
+    FareBookingPart:
+      type: object
+      additionalProperties: false
+      description: |
+        The online representation of a fare.
+        In case the final product requires the indication of carriers it is obligatory to provide a 
+        carrierConstraint in the fare directly that includes the list of all carriers in the 
+        includedCarrier list. Whether the carrier must be indicated needs to be derived from the requetsted
+        total route and the location of the sales points for international sales. 
+        Whether the indication of carriers is obligatory is defined
+        in the Convention concerning International Carriage by Rail (COTIF).
+      allOf:
+        - $ref: '#/components/schemas/AbstractBookingPart'
+        - type: object
+          additionalProperties: false            
+          required:
+            - type
+            - regionalConstraint
+            - travelClass
+            - afterSalesCondition
+            - combinationConstraint
+            - travelValidityConstraint
+          properties:
+            type:
+               $ref: '#/components/schemas/FareType'
+            regionalConstraint:
+               $ref: '#/components/schemas/RegionalConstraint'
+            serviceConstraint:
+               $ref: '#/components/schemas/ServiceConstraint'
+            carrierConstraint:
+               $ref: '#/components/schemas/CarrierConstraint'
+            regulatoryConditions:
+               type: array
+               items:
+                  $ref: '#/components/schemas/RegulatoryCondition'
+            serviceClass:
+               $ref: '#/components/schemas/ServiceClass'
+            travelClass:
+               $ref: '#/components/schemas/TravelClass'
+            afterSalesCondition:
+               $ref: '#/components/schemas/AfterSalesConditionsLink'
+            combinationConstraint:
+               type: array
+               minItems: 1
+               items:
+                $ref: '#/components/schemas/FareCombinationModel'
+            fulfillmentConstraint:
+                $ref: '#/components/schemas/FulfillmentConstraint'
+            travelValidityConstraint:
+                $ref: '#/components/schemas/TravelValidity'
+            coveredSection:
+                $ref: '#/components/schemas/Section'
+            passengerConstraints:
+               description: |
+                  passenger constraint to be included in bar codes
+               type: array
+               items:
+                 $ref: '#/components/schemas/PassengerConstraints'
+            involvedTCOs:
+               type: array
+               items:
+                  $ref: '#/components/schemas/CompanyRef'
+            luggageConstraint:
+               $ref: '#/components/schemas/LuggageConstraint'
+            fareReservationRef:
+                description: |
+                  reference of the reservatioon offer that manages the places on a train. The referenced reservation is 
+                  following the comercial rules of a fare, it needs to be integrated in a fulfillment of the API consumer.
+                type: string               
 
     FareCombinationModel:
       type: object
@@ -9136,14 +9216,6 @@ components:
           $ref: '#/components/schemas/ApplicabilityType'
         transactionContext:
           $ref: '#/components/schemas/TransactionContextType'
-        status:
-          $ref: '#/components/schemas/FeeStatus'
-        distributorBookingRef:
-          description: |
-            reference to the booking in the downstream distributor system
-          type:
-            - 'string'
-            - 'null'
         refundable:
           $ref: '#/components/schemas/RefundType'
         conditions:
@@ -9156,8 +9228,6 @@ components:
           type: string
           description: |
             Reference to the Product representing the Fee
-        accountingRef:
-          $ref: '#/components/schemas/AccountingRef'
 
     Flexibility:
       type: string
@@ -10603,7 +10673,7 @@ components:
         fares:
           type: array
           items:
-            $ref: '#/components/schemas/Fare'
+            $ref: '#/components/schemas/FareOfferPart'
         _links:
           description: |
             Java Property Name: 'links'
@@ -11481,8 +11551,9 @@ components:
       required:
         - vehicle
       properties:
-        reference:
-          $ref: '#/components/schemas/PartReference'
+        reservationId:
+          description: reference to the reservation offer part or reservation booking part
+          type: string
         vehicle:
           $ref: '#/components/schemas/Vehicle'
         preSelections:
@@ -12347,8 +12418,7 @@ components:
         Result of a product search
       required:
         - productTagNames
-        - productTagGroupNames
-        - productTagGroupings
+        - productTagGroups
       properties:
         productTagNames:
           type: array
@@ -12729,7 +12799,14 @@ components:
         refundFee:
           $ref: '#/components/schemas/Price'
           description: |
-            Amount kept by the carrier and/or distributor
+            Total Amount kept by the carrier and/or distributor
+        refundFeeRefs:
+          description: |
+            reference to Applied Fees covering the refund fee. Providing the reference is mandatory when the refund was confirmed.
+          type: array
+          items:
+            type: string
+            maxLength: 1024
         accountingRef:
           description: |
             Accounting information for the refund fee
@@ -12840,6 +12917,13 @@ components:
             $ref: '#/components/schemas/Problem'
         refundOffer:
           $ref: '#/components/schemas/RefundOffer'
+        appliedFees:
+          description: |
+            applied fees referenced in the refund offer. Providing the applied fees is 
+            mandatory in case the refund offer is confirmed. The applied fees are stored in the booking and are returned here additionally for convenience.
+          type: array
+          items:
+             $ref: '#/components/schemas/AppliedFee'   
 
     RefundSpecification:
       type: object
@@ -13280,6 +13364,8 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/AvailablePlacePreferences'
+            distributionMode:
+                $ref: '#/components/schemas/DistributionMode'    
 
     ReservationGroup:
       type: object
