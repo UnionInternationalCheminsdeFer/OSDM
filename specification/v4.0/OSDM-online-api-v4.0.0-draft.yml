@@ -11932,13 +11932,11 @@ components:
             amount in cents
           type: integer
           format: int32
-          nullable: false
         scale:
           description: |
             scale of the amount - the number of positions after the comma
           type: integer
           format: int32
-          nullable: true
           default: 2
         appliedRate:
           type: number         
@@ -12735,7 +12733,7 @@ components:
         - validFrom
         - validUntil
         - status
-        - fulfillments
+        - refundedFulfillments
         - refundFee
         - refundableAmount
       properties:
@@ -12779,12 +12777,13 @@ components:
           format: date-time
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
-        fulfillments:
-          description: fulfillments to be refunded or replaced
+        refundedFulfillments:
+          description: | 
+            fulfillments to be refunded or replaced. This might differ from the requested refund specification in case the original request did not include all related fulfillments or booking parts. It must also incude the references to booking parts and passenger ids which can be omitted in teh request in case all part or passengers related to a fulfillment are refunded. 
           type: array
           items:
-            $ref: '#/components/schemas/Fulfillment'
-          minItems: 1
+            $ref: '#/components/schemas/RefundedFulfillmentSpecification'
+          minItems: 1          
         issuedFulfillments:
           description:
             new fulfillments issued with this offer (only available after
@@ -12890,7 +12889,6 @@ components:
         refundSpecifications:
           description: |
             Specification of Fulfillment IDs to refund.
-
             To do a partial refund, include booking part IDs to refund from the fulfillment.
           type: array
           items:
@@ -12924,6 +12922,32 @@ components:
           type: array
           items:
              $ref: '#/components/schemas/AppliedFee'   
+
+    RefundedFulfillmentSpecification:
+      type: object
+      description: |
+        description of fulfillments, booking parts and passenger ids included in a refund.
+      required:
+        - fulfillmentId
+      properties:
+        fulfillmentId:
+          description: |
+            id of the fulfillment where some part(s) should be removed
+          type: string
+        fulfillmentSummary:
+          description: A human-readable description of the fulfillment.
+          type: string
+        bookingPartIds:
+          description: ids of booking parts to be removed from the fulfillment
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+        passengerIds:
+          type: array
+          description: ids of passengers to be removed from the fulfillment
+          items:
+            type: string      
 
     RefundSpecification:
       type: object
@@ -13200,7 +13224,7 @@ components:
         - validFrom
         - validUntil
         - status
-        - fulfillments
+        - releasedFulfillments
       properties:
         id:
           description: |
@@ -13231,11 +13255,13 @@ components:
           format: date-time
         status:
           $ref: '#/components/schemas/ReleaseStatus'
-        fulfillments:
+        releasedFulfillments:
+          description: | 
+            fulfillments to be refunded or replaced. This might differ from the requested refund specification in case the original request did not include all related fulfillments or booking parts. It must also incude the references to booking parts and passenger ids which can be omitted in teh request in case all part or passengers related to a fulfillment are refunded. 
           type: array
           items:
-            $ref: '#/components/schemas/Fulfillment'
-          minItems: 1
+            $ref: '#/components/schemas/RefundedFulfillmentSpecification'
+          minItems: 1 
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
         _links:
