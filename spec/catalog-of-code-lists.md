@@ -192,7 +192,7 @@ of by the customer.
 | `MOTOR_CYCLE`           | Y                      | N                | Y              | Motorcycle                                                                                       | `SPECIAL_COMPARTMENT_TYPE`       |
 | `MOTOR_CYCLE_SC`        | Y                      | N                | Y              | Motorcycle with sidecar                                                                          | `SPECIAL_COMPARTMENT_TYPE`       |
 | `NEAR_ANIMALS`          | Y                      | Y                | Y              | Places close to place with animals                    | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `NEAR_ASISTANT_DOG_AREA`| Y                      | Y                | Y              | Places close to an area where assistance dogs are kept | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `NEAR_ASSISTANT_DOG_AREA`| Y                      | Y                | Y              | Places close to an area where assistance dogs are kept | `PLACE_OR_COMPARTMENT_POSITION`  |
 | `NEAR_DINING`           | Y                      | Y                | Y              | Places near the dining car                            | `PLACE_OR_COMPARTMENT_POSITION`  |
 | `NEAR_PLAY_AREA`        | Y                      | Y                | Y              | Places near a child play area                         | `PLACE_OR_COMPARTMENT_POSITION`  |
 | `NEAR_BICYCLE_AREA`     | Y                      | Y                | Y              | Places near the bicycle storage space                 | `PLACE_OR_COMPARTMENT_POSITION`  |
