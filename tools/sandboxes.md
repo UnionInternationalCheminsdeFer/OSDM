@@ -76,3 +76,14 @@ To request access, please fill in the form at [Turnit OSDM Sandbox](https://turn
 
 ![Turnit](../images/logo/turnit-logo-blue-w200.png)
 
+## PAXONE OSDM Sandbox
+[PAXONE by Wiremind](https://www.wiremind.io/passenger/paxone) is an innovative, highly-scalable inventory and distribution solution.
+
+Wiremind offers an OSDM Sandbox environment for parties interested in exploring their implementation of the OSDM APIS. The sandbox simulates real-life booking scenarios across a fictional West European network and supports end-to-end flows including offer search, booking, fulfillment, refund, and exchange.
+
+Try out their [OSDM Sandbox](https://content.wiremind.io/paxone-osdm-sandbox) to explore the capabilities and behavior of the OSDM standard before full implementation.
+
+Click on this [link](https://content.wiremind.io/paxone-osdm-sandbox) to test the PAXONE OSDM Sandbox.
+
+![PAXONE](../images/logo/paxone-logo.png)
+
