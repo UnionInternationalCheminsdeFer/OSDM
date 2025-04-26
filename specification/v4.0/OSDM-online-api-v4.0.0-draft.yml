@@ -14685,8 +14685,18 @@ components:
           $ref: '#/components/schemas/TripDirectionType'
         origin:
           $ref: '#/components/schemas/PlaceRef'
+        originName:
+          description: Name of the origin place
+          type: 
+            - 'string'
+            - 'null'
         destination:
           $ref: '#/components/schemas/PlaceRef'
+        destinationName:
+          description: Name of the destination place
+          type: 
+            - 'string'
+            - 'null'
         startTime:
           description: |
             Departure time at origin.
@@ -15337,8 +15347,18 @@ components:
           format: duration
         origin:
           $ref: '#/components/schemas/PlaceRef'
+        originName:
+          type:
+            - 'string'
+            - 'null'
+          description: Name of the origin place.
         destination:
           $ref: '#/components/schemas/PlaceRef'
+        destinationName:
+          type:
+            - 'string'
+            - 'null'
+          description: Name of the destination place.
         transfers:
           type:
             - 'integer'

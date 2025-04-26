@@ -15635,8 +15635,16 @@ components:
           $ref: '#/components/schemas/TripDirectionType'
         origin:
           $ref: '#/components/schemas/PlaceRef'
+        originName:
+          description: Name of the origin place
+          type: string
+          nullable: true
         destination:
           $ref: '#/components/schemas/PlaceRef'
+        destinationName:
+          description: Name of the destination place
+          type: string
+          nullable: true
         startTime:
           description: |
             Departure time at origin.
@@ -16270,8 +16278,16 @@ components:
           nullable: true
         origin:
           $ref: '#/components/schemas/PlaceRef'
+        originName:
+          type: string
+          nullable: true
+          description: Name of the origin place
         destination:
           $ref: '#/components/schemas/PlaceRef'
+        destinationName:
+          type: string
+          nullable: true
+          description: Name of the destination place
         transfers:
           type: integer
           format: int32
