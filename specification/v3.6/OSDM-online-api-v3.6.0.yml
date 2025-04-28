@@ -82,7 +82,7 @@ tags:
       resources to put a pre-booking on hold for a given time limit
   - name: Release
     description: |
-      resources to release
+      resources to release a fulfillment (two-step refund where the first step is to mark the release date, release allocated seats, invalidate the ticket. Refund of money is performed in the second step.)
   - name: Complaint Management
     description: |
       resources to manage complaints
@@ -2839,7 +2839,8 @@ paths:
     patch:
       tags:
         - Release
-      summary: Allows to accept and confirm a release offer.
+      summary: |
+        Allows to accept and confirm a release offer. When accepted, all associated admissions are invalidated and reserved seats are released. The obtain money refund, refund offer must be used at later stage.
       operationId: patchReleaseOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
