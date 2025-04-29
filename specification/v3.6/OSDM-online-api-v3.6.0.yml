@@ -8974,7 +8974,7 @@ components:
         case of berths in future. 
         Code list according to UIC90918-1
         Valid Values:
-        - RIGHT: to right
+        - RIGHT: to right, RIGHT is the default. In case of walls it indicates a wall parallel with the x axis.
         - LEFT: to left
         - UP: up (from right side of a coach pointing to the middle of the aisle)
         - DOWN: down (from right side of the coach pointing to the middle of the aisle)
