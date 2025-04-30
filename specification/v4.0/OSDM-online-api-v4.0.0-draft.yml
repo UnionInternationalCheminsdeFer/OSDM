@@ -6202,6 +6202,7 @@ components:
       additionalProperties: false
       description: |
         The attribute 'offerSummary' is meaningful at trip-offer-collection response time only.
+        The offerSummary must be provided for product based offers. It is not needed for fares.
       required:
         - offerId
         - products
@@ -8564,6 +8565,7 @@ components:
             A human-readable description of the offer.
           type: string
         offerSummary:
+          description: The offerSummary must be provided for product based offers. It is not needed for fares.
           $ref: '#/components/schemas/OfferSummary'
         createdOn:
           type: string
@@ -10938,6 +10940,7 @@ components:
         Likewise for all 'overall' attributes. The purpose of these attributes is to convey to the client
         system the service class, level, flexibility and accommodation that best represent this offer so to
         facilitate presentation to the final user.
+        The offerSummary must be provided for product based offers. It is not needed for fares.
       required:
         - minimalPrice
         - overallServiceClass
