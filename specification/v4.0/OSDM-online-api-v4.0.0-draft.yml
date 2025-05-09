@@ -3546,23 +3546,20 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /coach-layouts:
+  /coach-deck-layouts:
     get:
       tags:
         - Master Data
-      summary: Returns all coach layouts.
+      summary: Returns all coach deck layouts.
       description: |
         Retrieve the coach layout description needed for graphical reservation. The coach
         layouts can either be retrieved as a complete list or specificity for a train identified via offerId and reservationId or fareId
-      operationId: getCoachLayouts
+      operationId: getCoachDeckLayouts
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
-        - name: page
-          in: query
-          schema:
-            type: string
+        - $ref: '#/components/parameters/acceptNamespace'
       responses:
         '200':
           description: |
@@ -3570,15 +3567,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CoachLayoutCollectionResponse'
-          headers:
-            Cache-Control:
-              schema:
-                type: string
-                default: 'public, max-age=10000'
-                description: |
-                  Resource is fairly persistent and has a medium time to live to allow short-term caching.
-
+                $ref: '#/components/schemas/CoachDeckLayoutCollectionResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3597,18 +3586,20 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /coach-layouts/{layoutId}:
+
+  /coach-deck-layouts/{layoutId}:
     get:
       tags:
         - Master Data
-      summary: Returns a coach layout for a provided id.
+      summary: Returns a coach deck layout for a provided id.
       description: |
         Retrieve a coach layout description needed for graphical reservation for a given layout id.
-      operationId: getCoachLayoutsLayoutId
+      operationId: getCoachDeckLayout
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
         - name: layoutId
           in: path
           description: |
@@ -3623,14 +3614,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CoachLayoutResponse'
-          headers:
-            Cache-Control:
-              schema:
-                type: string
-                default: 'public, max-age=10000'
-                description: |
-                  Resource is fairly persistent and has a medium time to live to allow short-term caching.
+                $ref: '#/components/schemas/CoachDeckLayoutResponse'
 
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -4197,39 +4181,35 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /availabilities/place-map:
+
+  /availabilities/vehicle-place-map:
     post:
       tags:
         - Availabilities
-      summary: Get multiple place maps including availabilities.
+      summary: Get a place map for a requested vehicle including availabilities.
       description: |
-        Get multiple place maps including availabilities.
-      operationId: getAvailabilitiesPlaceMaps
+        Get a vehicle map including availabilities.
+      operationId: getAvailabilitiesVehiclePlaceMap
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AvailabilityScope'
+              $ref: '#/components/schemas/PlaceAvailabilityMapRequest'
       responses:
         '200':
           description: |
-            place availabilities for the requested offer parts
+            place availabilities for the requested fares and offer parts
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlaceAvailabilitiesResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: |
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
+                $ref: '#/components/schemas/PlaceAvailabilityMapResponse'
 
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -4249,6 +4229,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
   /availabilities/nearby:
     get:
       tags:
@@ -6949,6 +6930,33 @@ components:
             $ref: '#/components/schemas/BookingSplit'
           minItems: 1
 
+    BorderRadius:
+      type: object
+      additionalProperties: false
+      description: |
+        Rounds the corners of an element's border edge.
+      properties:
+        topLeft:
+          type: 
+            - integer
+            - 'null'
+          format: int32
+        topRight:
+          type: 
+            - integer
+            - 'null'
+          format: int32
+        bottomRight:
+          type: 
+            - integer
+            - 'null'
+          format: int32
+        bottomLeft:
+          type: 
+            - integer
+            - 'null'
+          format: int32
+
     Calendar:
       type: object
       additionalProperties: false
@@ -7270,96 +7278,95 @@ components:
             - 'string'
             - 'null'
           format: date-time
-
-    Coach:
+            
+    CoachAvailability:
       type: object
       additionalProperties: false
       required:
         - number
-        - layoutId
+        - travelDirection
       properties:
-        compartments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Compartment'
         number:
           description: |
-            coach number
+            Coach number
           type: string
-        layoutId:
-          description: |
-            Id to identify the coach layout. In case of two deck vehicles, 
-            both upper and lower deck layouts are provided next to each other.
-          type: string
-        layoutIdUpperDeck:
-          description: |
-            id to identify a layout for the upper deck in a double deck coach
-          type:
-            - 'string'
-            - 'null'
-        layoutIdLowerDeck:
-          description: |
-            id to identify a layout for the lower deck in a double deck coach
-          type:
-            - 'string'
-            - 'null'
-        direction:
+        travelDirection:
           $ref: '#/components/schemas/TravelDirectionType'
-        owner:
-          $ref: '#/components/schemas/CompanyRef'
-        specialCoach:
-          $ref: '#/components/schemas/SpecialCoachType'
-        reservationRefs:
+        noPassageToNextCoach:
           description: |
-            references to the reservations/fares for which all places in the coach can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+            Indicates that there is no passage to the next coach.
+          type: 
+            - boolean
+            - 'null'
+          default: false
+        decks:
+          description: |
+            The decks of a coach ordered in ascending order from the lowest to the highest deck. Optional as for some coaches (especially special/not reservable coach types) no coach layout might exist.
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/DeckAvailability'
 
-    CoachLayout:
+    CoachDeckLayout:
       type: object
       additionalProperties: false
       description: |
-        coach layout providing data to draw a coach layout. The items of a coach
-        are located via coordinates with (0,0) in the upper left corner. All
-        coordinates are given without sign.
+        A deck of a coach.
       required:
+        - name
+        - dimension
         - id
-        - gridSize
+        - deckLevel
       properties:
-        id:
-          description: |
-            id of this coachLayout on this server
+        name:
           type: string
-        summary:
+          maxLength: 255
+        dimension:
+          $ref: '#/components/schemas/GridDimension'
+        lowFloorEntry:
           description: |
-            A human-readable description of the coach layout.
-          examples:
-            - Coach 3 in train T-122
-        places:
+            Typically set on the lowest deck. Empty if unknown.
+          type:
+            -  boolean
+            - 'null'
+        id:
+          type: string
+        deckLevel:
+          $ref: '#/components/schemas/CoachDeckLevel'
+        placeGroups:
           description: |
-            list of places included in the layout
+            Groups places. No place groups might exist for special coach types (e.g. traction units without seats).
           type: array
           items:
-            $ref: '#/components/schemas/CoachLayoutPlace'
-        signs:
+            $ref: '#/components/schemas/PlaceGroup'
+        graphicElements:
           type: array
           items:
-            $ref: '#/components/schemas/CoachLayoutSign'
-        internals:
+            $ref: '#/components/schemas/GraphicElement'
+        serviceIcons:
           type: array
           items:
-            $ref: '#/components/schemas/CoachLayoutInternal'
-        directedInternals:
+            $ref: '#/components/schemas/ServiceIcon'
+
+    CoachDeckLevel:
+      type: string
+      x-extensible-enum:
+        - SINGLE_DECK
+        - LOWER_DECK
+        - MIDDLE_DECK
+        - UPPER_DECK
+
+    CoachDeckLayoutCollectionResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        problems:
           type: array
           items:
-            $ref: '#/components/schemas/CoachLayoutDirectedInternal'
-        compartmentNumbers:
+            $ref: '#/components/schemas/Problem'
+        coachDeckLayouts:
           type: array
           items:
-            $ref: '#/components/schemas/CoachLayoutCompartmentNumber'
-        gridSize:
-          $ref: '#/components/schemas/CoachLayoutGridSize'
+            $ref: '#/components/schemas/CoachDeckLayout'
         _links:
           description: |
             Java Property Name: 'links'
@@ -7367,7 +7374,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    CoachLayoutCollectionResponse:
+    CoachDeckLayoutResponse:
       type: object
       additionalProperties: false
       properties:
@@ -7375,125 +7382,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Problem'
-        layouts:
-          type: array
-          items:
-            $ref: '#/components/schemas/CoachLayout'
-
-    CoachLayoutGridSize:
-      type: object
-      additionalProperties: false
-      required:
-        - x
-        - y
-      properties:
-        x:
-          type: integer
-          format: int32
-        y:
-          type: integer
-          format: int32
-
-    CoachLayoutInternal:
-      type: object
-      additionalProperties: false
-      required:
-        - icon
-        - coords
-      properties:
-        icon:
-          description: |
-            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
-          type: string
-        mounting:
-          $ref: '#/components/schemas/MountingType'
-        coords:
-          $ref: '#/components/schemas/LayoutCoordinates'
-
-    CoachLayoutDirectedInternal:
-      type: object
-      additionalProperties: false
-      required:
-        - icon
-        - coords
-      properties:
-        icon:
-          description: |
-            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
-          type:
-            - 'string'
-            - 'null'
-        direction:
-          $ref: '#/components/schemas/DirectionType'
-        mounting:
-          $ref: '#/components/schemas/MountingType'
-        coords:
-          $ref: '#/components/schemas/LayoutCoordinates'
-
-    CoachLayoutPlace:
-      type: object
-      additionalProperties: false
-      required:
-        - icon
-        - number
-        - coords
-      properties:
-        icon:
-          type: string
-          description: |
-            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
-        number:
-          description: |
-            place number as displayed physically on the place
-          type: string
-        direction:
-          $ref: '#/components/schemas/DirectionType'
-        remarkId:
-          $ref: '#/components/schemas/RemarkType'
-        coords:
-          $ref: '#/components/schemas/LayoutCoordinates'
-
-    CoachLayoutResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        problems:
-          type: array
-          items:
-            $ref: '#/components/schemas/Problem'
-        coachLayout:
-          $ref: '#/components/schemas/CoachLayout'
-
-    CoachLayoutSign:
-      type: object
-      additionalProperties: false
-      required:
-        - icon
-        - coords
-      properties:
-        icon:
-          description: |
-            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
-          type: string
-        direction:
-          $ref: '#/components/schemas/DirectionType'
-        coords:
-          $ref: '#/components/schemas/LayoutCoordinates'
-
-    CoachLayoutCompartmentNumber:
-      description:
-        Layout item to place a compartment number. The number has no icon, it
-        only places the number
-      type: object
-      additionalProperties: false
-      required:
-        - number
-        - coords
-      properties:
-        number:
-          type: string
-        coords:
-          $ref: '#/components/schemas/LayoutCoordinates'
+        coachDeckLayout:
+          $ref: '#/components/schemas/CoachDeckLayout'
 
     CombinationTag:
       type: object
@@ -7542,44 +7432,71 @@ components:
         examples:
             - 'urn:uic:rics:1185:000011'
 
-    Compartment:
+    CompartmentAvailability:
       type: object
       additionalProperties: false
       description: |
-        Areas within a coach that holds places. Areas might be selectable
-        as a whole. Usual areas would be classic compartments.
+        Area within a coach deck that holds places.
       required:
+        - serviceClass
+        - accommodationType
+        - accommodationSubType
         - places
+        - isSelectable
       properties:
+        serviceClass:
+          $ref: '#/components/schemas/ServiceClassType'
+        accommodationType:
+          $ref: '#/components/schemas/AccommodationType'
+        accommodationSubType:
+          $ref: '#/components/schemas/AccommodationSubType'
         places:
+          description: |
+            Seats or bicycle hooks in a coach compartment that are covered by a requested reservation fare/offerPart/bookingPart. No place availabilities must be returned for places that are NOT covered by a requested offer.
           type: array
           items:
-            $ref: '#/components/schemas/PlacePosition'
+            $ref: '#/components/schemas/SpecificPlaceAvailability'
           minItems: 1
-        number:
-          description: Compartment number
-          type: string
         isSelectable:
           description: |
-            Indicates whether compartments are selectable as a whole only
-          type:
-            - 'boolean'
-            - 'null'
+            Indicates whether the compartment is selectable as a whole only.
+          type: boolean
           default: false
+        number:
+          description: |
+            Compartment number as indicated at the compartment in the coach. A compartment number must be set if the compartment is selectable as a whole only.
+          type: 
+            - string
+            - 'null'
+        status:
+          $ref: '#/components/schemas/AvailabilityStatus'
         reservationRefs:
           description: |
-            references to the reservations/fares for which this place can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+            reservationRefs must be set if the compartment is selectable as a whole only
           type: array
           items:
             type: string
-        status:
-          $ref: '#/components/schemas/AvailabilityStatus'
-        travelClass:
-          $ref: '#/components/schemas/TravelClass'
-        serviceClass:
-          $ref: '#/components/schemas/ServiceClassType'
         selectionFee:
           $ref: '#/components/schemas/SelectionFee'
+
+    CompartmentPreSelection:
+      type: object
+      additionalProperties: false
+      description: |
+        A preselected compartment
+      required:
+        - coach
+        - compartment
+      properties:
+        coach:
+          description: |
+            Coach number
+          type: string
+        compartment:
+          description: |
+            Compartment number as indicated at the compartment in the coach.
+          type: string
+
 
     ComplaintRequest:
       type: object
@@ -8317,6 +8234,26 @@ components:
         - type: object
           additionalProperties: false
 
+    DeckAvailability:
+      type: object
+      additionalProperties: false
+      description: |
+        A coach deck
+      properties:
+        layoutId:
+          description: |
+            Identifies the coach deck layout. It is recommended to import coach deck layout master data periodically by calling GET /coach-deck-layouts
+          type: 
+            - string
+            - 'null'
+        compartments:
+          description: |
+            Only compartments that match a requested place restriction must be returned (e.g. only return bike hook compartments if availabilities for a bicycle reservation offer were requested). Empty if the whole deck contains no compartments (e.g. traction unit) or no places that matches a requested place restriction.
+          type: array
+          items:
+            $ref: '#/components/schemas/CompartmentAvailability'
+
+
     DirectionType:
       description: |
         Direction of a place, defined optional as it might be omitted in
@@ -9034,7 +8971,7 @@ components:
                   $ref: '#/components/schemas/CompanyRef'
             luggageConstraint:
                $ref: '#/components/schemas/LuggageConstraint'
-            fareReservationRef:
+            reservationRef:
                 description: |
                   reference of the reservatioon offer that manages the places on a train. The referenced reservation is 
                   following the comercial rules of a fare, it needs to be integrated in a fulfillment of the API consumer.
@@ -9105,7 +9042,7 @@ components:
                   $ref: '#/components/schemas/CompanyRef'
             luggageConstraint:
                $ref: '#/components/schemas/LuggageConstraint'
-            fareReservationRef:
+            reservationRef:
                 description: |
                   reference of the reservatioon offer that manages the places on a train. The referenced reservation is 
                   following the comercial rules of a fare, it needs to be integrated in a fulfillment of the API consumer.
@@ -9843,6 +9780,68 @@ components:
           items:
             $ref: '#/components/schemas/PromotionCode'
 
+    GraphicElement:
+      type: object
+      additionalProperties: false
+      description: |
+        An element in the coach deck layout (e.g. table, stair, toilet etc.).
+      required:
+        - rectangle
+        - orientation
+        - code
+      properties:
+        rectangle:
+          $ref: '#/components/schemas/RectangleGeometry'
+        orientation:
+          $ref: '#/components/schemas/Orientation'
+        code:
+          $ref: '#/components/schemas/GraphicElementCode'
+
+    GraphicElementCode:
+      type: string
+      description: |
+        See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
+      examples: 
+        - DRIVER_AREA
+
+    GridDimension:
+      type: object
+      additionalProperties: false
+      description: |
+        Describes the dimension of a grid element.
+      required:
+        - width
+        - height
+      properties:
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        borderRadius:
+          $ref: '#/components/schemas/BorderRadius'
+
+    GridPosition:
+      type: object
+      additionalProperties: false
+      description: |
+        Describes the position in a 3D grid on which the element must be placed. The grid origin (x=0, y=0) is on the top left, the x coordinate increases to the right, the y coordinate increases downwards and the z coordinate increases towards the foreground.
+      required:
+        - x
+        - y
+        - z
+      properties:
+        x:
+          type: integer
+          format: int32
+        y:
+          type: integer
+          format: int32
+        z:
+          type: integer
+          format: int32
+
     HistoryStatus:
       type: string
       enum:
@@ -10084,34 +10083,6 @@ components:
       maximum: 90
       examples:
         - 47.37818
-
-    LayoutCoordinates:
-      type: object
-      additionalProperties: false
-      required:
-        - x
-        - y
-        - zOrder
-      properties:
-        x:
-          description: |
-            horizontal coordinate of the center of the place
-          type: integer
-          format: int32
-        y:
-          description: |
-            vertical coordinate of the center of the place
-          type: integer
-          format: int32
-        zOrder:
-          description: |
-            Graphical layer where this item has to be placed.
-            Code list according to UIC90918-1
-              - value 0: lowest layer usually used for walls
-              - value 1: middle layer usually used by places
-              - value 2: top layer usually used by icons
-          type: integer
-          format: int32
 
     LegAttribute:
       type: object
@@ -10534,14 +10505,6 @@ components:
           type:
             - 'integer'
             - 'null'
-
-    MountingType:
-      type: string
-      enum:
-        - 'UPPER_BORDER'
-        - 'LOWER_BORDER'
-        - 'UPPER_TO_LOWER_BORDER'
-        - 'FREE'
 
     MultiRideAccount:
       allOf:
@@ -11133,6 +11096,15 @@ components:
       examples:
         - OperatingDay:12345
 
+    Orientation:
+      type: integer
+      format: int32
+      description: |
+        Orientation angle in degrees
+      default: 0
+      examples: 
+        - 90
+
     OsmTag:
       type: object
       additionalProperties: false
@@ -11622,26 +11594,6 @@ components:
         tripLegCoverage:
           $ref: '#/components/schemas/TripLegCoverage'
 
-    PlaceAvailability:
-      type: object
-      additionalProperties: false
-      description: |
-        Availability of places on vehicle.
-      required:
-        - vehicle
-      properties:
-        reservationId:
-          description: reference to the reservation offer part or reservation booking part
-          type: string
-        vehicle:
-          $ref: '#/components/schemas/Vehicle'
-        preSelections:
-          description: |
-            suggested pre-selection of places
-          type: array
-          items:
-            $ref: '#/components/schemas/PlacePreSelection'
-
     PlaceAvailabilityCollectionResponse:
       type: object
       additionalProperties: false
@@ -11654,8 +11606,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlace'
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'          
+        
+    PlaceAvailabilityMapRequest:
+      type: object
+      additionalProperties: false
+      description: |
+        Reservation offer/bookingParts or reservation fares for which place availabilities shall be returned.
+      required:
+        - placeRestrictions
+      properties:
+        placeRestrictions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceRestriction'
+          minItems: 1
 
-    PlaceAvailabilityResponse:
+    PlaceAvailabilityMapResponse:
       type: object
       additionalProperties: false
       properties:
@@ -11663,22 +11635,66 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Problem'
-        vehicleAvailability:
-          $ref: '#/components/schemas/PlaceAvailability'
+        vehicle:
+          $ref: '#/components/schemas/VehicleAvailability'
 
-    PlaceAvailabilitiesResponse:
+    PlaceGroup:
       type: object
       additionalProperties: false
+      description: |
+        A place group groups places by service class and optionally by accommodation sub type. A place group not necessarily needs to be visualized (e.g. as a rectangle). Visualization can be done using ServiceIcons and GraphicElements.
+         
+        Nevertheless, a place group can be useful for rendering of coach decks/places for which no place availabilities were returned, as further information (service class, accommodation sub type) can be displayed .
+         
+        If availabilities were returned for a certain place, travel class and accommodation sub type values returned in the availability response must be displayed (they replace the static travel class / accommodation sub type defined on the place group). Reason: travel class and accommodation sub type values can dynamically change for each vehicle run.
+         
+        Example 1: Class upgrade
+        A customer with a second class reservation ticket might be placed on a first class seat.
+         
+        Example 2: New/more specific AccommodationSubType
+        AccommodationSubType=BUSINESS defined in static master data might be changed into AccommodationSubType=BUSINESS_COMFORT on certain vehicle runs.
+      required:
+        - serviceClass
+        - places
       properties:
-        problems:
+        serviceClass:
+          $ref: '#/components/schemas/ServiceClassType'
+        accommodationType:
+          $ref: '#/components/schemas/AccommodationType'
+        accommodationSubType:
+          $ref: '#/components/schemas/AccommodationSubType'
+        places:
+          description: |
+            Seats or bicycle hooks in a coach compartment.
           type: array
           items:
-            $ref: '#/components/schemas/Problem'
-        vehicleAvailabilities:
+            $ref: '#/components/schemas/PlaceLayout'
+          minItems: 1
+
+    PlaceLayout:
+      type: object
+      additionalProperties: false
+      description: |
+        A place (e.g. a seat or bicycle hook)
+      required:
+        - number
+        - rectangle
+        - orientation
+      properties:
+        number:
+          description: |
+            The place number (unique per coach deck).
+          type: string
+        rectangle:
+          $ref: '#/components/schemas/RectangleGeometry'
+        orientation:
+          $ref: '#/components/schemas/Orientation'
+        placeProperties:
+          description: |
+            Static place properties
           type: array
           items:
-            $ref: '#/components/schemas/PlaceAvailability'
-          maxItems: 50
+            $ref: '#/components/schemas/PlaceProperty'
 
     PlaceParam:
       type: object
@@ -11825,6 +11841,25 @@ components:
           items:
             $ref: '#/components/schemas/Place'
           minItems: 1
+
+    PlaceRestriction:
+      type: object
+      additionalProperties: false
+      description: |
+        Reservation based place selection criteria. Each requested place selection criterion will only be considered if it is covered by the referenced reservation offerPart/bookingPart. E.g. place selection criterion serviceClass=HIGH will only be considered if reservationRef references a first/high class offer.
+      required:
+        - reservationRef
+      properties:
+        reservationRef:
+          type: string
+        serviceClass:
+          $ref: '#/components/schemas/ServiceClassType'
+        accommodationSubTypes:
+          description: |
+            Specifies the accommodation sub types for which place availabilities shall be returned.
+          type: array
+          items:
+            $ref: '#/components/schemas/AccommodationSubType'
 
     PlaceSelection:
       type: object
@@ -12014,7 +12049,9 @@ components:
         scale:
           description: |
             scale of the amount - the number of positions after the comma
-          type: integer
+          type: 
+            - integer
+            - 'null'
           format: int32
           default: 2
         appliedRate:
@@ -12685,6 +12722,20 @@ components:
           type: string
           examples:
             - kg
+
+    RectangleGeometry:
+      type: object
+      additionalProperties: false
+      description: |
+        Describes a two-dimensional rectangle
+      required:
+        - position
+        - dimension
+      properties:
+        position:
+          $ref: '#/components/schemas/GridPosition'
+        dimension:
+          $ref: '#/components/schemas/GridDimension'
 
     ReductionCardAccount:
       allOf:
@@ -13951,6 +14002,27 @@ components:
         - 'BOOKED_CLASS_MISSING'
         - 'BOOKED_MEAL_MISSING'
 
+    ServiceIcon:
+      type: object
+      additionalProperties: false
+      description: |
+        An icon representing a service.
+      required:
+        - rectangle
+        - code
+      properties:
+        rectangle:
+          $ref: '#/components/schemas/RectangleGeometry'
+        code:
+          $ref: '#/components/schemas/ServiceIconCode'
+
+    ServiceIconCode:
+      type: string
+      description: |
+        See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
+      examples: 
+        - TOILET_ICON        
+
     ServiceStatus:
       type: object
       additionalProperties: false
@@ -14042,6 +14114,33 @@ components:
         - 'BICYCLE_COACH'
         - 'LUGGAGE_COACH'
         - 'TRAIN_HEAD'
+
+    SpecificPlaceAvailability:
+      type: object
+      additionalProperties: false
+      description: |
+        Availability status of a specific place.
+      required:
+        - number
+        - status
+        - reservationRefs
+      properties:
+        number:
+          description: |
+            Place number as indicated at the place in the coach.
+          type: string
+        status:
+          $ref: '#/components/schemas/AvailabilityStatus'
+        reservationRefs:
+          description: |
+            References requested reservation offerParts/bookingParts that allow the selection of the place.
+            This allows clients to link place availabilities with the corresponding reservation fare/offerPart/bookingPart. E.g. link a bicycle hook with a bicycle reservationOfferPart.
+          type: array
+          items:
+            type: string
+          minItems: 1
+        selectionFee:
+          $ref: '#/components/schemas/SelectionFee'        
 
     StationSet:
       type: object
@@ -14672,6 +14771,7 @@ components:
         - 'OPPOSITE_DIRECTION'
         - 'CHANGING'
         - 'STARTING_IN_DIRECTION'
+        - 'STARTING_OPPOSITE_TO_DIRECTION'
 
     TravelPassAccount:
       allOf:
@@ -15586,26 +15686,26 @@ components:
         - 'SHORT_DISTANCE'
         - 'LONG_DISTANCE'
 
-    Vehicle:
+    VehicleAvailability:
       type: object
       additionalProperties: false
       description: |
-        List of the coaches in a vehicle run ordered according to the physical
-        ordering of the vehicle.
+        A vehicle run for which place availabilities were requested.
       properties:
         coaches:
-          type: array
-          items:
-            $ref: '#/components/schemas/Coach'
-        reservationRefs:
           description: |
-            References to the reservations/fares for which all places in the vehicle can be selected. 
-            The reservation ids must be part of the list of reservation ids for which the consumer has
-            requested the available places and the consumer must accept a list by setting 
-            singleSelectionMapsRequired to false
+            List of the coaches in a vehicle run ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/CoachAvailability'
+        preSelectedPlaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlacePreSelection'
+        preSelectedCompartments:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompartmentPreSelection'
 
     VehicleFilter:
       type: object
