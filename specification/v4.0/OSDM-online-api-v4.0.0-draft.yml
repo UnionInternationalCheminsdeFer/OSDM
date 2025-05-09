@@ -12006,7 +12006,7 @@ components:
           type: string
         originalCurrency:
           $ref: '#/components/schemas/Currency'
-        originalAamount:
+        originalAmount:
           description: |
             amount in cents
           type: integer
@@ -13387,7 +13387,7 @@ components:
             To do a partial release provide the fulfillmentIds affected and point out what to release
           type: array
           items:
-            $ref: '#/components/schemas/RefundSpecification'
+            $ref: '#/components/schemas/ReleaseSpecification'
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
 
@@ -13401,6 +13401,27 @@ components:
             $ref: '#/components/schemas/Problem'
         releaseOffer:
           $ref: '#/components/schemas/ReleaseOffer'
+
+    ReleaseSpecification:
+      type: object
+      required:
+        - fulfillmentId
+      properties:
+        fulfillmentId:
+          description: |
+            id of the fulfillment where some part(s) should be removed
+          type: string
+        bookingPartIds:
+          description: ids of booking parts to be removed from the fulfillment
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+        passengerIds:
+          type: array
+          description: ids of passengers to be removed from the fulfillment
+          items:
+            type: string
 
     ReleaseStatus:
       type: string
