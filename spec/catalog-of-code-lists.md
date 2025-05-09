@@ -99,9 +99,10 @@ OSDM mandates it to be always lower case.
 
 ### Known proprietary code lists <a name="Knownproprietarycodelists">
 
-| Domain | Code List | Description         |
-| ------ | --------- | ------------------- |
-| x_eva  | stn       | HAFAS station codes |
+| Domain  | Code List | Example Value            | Description                         | 
+| ------- | --------- | ------------------------ | ----------------------------------- |
+| x_eva   | stn       | urn:x_eva:stn:80000123   | HAFAS station code                  |
+| x_hafas | admin     | urn:x_hafas:admin:123456 | HAFAS administration ("Verwaltung") |
 
 ## Accommodation Type <a name="AccomodationType">
 
