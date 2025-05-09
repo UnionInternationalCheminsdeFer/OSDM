@@ -68,6 +68,9 @@ tags:
   - name: Passengers
     description: |
       resources to manipulate a passenger's information at every stage of the flow
+  - name: Passenger Categories
+    description: |
+      optional objects to simplify the entry of passenger specifications
   - name: Fulfillments
     description: |
       resources to retrieve fulfillments, e.g. tickets
@@ -3647,6 +3650,42 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+  /passenger-categories:
+    get:
+      tags:
+        - Master Data
+        - Passenger Categories
+      summary: Returns all defined passenger categories.
+      description: |
+        Provider may *optionally* define passenger categories. These are usually intended for frontend (UI) usage instead of full passenger specification entry when provider works with unified list of passenger categories. For 
+        precise entry, or when PassengerCategory is not defined, the full passenger specification must always be supported by the provider.
+      operationId: getPassengerCategories
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PassengerCategory'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+
   /reduction-card-types:
     get:
       tags:
@@ -11262,6 +11301,42 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    PassengerCategory:
+      type: object
+      description: |
+        Passenger Category predefines a set of passenger specification properties that result to offer of a specific passenger type. 
+        `title` is the localized name of the passenger category and `specification` describes exact passenger specification that may results into offer for selected
+        passenger category. Passenger category specification doesn't guarante availability of expected passenger type on offered trip. `appliedPassengerType` must always be checked in the offer response.
+      additionalProperties: false
+      required:
+        - title
+        - specification
+      properties:
+        base:
+          type: 
+            - 'boolean'
+            - 'null'
+          default: false
+          description: |
+            Indicate whether this passenger category should be preselected 
+            as a default option in the passenger selection. Usually results 
+            to a "full fare" or "adult fare" offers.
+        additional:
+          type:
+            - 'boolean'
+            - 'null'
+          default: false
+          description: |
+            Indicate whether this passenger category should be always visible in UI or folded into "additional" section.
+        title:
+          description: |
+            Default and localized name of the passenger category.
+          $ref: '#/components/schemas/Text'
+        specification:
+          description: |
+            Exact passenger specification to be used in order to request an offer for given passenger category.
+          $ref: '#/components/schemas/AnonymousPassengerSpecification'
 
     PassengerConstraints:
       type: object
