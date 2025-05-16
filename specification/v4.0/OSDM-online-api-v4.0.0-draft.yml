@@ -4720,7 +4720,7 @@ components:
       in: header
       description: |
         Describes the set of natural languages that are preferred for localized text in the response
-        to the request (see RFC2616-sec14.4). Supporting English (en) is a must.
+        to the request (see RFC9110). Supporting English (en) is a must.
       schema:
         type: string
 
