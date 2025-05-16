@@ -8800,6 +8800,11 @@ components:
           items:
             $ref: '#/components/schemas/OfferSelection'
           minItems: 1
+        promotionCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromotionCode'
+
 
     ExchangeOperationResponse:
       type: object
