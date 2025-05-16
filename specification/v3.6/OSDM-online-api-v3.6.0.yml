@@ -5610,6 +5610,9 @@ components:
           minItems: 1
           nullable: false
         numericAvailability:
+          description: |
+            Total amount of items of this type currently available. For reservation offers, this would be the total number
+            of seats available, regardless of their properties.
           type: integer
           format: int32
           nullable: true
