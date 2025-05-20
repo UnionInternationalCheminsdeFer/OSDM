@@ -9442,7 +9442,7 @@ components:
       description: |
         The type of fulfillment document.
       type: string
-      x-extensible-enum:
+      enum:
         - 'BOARDING_PASS'
         - 'BOOKING_RECEIPT'
         - 'INFORMATION'
