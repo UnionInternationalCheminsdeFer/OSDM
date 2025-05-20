@@ -560,7 +560,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | ![](../images/catalog-of-code-lists/graphics-icons/image006.png) | berth                                                                 | 2         | to right         | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image007.png) | couchette                                                             | 3         | to right         | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image009.jpg) | couchette                                                             | 3         | to left          | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon004.jpg)  | wheelchair space                                                      | 4         | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon004.png)  | wheelchair space                                                      | 4         | -                | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image010.png) | small table                                                           | 20        | -                | top           |
 | ![](../images/catalog-of-code-lists/graphics-icons/image011.png) | small table                                                           | 20        | -                | bottom        |
 | ![](../images/catalog-of-code-lists/graphics-icons/image012.png) | big table                                                             | 21        | -                | top           |
