@@ -560,6 +560,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | ![](../images/catalog-of-code-lists/graphics-icons/image006.png) | berth                                                                 | 2         | to right         | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image007.png) | couchette                                                             | 3         | to right         | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image009.jpg) | couchette                                                             | 3         | to left          | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon004.jpg)  | wheelchair space                                                      | 4         | -                | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image010.png) | small table                                                           | 20        | -                | top           |
 | ![](../images/catalog-of-code-lists/graphics-icons/image011.png) | small table                                                           | 20        | -                | bottom        |
 | ![](../images/catalog-of-code-lists/graphics-icons/image012.png) | big table                                                             | 21        | -                | top           |
@@ -631,22 +632,22 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | ![](../images/catalog-of-code-lists/graphics-icons/image098.jpg) | push-button operated wheelchair ramp                                  | 170       | -                | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image099.png) | Sink / washbasin                                                      | 171       | -                | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image101.jpg) | Ladies compartment                                                    | 172       | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon174.png)	 | Medium window, width covers two spaces	                               | 174	     | —                |	—             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon175.png)	 | Big window, width covers three spaces	 | 175	 | —  |	—  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon176l.png)	 | Door with left opening (traditional) 	 | 176	 | Left  |	—  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon176t.png) | Door with left opening (traditional) 	 | 176	 | Top  |	—  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon176r.png)	 | Door with left opening (traditional) 	 | 176	 | Right  |	—  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon176b.png)	 | Door with left opening (traditional) 	 | 176	 | Bottom  |	—  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon177l.png)	 | Door with right opening (traditional) 	 | 177	 | Left  |	—  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon177t.png)	 | Door with right opening (traditional) 	 | 177	 | Top  |	—  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon177r.png)	 | Door with right opening (traditional) 	 | 177	 | Right  |	—  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon177b.png)	 | Door with right opening (traditional) 	 | 177	 | Bottom  |	—  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon178l.png)	 | Door (sliding) 	 | 178	 | Left  |	bottom  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon178t.png)	 | Door (sliding) 	 | 178	 | Top  |	right |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon179l.png)	 | Entrance 	 | 179	 | Left  |	—  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon179t.png)	 | Entrance	 | 179	 | Top  |	—  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon179r.png)	 | Entrance | 179	 | Right  |	—  |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon179b.png)	 | Entrance	 | 179	 | Bottom  |	—  |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon174.png)	 | Medium window, width covers two spaces	                               | 174       | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon175.png)	 | Big window, width covers three spaces	                               | 175       | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon176l.png) | Door with left opening (traditional)                                  | 176       | Left             | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon176t.png) | Door with left opening (traditional)                                  | 176       | Top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon176r.png) | Door with left opening (traditional)                                  | 176       | Right            | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon176b.png) | Door with left opening (traditional)                                  | 176       | Bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon177l.png) | Door with right opening (traditional)                                 | 177       | Left             | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon177t.png) | Door with right opening (traditional)                                 | 177       | Top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon177r.png) | Door with right opening (traditional)                                 | 177       | Right            | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon177b.png) | Door with right opening (traditional)                                 | 177       | Bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon178l.png) | Door (sliding)                                                        | 178       | Left             | bottom        |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon178t.png) | Door (sliding)                                                        | 178       | Top              | right         |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon179l.png) | Entrance                                                              | 179       | Left             | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon179t.png) | Entrance                                                              | 179       | Top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon179r.png) | Entrance                                                              | 179       | Right            | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon179b.png) | Entrance                                                              | 179       | Bottom           | -             |
 
 
 
