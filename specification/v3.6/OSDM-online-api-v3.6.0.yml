@@ -8772,7 +8772,7 @@ components:
     ContinuousServiceProcessIndication:
       description: |
         Process indications for on-demand services  
-        [On-Demand Vehicle Process](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleProcesses)
+        [On-Demand Vehicle Process Code List](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleProcess)
       type: string
       x-extensible-enum:
         - 'PRE_ALLOCATION_REQUIRED'
@@ -8815,7 +8815,7 @@ components:
 
     ContinuousServiceVehicleType:
       description: |
-        [Vehicle types from code list of on-demand vehicle types](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleTypes)
+        [On-Demand Vehicle Type Code List](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleType)
       type: string
       x-extensible-enum:
         - 'BICYCLE'
@@ -15208,7 +15208,7 @@ components:
 
     TimeUnit:
       description: |
-        Values from the [Time Unit Code List](https://osdm.io/spec/catalog-of-code-lists/#TimeUNit)
+        Values from the [Time Unit Code List](https://osdm.io/spec/catalog-of-code-lists/#TimeUnit)
       type: string
       enum:
         - 'DAYS'
@@ -15855,7 +15855,7 @@ components:
 
     TripAllocationUnit:
       description: |
-        Values from the [Trip Allocation Unit Code List](https://osdm.io/spec/catalog-of-code-lists/#TRipAllocationUnit)
+        Values from the [Trip Allocation Unit Code List](https://osdm.io/spec/catalog-of-code-lists/#TripAllocationUnit)
         Unit to allocate trips in a multi-trip fare. Trips can be allocated per day (e.g. Eurail) or per
         duration (e.g. multiples of a duration unit to cover the trip) or as single trips (e.g. carnet))
         Known Values:
