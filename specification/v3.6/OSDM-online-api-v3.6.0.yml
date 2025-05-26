@@ -8772,7 +8772,7 @@ components:
     ContinuousServiceProcessIndication:
       description: |
         Process indications for on-demand services  
-        [On-Demand Vehicle Types](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleProcesses)
+        [On-Demand Vehicle Process](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleProcesses)
       type: string
       x-extensible-enum:
         - 'PRE_ALLOCATION_REQUIRED'
