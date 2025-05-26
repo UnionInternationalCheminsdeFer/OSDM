@@ -16543,7 +16543,7 @@ components:
             $ref: '#/components/schemas/CoachAvailability'
         directionChanges:
           description: |
-            List of StopPlaces where the direction of the train changes.
+            List of direction changes (in direction of travel). 
           type: array
           items:
             $ref: '#/components/schemas/DirectionChange'
