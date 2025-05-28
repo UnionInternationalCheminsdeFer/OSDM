@@ -30,7 +30,7 @@ These could be:
 - prams
 - cars, motocycles or trailers on car carriage trains
 
-depending on the conditions of the carrier these might need to be payed additionally or need a reservation.
+depending on the conditions of the carrier these might need to be paid additionally or need a reservation.
 
 I case the transport of the item is essential for the travel it must be indicated in the initial offer request. This can be done via a passenger with a specific passenger type for the transportable. The transportable as passenger has an id that can be used in partial cancellation.
 
