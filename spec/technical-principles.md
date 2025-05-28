@@ -11,14 +11,21 @@ permalink: /spec/technical-principles/
 2. [Derived Guidelines](#DerivedGuidelines)
 3. [Versioning](#Versioning)
    1. [Backporting](#Backporting)
-   2. [Versioning](#Versioning)
+   2. [Version tracking](#VersionTracking)
    3. [Development](#Development)
    4. [Release](#Release)
+   5. [Negotiating versions](#versionNegotiation)
 4. [Implementation principles](#Implementationprinciples)
-5. [PATCH behaviour](#PatchBehaviour)
-6. [Error Handling](#ErrorHandling)
-7. [Functional Errors and Error Codes](#FunctionalErrorsandErrorCodes)
-8. [Authentication](#Authentication)
+5. [HTTP headers](#httpHeaders)
+6. [Caching](#Caching)
+7. [Idempotency](#Idempotency) 
+8. [Identify Caller](#IdentifyCaller)
+9. [Namespaces](#Namespaces)
+10. [PATCH behaviour](#PatchBehaviour)
+11. [Error Handling](#ErrorHandling)
+12. [Functional Errors and Error Codes](#FunctionalErrorsandErrorCodes)
+13. [Tracing across systems](#Tracing)
+14. [Authentication](#Authentication)
    1. [User Lookup](#UserLookup)
 
 
@@ -68,9 +75,20 @@ Implementers may require to receive a newly requested feature to a lower version
 
 Backport is never applied to already released patch versions.
 
-### Versioning <a name="Versioning">
+### Version tracking <a name="VersionTracking">
 
 All versions are tracked in the `master` branch of the git repository. Each major.minor version has its own folder where all patch versions of that minor version are stored.
+
+### Negotiating versions <a name="versionNegotiation">
+
+A consumer can request a specific version of the API by providing the `Accept` header with the following syntax:
+`Accept: application/osdm-json, version 3.5`.
+
+All messages which contain a payload (both request and response payloads) should indicate the version of the
+API used by providing a header `Content-Type: application/osdm-json, version 3.5.0`
+
+The version indicated in the `accept` header is typically a minor version (i.e. it has two digits, e.g. 3.5). The version indicated
+in the `Content-Type` header typically gives the full patch version (i.e. it has all three digits, e.g. 3.5.0).
 
 ### Development <a name="Development">
 
@@ -85,6 +103,77 @@ The openapi file is considered final when there is git tag and github release fo
 ## Implementation principles <a name="Implementationprinciples">
 
 Implementations must follow the tolerant reader pattern. Schema validations must allow new attributes and objects. All extensible enums must not fail on items not proposed from the openapi or specification.
+
+## HTTP headers <a name="httpHeaders">
+
+In general, HTTP headers are used as specified in the relevant RFCs and as defined as the
+[relevant section](https://opensource.zalando.com/restful-api-guidelines/#using-headers) of the 
+[Zalando RESTful API and Event Scheme guidelines](https://opensource.zalando.com/restful-api-guidelines/).
+
+Specifically, within the OSDM API definition, the following headers are used:
+
+| Header name        | Reference                                               | Description                                                   |
+|--------------------|---------------------------------------------------------|---------------------------------------------------------------|
+| Accept             | [Negotiating versions](#versionNegotiation)             | Select the API version                                        |
+| AcceptLanguage     | [Interface language](../language#Interfacelanguage)     | Select the language(s) of the response                        |
+| Authorization      | [Authentication](../authentication)                     | Authenticate and authorize the user of the API                |
+| Cache-Control      | [Caching](#Caching)                                     | Caching control                                               |
+| Content-Language   | [Interface language](../language#Interfacelanguage)     | Language of translatable strings in the payload               |
+| Content-Type       | [Negotiating versions](#versionNegotiation)             | Describes the API version of the payload (from 3.6)           |
+| ETag               | [Large datasets](#LargeDatasets)                        | Version tag for caching response filed                        |
+| Expires            | [Caching](#Caching)                                     | Expiration timestamp for caching                              |
+| IdempotencyKey     | [Idempotency](#Idempotency)                             | Add idempotency to endpoints which require this               | 
+| If-None-Match      | [Large datasets](#LargeDatasets)                        | Check against the ETag value given                            |
+| Location           | [Large datasets](#LargeDatasets)                        | Location (URN) of the dataset within the "See other" response |
+| Requestor          | [Identify caller](#IdentifyCaller)                      | Distinguish between sales channels on the consumer side       |
+| TraceParent        | [Tracing across systems](#Tracing)                      | Used for tracing - see W3C specification                      |
+| TraceState         | [Tracing across systems](#Tracing)                      | Used for tracing - see W3C specification                      |
+| x-accept-namespace | [Namespaces](#Namespaces)                               | Negotiate (potentially proprietary) namespaces                |
+
+## Caching <a name="Caching">
+
+Some endpoints may give hints to the invoker on how long the retrieved data may be cached. They use the `Cache-Control` and 
+`Expires` headers for this purpose according to the relevant http standards.
+
+This feature is primarily used for master data retrieval.
+
+## Large data sets <a name="LargeDatasets">
+
+Some master data endpoints can return extremely large datasets. As this is impractical for a synchrounous http response, these endpoints
+can return `303 See other` instead of `200 OK` and the data.
+
+This is optional and has currently (as of OSDM Version 3.5) only been defined for `GET /places`.
+
+The behaviour is as described in the various HTTP standards and uses the headers `ETag`, `if-None-Match`, `Location`
+
+This could be extended to other large and cacheable master data sets, e.g. products and coach layouts.
+
+## Idempotency <a name="Idempotency">
+
+To add idempotency to endpoints which do not naturally have it. Endpoints with the HTTP verbs `GET` and `PUT` do not need this, as they
+are naturally idempotent.
+
+The idempotency header is generally added to endpoints with the `POST` verb, and to endpoints with the `PATCH` verb which change
+state of underlying objects.
+
+The [IETF Draft](https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/) is the relevant normative reference.
+
+The general recommended behaviour is as follows:
+
+1. The consumer of the interface sets the value of the idempotency key header to a unique value, ideally a UUID
+2. Should the consumer perform a retry, the same value must be repeated in the idempotency key
+3. When the provider receives the same request with a repeated idempotency key, 
+
+   a. it **must not** repeat the changes to internal states of objects
+
+   b. it **must** return the identical answer as for the original request
+
+4. The provider needs to retain the idempotency key for a sufficient time, typically as long as the original request is allowed
+
+## Identify caller <a name="IdentifyCaller">
+
+Some providers offer certain tariffs only to online channels or to staffed sales channels. For this purpose, providers and consumers
+can bilaterally agree on strings transported in the `Requestor` header to identify the sales channel to the provider.
 
 ## PATCH behaviour<a name="PatchBehaviour">
 
@@ -133,6 +222,20 @@ type URI.
 In order that OSDM implementations behave consistently in error situations, a
 list of [error codes and problem codes](../errors-problems/) have been defined that
 must be supported in case of functional errors by all implementations.
+
+## Tracing across systems <a name="Tracing">
+
+To allow tracing across systems, the W3C has specified the 
+[trace context](https://www.w3.org/TR/trace-context/). This functionality uses
+the `traceparent` and `tracestate` headers to transport the relevant information.
+
+In a chained implementation, each member of the chain needs to add their own 
+tracing information to the left of the incoming `tracestate` value before sending
+it further down the line.
+
+The values transported here **should** be logged locally, so that when debugging across
+systems is required, log entries concerning the same invocation can be retrieved from
+both systems.
 
 ## Authentication <a name="Authentication">
 
