@@ -6,6 +6,8 @@ permalink: /news-resources/
 
 ## News, Mentions & Resources
 
+- 29.05.2025
+  [Wikipedia](https://de.wikipedia.org/wiki/Open_Sales_and_Distribution_Model) entry on OSDM
 - 28.02.2025
   [Rail Market](https://de.railmarket.com/news/technology-innovation/7020-transport-for-new-south-wales-with-a-new-turnit-software-from-estonia?region=na) _New South Wales is providing the OSDM API in their new system implemented by Turnit._
 - 25.02.2025
