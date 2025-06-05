@@ -44,6 +44,9 @@ tags:
   - name: Offers
     description: |
       resources to get bookable offers
+  - name: Offer Overview
+    description: |
+      resources to get an overview of prices without detailed offer information
   - name: Availabilities
     description: |
       resources to query availabilities before or after pre-booking
@@ -712,6 +715,37 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+  /offer-overview-trip:
+    post:
+      tags:
+        - Offer Overview
+      summary: Returns an overview of prices based on trips
+      description: |
+        Returns an overview of prices for a given trip search and criteria.
+        The overview does not contain detailed offer information, but only the
+        prices.
+      operationId: getOfferOverview
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferOverviewTripRequest'
+      responses:
+        '200':
+          description: |
+            overview of prices found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferOverviewTripResponse'
+
   /bookings/{bookingId}/on-hold-offer/{onHoldOfferId}:
     patch:
       tags:
@@ -11502,6 +11536,58 @@ components:
         - 'TRIPS'
         - 'NONE'
       default: 'ALL'
+
+    OfferOverview:
+      type: object
+      required:
+        - price
+        - tripIds
+      properties:
+        price:
+          $ref: '#/components/schemas/Price'
+        tripIds:
+          type: array
+          items:
+            type: string
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+
+    OfferOverviewTripRequest:
+      type: object
+      properties:
+        tripSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/TripSpecification'
+        tripIds:
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+            nullable: false
+          nullable: true
+        tripSearchCriteria:
+          $ref: '#/components/schemas/TripSearchCriteria'
+        tripResponseParameters:
+          $ref: '#/components/schemas/TripResponseParameters'
+
+    OfferOverviewTripResponse:
+      type: object
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        trips:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trip'
+        offerOverviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferOverview'
 
     OfferMode:
       description: |
