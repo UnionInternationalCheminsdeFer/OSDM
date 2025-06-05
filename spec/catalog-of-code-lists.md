@@ -32,35 +32,37 @@ permalink: /spec/catalog-of-code-lists/
 22. [Leg Attributes](#LegAttributes)
 23. [Nationality](#Nationality)
 24. [NUTS codes](#NutsCodes)
-25. [Overrule Code](#OverruleCode)
-26. [Passenger Type (aka. Traveler Type)](#PassengerType)
-27. [Passport](#Passport)
-28. [Personal data items](#PersonalDataItems)
-29. [Personal data transfer types](#PersonalDataTransferType)
-30. [Personal data change reasons](#PersonalDataChangeReason)
-31. [Product Tags](#ProductTags)
-32. [Product Types](#ProductTypes)
-33. [Public Transportation Modes (ptMode)](#PublicTansportModes)
-34. [Point of Interest (POI)](#PointOfInterrest)
-35. [Reduction cards](#ReductionCard)
-36. [Reservation Preference Group](#ReservationPreferenceGroup)
-37. [Service Brands](#ServiceBrands)
-38. [Service Class](#ServiceClass)
-39. [Service Facilities / Leg Attributes](#ServiceFacilities)
-40. [Stations](#Station)
-41. [Supported Online Services](#SupportedOnlineServices)
-42. [TaxScope](#TaxScope)
-43. [TimeReference](#TimeReference)
-44. [TimeUnit](#TimeUNit)
-45. [Transfer Type](#TransferType)
-46. [Transport Mode](#TransportMode)
-47. [TransactionType](#TransactionType)
-48. [Travel Account Types](#TravelAccountType)
-49. [TravelDirection](#TravelDirection)
-50. [TravelValidityType](#TravelValidityType)
-51. [TripAllocationProcess](#TripAllocationProcess)
-52. [TripAllocationUnit](#TRipAllocationUnit)
-53. [TripInterruptionProcess](#TripInterruptionProcess)
+25. [On-Demand Vehicle Process](#OnDemandVehicleProcess)
+26. [On-Demand Vehicle Type](#OnDemandVehicleType)
+27. [Overrule Code](#OverruleCode)
+28. [Passenger Type (aka. Traveler Type)](#PassengerType)
+29. [Passport](#Passport)
+30. [Personal data items](#PersonalDataItems)
+31. [Personal data transfer types](#PersonalDataTransferType)
+32. [Personal data change reasons](#PersonalDataChangeReason)
+33. [Product Tags](#ProductTags)
+34. [Product Types](#ProductTypes)
+35. [Public Transportation Modes (ptMode)](#PublicTansportModes)
+36. [Point of Interest (POI)](#PointOfInterrest)
+37. [Reduction cards](#ReductionCard)
+38. [Reservation Preference Group](#ReservationPreferenceGroup)
+39. [Service Brands](#ServiceBrands)
+40. [Service Class](#ServiceClass)
+41. [Service Facilities / Leg Attributes](#ServiceFacilities)
+42. [Stations](#Station)
+43. [Supported Online Services](#SupportedOnlineServices)
+44. [TaxScope](#TaxScope)
+45. [TimeReference](#TimeReference)
+46. [TimeUnit](#TimeUnit)
+47. [Transfer Type](#TransferType)
+48. [Transport Mode](#TransportMode)
+49. [TransactionType](#TransactionType)
+50. [Travel Account Types](#TravelAccountType)
+51. [TravelDirection](#TravelDirection)
+52. [TravelValidityType](#TravelValidityType)
+53. [TripAllocationProcess](#TripAllocationProcess)
+54. [TripAllocationUnit](#TripAllocationUnit)
+55. [TripInterruptionProcess](#TripInterruptionProcess)
 
 
 The mandatory code lists on enums and extensible enums are provided within the
@@ -707,6 +709,33 @@ units. E.g.:
 | `BE21`  | Prov. (2) Antwerpen |
 | `BE211` | Arr. Antwerpen      |
 
+## On-Demand Vehicle Process <a name="OnDemandVehicleProcess">
+
+| Code                      | Description                                                                                                       |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `PRE_ALLOCATION_REQUIRED` | Ressource pre-allocation is necessary for this service                                                            |
+| `SHALLOW_INTEGRATION`     |                                                                                                                   |
+| `DEEP_INTEGRATION`        |                                                                                                                   |
+| `PREPAID`                 | The service needs to be paid before usage                                                                         |
+| `POSTPAID`                | The service needs to be paid after usage                                                                          |
+| `AUTO_START_USAGE`        | Usage starts automatically (e.g. by entering a key code at the vehicle)                                           |
+| `AUTO_END_USAGE`          | Usage ends automatically (e.g. by locking the service), the end of the usage does not need to be handled via OSDM |
+| `BLOCKING_TRACKING`       | Updates provided before pick-up (e.g. current location of a taxi)                                                 |
+| `USAGE_TRACKING`          | Updates provided after pick-up (e.g. price for current usage)                                                     |
+| `PARKING_IMAGE_REQUIRED`  | Parking image required at the end of the usage                                                                    |
+| `TIP_SUPPORTED`           | A driver tip is supported                                                                                         |
+
+## On-Demand Vehicle Type <a name="OnDemandVehicleType">
+
+| Code               | Description |
+| ------------------ | ----------- |
+| `BICYCLE`          |             |
+| `ELECTRIC_BICYCLE` |             |
+| `CARGO_BICYCLE`    |             |
+| `SCOOTER`          |             |
+| `TAXI`             |             |
+| `SELF_DRIVING_CAR` |             |
+
 ## Overrule Code <a name="OverruleCode">
 
 | Code                          | Description                                                                            | Support by Implementer |
@@ -1253,7 +1282,7 @@ reproduced.
 | `BEFORE_START_VALIDITY` | Before the start of the validity. The time zone of the departure station applies.                                          |
 | `AFTER_END_VALIDITY`    | After the start of the validity. The time zone of the departure station applies.                                           |
 
-## TimeUnit <a name="TimeUNit">
+## TimeUnit <a name="TimeUnit">
 
 | Code     | Description |
 | -------- | ----------- |
@@ -1312,8 +1341,9 @@ Transaction type used in after sales rules for fares.
 | -------------- | ------------------------------------------------------------------------ |
 | TRAVEL_PASS    | A travel account or card that also serves as ticket in some area         |
 | REDUCTION_CARD | A customer card providing reductions                                     |
-| MULTI_RIDE     | A travel account that provides a limited number if trips or item         |
+| MULTI_RIDE     | A travel account that provides a limited number of trips or item         |
 | LOYALTY_CARD   | A customer/traveler card that only serves to collect loyality incentives |
+| LINKED_TICKET  | A travel account that is only valid with a given other travel account    |
 
 ## TravelDirection <a name="TravelDirection">
 
@@ -1352,7 +1382,7 @@ follow to make use of a multi journey ticket with restrictions.
 | `ACTIVATION`  | The fulfillment needs to be activated for the trip.                                      |
 | `FULFILLMENT` | A separate fulfillment needs to be retrieved for the trip.                               |
 
-## TripAllocationUnit <a name="TRipAllocationUnit">
+## TripAllocationUnit <a name="TripAllocationUnit">
 
 Trip allocation unit indicates the unit that can be allocatoed on a multi
 journey ticket with restrictions.
@@ -1360,9 +1390,9 @@ journey ticket with restrictions.
 | Code          | Description                                                     |
 | ------------- | --------------------------------------------------------------- |
 | `NONE`        | Individual trips don't need to be allocated.                    |
-| `MANUAL`      | allocation per individual trip.                                 |
-| `ACTIVATION`  | The allocation is per travel day for multiple trips on the day. |
-| `FULFILLMENT` | The allocation is per duration.                                 |
+| `TRIP`        | Allocation per individual trip.                                 |
+| `DAY`         | The allocation is per travel day for multiple trips on the day. |
+| `DURATION`    | The allocation is per duration.                                 |
 
 ## TripInterruptionProcess <a name="TripInterruptionProcess">
 
