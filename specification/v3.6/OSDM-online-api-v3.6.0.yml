@@ -431,6 +431,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: stopBehavior
           in: query
           schema:
@@ -556,6 +557,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
       requestBody:
         required: true
         content:
@@ -671,6 +673,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
@@ -723,6 +726,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
@@ -782,6 +786,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -831,6 +836,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -890,6 +896,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -958,6 +965,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -1010,6 +1018,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -1071,6 +1080,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -1249,6 +1259,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -1301,6 +1312,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -1358,6 +1370,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
@@ -1425,6 +1438,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -1483,6 +1497,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - $ref: '#/components/parameters/idempotencyKey'
         - name: bookingId
           in: path
@@ -1550,6 +1565,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -1612,6 +1628,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -1849,6 +1866,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -1897,6 +1915,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -1944,6 +1963,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -2055,6 +2075,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -2681,6 +2702,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -2920,6 +2942,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -3167,6 +3190,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -3222,6 +3246,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -3484,6 +3509,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           description: |
@@ -3539,6 +3565,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'        
       requestBody:
         required: true
         content:
@@ -3587,6 +3614,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: complaintId
           in: path
           description: |
@@ -3642,6 +3670,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - $ref: '#/components/parameters/idempotencyKey'
         - name: complaintId
           in: path
@@ -3919,6 +3948,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
       responses:
         '200':
           description: 'OK'
@@ -4075,6 +4105,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -4134,6 +4165,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -4189,6 +4221,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -4239,6 +4272,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -4299,6 +4333,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -4358,6 +4393,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: bookingId
           in: path
           required: true
@@ -4544,6 +4580,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: contextId
           in: query
           required: true
@@ -4615,6 +4652,7 @@ paths:
         - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
       requestBody:
         required: true
         content:
@@ -4673,6 +4711,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: contextId
           in: query
           description: |
@@ -4762,6 +4801,7 @@ paths:
           description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: contextId
           in: query
           required: true
@@ -4831,8 +4871,10 @@ paths:
       operationId: getAvailabilitiesContinuousServices
       parameters:
         - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'        
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'        
         - name: contextId
           in: query
           required: true
