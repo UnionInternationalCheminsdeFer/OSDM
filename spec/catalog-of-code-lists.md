@@ -1374,6 +1374,10 @@ Corresponding to numerical codes in TAP-TSI (B.2.3) / UIC
 | `COACH_GROUP`      | Group of coaches included in multiple trains (through coaches) | 31                 |
 | `SHIP`             |                                                                | 33                 |
 | `BUS`              |                                                                | 32                 |
+| 'ON_DEMAND_SERVICE'|                                                                |                    |
+| 'BICYCLE'          |                                                                |                    |
+| 'SCOOTER'          |                                                                |                    |
+| 'TAXI'             |                                                                |                    |
 
 ## TransactionType <a name="TransactionType">
 
