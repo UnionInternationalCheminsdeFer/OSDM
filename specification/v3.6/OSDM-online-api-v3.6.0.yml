@@ -11932,10 +11932,10 @@ components:
         - 'COACH_GROUP'
         - 'SHIP'
         - 'BUS'
-        - 'ON_DEMAND_SERVICE' # deprecated
-        - 'BICYCLE' # deprecated
-        - 'SCOOTER' # deprecated
-        - 'TAXI' # deprecated
+        - 'ON_DEMAND_SERVICE'  
+        - 'BICYCLE' 
+        - 'SCOOTER' 
+        - 'TAXI 
 
     Passenger:
       type: object
