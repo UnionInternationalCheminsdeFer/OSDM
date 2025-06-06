@@ -716,6 +716,36 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
+  /offer-overview-leg:
+    post:
+      tags:
+        - Offer Overview
+      summary: Returns an overview of prices based on legs
+      description: |
+        Returns an overview of prices for a given leg search and criteria.
+        The overview does not contain detailed offer information, but only the
+        prices.
+      operationId: getOfferOverview
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferOverviewLegRequest'
+      responses:
+        '200':
+          description: |
+            overview of prices found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferOverviewLegResponse'
+
   /offer-overview-trip:
     post:
       tags:
@@ -11537,7 +11567,23 @@ components:
         - 'NONE'
       default: 'ALL'
 
-    OfferOverview:
+    OfferOverviewLeg:
+      type: object
+      properties:
+        price:
+          $ref: '#/components/schemas/Price'
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+        startDateTime:
+          type: string
+          format: date-time
+          nullable: false
+        legSpecification:
+          $ref: '#/components/schemas/LegSpecification'
+
+    OfferOverviewTrip:
       type: object
       required:
         - price
@@ -11572,6 +11618,10 @@ components:
           $ref: '#/components/schemas/TripSearchCriteria'
         tripResponseParameters:
           $ref: '#/components/schemas/TripResponseParameters'
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
 
     OfferOverviewTripResponse:
       type: object
@@ -11587,7 +11637,47 @@ components:
         offerOverviews:
           type: array
           items:
-            $ref: '#/components/schemas/OfferOverview'
+            $ref: '#/components/schemas/OfferOverviewTrip'
+
+    OfferOverviewLegRequest:
+      type: object
+      required:
+        - legSpecification
+        - startDateTime
+        - endDateTime
+      properties:
+        legSpecification:
+          $ref: '#/components/schemas/LegSpecification'
+        startDateTime:
+          type: string
+          format: date-time
+          nullable: false
+        endDateTime:
+          type: string
+          format: date-time
+          nullable: false
+        timeFrameSegmentation:
+          type: string
+          enum:
+            - 'HOUR'
+            - 'DAY'
+          default: 'DAY'
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+
+    OfferOverviewLegResponse:
+      type: object
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        offerOverviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferOverviewLeg'
 
     OfferMode:
       description: |
@@ -16116,6 +16206,14 @@ components:
         legId:
           type: string
           nullable: false
+
+    LegSpecification:
+      type: object
+      properties:
+        origin:
+          $ref: '#/components/schemas/PlaceRef'
+        destination:
+          $ref: '#/components/schemas/PlaceRef'
 
     TripLegSpecification:
       type: object
