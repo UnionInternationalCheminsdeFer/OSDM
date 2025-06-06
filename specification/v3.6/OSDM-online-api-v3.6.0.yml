@@ -9636,7 +9636,6 @@ components:
         - afterSalesCondition
         - combinationConstraint
         - travelValidityConstraint
-        - requiredCards
       properties:
         id:
           description: |
