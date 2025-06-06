@@ -5231,25 +5231,23 @@ components:
         Listed values here are examples.
       default: 'ANY_SEAT'
       x-extensible-enum:
-        - 'AISLE'
-        - 'AIR-CONDITIONED'
         - 'ANY_SEAT'
         - 'BISTRO'
         - 'BICYCLE'
+        - 'BICYCLE_LOW'
+        - 'BICYCLE_MIDDLE'
+        - 'BICYCLE_HIGH'
         - 'BUSINESS'
         - 'BUSINESS_COMFORT'
         - 'CABIN8'
-        - 'CAR_SMALL'
         - 'CAR_LARGE'
+        - 'CAR_SMALL'
         - 'CARRE'
         - 'CHILDREN_AREA'
         - 'CLUB'
         - 'CLUB_2'
         - 'CLUB_4'
         - 'COMPARTMENT'
-        - 'COMPLETE'
-        - 'CONFERENCE'
-        - 'CONNECTING_DOOR'
         - 'COUCHETTE_2'
         - 'COUCHETTE_4'
         - 'COUCHETTE_5'
@@ -5261,65 +5259,48 @@ components:
         - 'COUCHETTE_PRM_3'
         - 'COUCHETTE_PRM_4'
         - 'DOUBLE'
+        - 'DOUBLE_WC'
         - 'DOUBLE_SWC'
-        - 'DOUBLE_SWC_DB'
         - 'DOUBLE_S'
         - 'EASY_ACCESS'
-        - 'FACE_2_FACE'
         - 'EXCELLENCE'
         - 'FAMILY'
         - 'FRONT_VIEW'
         - 'HISTORIC_COACH'
-        - 'INCLUDING_MEAL'
-        - 'INCLUDING_DRINK'
         - 'KIOSQUE'
-        - 'LADIES'
-        - 'LOWER_BED'
-        - 'LOWER_DECK'
-        - 'MEN'
-        - 'MIDDLE_BED'
-        - 'MIDDLE_SEAT'
         - 'MINI_SUITE'
-        - 'MIXED'
         - 'MOTOR_CYCLE'
         - 'MOTOR_CYCLE_SC'
         - 'NEAR_ANIMALS'
+        - 'NEAR_ASSISTANT_DOG_AREA'
         - 'NEAR_DINING'
         - 'NEAR_PLAY_AREA'
         - 'NEAR_BICYCLE_AREA'
         - 'NEAR_WHEELCHAIR'
         - 'OPEN_SPACE'
         - 'PANORAMA'
-        - 'PHONE'
-        - 'POWER'
         - 'PRAM'
         - 'PRAM_WITH_SEAT'
+        - 'PREMIUM'
         - 'RESTAURANT'
+        - 'SALON'
         - 'SILENCE'
         - 'SINGLE'
+        - 'SINGLE_WC'
         - 'SINGLE_SWC'
-        - 'SINGLE_SWC_DOUBLE'
-        - 'SIDE_BY_SIDE'
-        - 'SALON'
         - 'SLEEPERETTE'
-        - 'SLEEPER_DELUXE'
         - 'SOLO'
         - 'SOLO_COM'
         - 'SPECIAL_SLEEPER'
-        - 'TABLE'
         - 'TANDEM'
         - 'TOURIST_SLEEPER_2'
         - 'TOURIST_SLEEPER_3'
-        - 'TOURIST_SLEEPER_4'
+        - 'TOURIST_SLEEPER_3_WC'
         - 'TOURIST_SLEEPER_3_SWC'
-        - 'UPPER_BED'
-        - 'UPPER_DECK'
-        - 'VIDEO'
+        - 'TOURIST_SLEEPER_4'
         - 'WHEELCHAIR'
         - 'WHEELCHAIR_AND_SEAT'
         - 'WHEELCHAIR_NO_SEAT'
-        - 'WIFI'
-        - 'WINDOW'
         - 'WITH_ANIMALS'
         - 'WITH_SMALL_CHILDREN'
         - 'WITHOUT_ANIMALS'
@@ -5347,6 +5328,17 @@ components:
         Listed values here are examples.
       type: string
       x-extensible-enum:
+        - 'YOUNG_CHILD'
+        - 'CHILD'
+        - 'YOUTH'
+        - 'ADULT'
+        - 'SENIOR'
+        - 'FAMILY_CHILD'
+        - 'ACCOMP_PRM'
+        - 'PRM_CHILD'
+        - 'WHEELCHAIR'
+        - 'PERSON'
+        - 'PRM'
         - 'DOG'
         - 'PET'
         - 'LUGGAGE'
@@ -5357,16 +5349,8 @@ components:
         - 'ACCOMP_DOG'
         - 'ACCOMP_PRM'
         - 'CAR'
-        - 'MOTORCYCLE'
+        - 'MOTOCYCLE'
         - 'TRAILER'
-        - 'FAMILY_CHILD'
-        - 'WHEELCHAIR'
-        - 'PERSON'
-        - 'YOUNG_CHILD'
-        - 'CHILD'
-        - 'YOUTH'
-        - 'ADULT'
-        - 'SENIOR'
       default: 'PERSON'
 
     AdditionalOfferCollectionResponse:
@@ -5879,7 +5863,17 @@ components:
         Listed values here are examples.
       type: string
       x-extensible-enum:
+        - 'PAYMENT_VOUCHER'
+        - 'PRODUCT_ACCESS'
+        - 'MERCHANDISE_PRODUCT'
+        - 'LUGGAGE'
+        - 'LUGGAGE_TRANSFER'
+        - 'ON_BOARD_SERVICE'
+        - 'STATION_SERVICE'
         - 'FOOD_ON_BOARD'
+        - 'DRINKS_ON_BOARD'
+        - 'WIFI'
+        - 'PARKING'
 
     AnonymousPassengerSpecification:
       type: object
@@ -5986,8 +5980,8 @@ components:
         Indication of items attached to the car
       type: string
       x-extensible-enum:
-        - ROOF_RACK
-        - BICYCLE_STAND
+        - 'ROOF_RACK'
+        - 'BICYCLE_STAND'
 
     AvailabilityScope:
       type: object
@@ -7355,10 +7349,10 @@ components:
     CoachDeckLevel:
       type: string
       x-extensible-enum:
-        - SINGLE_DECK
-        - LOWER_DECK
-        - MIDDLE_DECK
-        - UPPER_DECK
+        - 'SINGLE_DECK'
+        - 'LOWER_DECK'
+        - 'MIDDLE_DECK'
+        - 'UPPER_DECK'
 
     CoachDeckLayoutCollectionResponse:
       type: object
@@ -8008,7 +8002,7 @@ components:
     ContinuousServiceProcessIndication:
       description: |
         Process indications for on-demand services  
-        [On-Demand Vehicle Types](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleProcesses)
+        [On-Demand Vehicle Process](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleProcesses)
       type: string
       x-extensible-enum:
         - 'PRE_ALLOCATION_REQUIRED'
@@ -9443,6 +9437,7 @@ components:
     FulfillmentDocumentType:
       description: |
         The type of fulfillment document.
+        Values from the [Fulfillment Document Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentDocumentType)
       type: string
       enum:
         - 'BOARDING_PASS'
@@ -9681,6 +9676,7 @@ components:
     Gender:
       description: |
         The gender of the passenger, which is important in the case of night trains.
+        Values from the [Gender Code List](https://osdm.io/spec/catalog-of-code-lists/#Gender)
       type:
         - 'string'
         - 'null'
@@ -11211,10 +11207,6 @@ components:
         - 'COACH_GROUP'
         - 'SHIP'
         - 'BUS'
-        - 'ON_DEMAND_SERVICE'
-        - 'BICYCLE'
-        - 'SCOOTER'
-        - 'TAXI'
 
     Passenger:
       type: object
@@ -11410,19 +11402,26 @@ components:
         Proposed default PERSON
       type: string
       x-extensible-enum:
+        - 'YOUNG_CHILD'
+        - 'CHILD'
+        - 'YOUTH'
+        - 'ADULT'
+        - 'SENIOR'
+        - 'FAMILY_CHILD'
+        - 'ACCOMP_PRM'
+        - 'PRM_CHILD'
+        - 'WHEELCHAIR'
+        - 'PERSON'
+        - 'PRM'
         - 'DOG'
         - 'PET'
         - 'LUGGAGE'
-        - 'PRM'
         - 'BICYCLE'
         - 'PRAM'
-        - 'COMPANION_DOG'
+        - 'ACCOMP_DOG'
         - 'CAR'
-        - 'PERSON'
-        - 'MOTORCYCLE'
+        - 'MOTOCYCLE'
         - 'TRAILER'
-        - 'FAMILY_CHILD'
-        - 'WHEELCHAIR'
       default: 'PERSON'
 
     PaymentMethod:
@@ -12514,15 +12513,34 @@ components:
 
     ProductTag:
       description: |
+        Values from the [Product Tags Code List](https://osdm.io/spec/catalog-of-code-lists/#ProductTags)
         Known values:
         - SPLIT_RESERVATION
           Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation
           Without this indication the provider is not allowed to use the SplitSection Object inside a reservation. 
           The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover a full leg 
           multiple reservations as offerParts should be created.
+        - CARD_LOST
+          Tag used to request a non-trip offer to replace a lost card. This applies to physical cards only.
+        - TICKET_LOST
+          Tag used to request a non-trip offer to replace a lost ticket. This applies to physical tickts only.
+        - Product Types
+          All product types can be used as Product Tags in the search
       type: string
       x-extensible-enum:
         - 'SPLIT_RESERVATION'
+        - 'CARD_LOST'
+        - 'TICKET_LOST'
+        - 'ADMISSION_MULTI_RIDE'
+        - 'ADMISSION_POINT2POINT'
+        - 'ADMISSION_PASS'
+        - 'UPGRADE_PASS'
+        - 'UPGRADE_POINT2POINT'
+        - 'UPGRADE_MULTI_RIDE'
+        - 'RESERVATION'
+        - 'ANCILLARY_SERVICE'
+        - 'ANCILLARY_ITEM'
+        - 'REDUCTION_CARD'
 
     ProductType:
       description: |
@@ -14269,7 +14287,7 @@ components:
       type: string
       x-extensible-enum:
         - 'REGISTRY'
-        - 'PEER_TO_PEER'
+        - 'PEER2PEER'
 
     SituationFullRef:
       type:
@@ -14546,6 +14564,8 @@ components:
         - 'RESPLUS'
 
     TimeUnit:
+      description: |
+        Values from the [Time Unit Code List](https://osdm.io/spec/catalog-of-code-lists/#TimeUnit)
       type: string
       enum:
         - 'DAYS'
@@ -14915,6 +14935,8 @@ components:
       default: ALL
 
     TravelAccountType:
+      description: |
+        Values from the [Travel Account Type Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelAccountType)
       type: string
       enum:
         - 'LINKED_TICKET'
@@ -15160,6 +15182,7 @@ components:
 
     TripAllocationProcess:
       description: |
+        Values from the [Trip Allocation Process Code List](https://osdm.io/spec/catalog-of-code-lists/#TripAllocationProcess)
         Known Values:
         - NONE: Individual trips don't need to be allocated.
         - MANUAL: The passenger has to allocate a trip manually (This should not be used as it is by design non-interoperable).
@@ -15174,6 +15197,7 @@ components:
 
     TripAllocationUnit:
       description: |
+        Values from the [Trip Allocation Unit Code List](https://osdm.io/spec/catalog-of-code-lists/#TripAllocationUnit)
         Unit to allocate trips in a multi-trip fare. Trips can be allocated per day (e.g. Eurail) or per
         duration (e.g. multiples of a duration unit to cover the trip) or as single trips (e.g. carnet))
         Known Values:
@@ -15323,6 +15347,7 @@ components:
 
     TripInterruptionProcess:
       description: |
+        Values from the [Trip Interruption Process Code List](https://osdm.io/spec/catalog-of-code-lists/#TripInterruptionProcess)
         Known Values:
         - NONE
         - MANUAL: passenger needs manual confirmation of train or station staff to interrupt the trip.
@@ -15841,6 +15866,7 @@ components:
     ValidityType:
       description: |
         Type of usage, either as single trip or multiple trips. Unrestricted fares might be combined into single trips if appropriate. Values from the [Travel Validity Type Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelValidityType) 
+        Values from the [Tavel Validity Type Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelValidityType)
         Listed values here are examples.
       type: string
       x-extensible-enum:
