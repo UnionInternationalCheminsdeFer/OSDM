@@ -11208,6 +11208,10 @@ components:
         - 'COACH_GROUP'
         - 'SHIP'
         - 'BUS'
+        - 'ON_DEMAND_SERVICE'
+        - 'BICYCLE'
+        - 'SCOOTER'
+        - 'TAXI'        
 
     Passenger:
       type: object
