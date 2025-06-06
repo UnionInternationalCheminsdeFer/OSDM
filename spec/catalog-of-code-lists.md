@@ -759,7 +759,7 @@ units. E.g.:
 
 ## Passenger Type (aka. Traveler Type) <a name="PassengerType">
 
-| Code           | Description                                                                                                                                                     | Transportable | Bulk (Offline) | Online Request | Online Reply | 918-9 FCB Version 3                           |
+| Code           | Description                                                                                                                                                     | Transportable Type | Bulk (Offline) | Online Request | Online Reply | 918-9 FCB Version 3                           |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | -------------- | -------------- | ------------ | --------------------------------------------- |
 | `YOUNG_CHILD`  | Young child defined by the carrier depending on the age                                                                                                         |               | X              |                | X            | freeAddonChild                                |
 | `CHILD`        | Child defined by the carrier depending on the age                                                                                                               |               | X              |                | X            | child                                         |
@@ -772,15 +772,15 @@ units. E.g.:
 | `WHEELCHAIR`   | Passenger with wheel-chair                                                                                                                                      |               |                | X              |              | wheelchair indication in the reservation data |
 | `PERSON`       | Used in requests together with date of birth and in replies in case of products that might include a change of passenger type along the route                   |               |                | X              | X            |                                               |
 | `PRM`          | Person with reduced mobility - to be used in case of accompanying person or dog, date of birth must be provided additionally                                    |               |                | X              |              | flag passengerWithReducedMobility             |
-| `DOG`          | A dog                                                                                                                                                           | X             | X              | X              | X            | dog                                           |
-| `PET`          | A pet but not a dog                                                                                                                                             | X             | X              | X              | X            |                                               |
-| `LUGGAGE`      | Over-size luggage                                                                                                                                               | X             | X              | X              | X            | special luggage data                          |
-| `BICYCLE`      | A bicycle                                                                                                                                                       | X             | X              | X              | X            | bicycle                                       |
-| `PRAM`         | A pram                                                                                                                                                          | X             | X              | X              | X            | special code in the reservation data          |
-| `ACCOMP_DOG`   | An accompanying dog for a PRM                                                                                                                                   | X             | X              | X              | X            | dog                                           |
-| `CAR`          | A car for car-carriage trains                                                                                                                                   | X             | X              | X              | X            | special car carriage data                     |
-| `MOTOCYCLE`    | A motorcycle for car carriage trains                                                                                                                            | X             | X              | X              | X            | special car carriage data                     |
-| `TRAILER`      | A trailer for car carriage trains                                                                                                                               | X             | X              | X              | X            | special car carriage data                     |
+| `DOG`          | A dog                | DOG            | X            | X              | X            | dog                                           |
+| `PET`          | A pet but not a dog  | PET            | X            | X              | X            |                                               |
+| `LUGGAGE`      | Over-size luggage    | LUGGAGE        | X            | X              | X            | special luggage data                          |
+| `BICYCLE`      | A bicycle            | BICYCLE        | X            | X              | X            | bicycle                                       |
+| `PRAM`         | A pram               | PRAM           | X            | X              | X            | special code in the reservation data          |
+| `ACCOMP_DOG`   | An accompanying dog for a PRM   | ACCOMP_DOG         | X              | X              | X            | dog                                           |
+| `CAR`          | A car for car-carriage trains   | CAR                | X              | X              | X            | special car carriage data                     |
+| `MOTOCYCLE`    | A motorcycle for car carriage trains  | MOTOCYCLE    | X      | X              | X            | special car carriage data                     |
+| `TRAILER`      | A trailer for car carriage trains     | TRAILER      | X        | X              | X            | special car carriage data                     |
 
 ## Passport <a name="Passport">
 
