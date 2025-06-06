@@ -13,56 +13,61 @@ permalink: /spec/catalog-of-code-lists/
 3. [Accommodation Type](#AccomodationType)
 4. [Accommodation Sub Type, Place Property, Reservation Place Preference](#PlaceProperty)
 5. [Ancillary category](#AncillaryCategory)
-6. [BarcodeType](#BarcodeType)
-7. [CardType](#CardType)
-8. [Company Code](#CompanyCode)
-9. [ControlDataExchangeType](#ControlDataExchangeType)
-10. [ControlSecurityType](#ControlSecurityType)
-11. [Currency](#Currency)
-12. [FareType](#FareType)
-13. [Fare CoachType](#FareCoachType)
-14. [Fare CompartmentTypeCode](#FareCompartmentTypeCode)
-15. [FulfillmentType](#FulfillmentType)
-16. [FulfillmentDocumentType](#FulfillmentDocumentType)
-17. [FulfillmentMediaType](#FulfillmentMediaType)
-18. [Gender](#Gender)
-19. [Graphics Items](#GraphicsItems)
-20. [Interface Type](#InterfaceType)
-21. [Language](#Language)
-22. [Leg Attributes](#LegAttributes)
-23. [Nationality](#Nationality)
-24. [NUTS codes](#NutsCodes)
-25. [On-Demand Vehicle Process](#OnDemandVehicleProcess)
-26. [On-Demand Vehicle Type](#OnDemandVehicleType)
-27. [Overrule Code](#OverruleCode)
-28. [Passenger Type (aka. Traveler Type)](#PassengerType)
-29. [Passport](#Passport)
-30. [Personal data items](#PersonalDataItems)
-31. [Personal data transfer types](#PersonalDataTransferType)
-32. [Personal data change reasons](#PersonalDataChangeReason)
-33. [Product Tags](#ProductTags)
-34. [Product Types](#ProductTypes)
-35. [Public Transportation Modes (ptMode)](#PublicTansportModes)
-36. [Point of Interest (POI)](#PointOfInterrest)
-37. [Reduction cards](#ReductionCard)
-38. [Reservation Preference Group](#ReservationPreferenceGroup)
-39. [Service Brands](#ServiceBrands)
-40. [Service Class](#ServiceClass)
-41. [Service Facilities / Leg Attributes](#ServiceFacilities)
-42. [Stations](#Station)
-43. [Supported Online Services](#SupportedOnlineServices)
-44. [TaxScope](#TaxScope)
-45. [TimeReference](#TimeReference)
-46. [TimeUnit](#TimeUnit)
-47. [Transfer Type](#TransferType)
-48. [Transport Mode](#TransportMode)
-49. [TransactionType](#TransactionType)
-50. [Travel Account Types](#TravelAccountType)
-51. [TravelDirection](#TravelDirection)
-52. [TravelValidityType](#TravelValidityType)
-53. [TripAllocationProcess](#TripAllocationProcess)
-54. [TripAllocationUnit](#TripAllocationUnit)
-55. [TripInterruptionProcess](#TripInterruptionProcess)
+6. [Attachable Item Type](#AttachableItemType)
+7. [BarcodeType](#BarcodeType)
+8. [CardType](#CardType)
+9. [Company Code](#CompanyCode)
+10. [ControlDataExchangeType](#ControlDataExchangeType)
+11. [ControlSecurityType](#ControlSecurityType)
+12. [Currency](#Currency)
+13. [FareType](#FareType)
+14. [Fare CoachType](#FareCoachType)
+15. [Fare CompartmentTypeCode](#FareCompartmentTypeCode)
+16. [FulfillmentType](#FulfillmentType)
+17. [FulfillmentDocumentType](#FulfillmentDocumentType)
+18. [FulfillmentMediaType](#FulfillmentMediaType)
+19. [Gender](#Gender)
+20. [Graphics Items](#GraphicsItems)
+21. [Interface Type](#InterfaceType)
+22. [Language](#Language)
+23. [Leg Attributes](#LegAttributes)
+24. [Nationality](#Nationality)
+25. [NUTS codes](#NutsCodes)
+26. [On-Demand Vehicle Process](#OnDemandVehicleProcess)
+27. [On-Demand Vehicle Type](#OnDemandVehicleType)
+28. [Overrule Code](#OverruleCode)
+29. [Passenger Type (aka. Traveler Type)](#PassengerType)
+30. [Passport](#Passport)
+31. [Personal data items](#PersonalDataItems)
+32. [Personal data transfer types](#PersonalDataTransferType)
+33. [Personal data change reasons](#PersonalDataChangeReason)
+34. [PRM Need Type](#PRMNeedType)
+35. [Product Tags](#ProductTags)
+36. [Product Types](#ProductTypes)
+37. [Public Transportation Modes (ptMode)](#PublicTansportModes)
+38. [Point of Interest (POI)](#PointOfInterrest)
+39. [Reduction cards](#ReductionCard)
+40. [Reimbursement Reason](#ReimbursementReason)
+41. [Reservation Preference Group](#ReservationPreferenceGroup)
+42. [Service Brands](#ServiceBrands)
+43. [Service Class](#ServiceClass)
+44. [Service Degradation](#ServiceDegradation)
+45. [Service Facilities / Leg Attributes](#ServiceFacilities)
+46. [Special Coach Type](#SpecialCoachType)
+47. [Stations](#Station)
+48. [Supported Online Services](#SupportedOnlineServices)
+49. [TaxScope](#TaxScope)
+50. [TimeReference](#TimeReference)
+51. [TimeUnit](#TimeUnit)
+52. [Transfer Type](#TransferType)
+53. [Transport Mode](#TransportMode)
+54. [TransactionType](#TransactionType)
+55. [Travel Account Types](#TravelAccountType)
+56. [TravelDirection](#TravelDirection)
+57. [TravelValidityType](#TravelValidityType)
+58. [TripAllocationProcess](#TripAllocationProcess)
+59. [TripAllocationUnit](#TripAllocationUnit)
+60. [TripInterruptionProcess](#TripInterruptionProcess)
 
 
 The mandatory code lists on enums and extensible enums are provided within the
@@ -251,6 +256,13 @@ of by the customer.
 | `DRINKS_ON_BOARD`     |                                                             |
 | `WIFI`                | Access to WiFi                                              |
 | `PARKING`             | parking of cars                                             |
+
+## Attachable Item Type <a name="AttachableItemType">
+
+| Code            | Description |
+| --------------- | ----------- |
+| `BICYCLE_STAND` |             |
+| `ROOF_RACK`     |             |
 
 ## BarcodeType <a name="BarcodeType">
 
@@ -842,6 +854,16 @@ required.
 | `DOCUMENT_CHANGE` | E.g. passport was lost and replaced                  |
 | `AGENT_ERROR`     | Personal data were enterd wronlgy by the sales agent |
 
+## PRM Need Type <a name="PRMNeedType">
+
+| Code               | Description |
+| ------------------ | ----------- |
+| `NEED_PRM_SUPPORT` |             |
+| `WHEELCHAIR`       |             |
+| `ACCOMPANYING_DOG` |             |
+| `COMPANION_SEAT`   |             |
+| `COMPANION`        |             |
+
 ## Product Tags <a name="ProductTags">
 
 | Code              | Description                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -921,6 +943,20 @@ by a specific carrier:
 Note: A card associated with a person in a request might result in a reduction applied to an accompagning person or pet.
 
 Other cards should start with the RICS code of the issuer.
+
+## Reimbursement Reason <a name="ReimbursementReason">
+
+| Code                                        | Description |
+| ------------------------------------------- | ----------- |
+| `STRIKE`                                    |             |
+| `TICKET_NOT_USED`                           |             |
+| `CONTINUOUS_SERVICE_VEHICLE_BATTERY_EMPTY`  |             |
+| `CONTINUOUS_SERVICE_VEHICLE_BROKEN`         |             |
+| `CONTINUOUS_SERVICE_VEHICLE_NOT_FOUND`      |             |
+| `CONTINUOUS_SERVICE_VEHICLE_DID_NOT_ARRIVE` |             |
+| `CONTINUOUS_SERVICE_USAGE_STARTING_FAILED`  |             |
+| `CONTINUOUS_SERVICE_USAGE_ENDING_FAILED`    |             |
+| `CONTINUOUS_SERVICE_USAGE_REPORT_WRONG`     |             |
 
 ## Reservation Preference Group <a name="ReservationPreferenceGroup">
 
@@ -1088,6 +1124,15 @@ List](https://uic.org/passenger/passenger-services-group/article/service-brand-c
 | `STANDARD` |                       |
 | `BASIC`    | Standard second class |
 
+## Service Degradation <a name="ServiceDegradation">
+
+| Code                                | Description |
+| ----------------------------------- | ----------- |
+| `RESERVED_PLACES_MISSING`           |             |
+| `BOOKED_ACCOMMODATION_TYPE_MISSING` |             |
+| `BOOKED_CLASS_MISSING`              |             |
+| `BOOKED_MEAL_MISSING`               |             |
+
 ## Service Facilities / Leg Attributes <a name="ServiceFacilities">
 
 | OSDM code                       | Description                                                                                                    | TAP-TSI code list | TAP-TSI code |
@@ -1234,6 +1279,15 @@ List](https://uic.org/passenger/passenger-services-group/article/service-brand-c
 | `BOOKABLE_INT`                  | Bookable through an international reservation system                                                           | B.4.7037          | 26           |
 | `BOOKABLE_NAT`                  | Bookable through a national reservation system                                                                 | B.4.7037          | 27           |
 | `BOOKABLE_LOCAL`                | Bookable manually at Rus selling point                                                                         | B.4.7037          | 28           |
+
+## Special Coach Type <a name="SpecialCoachType">
+
+| Code               | Description |
+| ------------------ | ----------- |
+| `RESTAURANT_COACH` |             |
+| `BICYCLE_COACH`    |             |
+| `LUGGAGE_COACH`    |             |
+| `TRAIN_HEAD`       |             |
 
 ## Stations <a name="Station">
 
