@@ -16,7 +16,7 @@ permalink: /spec/language/
 
 ## General elements: <a name="Generalelements">
 - For reference data (including places), we specifically have a translation structure, so no need for language element there.
-- Errors and warnings are not translated.
+- Errors and warnings (problems) are not translated.
 
 ## Interface language <a name="Interfacelanguage">
 - For interface language, we rely on the accept-language header. Note however that the header is only available in calls where it is relevant.
