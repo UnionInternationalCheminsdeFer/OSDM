@@ -9112,6 +9112,7 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
@@ -13381,6 +13382,7 @@ components:
       additionalProperties: false
       properties:
         warnings:
+          deprecated: true
           $ref: '#/components/schemas/WarningCollection'
         problems:
           type: array
@@ -16618,10 +16620,13 @@ components:
     Warning:
       type: object
       additionalProperties: false
+      deprecated: true
       description: |
         This element can be used to pass non-blocking information or events,
         such as a price difference with the initially offered price at booking time.
         It is inspired on the JSon problem structure.
+
+        This structure has been deprecated and is replaced by the Problem structure.
       required:
         - code
       properties:
@@ -16658,8 +16663,9 @@ components:
     WarningCollection:
       type: object
       additionalProperties: false
+      deprecated: true
       description: |
-        List of warnings.
+        List of warnings. This structure has been deprecated and replaced by the problems array.
 
       required:
         - warnings
