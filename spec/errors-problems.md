@@ -8,12 +8,14 @@ permalink: /spec/errors-problems/
 ## Table of contents
 
 1. [General HTTP error codes and generic situations](#GeneralHTTPerrorcodesandgenericsituations)
-2. [Functional Errors](#FunctionalErrors)
+2. [Problems Structure](#ProblemsStructure)
    1. [Examples](#Examples)
-3. [Standardized Technical Errors](#StandardizedTechnicalErrors)
-4. [Standardized Functional Errors](#StandardizedFunctionalErrors)
-5. [Standardized Functional Warnings](#StandardizedFunctionalWarnings)
-6. [Dealing with Unsupported Parameters in Requests](#DealingwithUnsupportedParametersinRequests)
+   2. [Human readable explanations](#HumanReadable)
+3. [Standardized Problems](#StandardizedProblems)
+   1. [Standardized Technical Errors](#StandardizedTechnicalErrors)
+   2. [Standardized Functional Errors](#StandardizedFunctionalErrors)
+   3. [Standardized Functional Warnings](#StandardizedFunctionalWarnings)
+4. [Dealing with Unsupported Parameters in Requests](#DealingwithUnsupportedParametersinRequests)
 
 
 # Errors and Problems
@@ -35,13 +37,16 @@ The following standard HTTP error codes are used in the specification:
 | `501`          | Not implemented       |
 | `503`          | Service unavailable   |
 
-## Functional Errors <a name="FunctionalErrors">
+## Problems structure <a name="ProblemsStructure">
 
 The OSDM API makes use of the JSON Problem structure to return information about
-functional errors in the handling of a request. The problem structure is defined
+errors and warnings in the handling of a request. The problem structure is defined
 in [RFC9457](https://tools.ietf.org/html/rfc9457) which defines a way to carry
 machine-readable details of errors in a HTTP response to avoid the need to
 define new error response formats for HTTP APIs.
+
+Note: The `Warning` structure and its associated warnings collection is deprecated in
+version 3.6 and removed in version 4 of the OSDM standard.
 
 For OSDM, the following properties are supported:
 
@@ -58,13 +63,6 @@ detail are not translated and the expected language there should be in English.
 It is up to the implementers to foresee a translation based on the code if
 relevant. Optionally, a problem message can contain reference to resources in
 the model.
-
-The list of all error codes that can be returned by the API, needs to exposed on
-an URI:
-
-`https://<host>/errors/<error-code>`
-
-where host denotes the host of the API.
 
 ### Examples <a name="Examples">
 
@@ -104,13 +102,22 @@ Request with invalid input
 }
 ```
 
-## Standardized Technical Errors <a name="StandardizedTechnicalErrors">
+### Human readable explanations <a name="HumanReadable">
+
+A human readable list of all problem codes (errors and warnings) that can be returned by the API 
+needs to exposed on an URI: `https://<host>/errors/<error-code>` where host denotes the host of the API. 
+
+This list should contain a human readable explanation of the errors and warnings.
+
+## Standardized Problems <a name="StandardizedProblems">
+
+### Standardized Technical Errors <a name="StandardizedTechnicalErrors">
 
 In order that OSDM implementations behave consistently in error situations, the
 following error codes must be supported in case of technical errors by all
 implementations:
 
-| **Problem code**          | **Description**                                                                               |
+| **Code**                  | **Description**                                                                               |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
 | `RESOURCE_NOT_FOUND`      | The requested (sub) resource could not be found. Could be deleted or expired                  |
 | `OPERATION_NOT_PERMITTED` | Trying to perform an operation that is not permitted.                                         |
@@ -126,13 +133,13 @@ implementations:
 | `SERVICE_UNAVAILABLE`     | The service is currently not available                                                        |
 | `UNAUTHORIZED`            | Client is no authorized                                                                       |
 
-## Standardized Functional Errors <a name="StandardizedFunctionalErrors">
+### Standardized Functional Errors <a name="StandardizedFunctionalErrors">
 
 In order that OSDM implementations behave consistently in error situations, the
 following error codes must be supported in case of functional errors by all
 implementations:
 
-| **Functional area** | **Error Code**                               | **Title**                                                                                                                                                 |
+| **Functional area** | **Code**                                     | **Title**                                                                                                                                                 |
 | ------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Places              | `PLACE_INVALID_CHARACTERS`                   | Invalid characters in the search string                                                                                                                   |
 | Places              | `PLACE_NO_RESULTS`                           | The search did not return any result                                                                                                                      |
@@ -176,39 +183,19 @@ not covered by any of the case below, they can do so by replacing the OSDM
 namespace with custom namespace starting with an `X_` followed by an unique
 identifier for the provider (ex: `X_NVS_NOMEAL`).
 
-# Warnings
-
-In addition to errors, a generic warnings mechanism is used to pass non-blocking
-information or events, such as a price difference with the initially offered
-price at booking time to the caller.
-
-A warning message is typically made of a code and a detail. The details are not
-translated and the expected language there should be in English. It is up to the
-implementers to foresee a translation based on the code if relevant. Optionally,
-a warning message can contain reference to resources in the model.
-
-```json
-"warning": {
-  "code": "PLACE_PROPERTY_NOT_RESPECTED",
-  "type": "https://osdm.io/warnings/place-property-not-respected",
-  "title": "Place property not respected",
-  "detail": "Place property `WINDOW` is not respected in offer with id `123456`",
-}
-```
-
-## Standardized Functional Warnings <a name="StandardizedFunctionalWarnings">
+### Standardized Functional Warnings <a name="StandardizedFunctionalWarnings">
 
 In order that OSDM implementations behave consistently in warning situations,
 the following warning codes must be supported in case of functional warnings by
 all implementations:
 
-| **Functional area** | **Warning Code**               | **Title**                                 |
-| ------------------- | ------------------------------ | ----------------------------------------- |
-| Reservation         | `PLACE_PROPERTY_NOT_RESPECTED` | Place property not respected              |
-| Offers              | `OFFER_NO_RESULTS`             | The trip search did not return any result |
+| **Functional area** | **Code**                       | **Title**                                   |
+| ------------------- | ------------------------------ | ------------------------------------------- |
+| Reservation         | `PLACE_PROPERTY_NOT_RESPECTED` | Place property not respected                |
+| Offers              | `OFFER_NO_RESULTS`             | The trip search did not return any result   |
 | Booking             | `OVERRULE_CODE_NOT_ACCEPTED`   | The overrule code provided was not accepted |
 | Booking             | `OVERRULE_CODE_NOT_SUPPORTED`  | The overrule code provided is not supported |
-| todo                | `todo`                         | todo                                      |
+| todo                | `todo`                         | todo                                        |
 
 As for the warnings, an implementor is required to use these warning codes and
 descriptions for the situations identified in order to be compliant.
