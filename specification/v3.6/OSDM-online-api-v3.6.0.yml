@@ -4831,6 +4831,7 @@ paths:
       operationId: getAvailabilitiesContinuousServices
       parameters:
         - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'        
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: contextId
