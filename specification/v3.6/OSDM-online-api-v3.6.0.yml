@@ -9018,7 +9018,7 @@ components:
         A StopPlace where the direction of a train changes
       required:
         - stopPlaceRef
-	- stopPlaceName
+        - stopPlaceName
       properties:
         stopPlaceRef:
           description: |
