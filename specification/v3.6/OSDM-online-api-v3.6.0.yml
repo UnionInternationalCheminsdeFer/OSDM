@@ -9012,22 +9012,22 @@ components:
             $ref: '#/components/schemas/CompartmentAvailability'
 
     DirectionChange:
-	    type: object
-	    additionalProperties: false
-	    description: |
+      type: object
+      additionalProperties: false
+      description: |
         A StopPlace where the direction of a train changes
-	    required:
-	      - stopPlaceRef
-		    - stopPlaceName
-	    properties:
-	      stopPlaceRef:
-		      description: |
+      required:
+        - stopPlaceRef
+	- stopPlaceName
+      properties:
+        stopPlaceRef:
+          description: |
             Reference to the station where the direction changes
           $ref: '#/components/schemas/StopPlaceRef'	    
-		    stopPlaceName:
-		      description: |
+        stopPlaceName:
+	  description: |
             Name of the station where the direction changes
-		      type: string
+	  type: string
           nullable: false
     
     DirectionType:
