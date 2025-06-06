@@ -8870,7 +8870,7 @@ components:
     CountryCode:
       type: string
       description: |
-        ISO country code (2 alpha), relative URNs with base urn:iso:std:iso:3166 are recommended
+        ISO 3166-1 alpha-2 2 character country code
       nullable: false
       example: 'DE'
 
@@ -10591,7 +10591,7 @@ components:
           nullable: true
         nationality:
           description: |
-            ISO 3166 2A codes
+            ISO 3166-1 alpha-2 2 character country code
           type: string
           nullable: true
         birthCity:
