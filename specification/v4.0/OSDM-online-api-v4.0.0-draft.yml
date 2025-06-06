@@ -11416,7 +11416,7 @@ components:
         - 'PRM'
         - 'BICYCLE'
         - 'PRAM'
-        - 'COMPANION_DOG'
+        - 'ACCOMP_DOG'
         - 'CAR'
         - 'PERSON'
         - 'MOTORCYCLE'
@@ -14865,10 +14865,14 @@ components:
       type: string
       x-extensible-enum:
         - 'PET'
+        - 'DOG' 
+        - 'ACCOMP_DOG'        
         - 'BICYCLE'
+        - 'LUGGAGE'        
+        - 'PRAM'        
         - 'CAR'
-        - 'MOTOR_CYCLE'
-        - 'CAR_TRAILER'
+        - 'MOTOCYCLE'
+        - 'TRAILER'
 
     TravelAccountConsumption:
       type: object
