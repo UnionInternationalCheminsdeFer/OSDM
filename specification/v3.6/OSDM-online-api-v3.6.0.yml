@@ -11936,7 +11936,7 @@ components:
         - 'ON_DEMAND_SERVICE'  
         - 'BICYCLE' 
         - 'SCOOTER' 
-        - 'TAXI 
+        - 'TAXI'
 
     Passenger:
       type: object
