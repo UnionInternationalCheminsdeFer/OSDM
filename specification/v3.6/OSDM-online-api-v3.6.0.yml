@@ -3609,6 +3609,7 @@ paths:
                 default: 'public, max-age=10000'
                 description: |
                   Resource is fairly persistent and has a medium time to live to allow short-term caching.
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3664,6 +3665,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ComplaintResponse'
+
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3686,7 +3688,6 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-
   /coach-deck-layouts:
     get:
       tags:
