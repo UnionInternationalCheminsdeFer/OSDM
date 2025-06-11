@@ -3665,7 +3665,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ComplaintResponse'
-
+        '303':
+          $ref: '#/components/responses/SeeOtherResponse'
+        '304':
+          $ref: '#/components/responses/NotModifiedResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3701,6 +3704,7 @@ paths:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/ifNoneMatch'
         - $ref: '#/components/parameters/acceptNamespace'
       responses:
         '200':
@@ -3710,6 +3714,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CoachDeckLayoutCollectionResponse'
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                default: 'public, max-age=10000'
+              description: |
+                Resource is fairly persistent and has a medium time to live to allow short-term caching.
+            ETag:
+              schema:
+                type: string
+              description: version tag
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
