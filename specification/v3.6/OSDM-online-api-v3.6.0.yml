@@ -9024,6 +9024,25 @@ components:
           items:
             $ref: '#/components/schemas/CompartmentAvailability'
 
+    DirectionChange:
+      type: object
+      additionalProperties: false
+      description: |
+        A StopPlace where the direction of a train changes
+      required:
+        - stopPlaceRef
+        - stopPlaceName
+      properties:
+        stopPlaceRef:
+          description: |
+            Reference to the station where the direction changes
+          $ref: '#/components/schemas/StopPlaceRef'	    
+        stopPlaceName:
+	  description: |
+            Name of the station where the direction changes
+	  type: string
+          nullable: false
+    
     DirectionType:
       description: |
         Direction of a place, defined optional as it might be omitted in
@@ -16577,6 +16596,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachAvailability'
+        directionChanges:
+          description: |
+            List of direction changes (in direction of travel). 
+          type: array
+          items:
+            $ref: '#/components/schemas/DirectionChange'
         preSelectedPlaces:
           type: array
           items:
