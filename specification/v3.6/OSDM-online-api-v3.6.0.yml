@@ -35,6 +35,9 @@ servers:
       Turnit Sandbox
 
 tags:
+  - name: Versions
+    description: |
+      information about the available versions of the OSDM API
   - name: Places
     description: |
       resources to search for places
@@ -115,6 +118,27 @@ tags:
       resources to get product and product related master data
 
 paths:
+  /versions:
+    get:
+      summary: Returns all available versions of the OSDM API.
+      tags:
+        - Versions
+      operationId: getVersions
+      responses:
+        '200':
+          description: |
+            versions available
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiVersion'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+
   /places:
     get:
       tags:
@@ -6393,6 +6417,55 @@ components:
       x-extensible-enum:
         - 'SALES'
         - 'AFTER_SALES'
+
+    ApiNextVersion:
+      type: object
+      description: |
+        Next version of the API.
+        The next version is used to indicate the next version of the API that is being used.
+        The version is in semantic versioning format, e.g. "4.0.0" and it is a version released at osdm.io.
+      properties:
+        version:
+          type: string
+          description: |
+            Version of the next API.
+          example: '4.0.0'
+        availableAt:
+          type: string
+          format: url
+          example: 'https://api.next.example.com'
+        availableFrom:
+          type: string
+          format: date-time
+          description: |
+            Date from which the next version is available.
+          example: "2025-01-01T00:00:00+01:00"
+          nullable: true
+
+    ApiVersion:
+      type: object
+      description: |
+        Version of the API.
+        The version is used to indicate the version of the API that is being used.
+        The version is in semantic versioning format, e.g. "3.0.0" and it is a version released at osdm.io.
+      required:
+        - version
+      properties:
+        version:
+          type: string
+          description: |
+            Version of the API
+          example: '3.0.0'
+        sunset:
+          type: string
+          format: date-time
+          description: |
+            Date after which the API version will no longer be available.
+          nullable: true
+          example: "2024-12-31T23:59:59+01:00"
+        nextVersion:
+          $ref: '#/components/schemas/ApiNextVersion'
+          nullable: true
 
     AppliedPassengerType:
       type: object
