@@ -9109,13 +9109,13 @@ components:
         stopPlaceRef:
           description: |
             Reference to the station where the direction changes
-          $ref: '#/components/schemas/StopPlaceRef'	    
+          $ref: '#/components/schemas/StopPlaceRef'
         stopPlaceName:
-	  description: |
-            Name of the station where the direction changes
-	  type: string
+          description: |
+                  Name of the station where the direction changes
+          type: string
           nullable: false
-    
+
     DirectionType:
       description: |
         Direction of a place, defined optional as it might be omitted in
