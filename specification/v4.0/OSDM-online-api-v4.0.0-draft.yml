@@ -6605,6 +6605,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReleaseOffer'
+        confirmedReleases:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfirmedRelease'
         cancelFulfillmentsOffers:
           type: array
           items:
@@ -7735,6 +7739,50 @@ components:
         - 'FULFILLMENT'
         - 'EXCHANGE'
         - 'REFUND'
+
+    ConfirmedRelease:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - createdOn
+        - confirmedOn
+        - releasedFulfillments
+      properties:
+        id:
+          description: |
+            id of the release
+          type: string
+          maxLength: 32768
+        summary:
+          description: |
+            A human-readable description of the release.
+          type:
+            - 'string'
+            - 'null'
+        createdOn:
+          type: string
+          format: date-time
+        confirmedOn:
+          type: string
+          format: date-time
+        releasedFulfillments:
+          description: | 
+            fulfillments to be refunded or replaced. This might differ from the requested refund specification in case the original request did not include all related fulfillments or booking parts. It must also incude the references to booking parts and passenger ids which can be omitted in teh request in case all part or passengers related to a fulfillment are refunded. 
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundedFulfillmentSpecification'
+          minItems: 1 
+        appliedOverruleCode:
+          $ref: '#/components/schemas/OverruleCode'
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+
+
 
     ContactDetail:
       type: object
@@ -13652,7 +13700,7 @@ components:
           maxLength: 32768
         summary:
           description: |
-            A human-readable description of the refund offer.
+            A human-readable description of the release offer.
           type:
             - 'string'
             - 'null'
@@ -13667,13 +13715,6 @@ components:
             time until the offer can be used
           type: string
           format: date-time
-        confirmedOn:
-          type:
-            - 'string'
-            - 'null'
-          format: date-time
-        status:
-          $ref: '#/components/schemas/ReleaseStatus'
         releasedFulfillments:
           description: | 
             fulfillments to be refunded or replaced. This might differ from the requested refund specification in case the original request did not include all related fulfillments or booking parts. It must also incude the references to booking parts and passenger ids which can be omitted in teh request in case all part or passengers related to a fulfillment are refunded. 
