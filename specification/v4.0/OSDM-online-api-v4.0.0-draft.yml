@@ -7683,20 +7683,20 @@ components:
           items:
             $ref: '#/components/schemas/RefundedFulfillmentSpecification'
           minItems: 1
-        issuedFulfillments:
+        issuedFulfillmentIds:
           description:
-            new fulfillments issued with this offer (only available after
-            confirmation)
+            IDs of the new fulfillments issued with this refund
           type: array
           items:
-            $ref: '#/components/schemas/Fulfillment'
+            type: string
         issuedVouchers:
           type: array
           items:
             $ref: '#/components/schemas/VoucherInformation'
         refundFeeRefs:
           description: |
-            reference to Applied Fees covering the refund fee. Providing the reference is mandatory when the refund was confirmed.
+            reference to Applied Fees covering the refund fee. Providing the reference
+            is mandatory when the refund was confirmed and a fee has been applied
           type: array
           items:
             type: string
@@ -7705,9 +7705,9 @@ components:
           $ref: '#/components/schemas/Price'
           description: |
             Amount refunded to the purchaser
-        refundOfferBreakdown:
+        refundBreakdown:
           description: |
-            breakdown of the refund offer
+            breakdown of the refund
           type: array
           items:
             $ref: '#/components/schemas/RefundBreakdownItem'
