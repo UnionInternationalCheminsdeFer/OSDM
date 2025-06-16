@@ -18,8 +18,10 @@ models.md \
 processes.md \
 after-sales-processes.md \
 account-based-ticketing.md \
-getting-started.md \
 non-functional-requirements.md \
+on-demand-services.md \
+language.md \
+prm_and_access.md \
 catalog-of-code-lists.md \
 errors-problems.md \
 pagination.md \
