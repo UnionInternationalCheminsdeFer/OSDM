@@ -2466,7 +2466,7 @@ paths:
     get:
       tags:
         - Refund
-      summary: Returns the refund offer for the ids provided.
+      summary: Returns the refund offer for the ids provided. Does not return confirmed refunds.
       operationId: getRefundOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -2595,7 +2595,7 @@ paths:
         - Refund
       summary: Deletes a refundOffer without waiting for expiry.
       description: | 
-        In case the unconfimed refund offer is not sored in the booking 
+        In case the unconfirmed refund offer is not stored in the booking 
         object the delete request must return an ok (http 204). In case the 
         refund offer is already confirmed and can not be deleted the reply 
         must be an error (http 409 conflict).
@@ -4981,11 +4981,6 @@ components:
           $ref: '#/components/schemas/FulfillmentOption'
         price:
           $ref: '#/components/schemas/Price'
-        refundAmount:
-          $ref: '#/components/schemas/Price'
-          description:
-            Amount refunded or to be refunded to the purchaser depending on the
-            product conditions and status of the booking Part
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         summaryProductId:
@@ -6549,10 +6544,6 @@ components:
           description: |
             Price of all unconfirmed pre-booked parts in the booking
           $ref: '#/components/schemas/Price'
-        provisionalRefundAmount:
-          description: |
-            Sum of the refund amounts of all unconfirmed pre-booked refunds and exchanges
-          $ref: '#/components/schemas/Price'
         confirmedPrice:
           description: |
             Sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts.
@@ -6597,10 +6588,18 @@ components:
         refundOffers:
           description: |
             Refund offers are created with the details of the to-be-confirmed refund operation.
-            One refund offer can then be confirmed, which turns it into a refund. Refund offers in state PROPOSED might not be available in the Booking but only via the get endpoint. Confirmed refund offers must be listed here.
+            One refund offer can then be confirmed, which turns it into a confirmedRefund. 
+            Refund offers in state PROPOSED might not be available in the Booking but only 
+            via the get endpoint.
           type: array
           items:
             $ref: '#/components/schemas/RefundOffer'
+        confirmedRefunds:
+          description: |
+            Confirmed refund offers must be listed here.
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfirmedRefund'
         releaseOffers:
           type: array
           items:
@@ -6941,10 +6940,6 @@ components:
         provisionalPrice:
           description: |
             price of all unconfirmed pre-booked parts in the booking
-          $ref: '#/components/schemas/Price'
-        provisionalRefundAmount:
-          description: |
-            sum of the refund amounts of all unconfirmed pre-booked refunds and exchanges
           $ref: '#/components/schemas/Price'
         confirmedPrice:
           description: |
@@ -7735,6 +7730,87 @@ components:
         - 'FULFILLMENT'
         - 'EXCHANGE'
         - 'REFUND'
+
+    ConfirmedRefund:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - confirmedOn
+        - refundedFulfillments
+        - refundedAmount
+      properties:
+        id:
+          description: |
+            id of the confirmed refund
+          type: string
+          maxLength: 32768
+        summary:
+          description: |
+            A human-readable description of the refund.
+          type:
+            - 'string'
+            - 'null'
+          examples:
+            - Refund Offer for Paris-Barcelona Andre Dupont 2022-07-23
+        createdOn:
+          type: string
+          format: date-time
+        confirmedOn:
+          type: 'string'
+          format: date-time
+        reimbursementStatus:
+          $ref: '#/components/schemas/ReimbursementStatus'
+        reimbursementDateTime:
+          type:
+            - 'string'
+            - 'null'
+          format: date-time
+        appliedOverruleCode:
+          $ref: '#/components/schemas/OverruleCode'
+        refundedFulfillments:
+          description: | 
+            fulfillments to be refunded or replaced. This might differ from the requested refund specification in case the original request did not include all related fulfillments or booking parts. It must also incude the references to booking parts and passenger ids which can be omitted in teh request in case all part or passengers related to a fulfillment are refunded. 
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundedFulfillmentSpecification'
+          minItems: 1
+        issuedFulfillmentIds:
+          description:
+            IDs of the new fulfillments issued with this refund
+          type: array
+          items:
+            type: string
+        issuedVouchers:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherInformation'
+        refundFeeRefs:
+          description: |
+            reference to Applied Fees covering the refund fee. Providing the reference
+            is mandatory when the refund was confirmed and a fee has been applied
+          type: array
+          items:
+            type: string
+            maxLength: 1024
+        refundedAmount:
+          $ref: '#/components/schemas/Price'
+          description: |
+            Amount refunded to the purchaser
+        refundBreakdown:
+          description: |
+            breakdown of the refund
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundBreakdownItem'
+        reimbursementMethod:
+          $ref: '#/components/schemas/ReimbursementMethod'
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     ContactDetail:
       type: object
@@ -13180,20 +13256,10 @@ components:
             time until the offer can be used
           type: string
           format: date-time
-        confirmedOn:
-          type:
-            - 'string'
-            - 'null'
-          format: date-time
         status:
           $ref: '#/components/schemas/RefundStatus'
         reimbursementStatus:
           $ref: '#/components/schemas/ReimbursementStatus'
-        reimbursementDateTime:
-          type:
-            - 'string'
-            - 'null'
-          format: date-time
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
         refundedFulfillments:
@@ -13203,32 +13269,10 @@ components:
           items:
             $ref: '#/components/schemas/RefundedFulfillmentSpecification'
           minItems: 1          
-        issuedFulfillments:
-          description:
-            new fulfillments issued with this offer (only available after
-            confirmation)
-          type: array
-          items:
-            $ref: '#/components/schemas/Fulfillment'
-        issuedVouchers:
-          type: array
-          items:
-            $ref: '#/components/schemas/VoucherInformation'
         refundFee:
           $ref: '#/components/schemas/Price'
           description: |
             Total Amount kept by the carrier and/or distributor
-        refundFeeRefs:
-          description: |
-            reference to Applied Fees covering the refund fee. Providing the reference is mandatory when the refund was confirmed.
-          type: array
-          items:
-            type: string
-            maxLength: 1024
-        accountingRef:
-          description: |
-            Accounting information for the refund fee
-          $ref: '#/components/schemas/AccountingRef'
         refundableAmount:
           $ref: '#/components/schemas/Price'
           description: |
@@ -13238,7 +13282,7 @@ components:
             breakdown of the refund offer
           type: array
           items:
-            $ref: '#/components/schemas/RefundOfferBreakdownItem'
+            $ref: '#/components/schemas/RefundBreakdownItem'
         reimbursementMethod:
           $ref: '#/components/schemas/ReimbursementMethod'
         _links:
@@ -13248,7 +13292,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    RefundOfferBreakdownItem:
+    RefundBreakdownItem:
       type: object
       required:
         - refundFee
@@ -13258,7 +13302,7 @@ components:
         refundFee:
           description: Amount kept by the carrier and/or the distributor
           $ref: '#/components/schemas/Price'
-        refundableAmount:
+        refundAmount:
           description: Amount to be returned to the purchaser
           $ref: '#/components/schemas/Price'
         bookingParts:
