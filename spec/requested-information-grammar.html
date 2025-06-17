@@ -85,23 +85,23 @@ layout: default
 
 	<h3>Examples</h3>
 	<p>
-		Phone number required for passenger with a given id:
+		Phone number required for passenger of the passenger list: 
 	</p>
 	<pre>
-		passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130002].detail.contact.phoneNumber
+		passengerSpecifications[0].detail.contact.phoneNumber
 	</pre>
 	<p>
-		First name and last name required with a given id:
+		First name and last name required for the second passenger on the passenger list:
 	</p>
 	<pre>
-		passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130004].detail.firstName AND passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130004].detail.lastName
+		passengerSpecifications[1].detail.firstName AND passengerSpecifications[1].detail.lastName
 	</pre>
 	</p>
 	<p>
 		More complex example:
 	</p>
 	<pre>
-		passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130006].detail.firstName AND passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130006].detail.lastName AND (passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130006].detail.contact.email OR passengerSpecifications[ee764ee0-55a1-11eb-ae93-0242ac130006].detail.contact.phoneNumber)
+		passengerSpecifications[0].detail.firstName AND passengerSpecifications[0].detail.lastName AND (passengerSpecifications[0].detail.contact.email OR passengerSpecifications[0].detail.contact.phoneNumber)
 	</pre>
 </div>
 
