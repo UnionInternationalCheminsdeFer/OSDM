@@ -85,6 +85,8 @@
       link: spec/account-based-ticketing/      
     - name: Dual Approaches
       link: spec/dual-approaches/  
+    - name: Requested Information - Grammar
+      link: spec/requested-information-grammar.html
     - name: Synchronization
       link: spec/synchronization/      
     - name: Language
