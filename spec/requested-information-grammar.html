@@ -103,6 +103,14 @@ layout: default
 	<pre>
 		passengerSpecifications[0].detail.firstName AND passengerSpecifications[0].detail.lastName AND (passengerSpecifications[0].detail.contact.email OR passengerSpecifications[0].detail.contact.phoneNumber)
 	</pre>
+	</p>
+	<p>
+		requesting a phone number per passenger:
+	</p>	
+	<pre>
+                 passengerSpecifications[ANY].detail.contact.phoneNumber
+	</pre>
+	</p>	
 </div>
 
 <div id="container">
