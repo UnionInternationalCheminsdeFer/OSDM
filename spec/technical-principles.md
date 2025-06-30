@@ -82,13 +82,14 @@ All versions are tracked in the `master` branch of the git repository. Each majo
 ### Negotiating versions <a name="versionNegotiation">
 
 A consumer can request a specific version of the API by providing the `Accept` header with the following syntax:
-`Accept: application/osdm-json, version 3.5`.
+`Accept: application/vnd.uic.osdm+json; version 3.5`.
 
 All messages which contain a payload (both request and response payloads) should indicate the version of the
-API used by providing a header `Content-Type: application/osdm-json, version 3.5.0`
+API used by providing a header `Content-Type: application/vnd.uic.osdm+json; version 3.5.0`
 
-The version indicated in the `accept` header is typically a minor version (i.e. it has two digits, e.g. 3.5). The version indicated
-in the `Content-Type` header typically gives the full patch version (i.e. it has all three digits, e.g. 3.5.0).
+The version indicated in the request (`accept` and/or `Content-Type` header) is typically a minor version (i.e. it has 
+two fields, e.g. 3.5). The version indicated in the `Content-Type` header of a response typically gives the full patch 
+version (i.e. it has all three fields, e.g. 3.5.0).
 
 ### Development <a name="Development">
 
