@@ -5760,6 +5760,9 @@ components:
       properties:
         stopPlaceRef:
           $ref: '#/components/schemas/StopPlaceRef'
+        replacedPlaceRef:
+          description: reference to the original place in case of a replacement (e.g. bus stop of a replacement bus for a train)
+          $ref: '#/components/schemas/StopPlaceRef'             
         serviceArrival:
           $ref: '#/components/schemas/ServiceTime'
 
@@ -6301,6 +6304,9 @@ components:
       properties:
         stopPlaceRef:
           $ref: '#/components/schemas/StopPlaceRef'
+        replacedPlaceRef:
+          description: reference to the original place in case of a replacement (e.g. bus stop of a replacement bus for a train)
+          $ref: '#/components/schemas/StopPlaceRef'             
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
 
