@@ -7545,7 +7545,7 @@ components:
           description: |
             Typically set on the lowest deck. Empty if unknown.
           type:
-            -  boolean
+            - 'boolean'
             - 'null'
         id:
           type: string
@@ -10052,7 +10052,7 @@ components:
         - code
       properties:
         text:
-          description: text tio be displayed to the user
+          description: text to be displayed to the user
           type:
             - 'string'
             - 'null'
@@ -10074,10 +10074,10 @@ components:
             $ref: '#/components/schemas/GroupedFacilityItem'
         mandatory:
            description: true = mandatory to be displayed to the user
-           type: Boolean
+           type: boolean
         importance:
           description: importance as percentage
-          type:  "number"
+          type:   number
           format: float
         _links:
           description: |
@@ -11029,18 +11029,7 @@ components:
         notViaPlace:
           type: array
           items:
-            $ref: '#/components/schemas/PlaceRef'
-
-    NoChangeAt:
-      type: object
-      additionalProperties: false
-      description: |
-        NoChanges restrictions for a trip, i.e. chage of service not allowed at these places.  Provided by OJP.
-      properties:
-        noChangeAtPlace:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlaceRef'            
+            $ref: '#/components/schemas/PlaceRef'      
 
     Offer:
       type: object
@@ -16203,7 +16192,7 @@ components:
         optimisationMethod:
           description: |
             The optimization method to be used for the search
-          type: 'string'
+          type: string
           x-extensible-enum:
            - 'FASTEST'
            - 'MIN_CHANGES'
@@ -16231,21 +16220,20 @@ components:
     TripContext:
       type: object
       additionalProperties: false       
-      description: |
-          context to trips
-    properties:
-           operators:
-             type: array 
-             items:
-               $ref: '#/components/schemas/Operator'
-           places:
-             type: array 
-             items:
-               $ref: '#/components/schemas/Place'
-           situations:
-             type: array 
-             items:
-               $ref: '#/components/schemas/Situation'      
+      description: context to trips
+      properties:
+        operators:
+          type: array 
+          items:
+            $ref: '#/components/schemas/Operator'
+        places:
+          type: array 
+          items:
+            $ref: '#/components/schemas/Place'
+        situations:
+          type: array 
+          items:
+            $ref: '#/components/schemas/Situation'      
 
     TripResponse:
       type: object
@@ -16341,7 +16329,7 @@ components:
         noChangeAt:
           type: array
           items:
-            $ref: '#/components/schemas/NoChangeAt'            
+            $ref: '#/components/schemas/PlaceRef'        
         parameters:
           $ref: '#/components/schemas/TripParameters'
         embed:
