@@ -6232,27 +6232,40 @@ components:
         - 'SSB'
         - 'DOSIPAS'
 
-    BaseTripPolicyFilter:
+    BaseTripMobilityFilterItem 
+      description: restrictions of the traveler  (List of booleans in OJP BaseTripMobilityFilter)
+        NO_SIGHT  - traveler is not able to see
+        NO_SINGLE_STEP  - traveler can not pass a single step
+        NO_STAIRS  - traveler can not use stairs
+        NO_ESCALATOR  - traveler can not use an escalator
+        NO_ELEVATOR  - traveler can not use an elevator
+        NO_RAMP  - traveler can not use a ramp
+        NO_TRAVELATOR - traveler can not use a travelator
+        LEVEL_ENTRANCE - traveller needs a level entrance
+        LEVEL_ENTRANCE_OR_BOARDING_AID - traveller needs a level entrance or boarding aid
+      type: string
+      x-extensible-enum:
+        - 'NO_SIGHT'
+        - 'NO_SINGLE_STEP'
+        - 'NO_STARS'
+        - 'NO_ESCALATOR'
+        - 'NO_ELEVATOR'
+        - 'NO_RAMP'
+        - 'NO_TRAVELATOR'
+        - 'LEVEL_ENTRANCE'
+        - 'LEVEL_ENTRANCE_OR_BOARDING_AID'
+      
+    BaseTripMobilityFilter:
       type: object
       additionalProperties: false
       description: |
-        Policies that control the trip search behavior for both public and individual transport.
+        restrictions that control the trip search behavior for both public and individual transport.
         Provided by OJP.
       properties:
-        noSingleStep:
-          description: |
-            The user is not able to climb one step, i.e. wheel chair.
-          type:
-            - 'boolean'
-            - 'null'
-          default: false
-        noSight:
-          description: |
-            The user is not able to see.
-          type:
-            - 'boolean'
-            - 'null'
-          default: false
+        restrictions:
+           type: array
+           items:
+             ref: '#/components/schemas/BaseTripMobilityFilterItem' 
 
     Board:
       type: object
@@ -10846,6 +10859,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceRef'
+
+    NoChangeAt:
+      type: object
+      additionalProperties: false
+      description: |
+        NoChanges restrictions for a trip, i.e. chage of service not allowed at these places.  Provided by OJP.
+      properties:
+        noChangeAtPlace:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceRef'            
 
     Offer:
       type: object
@@ -15615,6 +15639,9 @@ components:
         Base mobility options to be applied for both public and individual transport.
         Provided by OJP.
       properties:
+        baseMobilityFilters:
+            description: mobility filters to be applied for public and individual transport
+            $ref: '#/components/schemas/BaseTripMobilityFilter' 
         bikeTransport:
           description: |
             The user wants to carry a bike on public transport.
@@ -15657,15 +15684,67 @@ components:
         dataFilter:
           $ref: '#/components/schemas/TripDataFilter'
         policyFilter:
-          $ref: '#/components/schemas/BaseTripPolicyFilter'
+          $ref: '#/components/schemas/TripPolicyFilter'
         mobilityFilter:
           $ref: '#/components/schemas/TripMobilityFilter'
-        numberOfResults:
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          default: 5
+        contentFilter:
+          $ref: '#/components/schemas/TripContentFilter'        
+
+
+    TripContentFilter:
+      description: |
+        Options to control the response contents.
+        Provided by OJP.
+      type: object
+      properties:
+         filters: 
+           type: array
+           items:
+             $ref: '#/components/schemas/TripContentFilterItem'        
+         tripSummaryOnly:
+           type: Boolean
+           default: false
+
+    TripContentFilterItem:
+          description: |
+           - INCLUDE_TRACK_SECTIONS        
+           - INCLUDE_LEG_PROJECTION       geographical description of a leg 
+           - INCLUDE_TURN_DESCRIPTIONS    
+           - INCLUDE_ACCESS_FEATURES
+           - INCLUDE_ACCESS_FEATURES_STATUS
+           - INCLUDE_ACCESSABILITY_FEATURES_VISUAL_IMPAIRED   
+           - INCLUDE_ACCESSABILITY_FEATURES_AUDITORY_IMPAIRED   
+           - INCLUDE_ACCESSABILITY_FEATURES_MOBILITY_IMPAIRED    
+           - INCLUDE_ACCESSABILITY_FEATURES_BIKE
+           - INCLUDE_ACCESSABILITY_FEATURES_GENERAL        
+           - INCLUDE_PLACES_CONTEXT 
+           - INCLUDE_SITUATIONS_CONTEXT    
+           - INCLUDE_INTERMEDIATE_STOPS  intermediate stops within a leg    
+           - INCLUDE_OPERATING_DAYS include operating da information      
+          type: 'string'
+          x-extensible-enum:
+           - 'INCLUDE_TRACK_SECTIONS'        
+           - 'INCLUDE_LEG_PROJECTION'    
+           - 'INCLUDE_TURN_DESCRIPTIONS'    
+           - 'INCLUDE_ACCESS_FEATURES'    
+           - 'INCLUDE_ACCESS_FEATURES_STATUS'
+           - 'INCLUDE_ACCESSABILITY_FEATURES_VISUAL_IMPAIRED'    
+           - 'INCLUDE_ACCESSABILITY_FEATURES_AUDITORY_IMPAIRED'   
+           - 'INCLUDE_ACCESSABILITY_FEATURES_MOBILITY_IMPAIRED'    
+           - 'INCLUDE_ACCESSABILITY_FEATURES_BIKE' 
+           - 'INCLUDE_ACCESSABILITY_FEATURES_GENERAL'            
+           - 'INCLUDE_PLACES_CONTEXT' 
+           - 'INCLUDE_SITUATIONS_CONTEXT'      
+           - 'INCLUDE_INTERMEDIATE_STOPS'     
+           - 'INCLUDE_OPERATING_DAYS'              
+        
+    TripPolicyFilter:
+      description: |
+        Options to control the search behavior and response contents.
+        number of results > either number of results or number of results before and after are used.
+        Provided by OJP.
+        numberOfResults is intentionally omitted to avoid inconsistent request parameters. numberOfResults is equal to numberOfResultsBefore = 0 and numberOfResultsAfter = numberOfResults
+      properties:  
         numberOfResultsBefore:
           type:
             - 'integer'
@@ -15678,11 +15757,13 @@ components:
             - 'null'
           format: int32
           default: 5
-        ignoreRealtimeData:
-          type:
-            - 'boolean'
-            - 'null'
-          default: false
+        useRealtimeData:
+          type: 'string'
+          x-extensible-enum:
+           - 'FULL'
+           - 'EXPLANATORY'
+           - 'NONE'    
+          default: 'FULL'
         transferLimit:
           description: |
             The maximum number of interchanges the user will accept per trip.
@@ -15691,8 +15772,27 @@ components:
             - 'null'
           format: int32
           minimum: 0
+        optimisationMethod:
+          description: |
+            The optimization method to be used for the search
+          type: 'string'
+          x-extensible-enum:
+           - 'FASTEST'
+           - 'MIN_CHANGES'
+           - 'LEAST_WALKING'    
+           - 'LEAST_DISTANCE'         
+           - 'EARLIEST_ARRIVAL'
+           - 'LATEST_DEPARTURE'
+           - 'EARLIEST_ARRIVAL_AND_LATEST_DEPARTURE'  
+           - 'MIN_NON_LEVEL_ENTRANCES'
+           - 'MIN_STAIRSE'  
+           - 'BEST_FOR_VISUALLY_IMPAIRED'
+           - 'BEST_FOR_AUDITORY_IMPAIRED'     
         itModesToCover:
-          $ref: '#/components/schemas/IndividualMode'
+          $ref: '#/components/schemas/IndividualMode'         
+           
+
+
 
     TripChangeCriteria:
       type: object
@@ -15781,6 +15881,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TripVia'
+        notVias:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotVia'
+        noChangeAt:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoChangeAt'            
         parameters:
           $ref: '#/components/schemas/TripParameters'
         embed:
@@ -15791,10 +15899,7 @@ components:
             $ref: '#/components/schemas/TripsCollectionResponseContent'
         returnSearchParameters:
           $ref: '#/components/schemas/ReturnSearchParameters'
-        notVias:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotVia'
+
 
     TripSection:
       type: object
