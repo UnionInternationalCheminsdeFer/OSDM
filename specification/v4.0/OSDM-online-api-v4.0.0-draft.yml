@@ -11523,6 +11523,18 @@ components:
       examples:
         - OperatingDay:12345
 
+    Operator:
+      type: object
+      additionalProperties: false       
+      description: operator of a service
+      properties:
+         operatorRef:
+            $ref: '#/components/schemas/CompanyRef'
+         name:
+            type: string
+         shortName:
+            type: string
+
     Orientation:
       type: integer
       format: int32
@@ -12089,15 +12101,13 @@ components:
           - 'MOBILEPHONE_FREE_ZONE'
           - 'CAR_PARK'
           - 'PARK_AND_RIDE_PARK'
-          - 'MOTOR_CYCLE_PARK 
+          - 'MOTOR_CYCLE_PARK'
           - 'CYCLE_PARK'
           - 'RENTAL_CAR_PARK'
           - 'COACH_PARK'
           - 'NEXT_STOP_INDICATOR'
           - 'STOP_ANNOUNCEMENTS'
           - 'PASSENGER_INFORMATION_DISPLAY'
-          - 'AUDIO_INFORMATION'
-          - 'VISUAL_INFORMATION'
           - 'TACTILE_INFORMATION'
           - 'WALKING_GUIDANCE'
           - 'JOURNEY_PLANNING'
@@ -14852,6 +14862,36 @@ components:
         - 'REGISTRY'
         - 'PEER2PEER'
 
+    Situation:
+      type: object
+      additionalProperties: false       
+      description: traffic situation
+      properties:
+         situationRef:    
+           type: string
+         description:
+            $ref: '#/components/schemas/SituationDescription'
+
+    SituationDescription:
+      type: object
+      additionalProperties: false       
+      description: situation description
+      properties:
+        summary: 
+          type: string
+        description: 
+          type: string   
+        details: 
+          type: string    
+        advice:
+          type: string
+        _links:
+          description: |
+              Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'         
+
     SituationFullRef:
       type:
         - 'string'
@@ -16179,9 +16219,6 @@ components:
            - 'BEST_FOR_AUDITORY_IMPAIRED'     
         itModesToCover:
           $ref: '#/components/schemas/PersonaMode'         
-           
-
-
 
     TripChangeCriteria:
       type: object
@@ -16209,49 +16246,7 @@ components:
            situations:
              type: array 
              items:
-               $ref: '#/components/schemas/Situation'   
-
-    Operator:
-      type: object
-      additionalProperties: false       
-      description: operator of a service
-      properties:
-         operatorRef:
-            $ref: '#/components/schemas/CompanyRef'
-         name:
-            type: string
-         shortName:
-            type: string
-            
-    Situation:
-      type: object
-      additionalProperties: false       
-      description: traffic situation
-      properties:
-         situationRef:    
-           type: string
-         description:
-            $ref: '#/components/schemas/SituationDescription'
-
-    SituationDescription:
-      type: object
-      additionalProperties: false       
-      description: situation description
-      properties:
-        summary: 
-          type: string
-        description: 
-          type: string   
-        details: 
-          type: string    
-        advice:
-          type: string
-        _links:
-          description: |
-              Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'             
+               $ref: '#/components/schemas/Situation'      
 
     TripResponse:
       type: object
