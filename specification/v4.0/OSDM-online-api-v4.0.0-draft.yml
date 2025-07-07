@@ -8079,17 +8079,17 @@ components:
     ContinousOperationMode:
       description: |
         Types of modes that run at any time without a timetable. Provided by OJP.
-        - 'CHAUFFEURED'
+        - CHAUFFEURED
         description: operated with a paid driver
-        - 'DEMAND_RESPONSIVE'
+        - DEMAND_RESPONSIVE
         description: no scheduled stop points
-        - 'FLEXIBLE_AREA'
+        - FLEXIBLE_AREA
         description: demand responsive for AREA related offers
-        - 'COMPANY_SHUTTLE'
+        - COMPANY_SHUTTLE
         description: a company related shuttle
-        - 'HOTEL_SHUTTLE'
+        - HOTEL_SHUTTLE
         description: a hotel related shuttle
-        - 'HIRE'
+        - HIRE
         description: Using a hired VEHICLE
       type: string
       x-extensible-enum:
@@ -8561,7 +8561,6 @@ components:
             - 'S1'
             - 'Circle Line'
             - 'ICE 488'
-
         vehicleNumbers:
           type: array
           items:
@@ -10689,7 +10688,7 @@ components:
         E.g. the line numbers of 'S 52' or 'B 19'.
       examples:
         - 52
-        - B 19
+        - 'B 19'
 
     Link:
       type: object
@@ -15753,24 +15752,24 @@ components:
           type:
             - 'string'
             - 'null'
-          feasibility:
+        feasibility:
             $ref: '#/components/schemas/TripFeasibility'
-          situationFullRefs:
+        situationFullRefs:
             type: array
             items:
               $ref: '#/components/schemas/SituationFullRef'
-            tripStatus:
+        tripStatus:
               $ref: '#/components/schemas/TripStatus'
-            isAlternativeTrip:
-              description: |
+        isAlternativeTrip:
+          description: |
                indication that this triop was found due to the request parameter to search for alternatives
-              type: boolean
-            _links:
-              description: |
+          type: boolean
+        _links:
+          description: |
                   Java Property Name: 'links'
-              type: array
-              items:
-                  $ref: '#/components/schemas/Link'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     TripFeasibility:
       description: | 
@@ -16378,8 +16377,7 @@ components:
         - id
       properties:
         id:
-          description: |
-            The id of an already existing trip to change.
+          description: The id of an already existing trip to change.
           type: string
           maxLength: 32768
         origin:
