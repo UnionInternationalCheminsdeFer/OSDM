@@ -15168,7 +15168,7 @@ components:
             - 'string'
             - 'null'
           format: duration
-        legTrack
+        legTrack:
           $ref: '#/components/schemas/LegTrack'
         parallelServices:
           type: array
@@ -15362,9 +15362,9 @@ components:
         end:
           $ref: '#/components/schemas/PlaceRef'
         description:
-	   description: human readable description of the leg
-	   type: string
-	timeWindowStart:
+          description: human readable description of the leg
+          type: string
+        timeWindowStart:
           description: |
             Time at which window begins.
           type:
@@ -15388,12 +15388,12 @@ components:
           examples:
             - PT20M
         feasibility:
-	    $ref: '#/components/schemas/TripFeasibility'        
+          $ref: '#/components/schemas/TripFeasibility'        
         attributes:
           type: array
           items: 
-            $ref: '#/components/schemas/GeneralAttribute'     
-	situationFullRefs:
+            $ref: '#/components/schemas/GeneralAttribute'
+        situationFullRefs:
           type: array
           items:
             $ref: '#/components/schemas/SituationFullRef'
@@ -15407,24 +15407,16 @@ components:
       x-extensible-enum:
         - 'WALK'
         - 'SHUTTLE'
-        description: shuttle service is used	
         - 'REMAIN_IN_VEHICLE'
         - 'CHANGE_WITHIN_VEHICLE'
         - 'CHECK_IN'
         - 'CHECK_OUT'
         - 'PARK_AND_RIDE'
-	description: time needed to park the car and walk to the next leg
         - 'BIKE_AND_RIDE'
-        description: time needed to stow the bicycle and walk to the next leg
         - 'CAR_HIRE'
-	description: Time needed for a car hire is needed
         - 'BIKE_HIRE'
-        description: Time for a bike hire is needed. 
         - 'PROTECTED_CONNECTION'
-	description: the connection is monitored and usually kept 
         - 'GUARANTEED_CONNECTION'
-        description: the connection is guaranteed. 	
-
 
     Translation:
       type: object
@@ -15721,37 +15713,36 @@ components:
           type:
             - 'string'
             - 'null'
-        feasibility:
-	    $ref: '#/components/schemas/TripFeasibility'
-	situationFullRefs:
-          type: array
-          items:
-            $ref: '#/components/schemas/SituationFullRef'
-        tripStatus:
-          $ref: '#/components/schemas/TripStatus'
-	isAlternativeTrip:
-           description: indication that this triop was found due to the request parameter to search for alternatives
-           type: boolean
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+          feasibility:
+            $ref: '#/components/schemas/TripFeasibility'
+          situationFullRefs:
+            type: array
+            items:
+              $ref: '#/components/schemas/SituationFullRef'
+            tripStatus:
+              $ref: '#/components/schemas/TripStatus'
+            isAlternativeTrip:
+              description: |
+               indication that this triop was found due to the request parameter to search for alternatives
+              type: boolean
+            _links:
+              description: |
+                  Java Property Name: 'links'
+              type: array
+              items:
+                  $ref: '#/components/schemas/Link'
 
     TripFeasibility:
-      description: feasibility of a trip related to the required access features
+      description: | 
+         feasibility of a trip related to the required access features
+         in case of SEE_SITUATIONS situations must be provided
       type: string
       x-extensible-enum:
-        - ALL_ACCESS_FEATURES_AVAILABLE
-	- ACCESS_FEATURES_NOT_AVAILABLE
-	- ACCESS_FEATURES_PARTIALLY_AVAILABLE
-        - ACCESS_FEATURES_WITH_UNKNOWN_AVAILABILITY
-	- SEE_SITUATIONS
-        description: situations must be provided
-        
-        
-    
+        - 'ALL_ACCESS_FEATURES_AVAILABLE'
+        - 'ACCESS_FEATURES_NOT_AVAILABLE'
+        - 'ACCESS_FEATURES_PARTIALLY_AVAILABLE'
+        - 'ACCESS_FEATURES_WITH_UNKNOWN_AVAILABILITY'
+        - 'SEE_SITUATIONS'
 
     TripAllocationConstraint:
       type: object
@@ -15993,9 +15984,9 @@ components:
           $ref: '#/components/schemas/TransferLeg'
         continuousLeg:
           $ref: '#/components/schemas/ContinuousLeg'
-	changed:
+        changed:
           description: indicates that the leg was changed via a trip change request
-          type: Boolean
+          type: boolean
 
     TripLegCoverage:
       type: object
@@ -16247,20 +16238,20 @@ components:
       additionalProperties: false       
       description: situation description
       properties:
-           summary: 
-             type: string
-           description: 
-             type: string   
-           details: 
-             type: string    
-           advice: 
-             type: string      
-          _links:
-            description: |
+        summary: 
+          type: string
+        description: 
+          type: string   
+        details: 
+          type: string    
+        advice:
+          type: string
+        _links:
+          description: |
               Java Property Name: 'links'
-            type: array
-            items:
-              $ref: '#/components/schemas/Link'             
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'             
 
     TripResponse:
       type: object
@@ -16300,6 +16291,15 @@ components:
       properties:
         stopBehavior:
           $ref: '#/components/schemas/StopBehavior'
+
+    TripsCollectionResponseContent:
+      type: string
+      enum:
+        - 'ALL'
+        - 'TRIPS'
+        - 'TRIPSUMMARIES'
+        - 'NONE'
+      default: ALL          
 
     TripSearchCriteria:
       type: object
@@ -16358,8 +16358,7 @@ components:
             $ref: '#/components/schemas/TripsCollectionResponseContent'
         returnSearchParameters:
           $ref: '#/components/schemas/ReturnSearchParameters'
-
-
+          
     TripSection:
       type: object
       additionalProperties: false
@@ -16373,6 +16372,25 @@ components:
           maxLength: 32768
         coveredSection:
           $ref: '#/components/schemas/Section'
+    
+    TripSpecificationSummary:
+      type: object
+      additionalProperties: false
+      description: |
+        Trip specification summary. Provided by OJP. 
+        It requires the id of an already existing trip to change and specifies the parameters which must be used to generate the new trip.
+      required:
+        - id
+      properties:
+        id:
+          description: |
+            The id of an already existing trip to change.
+          type: string
+          maxLength: 32768
+        origin:
+          $ref: '#/components/schemas/PlaceRef'
+        destination:
+          $ref: '#/components/schemas/PlaceRef'
 
     TripSpecification:
       type: object
@@ -16440,25 +16458,6 @@ components:
             - 'boolean'
             - 'null'
           default: false
-
-    TripSpecificationSummary:
-      type: object
-      additionalProperties: false
-      description: |
-        Trip specification summary. Provided by OJP. 
-        It requires the id of an already existing trip to change and specifies the parameters which must be used to generate the new trip.
-      required:
-        - id
-      properties:
-        id:
-          description: |
-            The id of an already existing trip to change.
-          type: string
-          maxLength: 32768
-        origin:
-          $ref: '#/components/schemas/PlaceRef'
-        destination:
-          $ref: '#/components/schemas/PlaceRef'
 
     TripSummary:
       type: object
@@ -16555,15 +16554,6 @@ components:
             - 30M
         dataFilter:
           $ref: '#/components/schemas/TripDataFilter'
-
-    TripsCollectionResponseContent:
-      type: string
-      enum:
-        - 'ALL'
-        - 'TRIPS'
-        - 'TRIPSUMMARIES'
-        - 'NONE'
-      default: ALL
 
     VAT:
       type: object
