@@ -6236,8 +6236,9 @@ components:
         - 'SSB'
         - 'DOSIPAS'
 
-    BaseTripMobilityFilterItem 
-      description: restrictions of the traveler  (List of booleans in OJP BaseTripMobilityFilter)
+    BaseTripMobilityFilterItem:
+      description: |
+        restrictions of the traveler  (List of booleans in OJP BaseTripMobilityFilter)
         NO_SIGHT  - traveler is not able to see
         NO_SINGLE_STEP  - traveler can not pass a single step
         NO_STAIRS  - traveler can not use stairs
@@ -6327,7 +6328,8 @@ components:
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
 
-    BookingArrangement
+
+    BookingArrangement:
       type: object
       additionalProperties: false
       description: |
@@ -6338,7 +6340,7 @@ components:
         bookingMethod:
             $ref: '#/components/schemas/BookingMethod'	    
         bookingAccess:
-            $ref: '#/components/schemas/BookingMethod'	   
+            $ref: '#/components/schemas/BookingAccess'	   
 	bookingAccessTime:    
 	    $ref: '#/components/schemas/BookingAccessTime'	   
 	bookingPurchaseMoment:    
@@ -6358,40 +6360,39 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-	nookingNotes:
+	bookingNotes:
           description: human readable description on booking arrangement
           type: array
-	  items:
-            type: string
-
-   BookingPurchaseMoment:
+	        items:
+                type: string
+	    
+    BookingPurchaseMoment:
       type: string
       x-extensible-enum:
-                    - ON_RESERVATION
-                    description: must be made on reservation in advance of travel
-                    - IN_ADVANCE
-                    description: can be made in advance of travel
-                    - IN_ADVANCE_ONLY
-                    description: can only be made in advance of travel 
-                    - BEFORE_BOARDING
-                    description: can be made before boarding transport vehicle
-                    - BEFORE_BOARDING_ONLY
-                    description: must be made before boarding transport vehicle
-                    - ON_BOARDING
-                    description: be made when boarding the transport vehicle
-                    - ON_BOARDING_ONLY
-                    description: can only be made when boarding the transport vehicle
-                    - AFTER_BOARDING
-                    description: can be made after boarding transport vehicle
-                    - ON_CHECKIN
-                    description: can be made on entering transport system
-                    - ON_CHECKOUT
-                    description: can be made on leaving transport system
-                    - SUBSCRIPTION_ONLY
-                    description: can only be made on subscription
-   
+        - 'ON_RESERVATION'
+        description: must be made on reservation in advance of travel
+        - 'IN_ADVANCE'
+        description: can be made in advance of travel
+        - 'IN_ADVANCE_ONLY'
+        description: can only be made in advance of travel 
+        - 'BEFORE_BOARDING'
+        description: can be made before boarding transport vehicle
+        - 'BEFORE_BOARDING_ONLY'
+        description: must be made before boarding transport vehicle
+        - 'ON_BOARDING'
+        description: be made when boarding the transport vehicle
+        - 'ON_BOARDING_ONLY'
+        description: can only be made when boarding the transport vehicle
+        - 'AFTER_BOARDING'
+        description: can be made after boarding transport vehicle
+        - 'ON_CHECKIN'
+        description: can be made on entering transport system
+        - 'ON_CHECKOUT'
+        description: can be made on leaving transport system
+        - 'SUBSCRIPTION_ONLY'
+        description: can only be made on subscription
      
-   BookingTime:
+    BookingTime:
       type: string
       x-extensible-enum:
          - 'ADVANCE_ONLY'
@@ -6400,26 +6401,6 @@ components:
          - 'ADVANCE_AND_DAY_OF_TRAVEL'
          - 'TIME_OF_TRAVEL_ONLY'
          - 'SUBSCRIPTION_CHARGE_MOMENT'
-
-
-   BookingAccess:
-      type: string
-      x-extensible-enum:
-       - 'PUBLIC'
-       - 'AUTHORISED_PUBLIC'
-       - 'STAFF'
-     
-   BookingMethod:
-      type: string
-      x-extensible-enum:
-        - 'CALL_DRIVER'
-	- 'CALL_OFFICE'
-        - 'ONLINE' 
-        - 'OTHER'
-        - 'PHONE_AT_STOP'
-        - 'TEXT'
-        - 'MOBILE_APP'
-        - 'AT_OFFICE'
 
     BookedOffer:
       type: object
