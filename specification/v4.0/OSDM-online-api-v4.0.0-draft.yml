@@ -6266,11 +6266,14 @@ components:
       description: |
         restrictions that control the trip search behavior for both public and individual transport.
         Provided by OJP.
+      required:
+        - restrictions  
       properties:
         restrictions:
-           type: array
-           items:
-             ref: '#/components/schemas/BaseTripMobilityFilterItem' 
+          type: array
+          items:
+            ref: '#/components/schemas/BaseTripMobilityFilterItem' 
+          minItems: 1  
 
     Board:
       type: object
@@ -11019,17 +11022,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceRef'
-
-    NotVia:
-      type: object
-      additionalProperties: false
-      description: |
-        Not-via restrictions for a trip, i.e. scheduled stop points or stop places that the trip is not allowed to pass through.  Provided by OJP.
-      properties:
-        notViaPlace:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlaceRef'      
 
     Offer:
       type: object
@@ -15861,7 +15853,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TripSummary'
-        tripsContext:
+        tripContext:
           $ref: '#/components/schemas/TripContext'
         _links:
           description: |
@@ -16136,7 +16128,7 @@ components:
            - INCLUDE_SITUATIONS_CONTEXT    
            - INCLUDE_INTERMEDIATE_STOPS  intermediate stops within a leg    
            - INCLUDE_OPERATING_DAYS include operating da information      
-          type: 'string'
+          type: string
           x-extensible-enum:
            - 'INCLUDE_TRACK_SECTIONS'        
            - 'INCLUDE_LEG_PROJECTION'    
@@ -16175,7 +16167,7 @@ components:
           format: int32
           default: 5
         useRealtimeData:
-          type: 'string'
+          type: string
           x-extensible-enum:
            - 'FULL'
            - 'EXPLANATORY'
@@ -16325,7 +16317,7 @@ components:
         notVias:
           type: array
           items:
-            $ref: '#/components/schemas/NotVia'
+            $ref: '#/components/schemas/PlaceRef' 
         noChangeAt:
           type: array
           items:
