@@ -6328,47 +6328,45 @@ components:
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
 
-
     BookingArrangement:
       type: object
       additionalProperties: false
       description: |
-        description of a booking arrangement in a TripLeg- To be used if the leg can not be boocked via the api.
+        a booking arrangement description in a TripLeg- To be used if the leg can not be booked via the api.
       properties:
         bookingContact:
-            $ref: '#/components/schemas/ContactDetail'
+          $ref: '#/components/schemas/ContactDetail'
         bookingMethod:
-            $ref: '#/components/schemas/BookingMethod'	    
+          $ref: '#/components/schemas/BookingMethod'	    
         bookingAccess:
-            $ref: '#/components/schemas/BookingAccess'	   
-	bookingAccessTime:    
-	    $ref: '#/components/schemas/BookingAccessTime'	   
-	bookingPurchaseMoment:    
-	    $ref: '#/components/schemas/BookingPurchaseMoment'
+          $ref: '#/components/schemas/BookingAccess'
+        bookingAccessTime:
+          $ref: '#/components/schemas/BookingAccessTiming'
+        bookingPurchaseMoment:
+          $ref: '#/components/schemas/BookingPurchaseMoment'
         lastBookingTime:
-	    type: string
-            format: date-time 
-	minimumBookingPeriod:
-            type: string
-	    format: duration
-     	maximumBookingPeriod:
-            type: string
-	    format: duration
+          type: string
+          format: date-time
+        minimumBookingPeriod:
+          type: string
+          format: duration
+        maximumBookingPeriod:
+          type: string
+          format: duration
         _links:
           description: |
             Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
-	bookingNotes:
+        bookingNotes:
           description: human readable description on booking arrangement
           type: array
-	        items:
-                type: string
-	    
+          items:
+            type: string
+
     BookingPurchaseMoment:
-      type: string
-      x-extensible-enum:
+      description: |
         - 'ON_RESERVATION'
         description: must be made on reservation in advance of travel
         - 'IN_ADVANCE'
@@ -6391,8 +6389,28 @@ components:
         description: can be made on leaving transport system
         - 'SUBSCRIPTION_ONLY'
         description: can only be made on subscription
-     
-    BookingTime:
+      type: string
+      x-extensible-enum:
+        - 'ON_RESERVATION'
+        - 'IN_ADVANCE'
+        - 'IN_ADVANCE_ONLY'
+        - 'BEFORE_BOARDING'
+        - 'BEFORE_BOARDING_ONLY'
+        - 'ON_BOARDING'
+        - 'ON_BOARDING_ONLY'
+        - 'AFTER_BOARDING'
+        - 'ON_CHECKIN'
+        - 'ON_CHECKOUT'
+        - 'SUBSCRIPTION_ONLY'
+
+    BookingAccess:
+      type: string
+      x-extensible-enum:
+       - 'PUBLIC'
+       - 'AUTHORIZED_PUBLIC'
+       - 'STAFF'
+
+    BookingAccessTiming:
       type: string
       x-extensible-enum:
          - 'ADVANCE_ONLY'
@@ -6401,6 +6419,18 @@ components:
          - 'ADVANCE_AND_DAY_OF_TRAVEL'
          - 'TIME_OF_TRAVEL_ONLY'
          - 'SUBSCRIPTION_CHARGE_MOMENT'
+
+    BookingMethod:
+      type: string
+      x-extensible-enum:
+        - 'CALL_DRIVER'    
+        - 'CALL_OFFICE'    
+        - 'ONLINE'        
+        - 'OTHER'         
+        - 'PHONE_AT_STOP'   
+        - 'TEXT'          
+        - 'MOBILE_APP'     
+        - 'AT_OFFICE' 
 
     BookedOffer:
       type: object
@@ -8013,7 +8043,7 @@ components:
           $ref: '#/components/schemas/Place'
         service:
           $ref: '#/components/schemas/ContinuousService'
-	description:
+        description:
           description: human readable description of the leg
           type: string
         timeWindowStart:
@@ -8049,20 +8079,26 @@ components:
     ContinousOperationMode:
       description: |
         Types of modes that run at any time without a timetable. Provided by OJP.
+        - 'CHAUFFEURED'
+        description: operated with a paid driver
+        - 'DEMAND_RESPONSIVE'
+        description: no scheduled stop points
+        - 'FLEXIBLE_AREA'
+        description: demand responsive for AREA related offers
+        - 'COMPANY_SHUTTLE'
+        description: a company related shuttle
+        - 'HOTEL_SHUTTLE'
+        description: a hotel related shuttle
+        - 'HIRE'
+        description: Using a hired VEHICLE
       type: string
       x-extensible-enum:
         - 'CHAUFFEURED'  
-	description: operated with a paid driver
         - 'DEMAND_RESPONSIVE'
-	description: no scheduled stop points
         - 'FLEXIBLE_AREA'
-	description: demand responsive for AREA related offers
         - 'COMPANY_SHUTTLE'
-	description: a company related shuttle
         - 'HOTEL_SHUTTLE'
-	description: a hotel related shuttle
         - 'HIRE'
-	description: Using a hired VEHICLE
 
     ContinuousService:
       type: object
@@ -8072,14 +8108,12 @@ components:
         Service of this leg. May be 'walk' in most cases, but also cycling or taxi etc.
         Provided by OJP.
       required:
-        - operatingDayRef
-        - mode
         - publishedServiceName
         - originText
         - destinationText
       properties:
         operationMode:
-	  $ref: '#/components/schemas/ContinousOperationMode'
+          $ref: '#/components/schemas/ContinousOperationMode'
         personalMode:
           $ref: '#/components/schemas/PersonalMode'
         operatingDayRef:
@@ -8093,9 +8127,9 @@ components:
         destinationText:
           type: string
         bookingArrangements:
-	  type: array
+          type: array
           items:
-	    $ref: '#/components/schemas/BookingArrangement'
+            $ref: '#/components/schemas/BookingArrangement'
 
     ContinuousServiceAvailabilityScope:
       description:
@@ -10584,9 +10618,9 @@ components:
          geographic view of the leg
       properties:
         sections:
-	  type: array
+          type: array
           items:
-	    $ref: '#/components/schemas/LegTrackSection'	  
+            $ref: '#/components/schemas/LegTrackSection'	  
 
     LegTrackSection:
       type: object
@@ -10594,14 +10628,14 @@ components:
       description: |
          geographic view of the leg
       properties:
-        start: 
-	  $ref: '#/components/schemas/PlaceRef'
+        start:
+          $ref: '#/components/schemas/PlaceRef'
         positions:
-	  type: array
+          type: array
           items:
-	    $ref: '#/components/schemas/GeoPosition'	  
-        end: 
-	  $ref: '#/components/schemas/PlaceRef'	  
+            $ref: '#/components/schemas/GeoPosition'	  
+        end:
+          $ref: '#/components/schemas/PlaceRef'	  
    
     Line:
       type: object
@@ -12002,146 +12036,148 @@ components:
           group:
               $ref: '#/components/schemas/FacilityGroup'
     
-
     FacilityItem:
-        type: string
-        x-extendible-enum:
-          - GENERIC
-          - LIFT
-          - ESCALATOR
-          - TRAVELATOR
-          - RAMP
-          - STAIRS
-          - SHUTTLE
-          - NARROW_ENTRANCE
-          - BARRIER
-          - PALLET_ACCESS_LOWFLOOR
-          - VALIDATOR
-          - POLICE
-          - FIRSTAID
-          - SOSPOINT
-          - SPECIFIC_ASSISTANCE
-          - UNACCOMPANIED_MINOR_ASSISTANCE
-          - BOARDING_ASSISTANCE
-          - CAR_HIRE
-          - MOTORCYCLE_HIRE
-          - CYCLE_HIRE
-          - TAXI
-          - RECREATION_DEVICE_HIRE
-          - BIKE_CARRIAGE
-          - BAGGAGE_STORAGE
-          - LEFT_LUGGAGE
-          - PORTERAGE
-          - BAGGAGE_TROLLEYS
-          - SUITABLE_FOR_WHEELCHAIRS
-          - LOWFLOOR
-          - STEP_FREE_ACCESS
-          - TACTILE_PLATFORM_EDGES
-          - ONBOARD_ASSISTANCE
-          - AUDIO_INFORMATION
-          - VISUAL_INFORMATION
-          - DISPLAYS_FOR_VISUALLY_IMPAIRED
-          - AUDIO_FOR_HEARING_IMPAIRED
-          - SMOKING
-          - NO_SMOKING
-          - MOBILEPHONE_USE_ZONE
-          - MOBILEPHONE_FREE_ZONE
-          - CAR_PARK
-          - PARK_AND_RIDE_PARK
-          - MOTOR_CYCLE_PARK 
-          - CYCLE_PARK
-          - RENTALCARPARK
-          - COACH_PARK
-          - NEXT_STOP_INDICATOR
-          - STOPANNOUNCEMENTS
-          - PASSENGER_INFORMATION_DISPLAY
-          - AUDIO_INFORMATION
-          - VISUAL_INFORMATION
-          - TACTILE_INFORMATION
-          - WALKING_GUIDANCE
-          - JOURNEY_PLANNING
-          - LOST_FOUND
-          - INFORMATION_DESK
-          - INTERACTIVE_KIOSK_DISPLAY
-          - PRINTED_PUBLIC_NOTICE
-          - PASSENGER_WIFI
-          - TELEPHONE
-          - AUDIO_SERVICES
-          - VIDEO_SERVICES
-          - BUSINESS_SERVICES
-          - INTERNET
-          - POST_OFFICE
-          - LETTER_BOX
-          - RESTAURANT_SERVICE
-          - SNACKS_SERVICE
-          - TROLLEY
-          - BAR
-          - FOOD_NOT_AVAILABLE
-          - BEVERAGES_NOT_AVAILABLE
-          - BISTRO
-          - FOOD_VENDING_MACHINE
-          - BEVERAGE_VENDING_MACHINE
-          - LOUNGE
-          - HALL
-          - MEETING_POINT
-          - GROUP_POINT
-          - RECEPTION
-          - SHELTER
-          - SEATS
-          - FOOD_RETAILER
-          - NEWSPAPER_TOBACCO_RETAILER
-          - RECREATION_TRAVEL_RETAILER
-          - HYGIENE_HEALTH_BEAUTY_RETAILER
-          - FASHION_ACCESSORIES_RETAILER
-          - BANK_FINANCE_INSURANCE
-          - CASH_MACHINE
-          - CURRENCY_EXCHANGE
-          - TOURISM_SERVICE
-          - PHOTO_BOOTH
-          - TOILET
-          - NOTOILET
-          - SHOWER
-          - WHEELCHAIR_ACCCESS_TOILET
-          - BABY_CHANGE
-          - TICKET_MACHINES
-          - TICKET_OFFICE
-          - TICKET_ONDEMAND_MACHINES
-          - TICKET_SALES
-          - MOBILE_TICKETING
-          - TICKET_COLLECTION
-          - CENTRAL_RESERVATIONS
-          - LOCAL_TICKETS
-          - NATIONAL_TICKETS
-          - INTERNATIONAL_TICKETS
+        description: | 
+          all kind iof Facilities
           - COVERED 
           description: offers protection from weather
           - LIGHTING
           description: is lit
           - WHEELCHAIR_ACCESSIBLE
           description: accessible by a wheel chair
-          
-          
-        
+        type: string
+        x-extendible-enum:
+          - 'GENERIC'
+          - 'LIFT'
+          - 'ESCALATOR'
+          - 'TRAVELATOR'
+          - 'RAMP'
+          - 'STAIRS'
+          - 'SHUTTLE'
+          - 'NARROW_ENTRANCE'
+          - 'BARRIER'
+          - 'PALLET_ACCESS_LOWFLOOR'
+          - 'VALIDATOR'
+          - 'POLICE'
+          - 'FIRST_AID'
+          - 'SOS_POINT'
+          - 'SPECIFIC_ASSISTANCE'
+          - 'UNACCOMPANIED_MINOR_ASSISTANCE'
+          - 'BOARDING_ASSISTANCE'
+          - 'CAR_HIRE'
+          - 'MOTORCYCLE_HIRE'
+          - 'CYCLE_HIRE'
+          - 'TAXI'
+          - 'RECREATION_DEVICE_HIRE'
+          - 'BIKE_CARRIAGE'
+          - 'BAGGAGE_STORAGE''
+          - 'LEFT_LUGGAGE'
+          - 'PORTERAGE'
+          - 'BAGGAGE_TROLLEYS'
+          - 'SUITABLE_FOR_WHEELCHAIRS'
+          - 'LOWFLOOR'
+          - 'STEP_FREE_ACCESS'
+          - 'TACTILE_PLATFORM_EDGES'
+          - 'ONBOARD_ASSISTANCE'
+          - 'AUDIO_INFORMATION'
+          - 'VISUAL_INFORMATION'
+          - 'DISPLAYS_FOR_VISUALLY_IMPAIRED'
+          - 'AUDIO_FOR_HEARING_IMPAIRED'
+          - 'SMOKING'
+          - 'NO_SMOKING'
+          - 'MOBILEPHONE_USE_ZONE'
+          - 'MOBILEPHONE_FREE_ZONE'
+          - 'CAR_PARK'
+          - 'PARK_AND_RIDE_PARK'
+          - 'MOTOR_CYCLE_PARK 
+          - 'CYCLE_PARK'
+          - 'RENTAL_CAR_PARK'
+          - 'COACH_PARK'
+          - 'NEXT_STOP_INDICATOR'
+          - 'STOP_ANNOUNCEMENTS'
+          - 'PASSENGER_INFORMATION_DISPLAY'
+          - 'AUDIO_INFORMATION'
+          - 'VISUAL_INFORMATION''
+          - 'TACTILE_INFORMATION'
+          - 'WALKING_GUIDANCE'
+          - 'JOURNEY_PLANNING'
+          - 'LOST_FOUND'
+          - 'INFORMATION_DESK'
+          - 'INTERACTIVE_KIOSK_DISPLAY'
+          - 'PRINTED_PUBLIC_NOTICE'
+          - 'PASSENGER_WIFI'
+          - 'TELEPHONE'
+          - 'AUDIO_SERVICES'
+          - 'VIDEO_SERVICES'
+          - 'BUSINESS_SERVICES'
+          - 'INTERNET'
+          - 'POST_OFFICE'
+          - 'LETTER_BOX'
+          - 'RESTAURANT_SERVICE'
+          - 'SNACKS_SERVICE'
+          - 'TROLLEY'
+          - 'BAR'
+          - 'FOOD_NOT_AVAILABLE'
+          - 'BEVERAGES_NOT_AVAILABLE'
+          - 'BISTRO'
+          - 'FOOD_VENDING_MACHINE'
+          - 'BEVERAGE_VENDING_MACHINE'
+          - 'LOUNGE'
+          - 'HALL'
+          - 'MEETING_POINT'
+          - 'GROUP_POINT'
+          - 'RECEPTION'
+          - 'SHELTER'
+          - 'SEATS'
+          - 'FOOD_RETAILER'
+          - 'NEWSPAPER_TOBACCO_RETAILER'
+          - 'RECREATION_TRAVEL_RETAILER'
+          - 'HYGIENE_HEALTH_BEAUTY_RETAILER'
+          - 'FASHION_ACCESSORIES_RETAILER'
+          - 'BANK_FINANCE_INSURANCE'
+          - 'CASH_MACHINE'
+          - 'CURRENCY_EXCHANGE'
+          - 'TOURISM_SERVICE'
+          - 'PHOTO_BOOTH'
+          - 'TOILET'
+          - 'NO_TOILET'
+          - 'SHOWER'
+          - 'WHEELCHAIR_ACCCESS_TOILET'
+          - 'BABY_CHANGE'
+          - 'TICKET_MACHINES'
+          - 'TICKET_OFFICE'
+          - 'TICKET_ONDEMAND_MACHINES'
+          - 'TICKET_SALES'
+          - 'MOBILE_TICKETING'
+          - 'TICKET_COLLECTION'
+          - 'CENTRAL_RESERVATIONS'
+          - 'LOCAL_TICKETS'
+          - 'NATIONAL_TICKETS'
+          - 'INTERNATIONAL_TICKETS'
+          - 'COVERED'
+          - 'LIGHTING'
+          - 'WHEELCHAIR_ACCESSIBLE'
+
       
     FacilityGroup:
         type: string
         x-extendible-enum:
-        	- ACCESS_FACILITY
-			    - ACCOMMODATION_FACILITY
-			    - ASSISTANCE_FACILITY
-			    - HIRE_FACILITY
-			    - LUGGAGE_FACILITY
-		    	- MOBILITY_FACILITY
-		    	- NUISANCE_FACILITY
-		    	- PARKING_FACILITY
-			    - PASSENGER_COMMS_FACILITY
-	    		- PASSENGER_INFORMATION_FACILITY
-	    		- REFRESHMENT_FACILITY
-	    		- RESERVED_SPACE_FACILITY
-	    		- RETAIL_FACILITY
-		    	- SANITARY_FACILITY
-		    	- TICKETING_FACILITY
-          - STOP_POINT_FACILITY
+          - 'ACCESS_FACILITY'
+          - 'ACCOMMODATION_FACILITY'
+          - 'ASSISTANCE_FACILITY'
+          - 'HIRE_FACILITY'
+          - 'LUGGAGE_FACILITY'
+          - 'MOBILITY_FACILITY'
+          - 'NUISANCE_FACILITY'
+          - 'PARKING_FACILITY'
+          - 'PASSENGER_COMMS_FACILITY'
+          - 'PASSENGER_INFORMATION_FACILITY'
+          - 'REFRESHMENT_FACILITY'
+          - 'RESERVED_SPACE_FACILITY'
+          - 'RETAIL_FACILITY'
+          - 'SANITARY_FACILITY'
+          - 'TICKETING_FACILITY'
+          - 'STOP_POINT_FACILITY'
 
     PlaceAllocation:
       type: object
@@ -15132,19 +15168,18 @@ components:
             - 'string'
             - 'null'
           format: duration
-	legTrack
-           $ref: '#/components/schemas/LegTrack'
+        legTrack
+          $ref: '#/components/schemas/LegTrack'
         parallelServices:
-	   type: array
-           items:
-	      $ref: '#/components/schemas/DatedJourney'
+          type: array
+          items:
+            $ref: '#/components/schemas/DatedJourney'
         co2Emission:
           $ref: '#/components/schemas/Quantity'
         attributes:
           type: array
           items:
-            $ref: '#/components/schemas/LegAttribute'  
-    
+            $ref: '#/components/schemas/LegAttribute'
 
     TimedLegSpecification:
       type: object
