@@ -6327,6 +6327,100 @@ components:
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
 
+    BookingArrangement
+      type: object
+      additionalProperties: false
+      description: |
+        description of a booking arrangement in a TripLeg- To be used if the leg can not be boocked via the api.
+      properties:
+        bookingContact:
+            $ref: '#/components/schemas/ContactDetail'
+        bookingMethod:
+            $ref: '#/components/schemas/BookingMethod'	    
+        bookingAccess:
+            $ref: '#/components/schemas/BookingMethod'	   
+	bookingAccessTime:    
+	    $ref: '#/components/schemas/BookingAccessTime'	   
+	bookingPurchaseMoment:    
+	    $ref: '#/components/schemas/BookingPurchaseMoment'
+        lastBookingTime:
+	    type: string
+            format: date-time 
+	minimumBookingPeriod:
+            type: string
+	    format: duration
+     	maximumBookingPeriod:
+            type: string
+	    format: duration
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+	nookingNotes:
+          description: human readable description on booking arrangement
+          type: array
+	  items:
+            type: string
+
+   BookingPurchaseMoment:
+      type: string
+      x-extensible-enum:
+                    - ON_RESERVATION
+                    description: must be made on reservation in advance of travel
+                    - IN_ADVANCE
+                    description: can be made in advance of travel
+                    - IN_ADVANCE_ONLY
+                    description: can only be made in advance of travel 
+                    - BEFORE_BOARDING
+                    description: can be made before boarding transport vehicle
+                    - BEFORE_BOARDING_ONLY
+                    description: must be made before boarding transport vehicle
+                    - ON_BOARDING
+                    description: be made when boarding the transport vehicle
+                    - ON_BOARDING_ONLY
+                    description: can only be made when boarding the transport vehicle
+                    - AFTER_BOARDING
+                    description: can be made after boarding transport vehicle
+                    - ON_CHECKIN
+                    description: can be made on entering transport system
+                    - ON_CHECKOUT
+                    description: can be made on leaving transport system
+                    - SUBSCRIPTION_ONLY
+                    description: can only be made on subscription
+   
+     
+   BookingTime:
+      type: string
+      x-extensible-enum:
+         - 'ADVANCE_ONLY'
+         - 'UNTIL_PREVIOUS_DAY'
+         - 'DAY_OF_TRAVEL_ONLY'
+         - 'ADVANCE_AND_DAY_OF_TRAVEL'
+         - 'TIME_OF_TRAVEL_ONLY'
+         - 'SUBSCRIPTION_CHARGE_MOMENT'
+
+
+   BookingAccess:
+      type: string
+      x-extensible-enum:
+       - 'PUBLIC'
+       - 'AUTHORISED_PUBLIC'
+       - 'STAFF'
+     
+   BookingMethod:
+      type: string
+      x-extensible-enum:
+        - 'CALL_DRIVER'
+	- 'CALL_OFFICE'
+        - 'ONLINE' 
+        - 'OTHER'
+        - 'PHONE_AT_STOP'
+        - 'TEXT'
+        - 'MOBILE_APP'
+        - 'AT_OFFICE'
+
     BookedOffer:
       type: object
       additionalProperties: false
@@ -7938,6 +8032,9 @@ components:
           $ref: '#/components/schemas/Place'
         service:
           $ref: '#/components/schemas/ContinuousService'
+	description:
+          description: human readable description of the leg
+          type: string
         timeWindowStart:
           description: |
             Time at which window begins.
@@ -7968,14 +8065,23 @@ components:
         co2Emission:
           $ref: '#/components/schemas/Quantity'
 
-    ContinuousMode:
+    ContinousOperationMode:
       description: |
         Types of modes that run at any time without a timetable. Provided by OJP.
       type: string
       x-extensible-enum:
-        - 'WALK'
+        - 'CHAUFFEURED'  
+	description: operated with a paid driver
         - 'DEMAND_RESPONSIVE'
-        - 'REPLACEMENT_SERVICE'
+	description: no scheduled stop points
+        - 'FLEXIBLE_AREA'
+	description: demand responsive for AREA related offers
+        - 'COMPANY_SHUTTLE'
+	description: a company related shuttle
+        - 'HOTEL_SHUTTLE'
+	description: a hotel related shuttle
+        - 'HIRE'
+	description: Using a hired VEHICLE
 
     ContinuousService:
       type: object
@@ -7986,24 +8092,17 @@ components:
         Provided by OJP.
       required:
         - operatingDayRef
-        - journeyRef
         - mode
         - publishedServiceName
         - originText
         - destinationText
       properties:
-        continuousMode:
-          $ref: '#/components/schemas/ContinuousMode'
-        individualMode:
-          $ref: '#/components/schemas/IndividualMode'
+        operationMode:
+	  $ref: '#/components/schemas/ContinousOperationMode'
+        personalMode:
+          $ref: '#/components/schemas/PersonalMode'
         operatingDayRef:
           $ref: '#/components/schemas/OperationDayRef'
-        journeyRef:
-          $ref: '#/components/schemas/JourneyRef'
-        mode:
-          type: string
-          examples:
-            - Ask Stefan
         publishedServiceName:
           type: string
           examples:
@@ -8012,6 +8111,10 @@ components:
           type: string
         destinationText:
           type: string
+        bookingArrangements:
+	  type: array
+          items:
+	    $ref: '#/components/schemas/BookingArrangement'
 
     ContinuousServiceAvailabilityScope:
       description:
@@ -9932,8 +10035,10 @@ components:
       additionalProperties: false
       required:
         - text
+        - code
       properties:
         text:
+          description: text tio be displayed to the user
           type:
             - 'string'
             - 'null'
@@ -9941,10 +10046,31 @@ components:
           type:
             - 'string'
             - 'null'
-        url:
+        key:
           type:
             - 'string'
-            - 'null'
+            - 'null'        
+        value:
+          type:
+            - 'string'
+            - 'null'        
+        facilities:
+          type: array
+          items: 
+            $ref: '#/components/schemas/GroupedFacilityItem'
+        mandatory:
+           description: true = mandatory to be displayed to the user
+           type: Boolean
+        importance:
+          description: importance as percentage
+          type:  "number"
+          format: float
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     GeoPosition:
       type: object
@@ -10213,7 +10339,7 @@ components:
           format: int32
           default: 2
 
-    IndividualMode:
+    PersonalMode:
       description: |
         Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
       type: string
@@ -10469,6 +10595,33 @@ components:
             - 'integer'
             - 'null'
           format: int32
+
+    LegTrack:
+      type: object
+      additionalProperties: false
+      description: |
+         geographic view of the leg
+      properties:
+        sections:
+	  type: array
+          items:
+	    $ref: '#/components/schemas/LegTrackSection'	  
+
+    LegTrackSection:
+      type: object
+      additionalProperties: false
+      description: |
+         geographic view of the leg
+      properties:
+        start: 
+	  $ref: '#/components/schemas/PlaceRef'
+        positions:
+	  type: array
+          items:
+	    $ref: '#/components/schemas/GeoPosition'	  
+        end: 
+	  $ref: '#/components/schemas/PlaceRef'	  
+   
     Line:
       type: object
       additionalProperties: false
@@ -11843,7 +11996,7 @@ components:
         attributes:
           type: array
           items: 
-            $ref: '#/components/schemas/PlaceAttribute'
+            $ref: '#/components/schemas/GeneralAttribute'
         area:
           description: area of the plkace described as a polygon of geo-coordinates
           $ref: '#/components/schemas/Polygon'
@@ -11854,47 +12007,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    PlaceAttribute:
-      type: object
-      additionalProperties: false
-      required:
-        - text
-        - code
-      properties:
-        text:
-          description: text tio be displayed to the user
-          type:
-            - 'string'
-            - 'null'
-        code:
-          type:
-            - 'string'
-            - 'null'
-        key:
-          type:
-            - 'string'
-            - 'null'        
-        value:
-          type:
-            - 'string'
-            - 'null'        
-        facilities:
-          type: array
-          items: 
-            $ref: '#/components/schemas/GroupedFacilityItem'
-        mandatory:
-           description: true = mandatory to be displayed to the user
-           type: Boolean
-        importance:
-          description: importance as percentage
-          type:  "number"
-          format: float
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+
 
     GroupedFacilityItem:
        description: facility item and associated facility group
@@ -15038,12 +15151,19 @@ components:
             - 'string'
             - 'null'
           format: duration
+	legTrack
+           $ref: '#/components/schemas/LegTrack'
+        parallelServices:
+	   type: array
+           items:
+	      $ref: '#/components/schemas/DatedJourney'
         co2Emission:
           $ref: '#/components/schemas/Quantity'
         attributes:
           type: array
           items:
-            $ref: '#/components/schemas/LegAttribute'
+            $ref: '#/components/schemas/LegAttribute'  
+    
 
     TimedLegSpecification:
       type: object
@@ -15219,15 +15339,16 @@ components:
         - start
         - end
       properties:
-        continuousMode:
-          $ref: '#/components/schemas/ContinuousMode'
-        transferMode:
-          $ref: '#/components/schemas/TransferMode'
+        type:
+          $ref: '#/components/schemas/TransferType'
         start:
           $ref: '#/components/schemas/PlaceRef'
         end:
           $ref: '#/components/schemas/PlaceRef'
-        timeWindowStart:
+        description:
+	   description: human readable description of the leg
+	   type: string
+	timeWindowStart:
           description: |
             Time at which window begins.
           type:
@@ -15250,29 +15371,44 @@ components:
           format: duration
           examples:
             - PT20M
-        situationFullRefs:
+        feasibility:
+	    $ref: '#/components/schemas/TripFeasibility'        
+        attributes:
+          type: array
+          items: 
+            $ref: '#/components/schemas/GeneralAttribute'     
+	situationFullRefs:
           type: array
           items:
             $ref: '#/components/schemas/SituationFullRef'
         co2Emission:
           $ref: '#/components/schemas/Quantity'
 
-    TransferMode:
+    TransferType:
       description: |
         Modes dedicated to perform transfers. Provided by OJP.
       type: string
       x-extensible-enum:
         - 'WALK'
-        - 'PARK_AND_RIDE'
-        - 'BIKE_AND_RIDE'
-        - 'CAR_HIRE'
-        - 'BIKE_HIRE'
-        - 'PROTECTED_CONNECTION'
-        - 'GUARANTEED_CONNECTION'
+        - 'SHUTTLE'
+        description: shuttle service is used	
         - 'REMAIN_IN_VEHICLE'
         - 'CHANGE_WITHIN_VEHICLE'
         - 'CHECK_IN'
         - 'CHECK_OUT'
+        - 'PARK_AND_RIDE'
+	description: time needed to park the car and walk to the next leg
+        - 'BIKE_AND_RIDE'
+        description: time needed to stow the bicycle and walk to the next leg
+        - 'CAR_HIRE'
+	description: Time needed for a car hire is needed
+        - 'BIKE_HIRE'
+        description: Time for a bike hire is needed. 
+        - 'PROTECTED_CONNECTION'
+	description: the connection is monitored and usually kept 
+        - 'GUARANTEED_CONNECTION'
+        description: the connection is guaranteed. 	
+
 
     Translation:
       type: object
@@ -15569,18 +15705,37 @@ components:
           type:
             - 'string'
             - 'null'
-        situationFullRefs:
+        feasibility:
+	    $ref: '#/components/schemas/TripFeasibility'
+	situationFullRefs:
           type: array
           items:
             $ref: '#/components/schemas/SituationFullRef'
         tripStatus:
           $ref: '#/components/schemas/TripStatus'
+	isAlternativeTrip:
+           description: indication that this triop was found due to the request parameter to search for alternatives
+           type: boolean
         _links:
           description: |
             Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    TripFeasibility:
+      description: feasibility of a trip related to the required access features
+      type: string
+      x-extensible-enum:
+        - ALL_ACCESS_FEATURES_AVAILABLE
+	- ACCESS_FEATURES_NOT_AVAILABLE
+	- ACCESS_FEATURES_PARTIALLY_AVAILABLE
+        - ACCESS_FEATURES_WITH_UNKNOWN_AVAILABILITY
+	- SEE_SITUATIONS
+        description: situations must be provided
+        
+        
+    
 
     TripAllocationConstraint:
       type: object
@@ -15822,6 +15977,9 @@ components:
           $ref: '#/components/schemas/TransferLeg'
         continuousLeg:
           $ref: '#/components/schemas/ContinuousLeg'
+	changed:
+          description: indicates that the leg was changed via a trip change request
+          type: Boolean
 
     TripLegCoverage:
       type: object
@@ -16013,7 +16171,7 @@ components:
            - 'BEST_FOR_VISUALLY_IMPAIRED'
            - 'BEST_FOR_AUDITORY_IMPAIRED'     
         itModesToCover:
-          $ref: '#/components/schemas/IndividualMode'         
+          $ref: '#/components/schemas/PersonaMode'         
            
 
 
