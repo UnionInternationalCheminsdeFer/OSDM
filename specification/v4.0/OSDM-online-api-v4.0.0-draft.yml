@@ -5482,7 +5482,7 @@ components:
             crossroad:
               type: string
               examples:
-                - Oude Trambaan corner Newe Trambahn
+                - 'Oude Trambaan corner Newe Trambahn'
             ref:
               $ref: '#/components/schemas/AddressRef'
 
@@ -6409,9 +6409,9 @@ components:
     BookingAccess:
       type: string
       x-extensible-enum:
-       - 'PUBLIC'
-       - 'AUTHORIZED_PUBLIC'
-       - 'STAFF'
+        - 'PUBLIC'
+        - 'AUTHORIZED_PUBLIC'
+        - 'STAFF'
 
     BookingAccessTiming:
       type: string
@@ -8057,8 +8057,7 @@ components:
             - 'null'
           format: date-time
         timeWindowEnd:
-          description: |
-            Time at which window ends.
+          description: Time at which window ends.
           type:
             - 'string'
             - 'null'
@@ -8075,24 +8074,24 @@ components:
         situationFullRefs:
           type: array
           items:
-            $ref: '#/components/schemas/SituationFullRef'
+            $ref: '#/components/schemas/SituationRef'
         co2Emission:
           $ref: '#/components/schemas/Quantity'
 
     ContinousOperationMode:
       description: |
         Types of modes that run at any time without a timetable. Provided by OJP.
-        - CHAUFFEURED
+        CHAUFFEURED
         description: operated with a paid driver
-        - DEMAND_RESPONSIVE
+        DEMAND_RESPONSIVE
         description: no scheduled stop points
-        - FLEXIBLE_AREA
+        FLEXIBLE_AREA
         description: demand responsive for AREA related offers
-        - COMPANY_SHUTTLE
+        COMPANY_SHUTTLE
         description: a company related shuttle
-        - HOTEL_SHUTTLE
+        HOTEL_SHUTTLE
         description: a hotel related shuttle
-        - HIRE
+        HIRE
         description: Using a hired VEHICLE
       type: string
       x-extensible-enum:
@@ -8130,6 +8129,7 @@ components:
         destinationText:
           type: string
         bookingArrangements:
+          description: booking arrangements in case the service can not be booked via OSDM
           type: array
           items:
             $ref: '#/components/schemas/BookingArrangement'
@@ -8578,7 +8578,7 @@ components:
         situationFullRefs:
           type: array
           items:
-            $ref: '#/components/schemas/SituationFullRef'
+            $ref: '#/components/schemas/SituationRef'
         carriers:
           type: array
           items:
@@ -11507,6 +11507,10 @@ components:
       type: object
       additionalProperties: false       
       description: operator of a service
+      required:
+        - operatorRef
+        - name
+        - shortName
       properties:
          operatorRef:
             $ref: '#/components/schemas/CompanyRef'
@@ -11968,11 +11972,11 @@ components:
             types.
           type: string
         name:
-              description: |
-                Name of this stop place for use in passenger information.
-              type: string
-              examples:
-                - Zürich HB          
+          description: |
+            Name of this stop place for use in passenger information.
+          type: string
+          examples:
+            - 'Zürich HB'          
         id:
           description: |
             id  defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn '0850000'
@@ -12031,11 +12035,11 @@ components:
     FacilityItem:
         description: | 
           all kind iof Facilities
-          - COVERED 
+          COVERED 
           description: offers protection from weather
-          - LIGHTING
+          LIGHTING
           description: is lit
-          - WHEELCHAIR_ACCESSIBLE
+          WHEELCHAIR_ACCESSIBLE
           description: accessible by a wheel chair
         type: string
         x-extendible-enum:
@@ -12150,6 +12154,7 @@ components:
 
       
     FacilityGroup:
+        description: grouping of facilities (provided by OJP)
         type: string
         x-extendible-enum:
           - 'ACCESS_FACILITY'
@@ -14843,14 +14848,17 @@ components:
         - 'PEER2PEER'
 
     Situation:
+      description: traffic situation      
       type: object
       additionalProperties: false       
-      description: traffic situation
+      required:
+        - situationRef
+        - description
       properties:
-         situationRef:    
-           type: string
-         description:
-            $ref: '#/components/schemas/SituationDescription'
+        situationRef:
+          $ref: '#/components/schemas/SituationRef'
+        description:
+          $ref: '#/components/schemas/SituationDescription'
 
     SituationDescription:
       type: object
@@ -14872,7 +14880,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'         
 
-    SituationFullRef:
+    SituationRef:
       type:
         - 'string'
         - 'null'
@@ -15413,10 +15421,10 @@ components:
           type: array
           items: 
             $ref: '#/components/schemas/GeneralAttribute'
-        situationFullRefs:
+        situationRefs:
           type: array
           items:
-            $ref: '#/components/schemas/SituationFullRef'
+            $ref: '#/components/schemas/SituationRef'
         co2Emission:
           $ref: '#/components/schemas/Quantity'
 
@@ -15738,12 +15746,12 @@ components:
         situationFullRefs:
             type: array
             items:
-              $ref: '#/components/schemas/SituationFullRef'
+              $ref: '#/components/schemas/SituationRef'
         tripStatus:
               $ref: '#/components/schemas/TripStatus'
         isAlternativeTrip:
           description: |
-               indication that this triop was found due to the request parameter to search for alternatives
+            indication that this triop was found due to the request parameter to search for alternatives
           type: boolean
         _links:
           description: |
@@ -16045,7 +16053,7 @@ components:
         Base mobility options to be applied for both public and individual transport.
         Provided by OJP.
       properties:
-        baseMobilityFilters:
+        baseMobilityFilter:
             description: mobility filters to be applied for public and individual transport
             $ref: '#/components/schemas/BaseTripMobilityFilter' 
         bikeTransport:
@@ -16143,7 +16151,32 @@ components:
            - 'INCLUDE_PLACES_CONTEXT' 
            - 'INCLUDE_SITUATIONS_CONTEXT'      
            - 'INCLUDE_INTERMEDIATE_STOPS'     
-           - 'INCLUDE_OPERATING_DAYS'              
+           - 'INCLUDE_OPERATING_DAYS'            
+
+    TripRealTimeDataUsage:
+      description: use of real time data in a trip
+      type: string
+      x-extensible-enum:
+        - 'FULL'
+        - 'EXPLANATORY'
+        - 'NONE'    
+          
+    TripSearchOptimisationMethod:
+      description: |
+        The optimization method to be used for the search
+      type: string
+      x-extensible-enum:
+        - 'FASTEST'
+        - 'MIN_CHANGES'
+        - 'LEAST_WALKING'    
+        - 'LEAST_DISTANCE'         
+        - 'EARLIEST_ARRIVAL'
+        - 'LATEST_DEPARTURE'
+        - 'EARLIEST_ARRIVAL_AND_LATEST_DEPARTURE'  
+        - 'MIN_NON_LEVEL_ENTRANCES'
+        - 'MIN_STAIRSE'  
+        - 'BEST_FOR_VISUALLY_IMPAIRED'
+        - 'BEST_FOR_AUDITORY_IMPAIRED'          
         
     TripPolicyFilter:
       description: |
@@ -16167,11 +16200,7 @@ components:
           format: int32
           default: 5
         useRealtimeData:
-          type: string
-          x-extensible-enum:
-           - 'FULL'
-           - 'EXPLANATORY'
-           - 'NONE'    
+          $ref: '#/components/schemas/TripRealTimeDataUsage'      
           default: 'FULL'
         transferLimit:
           description: |
@@ -16182,21 +16211,7 @@ components:
           format: int32
           minimum: 0
         optimisationMethod:
-          description: |
-            The optimization method to be used for the search
-          type: string
-          x-extensible-enum:
-           - 'FASTEST'
-           - 'MIN_CHANGES'
-           - 'LEAST_WALKING'    
-           - 'LEAST_DISTANCE'         
-           - 'EARLIEST_ARRIVAL'
-           - 'LATEST_DEPARTURE'
-           - 'EARLIEST_ARRIVAL_AND_LATEST_DEPARTURE'  
-           - 'MIN_NON_LEVEL_ENTRANCES'
-           - 'MIN_STAIRSE'  
-           - 'BEST_FOR_VISUALLY_IMPAIRED'
-           - 'BEST_FOR_AUDITORY_IMPAIRED'     
+          $ref: '#/components/schemas/TripSearchOptimisationMethod'
         itModesToCover:
           $ref: '#/components/schemas/PersonaMode'         
 
