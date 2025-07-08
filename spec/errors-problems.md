@@ -193,9 +193,12 @@ all implementations:
 | ------------------- | ------------------------------ | ------------------------------------------- |
 | Reservation         | `PLACE_PROPERTY_NOT_RESPECTED` | Place property not respected                |
 | Offers              | `OFFER_NO_RESULTS`             | The trip search did not return any result   |
+| Trips               | `FULLY_BOOKED`                 | The trip is fully booked                    |
+| Trips/Booking       | `BOOKING_NOT_YET_OPEN`         | The booking is not yet open                 |
+| Trips/Booking       | `BOOKING_ALREADY_CLOSED`       | The booking is already closed               |
+| Trips/Booking       | `BOOKING_TEMPORARILY_CLOSED`   | The booking is temporarily closed           |
 | Booking             | `OVERRULE_CODE_NOT_ACCEPTED`   | The overrule code provided was not accepted |
 | Booking             | `OVERRULE_CODE_NOT_SUPPORTED`  | The overrule code provided is not supported |
-| todo                | `todo`                         | todo                                        |
 
 As for the warnings, an implementor is required to use these warning codes and
 descriptions for the situations identified in order to be compliant.
