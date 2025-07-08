@@ -11986,19 +11986,16 @@ components:
           - facility
        properties:
           facility:
-              $ref: '#/components/schemas/FacilityItem'
+              $ref: '#/components/schemas/FacilityEnum'
           group:
-              $ref: '#/components/schemas/FacilityGroup'
+              $ref: '#/components/schemas/FacilityGroupEnum'
     
-    FacilityItem:
+    FacilityEnum:
         description: | 
-          all kind iof Facilities
-          COVERED 
-          description: offers protection from weather
-          LIGHTING
-          description: is lit
-          WHEELCHAIR_ACCESSIBLE
-          description: accessible by a wheel chair
+          all kinds of Facilities
+          COVERED - offers protection from weather
+          LIGHTING - is lit
+          WHEELCHAIR_ACCESSIBLE - accessible by a wheel chair
         type: string
         x-extendible-enum:
           - 'GENERIC'
@@ -12111,7 +12108,7 @@ components:
           - 'WHEELCHAIR_ACCESSIBLE'
 
       
-    FacilityGroup:
+    FacilityGroupEnum:
         description: grouping of facilities (provided by OJP)
         type: string
         x-extendible-enum:
