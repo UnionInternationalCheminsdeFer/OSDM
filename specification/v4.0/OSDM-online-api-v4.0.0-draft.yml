@@ -11967,7 +11967,7 @@ components:
           items: 
             $ref: '#/components/schemas/GeneralAttribute'
         area:
-          description: area of the plkace described as a polygon of geo-coordinates
+          description: area of the place described as a polygon of geo-coordinates
           $ref: '#/components/schemas/Polygon'
         _links:
           description: |
@@ -11986,7 +11986,7 @@ components:
           - facility
        properties:
           facility:
-              $ref: '#/components/schemas/Facility'
+              $ref: '#/components/schemas/FacilityItem'
           group:
               $ref: '#/components/schemas/FacilityGroup'
     
