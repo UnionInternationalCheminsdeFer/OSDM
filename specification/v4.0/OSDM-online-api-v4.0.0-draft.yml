@@ -7917,8 +7917,8 @@ components:
             $ref: '#/components/schemas/RefundedFulfillmentSpecification'
           minItems: 1 
         issuedFulfillmentIds:
-          description:
-            IDs of the new fulfillments issued with this refund
+          description: |
+             IDs of the new fulfillments issued with this refund
           type: array
           items:
             type: string
