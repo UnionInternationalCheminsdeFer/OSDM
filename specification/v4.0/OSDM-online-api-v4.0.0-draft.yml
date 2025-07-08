@@ -10475,41 +10475,6 @@ components:
       examples:
         - 47.37818
 
-    LegAttribute:
-      type: object
-      additionalProperties: false
-      description: |
-        Attributes that are not valid on the whole service, but only on section of a trip made on a single mode without interchange between boarding and alighting.
-      required:
-        - text
-      properties:
-        text:
-          description: |
-            Text of the attribute to be shown to the user.
-          type: string
-        code:
-          description: |
-            Internal code of the attribute. Can be used for detection of double occurrences. Refers to Service Facilities / Leg Attributes from the Catalog of Code Lists
-          type:
-            - 'string'
-            - 'null'
-        fromStopSeqNumber:
-          description: |
-            The attribute is valid from the stop point with this sequence number within the leg. If missing it is valid from the beginning of the leg.
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
-        toStopSeqNumber:
-          description: |
-            The attribute is valid to the stop point (inclusively) with this sequence number within the leg. If missing it is valid to the end of the leg.
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
-
     LegacyAccountingIdentifier:
       type: object
       additionalProperties: false
@@ -11508,12 +11473,12 @@ components:
       additionalProperties: false       
       description: operator of a service
       required:
-        - operatorRef
+        - id
         - name
         - shortName
       properties:
-         operatorRef:
-            $ref: '#/components/schemas/CompanyRef'
+         id:
+            $$ref: '#/components/schemas/CompanyRef'
          name:
             type: string
          shortName:
@@ -14852,10 +14817,10 @@ components:
       type: object
       additionalProperties: false       
       required:
-        - situationRef
+        - id
         - description
       properties:
-        situationRef:
+        id:
           $ref: '#/components/schemas/SituationRef'
         description:
           $ref: '#/components/schemas/SituationDescription'
@@ -15207,7 +15172,7 @@ components:
         attributes:
           type: array
           items:
-            $ref: '#/components/schemas/LegAttribute'
+            $ref: '#/components/schemas/GeneralAttribute'
 
     TimedLegSpecification:
       type: object
@@ -16213,16 +16178,35 @@ components:
         optimisationMethod:
           $ref: '#/components/schemas/TripSearchOptimisationMethod'
         itModesToCover:
-          $ref: '#/components/schemas/PersonaMode'         
+          $ref: '#/components/schemas/PersonalMode'         
 
     TripChangeCriteria:
       type: object
       additionalProperties: false
       description: |
         Trip change request structure. Provided by OJP.
+      required: 
+        - tripResult
       properties:
-        TripResult:
+        tripChangeParameter:
+          $ref: '#/components/schemas/TripChangeParameter'
+        tripResult:
           $ref: '#/components/schemas/TripResult'
+        tripContext
+          $ref: '#/components/schemas/TripContext'
+
+     TripChangeParameter:
+      type: object
+      additionalProperties: false       
+      description: parameters to change a trip at a leg 
+      properties:      
+        changeLegRef:
+          type: string
+        additionaWaitingTime:
+          type: string
+          format: Duration
+        tripParameter:
+          $ref: '#/components/schemas/TripParameters'
 
     TripContext:
       type: object
@@ -16414,37 +16398,27 @@ components:
         unplanned:
           description: |
             Whether this trip is an additional one that has not been planned.
-          type:
-            - 'boolean'
-            - 'null'
+          type: boolean
           default: false
         cancelled:
           description: |
             Whether this trip is cancelled and will not be run.
-          type:
-            - 'boolean'
-            - 'null'
+          type: boolean
           default: false
         deviation:
           description: |
             Whether this trip deviates from the planned service pattern.
-          type:
-            - 'boolean'
-            - 'null'
+          type: boolean
           default: false
         delayed:
           description: |
             Whether this trip is delayed.
-          type:
-            - 'boolean'
-            - 'null'
+          type: boolean
           default: false
         infeasible:
           description: |
             Whether this trip cannot be used, due to operational delays and impossible transfers.
-          type:
-            - 'boolean'
-            - 'null'
+          type: boolean
           default: false
 
     TripSummary:
