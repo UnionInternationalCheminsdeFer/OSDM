@@ -11471,7 +11471,7 @@ components:
         - shortName
       properties:
          id:
-            $$ref: '#/components/schemas/CompanyRef'
+            $ref: '#/components/schemas/CompanyRef'
          name:
             type: string
          shortName:
@@ -14061,7 +14061,6 @@ components:
         - createdOn
         - validFrom
         - validUntil
-        - status
         - releasedFulfillments
       properties:
         id:
@@ -16032,7 +16031,6 @@ components:
       additionalProperties: false
       description: |
         Options to control the search behavior and response contents.
-        number of results > either number of results or number of results before and after are used.
         Provided by OJP.
       properties:
         dataFilter:
@@ -16057,7 +16055,7 @@ components:
            items:
              $ref: '#/components/schemas/TripContentFilterItem'        
          tripSummaryOnly:
-           type: Boolean
+           type: boolean
            default: false
 
     TripContentFilterItem:
@@ -16075,7 +16073,7 @@ components:
            - INCLUDE_PLACES_CONTEXT 
            - INCLUDE_SITUATIONS_CONTEXT    
            - INCLUDE_INTERMEDIATE_STOPS  intermediate stops within a leg    
-           - INCLUDE_OPERATING_DAYS include operating da information      
+           - INCLUDE_OPERATING_DAYS include operating day information      
           type: string
           x-extensible-enum:
            - 'INCLUDE_TRACK_SECTIONS'        
@@ -16128,15 +16126,11 @@ components:
       additionalProperties: false
       properties:  
         numberOfResultsBefore:
-          type:
-            - 'integer'
-            - 'null'
+          type: integer
           format: int32
           default: 0
         numberOfResultsAfter:
-          type:
-            - 'integer'
-            - 'null'
+          type: integer 
           format: int32
           default: 5
         useRealtimeData:
