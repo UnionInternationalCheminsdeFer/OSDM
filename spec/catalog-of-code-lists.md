@@ -905,41 +905,47 @@ POICode: Values are depending on code list and set is too large to be reproduced
 The following code lists defines the commonly used cards which are not provided
 by a specific carrier:
 
-| Predefined Card-Ids       | Issuer | Description                                  | Type           | Included Cards         |
-| ------------------------- | ------ | -------------------------------------------- | -------------- | ---------------------- |
-| `UIC_EURAIL`              | Eurail | Eurail Pass                                  | TRAVEL_PASS    |                        |
-| `UIC_INTERRAIL`           | Eurail | Interrail Pass                               | TRAVEL_PASS    |                        |
-| `UIC_FIP_LEASURE_RED`     | FIP    | FIP reduction (50%)                          | REDUCTION_CARD |                        |
-| `UIC_FIP_DUTY`            | FIP    | FIP duty                                     | TRAVEL_PASS    |                        |
-| `UIC_FIP_LEASURE_FREE`    | FIP    | FIP free personal use                        | TRAVEL_PASS    |                        |
-| `UIC_RAILPLUS`            | \*     | A pure rail plus card                        | REDUCTION_CARD |                        |
-| `UIC_RIT_1`               | \*     | RIT reduction for RIT 1 members              | REDUCTION_CARD |                        |
-| `UIC_RIT_2`               | \*     | RIT reduction for RIT 2 members              | REDUCTION_CARD |                        |
-| `UIC_RIT_3`               | \*     | RIT reduction for RIT 3 members              | REDUCTION_CARD |                        |
-| `UIC_EURAIL_1`            | Eurail | Eurail Pass First Class                      | TRAVEL_PASS    |                        |
-| `UIC_INTERRAIL_1`         | Eurail | Interrail Pass First Class                   | TRAVEL_PASS    |                        |
-| `UIC_FIP_LEASURE_RED_1`   | FIP    | FIP reduction (50%) First Class              | REDUCTION_CARD |                        |
-| `UIC_FIP_DUTY_1`          | FIP    | FIP duty First Class                         | TRAVEL_PASS    |                        |
-| `UIC_FIP_LEASURE_FREE_1`  | FIP    | FIP free personal use First Class            | TRAVEL_PASS    |                        |
-| `UIC_RAILPLUS_1`          | \*     | A pure rail plus card First Class            | REDUCTION_CARD |                        |
-| `UIC_RIT_1_1`             | \*     | RIT reduction for RIT 1 First Class members  | REDUCTION_CARD |                        |
-| `UIC_RIT_2_1`             | \*     | RIT reduction for RIT 2 First Class members  | REDUCTION_CARD |                        |
-| `UIC_RIT_3_1`             | \*     | RIT reduction for RIT 3 First Class members  | REDUCTION_CARD |                        |
-| `UIC_EURAIL_2`            | Eurail | Eurail Pass Second Class                     | TRAVEL_PASS    |                        |
-| `UIC_INTERRAIL_2`         | Eurail | Interrail Pass Second Class                  | TRAVEL_PASS    |                        |
-| `UIC_FIP_LEASURE_RED_2`   | FIP    | FIP reduction (50%) Second Class             | REDUCTION_CARD |                        |
-| `UIC_FIP_DUTY_2`          | FIP    | FIP duty Second Class                        | TRAVEL_PASS    |                        |
-| `UIC_FIP_LEASURE_FREE_2`  | FIP    | FIP free personal use Second Class           | TRAVEL_PASS    |                        |
-| `UIC_RAILPLUS_2`          | \*     | A pure rail plus card Second Class           | REDUCTION_CARD |                        |
-| `UIC_RIT_1_2`             | \*     | RIT reduction for RIT 1 members Second Class | REDUCTION_CARD |                        |
-| `UIC_RIT_2_2`             | \*     | RIT reduction for RIT 2 members Second Class | REDUCTION_CARD |                        |
-| `UIC_RIT_3_2`             | \*     | RIT reduction for RIT 3 members Second Class | REDUCTION_CARD |                        |
-| `UIC_EU_DISABILITY_CARD`  | \*     | EU Disabled Card                             |                |                        |
-| `UIC_EU_DISABILITY_CARD_BLIND`  | \*     | EU Disabled Card for a blind person  |                |                        |
-| `UIC_EU_DISABILITY_CARD_WHEELCHAIR`  | \*     | EU Disabled Card for a person using a wheelchair                            |                |                        |
-| `UIC_INT_DISABILITY_CARD` | \*     | International Disabled Card                  | REDUCTION_CARD | UIC_EU_DISABILITY_CARD |
-| `UIC_INT_DISABILITY_CARD_BLIND` | \*     | International Disabled Card for a blind person                     | REDUCTION_CARD | UIC_EU_DISABILITY_CARD_BLIND |
-| `UIC_INT_DISABILITY_CARD_WHEELCHAIR` | \*     | International Disabled Card for a person using a wheelchair   | REDUCTION_CARD | UIC_EU_DISABILITY_CARD_WHEELCHAIR |
+| Predefined Card-Ids                   | Issuer | Description                                                  | Type           | Included Cards                       |
+| ------------------------------------- | ------ | ------------------------------------------------------------ | -------------- | ------------------------------------ |
+| `UIC_EURAIL`                          | Eurail | Eurail Pass                                                  | TRAVEL_PASS    |                                      |
+| `UIC_INTERRAIL`                       | Eurail | Interrail Pass                                               | TRAVEL_PASS    |                                      |
+| `UIC_FIP_LEASURE_RED`                 | FIP    | FIP reduction (50%)                                          | REDUCTION_CARD |                                      |
+| `UIC_FIP_DUTY`                        | FIP    | FIP duty                                                     | TRAVEL_PASS    |                                      |
+| `UIC_FIP_LEASURE_FREE`                | FIP    | FIP free personal use                                        | TRAVEL_PASS    |                                      |
+| `UIC_RAILPLUS`                        | \*     | A pure rail plus card                                        | REDUCTION_CARD |                                      |
+| `UIC_RIT_1`                           | \*     | RIT reduction for RIT 1 members                              | REDUCTION_CARD |                                      |
+| `UIC_RIT_2`                           | \*     | RIT reduction for RIT 2 members                              | REDUCTION_CARD |                                      |
+| `UIC_RIT_3`                           | \*     | RIT reduction for RIT 3 members                              | REDUCTION_CARD |                                      |
+| `UIC_EURAIL_1`                        | Eurail | Eurail Pass First Class                                      | TRAVEL_PASS    |                                      |
+| `UIC_INTERRAIL_1`                     | Eurail | Interrail Pass First Class                                   | TRAVEL_PASS    |                                      |
+| `UIC_FIP_LEASURE_RED_1`               | FIP    | FIP reduction (50%) First Class                              | REDUCTION_CARD |                                      |
+| `UIC_FIP_DUTY_1`                      | FIP    | FIP duty First Class                                         | TRAVEL_PASS    |                                      |
+| `UIC_FIP_LEASURE_FREE_1`              | FIP    | FIP free personal use First Class                            | TRAVEL_PASS    |                                      |
+| `UIC_RAILPLUS_1`                      | \*     | A pure rail plus card First Class                            | REDUCTION_CARD |                                      |
+| `UIC_RIT_1_1`                         | \*     | RIT reduction for RIT 1 First Class members                  | REDUCTION_CARD |                                      |
+| `UIC_RIT_2_1`                         | \*     | RIT reduction for RIT 2 First Class members                  | REDUCTION_CARD |                                      |
+| `UIC_RIT_3_1`                         | \*     | RIT reduction for RIT 3 First Class members                  | REDUCTION_CARD |                                      |
+| `UIC_EURAIL_2`                        | Eurail | Eurail Pass Second Class                                     | TRAVEL_PASS    |                                      |
+| `UIC_INTERRAIL_2`                     | Eurail | Interrail Pass Second Class                                  | TRAVEL_PASS    |                                      |
+| `UIC_FIP_LEASURE_RED_2`               | FIP    | FIP reduction (50%) Second Class                             | REDUCTION_CARD |                                      |
+| `UIC_FIP_DUTY_2`                      | FIP    | FIP duty Second Class                                        | TRAVEL_PASS    |                                      |
+| `UIC_FIP_LEASURE_FREE_2`              | FIP    | FIP free personal use Second Class                           | TRAVEL_PASS    |                                      |
+| `UIC_RAILPLUS_2`                      | \*     | A pure rail plus card Second Class                           | REDUCTION_CARD |                                      |
+| `UIC_RIT_1_2`                         | \*     | RIT reduction for RIT 1 members Second Class                 | REDUCTION_CARD |                                      |
+| `UIC_RIT_2_2`                         | \*     | RIT reduction for RIT 2 members Second Class                 | REDUCTION_CARD |                                      |
+| `UIC_RIT_3_2`                         | \*     | RIT reduction for RIT 3 members Second Class                 | REDUCTION_CARD |                                      |
+| `UIC_EU_DISABILITY_CARD`              | \*     | EU Disabled Card                                             |                |                                      |
+| `UIC_EU_DISABILITY_CARD_BLIND`        | \*     | EU Disabled Card for a blind person                          |                |                                      |
+| `UIC_EU_DISABILITY_CARD_WHEELCHAIR`   | \*     | EU Disabled Card for a person using a wheelchair             |                |                                      |
+| `UIC_INT_DISABILITY_CARD`             | \*     | International Disabled Card                                  | REDUCTION_CARD | UIC_EU_DISABILITY_CARD               |
+| `UIC_INT_DISABILITY_CARD_BLIND`       | \*     | International Disabled Card for a blind person               | REDUCTION_CARD | UIC_EU_DISABILITY_CARD_BLIND         |
+| `UIC_INT_DISABILITY_CARD_WHEELCHAIR`  | \*     | International Disabled Card for a person using a wheelchair  | REDUCTION_CARD | UIC_EU_DISABILITY_CARD_WHEELCHAIR    |
+| `1185_DISABILITY_CARD`                | SBB    | Disabled Companion Card                                      | REDUCTION_CARD |                                      |
+| `1185_GA_1KL`                         | SBB    | GA Travelcard First Class                                    | REDUCTION_CARD |                                      |
+| `1185_GA_2KL`                         | SBB    | GA Travelcard Second Class                                   | REDUCTION_CARD |                                      |
+| `1185_HTA`                            | SBB    | Half Fare Travelcard                                         | REDUCTION_CARD |                                      |
+| `1185_JK`                             | SBB    | Junior Travelcard                                            | REDUCTION_CARD |                                      |
+| `1185_KMFK`                           | SBB    | Children's Co-Travelcard                                     | REDUCTION_CARD |                                      |
 
 Note: A card associated with a person in a request might result in a reduction applied to an accompagning person or pet.
 
