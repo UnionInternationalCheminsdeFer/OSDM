@@ -5419,7 +5419,7 @@ components:
                 - 'string'
                 - 'null'
               examples:
-                - Oude Trambaan 7, 2265CA Leidschendam, Nederland
+                - 'Oude Trambaan 7, 2265CA Leidschendam, Nederland'
             code:
               description: |
                 id of the address
@@ -5535,7 +5535,7 @@ components:
             - 'string'
             - 'null'
           examples:
-            - Oude Trambaan
+            - 'Oude Trambaan'
         houseNumber:
           description: |
             House number of the address. House number can either be in this separate field, or can be
@@ -6001,11 +6001,13 @@ components:
           type: string
           description: |
             Version of the next API.
-          example: '4.0.0'
+          examples: 
+            - '4.0.0'
         availableAt:
           type: string
           format: url
-          example: 'https://api.next.example.com'
+          examples:
+            - 'https://api.next.example.com'
         availableFrom:
           type:
             - 'string'
@@ -6013,7 +6015,8 @@ components:
           format: date-time
           description: |
             Date from which the next version is available.
-          example: "2025-01-01T00:00:00+01:00"
+          examples:
+            - "2025-01-01T00:00:00+01:00"
 
     ApiVersion:
       type: object
@@ -6028,7 +6031,8 @@ components:
           type: string
           description: |
             Version of the API
-          example: '3.0.0'
+          examples: 
+            - '3.0.0'
         sunset:
           type:
             - 'string'
@@ -6036,7 +6040,8 @@ components:
           format: date-time
           description: |
             Date after which the API version will no longer be available.
-          example: "2024-12-31T23:59:59+01:00"
+          examples: 
+            - "2024-12-31T23:59:59+01:00"
         nextVersion:
           anyOf:
             - $ref: '#/components/schemas/ApiNextVersion'
@@ -16192,10 +16197,10 @@ components:
           $ref: '#/components/schemas/TripChangeParameter'
         tripResult:
           $ref: '#/components/schemas/TripResult'
-        tripContext
+        tripContext:
           $ref: '#/components/schemas/TripContext'
 
-     TripChangeParameter:
+    TripChangeParameter:
       type: object
       additionalProperties: false       
       description: parameters to change a trip at a leg 
@@ -16204,7 +16209,7 @@ components:
           type: string
         additionaWaitingTime:
           type: string
-          format: Duration
+          format: duration
         tripParameter:
           $ref: '#/components/schemas/TripParameters'
 
