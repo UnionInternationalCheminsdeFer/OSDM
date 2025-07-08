@@ -5412,14 +5412,6 @@ components:
         - type: object
           additionalProperties: false
           properties:
-            name:
-              description: |
-                Name or description of address for use in passenger information.
-              type:
-                - 'string'
-                - 'null'
-              examples:
-                - 'Oude Trambaan 7, 2265CA Leidschendam, Nederland'
             code:
               description: |
                 id of the address
@@ -9482,10 +9474,6 @@ components:
           required:
             - stationSets
           properties:
-            name:
-              type:
-                - 'string'
-                - 'null'
             stationSets:
               type: array
               items:
@@ -12654,15 +12642,8 @@ components:
         - type: object
           additionalProperties: false
           required:
-            - name
             - code
           properties:
-            name:
-              description: |
-                Name or description of point of interest for use in passenger information.
-              type: string
-              examples:
-                - Park Rozenrust
             code:
               description: |
                 id of the Point of Interest.
@@ -14980,17 +14961,6 @@ components:
         or prepare their trip, and which will usually have one or more wellknown names. Provided by OJP.
       allOf:
         - $ref: '#/components/schemas/Place'
-        - type: object
-          additionalProperties: false
-          required:
-            - name
-          properties:
-            name:
-              description: |
-                Name of this stop place for use in passenger information.
-              type: string
-              examples:
-                - Zürich HB
 
     StopPlaceRef:
       description: |
