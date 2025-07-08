@@ -6233,45 +6233,6 @@ components:
         - 'SSB'
         - 'DOSIPAS'
 
-    BaseTripMobilityFilterItem:
-      description: |
-        restrictions of the traveler  (List of booleans in OJP BaseTripMobilityFilter)
-        NO_SIGHT  - traveler is not able to see
-        NO_SINGLE_STEP  - traveler can not pass a single step
-        NO_STAIRS  - traveler can not use stairs
-        NO_ESCALATOR  - traveler can not use an escalator
-        NO_ELEVATOR  - traveler can not use an elevator
-        NO_RAMP  - traveler can not use a ramp
-        NO_TRAVELATOR - traveler can not use a travelator
-        LEVEL_ENTRANCE - traveller needs a level entrance
-        LEVEL_ENTRANCE_OR_BOARDING_AID - traveller needs a level entrance or boarding aid
-      type: string
-      x-extensible-enum:
-        - 'NO_SIGHT'
-        - 'NO_SINGLE_STEP'
-        - 'NO_STARS'
-        - 'NO_ESCALATOR'
-        - 'NO_ELEVATOR'
-        - 'NO_RAMP'
-        - 'NO_TRAVELATOR'
-        - 'LEVEL_ENTRANCE'
-        - 'LEVEL_ENTRANCE_OR_BOARDING_AID'
-      
-    BaseTripMobilityFilter:
-      type: object
-      additionalProperties: false
-      description: |
-        restrictions that control the trip search behavior for both public and individual transport.
-        Provided by OJP.
-      required:
-        - restrictions  
-      properties:
-        restrictions:
-          type: array
-          items:
-            ref: '#/components/schemas/BaseTripMobilityFilterItem' 
-          minItems: 1  
-
     Board:
       type: object
       additionalProperties: false
@@ -15991,7 +15952,7 @@ components:
       properties:
         baseMobilityFilter:
             description: mobility filters to be applied for public and individual transport
-            $ref: '#/components/schemas/BaseTripMobilityFilter' 
+            $ref: '#/components/schemas/TripMobilityFilterItems' 
         bikeTransport:
           description: |
             The user wants to carry a bike on public transport.
@@ -16002,9 +15963,7 @@ components:
         walkSpeed:
           description: |
             Deviation from average walk speed in percent. 100% percent is average speed.
-          type:
-            - 'integer'
-            - 'null'
+          type: integer
           format: int32
           default: 100
         additionalTransferTime:
@@ -16022,6 +15981,39 @@ components:
             - 'string'
             - 'null'
           format: duration
+
+    TripMobilityFilterItem:
+      description: |
+        restrictions of the traveler  (List of booleans in OJP BaseTripMobilityFilter)
+        NO_SIGHT  - traveler is not able to see
+        NO_SINGLE_STEP  - traveler can not pass a single step
+        NO_STAIRS  - traveler can not use stairs
+        NO_ESCALATOR  - traveler can not use an escalator
+        NO_ELEVATOR  - traveler can not use an elevator
+        NO_RAMP  - traveler can not use a ramp
+        NO_TRAVELATOR - traveler can not use a travelator
+        LEVEL_ENTRANCE - traveller needs a level entrance
+        LEVEL_ENTRANCE_OR_BOARDING_AID - traveller needs a level entrance or boarding aid
+      type: string
+      x-extensible-enum:
+        - 'NO_SIGHT'
+        - 'NO_SINGLE_STEP'
+        - 'NO_STARS'
+        - 'NO_ESCALATOR'
+        - 'NO_ELEVATOR'
+        - 'NO_RAMP'
+        - 'NO_TRAVELATOR'
+        - 'LEVEL_ENTRANCE'
+        - 'LEVEL_ENTRANCE_OR_BOARDING_AID'
+      
+    TripMobilityFilterItems:
+      description: |
+        restrictions that control the trip search behavior for both public and individual transport.
+        Provided by OJP.
+      type: array        
+      items:
+         ref: '#/components/schemas/BaseTripMobilityFilterItem' 
+      minItems: 1 
 
     TripParameters:
       type: object
