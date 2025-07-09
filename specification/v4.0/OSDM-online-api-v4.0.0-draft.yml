@@ -352,14 +352,14 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'   
           
-/trips-collection/MultiODSearchEngine:
+  /trips-collection/MultiODSearchEngine:
     post:
       tags:
         - Trips
       summary: returns a collection of trips for a given OJP trip request using multiple Origins and Destinations
       description: |
         Returns trips for a given trip request based on the OJP specification.
-      operationId: postTrips
+      operationId: postTripsMultiOD
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -405,7 +405,8 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
-          $ref: '#/components/responses/DefaultErrorResponse'          
+          $ref: '#/components/responses/DefaultErrorResponse'      
+
   /trips-collections/{tripsCollectionId}:
     get:
       tags:
@@ -11992,7 +11993,6 @@ components:
             $ref: '#/components/schemas/Link'
 
     PlaceMasterData:
-      description: static master data of a place
       type: object
       additionalProperties: false
       description: |
@@ -12012,7 +12012,7 @@ components:
         name:
           description: |
             Name of this stop place for use in passenger information. Including optional translations.
-          type: Text
+          type: '#/components/schemas/Text'
         id:
           description: |
             id  defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn '0850000'
@@ -16451,7 +16451,14 @@ components:
             - 'string'
             - 'null'
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
-
+        origins:
+          type: array
+          items: 
+            $ref: '#/components/schemas/PlaceRef'
+        destinations:
+          type: array
+          items: 
+            $ref: '#/components/schemas/PlaceRef'            
         vias:
           description: |
             Ordered series of points where the journey must pass through. If more
