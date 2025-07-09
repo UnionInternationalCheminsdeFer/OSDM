@@ -350,7 +350,62 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
+          $ref: '#/components/responses/DefaultErrorResponse'   
+          
+/trips-collection/MultiODSearchEngine:
+    post:
+      tags:
+        - Trips
+      summary: returns a collection of trips for a given OJP trip request using multiple Origins and Destinations
+      description: |
+        Returns trips for a given trip request based on the OJP specification.
+      operationId: postTrips
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: stopBehavior
+          in: query
+          schema:
+            $ref: '#/components/schemas/StopBehavior'
+          required: false
+      requestBody:
+        required: true
+        description: |
+          request for trips
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripSearchCriteriaMultiOD'
+      responses:
+        '200':
+          description: |
+            trips found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripCollectionResponse'
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'          
   /trips-collections/{tripsCollectionId}:
     get:
       tags:
@@ -6647,6 +6702,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Trip'
+        tripContext:
+          $ref: '#/components/schemas/TripContext'               
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         confirmationTimeLimit:
@@ -9020,6 +9077,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Trip'
+        tripContext:
+          $ref: '#/components/schemas/TripContext'            
         passengers:
           type: array
           items:
@@ -11090,6 +11149,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Trip'
+        tripContext:
+          $ref: '#/components/schemas/TripContext'            
         _links:
           description: |
 
@@ -16196,6 +16257,8 @@ components:
             $ref: '#/components/schemas/Problem'
         trip:
           $ref: '#/components/schemas/Trip'
+        tripContext:
+          $ref: '#/components/schemas/TripContext'          
 
     TripResponseContent:
       type: string
@@ -16289,6 +16352,62 @@ components:
             $ref: '#/components/schemas/TripsCollectionResponseContent'
         returnSearchParameters:
           $ref: '#/components/schemas/ReturnSearchParameters'
+
+    TripSearchCriteriaMultiOD:
+      type: object
+      additionalProperties: false
+      description: |
+        Trip request structure. Provides trips from one of the origin places to one of the destination places. Provided by OJP.
+      required:
+        - origins
+        - destinations
+      properties:
+        departureTime:
+          description: |
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+          type:
+            - 'string'
+            - 'null'
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+        arrivalTime:
+          description: |
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+          type:
+            - 'string'
+            - 'null'
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+
+        vias:
+          description: |
+            Ordered series of points where the journey must pass through. If more
+            than one via point is given all of them must be obeyed - in the correct
+            order. The server is allowed to replace a via stop by equivalent stops.
+
+            TripDataFilters given at a via apply to the section after that via. To apply a TripDataFilter for 
+            the first section (between the origin and the first via), use the TripDataFilter within the
+            TripParameters structure.
+          type: array
+          items:
+            $ref: '#/components/schemas/TripVia'
+        notVias:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceRef' 
+        noChangeAt:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceRef'        
+        parameters:
+          $ref: '#/components/schemas/TripParameters'
+        embed:
+          description: |
+            Influences whether referenced resources are returned in full or as references only. Proposed default ALL
+          type: array
+          items:
+            $ref: '#/components/schemas/TripsCollectionResponseContent'
+        returnSearchParameters:
+          $ref: '#/components/schemas/ReturnSearchParameters'
+
           
     TripSection:
       type: object
