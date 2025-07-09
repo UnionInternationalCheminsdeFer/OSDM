@@ -143,7 +143,7 @@ paths:
     get:
       tags:
         - Master Data
-      summary: Returns all places.
+      summary: Returns static data for all all places.
       operationId: getPlaces
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -164,7 +164,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlaceResponse'
+                $ref: '#/components/schemas/PlacesMasterDataResponse'
           headers:
             Cache-Control:
               schema:
@@ -201,7 +201,7 @@ paths:
     post:
       tags:
         - Places
-      summary: returns place information for a given place request
+      summary: returns static place information for a given place request
       description: |
         Returns places for a given place request based on the OJP specification.
       operationId: postPlaces
@@ -225,7 +225,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlaceResponse'
+                $ref: '#/components/schemas/PlacesMasterDataResponse'
 
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -249,7 +249,7 @@ paths:
     get:
       tags:
         - Places
-      summary: returns a place
+      summary: returns static data for a place
       operationId: getPlacesId
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -270,7 +270,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlaceResponse'
+                $ref: '#/components/schemas/PlacesMasterDataResponse'
           headers:
             Cache-Control:
               schema:
@@ -5467,14 +5467,6 @@ components:
         - type: object
           additionalProperties: false
           properties:
-            code:
-              description: |
-                id of the address
-              type:
-                - 'string'
-                - 'null'
-              examples:
-                - NL:1916200000022621
             countryName:
               description: |
                 Country of the address.
@@ -5530,8 +5522,6 @@ components:
               type: string
               examples:
                 - 'Oude Trambaan corner Newe Trambahn'
-            ref:
-              $ref: '#/components/schemas/AddressRef'
 
     AddressRef:
       description: |
@@ -5799,6 +5789,7 @@ components:
           $ref: '#/components/schemas/ServiceTime'
         status:
           $ref: '#/components/schemas/StopCallStatus'
+    
 
     AlightSpecification:
       type: object
@@ -6169,7 +6160,7 @@ components:
       required:
         - accommodationType
         - accommodationSubType
-        - tripLegCoverage
+        - legCoverage
       properties:
         accommodationType:
           $ref: '#/components/schemas/AccommodationType'
@@ -6190,8 +6181,8 @@ components:
             - 'integer'
             - 'null'
           format: int32
-        tripLegCoverage:
-          $ref: '#/components/schemas/TripLegCoverage'
+        legCoverage:
+          $ref: '#/components/schemas/LegCoverage'
 
     AvailablePlacePreferences:
       type: object
@@ -6326,6 +6317,7 @@ components:
           $ref: '#/components/schemas/ServiceTime'
         status:
           $ref: '#/components/schemas/StopCallStatus'
+    
 
     BoardSpecification:
       type: object
@@ -6348,7 +6340,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        a booking arrangement description in a TripLeg- To be used if the leg can not be booked via the api.
+        a booking arrangement description in a Leg- To be used if the leg can not be booked via the api.
       properties:
         bookingContact:
           $ref: '#/components/schemas/ContactDetail'
@@ -10450,7 +10442,7 @@ components:
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
         status:
-          $ref: '#/components/schemas/StopCallStatus'
+          $ref: '#/components/schemas/StopCallStatus'    
 
     IntermediateSpecification:
       type: object
@@ -11963,6 +11955,7 @@ components:
           type: string
           examples:
             - urn:uic:stn:8500000
+            - NL:1916200000022621 
         alternativeIds:
           description: |
             For a place with ids in different reference systems, the alternative ids can be returned. 
@@ -11998,7 +11991,68 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-
+    PlaceMasterData:
+      description: static master data of a place
+      type: object
+      additionalProperties: false
+      description: |
+        A geographic place of any type which may be specified as the origin or destination of a trip. Provided by OJP.
+      discriminator:
+        propertyName: objectType
+      required:
+        - objectType
+        - id
+        - name
+      properties:
+        objectType:
+          description:
+            Attribute is used as discriminator for inheritance between data
+            types.
+          type: string
+        name:
+          description: |
+            Name of this stop place for use in passenger information. Including optional translations.
+          type: Text
+        id:
+          description: |
+            id  defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn '0850000'
+          type: string
+          examples:
+            - urn:uic:stn:8500000
+        alternativeIds:
+          description: |
+            For a place with ids in different reference systems, the alternative ids can be returned. 
+            The reference system is encoded in the string. E.g.: 'urn:uic:std:80000', 'x_swe:stn:10000', 'ch:1:sloid:343434'
+          type:
+            - 'array'
+            - 'null'
+          items:
+            type: string
+        geoPosition:
+          $ref: '#/components/schemas/GeoPosition'
+        modes:
+          description: |
+            List of Transport modes calling the place.
+          type: array
+          items:
+            $ref: '#/components/schemas/Mode'
+        ref:
+          description: |
+            Reference to another a place, e.g. to link address information. Provided by OJP.
+          $ref: '#/components/schemas/PlaceRef'
+        attributes:
+          type: array
+          items: 
+            $ref: '#/components/schemas/GeneralAttribute'
+        area:
+          description: area of the place described as a polygon of geo-coordinates
+          $ref: '#/components/schemas/Polygon'
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     GroupedFacilityItem:
        description: facility item and associated facility group
@@ -12160,7 +12214,7 @@ components:
         - accommodationType
         - accommodationSubType
         - reservedPlaces
-        - tripLegCoverage
+        - legCoverage
       properties:
         accommodationType:
           $ref: '#/components/schemas/AccommodationType'
@@ -12174,8 +12228,8 @@ components:
           items:
             $ref: '#/components/schemas/ReservedPlace'
           minItems: 1
-        tripLegCoverage:
-          $ref: '#/components/schemas/TripLegCoverage'
+        legCoverage:
+          $ref: '#/components/schemas/LegCoverage'
 
     PlaceAvailabilityCollectionResponse:
       type: object
@@ -12588,6 +12642,23 @@ components:
           items:
             $ref: '#/components/schemas/Place'
           minItems: 1
+
+    PlacesMasterDataResponse:
+      description: master data on places
+      type: object
+      additionalProperties: false
+      required:
+        - places
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        places:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceMasterData'
+          minItems: 1          
 
     PlaceRestriction:
       type: object
@@ -14971,6 +15042,10 @@ components:
             - 'boolean'
             - 'null'
           default: false
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralAttribute'           
 
     StopPlace:
       description: |
@@ -15689,7 +15764,7 @@ components:
             Legs ot the trip
           type: array
           items:
-            $ref: '#/components/schemas/TripLeg'
+            $ref: '#/components/schemas/Leg'
           minItems: 1
         operatingDays:
           $ref: '#/components/schemas/OperatingDays'
@@ -15709,7 +15784,7 @@ components:
               $ref: '#/components/schemas/TripStatus'
         isAlternativeTrip:
           description: |
-            indication that this triop was found due to the request parameter to search for alternatives
+            indication that this trip was found due to the request parameter to search for alternatives
           type: boolean
         _links:
           description: |
@@ -15945,7 +16020,7 @@ components:
         - 'MANUAL'
         - 'ACTIVATION'
 
-    TripLeg:
+    Leg:
       type: object
       additionalProperties: false
       description: |
@@ -15960,7 +16035,7 @@ components:
           type: string
         externalRef:
           description: |
-            External reference of this tripLeg for referencing purposes.
+            External reference of this leg for referencing purposes.
           type:
             - 'string'
             - 'null'
@@ -15974,7 +16049,7 @@ components:
           description: indicates that the leg was changed via a trip change request
           type: boolean
 
-    TripLegCoverage:
+    LegCoverage:
       type: object
       additionalProperties: false
       required:
@@ -15987,7 +16062,7 @@ components:
         legId:
           type: string
 
-    TripLegSpecification:
+    LegSpecification:
       type: object
       additionalProperties: false
       description: |
@@ -16458,7 +16533,7 @@ components:
         legs:
           type: array
           items:
-            $ref: '#/components/schemas/TripLegSpecification'
+            $ref: '#/components/schemas/LegSpecification'
           minItems: 1
         isPartOfInternationalTrip:
           type:
