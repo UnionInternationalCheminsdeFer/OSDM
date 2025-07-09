@@ -940,7 +940,6 @@ by a specific carrier:
 | `UIC_INT_DISABILITY_CARD`             | \*     | International Disabled Card                                  | REDUCTION_CARD | UIC_EU_DISABILITY_CARD               |
 | `UIC_INT_DISABILITY_CARD_BLIND`       | \*     | International Disabled Card for a blind person               | REDUCTION_CARD | UIC_EU_DISABILITY_CARD_BLIND         |
 | `UIC_INT_DISABILITY_CARD_WHEELCHAIR`  | \*     | International Disabled Card for a person using a wheelchair  | REDUCTION_CARD | UIC_EU_DISABILITY_CARD_WHEELCHAIR    |
-| `1185_DISABILITY_CARD`                | SBB    | Disabled Companion Card                                      | REDUCTION_CARD |                                      |
 | `1185_GA_1KL`                         | SBB    | GA Travelcard First Class                                    | REDUCTION_CARD |                                      |
 | `1185_GA_2KL`                         | SBB    | GA Travelcard Second Class                                   | REDUCTION_CARD |                                      |
 | `1185_HTA`                            | SBB    | Half Fare Travelcard                                         | REDUCTION_CARD |                                      |
