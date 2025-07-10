@@ -16481,6 +16481,8 @@ components:
             $ref: '#/components/schemas/PlaceRef'        
         parameters:
           $ref: '#/components/schemas/TripParameters'
+        multipleODSearchType:
+          $ref: '#/components/schemas/TripSearchTypeMultipleOD'
         embed:
           description: |
             Influences whether referenced resources are returned in full or as references only. Proposed default ALL
@@ -16490,6 +16492,21 @@ components:
         returnSearchParameters:
           $ref: '#/components/schemas/ReturnSearchParameters'
 
+    TripSearchTypeMultipleOD:
+      description: | 
+            expected search behaviour
+            'ANY' : Returning results for a single origin and destination
+            'EACH_ORIGIN' : At least a distinct solution for each of the origin must be delivered.
+            'EACH_DESTINATION' : At least a distinct solution for each of the origin must be delivered.
+            'EACH_ORIGIN_DESTINATION' :  At least a distinct solution for each of the origin-destination pair must be delivered.origin-destination pair must be delivered.
+            'SOME' : some origin-destination pairs should be returned. 
+      type: string
+      x-extensible-enum:
+        - 'ANY' 
+        - 'EACH_ORIGIN'
+        - 'EACH_DESTINATION'
+        - 'EACH_ORIGIN_DESTINATION'
+        - 'SOME' 
           
     TripSection:
       type: object
