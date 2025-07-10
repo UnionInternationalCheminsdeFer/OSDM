@@ -143,7 +143,7 @@ paths:
     get:
       tags:
         - Master Data
-      summary: Returns all places.
+      summary: Returns static data for all all places.
       operationId: getPlaces
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -164,7 +164,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlaceResponse'
+                $ref: '#/components/schemas/PlacesMasterDataResponse'
           headers:
             Cache-Control:
               schema:
@@ -201,7 +201,7 @@ paths:
     post:
       tags:
         - Places
-      summary: returns place information for a given place request
+      summary: returns static place information for a given place request
       description: |
         Returns places for a given place request based on the OJP specification.
       operationId: postPlaces
@@ -225,7 +225,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlaceResponse'
+                $ref: '#/components/schemas/PlacesMasterDataResponse'
 
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -249,7 +249,7 @@ paths:
     get:
       tags:
         - Places
-      summary: returns a place
+      summary: returns static data for a place
       operationId: getPlacesId
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -270,7 +270,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlaceResponse'
+                $ref: '#/components/schemas/PlacesMasterDataResponse'
           headers:
             Cache-Control:
               schema:
@@ -350,7 +350,63 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
+          $ref: '#/components/responses/DefaultErrorResponse'   
+          
+  /trips-collection/MultiODSearchEngine:
+    post:
+      tags:
+        - Trips
+      summary: returns a collection of trips for a given OJP trip request using multiple Origins and Destinations
+      description: |
+        Returns trips for a given trip request based on the OJP specification.
+      operationId: postTripsMultiOD
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: stopBehavior
+          in: query
+          schema:
+            $ref: '#/components/schemas/StopBehavior'
+          required: false
+      requestBody:
+        required: true
+        description: |
+          request for trips
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripSearchCriteriaMultiOD'
+      responses:
+        '200':
+          description: |
+            trips found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripCollectionResponse'
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'      
+
   /trips-collections/{tripsCollectionId}:
     get:
       tags:
@@ -5412,22 +5468,6 @@ components:
         - type: object
           additionalProperties: false
           properties:
-            name:
-              description: |
-                Name or description of address for use in passenger information.
-              type:
-                - 'string'
-                - 'null'
-              examples:
-                - Oude Trambaan 7, 2265CA Leidschendam, Nederland
-            code:
-              description: |
-                id of the address
-              type:
-                - 'string'
-                - 'null'
-              examples:
-                - NL:1916200000022621
             countryName:
               description: |
                 Country of the address.
@@ -5479,8 +5519,10 @@ components:
                 - 'null'
               examples:
                 - 7
-            ref:
-              $ref: '#/components/schemas/AddressRef'
+            crossroad:
+              type: string
+              examples:
+                - 'Oude Trambaan corner Newe Trambahn'
 
     AddressRef:
       description: |
@@ -5531,7 +5573,7 @@ components:
             - 'string'
             - 'null'
           examples:
-            - Oude Trambaan
+            - 'Oude Trambaan'
         houseNumber:
           description: |
             House number of the address. House number can either be in this separate field, or can be
@@ -5748,6 +5790,7 @@ components:
           $ref: '#/components/schemas/ServiceTime'
         status:
           $ref: '#/components/schemas/StopCallStatus'
+    
 
     AlightSpecification:
       type: object
@@ -5997,11 +6040,13 @@ components:
           type: string
           description: |
             Version of the next API.
-          example: '4.0.0'
+          examples: 
+            - '4.0.0'
         availableAt:
           type: string
           format: url
-          example: 'https://api.next.example.com'
+          examples:
+            - 'https://api.next.example.com'
         availableFrom:
           type:
             - 'string'
@@ -6009,7 +6054,8 @@ components:
           format: date-time
           description: |
             Date from which the next version is available.
-          example: "2025-01-01T00:00:00+01:00"
+          examples:
+            - "2025-01-01T00:00:00+01:00"
 
     ApiVersion:
       type: object
@@ -6024,7 +6070,8 @@ components:
           type: string
           description: |
             Version of the API
-          example: '3.0.0'
+          examples: 
+            - '3.0.0'
         sunset:
           type:
             - 'string'
@@ -6032,7 +6079,8 @@ components:
           format: date-time
           description: |
             Date after which the API version will no longer be available.
-          example: "2024-12-31T23:59:59+01:00"
+          examples: 
+            - "2024-12-31T23:59:59+01:00"
         nextVersion:
           anyOf:
             - $ref: '#/components/schemas/ApiNextVersion'
@@ -6113,7 +6161,7 @@ components:
       required:
         - accommodationType
         - accommodationSubType
-        - tripLegCoverage
+        - legCoverage
       properties:
         accommodationType:
           $ref: '#/components/schemas/AccommodationType'
@@ -6134,8 +6182,8 @@ components:
             - 'integer'
             - 'null'
           format: int32
-        tripLegCoverage:
-          $ref: '#/components/schemas/TripLegCoverage'
+        legCoverage:
+          $ref: '#/components/schemas/LegCoverage'
 
     AvailablePlacePreferences:
       type: object
@@ -6232,28 +6280,6 @@ components:
         - 'SSB'
         - 'DOSIPAS'
 
-    BaseTripPolicyFilter:
-      type: object
-      additionalProperties: false
-      description: |
-        Policies that control the trip search behavior for both public and individual transport.
-        Provided by OJP.
-      properties:
-        noSingleStep:
-          description: |
-            The user is not able to climb one step, i.e. wheel chair.
-          type:
-            - 'boolean'
-            - 'null'
-          default: false
-        noSight:
-          description: |
-            The user is not able to see.
-          type:
-            - 'boolean'
-            - 'null'
-          default: false
-
     Board:
       type: object
       additionalProperties: false
@@ -6292,6 +6318,7 @@ components:
           $ref: '#/components/schemas/ServiceTime'
         status:
           $ref: '#/components/schemas/StopCallStatus'
+    
 
     BoardSpecification:
       type: object
@@ -6309,6 +6336,110 @@ components:
           $ref: '#/components/schemas/StopPlaceRef'             
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
+
+    BookingArrangement:
+      type: object
+      additionalProperties: false
+      description: |
+        a booking arrangement description in a Leg- To be used if the leg can not be booked via the api.
+      properties:
+        bookingContact:
+          $ref: '#/components/schemas/ContactDetail'
+        bookingMethod:
+          $ref: '#/components/schemas/BookingMethod'	    
+        bookingAccess:
+          $ref: '#/components/schemas/BookingAccess'
+        bookingAccessTime:
+          $ref: '#/components/schemas/BookingAccessTiming'
+        bookingPurchaseMoment:
+          $ref: '#/components/schemas/BookingPurchaseMoment'
+        lastBookingTime:
+          type: string
+          format: date-time
+        minimumBookingPeriod:
+          type: string
+          format: duration
+        maximumBookingPeriod:
+          type: string
+          format: duration
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        bookingNotes:
+          description: human readable description on booking arrangement
+          type: array
+          items:
+            type: string
+
+    BookingPurchaseMoment:
+      description: |
+        - 'ON_RESERVATION'
+        description: must be made on reservation in advance of travel
+        - 'IN_ADVANCE'
+        description: can be made in advance of travel
+        - 'IN_ADVANCE_ONLY'
+        description: can only be made in advance of travel 
+        - 'BEFORE_BOARDING'
+        description: can be made before boarding transport vehicle
+        - 'BEFORE_BOARDING_ONLY'
+        description: must be made before boarding transport vehicle
+        - 'ON_BOARDING'
+        description: be made when boarding the transport vehicle
+        - 'ON_BOARDING_ONLY'
+        description: can only be made when boarding the transport vehicle
+        - 'AFTER_BOARDING'
+        description: can be made after boarding transport vehicle
+        - 'ON_CHECKIN'
+        description: can be made on entering transport system
+        - 'ON_CHECKOUT'
+        description: can be made on leaving transport system
+        - 'SUBSCRIPTION_ONLY'
+        description: can only be made on subscription
+      type: string
+      x-extensible-enum:
+        - 'ON_RESERVATION'
+        - 'IN_ADVANCE'
+        - 'IN_ADVANCE_ONLY'
+        - 'BEFORE_BOARDING'
+        - 'BEFORE_BOARDING_ONLY'
+        - 'ON_BOARDING'
+        - 'ON_BOARDING_ONLY'
+        - 'AFTER_BOARDING'
+        - 'ON_CHECKIN'
+        - 'ON_CHECKOUT'
+        - 'SUBSCRIPTION_ONLY'
+
+    BookingAccess:
+      type: string
+      x-extensible-enum:
+        - 'PUBLIC'
+        - 'AUTHORIZED_PUBLIC'
+        - 'STAFF'
+
+    BookingAccessTiming:
+      type: string
+      x-extensible-enum:
+         - 'ADVANCE_ONLY'
+         - 'UNTIL_PREVIOUS_DAY'
+         - 'DAY_OF_TRAVEL_ONLY'
+         - 'ADVANCE_AND_DAY_OF_TRAVEL'
+         - 'TIME_OF_TRAVEL_ONLY'
+         - 'SUBSCRIPTION_CHARGE_MOMENT'
+
+    BookingMethod:
+      type: string
+      x-extensible-enum:
+        - 'CALL_DRIVER'    
+        - 'CALL_OFFICE'    
+        - 'ONLINE'        
+        - 'OTHER'         
+        - 'PHONE_AT_STOP'   
+        - 'TEXT'          
+        - 'MOBILE_APP'     
+        - 'AT_OFFICE' 
 
     BookedOffer:
       type: object
@@ -6564,6 +6695,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Trip'
+        tripContext:
+          $ref: '#/components/schemas/TripContext'               
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         confirmationTimeLimit:
@@ -7423,7 +7556,7 @@ components:
           description: |
             Typically set on the lowest deck. Empty if unknown.
           type:
-            -  boolean
+            - 'boolean'
             - 'null'
         id:
           type: string
@@ -7834,8 +7967,8 @@ components:
             $ref: '#/components/schemas/RefundedFulfillmentSpecification'
           minItems: 1 
         issuedFulfillmentIds:
-          description:
-            IDs of the new fulfillments issued with this refund
+          description: |
+             IDs of the new fulfillments issued with this refund
           type: array
           items:
             type: string
@@ -7921,6 +8054,9 @@ components:
           $ref: '#/components/schemas/Place'
         service:
           $ref: '#/components/schemas/ContinuousService'
+        description:
+          description: human readable description of the leg
+          type: string
         timeWindowStart:
           description: |
             Time at which window begins.
@@ -7929,8 +8065,7 @@ components:
             - 'null'
           format: date-time
         timeWindowEnd:
-          description: |
-            Time at which window ends.
+          description: Time at which window ends.
           type:
             - 'string'
             - 'null'
@@ -7947,18 +8082,33 @@ components:
         situationFullRefs:
           type: array
           items:
-            $ref: '#/components/schemas/SituationFullRef'
+            $ref: '#/components/schemas/SituationRef'
         co2Emission:
           $ref: '#/components/schemas/Quantity'
 
-    ContinuousMode:
+    ContinousOperationMode:
       description: |
         Types of modes that run at any time without a timetable. Provided by OJP.
+        CHAUFFEURED
+        description: operated with a paid driver
+        DEMAND_RESPONSIVE
+        description: no scheduled stop points
+        FLEXIBLE_AREA
+        description: demand responsive for AREA related offers
+        COMPANY_SHUTTLE
+        description: a company related shuttle
+        HOTEL_SHUTTLE
+        description: a hotel related shuttle
+        HIRE
+        description: Using a hired VEHICLE
       type: string
       x-extensible-enum:
-        - 'WALK'
+        - 'CHAUFFEURED'  
         - 'DEMAND_RESPONSIVE'
-        - 'REPLACEMENT_SERVICE'
+        - 'FLEXIBLE_AREA'
+        - 'COMPANY_SHUTTLE'
+        - 'HOTEL_SHUTTLE'
+        - 'HIRE'
 
     ContinuousService:
       type: object
@@ -7968,25 +8118,16 @@ components:
         Service of this leg. May be 'walk' in most cases, but also cycling or taxi etc.
         Provided by OJP.
       required:
-        - operatingDayRef
-        - journeyRef
-        - mode
         - publishedServiceName
         - originText
         - destinationText
       properties:
-        continuousMode:
-          $ref: '#/components/schemas/ContinuousMode'
-        individualMode:
-          $ref: '#/components/schemas/IndividualMode'
+        operationMode:
+          $ref: '#/components/schemas/ContinousOperationMode'
+        personalMode:
+          $ref: '#/components/schemas/PersonalMode'
         operatingDayRef:
           $ref: '#/components/schemas/OperationDayRef'
-        journeyRef:
-          $ref: '#/components/schemas/JourneyRef'
-        mode:
-          type: string
-          examples:
-            - Ask Stefan
         publishedServiceName:
           type: string
           examples:
@@ -7995,6 +8136,11 @@ components:
           type: string
         destinationText:
           type: string
+        bookingArrangements:
+          description: booking arrangements in case the service can not be booked via OSDM
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingArrangement'
 
     ContinuousServiceAvailabilityScope:
       description:
@@ -8426,7 +8572,6 @@ components:
             - 'S1'
             - 'Circle Line'
             - 'ICE 488'
-
         vehicleNumbers:
           type: array
           items:
@@ -8441,7 +8586,7 @@ components:
         situationFullRefs:
           type: array
           items:
-            $ref: '#/components/schemas/SituationFullRef'
+            $ref: '#/components/schemas/SituationRef'
         carriers:
           type: array
           items:
@@ -8925,6 +9070,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Trip'
+        tripContext:
+          $ref: '#/components/schemas/TripContext'            
         passengers:
           type: array
           items:
@@ -9340,10 +9487,6 @@ components:
           required:
             - stationSets
           properties:
-            name:
-              type:
-                - 'string'
-                - 'null'
             stationSets:
               type: array
               items:
@@ -9915,8 +10058,10 @@ components:
       additionalProperties: false
       required:
         - text
+        - code
       properties:
         text:
+          description: text to be displayed to the user
           type:
             - 'string'
             - 'null'
@@ -9924,10 +10069,31 @@ components:
           type:
             - 'string'
             - 'null'
-        url:
+        key:
           type:
             - 'string'
-            - 'null'
+            - 'null'        
+        value:
+          type:
+            - 'string'
+            - 'null'        
+        facilities:
+          type: array
+          items: 
+            $ref: '#/components/schemas/GroupedFacilityItem'
+        mandatory:
+           description: true = mandatory to be displayed to the user
+           type: boolean
+        importance:
+          description: importance as percentage
+          type:   number
+          format: float
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     GeoPosition:
       type: object
@@ -10196,7 +10362,7 @@ components:
           format: int32
           default: 2
 
-    IndividualMode:
+    PersonalMode:
       description: |
         Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
       type: string
@@ -10277,7 +10443,7 @@ components:
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
         status:
-          $ref: '#/components/schemas/StopCallStatus'
+          $ref: '#/components/schemas/StopCallStatus'    
 
     IntermediateSpecification:
       type: object
@@ -10314,41 +10480,6 @@ components:
       maximum: 90
       examples:
         - 47.37818
-
-    LegAttribute:
-      type: object
-      additionalProperties: false
-      description: |
-        Attributes that are not valid on the whole service, but only on section of a trip made on a single mode without interchange between boarding and alighting.
-      required:
-        - text
-      properties:
-        text:
-          description: |
-            Text of the attribute to be shown to the user.
-          type: string
-        code:
-          description: |
-            Internal code of the attribute. Can be used for detection of double occurrences. Refers to Service Facilities / Leg Attributes from the Catalog of Code Lists
-          type:
-            - 'string'
-            - 'null'
-        fromStopSeqNumber:
-          description: |
-            The attribute is valid from the stop point with this sequence number within the leg. If missing it is valid from the beginning of the leg.
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
-        toStopSeqNumber:
-          description: |
-            The attribute is valid to the stop point (inclusively) with this sequence number within the leg. If missing it is valid to the end of the leg.
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
 
     LegacyAccountingIdentifier:
       type: object
@@ -10452,6 +10583,33 @@ components:
             - 'integer'
             - 'null'
           format: int32
+
+    LegTrack:
+      type: object
+      additionalProperties: false
+      description: |
+         geographic view of the leg
+      properties:
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegTrackSection'	  
+
+    LegTrackSection:
+      type: object
+      additionalProperties: false
+      description: |
+         geographic view of the leg
+      properties:
+        start:
+          $ref: '#/components/schemas/PlaceRef'
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoPosition'	  
+        end:
+          $ref: '#/components/schemas/PlaceRef'	  
+   
     Line:
       type: object
       additionalProperties: false
@@ -10504,7 +10662,7 @@ components:
         E.g. the line numbers of 'S 52' or 'B 19'.
       examples:
         - 52
-        - B 19
+        - 'B 19'
 
     Link:
       type: object
@@ -10836,17 +10994,6 @@ components:
           items:
             $ref: '#/components/schemas/PlaceRef'
 
-    NotVia:
-      type: object
-      additionalProperties: false
-      description: |
-        Not-via restrictions for a trip, i.e. scheduled stop points or stop places that the trip is not allowed to pass through.  Provided by OJP.
-      properties:
-        notViaPlace:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlaceRef'
-
     Offer:
       type: object
       additionalProperties: false
@@ -10995,6 +11142,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Trip'
+        tripContext:
+          $ref: '#/components/schemas/TripContext'            
         _links:
           description: |
 
@@ -11326,6 +11475,22 @@ components:
         Reference to an operating day. Provided by OJP.
       examples:
         - OperatingDay:12345
+
+    Operator:
+      type: object
+      additionalProperties: false       
+      description: operator of a service
+      required:
+        - id
+        - name
+        - shortName
+      properties:
+         id:
+            $ref: '#/components/schemas/CompanyRef'
+         name:
+            type: string
+         shortName:
+            type: string
 
     Orientation:
       type: integer
@@ -11772,12 +11937,82 @@ components:
       required:
         - objectType
         - id
+        - name
       properties:
         objectType:
           description:
             Attribute is used as discriminator for inheritance between data
             types.
           type: string
+        name:
+          description: |
+            Name of this stop place for use in passenger information.
+          type: string
+          examples:
+            - 'Zürich HB'          
+        id:
+          description: |
+            id  defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn '0850000'
+          type: string
+          examples:
+            - urn:uic:stn:8500000
+            - NL:1916200000022621 
+        alternativeIds:
+          description: |
+            For a place with ids in different reference systems, the alternative ids can be returned. 
+            The reference system is encoded in the string. E.g.: 'urn:uic:std:80000', 'x_swe:stn:10000', 'ch:1:sloid:343434'
+          type:
+            - 'array'
+            - 'null'
+          items:
+            type: string
+        geoPosition:
+          $ref: '#/components/schemas/GeoPosition'
+        modes:
+          description: |
+            List of Transport modes calling the place.
+          type: array
+          items:
+            $ref: '#/components/schemas/Mode'
+        ref:
+          description: |
+            Reference to another a place, e.g. to link address information. Provided by OJP.
+          $ref: '#/components/schemas/PlaceRef'
+        attributes:
+          type: array
+          items: 
+            $ref: '#/components/schemas/GeneralAttribute'
+        area:
+          description: area of the place described as a polygon of geo-coordinates
+          $ref: '#/components/schemas/Polygon'
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+
+    PlaceMasterData:
+      type: object
+      additionalProperties: false
+      description: |
+        A geographic place of any type which may be specified as the origin or destination of a trip. Provided by OJP.
+      discriminator:
+        propertyName: objectType
+      required:
+        - objectType
+        - id
+        - name
+      properties:
+        objectType:
+          description:
+            Attribute is used as discriminator for inheritance between data
+            types.
+          type: string
+        name:
+          description: |
+            Name of this stop place for use in passenger information. Including optional translations.
+          type: '#/components/schemas/Text'
         id:
           description: |
             id  defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn '0850000'
@@ -11795,16 +12030,180 @@ components:
             type: string
         geoPosition:
           $ref: '#/components/schemas/GeoPosition'
+        modes:
+          description: |
+            List of Transport modes calling the place.
+          type: array
+          items:
+            $ref: '#/components/schemas/Mode'
         ref:
           description: |
             Reference to another a place, e.g. to link address information. Provided by OJP.
           $ref: '#/components/schemas/PlaceRef'
+        attributes:
+          type: array
+          items: 
+            $ref: '#/components/schemas/GeneralAttribute'
+        area:
+          description: area of the place described as a polygon of geo-coordinates
+          $ref: '#/components/schemas/Polygon'
         _links:
           description: |
             Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    GroupedFacilityItem:
+       description: facility item and associated facility group
+       type: object
+       additionalProperties: false
+       required:
+          - facility
+       properties:
+          facility:
+              $ref: '#/components/schemas/FacilityEnum'
+          group:
+              $ref: '#/components/schemas/FacilityGroupEnum'
+    
+    FacilityEnum:
+        description: | 
+          all kinds of Facilities
+          COVERED - offers protection from weather
+          LIGHTING - is lit
+          WHEELCHAIR_ACCESSIBLE - accessible by a wheel chair
+        type: string
+        x-extendible-enum:
+          - 'GENERIC'
+          - 'LIFT'
+          - 'ESCALATOR'
+          - 'TRAVELATOR'
+          - 'RAMP'
+          - 'STAIRS'
+          - 'SHUTTLE'
+          - 'NARROW_ENTRANCE'
+          - 'BARRIER'
+          - 'PALLET_ACCESS_LOWFLOOR'
+          - 'VALIDATOR'
+          - 'POLICE'
+          - 'FIRST_AID'
+          - 'SOS_POINT'
+          - 'SPECIFIC_ASSISTANCE'
+          - 'UNACCOMPANIED_MINOR_ASSISTANCE'
+          - 'BOARDING_ASSISTANCE'
+          - 'CAR_HIRE'
+          - 'MOTORCYCLE_HIRE'
+          - 'CYCLE_HIRE'
+          - 'TAXI'
+          - 'RECREATION_DEVICE_HIRE'
+          - 'BIKE_CARRIAGE'
+          - 'BAGGAGE_STORAGE'
+          - 'LEFT_LUGGAGE'
+          - 'PORTERAGE'
+          - 'BAGGAGE_TROLLEYS'
+          - 'SUITABLE_FOR_WHEELCHAIRS'
+          - 'LOWFLOOR'
+          - 'STEP_FREE_ACCESS'
+          - 'TACTILE_PLATFORM_EDGES'
+          - 'ONBOARD_ASSISTANCE'
+          - 'AUDIO_INFORMATION'
+          - 'VISUAL_INFORMATION'
+          - 'DISPLAYS_FOR_VISUALLY_IMPAIRED'
+          - 'AUDIO_FOR_HEARING_IMPAIRED'
+          - 'SMOKING'
+          - 'NO_SMOKING'
+          - 'MOBILEPHONE_USE_ZONE'
+          - 'MOBILEPHONE_FREE_ZONE'
+          - 'CAR_PARK'
+          - 'PARK_AND_RIDE_PARK'
+          - 'MOTOR_CYCLE_PARK'
+          - 'CYCLE_PARK'
+          - 'RENTAL_CAR_PARK'
+          - 'COACH_PARK'
+          - 'NEXT_STOP_INDICATOR'
+          - 'STOP_ANNOUNCEMENTS'
+          - 'PASSENGER_INFORMATION_DISPLAY'
+          - 'TACTILE_INFORMATION'
+          - 'WALKING_GUIDANCE'
+          - 'JOURNEY_PLANNING'
+          - 'LOST_FOUND'
+          - 'INFORMATION_DESK'
+          - 'INTERACTIVE_KIOSK_DISPLAY'
+          - 'PRINTED_PUBLIC_NOTICE'
+          - 'PASSENGER_WIFI'
+          - 'TELEPHONE'
+          - 'AUDIO_SERVICES'
+          - 'VIDEO_SERVICES'
+          - 'BUSINESS_SERVICES'
+          - 'INTERNET'
+          - 'POST_OFFICE'
+          - 'LETTER_BOX'
+          - 'RESTAURANT_SERVICE'
+          - 'SNACKS_SERVICE'
+          - 'TROLLEY'
+          - 'BAR'
+          - 'FOOD_NOT_AVAILABLE'
+          - 'BEVERAGES_NOT_AVAILABLE'
+          - 'BISTRO'
+          - 'FOOD_VENDING_MACHINE'
+          - 'BEVERAGE_VENDING_MACHINE'
+          - 'LOUNGE'
+          - 'HALL'
+          - 'MEETING_POINT'
+          - 'GROUP_POINT'
+          - 'RECEPTION'
+          - 'SHELTER'
+          - 'SEATS'
+          - 'FOOD_RETAILER'
+          - 'NEWSPAPER_TOBACCO_RETAILER'
+          - 'RECREATION_TRAVEL_RETAILER'
+          - 'HYGIENE_HEALTH_BEAUTY_RETAILER'
+          - 'FASHION_ACCESSORIES_RETAILER'
+          - 'BANK_FINANCE_INSURANCE'
+          - 'CASH_MACHINE'
+          - 'CURRENCY_EXCHANGE'
+          - 'TOURISM_SERVICE'
+          - 'PHOTO_BOOTH'
+          - 'TOILET'
+          - 'NO_TOILET'
+          - 'SHOWER'
+          - 'WHEELCHAIR_ACCCESS_TOILET'
+          - 'BABY_CHANGE'
+          - 'TICKET_MACHINES'
+          - 'TICKET_OFFICE'
+          - 'TICKET_ONDEMAND_MACHINES'
+          - 'TICKET_SALES'
+          - 'MOBILE_TICKETING'
+          - 'TICKET_COLLECTION'
+          - 'CENTRAL_RESERVATIONS'
+          - 'LOCAL_TICKETS'
+          - 'NATIONAL_TICKETS'
+          - 'INTERNATIONAL_TICKETS'
+          - 'COVERED'
+          - 'LIGHTING'
+          - 'WHEELCHAIR_ACCESSIBLE'
+
+      
+    FacilityGroupEnum:
+        description: grouping of facilities (provided by OJP)
+        type: string
+        x-extendible-enum:
+          - 'ACCESS_FACILITY'
+          - 'ACCOMMODATION_FACILITY'
+          - 'ASSISTANCE_FACILITY'
+          - 'HIRE_FACILITY'
+          - 'LUGGAGE_FACILITY'
+          - 'MOBILITY_FACILITY'
+          - 'NUISANCE_FACILITY'
+          - 'PARKING_FACILITY'
+          - 'PASSENGER_COMMS_FACILITY'
+          - 'PASSENGER_INFORMATION_FACILITY'
+          - 'REFRESHMENT_FACILITY'
+          - 'RESERVED_SPACE_FACILITY'
+          - 'RETAIL_FACILITY'
+          - 'SANITARY_FACILITY'
+          - 'TICKETING_FACILITY'
+          - 'STOP_POINT_FACILITY'
 
     PlaceAllocation:
       type: object
@@ -11815,7 +12214,7 @@ components:
         - accommodationType
         - accommodationSubType
         - reservedPlaces
-        - tripLegCoverage
+        - legCoverage
       properties:
         accommodationType:
           $ref: '#/components/schemas/AccommodationType'
@@ -11829,8 +12228,8 @@ components:
           items:
             $ref: '#/components/schemas/ReservedPlace'
           minItems: 1
-        tripLegCoverage:
-          $ref: '#/components/schemas/TripLegCoverage'
+        legCoverage:
+          $ref: '#/components/schemas/LegCoverage'
 
     PlaceAvailabilityCollectionResponse:
       type: object
@@ -12244,6 +12643,23 @@ components:
             $ref: '#/components/schemas/Place'
           minItems: 1
 
+    PlacesMasterDataResponse:
+      description: master data on places
+      type: object
+      additionalProperties: false
+      required:
+        - places
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        places:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceMasterData'
+          minItems: 1          
+
     PlaceRestriction:
       type: object
       additionalProperties: false
@@ -12316,15 +12732,8 @@ components:
         - type: object
           additionalProperties: false
           required:
-            - name
             - code
           properties:
-            name:
-              description: |
-                Name or description of point of interest for use in passenger information.
-              type: string
-              examples:
-                - Park Rozenrust
             code:
               description: |
                 id of the Point of Interest.
@@ -13742,7 +14151,6 @@ components:
         - createdOn
         - validFrom
         - validUntil
-        - status
         - releasedFulfillments
       properties:
         id:
@@ -14479,7 +14887,40 @@ components:
         - 'REGISTRY'
         - 'PEER2PEER'
 
-    SituationFullRef:
+    Situation:
+      description: traffic situation      
+      type: object
+      additionalProperties: false       
+      required:
+        - id
+        - description
+      properties:
+        id:
+          $ref: '#/components/schemas/SituationRef'
+        description:
+          $ref: '#/components/schemas/SituationDescription'
+
+    SituationDescription:
+      type: object
+      additionalProperties: false       
+      description: situation description
+      properties:
+        summary: 
+          type: string
+        description: 
+          type: string   
+        details: 
+          type: string    
+        advice:
+          type: string
+        _links:
+          description: |
+              Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'         
+
+    SituationRef:
       type:
         - 'string'
         - 'null'
@@ -14601,6 +15042,10 @@ components:
             - 'boolean'
             - 'null'
           default: false
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralAttribute'           
 
     StopPlace:
       description: |
@@ -14609,17 +15054,6 @@ components:
         or prepare their trip, and which will usually have one or more wellknown names. Provided by OJP.
       allOf:
         - $ref: '#/components/schemas/Place'
-        - type: object
-          additionalProperties: false
-          required:
-            - name
-          properties:
-            name:
-              description: |
-                Name of this stop place for use in passenger information.
-              type: string
-              examples:
-                - Zürich HB
 
     StopPlaceRef:
       description: |
@@ -14795,12 +15229,18 @@ components:
             - 'string'
             - 'null'
           format: duration
+        legTrack:
+          $ref: '#/components/schemas/LegTrack'
+        parallelServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatedJourney'
         co2Emission:
           $ref: '#/components/schemas/Quantity'
         attributes:
           type: array
           items:
-            $ref: '#/components/schemas/LegAttribute'
+            $ref: '#/components/schemas/GeneralAttribute'
 
     TimedLegSpecification:
       type: object
@@ -14976,14 +15416,15 @@ components:
         - start
         - end
       properties:
-        continuousMode:
-          $ref: '#/components/schemas/ContinuousMode'
-        transferMode:
-          $ref: '#/components/schemas/TransferMode'
+        type:
+          $ref: '#/components/schemas/TransferType'
         start:
           $ref: '#/components/schemas/PlaceRef'
         end:
           $ref: '#/components/schemas/PlaceRef'
+        description:
+          description: human readable description of the leg
+          type: string
         timeWindowStart:
           description: |
             Time at which window begins.
@@ -15007,29 +15448,36 @@ components:
           format: duration
           examples:
             - PT20M
-        situationFullRefs:
+        feasibility:
+          $ref: '#/components/schemas/TripFeasibility'        
+        attributes:
+          type: array
+          items: 
+            $ref: '#/components/schemas/GeneralAttribute'
+        situationRefs:
           type: array
           items:
-            $ref: '#/components/schemas/SituationFullRef'
+            $ref: '#/components/schemas/SituationRef'
         co2Emission:
           $ref: '#/components/schemas/Quantity'
 
-    TransferMode:
+    TransferType:
       description: |
         Modes dedicated to perform transfers. Provided by OJP.
       type: string
       x-extensible-enum:
         - 'WALK'
+        - 'SHUTTLE'
+        - 'REMAIN_IN_VEHICLE'
+        - 'CHANGE_WITHIN_VEHICLE'
+        - 'CHECK_IN'
+        - 'CHECK_OUT'
         - 'PARK_AND_RIDE'
         - 'BIKE_AND_RIDE'
         - 'CAR_HIRE'
         - 'BIKE_HIRE'
         - 'PROTECTED_CONNECTION'
         - 'GUARANTEED_CONNECTION'
-        - 'REMAIN_IN_VEHICLE'
-        - 'CHANGE_WITHIN_VEHICLE'
-        - 'CHECK_IN'
-        - 'CHECK_OUT'
 
     Translation:
       type: object
@@ -15316,7 +15764,7 @@ components:
             Legs ot the trip
           type: array
           items:
-            $ref: '#/components/schemas/TripLeg'
+            $ref: '#/components/schemas/Leg'
           minItems: 1
         operatingDays:
           $ref: '#/components/schemas/OperatingDays'
@@ -15326,18 +15774,36 @@ components:
           type:
             - 'string'
             - 'null'
+        feasibility:
+            $ref: '#/components/schemas/TripFeasibility'
         situationFullRefs:
-          type: array
-          items:
-            $ref: '#/components/schemas/SituationFullRef'
+            type: array
+            items:
+              $ref: '#/components/schemas/SituationRef'
         tripStatus:
-          $ref: '#/components/schemas/TripStatus'
+              $ref: '#/components/schemas/TripStatus'
+        isAlternativeTrip:
+          description: |
+            indication that this trip was found due to the request parameter to search for alternatives
+          type: boolean
         _links:
           description: |
-            Java Property Name: 'links'
+                  Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    TripFeasibility:
+      description: | 
+         feasibility of a trip related to the required access features
+         in case of SEE_SITUATIONS situations must be provided
+      type: string
+      x-extensible-enum:
+        - 'ALL_ACCESS_FEATURES_AVAILABLE'
+        - 'ACCESS_FEATURES_NOT_AVAILABLE'
+        - 'ACCESS_FEATURES_PARTIALLY_AVAILABLE'
+        - 'ACCESS_FEATURES_WITH_UNKNOWN_AVAILABILITY'
+        - 'SEE_SITUATIONS'
 
     TripAllocationConstraint:
       type: object
@@ -15428,6 +15894,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TripSummary'
+        tripContext:
+          $ref: '#/components/schemas/TripContext'
         _links:
           description: |
             Java Property Name: 'links'
@@ -15552,7 +16020,7 @@ components:
         - 'MANUAL'
         - 'ACTIVATION'
 
-    TripLeg:
+    Leg:
       type: object
       additionalProperties: false
       description: |
@@ -15567,7 +16035,7 @@ components:
           type: string
         externalRef:
           description: |
-            External reference of this tripLeg for referencing purposes.
+            External reference of this leg for referencing purposes.
           type:
             - 'string'
             - 'null'
@@ -15577,8 +16045,11 @@ components:
           $ref: '#/components/schemas/TransferLeg'
         continuousLeg:
           $ref: '#/components/schemas/ContinuousLeg'
+        changed:
+          description: indicates that the leg was changed via a trip change request
+          type: boolean
 
-    TripLegCoverage:
+    LegCoverage:
       type: object
       additionalProperties: false
       required:
@@ -15591,7 +16062,7 @@ components:
         legId:
           type: string
 
-    TripLegSpecification:
+    LegSpecification:
       type: object
       additionalProperties: false
       description: |
@@ -15615,6 +16086,9 @@ components:
         Base mobility options to be applied for both public and individual transport.
         Provided by OJP.
       properties:
+        baseMobilityFilter:
+            description: mobility filters to be applied for public and individual transport
+            $ref: '#/components/schemas/TripMobilityFilterItems' 
         bikeTransport:
           description: |
             The user wants to carry a bike on public transport.
@@ -15625,9 +16099,7 @@ components:
         walkSpeed:
           description: |
             Deviation from average walk speed in percent. 100% percent is average speed.
-          type:
-            - 'integer'
-            - 'null'
+          type: integer
           format: int32
           default: 100
         additionalTransferTime:
@@ -15646,43 +16118,149 @@ components:
             - 'null'
           format: duration
 
+    TripMobilityFilterItem:
+      description: |
+        restrictions of the traveler  (List of booleans in OJP BaseTripMobilityFilter)
+        NO_SIGHT  - traveler is not able to see
+        NO_SINGLE_STEP  - traveler can not pass a single step
+        NO_STAIRS  - traveler can not use stairs
+        NO_ESCALATOR  - traveler can not use an escalator
+        NO_ELEVATOR  - traveler can not use an elevator
+        NO_RAMP  - traveler can not use a ramp
+        NO_TRAVELATOR - traveler can not use a travelator
+        LEVEL_ENTRANCE - traveller needs a level entrance
+        LEVEL_ENTRANCE_OR_BOARDING_AID - traveller needs a level entrance or boarding aid
+      type: string
+      x-extensible-enum:
+        - 'NO_SIGHT'
+        - 'NO_SINGLE_STEP'
+        - 'NO_STARS'
+        - 'NO_ESCALATOR'
+        - 'NO_ELEVATOR'
+        - 'NO_RAMP'
+        - 'NO_TRAVELATOR'
+        - 'LEVEL_ENTRANCE'
+        - 'LEVEL_ENTRANCE_OR_BOARDING_AID'
+      
+    TripMobilityFilterItems:
+      description: |
+        restrictions that control the trip search behavior for both public and individual transport.
+        Provided by OJP.
+      type: array        
+      items:
+         ref: '#/components/schemas/BaseTripMobilityFilterItem' 
+      minItems: 1 
+
     TripParameters:
       type: object
       additionalProperties: false
       description: |
         Options to control the search behavior and response contents.
-        number of results > either number of results or number of results before and after are used.
         Provided by OJP.
       properties:
         dataFilter:
           $ref: '#/components/schemas/TripDataFilter'
         policyFilter:
-          $ref: '#/components/schemas/BaseTripPolicyFilter'
+          $ref: '#/components/schemas/TripPolicyFilter'
         mobilityFilter:
           $ref: '#/components/schemas/TripMobilityFilter'
-        numberOfResults:
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          default: 5
+        contentFilter:
+          $ref: '#/components/schemas/TripContentFilter'        
+
+
+    TripContentFilter:
+      description: |
+        Options to control the response contents.
+        Provided by OJP.
+      type: object
+      additionalProperties: false      
+      properties:
+         filters: 
+           type: array
+           items:
+             $ref: '#/components/schemas/TripContentFilterItem'        
+         tripSummaryOnly:
+           type: boolean
+           default: false
+
+    TripContentFilterItem:
+          description: |
+           - INCLUDE_TRACK_SECTIONS        
+           - INCLUDE_LEG_PROJECTION       geographical description of a leg 
+           - INCLUDE_TURN_DESCRIPTIONS    
+           - INCLUDE_ACCESS_FEATURES
+           - INCLUDE_ACCESS_FEATURES_STATUS
+           - INCLUDE_ACCESSABILITY_FEATURES_VISUAL_IMPAIRED   
+           - INCLUDE_ACCESSABILITY_FEATURES_AUDITORY_IMPAIRED   
+           - INCLUDE_ACCESSABILITY_FEATURES_MOBILITY_IMPAIRED    
+           - INCLUDE_ACCESSABILITY_FEATURES_BIKE
+           - INCLUDE_ACCESSABILITY_FEATURES_GENERAL        
+           - INCLUDE_PLACES_CONTEXT 
+           - INCLUDE_SITUATIONS_CONTEXT    
+           - INCLUDE_INTERMEDIATE_STOPS  intermediate stops within a leg    
+           - INCLUDE_OPERATING_DAYS include operating day information      
+          type: string
+          x-extensible-enum:
+           - 'INCLUDE_TRACK_SECTIONS'        
+           - 'INCLUDE_LEG_PROJECTION'    
+           - 'INCLUDE_TURN_DESCRIPTIONS'    
+           - 'INCLUDE_ACCESS_FEATURES'    
+           - 'INCLUDE_ACCESS_FEATURES_STATUS'
+           - 'INCLUDE_ACCESSABILITY_FEATURES_VISUAL_IMPAIRED'    
+           - 'INCLUDE_ACCESSABILITY_FEATURES_AUDITORY_IMPAIRED'   
+           - 'INCLUDE_ACCESSABILITY_FEATURES_MOBILITY_IMPAIRED'    
+           - 'INCLUDE_ACCESSABILITY_FEATURES_BIKE' 
+           - 'INCLUDE_ACCESSABILITY_FEATURES_GENERAL'            
+           - 'INCLUDE_PLACES_CONTEXT' 
+           - 'INCLUDE_SITUATIONS_CONTEXT'      
+           - 'INCLUDE_INTERMEDIATE_STOPS'     
+           - 'INCLUDE_OPERATING_DAYS'            
+
+    TripRealTimeDataUsage:
+      description: use of real time data in a trip
+      type: string
+      x-extensible-enum:
+        - 'FULL'
+        - 'EXPLANATORY'
+        - 'NONE'    
+          
+    TripSearchOptimisationMethod:
+      description: |
+        The optimization method to be used for the search
+      type: string
+      x-extensible-enum:
+        - 'FASTEST'
+        - 'MIN_CHANGES'
+        - 'LEAST_WALKING'    
+        - 'LEAST_DISTANCE'         
+        - 'EARLIEST_ARRIVAL'
+        - 'LATEST_DEPARTURE'
+        - 'EARLIEST_ARRIVAL_AND_LATEST_DEPARTURE'  
+        - 'MIN_NON_LEVEL_ENTRANCES'
+        - 'MIN_STAIRSE'  
+        - 'BEST_FOR_VISUALLY_IMPAIRED'
+        - 'BEST_FOR_AUDITORY_IMPAIRED'          
+        
+    TripPolicyFilter:
+      description: |
+        Options to control the search behavior and response contents.
+        number of results > either number of results or number of results before and after are used.
+        Provided by OJP.
+        numberOfResults is intentionally omitted to avoid inconsistent request parameters. numberOfResults is equal to numberOfResultsBefore = 0 and numberOfResultsAfter = numberOfResults
+      type: object
+      additionalProperties: false
+      properties:  
         numberOfResultsBefore:
-          type:
-            - 'integer'
-            - 'null'
+          type: integer
           format: int32
           default: 0
         numberOfResultsAfter:
-          type:
-            - 'integer'
-            - 'null'
+          type: integer 
           format: int32
           default: 5
-        ignoreRealtimeData:
-          type:
-            - 'boolean'
-            - 'null'
-          default: false
+        useRealtimeData:
+          $ref: '#/components/schemas/TripRealTimeDataUsage'      
+          default: 'FULL'
         transferLimit:
           description: |
             The maximum number of interchanges the user will accept per trip.
@@ -15691,17 +16269,56 @@ components:
             - 'null'
           format: int32
           minimum: 0
+        optimisationMethod:
+          $ref: '#/components/schemas/TripSearchOptimisationMethod'
         itModesToCover:
-          $ref: '#/components/schemas/IndividualMode'
+          $ref: '#/components/schemas/PersonalMode'         
 
     TripChangeCriteria:
       type: object
       additionalProperties: false
       description: |
         Trip change request structure. Provided by OJP.
+      required: 
+        - tripResult
       properties:
-        TripResult:
+        tripChangeParameter:
+          $ref: '#/components/schemas/TripChangeParameter'
+        tripResult:
           $ref: '#/components/schemas/TripResult'
+        tripContext:
+          $ref: '#/components/schemas/TripContext'
+
+    TripChangeParameter:
+      type: object
+      additionalProperties: false       
+      description: parameters to change a trip at a leg 
+      properties:      
+        changeLegRef:
+          type: string
+        additionaWaitingTime:
+          type: string
+          format: duration
+        tripParameter:
+          $ref: '#/components/schemas/TripParameters'
+
+    TripContext:
+      type: object
+      additionalProperties: false       
+      description: context to trips
+      properties:
+        operators:
+          type: array 
+          items:
+            $ref: '#/components/schemas/Operator'
+        places:
+          type: array 
+          items:
+            $ref: '#/components/schemas/Place'
+        situations:
+          type: array 
+          items:
+            $ref: '#/components/schemas/Situation'      
 
     TripResponse:
       type: object
@@ -15715,6 +16332,8 @@ components:
             $ref: '#/components/schemas/Problem'
         trip:
           $ref: '#/components/schemas/Trip'
+        tripContext:
+          $ref: '#/components/schemas/TripContext'          
 
     TripResponseContent:
       type: string
@@ -15741,6 +16360,15 @@ components:
       properties:
         stopBehavior:
           $ref: '#/components/schemas/StopBehavior'
+
+    TripsCollectionResponseContent:
+      type: string
+      enum:
+        - 'ALL'
+        - 'TRIPS'
+        - 'TRIPSUMMARIES'
+        - 'NONE'
+      default: ALL          
 
     TripSearchCriteria:
       type: object
@@ -15781,6 +16409,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TripVia'
+        notVias:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceRef' 
+        noChangeAt:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceRef'        
         parameters:
           $ref: '#/components/schemas/TripParameters'
         embed:
@@ -15791,11 +16427,87 @@ components:
             $ref: '#/components/schemas/TripsCollectionResponseContent'
         returnSearchParameters:
           $ref: '#/components/schemas/ReturnSearchParameters'
+
+    TripSearchCriteriaMultiOD:
+      type: object
+      additionalProperties: false
+      description: |
+        Trip request structure. Provides trips from one of the origin places to one of the destination places. Provided by OJP.
+      required:
+        - origins
+        - destinations
+      properties:
+        departureTime:
+          description: |
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+          type:
+            - 'string'
+            - 'null'
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+        arrivalTime:
+          description: |
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+          type:
+            - 'string'
+            - 'null'
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+        origins:
+          type: array
+          items: 
+            $ref: '#/components/schemas/PlaceRef'
+        destinations:
+          type: array
+          items: 
+            $ref: '#/components/schemas/PlaceRef'            
+        vias:
+          description: |
+            Ordered series of points where the journey must pass through. If more
+            than one via point is given all of them must be obeyed - in the correct
+            order. The server is allowed to replace a via stop by equivalent stops.
+
+            TripDataFilters given at a via apply to the section after that via. To apply a TripDataFilter for 
+            the first section (between the origin and the first via), use the TripDataFilter within the
+            TripParameters structure.
+          type: array
+          items:
+            $ref: '#/components/schemas/TripVia'
         notVias:
           type: array
           items:
-            $ref: '#/components/schemas/NotVia'
+            $ref: '#/components/schemas/PlaceRef' 
+        noChangeAt:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceRef'        
+        parameters:
+          $ref: '#/components/schemas/TripParameters'
+        multipleODSearchType:
+          $ref: '#/components/schemas/TripSearchTypeMultipleOD'
+        embed:
+          description: |
+            Influences whether referenced resources are returned in full or as references only. Proposed default ALL
+          type: array
+          items:
+            $ref: '#/components/schemas/TripsCollectionResponseContent'
+        returnSearchParameters:
+          $ref: '#/components/schemas/ReturnSearchParameters'
 
+    TripSearchTypeMultipleOD:
+      description: | 
+            expected search behaviour
+            'ANY' : Returning results for a single origin and destination
+            'EACH_ORIGIN' : At least a distinct solution for each of the origin must be delivered.
+            'EACH_DESTINATION' : At least a distinct solution for each of the origin must be delivered.
+            'EACH_ORIGIN_DESTINATION' :  At least a distinct solution for each of the origin-destination pair must be delivered.origin-destination pair must be delivered.
+            'SOME' : some origin-destination pairs should be returned. 
+      type: string
+      x-extensible-enum:
+        - 'ANY' 
+        - 'EACH_ORIGIN'
+        - 'EACH_DESTINATION'
+        - 'EACH_ORIGIN_DESTINATION'
+        - 'SOME' 
+          
     TripSection:
       type: object
       additionalProperties: false
@@ -15809,6 +16521,24 @@ components:
           maxLength: 32768
         coveredSection:
           $ref: '#/components/schemas/Section'
+    
+    TripSpecificationSummary:
+      type: object
+      additionalProperties: false
+      description: |
+        Trip specification summary. Provided by OJP. 
+        It requires the id of an already existing trip to change and specifies the parameters which must be used to generate the new trip.
+      required:
+        - id
+      properties:
+        id:
+          description: The id of an already existing trip to change.
+          type: string
+          maxLength: 32768
+        origin:
+          $ref: '#/components/schemas/PlaceRef'
+        destination:
+          $ref: '#/components/schemas/PlaceRef'
 
     TripSpecification:
       type: object
@@ -15827,7 +16557,7 @@ components:
         legs:
           type: array
           items:
-            $ref: '#/components/schemas/TripLegSpecification'
+            $ref: '#/components/schemas/LegSpecification'
           minItems: 1
         isPartOfInternationalTrip:
           type:
@@ -15844,57 +16574,28 @@ components:
         unplanned:
           description: |
             Whether this trip is an additional one that has not been planned.
-          type:
-            - 'boolean'
-            - 'null'
+          type: boolean
           default: false
         cancelled:
           description: |
             Whether this trip is cancelled and will not be run.
-          type:
-            - 'boolean'
-            - 'null'
+          type: boolean
           default: false
         deviation:
           description: |
             Whether this trip deviates from the planned service pattern.
-          type:
-            - 'boolean'
-            - 'null'
+          type: boolean
           default: false
         delayed:
           description: |
             Whether this trip is delayed.
-          type:
-            - 'boolean'
-            - 'null'
+          type: boolean
           default: false
         infeasible:
           description: |
             Whether this trip cannot be used, due to operational delays and impossible transfers.
-          type:
-            - 'boolean'
-            - 'null'
+          type: boolean
           default: false
-
-    TripSpecificationSummary:
-      type: object
-      additionalProperties: false
-      description: |
-        Trip specification summary. Provided by OJP. 
-        It requires the id of an already existing trip to change and specifies the parameters which must be used to generate the new trip.
-      required:
-        - id
-      properties:
-        id:
-          description: |
-            The id of an already existing trip to change.
-          type: string
-          maxLength: 32768
-        origin:
-          $ref: '#/components/schemas/PlaceRef'
-        destination:
-          $ref: '#/components/schemas/PlaceRef'
 
     TripSummary:
       type: object
@@ -15991,15 +16692,6 @@ components:
             - 30M
         dataFilter:
           $ref: '#/components/schemas/TripDataFilter'
-
-    TripsCollectionResponseContent:
-      type: string
-      enum:
-        - 'ALL'
-        - 'TRIPS'
-        - 'TRIPSUMMARIES'
-        - 'NONE'
-      default: ALL
 
     VAT:
       type: object
