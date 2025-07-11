@@ -7514,7 +7514,6 @@ components:
       additionalProperties: false
       required:
         - number
-        - travelDirection
       properties:
         number:
           description: |
@@ -15242,6 +15241,25 @@ components:
           items:
             $ref: '#/components/schemas/GeneralAttribute'
 
+    ParallelService:
+      type: object
+      additionalProperties: false
+      description: |
+        service description of services running in parallel to the definedmain service (OJP 2.0)
+        - different service numbers for train parts 
+        - different service produc categories / service brands along a leg
+      required:
+        - service
+      properites:
+         replacesMainService:
+            description: the paralell service descriptionreplaces the main service (not in OJP)
+            type: Boolean
+            default: false
+         section:
+            $ref: '#/components/schemas/Section'
+         service:
+            $ref: '#/components/schemas/DatedJourney'      
+
     TimedLegSpecification:
       type: object
       additionalProperties: false
@@ -15689,7 +15707,6 @@ components:
       required:
         - id
         - duration
-        - direction
         - startTime
         - endTime
         - transfers
