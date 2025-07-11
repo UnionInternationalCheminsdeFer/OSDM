@@ -323,7 +323,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TripSearchCriteria'
+              oneOf:
+                - $ref: '#/components/schemas/TripSearchCriteria'
+                - $ref: '#/components/schemas/TripSearchCriteriaMultiOD'
       responses:
         '200':
           description: |
@@ -352,60 +354,7 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'   
           
-  /trips-collection/MultiODSearchEngine:
-    post:
-      tags:
-        - Trips
-      summary: returns a collection of trips for a given OJP trip request using multiple Origins and Destinations
-      description: |
-        Returns trips for a given trip request based on the OJP specification.
-      operationId: postTripsMultiOD
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/acceptNamespace'
-        - name: stopBehavior
-          in: query
-          schema:
-            $ref: '#/components/schemas/StopBehavior'
-          required: false
-      requestBody:
-        required: true
-        description: |
-          request for trips
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TripSearchCriteriaMultiOD'
-      responses:
-        '200':
-          description: |
-            trips found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TripCollectionResponse'
-
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'      
+ 
 
   /trips-collections/{tripsCollectionId}:
     get:
@@ -7514,6 +7463,7 @@ components:
       additionalProperties: false
       required:
         - number
+        - travelDirection
       properties:
         number:
           description: |
@@ -12011,7 +11961,7 @@ components:
         name:
           description: |
             Name of this stop place for use in passenger information. Including optional translations.
-          type: '#/components/schemas/Text'
+          $ref: '#/components/schemas/Text'
         id:
           description: |
             id  defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn '0850000'
@@ -15251,13 +15201,13 @@ components:
       required:
         - service
       properites:
-         replacesMainService:
+        replacesMainService:
             description: the paralell service descriptionreplaces the main service (not in OJP)
-            type: Boolean
+            type: boolean
             default: false
-         section:
+        section:
             $ref: '#/components/schemas/Section'
-         service:
+        service:
             $ref: '#/components/schemas/DatedJourney'      
 
     TimedLegSpecification:
@@ -15707,6 +15657,7 @@ components:
       required:
         - id
         - duration
+        - direction
         - startTime
         - endTime
         - transfers
@@ -16165,7 +16116,7 @@ components:
         Provided by OJP.
       type: array        
       items:
-         ref: '#/components/schemas/BaseTripMobilityFilterItem' 
+         $ref: '#/components/schemas/BaseTripMobilityFilterItem' 
       minItems: 1 
 
     TripParameters:
