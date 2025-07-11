@@ -15653,6 +15653,7 @@ components:
         Options to control the search behavior and response contents.
         number of results > either number of results or number of results before and after are used.
         Provided by OJP.
+        numberOfResults is intentionally omitted to avoid inconsistent request parameters. numberOfResults is equal to numberOfResultsBefore = 0 and numberOfResultsAfter = numberOfResults
       properties:
         dataFilter:
           $ref: '#/components/schemas/TripDataFilter'
@@ -15660,12 +15661,6 @@ components:
           $ref: '#/components/schemas/BaseTripPolicyFilter'
         mobilityFilter:
           $ref: '#/components/schemas/TripMobilityFilter'
-        numberOfResults:
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          default: 5
         numberOfResultsBefore:
           type:
             - 'integer'
@@ -15677,7 +15672,7 @@ components:
             - 'integer'
             - 'null'
           format: int32
-          default: 5
+          default: 0
         ignoreRealtimeData:
           type:
             - 'boolean'
