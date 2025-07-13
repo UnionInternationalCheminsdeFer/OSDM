@@ -16083,7 +16083,6 @@ components:
       required:
         - id
         - duration
-        - direction
         - startTime
         - endTime
         - transfers
