@@ -5264,6 +5264,66 @@ components:
             types.
           type: string
 
+    AccessibilityFeature:
+      desciption: accessibility features, provided by OJP 2.0
+      type: string
+      x-extensible-enumeration:   
+        - 'LOW_FLOOR_ACCESS'
+        - 'STEP_FREE_ACCESS'
+        - 'ACCESS_WITH_STEPS'
+        - 'SLIDING_STEP'
+        - 'RAISED_KERB'
+        - 'NARROW_ENTRANCE'
+        - 'WHEEL_CHAIR_LIFT'
+        - 'MANUAL_RAMP'
+        - 'AUTOMATIC_RAMP'
+        - 'SUITABLE_FOR_WHEELCHAIRS'
+        - 'SUITABLE_FOR_UNASSISTED_WHEELCHAIRS'
+        - 'SUITABLE_FOR_SEVERELY_DISABLED'
+        - 'SUITABLE_FOR_PUSH_CHAIRS'
+        - 'SUITABLE_FOR_BICYCLES'
+        - 'TACTILE_PLATFORM_EDGES'
+        - 'TACTILE_GUIDING_STRIPS'
+        - 'TACTILE_ORAUDITORY_SIGNS'
+        - 'VISUALSIGNS'
+        - 'ELEVATOR_WITH_TACTILE_BUTTONS'
+        - 'ELEVATOR_WITH_ACOUSTIC_ANNOUNCEMENTS'
+        - 'AUDIO_INFORMATION'
+        - 'AUDIO_FOR_HEARING_IMPAIRED'
+        - 'VISUAL_DISPLAYS'
+        - 'DISPLAYS_FOR_VISUALLY_IMPAIRED'
+        - 'LARGE_PRINT_TIMETABLES'
+        - 'BOARDING_ASSISTANCE'
+        - 'ONBOARD_ASSISTANCE'
+        - 'UNACCOMPANIED_MINOR_ASSISTANCE'
+        - 'BARRIER'
+        - 'VALIDATOR'
+
+    AccessFeature:
+      desciption:  types of features for a guidance path transition, provided by OJP 2.0
+      type: string
+      x-extensible-enumeration:     
+        - 'ELEVATOR'
+        - 'SERIES_OF_STAIRS'
+        - 'SINGLE_STEP'
+        - 'SERIES_OF_SINGLE_STEPS'
+        - 'ESCALATOR'
+        - 'TRAVELATOR'
+        - 'RAMP'
+        - 'FOOT_PATH'
+        - 'SHUTTLE'
+        - 'OTHER'
+        - 'UNKNOWN'        
+
+    AccessFeatureStatus:
+      desciption: status values of guidance path access features, provided by OJP 2.0
+      type: string
+      x-extensible-enumeration:   
+        - 'UNKNOWN'
+        - 'AVAILABLE'
+        - 'PARTIALLY_AVAILABLE' :  'if used some note should be provided in one of the descriptive elements of the containing path link'
+        - 'NOT_AVAILABLE'          
+
     AccommodationSubType:
       type: string
       description: |
@@ -8603,16 +8663,16 @@ components:
       type: string
       enum:
         - 'PRODUCT_MODE'
-        - 'FARE_MODE'   
-      default:  'PRODUCT_MODE'        
+        - 'FARE_MODE'
+      default:  'PRODUCT_MODE'   
 
-   Distance:
-     description: Distance in meters 
-     type:
+    Distance:
+      description: Distance in meters 
+      type:
         - 'integer'
         - 'null'
-     format: int32
-     minimum: 0
+      format: int32
+      minimum: 0
 
     Document:
       type: object
@@ -11566,7 +11626,7 @@ components:
           type: string  
         absoluteBearing:
           description: azimuth, 0 = north
-          type: integer:
+          type: integer
           format: int32
           minValue: 0
           maxValue: 360
@@ -11575,7 +11635,7 @@ components:
           items:
              $ref: '#/components/schemas/SituationRef'      
         pathLink:
-          $ref: '#/components/schemas/GuidancePathLink'          
+          $ref: '#/components/schemas/PathGuidancePathLink'          
 
     PathGuidanceTurnAction:
       desciption: types of a turn, provided by OJP 2.0
@@ -11587,13 +11647,13 @@ components:
         - 'SHARP_RIGHT'            : '112-157 degrees'
         - 'UTURN'                  : '158-201 degrees'
         - 'SHARP_LEFT'             : '202-247 degrees'
-        - 'LEFT                    : '248-291 degrees'
+        - 'LEFT'                   : '248-291 degrees'
         - 'HALF_LEFT'              : '292-337 degrees'
         - 'UP'                     : 'Upwards, the target level is in the PathLink structure'
         - 'DOWN'                   : 'Downwards, the target level is in the PathLink structure'
         - 'GENERIC_TURN_ACTION'
 
-  PathGuidanceAdvice:
+    PathGuidanceAdvice:
       desciption: types of a guidance advices, provided by OJP 2.0
       type: string
       x-extensible-enumeration:  
@@ -11607,13 +11667,13 @@ components:
         - 'ENTER_ROUNDABOUT'
         - 'STAY_IN_ROUNDABOUT'
         - 'LEAVE_ROUNDABOUT'
-        - 'ENTER_BUILD_UP_AREA' : 'Entering a built-up area / community"
-        - 'LEAVE_BUILD_UP_AREA' : 'Leave a built-up area / community"        
+        - 'ENTER_BUILD_UP_AREA' : 'Entering a built-up area / community'
+        - 'LEAVE_BUILD_UP_AREA' : 'Leave a built-up area / community'
         - 'FREEWAY_ACCESS_RAMP' : 'Access lane to highway etc..' 
-        - 'UNKNOWN_LANE_CHOICE  : 'If it is unclear which lane to choose'
-        - 'LEFT_LANE            : 'take left lane. If there are more than 2 lanes, then TurnAction should also be used'
-        - 'MIDDLE_LANE          : 'take middle lane. If there are more than 2 lanes, then TurnAction should also be used'        
-        - 'RIGHT_LANE           : 'take right lane. If there are more than 2 lanes, then TurnAction should also be used'        
+        - 'UNKNOWN_LANE_CHOICE' : 'If it is unclear which lane to choose'
+        - 'LEFT_LANE'           : 'take left lane. If there are more than 2 lanes, then TurnAction should also be used'
+        - 'MIDDLE_LANE'         : 'take middle lane. If there are more than 2 lanes, then TurnAction should also be used'        
+        - 'RIGHT_LANE'          : 'take right lane. If there are more than 2 lanes, then TurnAction should also be used'
         - 'UNKNOWN_TURNING_KIND'
 
     PathGuidanceFollow:
@@ -11630,14 +11690,14 @@ components:
          followExit:
             type: string
 
-    GuidancePathLink:        
+    PathGuidancePathLink:        
       description: |
         guidance path link decribing change of level, provided by OJP 2.0
       additionalProperties: false
       required:
       properties:         
         transition:
-          $ref: '#/components/schemas/Transition'       
+          $ref: '#/components/schemas/PathGuidanceTransition'       
         accessFeature:
           $ref: '#/components/schemas/AccessFeature'          
         accessFeatureCount:
@@ -11655,11 +11715,11 @@ components:
            items:
              $ref: '#/components/schemas/SituationRef'   
         from:
-            $ref: '#/components/schemas/GuidancePathLinkEnd'   
+            $ref: '#/components/schemas/PathGuidancePathLinkEnd'   
         to: 
-            $ref: '#/components/schemas/GuidancePathLinkEnd'  
+            $ref: '#/components/schemas/PathGuidancePathLinkEnd'  
 
-  GuidancePathLinkEnd:
+    PathGuidancePathLinkEnd:
       desciption:  end or start of a guidance path link, provided by OJP 2.0
       additionalProperties: false
       properties:     
@@ -11670,69 +11730,8 @@ components:
         code:
           description: public code in case one is provided
           type: string
-          
-      
-  AccessibilityFeature:
-      desciption: accessibility features, provided by OJP 2.0
-      type: string
-      x-extensible-enumeration:   
-        - 'LOW_FLOOR_ACCESS'
-        - 'STEP_FREE_ACCESS'
-        - 'ACCESS_WITH_STEPS'
-        - 'SLIDING_STEP'
-        - 'RAISED_KERB'
-        - 'NARROW_ENTRANCE'
-        - 'WHEEL_CHAIR_LIFT'
-        - 'MANUAL_RAMP'
-        - 'AUTOMATIC_RAMP'
-        - 'SUITABLE_FOR_WHEELCHAIRS'
-        - 'SUITABLE_FOR_UNASSISTED_WHEELCHAIRS'
-        - 'SUITABLE_FOR_SEVERELY_DISABLED'
-        - 'SUITABLE_FOR_PUSH_CHAIRS'
-        - 'SUITABLE_FOR_BICYCLES'
-        - 'TACTILE_PLATFORM_EDGES'
-        - 'TACTILE_GUIDING_STRIPS'
-        - 'TACTILE_ORAUDITORY_SIGNS'
-        - 'VISUALSIGNS'
-        - 'ELEVATOR_WITH_TACTILE_BUTTONS'
-        - 'ELEVATOR_WITH_ACOUSTIC_ANNOUNCEMENTS'
-        - 'AUDIO_INFORMATION'
-        - 'AUDIO_FOR_HEARING_IMPAIRED'
-        - 'VISUAL_DISPLAYS'
-        - 'DISPLAYS_FOR_VISUALLY_IMPAIRED'
-        - 'LARGE_PRINT_TIMETABLES'
-        - 'BOARDING_ASSISTANCE'
-        - 'ONBOARD_ASSISTANCE'
-        - 'UNACCOMPANIED_MINOR_ASSISTANCE'
-        - 'BARRIER'
-        - 'VALIDATOR'
 
-  AccessFeature:
-      desciption:  types of features for a guidance path transition, provided by OJP 2.0
-      type: string
-      x-extensible-enumeration:     
-        - 'ELEVATOR'
-        - 'SERIES_OF_STAIRS'
-        - 'SINGLE_STEP'
-        - 'SERIES_OF_SINGLE_STEPS'
-        - 'ESCALATOR'
-        - 'TRAVELATOR'
-        - 'RAMP'
-        - 'FOOT_PATH'
-        - 'SHUTTLE'
-        - 'OTHER'
-        - 'UNKNOWN'        
-
-  AccessFeatureStatus:
-      desciption: status values of guidance path access features, provided by OJP 2.0
-      type: string
-      x-extensible-enumeration:   
-        - 'UNKNOWN'
-        - 'AVAILABLE'
-        - 'PARTIALLY_AVAILABLE' :  'if used some note should be provided in one of the descriptive elements of the containing path link'
-        - 'NOT_AVAILABLE'
-
-  PathGuidanceTransition:
+    PathGuidanceTransition:
       desciption: types of a guidance path transition, provided by OJP 2.0
       type: string
       x-extensible-enumeration:  
@@ -15422,15 +15421,15 @@ components:
         - different service produc categories / service brands along a leg
       required:
         - service
-      properites:
+      properties:
+        service:
+            $ref: '#/components/schemas/DatedJourney'           
+        section:
+            $ref: '#/components/schemas/Section'   
         replacesMainService:
             description: the paralell service descriptionreplaces the main service (not in OJP)
             type: boolean
-            default: false
-        section:
-            $ref: '#/components/schemas/Section'
-        service:
-            $ref: '#/components/schemas/DatedJourney'      
+            default: false            
 
     TimedLegSpecification:
       type: object
@@ -16336,7 +16335,7 @@ components:
         Provided by OJP.
       type: array        
       items:
-         $ref: '#/components/schemas/BaseTripMobilityFilterItem' 
+         $ref: '#/components/schemas/TripMobilityFilterItem' 
       minItems: 1 
 
     TripParameters:
