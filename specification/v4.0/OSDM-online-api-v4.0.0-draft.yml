@@ -8028,6 +8028,8 @@ components:
           format: duration
           examples:
             - 'PT10M'
+        pathGuidance:
+           $ref: '#/components/schemas/PathGuidance'
         situationFullRefs:
           type: array
           items:
@@ -8604,6 +8606,13 @@ components:
         - 'FARE_MODE'   
       default:  'PRODUCT_MODE'        
 
+   Distance:
+     description: Distance in meters 
+     type:
+        - 'integer'
+        - 'null'
+     format: int32
+     minimum: 0
 
     Document:
       type: object
@@ -10558,6 +10567,13 @@ components:
             $ref: '#/components/schemas/GeoPosition'	  
         end:
           $ref: '#/components/schemas/PlaceRef'	  
+        duration:
+          type: string
+          format: duration
+        distance:
+          $ref: '#/components/schemas/Distance'	 
+
+          
    
     Line:
       type: object
@@ -11513,6 +11529,219 @@ components:
         - 'CERTIFIED_MEDICAL_CONDITION'
         - 'DELAY_COMPENSATION'
 
+
+    PathGuidance:
+      type: object
+      description: |
+        Guidance on a path, provided by OJP 2.0
+      additionalProperties: false
+      required:
+        - sections
+      properties:     
+        sections:
+          type: array
+          items:
+             $ref: '#/components/schemas/PathGuidanceSection'
+          minItems: 1   
+
+    PathGuidanceSection:
+      type: object
+      description: |
+        Section on a guidance for a path, provided by OJP 2.0
+      additionalProperties: false
+      properties:        
+        track: 
+          $ref: '#/components/schemas/LegTrackSection'      
+        turnDescription: 
+          type: string   
+        turnAction: 
+          $ref: '#/components/schemas/PathGuidanceTurnAction'                
+        advice: 
+          $ref: '#/components/schemas/PathGuidanceAdvice'      
+        roadName: 
+          type: string
+        follow:
+          $ref: '#/components/schemas/PathGuidanceFollow'  
+        directionHint:
+          type: string  
+        absoluteBearing:
+          description: azimuth, 0 = north
+          type: integer:
+          format: int32
+          minValue: 0
+          maxValue: 360
+        situationRefs:
+          type: array
+          items:
+             $ref: '#/components/schemas/SituationRef'      
+        pathLink:
+          $ref: '#/components/schemas/GuidancePathLink'          
+
+    PathGuidanceTurnAction:
+      desciption: types of a turn, provided by OJP 2.0
+      type: string
+      x-extensible-enumeration:
+        - 'STRAIGHT-ON'            : '338-21 degrees'
+        - 'HALF_RIGHT'             : '22-67 degrees'
+        - 'RIGHT'                  : '68-111 degrees'
+        - 'SHARP_RIGHT'            : '112-157 degrees'
+        - 'UTURN'                  : '158-201 degrees'
+        - 'SHARP_LEFT'             : '202-247 degrees'
+        - 'LEFT                    : '248-291 degrees'
+        - 'HALF_LEFT'              : '292-337 degrees'
+        - 'UP'                     : 'Upwards, the target level is in the PathLink structure'
+        - 'DOWN'                   : 'Downwards, the target level is in the PathLink structure'
+        - 'GENERIC_TURN_ACTION'
+
+  PathGuidanceAdvice:
+      desciption: types of a guidance advices, provided by OJP 2.0
+      type: string
+      x-extensible-enumeration:  
+        - 'ORIGIN' 
+        - 'DESTINATION'
+        - 'CONTINUE'
+        - 'KEEP'                : 'Keep going on the same street/road/path'
+        - 'TURN'                : 'There must be a TurnAction present if "turn" is used'
+        - 'LEAVE'               : 'leave an elevator or a vehicle etc...'
+        - 'ENTER'               : 'enter an elevator or a vehicle etc...'
+        - 'ENTER_ROUNDABOUT'
+        - 'STAY_IN_ROUNDABOUT'
+        - 'LEAVE_ROUNDABOUT'
+        - 'ENTER_BUILD_UP_AREA' : 'Entering a built-up area / community"
+        - 'LEAVE_BUILD_UP_AREA' : 'Leave a built-up area / community"        
+        - 'FREEWAY_ACCESS_RAMP' : 'Access lane to highway etc..' 
+        - 'UNKNOWN_LANE_CHOICE  : 'If it is unclear which lane to choose'
+        - 'LEFT_LANE            : 'take left lane. If there are more than 2 lanes, then TurnAction should also be used'
+        - 'MIDDLE_LANE          : 'take middle lane. If there are more than 2 lanes, then TurnAction should also be used'        
+        - 'RIGHT_LANE           : 'take right lane. If there are more than 2 lanes, then TurnAction should also be used'        
+        - 'UNKNOWN_TURNING_KIND'
+
+    PathGuidanceFollow:
+      description: |
+        path guidance follow advice, provided by OJP 2.0
+      additionalProperties: false
+      properties:     
+         followSignName:
+            type: string
+         followRoadName:
+            type: string
+         followDirectionName:
+            type: string            
+         followExit:
+            type: string
+
+    GuidancePathLink:        
+      description: |
+        guidance path link decribing change of level, provided by OJP 2.0
+      additionalProperties: false
+      required:
+      properties:         
+        transition:
+          $ref: '#/components/schemas/Transition'       
+        accessFeature:
+          $ref: '#/components/schemas/AccessFeature'          
+        accessFeatureCount:
+          type: integer
+          formast: int32
+          minValue: 0
+        accessFeatureStatus:
+          $ref: '#/components/schemas/AccessFeatureStatus'       
+        accessibilityFeatures:
+          type: array
+          items:
+             $ref: '#/components/schemas/AccessibilityFeature'   
+        situationRefs:
+           type: array
+           items:
+             $ref: '#/components/schemas/SituationRef'   
+        from:
+            $ref: '#/components/schemas/GuidancePathLinkEnd'   
+        to: 
+            $ref: '#/components/schemas/GuidancePathLinkEnd'  
+
+  GuidancePathLinkEnd:
+      desciption:  end or start of a guidance path link, provided by OJP 2.0
+      additionalProperties: false
+      properties:     
+        id: 
+          $ref: '#/components/schemas/PlaceRef'  
+        name:
+          type: string
+        code:
+          description: public code in case one is provided
+          type: string
+          
+      
+  AccessibilityFeature:
+      desciption: accessibility features, provided by OJP 2.0
+      type: string
+      x-extensible-enumeration:   
+        - 'LOW_FLOOR_ACCESS'
+        - 'STEP_FREE_ACCESS'
+        - 'ACCESS_WITH_STEPS'
+        - 'SLIDING_STEP'
+        - 'RAISED_KERB'
+        - 'NARROW_ENTRANCE'
+        - 'WHEEL_CHAIR_LIFT'
+        - 'MANUAL_RAMP'
+        - 'AUTOMATIC_RAMP'
+        - 'SUITABLE_FOR_WHEELCHAIRS'
+        - 'SUITABLE_FOR_UNASSISTED_WHEELCHAIRS'
+        - 'SUITABLE_FOR_SEVERELY_DISABLED'
+        - 'SUITABLE_FOR_PUSH_CHAIRS'
+        - 'SUITABLE_FOR_BICYCLES'
+        - 'TACTILE_PLATFORM_EDGES'
+        - 'TACTILE_GUIDING_STRIPS'
+        - 'TACTILE_ORAUDITORY_SIGNS'
+        - 'VISUALSIGNS'
+        - 'ELEVATOR_WITH_TACTILE_BUTTONS'
+        - 'ELEVATOR_WITH_ACOUSTIC_ANNOUNCEMENTS'
+        - 'AUDIO_INFORMATION'
+        - 'AUDIO_FOR_HEARING_IMPAIRED'
+        - 'VISUAL_DISPLAYS'
+        - 'DISPLAYS_FOR_VISUALLY_IMPAIRED'
+        - 'LARGE_PRINT_TIMETABLES'
+        - 'BOARDING_ASSISTANCE'
+        - 'ONBOARD_ASSISTANCE'
+        - 'UNACCOMPANIED_MINOR_ASSISTANCE'
+        - 'BARRIER'
+        - 'VALIDATOR'
+
+  AccessFeature:
+      desciption:  types of features for a guidance path transition, provided by OJP 2.0
+      type: string
+      x-extensible-enumeration:     
+        - 'ELEVATOR'
+        - 'SERIES_OF_STAIRS'
+        - 'SINGLE_STEP'
+        - 'SERIES_OF_SINGLE_STEPS'
+        - 'ESCALATOR'
+        - 'TRAVELATOR'
+        - 'RAMP'
+        - 'FOOT_PATH'
+        - 'SHUTTLE'
+        - 'OTHER'
+        - 'UNKNOWN'        
+
+  AccessFeatureStatus:
+      desciption: status values of guidance path access features, provided by OJP 2.0
+      type: string
+      x-extensible-enumeration:   
+        - 'UNKNOWN'
+        - 'AVAILABLE'
+        - 'PARTIALLY_AVAILABLE' :  'if used some note should be provided in one of the descriptive elements of the containing path link'
+        - 'NOT_AVAILABLE'
+
+  PathGuidanceTransition:
+      desciption: types of a guidance path transition, provided by OJP 2.0
+      type: string
+      x-extensible-enumeration:  
+        - 'UP'
+        - 'DOWN'
+        - 'LEVEL'
+        - 'UP_AND_DOWN'
+        - 'DOWN_AND_UP'
+
     PRMNeedType:
       type: string
       x-extensible-enum:
@@ -11556,7 +11785,6 @@ components:
       additionalProperties: false
       description: |
         Information about a passenger.
-
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
       required:
         - id
@@ -13878,13 +14106,7 @@ components:
             $ref: '#/components/schemas/RegionalValidity'
           minItems: 1
         distance:
-          description: |
-            Distance in km for statistics
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
+          $ref: '#/components/schemas/Distance'	 
 
     RegionalValidity:
       type: object
@@ -15422,6 +15644,8 @@ components:
           type: array
           items: 
             $ref: '#/components/schemas/GeneralAttribute'
+        pathGuidance:
+           $ref: '#/components/schemas/PathGuidance'
         situationRefs:
           type: array
           items:
@@ -15722,11 +15946,7 @@ components:
         distance:
           description: |
             Distance in meters over the the complete trip, i.e., including transfer legs.
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
+          $ref: '#/components/schemas/Distance'	 
         legs:
           description: |
             Legs ot the trip
@@ -16627,10 +16847,7 @@ components:
             - 'null'
           format: int32
         distance:
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
+          $ref: '#/components/schemas/Distance'	 
 
     TripTravelAccountUnit:
       allOf:
