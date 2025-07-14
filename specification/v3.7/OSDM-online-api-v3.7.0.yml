@@ -16507,6 +16507,9 @@ components:
           format: int32
           nullable: true
           default: 5
+          deprecated: true
+          description: |
+            Deprecated in 3.7.0 as it is getting removed in OJP to avoid inconsistency.
         numberOfResultsBefore:
           type: integer
           format: int32
