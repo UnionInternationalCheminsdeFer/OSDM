@@ -16562,7 +16562,13 @@ components:
         - 'MIN_NON_LEVEL_ENTRANCES'
         - 'MIN_STAIRSE'  
         - 'BEST_FOR_VISUALLY_IMPAIRED'
-        - 'BEST_FOR_AUDITORY_IMPAIRED'          
+        - 'BEST_FOR_AUDITORY_IMPAIRED'    
+        - 'ENVIROMENTAL_SAFETY' : 'favour "green" modes/lines such as bike sharing and  electric) trains, avoid or restrict modes/lines known for higher CO2 emissions such as  conventional) taxi, ride-hailing or coach.'
+        - 'EXTRA_SAFE' : 'referring to crime, hazards or prone to accidents'
+        - 'EXTRA_RELIABLE' : 'Low probability of delays, cancellations etc.'
+        - 'SCENIC' : 'Scenic (or touristic) travel'
+        - 'QUIET_TRAVEL' : '.g. first class or quiet compartments preferred. Journeys that are with low occupancy.'
+      
         
     TripPolicyFilter:
       description: |
