@@ -5797,6 +5797,8 @@ components:
             - 8
         serviceArrival:
           $ref: '#/components/schemas/ServiceTime'
+        serviceArrivalFormation:
+          $ref: '#/components/schemas/ServiceFormation'            
         status:
           $ref: '#/components/schemas/StopCallStatus'
     
@@ -6325,6 +6327,8 @@ components:
             - 8
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
+        serviceDepartureFormation:
+          $ref: '#/components/schemas/ServiceFormation'             
         status:
           $ref: '#/components/schemas/StopCallStatus'
     
@@ -10458,8 +10462,12 @@ components:
             - 8
         serviceArrival:
           $ref: '#/components/schemas/ServiceTime'
+        serviceArrivalFormation:
+          $ref: '#/components/schemas/ServiceFormation'               
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
+        serviceDepartureFormation:
+          $ref: '#/components/schemas/ServiceFormation'               
         status:
           $ref: '#/components/schemas/StopCallStatus'    
 
@@ -14961,6 +14969,134 @@ components:
         - 'BOOKED_ACCOMMODATION_TYPE_MISSING'
         - 'BOOKED_CLASS_MISSING'
         - 'BOOKED_MEAL_MISSING'
+
+    ServiceFormation:
+      type: object
+      additionalProperties: false
+      description: |
+        formation of a service at a stop on arrival or departure
+      required:
+        - assignments
+      properties:
+        assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceFormationComponentAssignment'
+          minItems: 1
+        _links:
+          description: |
+                  Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+
+    ServiceFormationComponentAssignment:
+      type: object
+      additionalProperties: false
+      description: |
+        formation of a service at a stop on arrival or departure
+      required:
+        - formationComponent
+      properties: 
+        formationComponent:
+          $ref: '#/components/schemas/ServiceFormationComponent'    
+        vehicleStatusInformation:
+          $ref: '#/components/schemas/ServiceFormationComponentStatus'              
+        boadingPositionAssignment:
+          $ref: '#/components/schemas/BoardingPositionAssignment'    
+        flexibleStopAreaAssignment:
+          $ref: '#/components/schemas/FlexibleStopAreaAssignment'              
+
+    ServiceFormationComponent:
+      type: object
+      additionalProperties: false
+      description: |
+        formation of a service at a stop on arrival or departure
+      required:
+        - publishedServiceName
+      properties:       
+        publishedServiceName:
+          type: string
+          examples:
+            - 'ICE 4711'    
+        publishedServiceComponentName:
+          type: string
+          examples:
+            - '12'
+        serviceComponentType:
+          type: string
+          x-extensible-enum:
+            - TRAIN
+            - TRAIN_PART
+            - COACH_GROUP
+            - COACH
+            - SECTION
+
+    ServiceFormationComponentStatus:
+      type: object
+      additionalProperties: false
+      description: |
+        formation of a service at a stop on arrival or departure
+      properties:      
+        status:
+          type: string
+          x-extensible-enum:
+            - 'UNKNOWN'
+            - 'AVAILABLE'
+            - 'NOT_AVAILABLE'
+            - 'PARTIALLY_AVAILABLE'
+            - 'ADDED'
+            - 'REMOVED'
+            - 'DEFECTIVE'
+            - 'CLOSED'
+            - 'FULLY_BOOKED'
+            - 'NO_RESTAURANT_SERVICE'
+            - 'OPEN'
+          mobilityImpairedAccess:
+            type: boolean
+          travelerInformations:
+            description: human readable information on features of the coach (e.g. family compartment, dining car)
+            type: array
+            items: 
+              type: string
+
+    BoardingPositionAssignment:
+      type: object
+      additionalProperties: false
+      description: |
+        position where a service part stops
+      properties: 
+        aimedQuayName:
+          description: |
+            last communicated quai, used to indicate platform changes if different from estimated quay
+          type: string
+        estimatedQuaiName:
+          type: string          
+        actualQuaiName:
+          type: string
+        aimedQuaySectionName:
+          description: last communicated quai section, used to indicate platform changes if different from estimated quai
+          type: string
+        estimatedQuaiSectionName:
+          type: string          
+        actualQuaiSectionName:
+          type: string        
+
+    FlexibleStopAreaAssignment:
+      type: object
+      additionalProperties: false
+      description: |
+        flexible are for boarding, e.g. a pickup area for cars
+      properties: 
+        aimedAreaName:
+          description: last communicated area, used to indicate platform changes if different from estimated quai
+          type: string
+        estimatedAreaName:
+          type: string          
+        actualAreaName:
+          type: string    
+        area:
+          $ref: '#/components/schemas/Polygon'
 
     ServiceIcon:
       type: object
