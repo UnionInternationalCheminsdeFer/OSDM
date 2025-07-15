@@ -16836,6 +16836,7 @@ components:
         - 'EACH_DESTINATION'
         - 'EACH_ORIGIN_DESTINATION'
         - 'SOME' 
+      default: 'ANY'  
           
     TripSection:
       type: object
