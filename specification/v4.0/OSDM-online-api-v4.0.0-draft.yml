@@ -14971,68 +14971,159 @@ components:
         - 'BOOKED_MEAL_MISSING'
 
     ServiceFormation:
-      type: object
-      additionalProperties: false
       description: |
-        formation of a service at a stop on arrival or departure
+        a train composition at a platform. Differs from OJP 2.0 due to model limitations in OJP
+      additionalProperties: false
       required:
         - assignments
       properties:
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceFormationPart'
+          minItems: 1
+        sizeType:
+          description: indication of the size of the service
+          type: string
+          x-extensible-enum:
+            - 'NORMAL'
+            - 'SHORT'
+            - 'LONG'
+            - 'EXTRA_LONG'
+        entireRoute:
+          description: |
+            entier route of the service independent from the route of the leg. Used to provide indications on the end station displayed at the platform.
+          $ref: '#/components/schemas/ServiceFormationRoute'    
         assignments:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceFormationComponentAssignment'
-          minItems: 1
+            $ref: '#/components/schemas/ServiceFormationPartAssignment'  
         _links:
           description: |
                   Java Property Name: 'links'
           type: array
           items:
             $ref: '#/components/schemas/Link'
+     
+    ServiceFormationRoute:
+      type: object
+      additionalProperties: false
+      description: |
+        entire route of a service or service part (in case of through coaches or split trains)
+      required:
+        - originRef
+        - originName
+        - destinationRef
+        - destinationName
+      properties:        
+        originRef:
+          $ref: '#/components/schemas/PlaceRef'
+        originName:
+          type: string
+        destinationRef:
+          $ref: '#/components/schemas/PlaceRef'
+        destinationName:
+          type: string
+        displayedDestinationName:
+          type: string
+        originDisplayAtDestination:
+          type: string
+        vias:
+          type: array
+          items:
+            $ref: '#/components/schemas/NamedPlaceRef'
 
-    ServiceFormationComponentAssignment:
+    NamedPlaceRef:
       type: object
       additionalProperties: false
       description: |
         formation of a service at a stop on arrival or departure
       required:
-        - formationComponent
+        - placeRef
+        - name
+      properties:         
+        placeRef:
+          $ref: '#/components/schemas/PlaceRef'
+        name:
+          type: string  
+
+    ServiceFormationPart:
+      type: object
+      additionalProperties: false
+      description: |
+        formation of a service at a stop on arrival or departure
+      required:
+        - publishedName
+      properties:       
+        id: 
+          description: 
+            id of the part references in assignments. unique within the context of a Leg
+          type: string
+        publishedName:
+          type: string
+          examples:
+            - 'ICE 4711'    
+            - '12' : 'coach 12'
+        detailedDescription:
+           type: string    
+        containedPartRefs:
+          description: ordered references to contained formation parts
+          type: array
+          items:
+            type: string     
+        serviceClasses:
+          type: array
+          items:
+             $ref: '#/components/schemas/ServiceClass'      
+        partType:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceFormationPartType'  
+        entireRoute:
+          description: |
+            entier route of the service independent from the route of the leg. Used to provide indications on the end station displayed at the platform.
+          $ref: '#/components/schemas/ServiceFormationRoute'   
+        statusInformation:
+          $ref: '#/components/schemas/ServiceFormationPartStatus'  
+        entireLeg:
+          description: |
+            indicates if aormation part does not serve the whiole leg. Service parts that do not service the whole leg are included to provide complete information on the parts at a platform.
+          type: boolean
+          default: true      
+        facilities:
+          type: array 
+          items: 
+            $ref: '#/components/schemas/FacilityEnum'
+
+    ServiceFormationPartType:
+      type: string
+      x-extensible-enum:
+        - 'TRAIN'
+        - 'TRAIN_PART' : 'separated train part potentially with a different service name'
+        - 'COACH_GROUP' : 'group of coaches' 
+        - 'COACH'
+        - 'RESTAURANT_COACH'
+        - 'BUFFET_COACH'
+        - 'ENGINE'
+        - 'CAR_CARRIAGE_COACH'
+        - 'LUGGAGE_COACH'                    
+
+    ServiceFormationPartAssignment:
+      type: object
+      additionalProperties: false
+      description: |
+        formation of a service at a stop on arrival or departure
+      required:
+        - formationPartRef
       properties: 
-        formationComponent:
-          $ref: '#/components/schemas/ServiceFormationComponent'    
-        vehicleStatusInformation:
-          $ref: '#/components/schemas/ServiceFormationComponentStatus'              
+        formationPartRef:
+          type: string         
         boadingPositionAssignment:
           $ref: '#/components/schemas/BoardingPositionAssignment'    
         flexibleStopAreaAssignment:
           $ref: '#/components/schemas/FlexibleStopAreaAssignment'              
 
-    ServiceFormationComponent:
-      type: object
-      additionalProperties: false
-      description: |
-        formation of a service at a stop on arrival or departure
-      required:
-        - publishedServiceName
-      properties:       
-        publishedServiceName:
-          type: string
-          examples:
-            - 'ICE 4711'    
-        publishedServiceComponentName:
-          type: string
-          examples:
-            - '12'
-        serviceComponentType:
-          type: string
-          x-extensible-enum:
-            - TRAIN
-            - TRAIN_PART
-            - COACH_GROUP
-            - COACH
-            - SECTION
-
-    ServiceFormationComponentStatus:
+    ServiceFormationPartStatus:
       type: object
       additionalProperties: false
       description: |
