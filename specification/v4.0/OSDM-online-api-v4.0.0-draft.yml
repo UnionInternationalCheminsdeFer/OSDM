@@ -16787,6 +16787,7 @@ components:
         - 'ALL'
         - 'TRIPS'
         - 'TRIPSUMMARIES'
+        - 'TRIP_CONTEXT'
         - 'NONE'
       default: ALL          
 
