@@ -3110,7 +3110,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/generic-exchange-offers:
+  /bookings/{bookingId}/exchange-offers:
     post:
       tags:
         - Exchange
@@ -3140,7 +3140,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ExchangeGenericCfferRequest'
+              $ref: '#/components/schemas/ExchangeCfferRequest'
       responses:
         '200':
           description: |
@@ -3173,198 +3173,6 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-
-  /bookings/{bookingId}/passengers-exchange-offers:
-    post:
-      tags:
-        - Exchange
-      summary: Returns exchange offers for specified fulfillments or booking parts
-      description: |
-        Returns exchange offers for specified fulfillments submitted given
-        requested new trip characteristics.
-      operationId: createPassengerExchangeOffersCollection
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: embed
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/ExchangeOfferCollectionResponseContent'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExchangePassengersCfferRequest'
-      responses:
-        '200':
-          description: |
-            Collection of exchange offers found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExchangeOfferCollectionResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: |
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-
-  /bookings/{bookingId}/service-exchange-offers:
-    post:
-      tags:
-        - Exchange
-      summary: Returns exchange offers to exchange service levels
-      description: |
-        Returns exchange offers for specified fulfillments submitted given
-        requested new trip characteristics.
-      operationId: createServiceExchangeOffersCollection
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: embed
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/ExchangeOfferCollectionResponseContent'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExchangeServiceCfferRequest'
-      responses:
-        '200':
-          description: |
-            Collection of exchange offers found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExchangeOfferCollectionResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: |
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-
-  /bookings/{bookingId}/trip-exchange-offers:
-    post:
-      tags:
-        - Exchange
-      summary: Returns exchange offers to exchange trips
-      description: |
-        Returns exchange offers for specified fulfillments submitted given
-        requested new trip characteristics.
-      operationId: createTripExchangeOffersCollection
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: embed
-          in: query
-          required: true
-          schema:
-            $ref: '#/components/schemas/ExchangeOfferCollectionResponseContent'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExchangeTripCfferRequest'
-      responses:
-        '200':
-          description: |
-            Collection of exchange offers found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExchangeOfferCollectionResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: |
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'          
 
   /bookings/{bookingId}/exchange-operations:
     post:
@@ -9042,18 +8850,12 @@ components:
           items:
             type: string
 
-    AbstractExchangeOfferRequestSpecification:
+    ExchangeOfferRequestParameter:
       type: object
       additionalProperties: false
       description: |
         Basic request parameters for all exchange offer requests.
-      properties:                
-        exchangeSpecification:
-          description: specification of the fulfillments or individual parts that need to be exchanged.
-          type: array
-          maxItems: 1024
-          items:
-            $ref: '#/components/schemas/ExchangeSpecification'                  
+      properties:                                
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
         corporateCodes:
@@ -9077,35 +8879,31 @@ components:
           items:
             $ref: '#/components/schemas/OfferCollectionResponseContent'
 
-    ExchangePassengersCfferRequest:
+    ExchangeCfferRequest:
       description: |
-        Request exchange offers to remove, add and exchange passengers
-      allOf:
-        - $ref: '#/components/schemas/AbstractExchangeOfferRequestSpecification'
-        - $ref: '#/components/schemas/ExchangePassengersCfferRequestSpecification'
-
-    ExchangeServiceCfferRequest:
-      description: |
-        Request exchange offers to remove, add and exchange passengers
-      allOf:
-        - $ref: '#/components/schemas/AbstractExchangeOfferRequestSpecification'
-        - $ref: '#/components/schemas/ExchangeServiceCfferRequestSpecification'
-
-    ExchangeTripCfferRequest:
-      description: |
-        Request exchange offers to remove, add and exchange passengers
-      allOf:
-        - $ref: '#/components/schemas/AbstractExchangeOfferRequestSpecification'
-        - $ref: '#/components/schemas/ExchangeTripCfferRequestSpecification'
-
-    ExchangeGenericCfferRequest:
-      description: |
-        Request exchange offers to remove, add and exchange passengers
-      allOf:
-        - $ref: '#/components/schemas/AbstractExchangeOfferRequestSpecification'
-        - $ref: '#/components/schemas/ExchangePassengersCfferRequestSpecification' 
-        - $ref: '#/components/schemas/ExchangeServiceCfferRequestSpecification'   
-        - $ref: '#/components/schemas/ExchangeTripCfferRequestSpecification'      
+        Request exchange offers 
+      type: object
+      additionalProperties: false
+      required:
+          - exchangeParts
+          - exchangeParams
+      properties:        
+        exchangeParts:
+          description: |
+            the fulfillments or booking parts that should be exchanged.
+            The listed parts are an indication. It might be necessary to exchange more parts as there are dependencies to other pats via fulfillments. It is up to the provider to evaluate these dependencies.
+          type: array
+          maxItems: 1024
+          items:
+            $ref: '#/components/schemas/ExchangeParts'          
+        exchangeParams:
+          $ref: '#/components/schemas/ExchangeOfferRequestParameter'
+        exchangePassengers:
+          $ref: '#/components/schemas/ExchangePassengersCfferRequestSpecification' 
+        exchangeService:
+          $ref: '#/components/schemas/ExchangeServiceCfferRequestSpecification'   
+        exchangeTrip:  
+          $ref: '#/components/schemas/ExchangeTripCfferRequestSpecification'      
 
     ExchangeTripCfferRequestSpecification:
       description: |
@@ -9343,7 +9141,7 @@ components:
         - 'FULFILLED'
         - 'ERROR'
 
-    ExchangeSpecification:
+    ExchangeParts:
       description: specification of parts to be exchanged
       type: object
       properties:
