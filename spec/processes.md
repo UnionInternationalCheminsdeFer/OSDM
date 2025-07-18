@@ -17,6 +17,7 @@ permalink: /spec/processes/
    1. [Getting and Browsing Offers](#GettingOffers)
    2. [Round Trip Handling](#RoundTripsHandling)
    3. [Reservation](#Reservation)
+   4. [Partial Offers](#PartialOffers)
 6. [Complex Example](#ComplexExample)
 7. [Booking Processes](#BookingProcesses)
    1. [Creating a Booking Based on Offers](#CreatingBookings)
@@ -439,6 +440,19 @@ to import all coach-layouts of an distributor or fare provider. This service can
 be used periodically as master data service . Second,
 `GET /coachLayouts/{layoutId}` returns the information for a given `layoutId`
 and can be used during the on-line offering and booking process.
+
+### Partial Offers <a name="PartialOffers">
+
+Partial Offers are offers that do not cover the entire requested section of the trip. An offer is 
+complete if it covers the whole requested section even if this does not cover the whole trip.
+
+There are cases where offers that do not cover the entire requested section can occure and are usefull.
+
+- In case the trip includes a small part of city traffic or regional traffic where a ticktet can not be sold
+- In case the trip includes a part of city traffic or regional traffic where the ticket needs to be bought on board
+- In case a provided reduction card / pass is accepted as a full ticket on part of the trip
+- In case the travel is free for some part of the trip (e.g. second class travel in Luxembourgh)
+
 
 ## A Complex Example Mixing Offers and Fares <a name="ComplexExample">
 
