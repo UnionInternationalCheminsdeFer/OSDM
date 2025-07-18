@@ -14,15 +14,16 @@ permalink: /spec/models/
 4. [Admissions](#admissions)
 5. [Reservations](#reservations)
 6. [Ancillaries](#ancillaries)
-7. [Fees](#fees)
-8. [Products](#products)
-9. [Fares](#fares)
-10. [Complaint](#complaint)
-11. [Coach Layout](#coachLayout)
-12. [Reimbursement](#reimbursement)
-13. [Release](#release)
-14. [Putting Prebooking on Hold](#onHold)
-15. [Ids and References](#ids)
+7. [Linking Admissions, Reservations and Ancillaries](#linking)
+8. [Fees](#fees)
+9. [Products](#products)
+10. [Fares](#fares)
+11. [Complaint](#complaint)
+12. [Coach Layout](#coachLayout)
+13. [Reimbursement](#reimbursement)
+14. [Release](#release)
+15. [Putting Prebooking on Hold](#onHold)
+16. [Ids and References](#ids)
     
 
 
@@ -318,6 +319,39 @@ origin/destination, like a parking spot or lounge access.
 This offer part is significantly simpler than those instantiating transport
 products, and only has one additional attribute, being the category of the
 ancillary.
+
+
+### Offer Parts - Linking Admissions, Reservations and Ancillaries <a name="linking">
+
+Rerservations and Ancillaries might depend on the each other or on Admissions. E.g. an optional ancillary offer representing 
+a bicycle transport might depend on reservation offers for the bicycle hook on the train.
+
+These dependencies are described via the AncillaryRelation and ReservationRelation objects. The Relation objects allow
+to define groups of parts from which some need to be choosen.
+
+**Example 1**:
+
+  An anxillary depending on reservations with specific service. The anxillary is priced independent from the number of reservations:
+
+  - admissionOffer:
+    - in case of mandatory reservation: `ReservationRelation` to
+         - `ReservationGroup` with  reservation 1,2 
+         - `ReservationGroup` with  reservation 3,4 
+
+  - ancillaryOffer 1 (optional):
+      - `ReservationRelation` with reservation 1,2 
+
+  - reservationOffer 1 (optional), train 1 with ancillary support
+         - `AncillaryRelation` to ancillary 1
+  - reservationOffer 2 (optional), train 2 with ancillary support
+         - `AncillaryRelation` to ancillary 1
+  - reservationOffer 3 (optional), train 1 without ancillary support
+  - reservationOffer 4 (optional), train 2 without ancillary support
+
+In case the reservations with the ancillary can be on specific places only it is up to the provider system to ensure that appropriate places are reserved
+and shown in graphical reservation displays.
+
+
 
 ### Offer Parts - Fees  <a name="fees">
 
