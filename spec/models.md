@@ -331,7 +331,8 @@ to define groups of parts from which some need to be choosen.
 
 **Example 1**:
 
-  An anxillary depending on reservations with specific service. The anxillary is priced independent from the number of reservations:
+  An ancillary depending on reservations with specific service. The ancillary is priced independent from the number of reservations:
+
 
   - admissionOffer:
     - in case of mandatory reservation: `ReservationRelation` to
