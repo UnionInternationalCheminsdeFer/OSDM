@@ -14631,7 +14631,6 @@ components:
         Availability status of a specific place.
       required:
         - number
-        - status
         - reservationRefs
       properties:
         number:
