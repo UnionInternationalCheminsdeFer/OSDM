@@ -10108,8 +10108,7 @@ components:
            type: boolean
         importance:
           description: importance as percentage
-          type:   number
-          format: float
+          $ref: '#/components/schemas/Percentage'
         _links:
           description: |
             Java Property Name: 'links'
@@ -12032,6 +12031,15 @@ components:
         - 'VOUCHER'
         - 'TRAVEL_ACCOUNT'
 
+    Percentage:
+        description: importance as percentage
+        type:  
+          - number
+          - 'null'
+        format: float
+        minValue: 0.0
+        maxValue: 100.0        
+
     PersonDetail:
       type: object
       additionalProperties: false
@@ -13865,8 +13873,7 @@ components:
             text describing the reduction granted. In the context of master data translations should be provided.
           $ref: '#/components/schemas/Text'
         percentage:
-          type:  "number"
-          format: float
+          $ref: '#/components/schemas/Percentage'
 
     RefundOffer:
       type: object
@@ -17137,10 +17144,7 @@ components:
           format: int32
           default: 2
         percentage:
-          type:
-            - 'number'
-            - 'null'
-          format: float
+          $ref: '#/components/schemas/Percentage'
         taxId:
           type:
             - 'string'
