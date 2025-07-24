@@ -1405,8 +1405,8 @@ Transaction type used in after sales rules for fares.
 
 ## TravelDirection <a name="TravelDirection">
 
-Trave direction of a coach. To get the direction of travel for a place the
-direcion information of the coah needs to be combined with the direction of the
+Travel direction of a coach. To get the direction of travel for a place, the
+direction information of the coach needs to be combined with the direction of the
 seat in the coach layout.
 
 | Code                             | Description                                      |
