@@ -6390,6 +6390,7 @@ components:
 
     BookingPurchaseMoment:
       description: |
+        used to indicate booking options not provided via the OSDM app.
         Provided by OJP.
         - 'ON_RESERVATION'
         description: must be made on reservation in advance of travel
@@ -6428,6 +6429,9 @@ components:
         - 'SUBSCRIPTION_ONLY'
 
     BookingAccess:
+      description: |
+        used to indicate booking options not provided via the OSDM app.
+        Provided by OJP.      
       type: string
       x-extensible-enum:
         - 'PUBLIC'
@@ -6435,6 +6439,9 @@ components:
         - 'STAFF'
 
     BookingAccessTiming:
+      description: |    
+        used to indicate booking options not provided via the OSDM app.
+        Provided by OJP.      
       type: string
       x-extensible-enum:
          - 'ADVANCE_ONLY'
@@ -6445,6 +6452,9 @@ components:
          - 'SUBSCRIPTION_CHARGE_MOMENT'
 
     BookingMethod:
+      description: |    
+        used to indicate booking options not provided via the OSDM app.
+        Provided by OJP.     
       type: string
       x-extensible-enum:
         - 'CALL_DRIVER'    
