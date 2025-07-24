@@ -131,7 +131,7 @@ implementations:
 | `PROPERTY_SUBSTITUTED`    | Requested property is not available and is substituted. Check the response for the substitute |
 | `PARTIAL_SUCCESS`         | The request could not be fully processed and is partially processed                           |
 | `SERVICE_UNAVAILABLE`     | The service is currently not available                                                        |
-| `UNAUTHORIZED`            | Client is no authorized                                                                       |
+| `UNAUTHORIZED`            | Client is not authorized                                                                      |
 
 ### Standardized Functional Errors <a name="StandardizedFunctionalErrors">
 

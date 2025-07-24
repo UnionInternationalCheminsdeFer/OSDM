@@ -75,13 +75,13 @@ schema files.
 
 ## URNs for code lists <a name="URNsforcodelists">
 
-| Code List                 | Name Space and domain | CodeList       | Description                                                                                                                                                                                                                                                                                                                                                      | example                    | base path for relative references |
-|---------------------------|-----------------------|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|-----------------------------------|
-| stations                  | `urn:uic`             | `stn`          | UIC station codes ( = TAP-TSI retail station codes as defined in TAP-TSI Technical Document B.9). The codes are defined in TAP-TSI as numerical codes starting with the TAP-TSI country code without leading zeroes. Temporary codes not jet part of TAP-TSI reference data might be added with an additional number before the country code as agreed with ERA. | `urn:uic:stn:8512345`      | `urn:uic:stn:`                    |
-| metastations              | `urn:uic`             | `metastn`      | UIC meta station codes to e used for Points of Interest | `urn:uic:metastn:198`      | `urn:uic:metastn:`    |
-| service brands , products | `urn:uic`             | `sbc`          | UIC service brand code (TAP-TSI B.4.7009 / <https://uic.org/passenger/passenger-services-group/article/service-brand-code-list>)                 | `urn:uic:sbc:17`           | `urn:uic:sbc:`                    |
-| companies                 | `urn:uic`             | `rics:ac`      | company code (TAP-TSI <https://www.era.europa.eu/registers/ocr_en> / <https://uic.org/support-activities/it/rics>) and optional administration code (AC)                                                                                                                                                                                                         | `urn:uic:rics:1080:000011` | `urn:uic:rics:`                   |
-| stations                  | `urn:iata`            | `li`           | IATA Location Identifiers for airports or rail stations defined in [IATA Airline Coding Directory (ACD)](https://www.iata.org/en/publications/manuals/airline-coding-directory/)     | `urn:iata:li:XWC`          | `urn:iata:li:`                    |
+| Code List                 | Name Space and domain | CodeList  | Description                                                                                                                                                                                                                                                                                                                                                      | example                    | base path for relative references |
+|---------------------------|-----------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|-----------------------------------|
+| stations                  | `urn:uic`             | `stn`     | UIC station codes ( = TAP-TSI retail station codes as defined in TAP-TSI Technical Document B.9). The codes are defined in TAP-TSI as numerical codes starting with the TAP-TSI country code without leading zeroes. Temporary codes not jet part of TAP-TSI reference data might be added with an additional number before the country code as agreed with ERA. | `urn:uic:stn:8512345`      | `urn:uic:stn:`                    |
+| metastations              | `urn:uic`             | `metastn` | UIC meta station codes to e used for Points of Interest                                                                                                                                                                                                                                                                                                          | `urn:uic:metastn:198`      | `urn:uic:metastn:`                |
+| service brands , products | `urn:uic`             | `sbc`     | UIC service brand code (TAP-TSI B.4.7009 / <https://uic.org/passenger/passenger-services-group/article/service-brand-code-list>)                                                                                                                                                                                                                                 | `urn:uic:sbc:17`           | `urn:uic:sbc:`                    |
+| companies                 | `urn:uic`             | `rics:ac` | company code (TAP-TSI <https://www.era.europa.eu/registers/ocr_en> / <https://uic.org/support-activities/it/rics>) and optional administration code (AC)                                                                                                                                                                                                         | `urn:uic:rics:1080:000011` | `urn:uic:rics:`                   |
+| stations                  | `urn:iata`            | `li`      | IATA Location Identifiers for airports or rail stations defined in [IATA Airline Coding Directory (ACD)](https://www.iata.org/en/publications/manuals/airline-coding-directory/)                                                                                                                                                                                 | `urn:iata:li:XWC`          | `urn:iata:li:`                    |
 
 Note: we do not use URN notation for country codes (we use ISO-3166-1 alpha-2 notation, e.g. 'CH') and for currency codes (we use ISO-4217 notation, e.g. 'EUR').
 
@@ -141,106 +141,106 @@ different types are an indication but not mandatory.
 Place Preference Group collects Place preferences where only one can be chosen
 of by the customer.
 
-| Code                    | Accommodation Sub Type | Place Preference | Place Property | Description                                                                                      | Place Preference Group           |
-| ----------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------ | -------------------------------- |
-| `AISLE_SEAT`            | N                      | Y                | Y              | Place at the aisle                                                                               | `PLACE_OR_COMPARTMENT_LOCATION`  |
-| `AIR-CONDITIONED`       | N                      | Y                | Y              | Place in air conditioned area                                                                    | `PLACE_OR_COMPARTMENT_FEATURE`   |
-| `ANY_SEAT`              | Y                      | N                | Y              | Indicates within a place preference group explicitly that the selection is optional              | `COMPARTMENT_TYPE`               |
-| `BISTRO`                | Y                      | Y                | Y              | Places in a coach with self-service bistro                                                       | `COMPARTMENT_TYPE`               |
-| `BICYCLE`               | Y                      | Y                | Y              | Bicycle hook                                                                                     | `SPECIAL_COMPARTMENT_TYPE`       |
-| `BICYCLE_LOW`           | Y                      | Y                | Y              | Bicycle hook, no or slight lift only of front wheel needed                                       | `BICYCLE_LOCATION`               |
-| `BICYCLE_MIDDLE`        | Y                      | Y                | Y              | Bicycle hook, waist high lift of bike needed                                                     | `BICYCLE_LOCATION`               |
-| `BICYCLE_HIGH`          | Y                      | Y                | Y              | Bicycle hook, complete lift of bike needed to reach hook                                         | `BICYCLE_LOCATION`               |
-| `BUSINESS`              | Y                      | Y                | Y              | Manager compartment/business                                                                     | `COMPARTMENT_TYPE`               |
-| `BUSINESS_COMFORT`      | Y                      | Y                | Y              | Business Comfort – business seat with reduced service                                            | `COMPARTMENT_TYPE`               |
-| `CABIN8`                | Y                      | Y                | Y              | Special place group in TGV                                                                       | `COMPARTMENT_TYPE`               |
-| `CAR_LARGE`             | Y                      | N                | Y              | Vehicle place category formotor vehicle between 4,42 m up to 5,30 m and with a roof width between 1,36 m and 1,55 m  | `SPECIAL_COMPARTMENT_TYPE`       |
-| `CAR_SMALL`             | Y                      | N                | Y              | Vehicle place for motor vehicle between 4,42 m up to 5,30 m and with a roof width up to 1,35 m.  | `SPECIAL_COMPARTMENT_TYPE`       |
-| `CARRE`                 | Y                      | Y                | Y              | Carré (4 seats facing normally 2nd Class)                                                        | `COMPARTMENT_TYPE`               |
-| `CHILDREN_AREA`         | Y                      | Y                | Y              | Places in children area                                                                          | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `CLUB`                  | Y                      | N                | Y              | Club Category (RENFE)                                                                            | `COMPARTMENT_TYPE`               |
-| `CLUB_2`                | Y                      | Y                | Y              | Club Duo (2 seats facing in a separate compartment)                                              | `COMPARTMENT_TYPE`               |
-| `CLUB_4`                | Y                      | Y                | Y              | Club 4 (4 seats facing)                                    | `COMPARTMENT_TYPE`               |
-| `COMPARTMENT`           | Y                      | Y                | Y              | Places in a compartment                                    | `COMPARTMENT_TYPE`               |
-| `COMPLETE`              | N                      | N                | Y              | All places in a compartment are included, no other passengers will be located in the compartment | `COMPLETE_COMPARTMENT`           |
-| `CONFERENCE`            | N                      | N                | Y              | Conference compartment                                     | `COMPLETE_COMPARTMENT`           |
-| `CONNECTING_DOOR`       | N                      | Y                | Y              | Compartments with connecting door (in sleepers)            | `PLACE_OR_COMPARTMENT_ALIGNMENT` |
-| `COUCHETTE_2`           | Y                      | N                | Y              | Two person couchette cabin                                 | `COMPARTMENT_TYPE`               |
-| `COUCHETTE_4`           | Y                      | N                | Y              | Couchette Four-berth                                       | `COMPARTMENT_TYPE`               |
-| `COUCHETTE_5`           | Y                      | N                | Y              | Couchette Five-berth                                       | `COMPARTMENT_TYPE`               |
-| `COUCHETTE_6`           | Y                      | N                | Y              | Couchette Six-berth                                        | `COMPARTMENT_TYPE`               |
-| `COUCHETTE_COMFORT_4`   | Y                      | N                | Y              | Couchette higher quality Four-berth                        | `COMPARTMENT_TYPE`               |
-| `COUCHETTE_COMFORT_5`   | Y                      | N                | Y              | Couchette higher quality Five-berth                        | `COMPARTMENT_TYPE`               |
-| `COUCHETTE_COMFORT_6`   | Y                      | N                | Y              | Couchette higher quality Six-berth                         | `COMPARTMENT_TYPE`               |
-| `COUCHETTE_PRM_2`       | Y                      | N                | Y              | Couchette suitable for PRMs Two-berth                      | `SPECIAL_COMPARTMENT_TYPE`       |
-| `COUCHETTE_PRM_3`       | Y                      | N                | Y              | Couchette suitable for PRMs Three-berth                    | `SPECIAL_COMPARTMENT_TYPE`       |
-| `COUCHETTE_PRM_4`       | Y                      | N                | Y              | Couchette suitable for PRMs Four-berth                     | `SPECIAL_COMPARTMENT_TYPE`       |
-| `DOUBLE`                | Y                      | N                | Y              | Two person sleeper compartment                             | `COMPARTMENT_TYPE`               |
-| `DOUBLE_WC`             | Y                      | N                | Y              | Two person sleeper compartment with WC                     | `COMPARTMENT_TYPE`               |
-| `DOUBLE_SWC`            | Y                      | N                | Y              | Double sleeper compartment with shower & WC                | `COMPARTMENT_TYPE`               |
-| `DOUBLE_S`              | Y                      | N                | Y              | Double sleeper compartment with shower                     | `COMPARTMENT_TYPE`               |
-| `EASY_ACCESS`           | Y                      | Y                | Y              | Place with easy access for PRMs                            | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `FACE_2_FACE`           | N                      | Y                | Y              | places face to face (2 seats facing)                                                             | `PLACE_OR_COMPARTMENT_ALIGNMENT` |
-| `EXCELLENCE`            | Y                      | Y                | Y              | Special Excellence Places (RhB)                                                                  | `COMPARTMENT_TYPE`               |
-| `FAMILY`                | Y                      | Y                | Y              | Places in family area                                                                            | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `FRONT_VIEW`            | Y                      | Y                | Y              | Seat with front-view                                                                             | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `HISTORIC_COACH`        | Y                      | Y                | Y              | Seat in historic coach                                                                           | `COMPARTMENT_TYPE`               |
-| `INCLUDING_MEAL`        | N                      | Y                | Y              | Meal at the place is included                                                                    | `PLACE_OR_COMPARTMENT_FEATURE`   |
-| `INCLUDING_DRINK`       | N                      | Y                | Y              | A drink is included at the place                                                                 | `PLACE_OR_COMPARTMENT_FEATURE`   |
-| `KIOSQUE`               | Y                      | Y                | Y              | Kiosque (special seats in edge area of a TGV)                                                    | `COMPARTMENT_TYPE`               |
-| `LADIES`                | N                      | Y                | Y              | Ladies compartment                                                                               | `GENDER`                         |
-| `LOWER_BED`             | N                      | Y                | Y              | Lower bed or couchette                                                                           | `PLACE_OR_COMPARTMENT_LOCATION`  |
-| `LOWER_DECK`            | N                      | Y                | Y              | Lower deck in a double deck train                                                                | `PLACE_OR_COMPARTMENT_LOCATION`  |
-| `MEN`                   | N                      | Y                | Y              | Men compartment in night train                                                                   | `GENDER`                         |
-| `MIDDLE_BED`            | N                      | Y                | Y              | Middle bed or couchette                                                                          | `PLACE_OR_COMPARTMENT_LOCATION`  |
-| `MIDDLE_DECK`           | N                      | Y                | Y              | Middle bed or couchette                                                                          | `PLACE_OR_COMPARTMENT_LOCATION`  |
-| `MIDDLE_SEAT`           | N                      | Y                | Y              | Middle seat                                                                                      | `PLACE_OR_COMPARTMENT_LOCATION`  |
-| `MINI_SUITE`            | Y                      | N                | Y              | Mini Suite - single person couchette compartment (Capsule)                                       | `COMPARTMENT_TYPE`               |
-| `MIXED`                 | N                      | Y                | Y              | Mixed compartment in night train                                                                 | `GENDER`                         |
-| `MOTOR_CYCLE`           | Y                      | N                | Y              | Motorcycle                                                                                       | `SPECIAL_COMPARTMENT_TYPE`       |
-| `MOTOR_CYCLE_SC`        | Y                      | N                | Y              | Motorcycle with sidecar                                                                          | `SPECIAL_COMPARTMENT_TYPE`       |
-| `NEAR_ANIMALS`          | Y                      | Y                | Y              | Places close to place with animals                    | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `NEAR_ASSISTANT_DOG_AREA`| Y                      | Y                | Y              | Places close to an area where assistance dogs are kept | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `NEAR_DINING`           | Y                      | Y                | Y              | Places near the dining car                            | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `NEAR_PLAY_AREA`        | Y                      | Y                | Y              | Places near a child play area                         | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `NEAR_BICYCLE_AREA`     | Y                      | Y                | Y              | Places near the bicycle storage space                 | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `NEAR_WHEELCHAIR`       | Y                      | Y                | Y              | Used to indicate places near the wheelchair when booked by an accompanying person | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `OPEN_SPACE`            | Y                      | Y                | Y              | Places in open space area                                                                        | `COMPARTMENT_TYPE`               |
-| `PANORAMA`              | Y                      | Y                | Y              | Places in a panorama coach                                                                       | `COMPARTMENT_TYPE`               |
-| `PHONE`                 | N                      | Y                | Y              | Places in an area with mobile phone amplifier                                                    | `PLACE_OR_COMPARTMENT_FEATURE`   |
-| `POWER`                 | N                      | Y                | Y              | Place with power socket                                                                          | `PLACE_OR_COMPARTMENT_FEATURE`   |
-| `PRAM`                  | Y                      | N                | Y              | Place for a Pram                                                                                 | `SPECIAL_COMPARTMENT_TYPE`       |
-| `PRAM_WITH_SEAT`        | Y                      | N                | Y              | Seat with space for a pram                                                                       | `SPECIAL_COMPARTMENT_TYPE`       |
-| `PREMIUM`               | Y                      | Y                | Y              | Seat with premium comfort (higher than first class)                                              | `SPECIAL_COMPARTMENT_TYPE`       |
-| `RESTAURANT`            | Y                      | Y                | Y              | Restaurant (places in a dining car)                                                              | `COMPARTMENT_TYPE`               |
-| `SALON`                 | Y                      | Y                | Y              | Salon (6 seats facing in a separate compartment)                                                 | `COMPARTMENT_TYPE`               |
-| `SILENCE`               | Y                      | Y                | Y              | Quiet Compartment (Seat)                                                                         | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `SINGLE`                | Y                      | N                | Y              | Single sleeper compartment                       | `COMPARTMENT_TYPE`               |
-| `SINGLE_WC`             | Y                      | N                | Y              | Single sleeper compartment with WC               | `COMPARTMENT_TYPE`               |
-| `SINGLE_SWC`            | Y                      | N                | Y              | Single sleeper compartment with shower & WC      | `COMPARTMENT_TYPE`               |
-| `SIDE_BY_SIDE`          | N                      | Y                | Y              | Places side by side (2 seats side by side)       | `PLACE_OR_COMPARTMENT_ALIGNMENT` |
-| `SLEEPERETTE`           | Y                      | N                | Y              | Sleeperette (reclining seat)                     | `COMPARTMENT_TYPE`               |
-| `SOLO`                  | Y                      | Y                | Y              | Separate place without neighbor seat             | `COMPARTMENT_TYPE`               |
-| `SOLO_COM`              | Y                      | Y                | Y              | Special separate place without neighbor seat (e.g. in TGV)   | `COMPARTMENT_TYPE` |
-| `SPECIAL_SLEEPER`       | Y                      | N                | Y              | Special Sleeper Compartment, one Person sleeper compartment smaller than a Single | `COMPARTMENT_TYPE`               |
-| `TABLE`                 | N                      | Y                | Y              | Places at a table                              | `PLACE_OR_COMPARTMENT_FEATURE`   |
-| `TANDEM`                | Y                      | Y                | Y              | Tandem Bicycle                                 | `SPECIAL_COMPARTMENT_TYPE`       |          
-| `TOURIST_SLEEPER_2`     | Y                      | N                | Y              | T2 sleeper compartment                         | `COMPARTMENT_TYPE`               |       
-| `TOURIST_SLEEPER_3`     | Y                      | N                | Y              | T3 sleeper compartment                         | `COMPARTMENT_TYPE`               |                 
-| `TOURIST_SLEEPER_3_WC`  | Y                      | N                | Y              | T3 sleeper compartment with WC                 | `COMPARTMENT_TYPE`               |
-| `TOURIST_SLEEPER_3_SWC` | Y                      | N                | Y              | T3 sleeper compartment with shower & WC        | `COMPARTMENT_TYPE`               |
-| `TOURIST_SLEEPER_4`     | Y                      | N                | Y              | T4 sleeper compartment                         | `COMPARTMENT_TYPE`               |                
-| `UPPER_BED`             | N                      | Y                | Y              | Upper bed or couchette                         | `PLACE_OR_COMPARTMENT_LOCATION`  |
-| `UPPER_DECK`            | N                      | Y                | Y              | Upper deck in a double deck train              | `PLACE_OR_COMPARTMENT_LOCATION`  |
-| `VIDEO`                 | N                      | Y                | Y              | Place with video entertainment                 | `PLACE_OR_COMPARTMENT_FEATURE`   |
-| `WHEELCHAIR`            | Y                      | Y                | Y              | Wheelchair place                               | `SPECIAL_COMPARTMENT_TYPE`       |
-| `WHEELCHAIR_AND_SEAT`   | Y                      | Y                | Y              | Wheelchair place with additional seat          | `SPECIAL_COMPARTMENT_TYPE`       |
-| `WHEELCHAIR_NO_SEAT`    | Y                      | Y                | Y              | Wheelchair space without additional seat       | `SPECIAL_COMPARTMENT_TYPE`       |
-| `WIFI`                  | N                      | Y                | Y              | Place with WiFi access point                   | `PLACE_OR_COMPARTMENT_FEATURE`   |
-| `WINDOW_SEAT`           | N                      | Y                | Y              | Place at the window                            | `PLACE_OR_COMPARTMENT_LOCATION`  |
-| `WITH_ANIMALS`          | Y                      | Y                | Y              | Place with animals (animals allowed)           | `SPECIAL_COMPARTMENT_TYPE`       |
-| `WITH_SMALL_CHILDREN`   | Y                      | Y                | Y              | Place for passengers with small children       | `PLACE_OR_COMPARTMENT_POSITION`  |
-| `WITHOUT_ANIMALS`       | Y                      | Y                | Y              | Place in an area where animals are not allowed | `SPECIAL_COMPARTMENT_TYPE`       |
+| Code                      | Accommodation Sub Type | Place Preference | Place Property | Description                                                                                                         | Place Preference Group           |
+| ------------------------- | ---------------------- | ---------------- | -------------- | ------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| `AISLE_SEAT`              | N                      | Y                | Y              | Place at the aisle                                                                                                  | `PLACE_OR_COMPARTMENT_LOCATION`  |
+| `AIR-CONDITIONED`         | N                      | Y                | Y              | Place in air conditioned area                                                                                       | `PLACE_OR_COMPARTMENT_FEATURE`   |
+| `ANY_SEAT`                | Y                      | N                | Y              | Indicates within a place preference group explicitly that the selection is optional                                 | `COMPARTMENT_TYPE`               |
+| `BISTRO`                  | Y                      | Y                | Y              | Places in a coach with self-service bistro                                                                          | `COMPARTMENT_TYPE`               |
+| `BICYCLE`                 | Y                      | Y                | Y              | Bicycle hook                                                                                                        | `SPECIAL_COMPARTMENT_TYPE`       |
+| `BICYCLE_LOW`             | Y                      | Y                | Y              | Bicycle hook, no or slight lift only of front wheel needed                                                          | `BICYCLE_LOCATION`               |
+| `BICYCLE_MIDDLE`          | Y                      | Y                | Y              | Bicycle hook, waist high lift of bike needed                                                                        | `BICYCLE_LOCATION`               |
+| `BICYCLE_HIGH`            | Y                      | Y                | Y              | Bicycle hook, complete lift of bike needed to reach hook                                                            | `BICYCLE_LOCATION`               |
+| `BUSINESS`                | Y                      | Y                | Y              | Manager compartment/business                                                                                        | `COMPARTMENT_TYPE`               |
+| `BUSINESS_COMFORT`        | Y                      | Y                | Y              | Business Comfort – business seat with reduced service                                                               | `COMPARTMENT_TYPE`               |
+| `CABIN8`                  | Y                      | Y                | Y              | Special place group in TGV                                                                                          | `COMPARTMENT_TYPE`               |
+| `CAR_LARGE`               | Y                      | N                | Y              | Vehicle place category formotor vehicle between 4,42 m up to 5,30 m and with a roof width between 1,36 m and 1,55 m | `SPECIAL_COMPARTMENT_TYPE`       |
+| `CAR_SMALL`               | Y                      | N                | Y              | Vehicle place for motor vehicle between 4,42 m up to 5,30 m and with a roof width up to 1,35 m.                     | `SPECIAL_COMPARTMENT_TYPE`       |
+| `CARRE`                   | Y                      | Y                | Y              | Carré (4 seats facing normally 2nd Class)                                                                           | `COMPARTMENT_TYPE`               |
+| `CHILDREN_AREA`           | Y                      | Y                | Y              | Places in children area                                                                                             | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `CLUB`                    | Y                      | N                | Y              | Club Category (RENFE)                                                                                               | `COMPARTMENT_TYPE`               |
+| `CLUB_2`                  | Y                      | Y                | Y              | Club Duo (2 seats facing in a separate compartment)                                                                 | `COMPARTMENT_TYPE`               |
+| `CLUB_4`                  | Y                      | Y                | Y              | Club 4 (4 seats facing)                                                                                             | `COMPARTMENT_TYPE`               |
+| `COMPARTMENT`             | Y                      | Y                | Y              | Places in a compartment                                                                                             | `COMPARTMENT_TYPE`               |
+| `COMPLETE`                | N                      | N                | Y              | All places in a compartment are included, no other passengers will be located in the compartment                    | `COMPLETE_COMPARTMENT`           |
+| `CONFERENCE`              | N                      | N                | Y              | Conference compartment                                                                                              | `COMPLETE_COMPARTMENT`           |
+| `CONNECTING_DOOR`         | N                      | Y                | Y              | Compartments with connecting door (in sleepers)                                                                     | `PLACE_OR_COMPARTMENT_ALIGNMENT` |
+| `COUCHETTE_2`             | Y                      | N                | Y              | Two person couchette cabin                                                                                          | `COMPARTMENT_TYPE`               |
+| `COUCHETTE_4`             | Y                      | N                | Y              | Couchette Four-berth                                                                                                | `COMPARTMENT_TYPE`               |
+| `COUCHETTE_5`             | Y                      | N                | Y              | Couchette Five-berth                                                                                                | `COMPARTMENT_TYPE`               |
+| `COUCHETTE_6`             | Y                      | N                | Y              | Couchette Six-berth                                                                                                 | `COMPARTMENT_TYPE`               |
+| `COUCHETTE_COMFORT_4`     | Y                      | N                | Y              | Couchette higher quality Four-berth                                                                                 | `COMPARTMENT_TYPE`               |
+| `COUCHETTE_COMFORT_5`     | Y                      | N                | Y              | Couchette higher quality Five-berth                                                                                 | `COMPARTMENT_TYPE`               |
+| `COUCHETTE_COMFORT_6`     | Y                      | N                | Y              | Couchette higher quality Six-berth                                                                                  | `COMPARTMENT_TYPE`               |
+| `COUCHETTE_PRM_2`         | Y                      | N                | Y              | Couchette suitable for PRMs Two-berth                                                                               | `SPECIAL_COMPARTMENT_TYPE`       |
+| `COUCHETTE_PRM_3`         | Y                      | N                | Y              | Couchette suitable for PRMs Three-berth                                                                             | `SPECIAL_COMPARTMENT_TYPE`       |
+| `COUCHETTE_PRM_4`         | Y                      | N                | Y              | Couchette suitable for PRMs Four-berth                                                                              | `SPECIAL_COMPARTMENT_TYPE`       |
+| `DOUBLE`                  | Y                      | N                | Y              | Two person sleeper compartment                                                                                      | `COMPARTMENT_TYPE`               |
+| `DOUBLE_WC`               | Y                      | N                | Y              | Two person sleeper compartment with WC                                                                              | `COMPARTMENT_TYPE`               |
+| `DOUBLE_SWC`              | Y                      | N                | Y              | Double sleeper compartment with shower & WC                                                                         | `COMPARTMENT_TYPE`               |
+| `DOUBLE_S`                | Y                      | N                | Y              | Double sleeper compartment with shower                                                                              | `COMPARTMENT_TYPE`               |
+| `EASY_ACCESS`             | Y                      | Y                | Y              | Place with easy access for PRMs                                                                                     | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `FACE_2_FACE`             | N                      | Y                | Y              | places face to face (2 seats facing)                                                                                | `PLACE_OR_COMPARTMENT_ALIGNMENT` |
+| `EXCELLENCE`              | Y                      | Y                | Y              | Special Excellence Places (RhB)                                                                                     | `COMPARTMENT_TYPE`               |
+| `FAMILY`                  | Y                      | Y                | Y              | Places in family area                                                                                               | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `FRONT_VIEW`              | Y                      | Y                | Y              | Seat with front-view                                                                                                | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `HISTORIC_COACH`          | Y                      | Y                | Y              | Seat in historic coach                                                                                              | `COMPARTMENT_TYPE`               |
+| `INCLUDING_MEAL`          | N                      | Y                | Y              | Meal at the place is included                                                                                       | `PLACE_OR_COMPARTMENT_FEATURE`   |
+| `INCLUDING_DRINK`         | N                      | Y                | Y              | A drink is included at the place                                                                                    | `PLACE_OR_COMPARTMENT_FEATURE`   |
+| `KIOSQUE`                 | Y                      | Y                | Y              | Kiosque (special seats in edge area of a TGV)                                                                       | `COMPARTMENT_TYPE`               |
+| `LADIES`                  | N                      | Y                | Y              | Ladies compartment                                                                                                  | `GENDER`                         |
+| `LOWER_BED`               | N                      | Y                | Y              | Lower bed or couchette                                                                                              | `PLACE_OR_COMPARTMENT_LOCATION`  |
+| `LOWER_DECK`              | N                      | Y                | Y              | Lower deck in a double deck train                                                                                   | `PLACE_OR_COMPARTMENT_LOCATION`  |
+| `MEN`                     | N                      | Y                | Y              | Men compartment in night train                                                                                      | `GENDER`                         |
+| `MIDDLE_BED`              | N                      | Y                | Y              | Middle bed or couchette                                                                                             | `PLACE_OR_COMPARTMENT_LOCATION`  |
+| `MIDDLE_DECK`             | N                      | Y                | Y              | Middle bed or couchette                                                                                             | `PLACE_OR_COMPARTMENT_LOCATION`  |
+| `MIDDLE_SEAT`             | N                      | Y                | Y              | Middle seat                                                                                                         | `PLACE_OR_COMPARTMENT_LOCATION`  |
+| `MINI_SUITE`              | Y                      | N                | Y              | Mini Suite - single person couchette compartment (Capsule)                                                          | `COMPARTMENT_TYPE`               |
+| `MIXED`                   | N                      | Y                | Y              | Mixed compartment in night train                                                                                    | `GENDER`                         |
+| `MOTOR_CYCLE`             | Y                      | N                | Y              | Motorcycle                                                                                                          | `SPECIAL_COMPARTMENT_TYPE`       |
+| `MOTOR_CYCLE_SC`          | Y                      | N                | Y              | Motorcycle with sidecar                                                                                             | `SPECIAL_COMPARTMENT_TYPE`       |
+| `NEAR_ANIMALS`            | Y                      | Y                | Y              | Places close to place with animals                                                                                  | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `NEAR_ASSISTANT_DOG_AREA` | Y                      | Y                | Y              | Places close to an area where assistance dogs are kept                                                              | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `NEAR_DINING`             | Y                      | Y                | Y              | Places near the dining car                                                                                          | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `NEAR_PLAY_AREA`          | Y                      | Y                | Y              | Places near a child play area                                                                                       | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `NEAR_BICYCLE_AREA`       | Y                      | Y                | Y              | Places near the bicycle storage space                                                                               | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `NEAR_WHEELCHAIR`         | Y                      | Y                | Y              | Used to indicate places near the wheelchair when booked by an accompanying person                                   | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `OPEN_SPACE`              | Y                      | Y                | Y              | Places in open space area                                                                                           | `COMPARTMENT_TYPE`               |
+| `PANORAMA`                | Y                      | Y                | Y              | Places in a panorama coach                                                                                          | `COMPARTMENT_TYPE`               |
+| `PHONE`                   | N                      | Y                | Y              | Places in an area with mobile phone amplifier                                                                       | `PLACE_OR_COMPARTMENT_FEATURE`   |
+| `POWER`                   | N                      | Y                | Y              | Place with power socket                                                                                             | `PLACE_OR_COMPARTMENT_FEATURE`   |
+| `PRAM`                    | Y                      | N                | Y              | Place for a Pram                                                                                                    | `SPECIAL_COMPARTMENT_TYPE`       |
+| `PRAM_WITH_SEAT`          | Y                      | N                | Y              | Seat with space for a pram                                                                                          | `SPECIAL_COMPARTMENT_TYPE`       |
+| `PREMIUM`                 | Y                      | Y                | Y              | Seat with premium comfort (higher than first class)                                                                 | `SPECIAL_COMPARTMENT_TYPE`       |
+| `RESTAURANT`              | Y                      | Y                | Y              | Restaurant (places in a dining car)                                                                                 | `COMPARTMENT_TYPE`               |
+| `SALON`                   | Y                      | Y                | Y              | Salon (6 seats facing in a separate compartment)                                                                    | `COMPARTMENT_TYPE`               |
+| `SILENCE`                 | Y                      | Y                | Y              | Quiet Compartment (Seat)                                                                                            | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `SINGLE`                  | Y                      | N                | Y              | Single sleeper compartment                                                                                          | `COMPARTMENT_TYPE`               |
+| `SINGLE_WC`               | Y                      | N                | Y              | Single sleeper compartment with WC                                                                                  | `COMPARTMENT_TYPE`               |
+| `SINGLE_SWC`              | Y                      | N                | Y              | Single sleeper compartment with shower & WC                                                                         | `COMPARTMENT_TYPE`               |
+| `SIDE_BY_SIDE`            | N                      | Y                | Y              | Places side by side (2 seats side by side)                                                                          | `PLACE_OR_COMPARTMENT_ALIGNMENT` |
+| `SLEEPERETTE`             | Y                      | N                | Y              | Sleeperette (reclining seat)                                                                                        | `COMPARTMENT_TYPE`               |
+| `SOLO`                    | Y                      | Y                | Y              | Separate place without neighbor seat                                                                                | `COMPARTMENT_TYPE`               |
+| `SOLO_COM`                | Y                      | Y                | Y              | Special separate place without neighbor seat (e.g. in TGV)                                                          | `COMPARTMENT_TYPE`               |
+| `SPECIAL_SLEEPER`         | Y                      | N                | Y              | Special Sleeper Compartment, one Person sleeper compartment smaller than a Single                                   | `COMPARTMENT_TYPE`               |
+| `TABLE`                   | N                      | Y                | Y              | Places at a table                                                                                                   | `PLACE_OR_COMPARTMENT_FEATURE`   |
+| `TANDEM`                  | Y                      | Y                | Y              | Tandem Bicycle                                                                                                      | `SPECIAL_COMPARTMENT_TYPE`       |
+| `TOURIST_SLEEPER_2`       | Y                      | N                | Y              | T2 sleeper compartment                                                                                              | `COMPARTMENT_TYPE`               |
+| `TOURIST_SLEEPER_3`       | Y                      | N                | Y              | T3 sleeper compartment                                                                                              | `COMPARTMENT_TYPE`               |
+| `TOURIST_SLEEPER_3_WC`    | Y                      | N                | Y              | T3 sleeper compartment with WC                                                                                      | `COMPARTMENT_TYPE`               |
+| `TOURIST_SLEEPER_3_SWC`   | Y                      | N                | Y              | T3 sleeper compartment with shower & WC                                                                             | `COMPARTMENT_TYPE`               |
+| `TOURIST_SLEEPER_4`       | Y                      | N                | Y              | T4 sleeper compartment                                                                                              | `COMPARTMENT_TYPE`               |
+| `UPPER_BED`               | N                      | Y                | Y              | Upper bed or couchette                                                                                              | `PLACE_OR_COMPARTMENT_LOCATION`  |
+| `UPPER_DECK`              | N                      | Y                | Y              | Upper deck in a double deck train                                                                                   | `PLACE_OR_COMPARTMENT_LOCATION`  |
+| `VIDEO`                   | N                      | Y                | Y              | Place with video entertainment                                                                                      | `PLACE_OR_COMPARTMENT_FEATURE`   |
+| `WHEELCHAIR`              | Y                      | Y                | Y              | Wheelchair place                                                                                                    | `SPECIAL_COMPARTMENT_TYPE`       |
+| `WHEELCHAIR_AND_SEAT`     | Y                      | Y                | Y              | Wheelchair place with additional seat                                                                               | `SPECIAL_COMPARTMENT_TYPE`       |
+| `WHEELCHAIR_NO_SEAT`      | Y                      | Y                | Y              | Wheelchair space without additional seat                                                                            | `SPECIAL_COMPARTMENT_TYPE`       |
+| `WIFI`                    | N                      | Y                | Y              | Place with WiFi access point                                                                                        | `PLACE_OR_COMPARTMENT_FEATURE`   |
+| `WINDOW_SEAT`             | N                      | Y                | Y              | Place at the window                                                                                                 | `PLACE_OR_COMPARTMENT_LOCATION`  |
+| `WITH_ANIMALS`            | Y                      | Y                | Y              | Place with animals (animals allowed)                                                                                | `SPECIAL_COMPARTMENT_TYPE`       |
+| `WITH_SMALL_CHILDREN`     | Y                      | Y                | Y              | Place for passengers with small children                                                                            | `PLACE_OR_COMPARTMENT_POSITION`  |
+| `WITHOUT_ANIMALS`         | Y                      | Y                | Y              | Place in an area where animals are not allowed                                                                      | `SPECIAL_COMPARTMENT_TYPE`       |
 
 ## Ancillary category <a name="AncillaryCategory">
 
@@ -532,13 +532,13 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
 ## FulfillmentDocumentType <a name="FulfillmentDocumentType">
 
-| Code               | Description                                |
-| ------------------ | ------------------------------------------ |
-| `BOARDING_PASS`    | Boarding Pass - not a ticket               | 
-| `BOOKING_RECEIPT`  | Financial receipt for a booking            |
-| `INFORMATION`      | Miscellaneous information, e.g. CO2 Report |
-| `TICKET`           | Ticket - valid for travel                  |
-| `VOUCHER`          | Voucher - e.g. for non-cash refunds        |
+| Code              | Description                                |
+| ----------------- | ------------------------------------------ |
+| `BOARDING_PASS`   | Boarding Pass - not a ticket               |
+| `BOOKING_RECEIPT` | Financial receipt for a booking            |
+| `INFORMATION`     | Miscellaneous information, e.g. CO2 Report |
+| `TICKET`          | Ticket - valid for travel                  |
+| `VOUCHER`         | Voucher - e.g. for non-cash refunds        |
 
 ## FulfillmentMediaType <a name="FulfillmentMediaType">
 
@@ -646,8 +646,8 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | ![](../images/catalog-of-code-lists/graphics-icons/image098.jpg) | push-button operated wheelchair ramp                                  | 170       | -                | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image099.png) | Sink / washbasin                                                      | 171       | -                | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image101.jpg) | Ladies compartment                                                    | 172       | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon174.png)	 | Medium window, width covers two spaces	                               | 174       | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon175.png)	 | Big window, width covers three spaces	                               | 175       | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon174.png)  | Medium window, width covers two spaces                                | 174       | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon175.png)  | Big window, width covers three spaces                                 | 175       | -                | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/icon176l.png) | Door with left opening (traditional)                                  | 176       | Left             | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/icon176t.png) | Door with left opening (traditional)                                  | 176       | Top              | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/icon176r.png) | Door with left opening (traditional)                                  | 176       | Right            | -             |
@@ -751,48 +751,48 @@ units. E.g.:
 ## Overrule Code <a name="OverruleCode">
 
 | Code                          | Description                                                                            | Support by Implementer |
-| ----------------------------- | -------------------------------------------------------------------------------------- | ---- |
-| `CONNECTION_BROKEN`           | The next leg can not be reached by passenger as previous leg failed.                   | **Mandatory** |
-| `EQUIPMENT_FAILURE`           | Vehicle can no longer be operated.                                                     | **Optional** |
-| `PAYMENT_FAILURE`             | Payment failure.                                                                       | **Optional** |
-| `PRM_SUPPORT_UNAVAILABLE`     | A PRM has booked a trip which is not available to him/her.                             | **Optional** |
-| `SALES_STAFF_ERROR`           | Sale staff error.                                                                      | **Mandatory** |
-| `STOP_NO_SERVED`              | Vehicle did not serve the stop place.                                                  | **Optional** |
-| `STRIKE`                      | Strike.                                                                                | **Mandatory** |
-| `TECHNICAL_FAILURE`           | Technical failure on the distribution channel.                                         | **Mandatory** |
-| `TICKET_NOT_USED`             | Ticket not (fully) used by passenger.                                                  | **Optional** |
-| `DEATH`                       | Death of a traveller                                                                   | **Optional** |
-| `INABILITY_TO_TRAVEL`         | Inability to travel due to accident or sickness.                                       | **Optional** |
-| `EXTERNAL_COMPENSATION`       | Offer has been compensated outside of the provider system in another way.              | **Optional** |
-| `DISRUPTION`                  | Inability to operate due to disruption.                                                | **Optional** |
-| `JOURNEY_OBSOLETE`            | Due to external factors it's senseless to start the trip, thus the travel is obsolete. | **Optional** |
-| `CERTIFIED_MEDICAL_CONDITION` | A medical certificate certifies that the passenger is unable to travel.                | **Optional** |
-| `DELAY_COMPENSATION`          | Allows to override conditions in context of passenger rights regulation (PRR).         | **Optional** |
+| ----------------------------- | -------------------------------------------------------------------------------------- | ---------------------- |
+| `CONNECTION_BROKEN`           | The next leg can not be reached by passenger as previous leg failed.                   | **Mandatory**          |
+| `EQUIPMENT_FAILURE`           | Vehicle can no longer be operated.                                                     | **Optional**           |
+| `PAYMENT_FAILURE`             | Payment failure.                                                                       | **Optional**           |
+| `PRM_SUPPORT_UNAVAILABLE`     | A PRM has booked a trip which is not available to him/her.                             | **Optional**           |
+| `SALES_STAFF_ERROR`           | Sale staff error.                                                                      | **Mandatory**          |
+| `STOP_NO_SERVED`              | Vehicle did not serve the stop place.                                                  | **Optional**           |
+| `STRIKE`                      | Strike.                                                                                | **Mandatory**          |
+| `TECHNICAL_FAILURE`           | Technical failure on the distribution channel.                                         | **Mandatory**          |
+| `TICKET_NOT_USED`             | Ticket not (fully) used by passenger.                                                  | **Optional**           |
+| `DEATH`                       | Death of a traveller                                                                   | **Optional**           |
+| `INABILITY_TO_TRAVEL`         | Inability to travel due to accident or sickness.                                       | **Optional**           |
+| `EXTERNAL_COMPENSATION`       | Offer has been compensated outside of the provider system in another way.              | **Optional**           |
+| `DISRUPTION`                  | Inability to operate due to disruption.                                                | **Optional**           |
+| `JOURNEY_OBSOLETE`            | Due to external factors it's senseless to start the trip, thus the travel is obsolete. | **Optional**           |
+| `CERTIFIED_MEDICAL_CONDITION` | A medical certificate certifies that the passenger is unable to travel.                | **Optional**           |
+| `DELAY_COMPENSATION`          | Allows to override conditions in context of passenger rights regulation (PRR).         | **Optional**           |
 
 ## Passenger Type (aka. Traveler Type) <a name="PassengerType">
 
 | Code           | Description                                                                                                                                                     | Transportable Type | Bulk (Offline) | Online Request | Online Reply | 918-9 FCB Version 3                           |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | -------------- | -------------- | ------------ | --------------------------------------------- |
-| `YOUNG_CHILD`  | Young child defined by the carrier depending on the age                                                                                                         |               | X              |                | X            | freeAddonChild                                |
-| `CHILD`        | Child defined by the carrier depending on the age                                                                                                               |               | X              |                | X            | child                                         |
-| `YOUTH`        | Youth defined by the carrier depending on the age                                                                                                               |               | X              |                | X            | youth                                         |
-| `ADULT`        | Adult defined by the carrier depending on the age                                                                                                               |               | X              |                | X            | adult                                         |
-| `SENIOR`       | Senior defined by the carrier depending on the age                                                                                                              |               | X              |                | X            | senior                                        |
-| `FAMILY_CHILD` | Child associated with a family traveling together                                                                                                               |               | X              | X              | X            | freeAddonChild                                |
-| `ACCOMP_PRM`   | Accompanying Person for PRM                                                                                                                                     |               | X              |                | X            | adult                                         |
-| `PRM_CHILD`    | Handicapped young child accompanied by one person where the usual child according to the age price would be zero and the accompanying person would also be free |               | X              |                | X            | child + flag passengerWithReducedMobility     |
-| `WHEELCHAIR`   | Passenger with wheel-chair                                                                                                                                      |               |                | X              |              | wheelchair indication in the reservation data |
-| `PERSON`       | Used in requests together with date of birth and in replies in case of products that might include a change of passenger type along the route                   |               |                | X              | X            |                                               |
-| `PRM`          | Person with reduced mobility - to be used in case of accompanying person or dog, date of birth must be provided additionally                                    |               |                | X              |              | flag passengerWithReducedMobility             |
-| `DOG`          | A dog                | DOG            | X            | X              | X            | dog                                           |
-| `PET`          | A pet but not a dog  | PET            | X            | X              | X            |                                               |
-| `LUGGAGE`      | Over-size luggage    | LUGGAGE        | X            | X              | X            | special luggage data                          |
-| `BICYCLE`      | A bicycle            | BICYCLE        | X            | X              | X            | bicycle                                       |
-| `PRAM`         | A pram               | PRAM           | X            | X              | X            | special code in the reservation data          |
-| `ACCOMP_DOG`   | An accompanying dog for a PRM   | ACCOMP_DOG         | X              | X              | X            | dog                                           |
-| `CAR`          | A car for car-carriage trains   | CAR                | X              | X              | X            | special car carriage data                     |
-| `MOTOCYCLE`    | A motorcycle for car carriage trains  | MOTOCYCLE    | X      | X              | X            | special car carriage data                     |
-| `TRAILER`      | A trailer for car carriage trains     | TRAILER      | X        | X              | X            | special car carriage data                     |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | -------------- | -------------- | ------------ | --------------------------------------------- |
+| `YOUNG_CHILD`  | Young child defined by the carrier depending on the age                                                                                                         |                    | X              |                | X            | freeAddonChild                                |
+| `CHILD`        | Child defined by the carrier depending on the age                                                                                                               |                    | X              |                | X            | child                                         |
+| `YOUTH`        | Youth defined by the carrier depending on the age                                                                                                               |                    | X              |                | X            | youth                                         |
+| `ADULT`        | Adult defined by the carrier depending on the age                                                                                                               |                    | X              |                | X            | adult                                         |
+| `SENIOR`       | Senior defined by the carrier depending on the age                                                                                                              |                    | X              |                | X            | senior                                        |
+| `FAMILY_CHILD` | Child associated with a family traveling together                                                                                                               |                    | X              | X              | X            | freeAddonChild                                |
+| `ACCOMP_PRM`   | Accompanying Person for PRM                                                                                                                                     |                    | X              |                | X            | adult                                         |
+| `PRM_CHILD`    | Handicapped young child accompanied by one person where the usual child according to the age price would be zero and the accompanying person would also be free |                    | X              |                | X            | child + flag passengerWithReducedMobility     |
+| `WHEELCHAIR`   | Passenger with wheel-chair                                                                                                                                      |                    |                | X              |              | wheelchair indication in the reservation data |
+| `PERSON`       | Used in requests together with date of birth and in replies in case of products that might include a change of passenger type along the route                   |                    |                | X              | X            |                                               |
+| `PRM`          | Person with reduced mobility - to be used in case of accompanying person or dog, date of birth must be provided additionally                                    |                    |                | X              |              | flag passengerWithReducedMobility             |
+| `DOG`          | A dog                                                                                                                                                           | DOG                | X              | X              | X            | dog                                           |
+| `PET`          | A pet but not a dog                                                                                                                                             | PET                | X              | X              | X            |                                               |
+| `LUGGAGE`      | Over-size luggage                                                                                                                                               | LUGGAGE            | X              | X              | X            | special luggage data                          |
+| `BICYCLE`      | A bicycle                                                                                                                                                       | BICYCLE            | X              | X              | X            | bicycle                                       |
+| `PRAM`         | A pram                                                                                                                                                          | PRAM               | X              | X              | X            | special code in the reservation data          |
+| `ACCOMP_DOG`   | An accompanying dog for a PRM                                                                                                                                   | ACCOMP_DOG         | X              | X              | X            | dog                                           |
+| `CAR`          | A car for car-carriage trains                                                                                                                                   | CAR                | X              | X              | X            | special car carriage data                     |
+| `MOTOCYCLE`    | A motorcycle for car carriage trains                                                                                                                            | MOTOCYCLE          | X              | X              | X            | special car carriage data                     |
+| `TRAILER`      | A trailer for car carriage trains                                                                                                                               | TRAILER            | X              | X              | X            | special car carriage data                     |
 
 ## Passport <a name="Passport">
 
@@ -870,9 +870,9 @@ required.
 | Code              | Description                                                                                                                                                                                                                                                                                                                                                                                              |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SPLIT_RESERVATION | Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation Without this indication the provider is not allowed to use the SplitSection Object inside a reservation. The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover a full leg multiple reservations as offerParts should be created. |
-| Product Types     | All product types can be used as Product Tags in the search                                                  |      
-| CARD_LOST         | Tag used to request a non-trip offer to replace a lost card. This applies to physical cards only. | 
-| TICKET_LOST       | Tag used to request a non-trip offer to replace a lost ticket. This applies to physical tickts only. |    
+| Product Types     | All product types can be used as Product Tags in the search                                                                                                                                                                                                                                                                                                                                              |
+| CARD_LOST         | Tag used to request a non-trip offer to replace a lost card. This applies to physical cards only.                                                                                                                                                                                                                                                                                                        |
+| TICKET_LOST       | Tag used to request a non-trip offer to replace a lost ticket. This applies to physical tickts only.                                                                                                                                                                                                                                                                                                     |
 
 
 ## Product Types <a name="ProductTypes">
@@ -905,41 +905,41 @@ POICode: Values are depending on code list and set is too large to be reproduced
 The following code lists defines the commonly used cards which are not provided
 by a specific carrier:
 
-| Predefined Card-Ids       | Issuer | Description                                  | Type           | Included Cards         |
-| ------------------------- | ------ | -------------------------------------------- | -------------- | ---------------------- |
-| `UIC_EURAIL`              | Eurail | Eurail Pass                                  | TRAVEL_PASS    |                        |
-| `UIC_INTERRAIL`           | Eurail | Interrail Pass                               | TRAVEL_PASS    |                        |
-| `UIC_FIP_LEASURE_RED`     | FIP    | FIP reduction (50%)                          | REDUCTION_CARD |                        |
-| `UIC_FIP_DUTY`            | FIP    | FIP duty                                     | TRAVEL_PASS    |                        |
-| `UIC_FIP_LEASURE_FREE`    | FIP    | FIP free personal use                        | TRAVEL_PASS    |                        |
-| `UIC_RAILPLUS`            | \*     | A pure rail plus card                        | REDUCTION_CARD |                        |
-| `UIC_RIT_1`               | \*     | RIT reduction for RIT 1 members              | REDUCTION_CARD |                        |
-| `UIC_RIT_2`               | \*     | RIT reduction for RIT 2 members              | REDUCTION_CARD |                        |
-| `UIC_RIT_3`               | \*     | RIT reduction for RIT 3 members              | REDUCTION_CARD |                        |
-| `UIC_EURAIL_1`            | Eurail | Eurail Pass First Class                      | TRAVEL_PASS    |                        |
-| `UIC_INTERRAIL_1`         | Eurail | Interrail Pass First Class                   | TRAVEL_PASS    |                        |
-| `UIC_FIP_LEASURE_RED_1`   | FIP    | FIP reduction (50%) First Class              | REDUCTION_CARD |                        |
-| `UIC_FIP_DUTY_1`          | FIP    | FIP duty First Class                         | TRAVEL_PASS    |                        |
-| `UIC_FIP_LEASURE_FREE_1`  | FIP    | FIP free personal use First Class            | TRAVEL_PASS    |                        |
-| `UIC_RAILPLUS_1`          | \*     | A pure rail plus card First Class            | REDUCTION_CARD |                        |
-| `UIC_RIT_1_1`             | \*     | RIT reduction for RIT 1 First Class members  | REDUCTION_CARD |                        |
-| `UIC_RIT_2_1`             | \*     | RIT reduction for RIT 2 First Class members  | REDUCTION_CARD |                        |
-| `UIC_RIT_3_1`             | \*     | RIT reduction for RIT 3 First Class members  | REDUCTION_CARD |                        |
-| `UIC_EURAIL_2`            | Eurail | Eurail Pass Second Class                     | TRAVEL_PASS    |                        |
-| `UIC_INTERRAIL_2`         | Eurail | Interrail Pass Second Class                  | TRAVEL_PASS    |                        |
-| `UIC_FIP_LEASURE_RED_2`   | FIP    | FIP reduction (50%) Second Class             | REDUCTION_CARD |                        |
-| `UIC_FIP_DUTY_2`          | FIP    | FIP duty Second Class                        | TRAVEL_PASS    |                        |
-| `UIC_FIP_LEASURE_FREE_2`  | FIP    | FIP free personal use Second Class           | TRAVEL_PASS    |                        |
-| `UIC_RAILPLUS_2`          | \*     | A pure rail plus card Second Class           | REDUCTION_CARD |                        |
-| `UIC_RIT_1_2`             | \*     | RIT reduction for RIT 1 members Second Class | REDUCTION_CARD |                        |
-| `UIC_RIT_2_2`             | \*     | RIT reduction for RIT 2 members Second Class | REDUCTION_CARD |                        |
-| `UIC_RIT_3_2`             | \*     | RIT reduction for RIT 3 members Second Class | REDUCTION_CARD |                        |
-| `UIC_EU_DISABILITY_CARD`  | \*     | EU Disabled Card                             |                |                        |
-| `UIC_EU_DISABILITY_CARD_BLIND`  | \*     | EU Disabled Card for a blind person  |                |                        |
-| `UIC_EU_DISABILITY_CARD_WHEELCHAIR`  | \*     | EU Disabled Card for a person using a wheelchair                            |                |                        |
-| `UIC_INT_DISABILITY_CARD` | \*     | International Disabled Card                  | REDUCTION_CARD | UIC_EU_DISABILITY_CARD |
-| `UIC_INT_DISABILITY_CARD_BLIND` | \*     | International Disabled Card for a blind person                     | REDUCTION_CARD | UIC_EU_DISABILITY_CARD_BLIND |
-| `UIC_INT_DISABILITY_CARD_WHEELCHAIR` | \*     | International Disabled Card for a person using a wheelchair   | REDUCTION_CARD | UIC_EU_DISABILITY_CARD_WHEELCHAIR |
+| Predefined Card-Ids                  | Issuer | Description                                                 | Type           | Included Cards                    |
+| ------------------------------------ | ------ | ----------------------------------------------------------- | -------------- | --------------------------------- |
+| `UIC_EURAIL`                         | Eurail | Eurail Pass                                                 | TRAVEL_PASS    |                                   |
+| `UIC_INTERRAIL`                      | Eurail | Interrail Pass                                              | TRAVEL_PASS    |                                   |
+| `UIC_FIP_LEASURE_RED`                | FIP    | FIP reduction (50%)                                         | REDUCTION_CARD |                                   |
+| `UIC_FIP_DUTY`                       | FIP    | FIP duty                                                    | TRAVEL_PASS    |                                   |
+| `UIC_FIP_LEASURE_FREE`               | FIP    | FIP free personal use                                       | TRAVEL_PASS    |                                   |
+| `UIC_RAILPLUS`                       | \*     | A pure rail plus card                                       | REDUCTION_CARD |                                   |
+| `UIC_RIT_1`                          | \*     | RIT reduction for RIT 1 members                             | REDUCTION_CARD |                                   |
+| `UIC_RIT_2`                          | \*     | RIT reduction for RIT 2 members                             | REDUCTION_CARD |                                   |
+| `UIC_RIT_3`                          | \*     | RIT reduction for RIT 3 members                             | REDUCTION_CARD |                                   |
+| `UIC_EURAIL_1`                       | Eurail | Eurail Pass First Class                                     | TRAVEL_PASS    |                                   |
+| `UIC_INTERRAIL_1`                    | Eurail | Interrail Pass First Class                                  | TRAVEL_PASS    |                                   |
+| `UIC_FIP_LEASURE_RED_1`              | FIP    | FIP reduction (50%) First Class                             | REDUCTION_CARD |                                   |
+| `UIC_FIP_DUTY_1`                     | FIP    | FIP duty First Class                                        | TRAVEL_PASS    |                                   |
+| `UIC_FIP_LEASURE_FREE_1`             | FIP    | FIP free personal use First Class                           | TRAVEL_PASS    |                                   |
+| `UIC_RAILPLUS_1`                     | \*     | A pure rail plus card First Class                           | REDUCTION_CARD |                                   |
+| `UIC_RIT_1_1`                        | \*     | RIT reduction for RIT 1 First Class members                 | REDUCTION_CARD |                                   |
+| `UIC_RIT_2_1`                        | \*     | RIT reduction for RIT 2 First Class members                 | REDUCTION_CARD |                                   |
+| `UIC_RIT_3_1`                        | \*     | RIT reduction for RIT 3 First Class members                 | REDUCTION_CARD |                                   |
+| `UIC_EURAIL_2`                       | Eurail | Eurail Pass Second Class                                    | TRAVEL_PASS    |                                   |
+| `UIC_INTERRAIL_2`                    | Eurail | Interrail Pass Second Class                                 | TRAVEL_PASS    |                                   |
+| `UIC_FIP_LEASURE_RED_2`              | FIP    | FIP reduction (50%) Second Class                            | REDUCTION_CARD |                                   |
+| `UIC_FIP_DUTY_2`                     | FIP    | FIP duty Second Class                                       | TRAVEL_PASS    |                                   |
+| `UIC_FIP_LEASURE_FREE_2`             | FIP    | FIP free personal use Second Class                          | TRAVEL_PASS    |                                   |
+| `UIC_RAILPLUS_2`                     | \*     | A pure rail plus card Second Class                          | REDUCTION_CARD |                                   |
+| `UIC_RIT_1_2`                        | \*     | RIT reduction for RIT 1 members Second Class                | REDUCTION_CARD |                                   |
+| `UIC_RIT_2_2`                        | \*     | RIT reduction for RIT 2 members Second Class                | REDUCTION_CARD |                                   |
+| `UIC_RIT_3_2`                        | \*     | RIT reduction for RIT 3 members Second Class                | REDUCTION_CARD |                                   |
+| `UIC_EU_DISABILITY_CARD`             | \*     | EU Disabled Card                                            |                |                                   |
+| `UIC_EU_DISABILITY_CARD_BLIND`       | \*     | EU Disabled Card for a blind person                         |                |                                   |
+| `UIC_EU_DISABILITY_CARD_WHEELCHAIR`  | \*     | EU Disabled Card for a person using a wheelchair            |                |                                   |
+| `UIC_INT_DISABILITY_CARD`            | \*     | International Disabled Card                                 | REDUCTION_CARD | UIC_EU_DISABILITY_CARD            |
+| `UIC_INT_DISABILITY_CARD_BLIND`      | \*     | International Disabled Card for a blind person              | REDUCTION_CARD | UIC_EU_DISABILITY_CARD_BLIND      |
+| `UIC_INT_DISABILITY_CARD_WHEELCHAIR` | \*     | International Disabled Card for a person using a wheelchair | REDUCTION_CARD | UIC_EU_DISABILITY_CARD_WHEELCHAIR |
 
 Note: A card associated with a person in a request might result in a reduction applied to an accompagning person or pet.
 
@@ -1356,29 +1356,29 @@ reproduced.
 Corresponding to numerical codes in TAP-TSI (B.2.3) / UIC
 (<https://uic.org/passenger/passenger-services-group/article/service-brand-code-list>)
 
-| Code               | Description                                                    | TAP-TSI Code B.2.3 |
-| ------------------ | -------------------------------------------------------------- | ------------------ |
-| `HIGH_SPEED_TRAIN` |                                                                | 8                  |
-| `HISTORIC_TRAIN`   |                                                                | 16                 |
-| `INTERCITY`        |                                                                | 9                  |
-| `REGIONAL`         |                                                                | 11                 |
-| `INTERREGIONAL`    |                                                                | 10                 |
-| `TRAIN`            |                                                                | 37                 |
-| `URBAN`            |                                                                | 12                 |
-| `TRAM`             |                                                                | 35                 |
-| `UNDERGROUND`      |                                                                | 36                 |
-| `NIGHT_TRAIN`      |                                                                | 13                 |
-| `SHARED_TAXI`      |                                                                | 34                 |
-| `MOTOR_RAIL`       | Car carriage trains                                            | 13                 |
-| `MOUNTAIN_TRAIN`   |                                                                | 15                 |
-| `PLANE`            |                                                                | 3                  |
-| `COACH_GROUP`      | Group of coaches included in multiple trains (through coaches) | 31                 |
-| `SHIP`             |                                                                | 33                 |
-| `BUS`              |                                                                | 32                 |
-| 'ON_DEMAND_SERVICE'|                                                                |                    |
-| 'BICYCLE'          |                                                                |                    |
-| 'SCOOTER'          |                                                                |                    |
-| 'TAXI'             |                                                                |                    |
+| Code                | Description                                                    | TAP-TSI Code B.2.3 |
+| ------------------- | -------------------------------------------------------------- | ------------------ |
+| `HIGH_SPEED_TRAIN`  |                                                                | 8                  |
+| `HISTORIC_TRAIN`    |                                                                | 16                 |
+| `INTERCITY`         |                                                                | 9                  |
+| `REGIONAL`          |                                                                | 11                 |
+| `INTERREGIONAL`     |                                                                | 10                 |
+| `TRAIN`             |                                                                | 37                 |
+| `URBAN`             |                                                                | 12                 |
+| `TRAM`              |                                                                | 35                 |
+| `UNDERGROUND`       |                                                                | 36                 |
+| `NIGHT_TRAIN`       |                                                                | 13                 |
+| `SHARED_TAXI`       |                                                                | 34                 |
+| `MOTOR_RAIL`        | Car carriage trains                                            | 13                 |
+| `MOUNTAIN_TRAIN`    |                                                                | 15                 |
+| `PLANE`             |                                                                | 3                  |
+| `COACH_GROUP`       | Group of coaches included in multiple trains (through coaches) | 31                 |
+| `SHIP`              |                                                                | 33                 |
+| `BUS`               |                                                                | 32                 |
+| 'ON_DEMAND_SERVICE' |                                                                |                    |
+| 'BICYCLE'           |                                                                |                    |
+| 'SCOOTER'           |                                                                |                    |
+| 'TAXI'              |                                                                |                    |
 
 ## TransactionType <a name="TransactionType">
 
@@ -1405,18 +1405,18 @@ Transaction type used in after sales rules for fares.
 
 ## TravelDirection <a name="TravelDirection">
 
-Trave direction of a coach. To get the direction of travel for a place the
-direcion information of the coah needs to be combined with the direction of the
+Travel direction of a coach. To get the direction of travel for a place, the
+direction information of the coach needs to be combined with the direction of the
 seat in the coach layout.
 
-| Code                             | Description                                      |
-| -------------------------------- | ------------------------------------------------ |
-| `UNSPECIFIED`                    | The direction of travel is undefined             |
-| `IN_DIRECTION`                   | In direction of travel                           |
-| `OPPOSITE_DIRECTION`             | Opposite to direction                            |
-| `CHANGING`                       | direction is changing                            |
-| `STARTING_IN_DIRECTION`          | starting in direction but changing later         |
-| `STARTING_OPPOSITE_TO_DIRECTION` | starting oposite to direction but changing later |
+| Code                             | Description                                       |
+| -------------------------------- |---------------------------------------------------|
+| `UNSPECIFIED`                    | The direction of travel is undefined              |
+| `IN_DIRECTION`                   | In direction of travel                            |
+| `OPPOSITE_DIRECTION`             | Opposite to direction                             |
+| `CHANGING`                       | direction is changing                             |
+| `STARTING_IN_DIRECTION`          | starting in direction but changing later          |
+| `STARTING_OPPOSITE_TO_DIRECTION` | starting opposite to direction but changing later |
 
 ## TravelValidityType <a name="TravelValidityType">
 
@@ -1445,12 +1445,12 @@ follow to make use of a multi journey ticket with restrictions.
 Trip allocation unit indicates the unit that can be allocatoed on a multi
 journey ticket with restrictions.
 
-| Code          | Description                                                     |
-| ------------- | --------------------------------------------------------------- |
-| `NONE`        | Individual trips don't need to be allocated.                    |
-| `TRIP`        | Allocation per individual trip.                                 |
-| `DAY`         | The allocation is per travel day for multiple trips on the day. |
-| `DURATION`    | The allocation is per duration.                                 |
+| Code       | Description                                                     |
+| ---------- | --------------------------------------------------------------- |
+| `NONE`     | Individual trips don't need to be allocated.                    |
+| `TRIP`     | Allocation per individual trip.                                 |
+| `DAY`      | The allocation is per travel day for multiple trips on the day. |
+| `DURATION` | The allocation is per duration.                                 |
 
 ## TripInterruptionProcess <a name="TripInterruptionProcess">
 
