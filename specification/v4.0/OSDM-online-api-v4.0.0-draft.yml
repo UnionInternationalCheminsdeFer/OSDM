@@ -4613,6 +4613,8 @@ paths:
       operationId: getProductTags
       parameters:
         - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
@@ -6192,7 +6194,7 @@ components:
             - 'null'
           format: int32
         legCoverage:
-          $ref: '#/components/schemas/LegCoverage'
+          $ref: '#/components/schemas/TripLegCoverage'
 
     AvailablePlacePreferences:
       type: object
@@ -7872,28 +7874,6 @@ components:
             short description of the condition no longer than 64 characters
           type:
             - 'string'
-            - 'null'
-
-    ConditionSpecification:
-      type: object
-      additionalProperties: false
-      description: |
-        Describes sales, usage and after sales conditions applicable to the product.  See after sales conditions for individual after sales amounts. The language of the text is controlled by the accept-language header, i.e. supporting English is a must.
-      required:
-        - type
-        - description
-      properties:
-        type:
-          $ref: '#/components/schemas/ConditionType'
-        description:
-          description: |
-            human readable documentation of the text.
-          type: Text
-        shortDescription:
-          description: |
-            short description of the condition no longer than 64 characters
-          type:
-            - 'Text'
             - 'null'
 
     ConditionType:
@@ -12441,7 +12421,7 @@ components:
             $ref: '#/components/schemas/ReservedPlace'
           minItems: 1
         legCoverage:
-          $ref: '#/components/schemas/LegCoverage'
+          $ref: '#/components/schemas/TripLegCoverage'
 
     PlaceAvailabilityCollectionResponse:
       type: object
@@ -13361,111 +13341,6 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-
-    ProductSpecification:
-      type: object
-      additionalProperties: false
-      description: |
-        Structured description of the product, its name, comfort and sales / after-sales conditions
-      required:
-        - id
-        - code
-        - owner
-        - flexibility
-      properties:
-        id:
-          description: |
-            id of the product
-          type: string
-        summary:
-          description: |
-            A human-readable description of the product.
-          type:
-            - 'Text'
-            - 'null'
-        type:
-          $ref: '#/components/schemas/ProductType'
-        code:
-          description: |
-            The product code expressed in the provider system (could be a
-            mapping from an even lower-level provider).
-          type: string
-          examples:
-            - PT00AD
-        description:
-          description: |
-            Textual description of the product.
-          type:
-            - 'Text'
-            - 'null'
-        owner:
-          $ref: '#/components/schemas/CompanyRef'
-        conditions:
-          description: |
-            Structured description of the sales or after-sales conditions.
-          type: array
-          items:
-            $ref: '#/components/schemas/ConditionSpecification'
-        flexibility:
-          $ref: '#/components/schemas/Flexibility'
-        serviceClass:
-          $ref: '#/components/schemas/ServiceClass'
-        travelClass:
-          $ref: '#/components/schemas/TravelClass'
-        fulfillmentOptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentOption'
-        isTrainBound:
-          type:
-            - 'boolean'
-            - 'null'
-          default: false
-        isReturnProduct:
-          type:
-            - 'boolean'
-            - 'null'
-          default: false
-        serviceConstraintText:
-          type:
-            - 'Text'
-            - 'null'
-        carrierConstraintText:
-          type:
-            - 'Text'
-            - 'null'
-        descriptiveTexts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Text'
-        tariff:
-          description: |
-            Mapping to Tariff 42 of IRS-90918-3 (Hermes/Hosa). Helps the H2O converter in mapping
-            offers to a requested tariff. See legacyReservationParameter.tariff in OSDM offline.
-          type:
-            - 'Text'
-            - 'null'
-        combinationTags:
-          type: array
-          items:
-            $ref: '#/components/schemas/CombinationTag'
-        productTags:
-          description:
-            product tags associated with the product that can be used to search
-            for offers. This can be omitted outside of the product master data
-            service
-          type:
-            - 'array'
-            - 'null'
-          items:
-            type: string
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-
     ProductTag:
       description: |
         Values from the [Product Tags Code List](https://osdm.io/spec/catalog-of-code-lists/#ProductTags)
@@ -13566,7 +13441,7 @@ components:
             The list of all products available to the caller.
           type: array
           items:
-            $ref: '#/components/schemas/ProductSpecification'
+            $ref: '#/components/schemas/Product'
 
     ProductLegAssociation:
       type: object
@@ -15185,6 +15060,7 @@ components:
       description: |
         formation of a service at a stop on arrival or departure
       required:
+        - id
         - publishedName
       properties:       
         id: 
@@ -15219,7 +15095,7 @@ components:
           $ref: '#/components/schemas/ServiceFormationPartStatus'  
         entireLeg:
           description: |
-            indicates if aormation part does not serve the whiole leg. Service parts that do not service the whole leg are included to provide complete information on the parts at a platform.
+            indicates if a formation part serves the whole leg. Service parts that do not service the whole leg are included to provide complete information on the parts at a platform.
           type: boolean
           default: true      
         facilities:
@@ -16310,7 +16186,7 @@ components:
             Legs ot the trip
           type: array
           items:
-            $ref: '#/components/schemas/Leg'
+            $ref: '#/components/schemas/TripLeg'
           minItems: 1
         operatingDays:
           $ref: '#/components/schemas/OperatingDays'
@@ -16566,12 +16442,13 @@ components:
         - 'MANUAL'
         - 'ACTIVATION'
 
-    Leg:
+    TripLeg:
       type: object
       additionalProperties: false
       description: |
-        A single stage of a trip that is made without change of MODE or service (ie:
-        between each interchange). Provided by OJP.
+        A single stage of a trip that is made without change of service by the traveller (ie:
+        between each interchange). 
+        Note: The OJP Leg follows a slightly different semantic and allows legs to be split due to technical reasons like a change of service formation. This is not allowed in OSDM. The Leg in OSDM is the Leg in the traveler perspective on which he dooes not need to change to a different physical service. The servide itself might change its name, attributes or formation within the leg.
       required:
         - id
       properties:
@@ -16595,7 +16472,7 @@ components:
           description: indicates that the leg was changed via a trip change request
           type: boolean
 
-    LegCoverage:
+    TripLegCoverage:
       type: object
       additionalProperties: false
       required:
@@ -16608,7 +16485,7 @@ components:
         legId:
           type: string
 
-    LegSpecification:
+    TripLegSpecification:
       type: object
       additionalProperties: false
       description: |
@@ -16703,7 +16580,6 @@ components:
       description: |
         Options to control the search behavior and response contents.
         Provided by OJP.
-        numberOfResults is intentionally omitted to avoid inconsistent request parameters. numberOfResults is equal to numberOfResultsBefore = 0 and numberOfResultsAfter = numberOfResults
       properties:
         dataFilter:
           $ref: '#/components/schemas/TripDataFilter'
@@ -16713,6 +16589,7 @@ components:
           $ref: '#/components/schemas/TripMobilityFilter'
         contentFilter:
           $ref: '#/components/schemas/TripContentFilter'        
+
 
     TripContentFilter:
       description: |
@@ -17111,7 +16988,7 @@ components:
         legs:
           type: array
           items:
-            $ref: '#/components/schemas/LegSpecification'
+            $ref: '#/components/schemas/TripLegSpecification'
           minItems: 1
         isPartOfInternationalTrip:
           type:
