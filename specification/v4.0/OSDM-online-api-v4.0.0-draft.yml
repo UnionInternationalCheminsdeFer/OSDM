@@ -15662,7 +15662,7 @@ components:
         section:
             $ref: '#/components/schemas/Section'   
         replacesMainService:
-            description: the paralell service descriptionreplaces the main service (not in OJP)
+            description: the parallel service description replaces the main service (not in OJP)
             type: boolean
             default: false            
 
