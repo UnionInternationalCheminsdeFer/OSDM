@@ -1409,14 +1409,14 @@ Travel direction of a coach. To get the direction of travel for a place, the
 direction information of the coach needs to be combined with the direction of the
 seat in the coach layout.
 
-| Code                             | Description                                      |
-| -------------------------------- | ------------------------------------------------ |
-| `UNSPECIFIED`                    | The direction of travel is undefined             |
-| `IN_DIRECTION`                   | In direction of travel                           |
-| `OPPOSITE_DIRECTION`             | Opposite to direction                            |
-| `CHANGING`                       | direction is changing                            |
-| `STARTING_IN_DIRECTION`          | starting in direction but changing later         |
-| `STARTING_OPPOSITE_TO_DIRECTION` | starting oposite to direction but changing later |
+| Code                             | Description                                       |
+| -------------------------------- |---------------------------------------------------|
+| `UNSPECIFIED`                    | The direction of travel is undefined              |
+| `IN_DIRECTION`                   | In direction of travel                            |
+| `OPPOSITE_DIRECTION`             | Opposite to direction                             |
+| `CHANGING`                       | direction is changing                             |
+| `STARTING_IN_DIRECTION`          | starting in direction but changing later          |
+| `STARTING_OPPOSITE_TO_DIRECTION` | starting opposite to direction but changing later |
 
 ## TravelValidityType <a name="TravelValidityType">
 
