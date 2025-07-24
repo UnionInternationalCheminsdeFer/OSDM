@@ -6354,7 +6354,8 @@ components:
       type: object
       additionalProperties: false
       description: |
-        a booking arrangement description in a Leg- To be used if the leg can not be booked via the api.
+        a booking arrangement description in a Leg- To be used if the leg can not be booked via the OSDM api.
+        Provided by OJP.
       properties:
         bookingContact:
           $ref: '#/components/schemas/ContactDetail'
@@ -6389,6 +6390,7 @@ components:
 
     BookingPurchaseMoment:
       description: |
+        Provided by OJP.
         - 'ON_RESERVATION'
         description: must be made on reservation in advance of travel
         - 'IN_ADVANCE'
@@ -8152,7 +8154,9 @@ components:
         destinationText:
           type: string
         bookingArrangements:
-          description: booking arrangements in case the service can not be booked via OSDM
+          description: | 
+             booking arrangements in case the service can not be booked via OSDM.
+             Provided by OJP.
           type: array
           items:
             $ref: '#/components/schemas/BookingArrangement'
