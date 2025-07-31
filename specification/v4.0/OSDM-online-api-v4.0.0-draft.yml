@@ -164,7 +164,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlacesMasterDataResponse'
+                $ref: '#/components/schemas/PlaceResponse'
           headers:
             Cache-Control:
               schema:
