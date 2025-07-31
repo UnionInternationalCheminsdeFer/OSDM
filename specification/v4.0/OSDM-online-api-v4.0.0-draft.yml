@@ -10130,6 +10130,45 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
+    GeneralAttributeMasterData:
+      type: object
+      additionalProperties: false
+      required:
+        - text
+        - code
+      properties:
+        text:
+          description: text to be displayed to the user
+          $ref: '#/components/schemas/Text'
+        code:
+          type:
+            - 'string'
+            - 'null'
+        key:
+          type:
+            - 'string'
+            - 'null'        
+        value:
+          type:
+            - 'string'
+            - 'null'        
+        facilities:
+          type: array
+          items: 
+            $ref: '#/components/schemas/GroupedFacilityItem'
+        mandatory:
+           description: true = mandatory to be displayed to the user
+           type: boolean
+        importance:
+          description: importance as percentage
+          $ref: '#/components/schemas/Percentage'
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+
     GeoPosition:
       type: object
       additionalProperties: false
@@ -12249,7 +12288,7 @@ components:
         attributes:
           type: array
           items: 
-            $ref: '#/components/schemas/GeneralAttribute'
+            $ref: '#/components/schemas/GeneralAttributeMasterData'
         area:
           description: area of the place described as a polygon of geo-coordinates
           $ref: '#/components/schemas/Polygon'
