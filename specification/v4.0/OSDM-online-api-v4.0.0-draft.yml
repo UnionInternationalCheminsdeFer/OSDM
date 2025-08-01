@@ -5057,7 +5057,6 @@ components:
         - createdOn
         - price
         - status
-        - passengerIds
         - refundable
         - exchangeable
       properties:
@@ -5121,7 +5120,8 @@ components:
             The unique booking code for the part in the provider system.
         passengerIds:
           description: |
-            Id of the passenger
+            Ids of the passengers
+            Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.                
           type: array
           items:
             type: string
@@ -5195,7 +5195,6 @@ components:
         - createdOn
         - price
         - offerMode
-        - passengerRefs
         - refundable
         - exchangeable
         - availableFulfillmentOptions
@@ -5238,6 +5237,8 @@ components:
             - 'null'
           default: false
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.          
           type: array
           items:
             type: string
@@ -5996,12 +5997,13 @@ components:
         Is some cases one out of a set of ancillary offerparts must be booked.
       required:
         - ancillaryId
-        - passengerRefs
       properties:
         ancillaryId:
           type: string
           maxLength: 32768
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -6491,7 +6493,6 @@ components:
       required:
         - offerId
         - ancillaryOfferId
-        - passengerRefs
       properties:
         offerId:
           type: string
@@ -6500,6 +6501,8 @@ components:
           type: string
           maxLength: 32768
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -6550,7 +6553,6 @@ components:
       required:
         - offerId
         - reservationOfferId
-        - passengerRefs
         - placeSelections
       properties:
         offerId:
@@ -6560,6 +6562,8 @@ components:
           type: string
           maxLength: 32768
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -7087,11 +7091,13 @@ components:
         Contains the newly created booking
       required:
         - bookingId
-        - passengerIds
       properties:
         bookingId:
           type: string
         passengerIds:
+          description: |
+            Ids of the passengers
+            Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.           
           type: array
           items:
             type: string
@@ -8888,7 +8894,6 @@ components:
         - offerId
         - createdOn
         - preBookableUntil
-        - passengerRefs
         - admissionOfferParts
       properties:
         exchangeFee:
@@ -8935,6 +8940,8 @@ components:
           type: string
           format: date-time
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -11016,7 +11023,6 @@ components:
         - offerId
         - createdOn
         - preBookableUntil
-        - passengerRefs
       properties:
         offerId:
           type: string
@@ -11038,6 +11044,8 @@ components:
           type: string
           format: date-time
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -11090,8 +11098,6 @@ components:
 
         If you are searching for fares you pass in the complete trip and the use the requestedSections attribute to define which part(s) you need fares (including virtual border points).
 
-      required:
-        - anonymousPassengerSpecifications
       properties:
         tripSpecifications:
           type: array
@@ -11117,6 +11123,8 @@ components:
         offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
         anonymousPassengerSpecifications:
+          description: |
+            providing the anonymous passenger specification is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omitt the anounymousPassengerSpecification. 
           type: array
           items:
             $ref: '#/components/schemas/AnonymousPassengerSpecification'
@@ -11412,7 +11420,6 @@ components:
         The Ids of the offers to be booked need to be passed in.
       required:
         - offerId
-        - passengerRefs
       properties:
         offerId:
           description: |
@@ -11446,6 +11453,8 @@ components:
         appliedRegulatoryCondition:
           $ref: '#/components/schemas/RegulatoryCondition'
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type:
             - 'array'
             - 'null'
@@ -13090,9 +13099,7 @@ components:
             product tags associated with the product that can be used to search
             for offers. This can be omitted outside of the product master data
             service
-          type:
-            - 'array'
-            - 'null'
+          type: 'array'
           items:
             type: string
         _links:
@@ -14045,7 +14052,6 @@ components:
         The reimbursement process is used to support refunds which are not covered by the online refund/exchange processes, e.g.: Partial refund of a trip (Trip was Hamburg - Munich, but only Hamburg - Kassel was used), Refund outside of rules due to good will. This is a manual back office process within the provider's organization which is triggered by this request. State changes can be signaled by web hook events.
       required:
         - reimbursementReason
-        - reimbursedPassengerIds
         - fulfillmentIds
       properties:
         reimbursementReason:
@@ -14056,6 +14062,9 @@ components:
             - 'null'
           format: date-time
         reimbursedPassengerIds:
+          description: |
+            Ids of the passengers
+            Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.           
           type: array
           items:
             type: string
