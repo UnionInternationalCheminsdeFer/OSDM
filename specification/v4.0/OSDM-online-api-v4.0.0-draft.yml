@@ -5918,12 +5918,8 @@ components:
       type: object
       additionalProperties: false
       required:
-        - id
-        - name
         - ancillaryRefs
       properties:
-        id:
-          type: string
         name:
           type: string
         ancillaryRefs:
@@ -14292,14 +14288,8 @@ components:
       type: object
       additionalProperties: false
       required:
-        - id
-        - name
         - reservationRefs
       properties:
-        id:
-          type: string
-        name:
-          type: string
         reservationRefs:
           type: array
           items:
