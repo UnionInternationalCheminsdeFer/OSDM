@@ -11359,7 +11359,14 @@ components:
             - 'null'
           items:
             $ref: '#/components/schemas/ProductTag'
-
+        productSelections:
+          description: |
+            preselection of products where offers are requested
+          type: array
+          items:
+            description: |
+              product selection by product code or product tag for an offer request. The number of items indicates the quantity to be required. Passengers must be referenced in case the product is intended for passengers.            
+            $ref: '#/components/schemas/ProductRequestOfferSelection'
         flexibilities:
           description: |
             Defines the flexibility levels desired of the fares returned.
@@ -11402,7 +11409,7 @@ components:
           description: |
             A stable reference to the id of the offer in the caller's system. When received in input of a request, it must be persisted and echoed back in the response.
           type: string
-        optionalAncillarySelections:
+        ancillarySelections:
           type: array
           items:
             $ref: '#/components/schemas/AncillarySelection'
@@ -12993,6 +13000,29 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
+    ProductRequestOfferSelection:
+      type: object
+      additionalProperties: false        
+      description: |
+              product selection by product code or product tag for an offer request. The number of items indicates the quantity to be required. Passengers must be referenced in case the product is intended for passengers.
+      properties:
+          oneOf:
+            - productCode:
+                 type: string
+                 examples:
+                   - PT00AD                    
+            - productTag:
+                 type: string
+          numberOfItmes:
+            type: 
+              - integer
+              - 'null'
+            format: int32
+            minValue: 1
+          externalPassengerRefs:
+            type: array
+            items:
+              type: string
 
     ProductSpecification:
       type: object
