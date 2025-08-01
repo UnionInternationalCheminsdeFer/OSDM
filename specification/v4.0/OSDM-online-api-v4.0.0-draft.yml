@@ -8015,7 +8015,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Contact information needed to contact a person. Either an email, a phone number or an address needs to be provided.
+        Contact information needed to contact a person. Either an email or a phone number needs to be provided.
       properties:
         summary:
           description: |
@@ -8039,8 +8039,6 @@ components:
           type:
             - 'string'
             - 'null'
-        postalAddress:
-          $ref: '#/components/schemas/PostalAddress'
 
     ContextType:
       type: string
