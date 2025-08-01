@@ -55,7 +55,7 @@ returns the TravelAccountConsumption.
 
 ### Getting offers on a travel account
 
-As a travel account is personal data it is not possible to request offers directly with a travel account.
+The travel account can be provided as part of the anonymuous passenger information. As a travel account is personal data the travel account must be provided only in case it is needed.
 
 ### Booking offers on a travel account
 
