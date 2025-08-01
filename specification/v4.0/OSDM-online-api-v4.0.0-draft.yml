@@ -47,6 +47,9 @@ tags:
   - name: Offers
     description: |
       resources to get bookable offers
+  - name: Offer Overview
+    description: |
+      resources to get an overview of prices without detailed offer information      
   - name: Availabilities
     description: |
       resources to query availabilities before or after pre-booking
@@ -712,6 +715,108 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+
+  /offer-overview-route:
+    post:
+      tags:
+        - Offer Overview
+      summary: Returns an overview of prices based on route
+      description: |
+        Returns an overview of prices for a given route search and criteria.
+        The overview does not contain detailed offer information, but only the
+        prices.
+      operationId: getOfferOverviewRoute
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferOverviewRouteRequest'
+      responses:
+        '200':
+          description: |
+            overview of prices found
+          headers:
+            Content-Language:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferOverviewRouteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+
+  /offer-overview-trip:
+    post:
+      tags:
+        - Offer Overview
+      summary: Returns an overview of prices based on trips
+      description: |
+        Returns an overview of prices for a given trip search and criteria.
+        The overview does not contain detailed offer information, but only the
+        prices.
+      operationId: getOfferOverviewTrip
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferOverviewTripRequest'
+      responses:
+        '200':
+          description: |
+            overview of prices found
+          headers:
+            Content-Language:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferOverviewTripResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+          
   /bookings/{bookingId}/on-hold-offer/{onHoldOfferId}:
     patch:
       tags:
@@ -11054,6 +11159,136 @@ components:
         - 'NONE'
       default: 'ALL'
 
+    OfferOverviewRoute:
+      type: object
+      properties:
+        price:
+          $ref: '#/components/schemas/Price'
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+        startDateTime:
+          type: string
+          format: date-time
+          nullable: false
+        routeSpecification:
+          $ref: '#/components/schemas/RouteSpecification'
+
+    OfferOverviewTrip:
+      type: object
+      required:
+        - price
+        - tripIds
+      properties:
+        price:
+          $ref: '#/components/schemas/Price'
+        tripIds:
+          type: array
+          items:
+            type: string
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+
+    OfferOverviewTripRequest:
+      type: object
+      description: |
+        Defines the parameters needed to request an offer overview for a trip. One of tripSearchCriteria, a list of trip specifications, or a list of tripIds must be passed in to request offers. Travel class and flexibility are optional parameters to filter the desired offers.
+      required:
+        - passengerSpecifications
+      properties:
+        tripSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/TripSpecification'
+        tripIds:
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+            nullable: false
+          nullable: true
+        tripSearchCriteria:
+          $ref: '#/components/schemas/TripSearchCriteria'
+        tripResponseParameters:
+          $ref: '#/components/schemas/TripResponseParameters'
+        passengerSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnonymousPassengerSpecification'
+          minItems: 1
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+
+    OfferOverviewTripResponse:
+      type: object
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        trips:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trip'
+        offerOverviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferOverviewTrip'
+
+    OfferOverviewRouteRequest:
+      type: object
+      description: |
+        Defines the parameters needed to request an offer overview for a route. Travel class and flexibility are optional parameters to filter the desired offers.
+      required:
+        - routeSpecification
+        - passengerSpecifications
+        - startDateTime
+        - endDateTime
+      properties:
+        routeSpecification:
+          $ref: '#/components/schemas/RouteSpecification'
+        passengerSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnonymousPassengerSpecification'
+          minItems: 1
+        startDateTime:
+          type: string
+          format: date-time
+          nullable: false
+        endDateTime:
+          type: string
+          format: date-time
+          nullable: false
+        timeFrameSegmentation:
+          allOf:
+            - $ref: '#/components/schemas/TimeFrameSegmentation'
+          default: 'DAY'
+          description: |
+            Defines the segmentation of the time frame for the offer overview. The default is DAY, which means that one price offer overview is given for 
+            each day of the requested time frame (provided there aren't more than one travel classes or flexibilities for one time segment).
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+
+    OfferOverviewRouteResponse:
+      type: object
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        offerOverviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferOverviewRoute'
+            
     OfferMode:
       description: |
         Offer mode applied to provide offers for given criteria. 
@@ -14974,6 +15209,12 @@ components:
         service:
           $ref: '#/components/schemas/DatedJourney'
 
+    TimeFrameSegmentation:
+     type: string
+     enum:
+      - 'HOUR'
+      - 'DAY'
+
     Tip:
       type: object
       additionalProperties: false
@@ -15741,6 +15982,14 @@ components:
           maxLength: 32768
         legId:
           type: string
+
+    RouteSpecification:
+      type: object
+      properties:
+        origin:
+          $ref: '#/components/schemas/PlaceRef'
+        destination:
+          $ref: '#/components/schemas/PlaceRef'          
 
     TripLegSpecification:
       type: object
