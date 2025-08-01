@@ -13487,31 +13487,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-            
-   ProductRequestOfferSelection:
+
+    ProductRequestOfferSelection:
       type: object
       additionalProperties: false        
       description: |
-              product selection by product code or product tag for an offer request. The number of items indicates the quantity 
-              to be required. Passengers must be referenced in case the product is intended for passengers.
+        product selection by product code or product tag for an offer request (exactly one of `productCode` and `productTag` must be provided). The number of items indicates the quantity 
+        to be required. Passengers must be referenced in case the product is intended for passengers.
       properties:
-          oneOf:
-            - productCode:
-                 type: string
-                 examples:
-                   - PT00AD                    
-            - productTag:
-                 type: string
-          numberOfItems:
-            type: 
-              - integer
-              - 'null'
-            format: int32
-            minValue: 1
-          externalPassengerRefs:
-            type: array
-            items:
-              type: string
+        productCode:
+          type: string
+          example: PT00AD
+        productTag:
+          type: string
+        numberOfItems:
+          type: integer
+          nullable: true
+          format: int32
+          minimum: 1
+        externalPassengerRefs:
+          type: array
+          items:
+           type: string
 
     ProductSearchRequest:
       type: object
