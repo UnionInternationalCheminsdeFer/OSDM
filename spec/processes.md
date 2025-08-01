@@ -28,6 +28,7 @@ permalink: /spec/processes/
    6. [Payment information and Payment Vouchers](#PaymentInformation)
    7. [Interlude: Requested Information per Process Step](Interlude)
    8. [Add parts to a booking](#AddPartsToABookings)
+   9. [Remarks on the Booking Process with Fares](#BookingProcessesFares)
 
 ## Introduction <a name="introduction">
 
@@ -1002,3 +1003,54 @@ Reservation and Ancillary Booking Parts are added and deleted via:
 - DELETE /bookings/{bookingId}/booked-offers/{bookedOfferId}
 
 ![Adding parts to an existing booking](../images/processes/seq-add-parts-2-booking-2.png)
+
+
+### Remarks on the Booking Process with Fares <a name=BookingProcessFares>
+
+The booking process for fares is the same as the booking process for product based booking parts. Fares and product 
+based booking parts can be mixed in one booking process. However fulfillments can only cover eigther fares or product based booking parts.
+
+As fares are only parts to be integrated in a ticket (admission, reservation, ancillary) the fulfillment for fares 
+has a limited content only. 
+
+Fares in the offer must be requested via the offer part type in the offer request, otherwiese only product based offers are delivered.:
+
+   - 'FARE_ADMISSION'
+   - 'FARE_RESERVATION'
+   - 'FARE_ANCILLARY'
+
+Fare booking parts are indicated by the part types (Version 4):
+
+   - 'FARE_ADMISSION'
+   - 'FARE_RESERVATION'
+   - 'FARE_ANCILLARY'
+
+The status of a fulfillment of a fare is limited to the values:
+
+   - 'CONFIRMED'
+   - 'FULFILLED'  -- no more additiona data on the fulillment will be provided
+   - 'CANCELLED'
+   - 'RELEASED'
+   - 'REFUNDED'
+   - 'EXCHANGED'
+
+The fulfillment of a fare does not include the following items:
+
+   - fulfillment documents
+   - control Number
+   - issuer
+   - continuousServiceUsage
+   - links
+
+
+
+
+
+
+
+
+
+
+
+
+
