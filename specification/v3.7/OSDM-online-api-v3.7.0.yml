@@ -7159,6 +7159,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fulfillment'
+        fulfillmentStatus:
+          type: string
+          x-extensible-enum:
+            - 'PENDING'  : some fulfillmentids are not jet there
+            - 'CREATED'  : all fulfillmentids are created
+            - 'COMPLETE' : no more documents are to be expected
         issuedVouchers:
           type: array
           items:
