@@ -4947,6 +4947,7 @@ components:
         propertyName: objectType
       required:
         - objectType
+        - partType
         - id
         - createdOn
         - price
@@ -4960,6 +4961,8 @@ components:
             Attribute is used as discriminator for inheritance between data
             types.
           type: string
+        partType:  
+          $ref: '#/components/schemas/PartType'           
         id:
           type: string
           maxLength: 32768
@@ -5082,6 +5085,7 @@ components:
         propertyName: objectType
       required:
         - objectType
+        - partType
         - id
         - createdOn
         - price
@@ -5089,7 +5093,6 @@ components:
         - passengerRefs
         - refundable
         - exchangeable
-        - products
         - availableFulfillmentOptions
       properties:
         objectType:
@@ -5097,6 +5100,8 @@ components:
             Attribute is used as discriminator for inheritance between data
             types.
           type: string
+        partType:  
+          $ref: '#/components/schemas/PartType'          
         id:
           type: string
           maxLength: 32768
@@ -5179,6 +5184,9 @@ components:
             offer part. Although not currently mandatory, this attribute should
             in all cases be facilitate product based processing at the client
         products:
+          description: |
+            products must be provided in case they are referenced. Some offer parts (e.g. fares)
+            do not have products assigned.
           type: array
           items:
             $ref: '#/components/schemas/ProductLegAssociation'
@@ -6316,7 +6324,6 @@ components:
         The offerSummary must be provided for product based offers. It is not needed for fares.
       required:
         - offerId
-        - products
       properties:
         offerId:
           type: string
@@ -6365,6 +6372,9 @@ components:
           items:
             $ref: '#/components/schemas/ThroughTicketTag'
         products:
+          description: |
+            products must be provided in case they are referenced in booking or offer parts. Some offer parts (e.g. fares)
+            do not have products assigned.        
           type: array
           items:
             $ref: '#/components/schemas/Product'
@@ -8527,8 +8537,8 @@ components:
          conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assambled 
          into tickes on the OSDM client side. In fare mode the conditions are defined on the client 
          side the restrictions on conditions and combinability layed down in the booking part (fare). 
-         By definition admissions and ancillaries are in PRODUCT_MODE and fares are in FARE_MODE. Reservation 
-         might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
+         By definition admissions and ancillaries are in PRODUCT_MODE and fares are in _MODE. Reservation 
+         might be in PRODUCT_MODE or in _MODE. Offers in _MODE must not be provided unless they are
          requested in the offer part type list.
       type: string
       enum:
@@ -8807,6 +8817,9 @@ components:
             type: string
           minItems: 1
         products:
+          description: |
+            products must be provided in case they are referenced. Some offer parts (e.g. fares)
+            do not have products assigned.        
           type: array
           items:
             $ref: '#/components/schemas/Product'
@@ -10907,6 +10920,9 @@ components:
             type: string
           minItems: 1
         products:
+          description: |
+            products must be provided in case they are referenced. Some offer parts (e.g. fares)
+            do not have products assigned.        
           type: array
           items:
             $ref: '#/components/schemas/Product'
@@ -11076,7 +11092,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    OfferPartType:
+    PartType:
       description: |
         Allows to request offer-parts of a certain type.
         To support H/H use ['RESERVATION', 'ANCILLARY'].
@@ -11097,9 +11113,13 @@ components:
       additionalProperties: false
       properties:
         requestedOfferParts:
+          description: |
+            Allows to request offer-parts of a certain type.
+            To support H/H use ['RESERVATION', 'ANCILLARY'].
+            Default is to get search for offers of all types.        
           type: array
           items:
-            $ref: '#/components/schemas/OfferPartType'
+            $ref: '#/components/schemas/PartType'
         productTags:
           type:
             - 'array'
