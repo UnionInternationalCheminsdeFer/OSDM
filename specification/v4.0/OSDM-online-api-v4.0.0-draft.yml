@@ -12243,33 +12243,6 @@ components:
           format: int32
           minimum: 1
 
-    PlacePosition:
-      type: object
-      additionalProperties: false
-      description: |
-        description of a place
-      required:
-        - number
-        - status
-      properties:
-        number:
-          description: |
-            place number as indicated at the place in the coach
-          type: string
-        status:
-          $ref: '#/components/schemas/AvailabilityStatus'
-        reservationRefs:
-          description: |
-            references to the reservations for which this place nca be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
-          type: array
-          items:
-            type: string
-        placeProperties:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlaceProperty'
-        selectionFee:
-          $ref: '#/components/schemas/SelectionFee'
 
     PlacePreSelection:
       type: object
@@ -14890,7 +14863,6 @@ components:
         Availability status of a specific place.
       required:
         - number
-        - status
         - reservationRefs
       properties:
         number:
