@@ -5013,7 +5013,7 @@ components:
         passengerIds:
           description: |
             Ids of the passengers
-            Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sle of merchandising aricles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.                
+            Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.                
           type: array
           items:
             type: string
@@ -5128,7 +5128,7 @@ components:
           default: false
         passengerRefs:
           description: |
-            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sle of merchandising aricles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.          
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.          
           type: array
           items:
             type: string
@@ -5890,7 +5890,7 @@ components:
           maxLength: 32768
         passengerRefs:
           description: |
-            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sle of merchandising aricles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -6387,7 +6387,7 @@ components:
           maxLength: 32768
         passengerRefs:
           description: |
-            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sle of merchandising aricles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -6448,7 +6448,7 @@ components:
           maxLength: 32768
         passengerRefs:
           description: |
-            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sle of merchandising aricles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -6976,7 +6976,7 @@ components:
         passengerIds:
           description: |
             Ids of the passengers
-            Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sle of merchandising aricles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.           
+            Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.           
           type: array
           items:
             type: string
@@ -8800,7 +8800,7 @@ components:
           format: date-time
         passengerRefs:
           description: |
-            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sle of merchandising aricles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -10901,7 +10901,7 @@ components:
           format: date-time
         passengerRefs:
           description: |
-            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sle of merchandising aricles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -10977,7 +10977,7 @@ components:
           $ref: '#/components/schemas/OfferSearchCriteria'
         anonymousPassengerSpecifications:
           description: |
-            providing the anonymous passenger specification is required for passenger transport. There are uses cases (e.g. sle of merchandising aricles) where no passenger is involved. Only in these cases it is allowed to omitt the anounymousPassengerSpecification. 
+            providing the anonymous passenger specification is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omitt the anounymousPassengerSpecification. 
           type: array
           items:
             $ref: '#/components/schemas/AnonymousPassengerSpecification'
@@ -11173,7 +11173,7 @@ components:
           $ref: '#/components/schemas/RegulatoryCondition'
         passengerRefs:
           description: |
-            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sle of merchandising aricles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type:
             - 'array'
             - 'null'
@@ -13810,7 +13810,7 @@ components:
         reimbursedPassengerIds:
           description: |
             Ids of the passengers
-            Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sle of merchandising aricles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.           
+            Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.           
           type: array
           items:
             type: string
