@@ -89,7 +89,7 @@ No result found for given request
 }
 ```
 
-Request not conform to OpenAPI schema, e.g. the age attribute is not numeric
+Request does not conform to OpenAPI schema, e.g. the age attribute is not numeric
 
 ```json
 "problem": {
