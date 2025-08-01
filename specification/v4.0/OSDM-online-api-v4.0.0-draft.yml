@@ -7635,8 +7635,6 @@ components:
       additionalProperties: false
       required:
         - name
-        - registrationNumber
-        - taxId
       properties:
         name:
           type: string
