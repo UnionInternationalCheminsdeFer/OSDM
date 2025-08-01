@@ -7863,13 +7863,11 @@ components:
         description:
           description: |
             human readable documentation of the text.
-          type: Text
+          $ref: '#/components/schemas/Text'
         shortDescription:
           description: |
             short description of the condition no longer than 64 characters
-          type:
-            - 'Text'
-            - 'null'
+          $ref: '#/components/schemas/Text'
 
     ConditionType:
       type: string
@@ -8618,6 +8616,25 @@ components:
           items:
             $ref: '#/components/schemas/CompartmentAvailability'
 
+    DirectionChange:
+      type: object
+      additionalProperties: false
+      description: |
+        A StopPlace where the direction of a train changes
+      required:
+        - stopPlaceRef
+        - stopPlaceName
+      properties:
+        stopPlaceRef:
+          description: |
+            Reference to the station where the direction changes
+          $ref: '#/components/schemas/StopPlaceRef'
+        stopPlaceName:
+          description: |
+                  Name of the station where the direction changes
+          type: 
+            - string
+            - 'null'
 
     DirectionType:
       description: |
@@ -8650,6 +8667,7 @@ components:
         - 'PRODUCT_MODE'
         - 'FARE_MODE'   
       default:  'PRODUCT_MODE'        
+
 
 
     Document:
@@ -13013,9 +13031,7 @@ components:
         summary:
           description: |
             A human-readable description of the product.
-          type:
-            - 'Text'
-            - 'null'
+          $ref: '#/components/schemas/Text'
         type:
           $ref: '#/components/schemas/ProductType'
         code:
@@ -13028,9 +13044,7 @@ components:
         description:
           description: |
             Textual description of the product.
-          type:
-            - 'Text'
-            - 'null'
+          $ref: '#/components/schemas/Text'
         owner:
           $ref: '#/components/schemas/CompanyRef'
         conditions:
@@ -13060,24 +13074,13 @@ components:
             - 'null'
           default: false
         serviceConstraintText:
-          type:
-            - 'Text'
-            - 'null'
+          $ref: '#/components/schemas/Text'
         carrierConstraintText:
-          type:
-            - 'Text'
-            - 'null'
+          $ref: '#/components/schemas/Text'
         descriptiveTexts:
           type: array
           items:
             $ref: '#/components/schemas/Text'
-        tariff:
-          description: |
-            Mapping to Tariff 42 of IRS-90918-3 (Hermes/Hosa). Helps the H2O converter in mapping
-            offers to a requested tariff. See legacyReservationParameter.tariff in OSDM offline.
-          type:
-            - 'Text'
-            - 'null'
         combinationTags:
           type: array
           items:
@@ -16459,6 +16462,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachAvailability'
+        directionChanges:
+          description: |
+            List of direction changes (in direction of travel). 
+          type: array
+          items:
+            $ref: '#/components/schemas/DirectionChange'            
         preSelectedPlaces:
           type: array
           items:
