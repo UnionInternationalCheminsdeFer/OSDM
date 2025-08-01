@@ -13500,7 +13500,7 @@ components:
                    - PT00AD                    
             - productTag:
                  type: string
-          numberOfItmes:
+          numberOfItems:
             type: 
               - integer
               - 'null'
