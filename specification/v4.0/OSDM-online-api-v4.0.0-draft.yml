@@ -9566,41 +9566,17 @@ components:
         - 'ANCILLARY'
 
     Fee:
-      type: object
-      additionalProperties: false
       description: |
-        Fees are used to represent additional costs for services or products. In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the providing system.
-      required:
-        - id
-        - price
-      properties:
-        id:
-          type: string
-          maxLength: 32768
-        summary:
-          description: |
-            A human-readable description of the fee.
-          type:
-            - 'string'
-            - 'null'
-        price:
-          $ref: '#/components/schemas/Price'
-        applicability:
-          $ref: '#/components/schemas/ApplicabilityType'
-        transactionContext:
-          $ref: '#/components/schemas/TransactionContextType'
-        refundable:
-          $ref: '#/components/schemas/RefundType'
-        conditions:
-          description: |
-            Structured description of the sales or after-sales conditions.
-          type: array
-          items:
-            $ref: '#/components/schemas/Condition'
-        productRef:
-          type: string
-          description: |
-            Reference to the Product representing the Fee
+        Fees are used to represent additional costs for services or products. In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the providing system.      
+      allOf:
+        - $ref: '#/components/schemas/AbstractOfferPart'      
+        - type: object
+          additionalProperties: false
+          properties:
+            applicability:
+              $ref: '#/components/schemas/ApplicabilityType'
+            transactionContext:
+              $ref: '#/components/schemas/TransactionContextType'
 
     Flexibility:
       type: string
@@ -11351,11 +11327,10 @@ components:
 
     PartType:
       description: |
-        Allows to request offer-parts of a certain type.
-        To support H/H use ['RESERVATION', 'ANCILLARY'].
+        Allows to request offer-parts of a certain type and indicates the type of the received booking part. For H/H converters use ['FARE_RESERVATION'].
         Default is to get search for offers of all types.
       type: string
-      enum:
+      x-extensible-enum:
         - 'ADMISSION'
         - 'RESERVATION'
         - 'ANCILLARY'
@@ -11363,6 +11338,7 @@ components:
         - 'FARE_RESERVATION'
         - 'FARE_ANCILLARY'
         - 'CONTINUOUS_SERVICE'
+        - 'FEE'
         - 'ALL'
 
     OfferSearchCriteria:
