@@ -8041,8 +8041,6 @@ components:
           type:
             - 'string'
             - 'null'
-        postalAddress:
-          $ref: '#/components/schemas/PostalAddress'
 
     ContextType:
       type: string
