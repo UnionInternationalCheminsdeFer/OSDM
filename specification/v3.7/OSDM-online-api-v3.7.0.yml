@@ -6386,6 +6386,7 @@ components:
         - ancillaryRefs
       properties:
         id:
+          deprecated: true
           type: string
           nullable: false
         name:
@@ -14715,9 +14716,11 @@ components:
         - reservationRefs
       properties:
         id:
+          deprecated: true
           type: string
           nullable: false
         name:
+          deprecated: true        
           type: string
           nullable: false
         reservationRefs:
