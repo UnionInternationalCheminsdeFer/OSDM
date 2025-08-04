@@ -3140,7 +3140,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ExchangeCfferRequest'
+              $ref: '#/components/schemas/ExchangeOfferRequest'
       responses:
         '200':
           description: |
