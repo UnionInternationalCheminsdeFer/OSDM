@@ -12996,15 +12996,15 @@ components:
       type: object
       additionalProperties: false        
       description: |
-              product selection by product code or product tag for an offer request. The number of items indicates the quantity to be required. Passengers must be referenced in case the product is intended for passengers.
+              product selection by product code or product tag for an offer request. The number of items indicates the quantity to be required. 
+              Passengers must be referenced in case the product is intended for passengers. Eigther a prottag must be provided. 
       properties:
-          oneOf:
-            - productCode:
-                 type: string
-                 examples:
-                   - PT00AD                    
-            - productTag:
-                 type: string
+          productCode:
+            type: string
+            examples:
+             - PT00AD                    
+          productTag:
+            type: string
           numberOfItmes:
             type: 
               - integer
