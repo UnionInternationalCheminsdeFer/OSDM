@@ -8879,7 +8879,7 @@ components:
           items:
             $ref: '#/components/schemas/OfferCollectionResponseContent'
 
-    ExchangeCfferRequest:
+    ExchangeOfferRequest:
       description: |
         Request exchange offers 
       type: object
