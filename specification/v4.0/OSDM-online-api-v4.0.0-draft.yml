@@ -12996,8 +12996,8 @@ components:
       type: object
       additionalProperties: false        
       description: |
-              product selection by product code or product tag for an offer request. The number of items indicates the quantity to be required. 
-              Passengers must be referenced in case the product is intended for passengers. Eigther a prottag must be provided. 
+        product selection by product code or product tag for an offer request (exactly one of `productCode` and `productTag` must be provided). The number of items indicates the quantity 
+        to be required. Passengers must be referenced in case the product is intended for passengers.
       properties:
           productCode:
             type: string
