@@ -8931,7 +8931,7 @@ components:
           items:
             $ref: '#/components/schemas/Section'                        
 
-    ExchangePassengersCfferRequestSpecification:
+    ExchangePassengersOfferRequestSpecification:
       description: |
         specification to remove, add and exchange passengers
       type: object  
