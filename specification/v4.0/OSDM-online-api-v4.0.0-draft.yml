@@ -3215,7 +3215,7 @@ paths:
     post:
       tags:
         - Exchange
-      summary: Returns exchange offers for specified fulfillments
+      summary: Returns exchange offers for specified fulfillments or booking parts
       description: |
         Returns exchange offers for specified fulfillments submitted given
         requested new trip characteristics.
@@ -3241,7 +3241,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ExchangeOfferCollectionRequest'
+              $ref: '#/components/schemas/ExchangeOfferRequest'
       responses:
         '200':
           description: |
@@ -3256,7 +3256,6 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3275,6 +3274,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
   /bookings/{bookingId}/exchange-operations:
     post:
       tags:
@@ -6102,11 +6102,13 @@ components:
           type: string
           description: |
             Version of the next API.
-          example: '4.0.0'
+          examples: 
+            - '4.0.0'
         availableAt:
           type: string
           format: url
-          example: 'https://api.next.example.com'
+          examples: 
+            - 'https://api.next.example.com'
         availableFrom:
           type:
             - 'string'
@@ -6114,7 +6116,8 @@ components:
           format: date-time
           description: |
             Date from which the next version is available.
-          example: "2025-01-01T00:00:00+01:00"
+          examples: 
+            - "2025-01-01T00:00:00+01:00"
 
     ApiVersion:
       type: object
@@ -6129,7 +6132,8 @@ components:
           type: string
           description: |
             Version of the API
-          example: '3.0.0'
+          examples: 
+            - '3.0.0'
         sunset:
           type:
             - 'string'
@@ -6137,7 +6141,8 @@ components:
           format: date-time
           description: |
             Date after which the API version will no longer be available.
-          example: "2024-12-31T23:59:59+01:00"
+          examples: 
+            - "2024-12-31T23:59:59+01:00"
         nextVersion:
           anyOf:
             - $ref: '#/components/schemas/ApiNextVersion'
@@ -9002,30 +9007,67 @@ components:
           items:
             type: string
 
-    ExchangeOfferCollectionRequest:
+    ExchangeOfferRequestParameter:
       type: object
       additionalProperties: false
       description: |
-        Defines the parameters needed to request an exchange offer, either based on either an
-        existing trip (that is then passed in) plus a set of offer search
-        criteria, or based on trip-search and offer search criteria. At least one
-        of the trip or tripSearchCriteria must be set.
+        Basic request parameters for all exchange offer requests.
+      properties:                                
+        overruleCode:
+          $ref: '#/components/schemas/OverruleCode'
+        corporateCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CorporateCode'
+        promotionCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromotionCode'
+        offerMode:
+          $ref: '#/components/schemas/OfferMode'
+        currency:
+          $ref: '#/components/schemas/Currency'                 
+        requestedFulfillmentOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOption'
+        embed:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferCollectionResponseContent'
+
+    ExchangeOfferRequest:
+      description: |
+        Request exchange offers 
+      type: object
+      additionalProperties: false
       required:
-        - exchangeSpecification
-      properties:
-        exchangeSpecification:
-          description: specification of the fulfillments (or individual parts / passengers of fulfillments) that need to be exchanged.
+          - exchangeParts
+          - exchangeParams
+      properties:        
+        exchangeParts:
+          description: |
+            the fulfillments or booking parts that should be exchanged.
+            The listed parts are an indication. It might be necessary to exchange more parts as there are dependencies to other pats via fulfillments. It is up to the provider to evaluate these dependencies.
           type: array
           maxItems: 1024
           items:
-            $ref: '#/components/schemas/ExchangeSpecification'
-        addedPassengerSpecifications:
-          description: specifications of new passengers to be added
-          type: array
-          items:
-            $ref: '#/components/schemas/AnonymousPassengerSpecification'                   
-        overruleCode:
-          $ref: '#/components/schemas/OverruleCode'
+            $ref: '#/components/schemas/ExchangeParts'          
+        exchangeParams:
+          $ref: '#/components/schemas/ExchangeOfferRequestParameter'
+        exchangePassengers:
+          $ref: '#/components/schemas/ExchangePassengersOfferRequestSpecification' 
+        exchangeService:
+          $ref: '#/components/schemas/ExchangeServiceOfferRequestSpecification'   
+        exchangeTrip:  
+          $ref: '#/components/schemas/ExchangeTripOfferRequestSpecification'      
+
+    ExchangeTripOfferRequestSpecification:
+      description: |
+          specification to exchange a trip
+      type: object
+      additionalProperties: false
+      properties:
         tripSpecifications:
           type: array
           items:
@@ -9044,25 +9086,56 @@ components:
         requestedSections:
           type: array
           items:
-            $ref: '#/components/schemas/Section'      
-        offerSearchCriteria:
-          $ref: '#/components/schemas/OfferSearchCriteria'
-        corporateCodes:
+            $ref: '#/components/schemas/Section'                        
+
+    ExchangePassengersOfferRequestSpecification:
+      description: |
+        specification to remove, add and exchange passengers
+      type: object  
+      additionalProperties: false
+      properties:
+            addedPassengerSpecifications:
+              description: specifications of new passengers to be added
+              type: array
+              items:
+                $ref: '#/components/schemas/AnonymousPassengerSpecification'    
+            removedPassengerIds:
+              type: array
+              description: | 
+                 Ids of passengers to be exchanged. The new offers will not contain these passengers.
+                 In case no passengers refs are provided all passengers on the fulfillment will be exchanged.
+              maxItems: 1024             
+              items:
+                type: string    
+
+    ExchangeServiceOfferRequestSpecification:
+      desription: |
+          specification to exchange the service level or travel class
+      type: object
+      additionalProperties: false
+      properties:
+        flexibilities:
+          description: |
+              Defines the flexibility levels desired of the fares returned.
+              This refers to the after sales flexibility levels as defined in IRS-90918-10
           type: array
           items:
-            $ref: '#/components/schemas/CorporateCode'
-        promotionCodes:
+            $ref: '#/components/schemas/Flexibility'
+        travelClasses:
+          description: |
+              The classes returned might be different from the requested classes.
           type: array
           items:
-            $ref: '#/components/schemas/PromotionCode'
-        requestedFulfillmentOptions:
+            $ref: '#/components/schemas/TravelClass'
+        serviceClassTypes:
+          description: |
+              The classes returned might be different from the requested classes.
           type: array
           items:
-            $ref: '#/components/schemas/FulfillmentOption'
-        embed:
-          type: array
-          items:
-            $ref: '#/components/schemas/OfferCollectionResponseContent'
+            $ref: '#/components/schemas/ServiceClassType'
+          maxItems: 4
+   
+
 
     ExchangeOfferCollectionResponse:
       type: object
@@ -9225,8 +9298,8 @@ components:
         - 'FULFILLED'
         - 'ERROR'
 
-    ExchangeSpecification:
-      description: specification of parts or passengers to be exchanged
+    ExchangeParts:
+      description: specification of parts to be exchanged
       type: object
       properties:
         fulfillmentId:
@@ -9236,21 +9309,13 @@ components:
           maxLength: 32768
         bookingPartIds:
           description: | 
-            Ids of booking parts of the fulfillment to be exchanged. The new offers will not contain these parts.
+            Ids of booking parts to be exchanged. The new offers will not contain these parts.
             In case no booking parts are provided all booking parts will be exchanged.
           type: array
           maxItems: 1024
           items:
             type: string
-            maxLength: 32768
-        removedPassengerIds:
-          type: array
-          description: | 
-             Ids of passengers to be exchanged. The new offers will not contain these passengers.
-             In case no passengers refs are provided all passengers on the fulfillment will be exchanged.
-          maxItems: 1024             
-          items:
-            type: string     
+            maxLength: 32768  
             
 
     ExchangeableType:
@@ -14107,7 +14172,6 @@ components:
         - createdOn
         - validFrom
         - validUntil
-        - status
         - releasedFulfillments
       properties:
         id:
