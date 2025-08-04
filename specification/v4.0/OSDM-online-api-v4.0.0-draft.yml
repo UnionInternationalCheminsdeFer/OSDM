@@ -8951,7 +8951,7 @@ components:
               items:
                 type: string    
 
-    ExchangeServiceCfferRequestSpecification:
+    ExchangeServiceOfferRequestSpecification:
       desription: |
           specification to exchange the service level or travel class
       type: object
