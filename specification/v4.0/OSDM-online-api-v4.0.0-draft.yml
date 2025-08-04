@@ -8899,13 +8899,13 @@ components:
         exchangeParams:
           $ref: '#/components/schemas/ExchangeOfferRequestParameter'
         exchangePassengers:
-          $ref: '#/components/schemas/ExchangePassengersCfferRequestSpecification' 
+          $ref: '#/components/schemas/ExchangePassengersOfferRequestSpecification' 
         exchangeService:
-          $ref: '#/components/schemas/ExchangeServiceCfferRequestSpecification'   
+          $ref: '#/components/schemas/ExchangeServiceOfferRequestSpecification'   
         exchangeTrip:  
-          $ref: '#/components/schemas/ExchangeTripCfferRequestSpecification'      
+          $ref: '#/components/schemas/ExchangeTripOfferRequestSpecification'      
 
-    ExchangeTripCfferRequestSpecification:
+    ExchangeTripOfferRequestSpecification:
       description: |
           specification to exchange a trip
       type: object
