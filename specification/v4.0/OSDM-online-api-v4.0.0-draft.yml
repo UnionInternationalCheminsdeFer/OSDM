@@ -5875,6 +5875,8 @@ components:
           $ref: '#/components/schemas/ServiceTime'
 
     Ancillary:
+      description: |
+        An ancillary is an additional service which may be linked to admissions in a single or a separate offer and enhance their value for the customer. Examples of Ancillary Services include on-board meals, special assistance, Wi-Fi, bike space.
       allOf:
         - $ref: '#/components/schemas/AbstractBookingPart'
         - type: object
@@ -5926,6 +5928,8 @@ components:
           minItems: 1
 
     AncillaryOfferPart:
+      description: |
+        An ancillary is an additional service which may be linked to admissions in a single or a separate offer and enhance their value for the customer. Examples of Ancillary Services include on-board meals, special assistance, Wi-Fi, bike space.
       allOf:
         - $ref: '#/components/schemas/AbstractOfferPart'
         - type: object
@@ -5965,6 +5969,8 @@ components:
                 - 'null'
             type:
               $ref: '#/components/schemas/AncillaryType'
+            subType:
+              $ref: '#/components/schemas/AncillarySubType'
 
     AncillaryRelation:
       type: object
@@ -6018,6 +6024,17 @@ components:
         - 'DRINKS_ON_BOARD'
         - 'WIFI'
         - 'PARKING'
+
+    AncillarySubType:
+      description: |
+        Values from the [Ancillary Sub Type List](https://osdm.io/spec/catalog-of-code-lists/#AncillarySubTypes)
+        Listed values here are examples.
+      type: string
+      x-extensible-enum:
+        - 'LUNCH'
+        - 'DINNER'
+        - 'WIFI'
+        - 'MUSICAL_INSTRUMENT'
 
     AnonymousPassengerSpecification:
       type: object
