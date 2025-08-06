@@ -26,7 +26,7 @@ permalink: /spec/processes/
    4. [Completing Booking for Confirmation and Fulfillment](#CompleteBooking)
    5. [Cancel a Not Confirmed Booking](#CancelUnconfirmedBooking)
    6. [Payment information and Payment Vouchers](#PaymentInformation)
-   7. [Interlude: Requested Information per Process Step](Interlude)
+   7. [Interlude: Requested Information per Process Step](#Interlude)
    8. [Add parts to a booking](#AddPartsToABookings)
    9. [Remarks on the Booking Process with Fares](#BookingProcessesFares)
 
