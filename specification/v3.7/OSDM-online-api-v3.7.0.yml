@@ -11653,6 +11653,12 @@ components:
             type: string
             maxLength: 32768
           nullable: true
+        outwardTripIds:
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+          nullable: true
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
         tripResponseParameters:
@@ -14963,8 +14969,9 @@ components:
       additionalProperties: false
       description: |
         This property can be used in case a return trip is being requested.
-        This will allow to benefit from return-specific fares or product
+        This will allow to benefit from return-specific fares or product.
 
+        Only one of `inwardReturnDate`, `outwardTripIds`, `outwardOfferIds`, or `outwardOfferTag` should be provided.
       properties:
         inwardReturnDate:
           description: |
@@ -14973,6 +14980,15 @@ components:
             product and fares.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          nullable: true
+        outwardTripIds:
+          description: |
+            Needs to be provided when creating collection of offers covering both
+            outward and inward journey.
+          type: array
+          items:
+            type: string
+            maxLength: 32768
           nullable: true
         outwardOfferIds:
           description: |
@@ -16714,6 +16730,11 @@ components:
           type: boolean
           nullable: true
           default: false
+        outwardTripSpecificationRef:
+          type: string
+          nullable: true
+          description: |
+            `externalRef` of the `TripSpecification` describing the outward trip.
         returnSearchParameters:
           $ref: '#/components/schemas/ReturnSearchParameters'
 
