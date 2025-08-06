@@ -5870,7 +5870,7 @@ components:
         - 'LUNCH'
         - 'DINNER'
         - 'WIFI'
-        - 'MUSICAL INSTRUMENT'
+        - 'MUSICAL_INSTRUMENT'
 
     AnonymousPassengerSpecification:
       type: object
