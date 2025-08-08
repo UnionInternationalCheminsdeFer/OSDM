@@ -16357,6 +16357,8 @@ components:
           $ref: '#/components/schemas/TransportableType'
         car:
           $ref: '#/components/schemas/CarSpecification'
+        trailer:
+          $ref: '#/components/schemas/TrailerSpecification'          
 
     TransportableType:
       description: |
