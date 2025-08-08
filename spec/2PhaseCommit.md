@@ -21,7 +21,7 @@ There is still a small risk that issues may occur between the prepare step and t
 The endpoints are not mandatory for provider systems, but aggregators will likely request them when integrating a provider into an ecosystem with multiple provider systems.
 
 ## Response Structure
-* **HTTP 202** – Empty body (successful prepare)
+* **HTTP 202** – Empty respons (successful prepare)
 * **HTTP 400** – Problems returned as an array of standard problem structures:
 ```
 {
