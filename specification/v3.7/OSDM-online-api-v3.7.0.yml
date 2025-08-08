@@ -8151,7 +8151,7 @@ components:
           nullable: false              
         numberOfBicycles:
           description: numberof bicycles on the rack
-          tyxpe: integer
+          type: integer
           format: int32
           minimum: 0
           nullable: false              
