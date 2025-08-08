@@ -12820,7 +12820,7 @@ components:
           $ref: '#/components/schemas/PassengerType'
         gender:
           $ref: '#/components/schemas/Gender'
-        transportable:
+        transportableDetails:
           $ref: '#/components/schemas/Transportable'
           
     PassengerType:
