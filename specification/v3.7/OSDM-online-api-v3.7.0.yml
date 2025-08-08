@@ -2397,7 +2397,7 @@ paths:
         '202':
           $ref: '#/components/responses/ProblemsResponse' 
         '400':
-          $ref: '#/components/responses/BadRequestResponse'
+          $ref: '#/components/responses/ProblemsResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedResponse'
         '403':
@@ -2762,7 +2762,7 @@ paths:
         '202':
           $ref: '#/components/responses/ProblemsResponse' 
         '400':
-          $ref: '#/components/responses/BadRequestResponse'
+          $ref: '#/components/responses/ProblemsResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedResponse'
         '403':
