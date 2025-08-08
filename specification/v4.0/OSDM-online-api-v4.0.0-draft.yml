@@ -2413,15 +2413,13 @@ paths:
         '202':
           $ref: '#/components/responses/ProblemsResponse' 
         '400':
-          $ref: '#/components/responses/BadRequestResponse'
+          $ref: '#/components/responses/ProblemsResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedResponse'
         '403':
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2661,15 +2659,13 @@ paths:
         '202':
           $ref: '#/components/responses/ProblemsResponse' 
         '400':
-          $ref: '#/components/responses/BadRequestResponse'
+          $ref: '#/components/responses/ProblemsResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedResponse'
         '403':
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
-        '406':
-          $ref: '#/components/responses/NotAcceptableResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
         '415':
