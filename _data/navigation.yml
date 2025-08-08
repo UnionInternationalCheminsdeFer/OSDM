@@ -107,6 +107,8 @@
       link: spec/non-functional-requirements/      
     - name: Compliance
       link: spec/compliance/
+    - name: Two phase commit
+      link: spec/2PhaseCommit/      
 
       
 - name: Tools
