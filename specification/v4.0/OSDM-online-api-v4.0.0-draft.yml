@@ -47,6 +47,9 @@ tags:
   - name: Offers
     description: |
       resources to get bookable offers
+  - name: Offer Overview
+    description: |
+      resources to get an overview of prices without detailed offer information      
   - name: Availabilities
     description: |
       resources to query availabilities before or after pre-booking
@@ -717,6 +720,104 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+
+  /offer-overview-route:
+    post:
+      tags:
+        - Offer Overview
+      summary: Returns an overview of prices based on route
+      description: |
+        Returns an overview of prices for a given route search and criteria.
+        The overview does not contain detailed offer information, but only the
+        prices.
+      operationId: getOfferOverviewRoute
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferOverviewRouteRequest'
+      responses:
+        '200':
+          description: |
+            overview of prices found
+          headers:
+            Content-Language:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferOverviewRouteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+
+  /offer-overview-trip:
+    post:
+      tags:
+        - Offer Overview
+      summary: Returns an overview of prices based on trips
+      description: |
+        Returns an overview of prices for a given trip search and criteria.
+        The overview does not contain detailed offer information, but only the
+        prices.
+      operationId: getOfferOverviewTrip
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferOverviewTripRequest'
+      responses:
+        '200':
+          description: |
+            overview of prices found
+          headers:
+            Content-Language:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferOverviewTripResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+          
   /bookings/{bookingId}/on-hold-offer/{onHoldOfferId}:
     patch:
       tags:
@@ -3119,7 +3220,7 @@ paths:
     post:
       tags:
         - Exchange
-      summary: Returns exchange offers for specified fulfillments
+      summary: Returns exchange offers for specified fulfillments or booking parts
       description: |
         Returns exchange offers for specified fulfillments submitted given
         requested new trip characteristics.
@@ -3145,7 +3246,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ExchangeOfferCollectionRequest'
+              $ref: '#/components/schemas/ExchangeOfferRequest'
       responses:
         '200':
           description: |
@@ -3160,7 +3261,6 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3179,6 +3279,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
   /bookings/{bookingId}/exchange-operations:
     post:
       tags:
@@ -4954,11 +5055,11 @@ components:
         propertyName: objectType
       required:
         - objectType
+        - partType
         - id
         - createdOn
         - price
         - status
-        - passengerIds
         - refundable
         - exchangeable
       properties:
@@ -4967,6 +5068,8 @@ components:
             Attribute is used as discriminator for inheritance between data
             types.
           type: string
+        partType:  
+          $ref: '#/components/schemas/PartType'           
         id:
           type: string
           maxLength: 32768
@@ -5020,7 +5123,8 @@ components:
             The unique booking code for the part in the provider system.
         passengerIds:
           description: |
-            Id of the passenger
+            Ids of the passengers
+            Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.                
           type: array
           items:
             type: string
@@ -5089,14 +5193,13 @@ components:
         propertyName: objectType
       required:
         - objectType
+        - partType
         - id
         - createdOn
         - price
         - offerMode
-        - passengerRefs
         - refundable
         - exchangeable
-        - products
         - availableFulfillmentOptions
       properties:
         objectType:
@@ -5104,6 +5207,8 @@ components:
             Attribute is used as discriminator for inheritance between data
             types.
           type: string
+        partType:  
+          $ref: '#/components/schemas/PartType'          
         id:
           type: string
           maxLength: 32768
@@ -5135,6 +5240,8 @@ components:
             - 'null'
           default: false
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.          
           type: array
           items:
             type: string
@@ -5186,6 +5293,9 @@ components:
             offer part. Although not currently mandatory, this attribute should
             in all cases be facilitate product based processing at the client
         products:
+          description: |
+            products must be provided in case they are referenced. Some offer parts (e.g. fares)
+            do not have products assigned.
           type: array
           items:
             $ref: '#/components/schemas/ProductLegAssociation'
@@ -5821,6 +5931,8 @@ components:
           $ref: '#/components/schemas/ServiceTime'
 
     Ancillary:
+      description: |
+        An ancillary is an additional service which may be linked to admissions in a single or a separate offer and enhance their value for the customer. Examples of Ancillary Services include on-board meals, special assistance, Wi-Fi, bike space.
       allOf:
         - $ref: '#/components/schemas/AbstractBookingPart'
         - type: object
@@ -5861,12 +5973,8 @@ components:
       type: object
       additionalProperties: false
       required:
-        - id
-        - name
         - ancillaryRefs
       properties:
-        id:
-          type: string
         name:
           type: string
         ancillaryRefs:
@@ -5876,6 +5984,8 @@ components:
           minItems: 1
 
     AncillaryOfferPart:
+      description: |
+        An ancillary is an additional service which may be linked to admissions in a single or a separate offer and enhance their value for the customer. Examples of Ancillary Services include on-board meals, special assistance, Wi-Fi, bike space.
       allOf:
         - $ref: '#/components/schemas/AbstractOfferPart'
         - type: object
@@ -5915,6 +6025,8 @@ components:
                 - 'null'
             type:
               $ref: '#/components/schemas/AncillaryType'
+            subType:
+              $ref: '#/components/schemas/AncillarySubType'
 
     AncillaryRelation:
       type: object
@@ -5939,12 +6051,13 @@ components:
         Is some cases one out of a set of ancillary offerparts must be booked.
       required:
         - ancillaryId
-        - passengerRefs
       properties:
         ancillaryId:
           type: string
           maxLength: 32768
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -5967,6 +6080,17 @@ components:
         - 'DRINKS_ON_BOARD'
         - 'WIFI'
         - 'PARKING'
+
+    AncillarySubType:
+      description: |
+        Values from the [Ancillary Sub Type List](https://osdm.io/spec/catalog-of-code-lists/#AncillarySubTypes)
+        Listed values here are examples.
+      type: string
+      x-extensible-enum:
+        - 'LUNCH'
+        - 'DINNER'
+        - 'WIFI'
+        - 'MUSICAL_INSTRUMENT'
 
     AnonymousPassengerSpecification:
       type: object
@@ -6056,7 +6180,7 @@ components:
         availableAt:
           type: string
           format: url
-          examples:
+          examples: 
             - 'https://api.next.example.com'
         availableFrom:
           type:
@@ -6065,7 +6189,7 @@ components:
           format: date-time
           description: |
             Date from which the next version is available.
-          examples:
+          examples: 
             - "2025-01-01T00:00:00+01:00"
 
     ApiVersion:
@@ -6474,7 +6598,6 @@ components:
         The offerSummary must be provided for product based offers. It is not needed for fares.
       required:
         - offerId
-        - products
       properties:
         offerId:
           type: string
@@ -6523,6 +6646,9 @@ components:
           items:
             $ref: '#/components/schemas/ThroughTicketTag'
         products:
+          description: |
+            products must be provided in case they are referenced in booking or offer parts. Some offer parts (e.g. fares)
+            do not have products assigned.        
           type: array
           items:
             $ref: '#/components/schemas/Product'
@@ -6534,7 +6660,6 @@ components:
       required:
         - offerId
         - ancillaryOfferId
-        - passengerRefs
       properties:
         offerId:
           type: string
@@ -6543,6 +6668,8 @@ components:
           type: string
           maxLength: 32768
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -6593,7 +6720,6 @@ components:
       required:
         - offerId
         - reservationOfferId
-        - passengerRefs
         - placeSelections
       properties:
         offerId:
@@ -6603,6 +6729,8 @@ components:
           type: string
           maxLength: 32768
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
@@ -6737,6 +6865,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fulfillment'
+        fulfillmentStatus:
+          type: string
+          x-extensible-enum:
+            - 'PENDING'  : some fulfillmentids are not jet there
+            - 'CREATED'  : all fulfillmentids are created
+            - 'COMPLETE' : no more documents are to be expected            
         issuedVouchers:
           type: array
           items:
@@ -7126,11 +7260,13 @@ components:
         Contains the newly created booking
       required:
         - bookingId
-        - passengerIds
       properties:
         bookingId:
           type: string
         passengerIds:
+          description: |
+            Ids of the passengers
+            Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.           
           type: array
           items:
             type: string
@@ -7668,8 +7804,6 @@ components:
       additionalProperties: false
       required:
         - name
-        - registrationNumber
-        - taxId
       properties:
         name:
           type: string
@@ -7888,6 +8022,26 @@ components:
             - 'string'
             - 'null'
 
+    ConditionSpecification:
+      type: object
+      additionalProperties: false
+      description: |
+        Describes sales, usage and after sales conditions applicable to the product.  See after sales conditions for individual after sales amounts. The language of the text is controlled by the accept-language header, i.e. supporting English is a must.
+      required:
+        - type
+        - description
+      properties:
+        type:
+          $ref: '#/components/schemas/ConditionType'
+        description:
+          description: |
+            human readable documentation of the text.
+          $ref: '#/components/schemas/Text'
+        shortDescription:
+          description: |
+            short description of the condition no longer than 64 characters
+          $ref: '#/components/schemas/Text'
+
     ConditionType:
       type: string
       x-extensible-enum:
@@ -8030,7 +8184,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Contact information needed to contact a person. Either an email, a phone number or an address needs to be provided.
+        Contact information needed to contact a person. Either an email or a phone number needs to be provided.
       properties:
         summary:
           description: |
@@ -8054,8 +8208,6 @@ components:
           type:
             - 'string'
             - 'null'
-        postalAddress:
-          $ref: '#/components/schemas/PostalAddress'
 
     ContextType:
       type: string
@@ -8651,6 +8803,25 @@ components:
           items:
             $ref: '#/components/schemas/CompartmentAvailability'
 
+    DirectionChange:
+      type: object
+      additionalProperties: false
+      description: |
+        A StopPlace where the direction of a train changes
+      required:
+        - stopPlaceRef
+        - stopPlaceName
+      properties:
+        stopPlaceRef:
+          description: |
+            Reference to the station where the direction changes
+          $ref: '#/components/schemas/StopPlaceRef'
+        stopPlaceName:
+          description: |
+                  Name of the station where the direction changes
+          type: 
+            - string
+            - 'null'
 
     DirectionType:
       description: |
@@ -8675,8 +8846,8 @@ components:
          conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assambled 
          into tickes on the OSDM client side. In fare mode the conditions are defined on the client 
          side the restrictions on conditions and combinability layed down in the booking part (fare). 
-         By definition admissions and ancillaries are in PRODUCT_MODE and fares are in FARE_MODE. Reservation 
-         might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
+         By definition admissions and ancillaries are in PRODUCT_MODE and fares are in _MODE. Reservation 
+         might be in PRODUCT_MODE or in _MODE. Offers in _MODE must not be provided unless they are
          requested in the offer part type list.
       type: string
       enum:
@@ -8691,6 +8862,7 @@ components:
         - 'null'
       format: int32
       minimum: 0
+
 
     Document:
       type: object
@@ -8910,7 +9082,6 @@ components:
         - offerId
         - createdOn
         - preBookableUntil
-        - passengerRefs
         - admissionOfferParts
       properties:
         exchangeFee:
@@ -8957,11 +9128,16 @@ components:
           type: string
           format: date-time
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
           minItems: 1
         products:
+          description: |
+            products must be provided in case they are referenced. Some offer parts (e.g. fares)
+            do not have products assigned.        
           type: array
           items:
             $ref: '#/components/schemas/Product'
@@ -9026,30 +9202,67 @@ components:
           items:
             type: string
 
-    ExchangeOfferCollectionRequest:
+    ExchangeOfferRequestParameter:
       type: object
       additionalProperties: false
       description: |
-        Defines the parameters needed to request an exchange offer, either based on either an
-        existing trip (that is then passed in) plus a set of offer search
-        criteria, or based on trip-search and offer search criteria. At least one
-        of the trip or tripSearchCriteria must be set.
+        Basic request parameters for all exchange offer requests.
+      properties:                                
+        overruleCode:
+          $ref: '#/components/schemas/OverruleCode'
+        corporateCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CorporateCode'
+        promotionCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromotionCode'
+        offerMode:
+          $ref: '#/components/schemas/OfferMode'
+        currency:
+          $ref: '#/components/schemas/Currency'                 
+        requestedFulfillmentOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOption'
+        embed:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferCollectionResponseContent'
+
+    ExchangeOfferRequest:
+      description: |
+        Request exchange offers 
+      type: object
+      additionalProperties: false
       required:
-        - exchangeSpecification
-      properties:
-        exchangeSpecification:
-          description: specification of the fulfillments (or individual parts / passengers of fulfillments) that need to be exchanged.
+          - exchangeParts
+          - exchangeParams
+      properties:        
+        exchangeParts:
+          description: |
+            the fulfillments or booking parts that should be exchanged.
+            The listed parts are an indication. It might be necessary to exchange more parts as there are dependencies to other pats via fulfillments. It is up to the provider to evaluate these dependencies.
           type: array
           maxItems: 1024
           items:
-            $ref: '#/components/schemas/ExchangeSpecification'
-        addedPassengerSpecifications:
-          description: specifications of new passengers to be added
-          type: array
-          items:
-            $ref: '#/components/schemas/AnonymousPassengerSpecification'                   
-        overruleCode:
-          $ref: '#/components/schemas/OverruleCode'
+            $ref: '#/components/schemas/ExchangeParts'          
+        exchangeParams:
+          $ref: '#/components/schemas/ExchangeOfferRequestParameter'
+        exchangePassengers:
+          $ref: '#/components/schemas/ExchangePassengersOfferRequestSpecification' 
+        exchangeService:
+          $ref: '#/components/schemas/ExchangeServiceOfferRequestSpecification'   
+        exchangeTrip:  
+          $ref: '#/components/schemas/ExchangeTripOfferRequestSpecification'      
+
+    ExchangeTripOfferRequestSpecification:
+      description: |
+          specification to exchange a trip
+      type: object
+      additionalProperties: false
+      properties:
         tripSpecifications:
           type: array
           items:
@@ -9068,25 +9281,56 @@ components:
         requestedSections:
           type: array
           items:
-            $ref: '#/components/schemas/Section'      
-        offerSearchCriteria:
-          $ref: '#/components/schemas/OfferSearchCriteria'
-        corporateCodes:
+            $ref: '#/components/schemas/Section'                        
+
+    ExchangePassengersOfferRequestSpecification:
+      description: |
+        specification to remove, add and exchange passengers
+      type: object  
+      additionalProperties: false
+      properties:
+            addedPassengerSpecifications:
+              description: specifications of new passengers to be added
+              type: array
+              items:
+                $ref: '#/components/schemas/AnonymousPassengerSpecification'    
+            removedPassengerIds:
+              type: array
+              description: | 
+                 Ids of passengers to be exchanged. The new offers will not contain these passengers.
+                 In case no passengers refs are provided all passengers on the fulfillment will be exchanged.
+              maxItems: 1024             
+              items:
+                type: string    
+
+    ExchangeServiceOfferRequestSpecification:
+      desription: |
+          specification to exchange the service level or travel class
+      type: object
+      additionalProperties: false
+      properties:
+        flexibilities:
+          description: |
+              Defines the flexibility levels desired of the fares returned.
+              This refers to the after sales flexibility levels as defined in IRS-90918-10
           type: array
           items:
-            $ref: '#/components/schemas/CorporateCode'
-        promotionCodes:
+            $ref: '#/components/schemas/Flexibility'
+        travelClasses:
+          description: |
+              The classes returned might be different from the requested classes.
           type: array
           items:
-            $ref: '#/components/schemas/PromotionCode'
-        requestedFulfillmentOptions:
+            $ref: '#/components/schemas/TravelClass'
+        serviceClassTypes:
+          description: |
+              The classes returned might be different from the requested classes.
           type: array
           items:
-            $ref: '#/components/schemas/FulfillmentOption'
-        embed:
-          type: array
-          items:
-            $ref: '#/components/schemas/OfferCollectionResponseContent'
+            $ref: '#/components/schemas/ServiceClassType'
+          maxItems: 4
+   
+
 
     ExchangeOfferCollectionResponse:
       type: object
@@ -9251,8 +9495,8 @@ components:
         - 'FULFILLED'
         - 'ERROR'
 
-    ExchangeSpecification:
-      description: specification of parts or passengers to be exchanged
+    ExchangeParts:
+      description: specification of parts to be exchanged
       type: object
       properties:
         fulfillmentId:
@@ -9262,21 +9506,13 @@ components:
           maxLength: 32768
         bookingPartIds:
           description: | 
-            Ids of booking parts of the fulfillment to be exchanged. The new offers will not contain these parts.
+            Ids of booking parts to be exchanged. The new offers will not contain these parts.
             In case no booking parts are provided all booking parts will be exchanged.
           type: array
           maxItems: 1024
           items:
             type: string
-            maxLength: 32768
-        removedPassengerIds:
-          type: array
-          description: | 
-             Ids of passengers to be exchanged. The new offers will not contain these passengers.
-             In case no passengers refs are provided all passengers on the fulfillment will be exchanged.
-          maxItems: 1024             
-          items:
-            type: string     
+            maxLength: 32768  
             
 
     ExchangeableType:
@@ -9580,41 +9816,17 @@ components:
         - 'ANCILLARY'
 
     Fee:
-      type: object
-      additionalProperties: false
       description: |
-        Fees are used to represent additional costs for services or products. In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the providing system.
-      required:
-        - id
-        - price
-      properties:
-        id:
-          type: string
-          maxLength: 32768
-        summary:
-          description: |
-            A human-readable description of the fee.
-          type:
-            - 'string'
-            - 'null'
-        price:
-          $ref: '#/components/schemas/Price'
-        applicability:
-          $ref: '#/components/schemas/ApplicabilityType'
-        transactionContext:
-          $ref: '#/components/schemas/TransactionContextType'
-        refundable:
-          $ref: '#/components/schemas/RefundType'
-        conditions:
-          description: |
-            Structured description of the sales or after-sales conditions.
-          type: array
-          items:
-            $ref: '#/components/schemas/Condition'
-        productRef:
-          type: string
-          description: |
-            Reference to the Product representing the Fee
+        Fees are used to represent additional costs for services or products. In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the providing system.      
+      allOf:
+        - $ref: '#/components/schemas/AbstractOfferPart'      
+        - type: object
+          additionalProperties: false
+          properties:
+            applicability:
+              $ref: '#/components/schemas/ApplicabilityType'
+            transactionContext:
+              $ref: '#/components/schemas/TransactionContextType'
 
     Flexibility:
       type: string
@@ -11086,7 +11298,6 @@ components:
         - offerId
         - createdOn
         - preBookableUntil
-        - passengerRefs
       properties:
         offerId:
           type: string
@@ -11108,11 +11319,16 @@ components:
           type: string
           format: date-time
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
           minItems: 1
         products:
+          description: |
+            products must be provided in case they are referenced. Some offer parts (e.g. fares)
+            do not have products assigned.        
           type: array
           items:
             $ref: '#/components/schemas/Product'
@@ -11157,8 +11373,6 @@ components:
 
         If you are searching for fares you pass in the complete trip and the use the requestedSections attribute to define which part(s) you need fares (including virtual border points).
 
-      required:
-        - anonymousPassengerSpecifications
       properties:
         tripSpecifications:
           type: array
@@ -11184,6 +11398,8 @@ components:
         offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
         anonymousPassengerSpecifications:
+          description: |
+            providing the anonymous passenger specification is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omitt the anounymousPassengerSpecification. 
           type: array
           items:
             $ref: '#/components/schemas/AnonymousPassengerSpecification'
@@ -11246,6 +11462,136 @@ components:
         - 'NONE'
       default: 'ALL'
 
+    OfferOverviewRoute:
+      type: object
+      properties:
+        price:
+          $ref: '#/components/schemas/Price'
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+        startDateTime:
+          type: string
+          format: date-time
+          nullable: false
+        routeSpecification:
+          $ref: '#/components/schemas/RouteSpecification'
+
+    OfferOverviewTrip:
+      type: object
+      required:
+        - price
+        - tripIds
+      properties:
+        price:
+          $ref: '#/components/schemas/Price'
+        tripIds:
+          type: array
+          items:
+            type: string
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+
+    OfferOverviewTripRequest:
+      type: object
+      description: |
+        Defines the parameters needed to request an offer overview for a trip. One of tripSearchCriteria, a list of trip specifications, or a list of tripIds must be passed in to request offers. Travel class and flexibility are optional parameters to filter the desired offers.
+      required:
+        - passengerSpecifications
+      properties:
+        tripSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/TripSpecification'
+        tripIds:
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+            nullable: false
+          nullable: true
+        tripSearchCriteria:
+          $ref: '#/components/schemas/TripSearchCriteria'
+        tripResponseParameters:
+          $ref: '#/components/schemas/TripResponseParameters'
+        passengerSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnonymousPassengerSpecification'
+          minItems: 1
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+
+    OfferOverviewTripResponse:
+      type: object
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        trips:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trip'
+        offerOverviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferOverviewTrip'
+
+    OfferOverviewRouteRequest:
+      type: object
+      description: |
+        Defines the parameters needed to request an offer overview for a route. Travel class and flexibility are optional parameters to filter the desired offers.
+      required:
+        - routeSpecification
+        - passengerSpecifications
+        - startDateTime
+        - endDateTime
+      properties:
+        routeSpecification:
+          $ref: '#/components/schemas/RouteSpecification'
+        passengerSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnonymousPassengerSpecification'
+          minItems: 1
+        startDateTime:
+          type: string
+          format: date-time
+          nullable: false
+        endDateTime:
+          type: string
+          format: date-time
+          nullable: false
+        timeFrameSegmentation:
+          allOf:
+            - $ref: '#/components/schemas/TimeFrameSegmentation'
+          default: 'DAY'
+          description: |
+            Defines the segmentation of the time frame for the offer overview. The default is DAY, which means that one price offer overview is given for 
+            each day of the requested time frame (provided there aren't more than one travel classes or flexibilities for one time segment).
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+
+    OfferOverviewRouteResponse:
+      type: object
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        offerOverviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferOverviewRoute'
+            
     OfferMode:
       description: |
         Offer mode applied to provide offers for given criteria. 
@@ -11284,13 +11630,12 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    OfferPartType:
+    PartType:
       description: |
-        Allows to request offer-parts of a certain type.
-        To support H/H use ['RESERVATION', 'ANCILLARY'].
+        Allows to request offer-parts of a certain type and indicates the type of the received booking part. For H/H converters use ['FARE_RESERVATION'].
         Default is to get search for offers of all types.
       type: string
-      enum:
+      x-extensible-enum:
         - 'ADMISSION'
         - 'RESERVATION'
         - 'ANCILLARY'
@@ -11298,6 +11643,7 @@ components:
         - 'FARE_RESERVATION'
         - 'FARE_ANCILLARY'
         - 'CONTINUOUS_SERVICE'
+        - 'FEE'
         - 'ALL'
 
     OfferSearchCriteria:
@@ -11305,16 +11651,27 @@ components:
       additionalProperties: false
       properties:
         requestedOfferParts:
+          description: |
+            Allows to request offer-parts of a certain type.
+            To support H/H use ['RESERVATION', 'ANCILLARY'].
+            Default is to get search for offers of all types.        
           type: array
           items:
-            $ref: '#/components/schemas/OfferPartType'
+            $ref: '#/components/schemas/PartType'
         productTags:
           type:
             - 'array'
             - 'null'
           items:
             $ref: '#/components/schemas/ProductTag'
-
+        productSelections:
+          description: |
+            preselection of products where offers are requested
+          type: array
+          items:
+            description: |
+              product selection by product code or product tag for an offer request. The number of items indicates the quantity to be required. Passengers must be referenced in case the product is intended for passengers.            
+            $ref: '#/components/schemas/ProductRequestOfferSelection'
         flexibilities:
           description: |
             Defines the flexibility levels desired of the fares returned.
@@ -11347,7 +11704,6 @@ components:
         The Ids of the offers to be booked need to be passed in.
       required:
         - offerId
-        - passengerRefs
       properties:
         offerId:
           description: |
@@ -11358,7 +11714,7 @@ components:
           description: |
             A stable reference to the id of the offer in the caller's system. When received in input of a request, it must be persisted and echoed back in the response.
           type: string
-        optionalAncillarySelections:
+        ancillarySelections:
           type: array
           items:
             $ref: '#/components/schemas/AncillarySelection'
@@ -11381,6 +11737,8 @@ components:
         appliedRegulatoryCondition:
           $ref: '#/components/schemas/RegulatoryCondition'
         passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type:
             - 'array'
             - 'null'
@@ -12606,33 +12964,6 @@ components:
           format: int32
           minimum: 1
 
-    PlacePosition:
-      type: object
-      additionalProperties: false
-      description: |
-        description of a place
-      required:
-        - number
-        - status
-      properties:
-        number:
-          description: |
-            place number as indicated at the place in the coach
-          type: string
-        status:
-          $ref: '#/components/schemas/AvailabilityStatus'
-        reservationRefs:
-          description: |
-            references to the reservations for which this place nca be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
-          type: array
-          items:
-            type: string
-        placeProperties:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlaceProperty'
-        selectionFee:
-          $ref: '#/components/schemas/SelectionFee'
 
     PlacePreSelection:
       type: object
@@ -13385,6 +13716,117 @@ components:
           type:
             - 'array'
             - 'null'
+          items:
+            type: string
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+
+    ProductRequestOfferSelection:
+      type: object
+      additionalProperties: false        
+      description: |
+        product selection by product code or product tag for an offer request (exactly one of `productCode` and `productTag` must be provided). The number of items indicates the quantity 
+        to be required. Passengers must be referenced in case the product is intended for passengers.
+      properties:
+          productCode:
+            type: string
+            examples:
+             - PT00AD                    
+          productTag:
+            type: string
+          numberOfItmes:
+            type: 
+              - integer
+              - 'null'
+            format: int32
+            minValue: 1
+          externalPassengerRefs:
+            type: array
+            items:
+              type: string
+
+    ProductSpecification:
+      type: object
+      additionalProperties: false
+      description: |
+        Structured description of the product, its name, comfort and sales / after-sales conditions
+      required:
+        - id
+        - code
+        - owner
+        - flexibility
+      properties:
+        id:
+          description: |
+            id of the product
+          type: string
+        summary:
+          description: |
+            A human-readable description of the product.
+          $ref: '#/components/schemas/Text'
+        type:
+          $ref: '#/components/schemas/ProductType'
+        code:
+          description: |
+            The product code expressed in the provider system (could be a
+            mapping from an even lower-level provider).
+          type: string
+          examples:
+            - PT00AD
+        description:
+          description: |
+            Textual description of the product.
+          $ref: '#/components/schemas/Text'
+        owner:
+          $ref: '#/components/schemas/CompanyRef'
+        conditions:
+          description: |
+            Structured description of the sales or after-sales conditions.
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionSpecification'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+        serviceClass:
+          $ref: '#/components/schemas/ServiceClass'
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        fulfillmentOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOption'
+        isTrainBound:
+          type:
+            - 'boolean'
+            - 'null'
+          default: false
+        isReturnProduct:
+          type:
+            - 'boolean'
+            - 'null'
+          default: false
+        serviceConstraintText:
+          $ref: '#/components/schemas/Text'
+        carrierConstraintText:
+          $ref: '#/components/schemas/Text'
+        descriptiveTexts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Text'
+        combinationTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/CombinationTag'
+        productTags:
+          description:
+            product tags associated with the product that can be used to search
+            for offers. This can be omitted outside of the product master data
+            service
+          type: 'array'
           items:
             type: string
         _links:
@@ -14330,7 +14772,6 @@ components:
         The reimbursement process is used to support refunds which are not covered by the online refund/exchange processes, e.g.: Partial refund of a trip (Trip was Hamburg - Munich, but only Hamburg - Kassel was used), Refund outside of rules due to good will. This is a manual back office process within the provider's organization which is triggered by this request. State changes can be signaled by web hook events.
       required:
         - reimbursementReason
-        - reimbursedPassengerIds
         - fulfillmentIds
       properties:
         reimbursementReason:
@@ -14341,6 +14782,9 @@ components:
             - 'null'
           format: date-time
         reimbursedPassengerIds:
+          description: |
+            Ids of the passengers
+            Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.           
           type: array
           items:
             type: string
@@ -14576,14 +15020,8 @@ components:
       type: object
       additionalProperties: false
       required:
-        - id
-        - name
         - reservationRefs
       properties:
-        id:
-          type: string
-        name:
-          type: string
         reservationRefs:
           type: array
           items:
@@ -15403,7 +15841,6 @@ components:
         Availability status of a specific place.
       required:
         - number
-        - status
         - reservationRefs
       properties:
         number:
@@ -15739,6 +16176,12 @@ components:
           $ref: '#/components/schemas/AlightSpecification'
         service:
           $ref: '#/components/schemas/DatedJourney'
+
+    TimeFrameSegmentation:
+     type: string
+     enum:
+      - 'HOUR'
+      - 'DAY'
 
     Tip:
       type: object
@@ -16538,6 +16981,14 @@ components:
         legId:
           type: string
 
+    RouteSpecification:
+      type: object
+      properties:
+        origin:
+          $ref: '#/components/schemas/PlaceRef'
+        destination:
+          $ref: '#/components/schemas/PlaceRef'          
+
     TripLegSpecification:
       type: object
       additionalProperties: false
@@ -17262,6 +17713,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachAvailability'
+        directionChanges:
+          description: |
+            List of direction changes (in direction of travel). 
+          type: array
+          items:
+            $ref: '#/components/schemas/DirectionChange'            
         preSelectedPlaces:
           type: array
           items:

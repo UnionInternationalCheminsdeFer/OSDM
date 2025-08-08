@@ -6386,6 +6386,7 @@ components:
         - ancillaryRefs
       properties:
         id:
+          deprecated: true
           type: string
           nullable: false
         name:
@@ -7159,6 +7160,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fulfillment'
+        fulfillmentStatus:
+          type: string
+          x-extensible-enum:
+            - 'PENDING'  : some fulfillmentids are not jet there
+            - 'CREATED'  : all fulfillmentids are created
+            - 'COMPLETE' : no more documents are to be expected
         issuedVouchers:
           type: array
           items:
@@ -8353,8 +8360,6 @@ components:
       additionalProperties: false
       required:
         - name
-        - registrationNumber
-        - taxId
       properties:
         name:
           type: string
@@ -8630,7 +8635,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Contact information needed to contact a person. Either an email, a phone number or an address needs to be provided.
+        Contact information needed to contact a person. Either an email or a phone number needs to be provided. Note: address and postalAddress are deprecated
       properties:
         summary:
           description: |
@@ -8657,6 +8662,7 @@ components:
         postalAddress:
           $ref: '#/components/schemas/PostalAddress'
           nullable: true
+          deprecated: true
 
     ContextType:
       type: string
@@ -11921,6 +11927,14 @@ components:
           items:
             $ref: '#/components/schemas/ProductTag'
           nullable: true
+        productSelections:
+          description: |
+            preselection of products where offers are requested
+          type: array
+          items:
+            description: |
+              product selection by product code or product tag for an offer request. The number of items indicates the quantity to be required. Passengers must be referenced in case the product is intended for passengers.            
+            $ref: '#/components/schemas/ProductRequestOfferSelection'          
         flexibilities:
           description: |
             Defines the flexibility levels desired of the fares returned.
@@ -12537,6 +12551,8 @@ components:
       description: |
         Personal information potentially needed at booking step. To support privacy by design,
         it is not permitted to send personal information not required to create a valid booking.
+        Note that address is deprecated in favor of `postalAddress`, and email and phoneNumber 
+        are deprecated in favor of the attributes in `ContactDetail`
       required:
         - firstName
         - lastName
@@ -13471,6 +13487,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    ProductRequestOfferSelection:
+      type: object
+      additionalProperties: false        
+      description: |
+        product selection by product code or product tag for an offer request (exactly one of `productCode` and `productTag` must be provided). The number of items indicates the quantity 
+        to be required. Passengers must be referenced in case the product is intended for passengers.
+      properties:
+        productCode:
+          type: string
+          example: PT00AD
+        productTag:
+          type: string
+        numberOfItems:
+          type: integer
+          nullable: true
+          format: int32
+          minimum: 1
+        externalPassengerRefs:
+          type: array
+          items:
+           type: string
 
     ProductSearchRequest:
       type: object
@@ -14708,9 +14746,11 @@ components:
         - reservationRefs
       properties:
         id:
+          deprecated: true
           type: string
           nullable: false
         name:
+          deprecated: true        
           type: string
           nullable: false
         reservationRefs:
