@@ -8,21 +8,22 @@ permalink: /spec/common-data-structures/
 ## Table of contents
 
 1. [General](#General)
-2. [Versioning](#Versioning)
-3. [Indication of personal data](#Indicationofpersonaldata)
-4. [Indication of required data](#Indicationofrequireddata)
+   1. [Date and Time](#DateAndTime)
+3. [Versioning](#Versioning)
+4. [Indication of personal data](#Indicationofpersonaldata)
+5. [Indication of required data](#Indicationofrequireddata)
    1. [Detailed data structures](#Detaileddatastructures)
-5. [AfterSalesRules](#AfterSalesRules)
+6. [AfterSalesRules](#AfterSalesRules)
    1. [Data Constraints on AfterSaleRule](#DataConstraintsonAfterSaleRule)
-6. [Calendar](#Calendar)
+7. [Calendar](#Calendar)
    1. [Data Constraints on Calendar](#DataConstraintsonCalendar)
-7. [CarrierConstraint](#CarrierConstraint)
+8. [CarrierConstraint](#CarrierConstraint)
    1. [Data Constraints on CarrierConstraint](#DataConstraintsonCarrierConstraint)
-8. [ConnectionPoint](#ConnectionPoint)
+9. [ConnectionPoint](#ConnectionPoint)
    1. [Data Constraints on ConnectionPoint](#DataConstraintsonConnectionPoint)
-9. [Fare](#Fare)
+10. [Fare](#Fare)
    1. [Data Constraints on Fare](#DataConstraintsonFare)
-10. [FareCombinationConstraint](#FareCombinationConstraint)
+11. [FareCombinationConstraint](#FareCombinationConstraint)
    1. [Combination Model](#CombinationModel)
    2. [Additional Clustering Model Data](#AdditionalClusteringModelData)
    3. [Data Constraints on FareCombinationConstraint](#DataConstraintsonFareCombinationConstraint)
@@ -70,12 +71,26 @@ structures that implement the requirement.
 
 The following general data types shall be used:
 
-- DateTime Formats: Date time values must be encoded according to [RFC 3339,
-  section 5.6](https://www.rfc-editor.org/rfc/rfc3339.html#section-5.6).
 - Station Codes: Station codes must be taken from the TAP TSI retail station
   code list (MERITS).
 - Station Names: Station names should not include ”/”,”\*”. These characters are
   used to define routes and alternative routes in route descriptions.
+
+
+#### Date and Time <a name="DateAndTime">
+
+- DateTime Formats: Date time values must be encoded according to [RFC 3339,
+  section 5.6](https://www.rfc-editor.org/rfc/rfc3339.html#section-5.6).
+
+DateTimes relevant for local usage during the travel need to be provided in Offset Time Format, 
+i.e.  '2023-12-03T10:15:30+01:00' to allow an eays display of local times. Do not use the 
+Coordinated Universal Time (UTC) format, i.e. '2023-12-03T10:15:30Z' in these cases.
+
+DateTime ranges are condidered to be inclusive on the from date-time and exclusive on the until date-time. 
+E.g. a validity exclusively on the 03.12.2023 is described by:
+  - valid from   '2023-12-03T00:00:00+01:00'
+  - valid until: '2023-12-04T00:00:00+01:00'
+ 
 
 ### Versioning <a name="Versioning">
 
