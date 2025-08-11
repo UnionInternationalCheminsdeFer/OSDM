@@ -12156,6 +12156,10 @@ components:
             type: string
         geoPosition:
           $ref: '#/components/schemas/GeoPosition'
+        validity:
+          description: |
+            The date range where the place is usable for travel.
+          $ref: '#/components/schemas/MasterDataValidity'        
         ref:
           description: |
             Reference to another a place, e.g. to link address information. Provided by OJP.
@@ -13108,6 +13112,7 @@ components:
         - code
         - owner
         - flexibility
+        - validityForSale
       properties:
         id:
           description: |
@@ -13126,6 +13131,12 @@ components:
           type: string
           examples:
             - PT00AD
+        validityForSale:
+          $ref: '#/components/schemas/MasterDataValidity'
+        validityForTravel:
+          description: |
+            the date range is related to the possible start of a travel.
+          $ref: '#/components/schemas/MasterDataValidity'          
         description:
           description: |
             Textual description of the product.
@@ -13647,6 +13658,14 @@ components:
             - 'null'
         issuer:
           $ref: '#/components/schemas/CompanyRef'
+        validityForSale:
+          description: |
+             indication when a card type is usable within a sales process to obtain reductions.                   
+          $ref: '#/components/schemas/MasterDataValidity'
+        validityForTravel:
+          description: |
+             indication when a card type is usable for  a travel to obtain reductions. The date range is related to the possible start of a travel.
+          $ref: '#/components/schemas/MasterDataValidity'         
         name:
           $ref: '#/components/schemas/Text'
         cardIdRequired:
@@ -16662,7 +16681,7 @@ components:
         zones:
           type: array
           items:
-            $ref: '#/components/schemas/ZoneDefinition'
+            $ref: '#/components/schemas/ZoneSpecification'
 
     ZoneDefinition:
       type: object
@@ -16695,6 +16714,43 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceRef'
+
+    ZoneSpecification:
+      type: object
+      additionalProperties: false
+      description: |
+        Definition of a zone used to define regional validity. The area of the zone can be defined via a
+        geo-polygon, a complete list of all contained stations or area codes from the NUTS code list.
+        The carrier is either the carrier or transport authority responsible for the definition.
+      required:
+        - id
+        - carrier
+      properties:
+        id:
+          type: string
+        validity:
+          description: |
+            Validity of the zone definition for travel. The date range is related to the possible start of a travel.
+          $ref: '#/components/schemas/MasterDataValidity'  
+        name:
+          type:
+            - 'string'
+            - 'null'
+        carrier:
+          $ref: '#/components/schemas/CompanyRef'
+        polygon:
+          $ref: '#/components/schemas/Polygon'
+        nutsCodes:
+          type:
+            - 'array'
+            - 'null'
+          items:
+            type: string
+        places:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceRef'
+            
 
     NotificationEvent:
       description: |
@@ -16903,3 +16959,31 @@ components:
           format: url
           examples: 
             - "https://db.de/osdm/bookings/2345/fulfillments/ASBV"
+
+
+    MasterDataValidity:
+      type: object
+      description: |
+        Validity of masterdata. The dates might relate to the sales date or the travel date. It indicates the validity of masterdata 
+        not the validity of offers, bookings or fulfiullments related to the master data. 
+        When related to the sales process on historic data it is related to the createdOn timestamp of the booking part.
+        When related to the travel it indicates the validity of masterdata related to the travel (e.g. product definitions, zone definition). 
+        The dates related to the trael date must be provided in the offset format. 
+      required:
+        - validFrom
+        - validUntil     
+      properties:  
+        validFrom:
+            description: |
+                 start of the validity (inclusive)       
+            type: string
+            format: date-time
+            examples: 
+              - "2024-12-31T00:00:00+01:00"            
+        validUntil:
+            description: |
+                 end of the validity (exclusive)       
+            type: string
+            format: date-time
+            examples:
+              - "2025-12-31T00:00:00+01:00"           
