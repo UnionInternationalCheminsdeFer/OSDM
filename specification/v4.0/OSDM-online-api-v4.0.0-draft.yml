@@ -12159,7 +12159,7 @@ components:
         validity:
           description: |
             The date range where the place is usable for travel.
-          $ref: '#/components/schemas/MasterDataValidityForTravel'        
+          $ref: '#/components/schemas/MasterDataValidity'        
         ref:
           description: |
             Reference to another a place, e.g. to link address information. Provided by OJP.
@@ -13132,11 +13132,11 @@ components:
           examples:
             - PT00AD
         validityForSale:
-          $ref: '#/components/schemas/MasterDataValidityForSale'
+          $ref: '#/components/schemas/MasterDataValidity'
         validityForTravel:
           description: |
             the date range is related to the possible start of a travel.
-          $ref: '#/components/schemas/MasterDataValidityForTravel'          
+          $ref: '#/components/schemas/MasterDataValidity'          
         description:
           description: |
             Textual description of the product.
@@ -13661,11 +13661,11 @@ components:
         validityForSale:
           description: |
              indication when a card type is usable within a sales process to obtain reductions.                   
-          $ref: '#/components/schemas/MasterDataValidityForSale'
+          $ref: '#/components/schemas/MasterDataValidity'
         validityForTravel:
           description: |
              indication when a card type is usable for  a travel to obtain reductions. The date range is related to the possible start of a travel.
-          $ref: '#/components/schemas/MasterDataValidityForTravel'         
+          $ref: '#/components/schemas/MasterDataValidity'         
         name:
           $ref: '#/components/schemas/Text'
         cardIdRequired:
@@ -16731,7 +16731,7 @@ components:
         validity:
           description: |
             Validity of the zone definition for travel. The date range is related to the possible start of a travel.
-          $ref: '#/components/schemas/MasterDataValidityForTravel'  
+          $ref: '#/components/schemas/MasterDataValidity'  
         name:
           type:
             - 'string'
@@ -16961,29 +16961,14 @@ components:
             - "https://db.de/osdm/bookings/2345/fulfillments/ASBV"
 
 
-    MasterDataValidityForSale:
+    MasterDataValidity:
       type: object
       description: |
-        Validity for sale of masterdata. It is related to the actual date during the sales process. On historic data it is related to the createdOn timestamp of the booking part.
-      required:
-        - validFrom
-        - validUntil     
-      properties:  
-        validFrom:
-            description: |
-                 start of the validity for sale (inclusive)       
-            type: string
-            format: date-time
-        validUntil:
-            description: |
-                 end of the validity for sale (exclusive)       
-            type: string
-            format: date-time
-
-    MasterDataValidityForTravel:
-      type: object
-      description: |
-        Validity for travel used in masterdata. This indicates the validity of masterdata related to the travel (e.g. product definitions, zone definition). It does not indicate the travel validity of an individual bookingpart based on these masterdata. The dates must be provided in the offset format. 
+        Validity of masterdata. The dates might relate to the sales date or the travel date. It indicates the validity of masterdata 
+        not the validity of offers, bookings or fulfiullments related to the master data. 
+        When related to the sales process on historic data it is related to the createdOn timestamp of the booking part.
+        When related to the travel it indicates the validity of masterdata related to the travel (e.g. product definitions, zone definition). 
+        The dates related to the trael date must be provided in the offset format. 
       required:
         - validFrom
         - validUntil     
@@ -16992,13 +16977,13 @@ components:
             description: |
                  start of the validity (inclusive)       
             type: string
-            format: date-
+            format: date-time
             examples: 
-              - "2024-12-31T00:00:00+01:00"
+              - "2024-12-31T00:00:00+01:00"            
         validUntil:
             description: |
                  end of the validity (exclusive)       
             type: string
-            format: date-
+            format: date-time
             examples:
-              - "2025-12-31T00:00:00+01:00"
+              - "2025-12-31T00:00:00+01:00"           
