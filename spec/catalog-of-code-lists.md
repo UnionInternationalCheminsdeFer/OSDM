@@ -244,19 +244,62 @@ of by the customer.
 
 ## Ancillary category <a name="AncillaryCategory">
 
-| Code                  | Description                                                 |
-| --------------------- | ----------------------------------------------------------- |
-| `PAYMENT_VOUCHER`     | Payment voucher to be used to pay                           |
-| `PRODUCT_ACCESS`      | Access to retrieve a product (e.g. electronic newspaper,..) |
-| `MERCHANDISE_PRODUCT` |                                                             |
-| `LUGGAGE`             | Allowance for extra luggage                                 |
-| `LUGGAGE_TRANSFER`    | Service for luggage transport                               |
-| `ON_BOARD_SERVICE`    | Access to service on board                                  |
-| `STATION_SERVICE`     | Access to some station service, Lounge access,...           |
-| `FOOD_ON_BOARD`       |                                                             |
-| `DRINKS_ON_BOARD`     |                                                             |
-| `WIFI`                | Access to WiFi                                              |
-| `PARKING`             | parking of cars                                             |
+| Code                  | Description                                                           |
+|-----------------------|-----------------------------------------------------------------------|
+| `PAYMENT_VOUCHER`     | Payment voucher to be used for payment                                |
+| `PRODUCT_ACCESS`      | Access to retrieve a product (e.g. electronic newspaper)              |
+| `MERCHANDISE_PRODUCT` | Merchandise product                                                   |
+| `LUGGAGE`             | Allowance for extra luggage                                           |
+| `LUGGAGE_TRANSFER`    | Service for luggage transport                                         |
+| `ON_BOARD_SERVICE`    | Access to service on board                                            |
+| `STATION_SERVICE`     | Access to station services (e.g. lounge access)                       |
+| `FOOD_ON_BOARD`       | Food provided on board                                                |
+| `DRINKS_ON_BOARD`     | Drinks provided on board                                              |
+| `WIFI`                | Access to WiFi                                                        |
+| `PARKING`             | Parking for cars                                                      |
+| `ENTERTAINMENT`       | Access to entertainment options (e.g. movies, WiFi)                   |
+| `PETS`                | Access to pet-related services (e.g. assistance animals)              |
+| `ASSISTANT`           | Access to assistant services (e.g. PMR/disabled or minor assistance)  |
+
+## Ancillary Sub Types <a name=AncillarySubTypes>
+
+| Code                  | Description                                         |
+|-----------------------|-----------------------------------------------------|
+| `EXTRA_LARGE_SEAT`    | Extra large seat                                    |
+| `SINGLE_SEAT`         | Single seat - seat alone                            |
+| `UNCHECKED_PET`       | Unchecked pet (no ticket/no seat)                   |
+| `CHECKED_PET`         | Checked pet (with seat/ticket)                      |
+| `ASSISTANCE_ANIMAL`   | Assistance dog/animal (free)                        |
+| `BREAKFAST`           | Breakfast                                           |
+| `LUNCH`               | Lunch                                               |
+| `DINNER`              | Dinner                                              |
+| `SNACK`               | Snack                                               |
+| `DRINKS_NO_ALCOHOL`   | Drinks without alcohol                              |
+| `DRINKS_ALCOHOL`      | Drinks with alcohol                                 |
+| `FOOD_VOUCHER`        | Voucher for food at the restaurant/bar coach        |
+| `BIKE_NORMAL`         | Normal bike (unfolded)                              |
+| `BIKE_FOLDABLE`       | Foldable bike (folded)                              |
+| `EBIKE_NO_CHARGE`     | E-bike without charge                               |
+| `EBIKE_WITH_CHARGE`   | E-bike with charge                                  |
+| `SCOOTER`             | Scooter                                             |
+| `BAG_SMALL`           | Small bag                                           |
+| `BAG_LARGE`           | Large bag                                           |
+| `CAR_SEAT`            | Car seat                                            |
+| `BABY_COT`            | Baby cot                                            |
+| `PRAM_FOLDABLE`       | Pram/Stroller (foldable)                            |
+| `WALKER`              | Walker                                              |
+| `WHEELCHAIR_FOLDED`   | Wheelchair (folded)                                 |
+| `SPORTS_EQUIPMENT`    | Sports/music equipment                              |
+| `TRANSFER_NEXT_SERVICE`| Transfer to next service (train or plane)          |
+| `HOME_DELIVERY`       | Delivery (to home or hotel)                         |
+| `CAR`                 | Car                                                 |
+| `MOTORBIKE`           | Motorbike                                           |
+| `SPECIAL_VEHICLE`     | Special vehicle (trike, quad, sidecar)              |
+| `TRAILER`             | Trailer                                             |
+| `WIFI_STANDARD`       | Wifi standard                                       |
+| `ESCORT_PMR`          | Escort for PMR/disabled                             |
+| `ESCORT_MINOR`        | Escort for Minor                                    |
+
 
 ## Attachable Item Type <a name="AttachableItemType">
 
