@@ -5575,6 +5575,8 @@ components:
             product conditions and status of the booking Part
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
         summaryProductId:
           type: string
           description: |
@@ -5733,6 +5735,8 @@ components:
         price:
           $ref: '#/components/schemas/Price'
         tripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         priceGuaranteedUntil:
           description: |
@@ -6605,6 +6609,8 @@ components:
           nullable: false
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
         appliedReductionCardTypes:
           deprecated: true
           type: array
@@ -6915,6 +6921,8 @@ components:
             $ref: '#/components/schemas/Fare'
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
         appliedThroughTicketTags:
           type: array
           items:
@@ -6947,6 +6955,8 @@ components:
           minItems: 1
           nullable: false
         tripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
           $ref: '#/components/schemas/TripCoverage'
 
     BookedOfferAncillaryResponse:
@@ -7025,6 +7035,8 @@ components:
             $ref: '#/components/schemas/PlaceSelection'
           minItems: 1
         tripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
           $ref: '#/components/schemas/TripCoverage'
 
     BookedOfferReservationResponse:
@@ -9535,6 +9547,8 @@ components:
             $ref: '#/components/schemas/Product'
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
         exchangeOfferBreakdown:
           description: |
             Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
@@ -10209,6 +10223,8 @@ components:
             Indicates whether the fulfillment has all documents or parts generated (if any needed) or they are still pending generation.
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
         continuousServiceUsage:
           $ref: '#/components/schemas/ContinuousServiceUsage'
         _links:
@@ -10691,6 +10707,8 @@ components:
             type: string
             nullable: false
         tripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         appliedPassengerTypes:
           type: array
@@ -11599,6 +11617,8 @@ components:
           items:
             $ref: '#/components/schemas/Product'
         tripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         admissionOfferParts:
           type: array
