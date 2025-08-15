@@ -8653,7 +8653,7 @@ components:
         phoneNumber:
           description: |
             Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g., in case of delays or interruptions.
-            Format according to: E.164 The international public telecommunication numbering plan 
+            Format according to E.164 The international public telecommunication numbering plan 
           type: string
           nullable: true
         address:
@@ -12599,7 +12599,7 @@ components:
           description: |
             Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g.,
             in case of interruptions.
-            Format according to: E.164 The international public telecommunication numbering plan 
+            Format according to E.164 The international public telecommunication numbering plan 
           type: string
           deprecated: true
           nullable: true
@@ -12645,7 +12645,7 @@ components:
           format: date
           nullable: true
         phoneNumber:
-          description: format according to: E.164 The international public telecommunication numbering plan 
+          description: format according to E.164 The international public telecommunication numbering plan 
           type: string
           nullable: true
         email:
@@ -13893,7 +13893,7 @@ components:
           nullable: true
           deprecated: true
         phoneNumber:
-          description: Format according to: E.164 The international public telecommunication numbering plan 
+          description: Format according to E.164 The international public telecommunication numbering plan 
           type: string
           nullable: true
         email:
