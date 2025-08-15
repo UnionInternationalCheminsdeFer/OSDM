@@ -5083,7 +5083,9 @@ components:
         price:
           $ref: '#/components/schemas/Price'
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         summaryProductId:
           type: string
           description: |
@@ -5215,7 +5217,9 @@ components:
         price:
           $ref: '#/components/schemas/Price'
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         priceGuaranteedUntil:
           description: |
             Indicates until when the price for the given offer is guaranteed.
@@ -6187,7 +6191,9 @@ components:
             Clear text representation of the actual passenger type, suitable to be presented to a client.
           type: string
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         appliedReductions:
           type: array
           items:
@@ -6487,7 +6493,9 @@ components:
           items:
             $ref: '#/components/schemas/FareBookingPart'
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         appliedThroughTicketTags:
           type: array
           items:
@@ -6522,7 +6530,9 @@ components:
             type: string
           minItems: 1
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
 
     BookedOfferAncillaryResponse:
       type: object
@@ -6588,7 +6598,9 @@ components:
             $ref: '#/components/schemas/PlaceSelection'
           minItems: 1
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
 
     BookedOfferReservationResponse:
       type: object
@@ -8964,7 +8976,9 @@ components:
           items:
             $ref: '#/components/schemas/Product'
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         exchangeOfferBreakdown:
           description: |
             Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
@@ -9086,16 +9100,17 @@ components:
       additionalProperties: false
       properties:
         tripSpecifications:
-          type: array
+          type:
+            - 'array'
+            - 'null'
           items:
             $ref: '#/components/schemas/TripSpecification'
-        tripIds:
-          type: array
+        inboundTripSpecifications:
+          type:
+            - 'array'
+            - 'null'
           items:
-            type:
-              - 'string'
-              - 'null'
-            maxLength: 32768
+            $ref: '#/components/schemas/TripSpecification'
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
         nonTripSearchCriteria:
@@ -9728,7 +9743,9 @@ components:
           description: |
             Indicates whether the fulfillment has all documents or parts generated (if any needed) or they are still pending generation.
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         continuousServiceUsage:
           $ref: '#/components/schemas/ContinuousServiceUsage'
         _links:
@@ -10208,7 +10225,9 @@ components:
           items:
             type: string
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         appliedPassengerTypes:
           type: array
           items:
@@ -11104,7 +11123,9 @@ components:
           items:
             $ref: '#/components/schemas/Product'
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         admissionOfferParts:
           type: array
           items:
@@ -11145,10 +11166,6 @@ components:
         If you are searching for fares you pass in the complete trip and the use the requestedSections attribute to define which part(s) you need fares (including virtual border points).
 
       properties:
-        tripSpecifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/TripSpecification'
         tripIds:
           type:
             - 'array'
@@ -11156,6 +11173,25 @@ components:
           items:
             type: string
             maxLength: 32768
+        inboundTripIds:
+          type:
+            - 'array'
+            - 'null'
+          items:
+            type: string
+            maxLength: 32768
+        tripSpecifications:
+          type:
+            - 'array'
+            - 'null'
+          items:
+            $ref: '#/components/schemas/TripSpecification'
+        inboundTripSpecifications:
+          type:
+            - 'array'
+            - 'null'
+          items:
+            $ref: '#/components/schemas/TripSpecification'
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
         tripResponseParameters:
@@ -11465,6 +11501,15 @@ components:
           $ref: '#/components/schemas/OfferMode'
         currency:
           $ref: '#/components/schemas/Currency'
+        inboundDate:
+          description: |
+            Needs to be provided when creating the collection of outbound travels so that the
+            provider knows when a inbound travel can be expected and propose appropriate
+            product and fares.
+          type:
+            - 'string'
+            - 'null'
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
 
     OfferSelection:
       type: object
@@ -14555,32 +14600,58 @@ components:
         This will allow to benefit from return-specific fares or product
 
       properties:
-        inwardReturnDate:
+        outboundOfferIds:
           description: |
-            Needs to be provided when creating the collection of outward travels so that the
-            provider knows when a return travel can be expected and propose appropriate
-            product and fares.
-          type:
-            - 'string'
-            - 'null'
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
-        outwardOfferIds:
-          description: |
-            Needs to be provided when creating the collection of inward travels so that the provider
-            can relate the inward travels to the outward travels context.
+            Needs to be provided when creating the collection of inbound travels so that the provider
+            can relate the inbound travels to the outbound travels context.
           type:
             - 'array'
             - 'null'
           items:
             type: string
             maxLength: 32768
-        outwardOfferTag:
+        outboundTripIds:
           description: |
-            Needs to be provided when creating the collection of inward travels so that the provider
-            knows what the outward offer is and and propose compatible offers only if desired or mandatory.
+            Needs to be provided when creating collection of offers covering both
+            outbound and inbound (return) journey.
+          type:
+            - 'array'
+            - 'null'
+          items:
+            type: string
+            maxLength: 32768
+        departureTime:
+          description: |
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
           type:
             - 'string'
             - 'null'
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+        arrivalTime:
+          description: |
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+          type:
+            - 'string'
+            - 'null'
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+        origin:
+          $ref: '#/components/schemas/PlaceRef'
+        destination:
+          $ref: '#/components/schemas/PlaceRef'
+        vias:
+          description: |
+            Ordered series of points where the journey must pass through. If more
+            than one via point is given all of them must be obeyed - in the correct
+            order. The server is allowed to replace a via stop by equivalent stops.
+
+            TripDataFilters given at a via apply to the section after that via. To apply a TripDataFilter for 
+            the first section (between the origin and the first via), use the TripDataFilter within the
+            TripParameters structure.
+          type: array
+          items:
+            $ref: '#/components/schemas/TripVia'
+        parameters:
+          $ref: '#/components/schemas/TripParameters'
 
     Route:
       type: object
