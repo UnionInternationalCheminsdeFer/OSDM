@@ -11993,6 +11993,14 @@ components:
           $ref: '#/components/schemas/OfferMode'
         currency:
           $ref: '#/components/schemas/Currency'
+        inboundDate:
+          description: |
+            Needs to be provided when creating the collection of outbound travels so that the
+            provider knows when a inbound travel can be expected and propose appropriate
+            product and fares.
+          type: string
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          nullable: true
 
     OfferSelection:
       type: object
@@ -15005,9 +15013,11 @@ components:
       properties:
         inwardReturnDate:
           description: |
-            Needs to be provided when creating the collection of outward travels so that the
-            provider knows when a return travel can be expected and propose appropriate
+            Needs to be provided when creating the collection of outbound travels so that the
+            provider knows when a inbound travel can be expected and propose appropriate
             product and fares.
+
+            Superseded by `OfferSearchCriteria.inboundDate`.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
           nullable: true
@@ -15023,8 +15033,8 @@ components:
           nullable: true
         outwardOfferIds:
           description: |
-            Needs to be provided when creating the collection of inward travels so that the provider
-            can relate the inward travels to the outward travels context.
+            Needs to be provided when creating the collection of inbound travels so that the provider
+            can relate the inbound travels to the outbound travels context.
           type: array
           items:
             type: string
@@ -15032,8 +15042,8 @@ components:
           nullable: true
         outwardOfferTag:
           description: |
-            Needs to be provided when creating the collection of inward travels so that the provider
-            knows what the outward offer is and and propose compatible offers only if desired or mandatory.
+            Needs to be provided when creating the collection of inbound travels so that the provider
+            knows what the outbound offer is and and propose compatible offers only if desired or mandatory.
           type: string
           nullable: true
           deprecated: true
