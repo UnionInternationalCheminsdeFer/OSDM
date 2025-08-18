@@ -250,7 +250,7 @@ The outbound trip search parameters, outbound tripIs and outbound tripSpecificat
 
 The return trip search parameters are used to provide the search parameters for the inbound trip additionally to the outbound trip search parameters in the offer request. The return trip search parameters are part of the trip search parameters. The return trip search parameters with the full set of parameters were added in version 3.7.0.
 
-A warning is provided in case the number of combinations was limited for technical reasons.
+A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of combinations was limited for technical reasons.
 
 #### Using trip ids
  
@@ -270,7 +270,7 @@ The inbound trip specifications were added in version 3.7.0.
 
 Dedicated return offers that can not be separated must include the inbound and outbound trip. The inbound trip coverage must be provided.
 
-A warning is provided in case the number of combinations was limited for technical reasons.
+A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of combinations was limited for technical reasons.
 
 #### Using trip ids and trip search parameter
 
@@ -280,7 +280,7 @@ The inbound trip provides the additional travel dates and times and might includ
 
 The return trip search parameters with the full set of parameters were added in version 3.7.0.
 
-A warning is provided in case the number of combinations was limited for technical reasons.
+A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of combinations was limited for technical reasons.
 
 #### Using outbound offer id and trip search parameter
 
@@ -288,7 +288,7 @@ The return trip search parameters are used to provide the search parameters for 
 
 The return trip search parameters provides the additional travel dates and times and might include different parameters and via stations. The return trip search parameters with the full set of parameters were added in version 3.7.0.
 
-A warning is provided in case the number of combinations was limited for technical reasons.
+A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of combinations was limited for technical reasons.
 
 #### Combined Offers for inbound and outbound trip
 
@@ -1046,6 +1046,7 @@ The fulfillment of a fare does not include the following items:
    - issuer
    - continuousServiceUsage
    - links
+
 
 
 
