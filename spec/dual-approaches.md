@@ -9,7 +9,9 @@ permalink: /spec/dual-approaches/
 
 1. [Handling of Non-Person Transportables](#NonPersonTransportables)
 
-1. [Requesting Offers for known Vehicle Number](#RequestingOffersforknownVehicleNumber)
+2. [Return Offers](#ReturnOffers)
+
+3. [Requesting Offers for known Vehicle Number](#RequestingOffersforknownVehicleNumber)
    1. [Offers for known Vehicle Number by Trip Specification](#OffersforknownVehicleNumberbyTripSpecification)
    2. [Offers for known Vehicle Number by Trip Search Criteria-Vehicle Filter](#OffersforknownVehicleNumberbyTripSearchCriteriaVehicleFilter)
       
@@ -52,6 +54,10 @@ The indication of the whole route of travel in the request is recommended, as th
 
 In case the item is not indicated in the offer request the OSDM provider might provide optional ancillay offers for items he thinks might be interesting for the traveller.
 
+
+## Return offers <a name="Return Offers">
+
+In version 3 offers on return trips are provided as separate offers with a dependency described via the return offer tags. WIth version 4 it is possible to define real return offers as a single return offer referencing inward and outward trip. In version 4 the old way of providing separate offers with retun tags is still allowed.
 
 
 ## Requesting Offers for known Vehicle Number <a name="RequestingOffersforknownVehicleNumber">
