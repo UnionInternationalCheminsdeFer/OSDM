@@ -57,7 +57,7 @@ In case the item is not indicated in the offer request the OSDM provider might p
 
 ## Return offers <a name="Return Offers">
 
-In version 3 offers on return trips are provided as separate offers with a dependency described via the return offer tags. WIth version 4 it is possible to define real return offers as a single return offer referencing inward and outward trip. In version 4 the old way of providing separate offers with retun tags is still allowed.
+In version 3.6 offers on return trips are provided as separate offers with a dependency described via the return offer tags. With version 3.7 it is possible to define real return offers as a single return offer referencing inward and outward trip via trip coverage objects. The old way of providing separate offers with retun tags is still allowed.
 
 
 ## Requesting Offers for known Vehicle Number <a name="RequestingOffersforknownVehicleNumber">
