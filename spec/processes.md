@@ -226,6 +226,23 @@ and multiple granularity for the retrieval of information, so each implementing
 party can fine-tune the queries in order to get all the information needed for
 the processing at hand, and only that information.
 
+#### Reduction Cards
+
+When the **Retailer** requests an offer, they may enter all the reduction cards
+the customer provided. There is no need to filter the list of reduction cards
+by retrieving the reduction cards the **distributor** or **fare provider** supports
+via the master data interface.
+
+This can lead to the following exceptions when the request ist processed:
+
+- a reduction card may be completely unknown to the provider of the API. In this case,
+  an appropriate warning **should** be given in the problems structure
+  (see [Errors and Problems](../errors-problems/).
+- a reduction card may be known to the provider of the API, but not applicable in the
+  context of the current offer construction. In this case, the provider **may** give
+  an appropriate warning in the problems structure, and may also provide this information
+  by setting the appropriate values in the `appliedPassengerTypes.appliedReductions` structure
+
 #### Offer Messages
 
 During the offer construction, the **distributor** or **fare provider** can
@@ -1046,6 +1063,7 @@ The fulfillment of a fare does not include the following items:
    - issuer
    - continuousServiceUsage
    - links
+
 
 
 
