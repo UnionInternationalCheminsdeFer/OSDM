@@ -303,7 +303,7 @@ Offers provided for a request including an inbound offer might or might not depe
   The price of the combined offer can eighter be placed in foll on one offer part or split between both parts.
   
 - Dependent offers related to inbound and outbound trip (version 3.7 onwards). The offers can be provided as one offer
-  linking to the inbound and the outbound trip using tripCovreage and inboundTripCoverage objects.  This is the
+  linking to the inbound and the outbound trip using tripCovreage and inboundTripCoverage objects. With version 4 the inboundTripCoverage is part of the tripCoverage array.  This is the
   prefered way to provide real return offers, although the option to use separate offers with return offer tags is still allowed.
 
 
@@ -1046,6 +1046,7 @@ The fulfillment of a fare does not include the following items:
    - issuer
    - continuousServiceUsage
    - links
+
 
 
 
