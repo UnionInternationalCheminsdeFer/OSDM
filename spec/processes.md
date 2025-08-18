@@ -242,7 +242,7 @@ This can lead to the following exceptions when the request ist processed:
   context of the current offer construction. In this case, the provider **may** give
   an appropriate warning in the problems structure, and may also provide this information
   by setting the appropriate values in the `appliedPassengerTypes.appliedReductions` structure
-- in either case, the provider of the API **may not** return an error and stop processing.
+- in either case, the provider of the API **must not** return an error and stop processing.
 
 #### Offer Messages
 
@@ -1065,6 +1065,7 @@ The fulfillment of a fare does not include the following items:
    - issuer
    - continuousServiceUsage
    - links
+
 
 
 
