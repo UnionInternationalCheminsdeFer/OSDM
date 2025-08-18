@@ -221,16 +221,17 @@ In order that OSDM implementations behave consistently in warning situations,
 the following warning codes must be supported in case of functional warnings by
 all implementations:
 
-| **Functional area** | **Code**                       | **Title**                                   |
-| ------------------- | ------------------------------ | ------------------------------------------- |
-| Reservation         | `PLACE_PROPERTY_NOT_RESPECTED` | Place property not respected                |
-| Offers              | `OFFER_NO_RESULTS`             | The trip search did not return any result   |
-| Trips               | `FULLY_BOOKED`                 | The trip is fully booked                    |
-| Trips/Offers        | `BOOKING_NOT_YET_OPEN`         | The booking is not yet open                 |
-| Trips/Offers        | `BOOKING_ALREADY_CLOSED`       | The booking is already closed               |
-| Trips/Offers        | `BOOKING_TEMPORARILY_CLOSED`   | The booking is temporarily closed           |
-| Booking             | `OVERRULE_CODE_NOT_ACCEPTED`   | The overrule code provided was not accepted |
-| Booking             | `OVERRULE_CODE_NOT_SUPPORTED`  | The overrule code provided is not supported |
+| **Functional area** | **Code**                             | **Title**                                   |
+| ------------------- | ------------------------------------ | ------------------------------------------- |
+| Reservation         | `PLACE_PROPERTY_NOT_RESPECTED`       | Place property not respected                |
+| Offers              | `OFFER_NO_RESULTS`                   | The trip search did not return any result   |
+| Offers              | `RETURN_OFFER_LIST_TRUNCATED`        | The offer search for return offers could not return all requested combinations.  |
+| Trips               | `FULLY_BOOKED`                       | The trip is fully booked                    |
+| Trips/Offers        | `BOOKING_NOT_YET_OPEN`               | The booking is not yet open                 |
+| Trips/Offers        | `BOOKING_ALREADY_CLOSED`             | The booking is already closed               |
+| Trips/Offers        | `BOOKING_TEMPORARILY_CLOSED`         | The booking is temporarily closed           |
+| Booking             | `OVERRULE_CODE_NOT_ACCEPTED`         | The overrule code provided was not accepted |
+| Booking             | `OVERRULE_CODE_NOT_SUPPORTED`        | The overrule code provided is not supported |
 
 As for the warnings, an implementor is required to use these warning codes and
 descriptions for the situations identified in order to be compliant.
