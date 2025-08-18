@@ -8048,14 +8048,7 @@ components:
             - 'string'
             - 'null'
         phoneNumber:
-          description: |
-            Preferably a mobile phone number, to be contacted in case changes to the booking
-            Format according to E.164 The international public telecommunication numbering plan 
-          type:
-            - 'string'
-            - 'null'
-           pattern: '^+\d{1,3}\s?\d{1,14}(\s\d{1,13})?'
-           maxLength: 18
+          $ref: '#/components/schemas/PhoneNumber'
 
     ContextType:
       type: string
@@ -12118,13 +12111,7 @@ components:
             - 'null'
           format: date
         phoneNumber:
-          description: | 
-            Format according to E.164 The international public telecommunication numbering plan 
-          type:
-            - 'string'
-            - 'null'
-           pattern: '^+\d{1,3}\s?\d{1,14}(\s\d{1,13})?'
-           maxLength: 18
+          $ref: '#/components/schemas/PhoneNumber'
         email:
           type:
             - 'string'
@@ -12203,6 +12190,16 @@ components:
           minItems: 1
         tripLegCoverage:
           $ref: '#/components/schemas/TripLegCoverage'
+
+    PhoneNumber:
+      description: |
+         Preferably a mobile phone number, to be contacted in case changes to the booking
+         Format according to E.164 The international public telecommunication numbering plan 
+      type:
+         - 'string'
+         - 'null'
+      pattern: '^+\d{1,3}\s?\d{1,14}(\s\d{1,13})?'
+     maxLength: 18
 
     PlaceAvailabilityCollectionResponse:
       type: object
@@ -13564,19 +13561,14 @@ components:
             - 'string'
             - 'null'
           format: date
-        phoneNumber:
-          description: | 
-            Format according to E.164 The international public telecommunication numbering plan 
-          type:
-            - 'string'
-            - 'null'
-           pattern: '^+\d{1,3}\s?\d{1,14}(\s\d{1,13})?'
-           maxLength: 18
         email:
           type:
             - 'string'
             - 'null'
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
 
+          
     PurchaserSpecification:
       type: object
       additionalProperties: false
