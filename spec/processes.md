@@ -236,8 +236,8 @@ via the master data interface.
 This can lead to the following exceptions when the request ist processed:
 
 - a reduction card may be completely unknown to the provider of the API. In this case,
-  an appropriate warning **should** be given in the problems structure
-  (see [Errors and Problems](../errors-problems/).
+  an appropriate warning (`VALUE_NOT_SUPPORTED`) **should** be given in the problems structure
+  (see [Errors and Problems](../errors-problems#StandardizedFunctionalWarnings).
 - a reduction card may be known to the provider of the API, but not applicable in the
   context of the current offer construction. In this case, the provider **may** give
   an appropriate warning in the problems structure, and may also provide this information
@@ -253,6 +253,7 @@ are identified and relevant to this section
 
 - Overbooking
 - Schedule correction applied
+- Reduction card not supported or not applicable
 
 ### Return Trip Offers <a name="ReturnTrips">
 
@@ -1063,6 +1064,7 @@ The fulfillment of a fare does not include the following items:
    - issuer
    - continuousServiceUsage
    - links
+
 
 
 
