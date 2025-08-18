@@ -15,7 +15,7 @@ permalink: /spec/processes/
    2. [Getting and Browsing Trips](#GettingTrips)
 5. [Offers](#Offers)
    1. [Getting and Browsing Offers](#GettingOffers)
-   2. [Round Trip Handling](#RoundTripsHandling)
+   2. [Return Trip Offers](#ReturnTrips)
    3. [Reservation](#Reservation)
    4. [Partial Offers](#PartialOffers)
 6. [Complex Example](#ComplexExample)
@@ -237,98 +237,103 @@ are identified and relevant to this section
 - Overbooking
 - Schedule correction applied
 
-### Round Trip Handling <a name="RoundTripsHandling">
+### Return Trip Offers <a name="ReturnTrips">
 
-We define a round trip as a mirrored couple of trips _(A-B B-A)_, each made of
-one or more segments.
+We define a return trip as a mirrored couple of trips _(A-B B-A)_, each made of
+one or more segments. The outbound trip (or outward) is the A-B trip, the inbound trip (or inward or return trip) is the B-A trip.
 
-The construction of a round trip is always a two-step process, where the outward
-offers are requested separately from the inward offers.
+The routes between A and B might differ for the outbound and inbound trip.
 
-#### Receiving offers with return products and fares
+The outbound trip search parameters, outbound tripIs and outbound tripSpecifications are provided in the usual trip search parameter, ids and specifications. The return search parameters, ids and specifications are provided in dedicated return parameters.
 
-In order to indicate to the provider that the intention is to build a return
-trip, the `returnSearchParameters` are used:
+#### Using trip search parameters
 
-When requesting offers for the outward travel, the API consumer has to provide a
-return date. The response will contain a set of offers. Each of these offers
-will have a tag. Usage of it is described further below.
+The return trip search parameters are used to provide the search parameters for the inbound trip additionally to the outbound trip search parameters in the offer request. The return trip search parameters are part of the trip search parameters. The return trip search parameters with the full set of parameters were added in version 3.7.0.
 
-To get offer for the inward travel, the API consumer will have to provide:
+A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of combinations was limited for technical reasons.
 
-- The id of the outward `tripCollectionId` (allows knowing the context in which
-  the outward offers are made)
+#### Using trip ids
+ 
+The trips have been requested via independent trip searches beforehand.
 
-- Depending on the targeted fare provider, the `offerTag` for the selected
-  outward offer, or the set of potential offers (as the `offerTag` does not have
-  to be unique. E.g. all offers for a given date might have the same if the
-  constraint is only on date) can or must be provided. Whether the `offerTag` is
-  mandatory in the inward offer request is indicated by the "mandatory flag"
-  that is provided in the outward offer response next to each offerTag. If the
-  tag is provided in the inward offer request, the provider should then only
-  return offers that are compatible with the indicated (set of) outward
-  offers.  
-  Note that depending on whether the `offerTag` is mandatory or not and whether
-  it is unique per outward offer, it may or may not be mandatory to select the
-  outward offer before the inward offer request can be constructed.
+The inbound trip ids are used to provide the inbound trips additionally to the outbound trips provided in the usual the trip ids.
 
-#### Using returnTags
+The inbound trip ids were added in version 3.7.0.
 
-Besides the `offerTag` discussed above, some offers may have one or more
-`returnTag(s)` as well. As the name suggests, these can be used in order to
-determine how to combine offers in a return trip.
+A warning is provided in case the number of combinations was limited for technicql reasons.
 
-The idea is actually fairly simple: in case no filtering is applied on the
-inward offers using the `offerTag` filter mentioned above, the returned inward
-offers may not all be compatible with all outward offers. Compatible pairs are
-simply identified by the fact that they have the same (set of) `returnTag(s)`.
-Offers with no return `returnTag` have no constraints.
+#### Using trip specifications
 
-Hereunder an example illustrating this concept:
+The inbound trip specifications are used to provide the inbound trips additionally to the outbound trips provided in the usual the trip specifications.
 
-##### Outward Offers
+The inbound trip specifications were added in version 3.7.0.
 
-- Offer1: -
-- Offer2: #123
-- Offer3: #234, #123
-- Offer4: -
+Dedicated return offers that can not be separated must include the inbound and outbound trip. The inbound trip coverage must be provided.
 
-##### Inward Offers
+A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of combinations was limited for technical reasons.
 
-- Offer5: -
-- Offer6: #123
-- Offer7: #345
-- Offer8: #123, #234
+#### Using trip ids and trip search parameter
 
-##### Valid Combinations
+The return trip search parameters are used to provide the search parameters for the inbound trips additionally to the outbound trips provided by its id.
 
-- Offer1 + Offer5 (no constraint on Tags)
-- Offer4 + Offer5
-- Offer2 + Offer6
-- Offer3 + Offer8
+The inbound trip provides the additional travel dates and times and might include different parameters and via stations. 
 
-Offer7 cannot be combined with any offer on the outward set.
+The return trip search parameters with the full set of parameters were added in version 3.7.0.
 
-#### Products Covering Both Directions
+A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of combinations was limited for technical reasons.
 
-While in most cases the two trips are materialized with distinct products/fares
-for the fare provider, there are fare providers still proposing unique products
-covering the outward as well as the return. In this case, the product element
-can be flagged as covering the mirrored segment as well. As for the offer
-construction process, the provider will simulate the two steps approach by using
-one of the following approach:
+#### Using outbound offer id and trip search parameter
 
-- The same product covering both outward and return is proposed in the offers
-  for the two directions
+The return trip search parameters are used to provide the search parameters for the inbound trips additionally to an outbound offer referenced by its id.
 
-- For one of the two directions, a dummy product is returned.
+The return trip search parameters provides the additional travel dates and times and might include different parameters and via stations. The return trip search parameters with the full set of parameters were added in version 3.7.0.
 
-Regarding the price, it can either be placed in full on the offers in the two
-directions (but then the total price will be incorrect when looking at the
-complete return travel), or split in any way desired between the outward and the
-return.
+A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of combinations was limited for technical reasons.
 
-![Products Covering Both Directions](../images/processes/seq-products-covering-both-directions.png)
+#### Combined Offers for inbound and outbound trip
+
+Offers provided for a request including an inbound offer might or might not depend on inbound and outbound trips. This dependency can be expressed in the following ways:
+
+- Independent offers related to inbound or outbound trip only. The tripCoverage links to eigther the inbound or the outbound trip.
+  
+- Dependent offers related to inbound and outbound trip (in versions 3): The offers must be provided as separate offers, each linking to one of the trips.
+  The offer parts offers include return offer tags. Offers must be combined with othre offers including the same offer tag only. If an offer does not provide return tags
+  it is combinalble with all other offers without return tag.
+
+  The price of the combined offer can eighter be placed in foll on one offer part or split between both parts.
+  
+- Dependent offers related to inbound and outbound trip (version 4). The offers can be provided as one offer
+  linking to the inbound and the outbound trip using tripCovreage and inboundTripCoverage objects.  With version 4 this is the
+  prefered way to provide real return offers, although the option to use separate offers with return offer tags is still allowed.
+
+
+##### Example Using returnTags
+
+  - Outbound Offers
+
+      - Offer1: -
+      - Offer2: #123
+      - Offer3: #234, #123
+      - Offer4: -
+
+   - Inbound Offers
+
+      - Offer5: -
+      - Offer6: #123
+      - Offer7: #345
+      - Offer8: #123, #234
+
+  - Valid Combinations
+
+      - Offer1 + Offer5 (no constraint on Tags)
+      - Offer4 + Offer5 (no constraint on Tags)
+      - Offer2 + Offer6
+      - Offer2 + Offer8
+      - Offer3 + Offer6 
+      - Offer3 + Offer8
+
+      Offer7 cannot be combined with any offer on the outbound set.
+
 
 #### Error Handling
 
@@ -631,9 +636,9 @@ status model).
 #### Provisionally Booking a Return Trip
 
 While this may not be true for all providers, most of them require that the
-outward and the return parts of a return trips are booked together in order to
+outbound and the return parts of a return trips are booked together in order to
 actually book a return-specific product. Therefore, when building a return
-travel, the API consumer should always specify the outward offer(s) and return
+travel, the API consumer should always specify the outbound offer(s) and return
 offer(s) in the same `POST /bookings` operation.
 
 #### Provisionally booking a trip with offers clusters
@@ -1041,6 +1046,9 @@ The fulfillment of a fare does not include the following items:
    - issuer
    - continuousServiceUsage
    - links
+
+
+
 
 
 
