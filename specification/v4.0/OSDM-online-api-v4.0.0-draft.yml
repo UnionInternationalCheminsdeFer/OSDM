@@ -2377,6 +2377,53 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
+  /bookings/{bookingId}/fulfillment-check:          
+    get:
+      tags:
+        - Fulfillments
+      summary:
+        Check step (step 1 in a two phase commit process) to run before the effective fulfillment endpoint. Provider do all checks to "guarantee" that fullfillment will work.
+      description: |
+        Step 1 in a two phase commit process. An aggregator can use this to secure that all underlaying provider systems are up and running and the provider booking is ready to be fulfilled.
+      operationId: getCheckFulfillments
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking to be patched
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '204':
+          description: |
+            Booking is verified OK for fulfillment
+        '400':
+          $ref: '#/components/responses/DefaultErrorResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'                    
+
   /fulfillments/{fulfillmentId}/continuous-service-usage/{continuousServiceUsageId}:
     get:
       tags:
@@ -2563,6 +2610,64 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+  /bookings/{bookingId}/refund-offers/{refundOfferId}/confirmation-check:        
+    get:
+      tags:
+        - Refund
+      summary:
+        Verification step (step 1 in a two phase commit process) to run before the effective patch endpoint. Provider do all checks to "guarantee" that refund will work.
+      description: |
+        Step 1 in a two phase commit process. An aggregator can use this to secure that all underlaying provider systems are up and running and the provider booking is ready to be refunded.
+      operationId: getCheckRefundOffers
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking
+          required: true
+          schema:
+            type: string
+        - name: refundOfferId
+          in: path
+          description: |
+            id of the refund offer
+          required: true
+          schema:
+            type: string
+            maxLength: 32768
+
+      responses:
+        '204':
+          description: Succes. OK to refund
+        '400':
+          $ref: '#/components/responses/DefaultErrorResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'          
+
+
   /bookings/{bookingId}/refund-offers/{refundOfferId}:
     get:
       tags:
