@@ -2406,7 +2406,7 @@ paths:
           description: |
             Booking is verified OK for fulfillment
         '400':
-          $ref: '#/components/responses/ProblemsResponse'
+          $ref: '#/components/responses/DefaultErrorResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedResponse'
         '403':
@@ -2647,7 +2647,7 @@ paths:
         '204':
           description: Succes. OK to refund
         '400':
-          $ref: '#/components/responses/ProblemsResponse'
+          $ref: '#/components/responses/DefaultErrorResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedResponse'
         '403':
@@ -5080,16 +5080,6 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/Problem'
-
-    ProblemsResponse:
-      description: |
-        Problems/warnings
-      content:
-        application/problem+json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/Problem'
 
     ForbiddenResponse:
       description: |
