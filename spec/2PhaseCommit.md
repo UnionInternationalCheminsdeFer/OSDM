@@ -22,10 +22,16 @@ The endpoints are not mandatory for provider systems, but aggregators will likel
 
 ## Response Structure
 * **HTTP 204** – Empty respons (successful check)
-* **HTTP 400** – Problems returned as an array of standard problem structures:
+* **HTTP 400** – Problems returned a ProblemDetail with array of pointers detailed failed checks:
 ```
 {
- "problems": [
+  "code": "urn:uic:problem:CONFIRMATION_CHECK_FAILED",
+  "type": "https://osdm.io/errors/confirmation-check-failed",
+  "title": "Confirmation check failed",
+  "status": 400,
+  "detail": "Confirmation check failed for Fulfillments",
+  "instance": "string",
+  "pointers": [
     {
       "code": "string",
       "type": "https://example.com/probs/passenger-email-address-missing",
@@ -33,21 +39,12 @@ The endpoints are not mandatory for provider systems, but aggregators will likel
       "status": 400,
       "detail": "Passenger email address is missing",
       "instance": "string",
-      "pointers": [
-        {
-          "code": "string",
-          "type": "https://example.com/probs/passenger-email-address-missing",
-          "title": "Validation error",
-          "status": 400,
-          "detail": "Passenger email address is missing",
-          "instance": "string",
-          "responsePointer": "#/booking/passenger[4]"
-        }
-      ]
+      "responsePointer": "#/booking/passenger[4]"
     }
   ]
 }
 ```
+
 ## Advantages:
 - Ping mechanism. Aggregator knows that **all** involved provider systems are up and running
 - Aggregator now that all needed information is in the provider bookings and it is ready to be confirmed.
