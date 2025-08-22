@@ -7426,7 +7426,7 @@ components:
         - 'PROPOSED'
         - 'CONFIRMED'
 
-    CarSpecification:
+    AbstractTransportableVehicleSpecification:
       type: object
       additionalProperties: false
       required:
@@ -7434,41 +7434,75 @@ components:
         - length
         - width
         - height
-        - roofWidth
         - model
+        - brand
       properties:
         weight:
+          description: weight in kg
           type: integer
           format: int32
           minimum: 0
         length:
+          description: size in cm
           type: integer
           format: int32
           minimum: 0
         width:
+          description: size in cm
           type: integer
           format: int32
           minimum: 0
         height:
+          description: size in cm
           type: integer
           format: int32
-          minimum: 0
-        roofWidth:
-          type: integer
-          format: int32
-          minimum: 0    
+          minimum: 0        
+        brand:
+          description: |
+            Free text description of the brand (e.g. BMW)
+          type: string       
         model:
           description: |
-            Free text description of the model (e.g. BMW X5)
-          type: string
-        rack:
-          $ref: '#/components/schemas/CarRack'
-        attachedItems:
-          description: |
-            Indication of items attached to the car
-          type: array
-          items:
-            $ref: '#/components/schemas/AttachableItemType'
+            Free text description of the model (e.g. X5)
+          type: string      
+
+
+    MotorcycleSpecification:
+      allOf:      
+        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'
+
+    CarSpecification:
+      allOf:      
+        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'      
+        - type: object
+          additionalProperties: false
+          required:
+            - roofWidth
+          properties:
+            specialType:
+              type: 
+                - string
+                - 'null'
+              x-extensible-enum:
+                - 'TRIKE'
+                - 'QUAD'
+                - 'MOTOCYCLE_WITH_SIDECAR' 
+            roofWidth:
+              type: integer
+              format: int32
+              minimum: 0    
+            textileRoof:
+              description:
+                indication that the car has a textile rook only
+              type: boolean             
+            rack:
+              $ref: '#/components/schemas/CarRack'
+            attachedItems:
+              description: |
+                Indication of items attached to the car
+              type: array
+              items:
+                $ref: '#/components/schemas/AttachableItemType'
 
     CarRack:
       description: |
@@ -7509,7 +7543,16 @@ components:
         - $ref: '#/components/schemas/CarSpecification'
         - type: object
           additionalProperties: false        
+          required:
+            - licensePlate 
           properties:
+            contactName:
+              description: |
+                Name of a contact person or company in case the car transport is booked stand alone.
+              type: string
+              nullable: true        
+            contactDetail:
+              $ref: '#/components/schemas/ContactDetail'    
             licensePlate:
               description: |
                  The license plate is a personal data item and must not be provided in an offer request.
@@ -10953,16 +10996,25 @@ components:
               default: 2
 
     MotorCycle:
-      type: object
-      additionalProperties: false
-      properties:
-        licensePlate:
-          description: |
-            The license plate is a personal data item and must not be provided in an offer request.
-            It must be patched into the offer after the customer accepted the offer for booking
-          type: 
-            - string
-            - 'null'
+      allOf:
+        - $ref: '#/components/schemas/MotorcycleSpecification'
+        - type: object      
+          additionalProperties: false
+          required:
+            - contactName
+            - licansePlate
+          properties:
+            contactName:
+              description: |
+                Name of a contact person or company in case the car transport is booked stand alone.
+              type: string
+            contactDetail:
+              $ref: '#/components/schemas/ContactDetail'            
+            licensePlate:
+              description: |
+                The license plate is a personal data item and must not be provided in an offer request.
+                It must be patched into the offer after the customer accepted the offer for booking
+              type: string
 
     MultiRideAccount:
       allOf:
@@ -15347,51 +15399,6 @@ components:
         accountingRef:
           $ref: '#/components/schemas/AccountingRef'
 
-    TrailerSpecification:
-      type: object
-      additionalProperties: false
-      required:
-        - weight
-        - length
-        - width
-        - height
-      properties:
-        weight:
-          description: weight in kg
-          type: integer
-          format: int32
-          minimum: 0
-        length:
-          description: length in cm
-          type: integer
-          format: int32
-          minimum: 0
-        width:
-          description: width in cm
-          type: integer
-          format: int32
-          minimum: 0
-        height:
-          description: height in cm
-          type: integer
-          format: int32
-          minimum: 0      
-
-    Trailer:
-      description: |
-        trailer used in car carrige
-      allOf:
-        - $ref: '#/components/schemas/TrailerSpecification'
-        - type: object
-          additionalProperties: false
-          properties:       
-            licensePlate:
-              description: |
-                The license plate is a personal data item and must not be provided in an offer request. It must be patched into the offer after the customer accepted the offer for booking
-              type:
-                - 'string'
-                - 'null'
-
     TrainLink:
       type: object
       additionalProperties: false
@@ -15562,7 +15569,7 @@ components:
         motorCycle:
           $ref: '#/components/schemas/MotorCycle'
         trailer:
-          $ref: '#/components/schemas/Trailer'
+          $ref: '#/components/schemas/Car'
 
 
     TransportableSpecification:
@@ -15579,7 +15586,7 @@ components:
         car:
           $ref: '#/components/schemas/CarSpecification'
         trailer:
-          $ref: '#/components/schemas/TrailerSpecification'          
+          $ref: '#/components/schemas/carSpecification'          
 
     TransportableType:
       description: |
