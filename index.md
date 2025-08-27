@@ -3,7 +3,7 @@ title: OSDM
 subtitle: Open Sales and Distribution Model
 layout: page
 show_sidebar: true
-hero_link: https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v3.2/IRS-90918-10-v3.2.0.pdf
+hero_link: https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v3.6/IRS-90918-10-v3.6.0.pdf
 hero_link_text: Download Specification
 ---
 
