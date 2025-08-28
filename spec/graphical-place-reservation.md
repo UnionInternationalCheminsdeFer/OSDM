@@ -13,7 +13,11 @@ deck layout.
 While the availability is called after a offer request dynamically, the coach
 deck layout data should be imported periodically as a master data import.
 
-## Availability Response Structure
+## Getting Availabilities
+
+There are two flows to get place availabilities. Either you pass in a offer id,
+for which you would like to get availabilities or you pass in a existing booking
+id.
 
 The availability response is structured as follows: a vehicle consists of
 coaches which can have multiple decks. The decks consist of different
@@ -29,7 +33,7 @@ reservation reference allows to link the place to the correct reservation part.
 Optionally it is possible for the reservation system to preselect places or
 compartments.
 
-## Deck Layout Response Structure
+## Getting Deck Layouts
 
 The deck layout response is a logical description of a coach deck. A coach deck
 layout is a grid of a given dimension (x, y). All entities describing a coach
