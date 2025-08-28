@@ -1,3 +1,9 @@
+---
+layout: page
+title: Graphical Place Reservation
+permalink: /spec/graphical-place-reservation/
+---
+
 # Graphical Place Reservation
 
 OSDM offers a standardized API for graphical place reservation. The API consists

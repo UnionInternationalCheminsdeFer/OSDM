@@ -75,6 +75,8 @@
       link: spec/offline-model/
     - name: State Models
       link: spec/state-models/
+    - name: Graphical Place Reservation
+      link: spec/graphical-place-reservation/
     - name: Catalog of Code Lists
       link: spec/catalog-of-code-lists/         
     - name: Roles
