@@ -30,6 +30,8 @@ permalink: /spec/catalog-of-code-lists/
 - [FulfillmentMediaType ](#fulfillmentmediatype-)
 - [Gender ](#gender-)
 - [Graphics Items ](#graphics-items-)
+  - [Graphical Elements](#graphical-elements)
+  - [Service Icons](#service-icons)
 - [Interface Type ](#interface-type-)
 - [Language ](#language-)
 - [Leg Attributes ](#leg-attributes-)
@@ -610,7 +612,9 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
 ## Graphics Items <a name="GraphicsItems">
 
-| Icon                                                             | Description                                                           | Icon Code | Code                        | Orientation Used | Mounting Used |
+### Graphical Elements
+
+| Icon                                                             | Description                                                           | Icon Code | Code of Graphical Element   | Orientation Used | Mounting Used |
 | ---------------------------------------------------------------- | --------------------------------------------------------------------- | --------- | --------------------------- | ---------------- | ------------- |
 | ![](../images/catalog-of-code-lists/graphics-icons/image001.png) | seat                                                                  | 1         | SEAT                        | to right         | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image002.png) | seat                                                                  | 1         | SEAT                        | to left          | -             |
@@ -664,7 +668,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | ![](../images/catalog-of-code-lists/graphics-icons/image048.png) | dust bin                                                              | 114       | -                           | -                | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image055.png) | toilet                                                                | 115       | TOILET_AREA                 | -                | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image040.png) | silence area                                                          | 116       | SILENCE_AREA                | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image049.png) | children play area                                                    | 117       | PLAYGROUND_AREA            | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image049.png) | children play area                                                    | 117       | PLAYGROUND_AREA             | -                | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image054.png) | Non-smoker area                                                       | 118       | -                           | -                | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image056.png) | power socket                                                          | 119       | -                           | -                | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/image053.png) | Priority Seats                                                        | 120       | -                           | -                | -             |
@@ -708,6 +712,8 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | ![](../images/catalog-of-code-lists/graphics-icons/icon179t.png) | Entry/Exit                                                            | 179       | ENTRY_EXIT                  | Top              | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/icon179r.png) | Entry/Exit                                                            | 179       | ENTRY_EXIT                  | Right            | -             |
 | ![](../images/catalog-of-code-lists/graphics-icons/icon179b.png) | Entry/Exit                                                            | 179       | ENTRY_EXIT                  | Bottom           | -             |
+
+### Service Icons
 
 | Icons concerning the entire coach                                | description                                | icon code |
 | ---------------------------------------------------------------- | ------------------------------------------ | --------- |
