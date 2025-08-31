@@ -107,7 +107,7 @@ The pick-up-place includes:
    - usage starts automatically (e.g. by entering a key code at the vehicle)
    - usage ends automatically (e.g. by locking the service) - The end of the usage does not need to be handled via OSDM
    - updates provided before pick-up (e.g. current location of a taxi)
-   - updates provided after pick-up (e.g. price for current consumption)
+   - updates provided after pick-up (e.g. price for current usage)
    - parking image required - upload of an image of the parking at the end of the usage is required.
    - tip supported (e.g. tax)
   - geo-location of the service (pick-up-place)

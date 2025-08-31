@@ -9,7 +9,8 @@ permalink: /spec/account-based-ticketing/
 
 1. [Introduction](#introduction)
 2. [Use Cases](#usecases)
-2. [Process](#process)
+3. [Process](#process)
+  1. [Activation of a pass] (#pass-activation)
 
 ## Introduction <a name="introduction">
 
@@ -21,12 +22,12 @@ Travel accounts in OSDM can be:
 
 - TravelPassAccount
 
-   A travel account valid in a region. The travel account includes the region and the consumption.
+   A travel account valid in a region. The travel account includes the region and the usage.
 
 
 - MultiRideAccount
 
-  A travel account valid in a region but with a limited number of rides. The travel account includes the region, the balance on used rides and the consumption.
+  A travel account valid in a region but with a limited number of rides. The travel account includes the region, the balance on used rides and the usage.
 
 - ReductionCardAccount
 
@@ -40,24 +41,25 @@ All travel Accounts include:
 - the number identifying the account
 
 
-The consumption on an account can be in money or any self-defined unit.
+The usage on an account can be in money or any self-defined unit.
 
 
 ## Use Cases <a name="usecases">
 
 
-### View the current consumption on a travel account
+### View the current usage on a travel account
 
-```
-    GET /travel-accounts/{id}
- ```
-returns the TravelAccountConsumption.
+API endpoint `GET /travel-accounts/{id}` returns the detail of the account including history of usage as an array of `TravelAccountConsumption`s (`TravelAccountUsage`s since OSDM 4.0).
 
-### Getting offers on a travel account
+`Fulfillment.availableUsage` on the opposite, details remaining usage to be spend on travel or further bookings using given travel account.
+
+### Getting offers related to a travel account
 
 The travel account can be provided as part of the anonymuous passenger information. As a travel account is personal data the travel account must be provided only in case it is needed.
 
-### Booking offers on a travel account
+`TravelAccount.number` relates to `Fulfillment.controlNumber` in case of passes. This number is to be provided as part of `AnonymousPassengerSpecification.cards` collection in CardReference.number property and CardReference.type must correctly indicate whether it is `TRAVEL_PASS`, `MULTI_RIDE` product or undisclosed `LINKED_TICKET`.
+
+### Booking offers related to a travel account
 
 The travel account is provided with the passenger data as a card reference. This will lead to an update of the booking with a reduced price if applicable and 
 an indicated consumtion in the booking parts with the amount to be payed on the account.
@@ -65,3 +67,58 @@ an indicated consumtion in the booking parts with the amount to be payed on the 
 ### Refund of booking made on a travel account
 
 The refund offer provides the refund amount for the pice exchanged via the API consumer only. The refund on the account needs to be seen from the description of the refund summary.
+
+## Processes <a name="process">
+
+### Activation of a pass <a name="pass-activation">
+
+When an admission pass product is purchased, the final status is `AVAILABLE` not `FULFILLED`. Such fulfillment will not be accepted during the ticket control unless it is activated. Respective information needed for activation vary and validation is done by the provider.
+
+For example, pass with quota of 5 travel days within 30-day travel window, may request to provide start of usage date, and days to be spent from the quota.
+
+`PATCH /fulfillments/{{THE PASS FULFILLMENT ID}}`
+
+```json
+{
+  "startOfUsage" : "2025-08-31"
+  "travelDates" : [ "2025-09-01" ]
+}
+```
+
+Given example sets beginning of the travel windows to 31.08.2025 and spents one day from the quota on 01.09.2025. When successful, Fulfillment.status changes from `AVAILABLE` to `FULFILLED` and the passenger can travel on given date. The status may also change to `CHECKEDID` following one or more ticket control events.
+
+Fulfillment updates its available usage based on the activation, or updates of the activation.
+
+`GET /fulfillments/{{THE PASS FULFILLMENT ID}}`
+
+```json
+{
+  "id" : "{{THE PASS FULFILLMENT ID}}"
+  "controlNumber" : "EXAMPLE-01"
+  "availableUsage" : {
+    "travelDates" : [
+      "2025-09-02",
+      ...,
+      "2025-09-29"
+    ]
+  }
+}
+```
+
+Travel accounts indicates the first usage of the pass.
+
+`GET /travel-accounts?travelAccount=EXAMPLE-01`
+
+```json
+{
+  "objectType" : "TravelPassAccount"
+  "number" : "EXAMPLE-01",
+  "consumptions" : [
+    "consumedOn" : "2025-09-01",
+    "unit" : "DayTravelAcountUnit",
+    "consumedAmount" : 1
+  ]
+}
+```
+
+Purchaser can patch the fulfillment to set remaining travel dates, regardless of status FULFILLED or CHECKEDIN. Status doesn't change.
