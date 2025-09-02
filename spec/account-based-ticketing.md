@@ -10,7 +10,7 @@ permalink: /spec/account-based-ticketing/
 1. [Introduction](#introduction)
 2. [Use Cases](#usecases)
 3. [Processes](#processes)
-4. [Activation of a pass](#pass-activation)
+4. [Activation of a Pass](#pass-activation)
 
 ## Introduction <a name="introduction">
 
@@ -84,7 +84,7 @@ of the refund summary.
 
 ## Processes <a name="processes">
 
-### Activation of a pass <a name="pass-activation">
+### Activation of a Pass <a name="pass-activation">
 
 When an admission pass product is purchased, the final status is `AVAILABLE` not
 `FULFILLED`. Such fulfillment will not be accepted during the ticket control
