@@ -73,8 +73,7 @@ undisclosed `LINKED_TICKET`.
 
 The travel account is provided with the passenger data as a card reference. This
 will lead to an update of the booking with a reduced price if applicable and an
-indicated consumtion in the booking parts with the amount to be payed on the
-account.
+indicated usage in the booking parts with the amount to be payed on the account.
 
 ### Refund of booking made on a travel account
 
@@ -103,7 +102,7 @@ request to provide start of usage date, and days to be spent from the quota.
 }
 ```
 
-Given example sets beginning of the travel windows to 31.08.2025 and spents one
+Given example sets beginning of the travel windows to 31.08.2025 and spends one
 day from the quota on 01.09.2025. When successful, Fulfillment.status changes
 from `AVAILABLE` to `FULFILLED` and the passenger can travel on given date. The
 status may also change to `CHECKEDID` following one or more ticket control
