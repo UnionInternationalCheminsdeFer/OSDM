@@ -97,7 +97,7 @@ request to provide start of usage date, and days to be spent from the quota.
 
 ```json
 {
-  "startOfUsage" : "2025-08-31"
+  "startOfUsage" : "2025-08-31",
   "travelDates" : [ "2025-09-01" ]
 }
 ```
@@ -133,13 +133,13 @@ Travel accounts indicates the first usage of the pass.
 
 ```json
 {
-  "objectType" : "TravelPassAccount"
+  "objectType" : "TravelPassAccount",
   "number" : "EXAMPLE-01",
-  "consumptions" : [
+  "consumptions" : {
     "consumedOn" : "2025-09-01",
     "unit" : "DayTravelAccountUnit",
     "consumedAmount" : 1
-  ]
+  }
 }
 ```
 
