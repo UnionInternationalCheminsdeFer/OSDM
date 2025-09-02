@@ -73,11 +73,11 @@ undisclosed `LINKED_TICKET`.
 
 The travel account is provided with the passenger data as a card reference. This
 will lead to an update of the booking with a reduced price if applicable and an
-indicated usage in the booking parts with the amount to be payed on the account.
+indicated usage in the booking parts with the amount to be paid on the account.
 
 ### Refund of booking made on a travel account
 
-The refund offer provides the refund amount for the pice exchanged via the API
+The refund offer provides the refund amount for the price exchanged via the API
 consumer only. The refund on the account needs to be seen from the description
 of the refund summary.
 
@@ -115,8 +115,8 @@ the activation.
 
 ```json
 {
-  "id" : "{{THE PASS FULFILLMENT ID}}"
-  "controlNumber" : "EXAMPLE-01"
+  "id" : "{{THE PASS FULFILLMENT ID}}",
+  "controlNumber" : "EXAMPLE-01",
   "availableUsage" : {
     "travelDates" : [
       "2025-09-02",
