@@ -17315,8 +17315,6 @@ components:
         (e.g. local zone ticket to start from the main rail station).
         terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket
         to go to the main rail station).
-      required:
-        - carrier
       properties:
         binaryZoneId:
           description: |
@@ -17345,6 +17343,14 @@ components:
           description: |
             Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
           type: string
+          nullable: true
+        validFrom:
+          type: string
+          format: date-time
+          nullable: true
+        validUntil:
+          type: string
+          format: date-time
           nullable: true
 
     ZoneCollectionResponse:
