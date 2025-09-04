@@ -15205,6 +15205,11 @@ components:
       description: |
         Route description including the first and last real stopPoint
       properties:
+        routeSummary:
+          description: Printable representation of the allowed routing ("Wegetext")
+          type: string
+          nullable: true
+          maxLength: 140
         routeItem:
           $ref: '#/components/schemas/RouteItem'
         routeItemList:
