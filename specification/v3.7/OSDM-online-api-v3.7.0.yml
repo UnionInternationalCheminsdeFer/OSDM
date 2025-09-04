@@ -14187,7 +14187,7 @@ components:
           items:
             $ref: '#/components/schemas/Problem'
         purchaser:
-          $ref: '#/components/schemas/Purchaser'          
+          $ref: '#/components/schemas/Purchaser'
 
     PurchaserSearchRequest:
       type: object
