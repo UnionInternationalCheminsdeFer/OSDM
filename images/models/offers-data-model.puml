@@ -1,0 +1,211 @@
+@startuml
+
+hide empty methods
+hide empty attributes
+
+title: Offers Data Model
+
+class Trip <<R,Orchid>> #linen {
+  id: TripId
+  externalRef: string
+  summary: string
+  duration: Duration
+  startTime: OffsetDateTime
+  endTime: OffsetDateTime
+  transfers: int
+  distance: int
+}
+
+class TripLeg <<D, Green>> #linen {
+  id: string
+  externalRef: string
+}
+
+class Offer <<R,orchid>> #lightcyan {
+  offerid: OfferId
+  summary: string
+  passengerRefs: string
+}
+
+enum OfferMode <<E,orchid>> {
+  COLLECTIVE
+  INDIVIDUAL
+}
+
+class TripCoverage <<D,green>> {
+  coveredTripId: TripId
+  coveredLegsIds: [TripLegId]
+}
+
+class Section <<D, green>> {
+  startLegID: TripLegId
+  endLegID: TripLegId
+}
+
+class AbstractOfferPart <<C, green>> {
+  id: string
+  summary: string
+  createdOn: DateTime
+  validFrom: DateTime
+  priceGuaranteedUntil: OffsetDateTime
+  isReusable: boolean
+  passengerRefs: [PassengerRef]
+  numericAvailability: int
+}
+
+class AncillaryOfferPart <<D,green>> {
+  category: string
+}
+
+class AdmissionOfferPart <<D,green>> {
+  isReservationRequired: boolean
+}
+
+class ReservationOfferPart <<D,green>> {
+}
+
+class AvailablePlace <<D,green>> {
+  placeProperties: string
+  numericAvailability: int
+}
+
+class ReservationRelation <<D,green>> {
+  minGroupItemsToBeBooked: int
+  maxGroupItemsToBeBooked: int
+}
+
+class AncillaryRelation <<D,green>> {
+  minGroupItemsToBeBooked: int
+  maxGroupItemsToBeBooked: int
+}
+
+class Product <<R,orchid>> {
+  id: string
+  summary: string
+  code: string
+  description: string
+  owner: string
+  isTrainBound: boolean
+  isReturnProduct: boolean
+  tariff: string
+}
+
+class Condition <<D,green>> {
+  type: ConditionType
+}
+
+class AfterSaleCondition <<D,green>> {
+}
+
+class FulfillmentOption <<D,green>> {
+  type: FulfillmentType
+  media: FulfillmentMediaType
+}
+
+class Fare <<D,green>> {
+  id: string
+}
+
+class Fee <<D,green>> {
+}
+
+class PassengerSpecification <<R, orchid>> #lightgreen {
+  externalReference: string
+  dateOfBirth: Date
+  age: int
+}
+
+enum PassengerType <<E, orchid>> #lightgreen {
+  PERSON
+  DOG
+  PET
+  LUGGAGE
+  PRM 
+  BICYCLE
+  PRAM 
+  COMPANION_DOG
+  CAR
+  MOTORCYCLE
+  TRAILER
+  FAMILY_CHILD
+  WHEELCHAIR
+}
+
+class Price <<D, green>> {
+  currency: Currency 
+  amount: int
+}
+
+enum RefundType <<E, orchid>> {
+  YES
+  NO
+  WITH_CONDITION
+}
+
+enum ExchangeType <<E, orchid>> {
+  YES
+  NO
+  WITH_CONDITION
+}
+
+class ReservationGroup <<D, green>> {
+}
+
+class AncillaryGroup <<D, green>> {
+}
+
+class OfferPartReference <<D, green>> {
+  id: string
+}
+
+OfferResponse --> "0..n" Offer 
+OfferResponse --> "0..n" PassengerSpecification
+OfferResponse --> "0..n" Trip
+
+Offer "1" *-- "0..1" TripCoverage 
+TripCoverage "1" --> AbstractOfferPart
+TripCoverage --> "0..n" Section
+
+AbstractOfferPart <|-- AdmissionOfferPart
+AbstractOfferPart <|-- ReservationOfferPart
+AbstractOfferPart <|-- AncillaryOfferPart
+AbstractOfferPart *-- "0..n" AfterSaleCondition
+AbstractOfferPart *-- "0..n" Product
+AbstractOfferPart *-- "0..n" OfferMode
+AbstractOfferPart *-- "0..n" FulfillmentOption
+AbstractOfferPart *-- Price
+AbstractOfferPart *-- "1" RefundType
+AbstractOfferPart *-- "1" ExchangeType
+
+Offer "1" *-- "0..n" AdmissionOfferPart
+Offer "1" *-- "0..n" ReservationOfferPart
+Offer "1" *-- "0..n" Fare
+Offer "1" *-- "0..n" AncillaryOfferPart
+Offer "1"*--"0..1" Trip
+Offer "1"*--"0..n" Fee
+Offer "1"*--"0..n" Product
+
+Fee *-- Price
+Fare *-- Price
+
+AdmissionOfferPart *-- AncillaryRelation
+ReservationOfferPart *-- AncillaryRelation
+AncillaryRelation *-- AncillaryGroup
+
+AdmissionOfferPart *-- ReservationRelation
+ReservationRelation *-- ReservationGroup
+
+ReservationGroup *-- OfferPartReference
+AncillaryGroup *-- OfferPartReference
+
+Product *-- "0..n" Condition
+
+ReservationOfferPart *--"0..n" AvailablePlace
+
+PassengerSpecification --> PassengerType
+
+Trip "1" *-- "1..n" TripLeg
+
+Fare --> "0..1" Section
+
+@enduml

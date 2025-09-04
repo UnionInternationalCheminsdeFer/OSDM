@@ -1,4 +1,8 @@
 @startuml
+
+hide empty methods
+hide empty attributes
+
 title: Bookings Data Model
 
 class Trip <<R,Orchid>> #linen {
@@ -20,25 +24,22 @@ class ExchangeOffer <<R,orchid>> #lightgreen {
   exchangePrice: Price
 }
 
-
-
-
-class Ancillary <<D,green>> {
+class AncillaryOfferPart <<D,green>> {
  
 }
 
-class Admission <<D,green>> {
+class AdmissionOfferPart <<D,green>> {
 
 }
 
-class Reservation<<D,green>> {
+class ReservationOfferPart<<D,green>> {
 }
 
 
 class Product <<R,orchid>> {
 }
 
-class FareOnline <<D,green>> {
+class Fare <<D,green>> {
 
 }
 
@@ -138,13 +139,6 @@ class FulfillmentType <<D,green>> #lightcyan  {
   type
 }
 
-class ReservationDetails_ReservedPlaces<<D, green>> #lightcyan {
-  passengerId
-  <<opt>> placeNumber
-  <<opt>> coachNumber
-  <<opt>> direction
-}
-
 note right of Product
   reference is the unique internal id that allows to
   link fulfillments to products. It has no functional meaning
@@ -234,21 +228,27 @@ ComplaintDecision "1"*--"0..n" FulfillmentDocument
 
 Purchaser *-- "0..1" PersonDetail
 
-Admission "1"*--"1..n" Product
-Reservation"1"*--"0..1" Product
-Ancillary "1"*--"0..1" Product
+AdmissionOfferPart "1"*--"1..n" Product
+ReservationOfferPart"1"*--"0..1" Product
+AncillaryOfferPart "1"*--"0..1" Product
 
-Offer "1" *-- "0..n" Admission
-Offer "1" *-- "0..n" Reservation
-Offer "1" *-- "0..n" FareOnline
-Offer "1" *-- "0..n" Ancillary
+Offer "1" *-- "0..n" AdmissionOfferPart
+Offer "1" *-- "0..n" ReservationOfferPart
+Offer "1" *-- "0..n" Fare
+Offer "1" *-- "0..n" AncillaryOfferPart
 Offer "1"*--"0..1" Trip
-OfferPartReference <|-- Admission
-OfferPartReference <|-- Reservation
-OfferPartReference <|-- Ancillary
-Admission .>"0..n" Reservation:optional/included/mandatory
-Admission .>"0..n" Ancillary:optional/included
-Reservation*--"1..n" ReservationDetails_ReservedPlaces
+
+AbstractOfferPart <|-- AdmissionOfferPart
+AbstractOfferPart <|-- ReservationOfferPart
+AbstractOfferPart <|-- AncillaryOfferPart
+
+AdmissionOfferPart --> OfferPartReference
+ReservationOfferPart --> OfferPartReference
+AncillaryOfferPart --> OfferPartReference
+
+
+AdmissionOfferPart .>"0..n" ReservationOfferPart:optional/included/mandatory
+AdmissionOfferPart .>"0..n" AncillaryOfferPart:optional/included
 
 
 note as floatingNote
