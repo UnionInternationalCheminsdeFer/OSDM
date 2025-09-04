@@ -6276,6 +6276,12 @@ components:
           properties:
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
+              deprecated: true
+            regionalValidities:
+              type: array
+              items:
+                $ref: '#/components/schemas/RegionalValidity'
+              minItems: 1
             isReservationRequired:
               deprecated: true
               type: boolean
@@ -6309,6 +6315,12 @@ components:
           properties:
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
+              deprecated: true
+            regionalValidities:
+              type: array
+              items:
+                $ref: '#/components/schemas/RegionalValidity'
+              minItems: 1
             isReservationRequired:
               deprecated: true
               type: boolean
