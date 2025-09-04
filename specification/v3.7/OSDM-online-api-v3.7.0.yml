@@ -1167,7 +1167,11 @@ paths:
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
         '207':
-          description: Partial success – some updates failed
+          description: | 
+            Partial success – some updates failed. updatedPassengers contains successfully updates. Failed updates are listed in the problems with at least following attributes:
+            * problem.status indicates the http code of the encountered error for the specific request item, f ex "404" if the given passenger Id is not found
+            * requestPointer indicates the specific request item the error relates to, f ex: #/passengerBatchUpdateRequest/passengers[2]/id
+       
           content:
             application/json:
               schema:
@@ -14128,38 +14132,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Problem'
-        passengerUpdatesResults:
+        Updatedpassengers:
           type: array
           items:
-            $ref: '#/components/schemas/PassengerUpdateResult'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-
-    PassengerUpdateResult:
-      type: object
-      description: Result of attempting to update one passenger.
-      properties:
-        id:
-          type: string
-          description: Identifier of the passenger targeted by the update in the request
-        status:
-          type: string
-          enum: [updated, skipped, failed]
-        passenger:
-          $ref: '#/components/schemas/Passenger'
-          description: |
-            The full updated passenger resource, present only if `status` = `updated`.
-        Problems:
-          type: array
-          description: Error details if update failed.
-          items:
-            $ref: '#/components/schemas/Problem'            
-
-
+            $ref: '#/components/schemas/Passenger'
+      
     PassengersCollectionResponse:
       type: object
       additionalProperties: false
@@ -14172,12 +14149,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     Purchaser:
       type: object
