@@ -1075,6 +1075,129 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+  /bookings/{bookingId}/passengers:
+    get:
+      tags:
+        - Passengers
+      summary: Returns all the passenger's in the booking.
+      operationId: getBookingPassengers
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |
+            passengers found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PassengersCollectionResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+    patch:
+      tags:
+        - Passengers
+      summary: Allows updating a set of passengers in a batch at booking step.
+      operationId: patchBookingPassenger
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking the passenger is in.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PassengersBatchUpdateRequest'
+      responses:
+        '200':
+          description: |
+            all passengers successfully patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PassengersCollectionResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '207':
+          description: | 
+            Partial success – some updates failed. updatedPassengers contains successfully updates. Failed updates are listed in the problems with at least following attributes:
+            * problem.status indicates the http code of the encountered error for the specific request item, f ex "404" if the given passenger Id is not found
+            * requestPointer indicates the specific request item the error relates to, f ex: #/passengerBatchUpdateRequest/passengers[2]/id
+       
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PassengersCollectionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'          
   /bookings/{bookingId}/purchaser:
     get:
       tags:
@@ -13991,6 +14114,28 @@ components:
             The party that issues the promotion code, in case of a railway it's its RICS code
           type: string
           nullable: true
+
+    PassengersBatchUpdateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        passengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Passenger'
+
+    PassengersCollectionResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        passengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Passenger'
 
     Purchaser:
       type: object
