@@ -1172,7 +1172,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Purchaser'
+              $ref: '#/components/schemas/PurchaserSpecification'
       responses:
         '200':
           description: |
@@ -7850,8 +7850,6 @@ components:
     CompanyDetail:
       type: object
       additionalProperties: false
-      required:
-        - name
       properties:
         name:
           type: string
@@ -13544,27 +13542,19 @@ components:
             - 'null'
 
     Purchaser:
-      type: object
-      additionalProperties: false
       description: |
-        Purchaser information. Exactly one of `detail` or `companyDetails` must be provided.
-      properties:
-        externalRef:
-          description: |
-            A stable reference to a purchaser from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
-          type:
-            - 'string'
-            - 'null'
-        detail:
-          $ref: '#/components/schemas/PersonDetail'
-        companyDetails:
-          $ref: '#/components/schemas/CompanyDetail'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        Purchaser information.
+      allOf:
+      - $ref: '#/components/schemas/PurchaserSpecification'
+      - type: object
+        additionalProperties: false
+        properties:
+          _links:
+            description: |
+              Java Property Name: 'links'
+            type: array
+            items:
+              $ref: '#/components/schemas/Link'
 
     PurchaserResponse:
       type: object
@@ -13613,6 +13603,8 @@ components:
       additionalProperties: false
       description: |
         Minimal specification of a purchaser to request booking of an offer. Exactly one of `detail` or `companyDetails` must be provided.
+        Business rules for mandatory and non patchable items must be checked on the backend.
+        Forward business rules for mandatory items using a requestedInformation field.
       properties:
         externalRef:
           description: |
