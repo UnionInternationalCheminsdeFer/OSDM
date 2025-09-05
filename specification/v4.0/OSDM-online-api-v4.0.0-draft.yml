@@ -146,7 +146,7 @@ paths:
     get:
       tags:
         - Master Data
-      summary: Returns static data for all all places.
+      summary: Returns static data for all places.
       operationId: getPlaces
       parameters:
         - $ref: '#/components/parameters/requestor'
