@@ -5263,8 +5263,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CardReference'
-        indicatedConsumption:
-          $ref: '#/components/schemas/IndicatedConsumption'
+        indicatedUsage:
+          $ref: '#/components/schemas/IndicatedUsage'
         accountingRef:
           $ref: '#/components/schemas/AccountingRef'
         grantedReductionAmounts:
@@ -5423,8 +5423,8 @@ components:
             $ref: '#/components/schemas/PromotionCode'
         regionalValiditySummary:
           $ref: '#/components/schemas/RegionalValiditySummary'
-        indicatedConsumption:
-          $ref: '#/components/schemas/IndicatedConsumption'
+        indicatedUsage:
+          $ref: '#/components/schemas/IndicatedUsage'
         grantedReductionAmounts:
           $ref: '#/components/schemas/GrantedReductionAmounts'
         _links:
@@ -8358,10 +8358,10 @@ components:
           description: id of the tip provided to staff
           type: string
           maxLength: 1024
-        consumptionForPostPayment:
-          $ref: '#/components/schemas/IndicatedConsumption'
-        remainingConsumptionFromPrePayment:
-          $ref: '#/components/schemas/IndicatedConsumption'
+        usageForPostPayment:
+          $ref: '#/components/schemas/IndicatedUsage'
+        remainingUsageFromPrePayment:
+          $ref: '#/components/schemas/IndicatedUsage'
         estimatedTimeOfArrivalAtPickUpPlace:
           type: string
           format: date-time
@@ -10507,7 +10507,7 @@ components:
         - 'JOURNEY_NOT_STARTED'
         - 'SERVICE_DEGRADED'
 
-    IndicatedConsumption:
+    IndicatedUsage:
       type: object
       additionalProperties: false
       required:
@@ -10519,7 +10519,7 @@ components:
           type: integer
           format: int32
 
-    IndicatedTravelAccountConsumption:
+    IndicatedTravelAccountUsage:
       type: object
       additionalProperties: false
       required:
@@ -11091,10 +11091,10 @@ components:
               type: string
             balance:
               $ref: '#/components/schemas/MultiRideBalance'
-            consumptions:
+            usage:
               type: array
               items:
-                $ref: '#/components/schemas/TravelAccountConsumption'
+                $ref: '#/components/schemas/TravelAccountUsage'
 
     MultiRideBalance:
       type: object
@@ -11702,8 +11702,8 @@ components:
           $ref: '#/components/schemas/AccommodationSubType'
         overallFlexibility:
           $ref: '#/components/schemas/Flexibility'
-        minimalIndicatedConsumption:
-          $ref: '#/components/schemas/IndicatedConsumption'
+        minimalIndicatedUsage:
+          $ref: '#/components/schemas/IndicatedUsage'
 
     OfferTag:
       type: object
@@ -15731,17 +15731,17 @@ components:
         - 'MOTOCYCLE'
         - 'TRAILER'
 
-    TravelAccountConsumption:
+    TravelAccountUsage:
       type: object
       additionalProperties: false
       required:
-        - consumedOn
+        - usedOn
         - bookingId
         - unit
         - bookingSummary
-        - consumedAmount
+        - usedAmount
       properties:
-        consumedOn:
+        usedOn:
           type: string
           format: date-time
         bookingId:
@@ -15752,7 +15752,7 @@ components:
           type: string
         tripSummary:
           $ref: '#/components/schemas/TripSummary'
-        consumedAmount:
+        usedAmount:
           type: integer
           format: int32
 
@@ -15771,7 +15771,7 @@ components:
       type: string
       enum:
         - 'ALL'
-        - 'CONSUMPTIONS'
+        - 'USAGE'
         - 'NONE'
       default: ALL
 
@@ -15822,10 +15822,10 @@ components:
               type: string
             regionalConstraint:
               $ref: '#/components/schemas/RegionalConstraint'
-            consumptions:
+            usage:
               type: array
               items:
-                $ref: '#/components/schemas/TravelAccountConsumption'
+                $ref: '#/components/schemas/TravelAccountUsage'
 
     TravelValidity:
       type: object
