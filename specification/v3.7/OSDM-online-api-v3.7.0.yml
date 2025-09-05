@@ -6276,6 +6276,13 @@ components:
           properties:
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
+              deprecated: true
+            regionalValidities:
+              description: This contains multiple regional validities for this item and replaces the `regionalValidity` (deprecated) attribute.
+              type: array
+              items:
+                $ref: '#/components/schemas/RegionalValidity'
+              minItems: 1
             isReservationRequired:
               deprecated: true
               type: boolean
@@ -6309,6 +6316,13 @@ components:
           properties:
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
+              deprecated: true
+            regionalValidities:
+              description: This contains multiple regional validities for this item and replaces the `regionalValidity` (deprecated) attribute.
+              type: array
+              items:
+                $ref: '#/components/schemas/RegionalValidity'
+              minItems: 1
             isReservationRequired:
               deprecated: true
               type: boolean
@@ -15193,6 +15207,11 @@ components:
       description: |
         Route description including the first and last real stopPoint
       properties:
+        routeSummary:
+          description: Printable representation of the allowed routing ("Wegetext")
+          type: string
+          nullable: true
+          maxLength: 140
         routeItem:
           $ref: '#/components/schemas/RouteItem'
         routeItemList:
@@ -17303,8 +17322,6 @@ components:
         (e.g. local zone ticket to start from the main rail station).
         terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket
         to go to the main rail station).
-      required:
-        - carrier
       properties:
         binaryZoneId:
           description: |
@@ -17333,6 +17350,14 @@ components:
           description: |
             Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
           type: string
+          nullable: true
+        validFrom:
+          type: string
+          format: date-time
+          nullable: true
+        validUntil:
+          type: string
+          format: date-time
           nullable: true
 
     ZoneCollectionResponse:
