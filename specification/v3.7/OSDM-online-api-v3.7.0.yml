@@ -1159,7 +1159,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PassengersBatchUpdateResponse'
+                $ref: '#/components/schemas/PassengersCollectionResponse'
           headers:
             Content-Language:
               schema:
@@ -1175,7 +1175,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PassengersBatchUpdateResponse'
+                $ref: '#/components/schemas/PassengersCollectionResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -14124,19 +14124,6 @@ components:
           items:
             $ref: '#/components/schemas/Passenger'
 
-    PassengersBatchUpdateResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        problems:
-          type: array
-          items:
-            $ref: '#/components/schemas/Problem'
-        updatedPassengers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Passenger'
-      
     PassengersCollectionResponse:
       type: object
       additionalProperties: false
