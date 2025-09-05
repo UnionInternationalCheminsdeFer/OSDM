@@ -6278,6 +6278,7 @@ components:
               $ref: '#/components/schemas/RegionalValidity'
               deprecated: true
             regionalValidities:
+              description: This contains multiple regional validities for this item and replaces the `regionalValidity` (deprecated) attribute.
               type: array
               items:
                 $ref: '#/components/schemas/RegionalValidity'
@@ -6317,6 +6318,7 @@ components:
               $ref: '#/components/schemas/RegionalValidity'
               deprecated: true
             regionalValidities:
+              description: This contains multiple regional validities for this item and replaces the `regionalValidity` (deprecated) attribute.
               type: array
               items:
                 $ref: '#/components/schemas/RegionalValidity'
