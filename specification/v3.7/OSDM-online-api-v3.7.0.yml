@@ -14132,7 +14132,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Problem'
-        Updatedpassengers:
+        updatedPassengers:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
