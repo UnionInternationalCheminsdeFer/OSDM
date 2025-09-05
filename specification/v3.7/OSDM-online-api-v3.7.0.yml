@@ -2589,9 +2589,11 @@ paths:
     patch:
       tags:
         - Fulfillments
-      summary: Activates a fulfillment, i.e. changes the status to AVAILABLE.
+      summary: Activates a fulfillment, i.e. changes the status from AVAILABLE to FULFILLED.
       description: |
-        Changes the fulfillment to status AVAILABLE. In the case of multi-journey product, one of the fulfillment is now 'activated' and can be used to travel.
+        Changes the fulfillment from status AVAILABLE to FULFILLED. In the case of multi-trip product
+        with usage quota, the fulfillment must be referenced in booking of a trip to produce Fulfillment 
+        related to that trip that uses quota of the multi-journey product.
       operationId: patchFulfillmentId
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -10505,7 +10507,7 @@ components:
         startOfUsage:
           type: string
           format: date-time
-          nullable: false
+          nullable: true
         fromPlace:
           $ref: '#/components/schemas/PlaceRef'
         stockControlNumbers:
@@ -10831,8 +10833,6 @@ components:
       additionalProperties: false
       description: |
         In case of multi-journey products describe parameters to be used to change the a fulfillment in status AVAILABLE to FULFILLED so it can be used by the passenger.
-      required:
-        - maxAvailableZones
       properties:
         fromPlaceRequired:
           type: boolean
@@ -10855,7 +10855,7 @@ components:
             upper limit to the number of selected zones
           type: integer
           format: int32
-          nullable: false
+          nullable: true
         availableZones:
           type: array
           items:
