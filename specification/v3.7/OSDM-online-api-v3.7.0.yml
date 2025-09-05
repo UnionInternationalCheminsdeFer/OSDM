@@ -6669,6 +6669,10 @@ components:
               nullable: true
             type:
               $ref: '#/components/schemas/AncillaryType'
+            reservations:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReservationRelation'
 
     AncillaryRelation:
       type: object
