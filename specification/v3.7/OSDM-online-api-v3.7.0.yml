@@ -1075,6 +1075,129 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+  /bookings/{bookingId}/passengers:
+    get:
+      tags:
+        - Passengers
+      summary: Returns all the passenger's in the booking.
+      operationId: getBookingPassengers
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |
+            passengers found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PassengersCollectionResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+    patch:
+      tags:
+        - Passengers
+      summary: Allows updating a set of passengers in a batch at booking step.
+      operationId: patchBookingPassenger
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking the passenger is in.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PassengersBatchUpdateRequest'
+      responses:
+        '200':
+          description: |
+            all passengers successfully patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PassengersCollectionResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '207':
+          description: | 
+            Partial success – some updates failed. updatedPassengers contains successfully updates. Failed updates are listed in the problems with at least following attributes:
+            * problem.status indicates the http code of the encountered error for the specific request item, f ex "404" if the given passenger Id is not found
+            * requestPointer indicates the specific request item the error relates to, f ex: #/passengerBatchUpdateRequest/passengers[2]/id
+       
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PassengersCollectionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'          
   /bookings/{bookingId}/purchaser:
     get:
       tags:
@@ -2296,6 +2419,8 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+          
     patch:
       tags:
         - Fulfillments
@@ -2358,6 +2483,55 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+  
+  /bookings/{bookingId}/fulfillment-check:          
+    get:
+      tags:
+        - Fulfillments
+      summary:
+        Verification step (step 1 in a two phase commit process) to run before the effective fulfillment endpoint. Provider do all checks to "guarantee" that fullfillment will work.
+      description: |
+        Step 1 in a two phase commit process. An aggregator can use this to secure that all underlaying provider systems are up and running and the provider booking is ready to be fulfilled.
+      operationId: getCheckFulfillments
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking to be patched
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '204':
+          description: Success, verified OK
+        '400':
+          $ref: '#/components/responses/DefaultErrorResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'                    
+          
   /fulfillments/{fulfillmentId}:
     get:
       tags:
@@ -2415,9 +2589,11 @@ paths:
     patch:
       tags:
         - Fulfillments
-      summary: Activates a fulfillment, i.e. changes the status to AVAILABLE.
+      summary: Activates a fulfillment, i.e. changes the status from AVAILABLE to FULFILLED.
       description: |
-        Changes the fulfillment to status AVAILABLE. In the case of multi-journey product, one of the fulfillment is now 'activated' and can be used to travel.
+        Changes the fulfillment from status AVAILABLE to FULFILLED. In the case of multi-trip product
+        with usage quota, the fulfillment must be referenced in booking of a trip to produce Fulfillment 
+        related to that trip that uses quota of the multi-journey product.
       operationId: patchFulfillmentId
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -2661,6 +2837,64 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+  
+  /bookings/{bookingId}/refund-offers/{refundOfferId}/confirmation-check:        
+    get:
+      tags:
+        - Refund
+      summary:
+        Validation step (step 1 in a two phase commit process) to run before the effective patch endpoint. Provider do all checks to "guarantee" that refund will work.
+      description: |
+        Step 1 in a two phase commit process. An aggregator can use this to secure that all underlaying provider systems are up and running and the provider booking is ready to be refunded.
+      operationId: postPrepareRefundOffers
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking
+          required: true
+          schema:
+            type: string
+        - name: refundOfferId
+          in: path
+          description: |
+            id of the refund offer
+          required: true
+          schema:
+            type: string
+            maxLength: 32768
+      responses:
+        '204':
+          description: Success, verified OK
+        '400':
+          $ref: '#/components/responses/DefaultErrorResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '406':
+          $ref: '#/components/responses/NotAcceptableResponse'
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'          
+          
   /bookings/{bookingId}/refund-offers/{refundOfferId}:
     get:
       tags:
@@ -5575,6 +5809,8 @@ components:
             product conditions and status of the booking Part
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
         summaryProductId:
           type: string
           description: |
@@ -5733,6 +5969,8 @@ components:
         price:
           $ref: '#/components/schemas/Price'
         tripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         priceGuaranteedUntil:
           description: |
@@ -6163,6 +6401,13 @@ components:
           properties:
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
+              deprecated: true
+            regionalValidities:
+              description: This contains multiple regional validities for this item and replaces the `regionalValidity` (deprecated) attribute.
+              type: array
+              items:
+                $ref: '#/components/schemas/RegionalValidity'
+              minItems: 1
             isReservationRequired:
               deprecated: true
               type: boolean
@@ -6196,6 +6441,13 @@ components:
           properties:
             regionalValidity:
               $ref: '#/components/schemas/RegionalValidity'
+              deprecated: true
+            regionalValidities:
+              description: This contains multiple regional validities for this item and replaces the `regionalValidity` (deprecated) attribute.
+              type: array
+              items:
+                $ref: '#/components/schemas/RegionalValidity'
+              minItems: 1
             isReservationRequired:
               deprecated: true
               type: boolean
@@ -6605,6 +6857,8 @@ components:
           nullable: false
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
         appliedReductionCardTypes:
           deprecated: true
           type: array
@@ -6915,6 +7169,8 @@ components:
             $ref: '#/components/schemas/Fare'
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
         appliedThroughTicketTags:
           type: array
           items:
@@ -6947,6 +7203,8 @@ components:
           minItems: 1
           nullable: false
         tripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
           $ref: '#/components/schemas/TripCoverage'
 
     BookedOfferAncillaryResponse:
@@ -7025,6 +7283,8 @@ components:
             $ref: '#/components/schemas/PlaceSelection'
           minItems: 1
         tripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
           $ref: '#/components/schemas/TripCoverage'
 
     BookedOfferReservationResponse:
@@ -8652,7 +8912,8 @@ components:
           nullable: true
         phoneNumber:
           description: |
-            Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g., in case of delays or interruptions .
+            Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g., in case of delays or interruptions.
+            Format according to E.164 The international public telecommunication numbering plan 
           type: string
           nullable: true
         address:
@@ -9535,6 +9796,8 @@ components:
             $ref: '#/components/schemas/Product'
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
         exchangeOfferBreakdown:
           description: |
             Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
@@ -10209,6 +10472,8 @@ components:
             Indicates whether the fulfillment has all documents or parts generated (if any needed) or they are still pending generation.
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
         continuousServiceUsage:
           $ref: '#/components/schemas/ContinuousServiceUsage'
         _links:
@@ -10242,7 +10507,7 @@ components:
         startOfUsage:
           type: string
           format: date-time
-          nullable: false
+          nullable: true
         fromPlace:
           $ref: '#/components/schemas/PlaceRef'
         stockControlNumbers:
@@ -10568,8 +10833,6 @@ components:
       additionalProperties: false
       description: |
         In case of multi-journey products describe parameters to be used to change the a fulfillment in status AVAILABLE to FULFILLED so it can be used by the passenger.
-      required:
-        - maxAvailableZones
       properties:
         fromPlaceRequired:
           type: boolean
@@ -10592,7 +10855,7 @@ components:
             upper limit to the number of selected zones
           type: integer
           format: int32
-          nullable: false
+          nullable: true
         availableZones:
           type: array
           items:
@@ -10691,6 +10954,8 @@ components:
             type: string
             nullable: false
         tripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
           $ref: '#/components/schemas/TripCoverage'
         appliedPassengerTypes:
           type: array
@@ -11600,6 +11865,8 @@ components:
             $ref: '#/components/schemas/Product'
         tripCoverage:
           $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
         admissionOfferParts:
           type: array
           items:
@@ -11643,16 +11910,30 @@ components:
       required:
         - anonymousPassengerSpecifications
       properties:
-        tripSpecifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/TripSpecification'
         tripIds:
           type: array
           items:
             type: string
             maxLength: 32768
           nullable: true
+          description: ID of trips representing single or outbound trips to be offered.
+        inboundTripIds:
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+          nullable: true
+          description: |
+            ID of trips representing return or inbound trips to be offered. Fill in only When
+            requesting return products or fares.
+        tripSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/TripSpecification'
+        inboundTripSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/TripSpecification'
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
         tripResponseParameters:
@@ -11959,6 +12240,14 @@ components:
           $ref: '#/components/schemas/OfferMode'
         currency:
           $ref: '#/components/schemas/Currency'
+        inboundDate:
+          description: |
+            Needs to be provided when creating the collection of outbound travels so that the
+            provider knows when a inbound travel can be expected and propose appropriate
+            product and fares.
+          type: string
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          nullable: true
 
     OfferSelection:
       type: object
@@ -12598,6 +12887,7 @@ components:
           description: |
             Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g.,
             in case of interruptions.
+            Format according to E.164 The international public telecommunication numbering plan 
           type: string
           deprecated: true
           nullable: true
@@ -12643,6 +12933,7 @@ components:
           format: date
           nullable: true
         phoneNumber:
+          description: format according to E.164 The international public telecommunication numbering plan 
           type: string
           nullable: true
         email:
@@ -13824,6 +14115,28 @@ components:
           type: string
           nullable: true
 
+    PassengersBatchUpdateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        passengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Passenger'
+
+    PassengersCollectionResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        passengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Passenger'
+
     Purchaser:
       type: object
       additionalProperties: false
@@ -13890,6 +14203,7 @@ components:
           nullable: true
           deprecated: true
         phoneNumber:
+          description: Format according to E.164 The international public telecommunication numbering plan 
           type: string
           nullable: true
         email:
@@ -14963,21 +15277,36 @@ components:
       additionalProperties: false
       description: |
         This property can be used in case a return trip is being requested.
-        This will allow to benefit from return-specific fares or product
+        This will allow to benefit from return-specific fares or product.
 
+        Only one of `outwardTripIds`, `outwardOfferIds`, or  should be provided.
+
+        `inwardReturnDate` and `outwardOfferTag` should not be used as they are deprecated in 3.7.0 and will be removed in 4.0.0.
       properties:
         inwardReturnDate:
           description: |
-            Needs to be provided when creating the collection of outward travels so that the
-            provider knows when a return travel can be expected and propose appropriate
+            Needs to be provided when creating the collection of outbound travels so that the
+            provider knows when a inbound travel can be expected and propose appropriate
             product and fares.
+
+            Superseded by `OfferSearchCriteria.inboundDate`.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
           nullable: true
+          deprecated: true
+        outboundTripIds:
+          description: |
+            Needs to be provided when creating collection of offers covering both
+            outbound and inbound (return) journey.
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+          nullable: true
         outwardOfferIds:
           description: |
-            Needs to be provided when creating the collection of inward travels so that the provider
-            can relate the inward travels to the outward travels context.
+            Needs to be provided when creating the collection of inbound travels so that the provider
+            can relate the inbound travels to the outbound travels context.
           type: array
           items:
             type: string
@@ -14985,10 +15314,37 @@ components:
           nullable: true
         outwardOfferTag:
           description: |
-            Needs to be provided when creating the collection of inward travels so that the provider
-            knows what the outward offer is and and propose compatible offers only if desired or mandatory.
+            Needs to be provided when creating the collection of inbound travels so that the provider
+            knows what the outbound offer is and and propose compatible offers only if desired or mandatory.
           type: string
           nullable: true
+          deprecated: true
+        departureTime:
+          description: |
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+          type: string
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          nullable: true
+        arrivalTime:
+          description: |
+            Needs to in be local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+          type: string
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          nullable: true
+        vias:
+          description: |
+            Ordered series of points where the journey must pass through. If more
+            than one via point is given all of them must be obeyed - in the correct
+            order. The server is allowed to replace a via stop by equivalent stops.
+
+            TripDataFilters given at a via apply to the section after that via. To apply a TripDataFilter for 
+            the first section (between the origin and the first via), use the TripDataFilter within the
+            TripParameters structure.
+          type: array
+          items:
+            $ref: '#/components/schemas/TripVia'
+        parameters:
+          $ref: '#/components/schemas/TripParameters'
 
     Route:
       type: object
@@ -14996,6 +15352,11 @@ components:
       description: |
         Route description including the first and last real stopPoint
       properties:
+        routeSummary:
+          description: Printable representation of the allowed routing ("Wegetext")
+          type: string
+          nullable: true
+          maxLength: 140
         routeItem:
           $ref: '#/components/schemas/RouteItem'
         routeItemList:
@@ -17106,8 +17467,6 @@ components:
         (e.g. local zone ticket to start from the main rail station).
         terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket
         to go to the main rail station).
-      required:
-        - carrier
       properties:
         binaryZoneId:
           description: |
@@ -17136,6 +17495,14 @@ components:
           description: |
             Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
           type: string
+          nullable: true
+        validFrom:
+          type: string
+          format: date-time
+          nullable: true
+        validUntil:
+          type: string
+          format: date-time
           nullable: true
 
     ZoneCollectionResponse:

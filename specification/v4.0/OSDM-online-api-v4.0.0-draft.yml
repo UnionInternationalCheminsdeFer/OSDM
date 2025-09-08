@@ -2324,9 +2324,11 @@ paths:
     patch:
       tags:
         - Fulfillments
-      summary: Activates a fulfillment, i.e. changes the status to AVAILABLE.
+      summary: Activates a fulfillment, i.e. changes the status from AVAILABLE to FULFILLED.
       description: |
-        Changes the fulfillment to status AVAILABLE. In the case of multi-journey product, one of the fulfillment is now 'activated' and can be used to travel.
+        Changes the fulfillment from status AVAILABLE to FULFILLED. In the case of multi-trip product
+        with usage quota, the fulfillment must be referenced in booking of a trip to produce Fulfillment 
+        related to that trip that uses quota of the multi-journey product.
       operationId: patchFulfillmentId
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -2381,6 +2383,53 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+  /bookings/{bookingId}/fulfillment-check:          
+    get:
+      tags:
+        - Fulfillments
+      summary:
+        Check step (step 1 in a two phase commit process) to run before the effective fulfillment endpoint. Provider do all checks to "guarantee" that fullfillment will work.
+      description: |
+        Step 1 in a two phase commit process. An aggregator can use this to secure that all underlaying provider systems are up and running and the provider booking is ready to be fulfilled.
+      operationId: getCheckFulfillments
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking to be patched
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '204':
+          description: |
+            Booking is verified OK for fulfillment
+        '400':
+          $ref: '#/components/responses/DefaultErrorResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'                    
 
   /fulfillments/{fulfillmentId}/continuous-service-usage/{continuousServiceUsageId}:
     get:
@@ -2568,6 +2617,64 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
+  /bookings/{bookingId}/refund-offers/{refundOfferId}/confirmation-check:        
+    get:
+      tags:
+        - Refund
+      summary:
+        Verification step (step 1 in a two phase commit process) to run before the effective patch endpoint. Provider do all checks to "guarantee" that refund will work.
+      description: |
+        Step 1 in a two phase commit process. An aggregator can use this to secure that all underlaying provider systems are up and running and the provider booking is ready to be refunded.
+      operationId: getCheckRefundOffers
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: bookingId
+          in: path
+          description: |
+            id of the booking
+          required: true
+          schema:
+            type: string
+        - name: refundOfferId
+          in: path
+          description: |
+            id of the refund offer
+          required: true
+          schema:
+            type: string
+            maxLength: 32768
+
+      responses:
+        '204':
+          description: Succes. OK to refund
+        '400':
+          $ref: '#/components/responses/DefaultErrorResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'          
+
+
   /bookings/{bookingId}/refund-offers/{refundOfferId}:
     get:
       tags:
@@ -5090,7 +5197,9 @@ components:
         price:
           $ref: '#/components/schemas/Price'
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         summaryProductId:
           type: string
           description: |
@@ -5161,8 +5270,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CardReference'
-        indicatedConsumption:
-          $ref: '#/components/schemas/IndicatedConsumption'
+        indicatedUsage:
+          $ref: '#/components/schemas/IndicatedUsage'
         accountingRef:
           $ref: '#/components/schemas/AccountingRef'
         grantedReductionAmounts:
@@ -5222,7 +5331,9 @@ components:
         price:
           $ref: '#/components/schemas/Price'
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         priceGuaranteedUntil:
           description: |
             Indicates until when the price for the given offer is guaranteed.
@@ -5319,8 +5430,8 @@ components:
             $ref: '#/components/schemas/PromotionCode'
         regionalValiditySummary:
           $ref: '#/components/schemas/RegionalValiditySummary'
-        indicatedConsumption:
-          $ref: '#/components/schemas/IndicatedConsumption'
+        indicatedUsage:
+          $ref: '#/components/schemas/IndicatedUsage'
         grantedReductionAmounts:
           $ref: '#/components/schemas/GrantedReductionAmounts'
         _links:
@@ -6243,7 +6354,9 @@ components:
             Clear text representation of the actual passenger type, suitable to be presented to a client.
           type: string
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         appliedReductions:
           type: array
           items:
@@ -6640,7 +6753,9 @@ components:
           items:
             $ref: '#/components/schemas/FareBookingPart'
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         appliedThroughTicketTags:
           type: array
           items:
@@ -6675,7 +6790,9 @@ components:
             type: string
           minItems: 1
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
 
     BookedOfferAncillaryResponse:
       type: object
@@ -6741,7 +6858,9 @@ components:
             $ref: '#/components/schemas/PlaceSelection'
           minItems: 1
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
 
     BookedOfferReservationResponse:
       type: object
@@ -8203,11 +8322,7 @@ components:
             - 'string'
             - 'null'
         phoneNumber:
-          description: |
-            Preferably a mobile phone number, to be contacted in case changes to the booking
-          type:
-            - 'string'
-            - 'null'
+          $ref: '#/components/schemas/PhoneNumber'
 
     ContextType:
       type: string
@@ -8415,10 +8530,10 @@ components:
           description: id of the tip provided to staff
           type: string
           maxLength: 1024
-        consumptionForPostPayment:
-          $ref: '#/components/schemas/IndicatedConsumption'
-        remainingConsumptionFromPrePayment:
-          $ref: '#/components/schemas/IndicatedConsumption'
+        usageForPostPayment:
+          $ref: '#/components/schemas/IndicatedUsage'
+        remainingUsageFromPrePayment:
+          $ref: '#/components/schemas/IndicatedUsage'
         estimatedTimeOfArrivalAtPickUpPlace:
           type: string
           format: date-time
@@ -9142,7 +9257,9 @@ components:
           items:
             $ref: '#/components/schemas/Product'
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         exchangeOfferBreakdown:
           description: |
             Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
@@ -9264,16 +9381,17 @@ components:
       additionalProperties: false
       properties:
         tripSpecifications:
-          type: array
+          type:
+            - 'array'
+            - 'null'
           items:
             $ref: '#/components/schemas/TripSpecification'
-        tripIds:
-          type: array
+        inboundTripSpecifications:
+          type:
+            - 'array'
+            - 'null'
           items:
-            type:
-              - 'string'
-              - 'null'
-            maxLength: 32768
+            $ref: '#/components/schemas/TripSpecification'
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
         nonTripSearchCriteria:
@@ -9904,7 +10022,9 @@ components:
           description: |
             Indicates whether the fulfillment has all documents or parts generated (if any needed) or they are still pending generation.
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         continuousServiceUsage:
           $ref: '#/components/schemas/ContinuousServiceUsage'
         _links:
@@ -9937,7 +10057,9 @@ components:
             type: string
             format: date
         startOfUsage:
-          type: string
+          type:
+            - 'string'
+            - 'null'
           format: date-time
         fromPlace:
           $ref: '#/components/schemas/PlaceRef'
@@ -10258,8 +10380,6 @@ components:
       additionalProperties: false
       description: |
         In case of multi-journey products describe parameters to be used to change the a fulfillment in status AVAILABLE to FULFILLED so it can be used by the passenger.
-      required:
-        - maxAvailableZones
       properties:
         fromPlaceRequired:
           type:
@@ -10282,7 +10402,9 @@ components:
         maxAvailableZones:
           description: |
             upper limit to the number of selected zones
-          type: integer
+          type:
+            - 'integer'
+            - 'null'
           format: int32
         availableZones:
           type: array
@@ -10445,7 +10567,9 @@ components:
           items:
             type: string
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         appliedPassengerTypes:
           type: array
           items:
@@ -10620,7 +10744,7 @@ components:
         - 'JOURNEY_NOT_STARTED'
         - 'SERVICE_DEGRADED'
 
-    IndicatedConsumption:
+    IndicatedUsage:
       type: object
       additionalProperties: false
       required:
@@ -10632,7 +10756,7 @@ components:
           type: integer
           format: int32
 
-    IndicatedTravelAccountConsumption:
+    IndicatedTravelAccountUsage:
       type: object
       additionalProperties: false
       required:
@@ -11207,10 +11331,10 @@ components:
               type: string
             balance:
               $ref: '#/components/schemas/MultiRideBalance'
-            consumptions:
+            usage:
               type: array
               items:
-                $ref: '#/components/schemas/TravelAccountConsumption'
+                $ref: '#/components/schemas/TravelAccountUsage'
 
     MultiRideBalance:
       type: object
@@ -11333,7 +11457,9 @@ components:
           items:
             $ref: '#/components/schemas/Product'
         tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
         admissionOfferParts:
           type: array
           items:
@@ -11374,10 +11500,6 @@ components:
         If you are searching for fares you pass in the complete trip and the use the requestedSections attribute to define which part(s) you need fares (including virtual border points).
 
       properties:
-        tripSpecifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/TripSpecification'
         tripIds:
           type:
             - 'array'
@@ -11385,6 +11507,25 @@ components:
           items:
             type: string
             maxLength: 32768
+        inboundTripIds:
+          type:
+            - 'array'
+            - 'null'
+          items:
+            type: string
+            maxLength: 32768
+        tripSpecifications:
+          type:
+            - 'array'
+            - 'null'
+          items:
+            $ref: '#/components/schemas/TripSpecification'
+        inboundTripSpecifications:
+          type:
+            - 'array'
+            - 'null'
+          items:
+            $ref: '#/components/schemas/TripSpecification'
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
         tripResponseParameters:
@@ -11696,6 +11837,15 @@ components:
           $ref: '#/components/schemas/OfferMode'
         currency:
           $ref: '#/components/schemas/Currency'
+        inboundDate:
+          description: |
+            Needs to be provided when creating the collection of outbound travels so that the
+            provider knows when a inbound travel can be expected and propose appropriate
+            product and fares.
+          type:
+            - 'string'
+            - 'null'
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
 
     OfferSelection:
       type: object
@@ -11783,8 +11933,8 @@ components:
           $ref: '#/components/schemas/AccommodationSubType'
         overallFlexibility:
           $ref: '#/components/schemas/Flexibility'
-        minimalIndicatedConsumption:
-          $ref: '#/components/schemas/IndicatedConsumption'
+        minimalIndicatedUsage:
+          $ref: '#/components/schemas/IndicatedUsage'
 
     OfferTag:
       type: object
@@ -12522,9 +12672,7 @@ components:
             - 'null'
           format: date
         phoneNumber:
-          type:
-            - 'string'
-            - 'null'
+          $ref: '#/components/schemas/PhoneNumber'
         email:
           type:
             - 'string'
@@ -12571,6 +12719,10 @@ components:
             type: string
         geoPosition:
           $ref: '#/components/schemas/GeoPosition'
+        validity:
+          description: |
+            The date range where the place is usable for travel.
+          $ref: '#/components/schemas/MasterDataValidity'        
         modes:
           description: |
             List of Transport modes calling the place.
@@ -12833,6 +12985,16 @@ components:
           minItems: 1
         legCoverage:
           $ref: '#/components/schemas/TripLegCoverage'
+
+    PhoneNumber:
+      description: |
+         Preferably a mobile phone number, to be contacted in case changes to the booking
+         Format according to E.164 The international public telecommunication numbering plan 
+      type:
+         - 'string'
+         - 'null'
+      pattern: '^\+\d{1,3}\s?\d{1,14}(\s\d{1,13})?$'
+      maxLength: 18
 
     PlaceAvailabilityCollectionResponse:
       type: object
@@ -13759,6 +13921,7 @@ components:
         - code
         - owner
         - flexibility
+        - validityForSale
       properties:
         id:
           description: |
@@ -13777,6 +13940,12 @@ components:
           type: string
           examples:
             - PT00AD
+        validityForSale:
+          $ref: '#/components/schemas/MasterDataValidity'
+        validityForTravel:
+          description: |
+            the date range is related to the possible start of a travel.
+          $ref: '#/components/schemas/MasterDataValidity'          
         description:
           description: |
             Textual description of the product.
@@ -14197,15 +14366,14 @@ components:
             - 'string'
             - 'null'
           format: date
-        phoneNumber:
-          type:
-            - 'string'
-            - 'null'
         email:
           type:
             - 'string'
             - 'null'
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
 
+          
     PurchaserSpecification:
       type: object
       additionalProperties: false
@@ -14298,6 +14466,14 @@ components:
             - 'null'
         issuer:
           $ref: '#/components/schemas/CompanyRef'
+        validityForSale:
+          description: |
+             indication when a card type is usable within a sales process to obtain reductions.                   
+          $ref: '#/components/schemas/MasterDataValidity'
+        validityForTravel:
+          description: |
+             indication when a card type is usable for  a travel to obtain reductions. The date range is related to the possible start of a travel.
+          $ref: '#/components/schemas/MasterDataValidity'         
         name:
           $ref: '#/components/schemas/Text'
         cardIdRequired:
@@ -15180,32 +15356,58 @@ components:
         This will allow to benefit from return-specific fares or product
 
       properties:
-        inwardReturnDate:
+        outboundOfferIds:
           description: |
-            Needs to be provided when creating the collection of outward travels so that the
-            provider knows when a return travel can be expected and propose appropriate
-            product and fares.
-          type:
-            - 'string'
-            - 'null'
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
-        outwardOfferIds:
-          description: |
-            Needs to be provided when creating the collection of inward travels so that the provider
-            can relate the inward travels to the outward travels context.
+            Needs to be provided when creating the collection of inbound travels so that the provider
+            can relate the inbound travels to the outbound travels context.
           type:
             - 'array'
             - 'null'
           items:
             type: string
             maxLength: 32768
-        outwardOfferTag:
+        outboundTripIds:
           description: |
-            Needs to be provided when creating the collection of inward travels so that the provider
-            knows what the outward offer is and and propose compatible offers only if desired or mandatory.
+            Needs to be provided when creating collection of offers covering both
+            outbound and inbound (return) journey.
+          type:
+            - 'array'
+            - 'null'
+          items:
+            type: string
+            maxLength: 32768
+        departureTime:
+          description: |
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
           type:
             - 'string'
             - 'null'
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+        arrivalTime:
+          description: |
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+          type:
+            - 'string'
+            - 'null'
+          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+        origin:
+          $ref: '#/components/schemas/PlaceRef'
+        destination:
+          $ref: '#/components/schemas/PlaceRef'
+        vias:
+          description: |
+            Ordered series of points where the journey must pass through. If more
+            than one via point is given all of them must be obeyed - in the correct
+            order. The server is allowed to replace a via stop by equivalent stops.
+
+            TripDataFilters given at a via apply to the section after that via. To apply a TripDataFilter for 
+            the first section (between the origin and the first via), use the TripDataFilter within the
+            TripParameters structure.
+          type: array
+          items:
+            $ref: '#/components/schemas/TripVia'
+        parameters:
+          $ref: '#/components/schemas/TripParameters'
 
     Route:
       type: object
@@ -16454,17 +16656,17 @@ components:
         - 'MOTOCYCLE'
         - 'TRAILER'
 
-    TravelAccountConsumption:
+    TravelAccountUsage:
       type: object
       additionalProperties: false
       required:
-        - consumedOn
+        - usedOn
         - bookingId
         - unit
         - bookingSummary
-        - consumedAmount
+        - usedAmount
       properties:
-        consumedOn:
+        usedOn:
           type: string
           format: date-time
         bookingId:
@@ -16475,7 +16677,7 @@ components:
           type: string
         tripSummary:
           $ref: '#/components/schemas/TripSummary'
-        consumedAmount:
+        usedAmount:
           type: integer
           format: int32
 
@@ -16494,7 +16696,7 @@ components:
       type: string
       enum:
         - 'ALL'
-        - 'CONSUMPTIONS'
+        - 'USAGE'
         - 'NONE'
       default: ALL
 
@@ -16545,10 +16747,10 @@ components:
               type: string
             regionalConstraint:
               $ref: '#/components/schemas/RegionalConstraint'
-            consumptions:
+            usage:
               type: array
               items:
-                $ref: '#/components/schemas/TravelAccountConsumption'
+                $ref: '#/components/schemas/TravelAccountUsage'
 
     TravelValidity:
       type: object
@@ -17835,7 +18037,7 @@ components:
         zones:
           type: array
           items:
-            $ref: '#/components/schemas/ZoneDefinition'
+            $ref: '#/components/schemas/ZoneSpecification'
 
     ZoneDefinition:
       type: object
@@ -17868,6 +18070,43 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceRef'
+
+    ZoneSpecification:
+      type: object
+      additionalProperties: false
+      description: |
+        Definition of a zone used to define regional validity. The area of the zone can be defined via a
+        geo-polygon, a complete list of all contained stations or area codes from the NUTS code list.
+        The carrier is either the carrier or transport authority responsible for the definition.
+      required:
+        - id
+        - carrier
+      properties:
+        id:
+          type: string
+        validity:
+          description: |
+            Validity of the zone definition for travel. The date range is related to the possible start of a travel.
+          $ref: '#/components/schemas/MasterDataValidity'  
+        name:
+          type:
+            - 'string'
+            - 'null'
+        carrier:
+          $ref: '#/components/schemas/CompanyRef'
+        polygon:
+          $ref: '#/components/schemas/Polygon'
+        nutsCodes:
+          type:
+            - 'array'
+            - 'null'
+          items:
+            type: string
+        places:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceRef'
+            
 
     NotificationEvent:
       description: |
@@ -18076,3 +18315,31 @@ components:
           format: url
           examples: 
             - "https://db.de/osdm/bookings/2345/fulfillments/ASBV"
+
+
+    MasterDataValidity:
+      type: object
+      description: |
+        Validity of masterdata. The dates might relate to the sales date or the travel date. It indicates the validity of masterdata 
+        not the validity of offers, bookings or fulfiullments related to the master data. 
+        When related to the sales process on historic data it is related to the createdOn timestamp of the booking part.
+        When related to the travel it indicates the validity of masterdata related to the travel (e.g. product definitions, zone definition). 
+        The dates related to the trael date must be provided in the offset format. 
+      required:
+        - validFrom
+        - validUntil     
+      properties:  
+        validFrom:
+            description: |
+                 start of the validity (inclusive)       
+            type: string
+            format: date-time
+            examples: 
+              - "2024-12-31T00:00:00+01:00"            
+        validUntil:
+            description: |
+                 end of the validity (exclusive)       
+            type: string
+            format: date-time
+            examples:
+              - "2025-12-31T00:00:00+01:00"           
