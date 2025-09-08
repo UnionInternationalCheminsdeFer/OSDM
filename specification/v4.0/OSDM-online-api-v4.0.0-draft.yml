@@ -4924,7 +4924,9 @@ security:
 webhooks:
   events:
     post:
+      summary: Event occurred
       description: An event has occurred
+      operationId: postEvent
       requestBody:
         description: Information about the event
         content:
@@ -6314,26 +6316,6 @@ components:
         - 'ROOF_RACK'
         - 'BICYCLE_STAND'
 
-    AvailabilityScope:
-      type: object
-      description:
-        fare or offerParts which should be covered by the available seats
-      required:
-        - reservationIds
-      properties:
-        singleSelectionMapsRequired:
-          description:
-            if true the place map must include places for a single reservation
-            or fare only
-          type: boolean
-          default: true
-        reservationIds:
-          type: array
-          minItems: 1
-          items:
-            description: reference to the reservation offer part or reservation booking part
-            type: string
-
 
     AvailabilityStatus:
       description: |
@@ -6957,13 +6939,6 @@ components:
         - 'EXCHANGE_ONGOING'
         - 'EXCHANGED'
         - 'ERROR'
-
-    FeeStatus:
-      type: string
-      enum:
-        - 'PREBOOKED'
-        - 'CONFIRMED'
-        - 'REFUNDED'
 
     BookingPartSummary:
       type: object
@@ -8767,23 +8742,6 @@ components:
             - string
             - 'null'
 
-    DirectionType:
-      description: |
-        Direction of a place, defined optional as it might be omitted in
-        case of berths in future. 
-        Code list according to UIC90918-1
-        Valid Values:
-        - RIGHT: to right
-        - LEFT: to left
-        - UP: up (from right side of a coach pointing to the middle of the aisle)
-        - DOWN: down (from right side of the coach pointing to the middle of the aisle)
-      type: string
-      enum:
-        - 'RIGHT'
-        - 'LEFT'
-        - 'UP'
-        - 'DOWN'
-
     DistributionMode:
       description: |
          booking parts in product mode are provided as complete products where the tickets and 
@@ -9244,7 +9202,7 @@ components:
                 type: string    
 
     ExchangeServiceOfferRequestSpecification:
-      desription: |
+      description: |
           specification to exchange the service level or travel class
       type: object
       additionalProperties: false
@@ -10519,22 +10477,6 @@ components:
           type: integer
           format: int32
 
-    IndicatedTravelAccountUsage:
-      type: object
-      additionalProperties: false
-      required:
-        - amount
-      properties:
-        amount:
-          type: integer
-          format: int32
-        scale:
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          default: 2
-
     IndividualMode:
       description: |
         Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
@@ -10689,108 +10631,6 @@ components:
           format: int32
           minimum: 0
 
-    LegacyAccountingIdentifier:
-      type: object
-      additionalProperties: false
-      description: |
-        identifier of the fare in the current 301 accounting file
-      required:
-        - serialId
-      properties:
-        serialId:
-          description: |
-            sequential number of regional validities
-          type: integer
-          format: int32
-          minimum: 0
-          maximum: 99999
-        addId:
-          description: |
-            Sequential number of regional validities (leading positions in case the series
-            is too short).
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
-          maximum: 99
-        tariffId:
-          description: |
-            Tariff id for the old series format.
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
-          maximum: 9999
-
-    LegacyReservationParameter:
-      type: object
-      additionalProperties: false
-      description: |
-        reservation parameter to support the UIC 90918-1 interface for booking
-      required:
-        - travelClass
-        - serviceLevelCode
-        - serviceCode
-      properties:
-        travelClass:
-          description: |
-            90918-1 class code in reservation
-          type: string
-        serviceLevelCode:
-          description: |
-            service level code defined in UIC 90918-1
-          type: string
-        serviceCode:
-          description: |
-            service code to be used in reservation
-          type: string
-        berthType:
-          description: |
-            berth type code in UIC 90918-1 to be used in reservation
-          type:
-            - 'string'
-            - 'null'
-        coachTypeCode:
-          description: |
-            coach type code in UIC 90918-1 to be used in reservation
-          type:
-            - 'string'
-            - 'null'
-        compartmentTypeCode:
-          description: |
-            compartment type code in UIC 90918-1 to be used in reservation
-          type:
-            - 'string'
-            - 'null'
-        tariffs:
-          description: |
-            tariff according to UIC 90918-1 to be used for booking
-          type: array
-          items:
-            $ref: '#/components/schemas/LegacyReservationTariff'
-
-    LegacyReservationTariff:
-      type: object
-      additionalProperties: false
-      description: |
-        Legacy tariff code and number of items or persons in case UIC 90918-1 is used for booking.
-      properties:
-        number:
-          description: |
-            number of items with this tariff code
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-        code:
-          description: |
-            legacy tariff code
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
     Line:
       type: object
       additionalProperties: false
@@ -11384,7 +11224,6 @@ components:
         startDateTime:
           type: string
           format: date-time
-          nullable: false
         routeSpecification:
           $ref: '#/components/schemas/RouteSpecification'
 
@@ -11421,8 +11260,6 @@ components:
           items:
             type: string
             maxLength: 32768
-            nullable: false
-          nullable: true
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
         tripResponseParameters:
@@ -11473,11 +11310,9 @@ components:
         startDateTime:
           type: string
           format: date-time
-          nullable: false
         endDateTime:
           type: string
           format: date-time
-          nullable: false
         timeFrameSegmentation:
           allOf:
             - $ref: '#/components/schemas/TimeFrameSegmentation'
@@ -12931,7 +12766,7 @@ components:
         details on a currency conversion applied
       required:  
         - originalCurrency
-        - origionalAmount
+        - originalAmount
       properties:
         description:
           description: |
@@ -13254,7 +13089,7 @@ components:
               - integer
               - 'null'
             format: int32
-            minValue: 1
+            minimum: 1
           externalPassengerRefs:
             type: array
             items:
@@ -13973,7 +13808,7 @@ components:
       type: object
       required:
         - refundFee
-        - refundableAmount
+        - refundAmount
         - bookingParts
       properties:
         refundFee:
@@ -14484,28 +14319,6 @@ components:
         - 'PROPOSED'
         - 'CONFIRMED'
 
-    RemarkType:
-      description: |
-        Remark concerning the place (e.g. to be used in a tool tip).
-        Code list according to UIC90918-1
-        Known Values:
-        - MIGHT_HAVE_TABLE: place might have a table
-        - MIGHT_NOT_HAVE_TABLE: table at the place might be missing
-        - MIGHT_HAVE_DIFFERENT_DIRECTION: place might have a different direction
-        - MIGHT_HAVE_TABLE_AND_DIFFERENT_DIRECTION: place might have a table and a different direction
-        - MIGHT_NOT_HAVE_TABLE_AND_MIGHT_HAVE_DIFFERENT_DIRECTION: table at the place might be missing and place might have a different direction
-        - MIGHT_BE_IN_COMPARTMENT: place might be in compartment
-        - MIGHT_BE_IN_OPEN_SPACE: place might be in open space
-      type: string
-      x-extensible-enum:
-        - 'MIGHT_HAVE_TABLE'
-        - 'MIGHT_NOT_HAVE_TABLE'
-        - 'MIGHT_HAVE_DIFFERENT_DIRECTION'
-        - 'MIGHT_HAVE_TABLE_AND_DIFFERENT_DIRECTION'
-        - 'MIGHT_NOT_HAVE_TABLE_AND_MIGHT_HAVE_DIFFERENT_DIRECTION'
-        - 'MIGHT_BE_IN_COMPARTMENT'
-        - 'MIGHT_BE_IN_OPEN_SPACE'
-
     RequestedInformation:
       type:
         - 'string'
@@ -14667,13 +14480,6 @@ components:
             on in case the offer was requested using the SPLIT_RESERVATION product tag
             an implementation is not recommended.
           $ref: '#/components/schemas/Section'
-
-
-    ResourceType:
-      type: string
-      enum:
-        - 'FARE'
-        - 'RESERVATION'
 
     ReturnConstraint:
       type: object
@@ -15128,16 +14934,6 @@ components:
       description: |
         Reference to situation message. Message details might be found in response
         context or through other communication channels. Provided by OJP.
-
-    SpecialCoachType:
-      description: |
-        indication of special coach
-      type: string
-      x-extensible-enum:
-        - 'RESTAURANT_COACH'
-        - 'BICYCLE_COACH'
-        - 'LUGGAGE_COACH'
-        - 'TRAIN_HEAD'
 
     SpecificPlaceAvailability:
       type: object
