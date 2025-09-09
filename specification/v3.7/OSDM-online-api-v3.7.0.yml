@@ -1133,7 +1133,7 @@ paths:
       tags:
         - Passengers
       summary: Allows updating a set of passengers in a batch at booking step.
-      operationId: patchBookingPassenger
+      operationId: patchBookingPassengers
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
