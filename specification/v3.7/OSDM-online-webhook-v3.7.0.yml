@@ -1,7 +1,7 @@
 openapi: 3.1.0
 servers:
-  - description: Localhost on port 8080
-    url: https://localhost:8080
+  - description: No server provided
+    url: /
 info:
   title: UIC 90918-10 - OSDM webhooks
   version: 3.7.0
@@ -24,13 +24,24 @@ paths:
       responses:
         "200":
           description: OK
+        "400":
+          description: Bad Request
+        "500":
+          description: internal server error
+        "501":
+          description: not implemented
+        "503":
+          description: service unavailable
 
-##
+security:
+  - oAuth2ClientCredentials: []
 
 webhooks:
   events:
     post:
+      summary: Event occured
       description: An event has occurred
+      operationId: postEvent
       requestBody:
         description: Information about the event
         content:
@@ -40,8 +51,6 @@ webhooks:
                 - $ref: "#/components/schemas/BookingEvent"
                 - $ref: "#/components/schemas/ComplaintEvent"
                 - $ref: "#/components/schemas/ReimbursementEvent"
-            discriminator:
-              propertyName: objectType
       responses:
         "200":
           description: OK
@@ -63,6 +72,17 @@ webhooks:
 ##
 
 components:
+  securitySchemes:
+    oAuth2ClientCredentials:
+      type: oauth2
+      description: |
+        See https://swagger.io/docs/specification/authentication/oauth2/
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://login.microsoftonline.com/tbd'
+          refreshUrl: 'https://refresh.url/tbd'
+          scopes: {}
+
   schemas:
     BookingEvent:
       type: object
