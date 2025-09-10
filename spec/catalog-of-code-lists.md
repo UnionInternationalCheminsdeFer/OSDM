@@ -614,126 +614,150 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
 ### Graphical Elements
 
-| Icon                                                             | Description                                                           | Icon Code | Code of Graphical Element   | Orientation Used | Mounting Used |
-| ---------------------------------------------------------------- | --------------------------------------------------------------------- | --------- | --------------------------- | ---------------- | ------------- |
-| ![](../images/catalog-of-code-lists/graphics-icons/image001.png) | seat                                                                  | 1         | SEAT                        | to right         | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image002.png) | seat                                                                  | 1         | SEAT                        | to left          | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image003.png) | seat                                                                  | 1         | SEAT                        | up               | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image004.png) | seat                                                                  | 1         | SEAT                        | bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image005.png) | berth                                                                 | 2         |                             | to left          | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image006.png) | berth                                                                 | 2         |                             | to right         | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image007.png) | couchette                                                             | 3         |                             | to right         | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image009.jpg) | couchette                                                             | 3         |                             | to left          | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon004.png)  | wheelchair space                                                      | 4         | WHEELCHAIR_SPACE            | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image010.png) | table                                                                 | 20        | TABLE                       | top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image011.png) | table                                                                 | 20        | TABLE                       | bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image012.png) | big table                                                             | 21        | BIG_TABLE                   | top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image013.png) | big table                                                             | 21        | BIG_TABLE                   | bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image014.png) | wall with angle to left, height covers three places                   | 24        | -                           | bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image015.png) | wall with angle to right, height covers three places                  | 25        | -                           | bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image016.png) | wall with angle to left, height covers three places                   | 24        | -                           | top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image017.png) | wall with angle to right, height covers three places                  | 25        | -                           | top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image018.png) | small wall with angle to left, height covers two places               | 27        | -                           | bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image019.png) | small wall with angle to right, height covers two places              | 28        | -                           | bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image020.png) | small wall with angle to left, height covers two places               | 27        | -                           | top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image021.png) | small wall with angle to right, height covers two places              | 28        | -                           | top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image022.png) | wall between two compartments, height covers three places             | 23        | -                           | bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image023.png) | wall between two compartments, height covers three places             | 23        | -                           | top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image024.png) | small wall between two compartments, height covers two places         | 26        | -                           | bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image025.png) | small wall between two compartments, height covers two places         | 26        | -                           | top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image026.png) | small wall between two compartments, height covers two places         | 29        | -                           | bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image026.png) | small wall between two compartments,height covers two places          | 29        | -                           | top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image027.png) | very small wall between two compartments, height covers one places    | 32        | -                           | bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image028.png) | Very small wall between two compartments, height covers one places    | 32        | -                           | top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image029.png) | end-to-end wall                                                       | 30        | -                           | top-to-bottom    | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image031.jpg) | Mobile wall between sleeping compartments, height covers three places | 31        | -                           |                  | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image032.png) | arrow indicating upper level                                          | 51        | -                           | top-to-bottom    | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image033.png) | arrow indicating lower level                                          | 52        | -                           | top-to-bottom    | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image034.png) | arrow indicating upper level                                          | 53        | -                           | top-to-bottom    | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image035.png) | arrow indicating lower level                                          | 54        | -                           | top-to-bottom    | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image037.png) | 2nd class area                                                        | 100       | SECOND_CLASS_AREA           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image036.png) | 1st class area                                                        | 101       | FIRST_CLASS_AREA            | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image041.png) | bar area                                                              | 102       | BAR_AREA                    | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image038.png) | mobile phone area                                                     | 103       | MOBILE_PHONE_AREA           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image039.png) | mobile phone forbidden area                                           | 104       | MOBILE_PHONE_FORBIDDEN_AREA | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image052.png) | PRM area                                                              | 105       | PRM_AREA                    | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image051.png) | family area                                                           | 106       | FAMILY_AREA                 | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image042.png) | restaurant area                                                       | 107       | RESTAURANT_AREA             | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image043.png) | bicycle area                                                          | 108       | BICYCLE_AREA                | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image044.png) | luggage area                                                          | 109       | LUGGAGE_AREA                | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image045.png) | luggage locker                                                        | 110       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image046.png) | conference compartment                                                | 111       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image050.png) | space for prams                                                       | 112       | PRAM_AREA                   | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image047.png) | wardrobe area                                                         | 113       | WARDROBE_AREA               | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image048.png) | dust bin                                                              | 114       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image055.png) | toilet                                                                | 115       | TOILET_AREA                 | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image040.png) | silence area                                                          | 116       | SILENCE_AREA                | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image049.png) | children play area                                                    | 117       | PLAYGROUND_AREA             | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image054.png) | Non-smoker area                                                       | 118       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image056.png) | power socket                                                          | 119       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image053.png) | Priority Seats                                                        | 120       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image058.jpg) | WiFi area                                                             | 130       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image060.jpg) | PRM toilet                                                            | 131       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image062.jpg) | Air condition                                                         | 132       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image064.jpg) | USB ports for charging                                                | 133       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image066.png) | Reclining seat                                                        | 134       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image067.png) | Window                                                                | 135       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image069.jpg) | stairs upwards                                                        | 136       | STAIR_UPWARDS_AREA          | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image070.jpg) | stairs downwards                                                      | 137       | STAIR_DOWNWARDS_AREA        | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image072.jpg) | Working compartment                                                   | 144       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image074.jpg) | Cabin for allergic passengers                                         | 145       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image076.jpg) | Meeting lounge for 7 persons (Pendolino)                              | 150       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image078.jpg) | Meeting lounge for 12 persons                                         | 151       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image080.jpg) | Area for skis                                                         | 154       | SKI_AREA                    | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image082.jpg) | Conductor working compartment                                         | 155       | STAFF_AREA                  | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image084.jpg) | Mobile phone booth                                                    | 156       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image086.jpg) | T-loop (audio induction loop)                                         | 158       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image088.jpg) | Pets area                                                             | 160       | PETS_AREA                   | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image090.jpg) | Sleeping cabin with toilet and shower                                 | 161       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image092.jpg) | interconnectible sleeping compartments                                | 162       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image094.jpg) | Shower                                                                | 163       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image096.jpg) | Baby-care table                                                       | 168       | BABY_CARE_TABLE             | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image098.jpg) | push-button operated wheelchair ramp                                  | 170       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image099.png) | Sink / washbasin                                                      | 171       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image101.jpg) | Ladies compartment                                                    | 172       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon174.png)  | Medium window, width covers two spaces                                | 174       | -                           | -                | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon175.png)  | Big window, width covers three spaces                                 | 175       | -                           | -                |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon176l.png) | Door with left opening (traditional)                                  | 176       | DOOR_OPENING_LEFT           | Left             | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon176t.png) | Door with left opening (traditional)                                  | 176       | DOOR_OPENING_LEFT           | Top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon176r.png) | Door with left opening (traditional)                                  | 176       | DOOR_OPENING_LEFT           | Right            | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon176b.png) | Door with left opening (traditional)                                  | 176       | DOOR_OPENING_LEFT           | Bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon177l.png) | Door with right opening (traditional)                                 | 177       | DOOR_OPENING_RIGHT          | Left             | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon177t.png) | Door with right opening (traditional)                                 | 177       | DOOR_OPENING_RIGHT          | Top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon177r.png) | Door with right opening (traditional)                                 | 177       | DOOR_OPENING_RIGHT          | Right            | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon177b.png) | Door with right opening (traditional)                                 | 177       | DOOR_OPENING_RIGHT          | Bottom           | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon178l.png) | Door (sliding)                                                        | 178       | SLIDING_DOOR                | Left             | bottom        |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon178t.png) | Door (sliding)                                                        | 178       | SLIDING_DOOR                | Top              | right         |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon179l.png) | Entry/Exit                                                            | 179       | ENTRY_EXIT                  | Left             | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon179t.png) | Entry/Exit                                                            | 179       | ENTRY_EXIT                  | Top              | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon179r.png) | Entry/Exit                                                            | 179       | ENTRY_EXIT                  | Right            | -             |
-| ![](../images/catalog-of-code-lists/graphics-icons/icon179b.png) | Entry/Exit                                                            | 179       | ENTRY_EXIT                  | Bottom           | -             |
+| Icon                                                             | Description                                                           | Icon Code | Code of Graphical Element     | Orientation Used | Mounting Used |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------- | --------- | ----------------------------- | ---------------- | ------------- |
+| ![](../images/catalog-of-code-lists/graphics-icons/image001.png) | seat                                                                  | 1         | `SEAT`                        | to right         | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image002.png) | seat                                                                  | 1         | `SEAT`                        | to left          | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image003.png) | seat                                                                  | 1         | `SEAT`                        | up               | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image004.png) | seat                                                                  | 1         | `SEAT`                        | bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image005.png) | berth                                                                 | 2         |                               | to left          | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image006.png) | berth                                                                 | 2         |                               | to right         | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image007.png) | couchette                                                             | 3         |                               | to right         | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image009.jpg) | couchette                                                             | 3         |                               | to left          | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon004.png)  | wheelchair space                                                      | 4         | `WHEELCHAIR_SPACE`            | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image010.png) | table                                                                 | 20        | `TABLE`                       | top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image011.png) | table                                                                 | 20        | `TABLE`                       | bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image012.png) | big table                                                             | 21        | `BIG_TABLE`                   | top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image013.png) | big table                                                             | 21        | `BIG_TABLE`                   | bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image014.png) | wall with angle to left, height covers three places                   | 24        | -                             | bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image015.png) | wall with angle to right, height covers three places                  | 25        | -                             | bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image016.png) | wall with angle to left, height covers three places                   | 24        | -                             | top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image017.png) | wall with angle to right, height covers three places                  | 25        | -                             | top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image018.png) | small wall with angle to left, height covers two places               | 27        | -                             | bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image019.png) | small wall with angle to right, height covers two places              | 28        | -                             | bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image020.png) | small wall with angle to left, height covers two places               | 27        | -                             | top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image021.png) | small wall with angle to right, height covers two places              | 28        | -                             | top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image022.png) | wall between two compartments, height covers three places             | 23        | -                             | bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image023.png) | wall between two compartments, height covers three places             | 23        | -                             | top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image024.png) | small wall between two compartments, height covers two places         | 26        | -                             | bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image025.png) | small wall between two compartments, height covers two places         | 26        | -                             | top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image026.png) | small wall between two compartments, height covers two places         | 29        | -                             | bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image026.png) | small wall between two compartments,height covers two places          | 29        | -                             | top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image027.png) | very small wall between two compartments, height covers one places    | 32        | -                             | bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image028.png) | Very small wall between two compartments, height covers one places    | 32        | -                             | top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image029.png) | end-to-end wall                                                       | 30        | -                             | top-to-bottom    | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image031.jpg) | Mobile wall between sleeping compartments, height covers three places | 31        | -                             |                  | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image032.png) | arrow indicating upper level                                          | 51        | -                             | top-to-bottom    | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image033.png) | arrow indicating lower level                                          | 52        | -                             | top-to-bottom    | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image034.png) | arrow indicating upper level                                          | 53        | -                             | top-to-bottom    | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image035.png) | arrow indicating lower level                                          | 54        | -                             | top-to-bottom    | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image037.png) | 2nd class area                                                        | 100       | `SECOND_CLASS_AREA`           | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image036.png) | 1st class area                                                        | 101       | `FIRST_CLASS_AREA`            | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image041.png) | bar area                                                              | 102       | `BAR_AREA`                    | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image038.png) | mobile phone area                                                     | 103       | `MOBILE_PHONE_AREA`           | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image039.png) | mobile phone forbidden area                                           | 104       | `MOBILE_PHONE_FORBIDDEN_AREA` | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image052.png) | PRM area                                                              | 105       | `PRM_AREA`                    | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image051.png) | family area                                                           | 106       | `FAMILY_AREA`                 | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image042.png) | restaurant area                                                       | 107       | `RESTAURANT_AREA`             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image043.png) | bicycle area                                                          | 108       | `BICYCLE_AREA`                | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image044.png) | luggage area                                                          | 109       | `LUGGAGE_AREA`                | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image045.png) | luggage locker                                                        | 110       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image046.png) | conference compartment                                                | 111       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image050.png) | space for prams                                                       | 112       | `PRAM_AREA`                   | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image047.png) | wardrobe area                                                         | 113       | `WARDROBE_AREA`               | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image048.png) | dust bin                                                              | 114       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image055.png) | toilet                                                                | 115       | `TOILET_AREA`                 | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image040.png) | silence area                                                          | 116       | `SILENCE_AREA`                | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image049.png) | children play area                                                    | 117       | `PLAYGROUND_AREA`             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image054.png) | Non-smoker area                                                       | 118       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image056.png) | power socket                                                          | 119       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image053.png) | Priority Seats                                                        | 120       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image058.jpg) | WiFi area                                                             | 130       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image060.jpg) | PRM toilet                                                            | 131       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image062.jpg) | Air condition                                                         | 132       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image064.jpg) | USB ports for charging                                                | 133       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image066.png) | Reclining seat                                                        | 134       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image067.png) | Window                                                                | 135       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image069.jpg) | stairs upwards                                                        | 136       | `STAIR_UPWARDS_AREA`          | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image070.jpg) | stairs downwards                                                      | 137       | `STAIR_DOWNWARDS_AREA`        | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image072.jpg) | Working compartment                                                   | 144       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image074.jpg) | Cabin for allergic passengers                                         | 145       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image076.jpg) | Meeting lounge for 7 persons (Pendolino)                              | 150       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image078.jpg) | Meeting lounge for 12 persons                                         | 151       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image080.jpg) | Area for skis                                                         | 154       | `SKI_AREA`                    | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image082.jpg) | Conductor working compartment                                         | 155       | `STAFF_AREA`                  | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image084.jpg) | Mobile phone booth                                                    | 156       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image086.jpg) | T-loop (audio induction loop)                                         | 158       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image088.jpg) | Pets area                                                             | 160       | `PETS_AREA`                   | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image090.jpg) | Sleeping cabin with toilet and shower                                 | 161       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image092.jpg) | interconnectible sleeping compartments                                | 162       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image094.jpg) | Shower                                                                | 163       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image096.jpg) | Baby-care table                                                       | 168       | `BABY_CARE_TABLE`             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image098.jpg) | push-button operated wheelchair ramp                                  | 170       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image099.png) | Sink / washbasin                                                      | 171       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image101.jpg) | Ladies compartment                                                    | 172       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon174.png)  | Medium window, width covers two spaces                                | 174       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon175.png)  | Big window, width covers three spaces                                 | 175       | -                             | -                | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon176l.png) | Door with left opening (traditional)                                  | 176       | `DOOR_OPENING_LEFT`           | Left             | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon176t.png) | Door with left opening (traditional)                                  | 176       | `DOOR_OPENING_LEFT`           | Top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon176r.png) | Door with left opening (traditional)                                  | 176       | `DOOR_OPENING_LEFT`           | Right            | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon176b.png) | Door with left opening (traditional)                                  | 176       | `DOOR_OPENING_LEFT`           | Bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon177l.png) | Door with right opening (traditional)                                 | 177       | `DOOR_OPENING_RIGHT`          | Left             | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon177t.png) | Door with right opening (traditional)                                 | 177       | `DOOR_OPENING_RIGHT`          | Top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon177r.png) | Door with right opening (traditional)                                 | 177       | `DOOR_OPENING_RIGHT`          | Right            | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon177b.png) | Door with right opening (traditional)                                 | 177       | `DOOR_OPENING_RIGHT`          | Bottom           | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon178l.png) | Door (sliding)                                                        | 178       | `SLIDING_DOOR`                | Left             | bottom        |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon178t.png) | Door (sliding)                                                        | 178       | `SLIDING_DOOR`                | Top              | right         |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon179l.png) | Entry/Exit                                                            | 179       | `ENTRY_EXIT`                  | Left             | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon179t.png) | Entry/Exit                                                            | 179       | `ENTRY_EXIT`                  | Top              | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon179r.png) | Entry/Exit                                                            | 179       | `ENTRY_EXIT`                  | Right            | -             |
+| ![](../images/catalog-of-code-lists/graphics-icons/icon179b.png) | Entry/Exit                                                            | 179       | `ENTRY_EXIT`                  | Bottom           | -             |
+| to do                                                            | Driver Area                                                           | -         | `DRIVER_AREA`                 | -                | -             |
+| to do                                                            | Driver Area Tram                                                      | -         | `TRAIN_DRIVER_AREA`           | -                | -             |
+| to do                                                            | Driver Area Bus                                                       | -         | `BUS_DRIVER_AREA`             | -                | -             |
+| to do                                                            | Coach passage                                                         | -         | `COACH_PASSAGE`               | -                | -             |
+| to do                                                            | Coach wall - no passage                                               | -         | `COACH_WALL_NO_PASSAGE`       | -                | -             |
+| to do                                                            | Compartment wall                                                      | -         | `COMPARTEMENT_WALL`           | -                | -             |
+| to do                                                            | Compartment Passage                                                   | -         | `COMPARTEMENT_PASSAGE`        | -                | -             |
+| to do                                                            | Compartment Passage Low (first floor)                                 | -         | `COMPARTEMENT_PASSAGE_LOW`    | -                | -             |
+| to do                                                            | Compartment Passage High (second floor)                               | -         | `COMPARTEMENT_PASSAGE_HIGH`   | -                | -             |
+| to do                                                            | Table Restaurant                                                      | -         | `TABLE_RESTAURANT`            | -                | -             |
+| to do                                                            | Multi Function Area                                                   | -         | `MULTI_FUNCTION_AREA`         | -                | -             |
 
 ### Service Icons
 
-| Icons concerning the entire coach                                | description                                | icon code |
-| ---------------------------------------------------------------- | ------------------------------------------ | --------- |
-| ![](../images/catalog-of-code-lists/graphics-icons/image102.png) | 1st class coach                            | 121       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image103.png) | 2nd class coach                            | 122       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image104.png) | mobile phone coach                         | 127       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image105.png) | mobile phone forbidden in the entire coach | 128       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image106.png) | silence coach                              | 126       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image107.png) | coffee bar                                 | 123       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image108.png) | dining car                                 | 124       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image109.png) | bicycle coach                              | 125       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image110.png) | mixed group/individual coach               | 129       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image112.jpg) | WiFi area                                  | 139       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image114.jpg) | Air condition                              | 140       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image116.jpg) | USB ports for charging                     | 141       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image118.jpg) | business class                             | 142       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image119.png) | panorama coach                             | 143       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image121.jpg) | luggage coach                              | 173       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image123.jpg) | sleeping car                               | 174       |
-| ![](../images/catalog-of-code-lists/graphics-icons/image125.jpg) | car-carrier                                | 175       |
+| Icons concerning the entire coach                                | description                                | icon code | Code of Service Icon          |
+| ---------------------------------------------------------------- | ------------------------------------------ | --------- | ----------------------------- |
+| ![](../images/catalog-of-code-lists/graphics-icons/image102.png) | 1st class coach                            | 121       | `FIRST_CLASS_ICON`            |
+| ![](../images/catalog-of-code-lists/graphics-icons/image103.png) | 2nd class coach                            | 122       | `SECOND_CLASS_ICON`           |
+| ![](../images/catalog-of-code-lists/graphics-icons/image104.png) | mobile phone coach                         | 127       | `MOBILE_PHONE_ICON`           |
+| ![](../images/catalog-of-code-lists/graphics-icons/image105.png) | mobile phone forbidden in the entire coach | 128       | `MOBILE_PHONE_FORBIDDEN_ICON` |
+| ![](../images/catalog-of-code-lists/graphics-icons/image106.png) | silence coach                              | 126       | `SILENCE_ICON`                |
+| ![](../images/catalog-of-code-lists/graphics-icons/image107.png) | bistro                                     | 123       | `BISTRO_ICON`                 |
+| ![](../images/catalog-of-code-lists/graphics-icons/image108.png) | restaurant car                             | 124       | `RESTAURANT_ICON`             |
+| ![](../images/catalog-of-code-lists/graphics-icons/image109.png) | bicycle coach                              | 125       | `BICYCLE_ICON`                |
+| to do | bicycle coach (lower hock)                 | -         | `BICYCLE_LOW_ICON`            |
+| to do | bicycle coach (middle hock)                | -         | `BICYCLE_MIDDLE_ICON`         |
+| to do | bicycle coach (upper hock)                 | -         | `BICYCLE_UPPER_ICON`          |
+| ![](../images/catalog-of-code-lists/graphics-icons/image110.png) | mixed group/individual coach               | 129       | `MIXED_GROUP_ICON`            |
+| ![](../images/catalog-of-code-lists/graphics-icons/image112.jpg) | WiFi area                                  | 139       | `WIFI_ICON`                   |
+| ![](../images/catalog-of-code-lists/graphics-icons/image114.jpg) | air condition                              | 140       | `AC_ICON`                     |
+| ![](../images/catalog-of-code-lists/graphics-icons/image116.jpg) | USB ports for charging                     | 141       | `USB_PORT_ICON`               |
+| ![](../images/catalog-of-code-lists/graphics-icons/image118.jpg) | business class                             | 142       | `BUSINESS_ICON`               |
+| ![](../images/catalog-of-code-lists/graphics-icons/image119.png) | panorama coach                             | 143       | `PANORAMA_ICON`               |
+| ![](../images/catalog-of-code-lists/graphics-icons/image121.jpg) | luggage coach                              | 173       | `LUGGAGE_ICON`                |
+| ![](../images/catalog-of-code-lists/graphics-icons/image123.jpg) | sleeping car                               | 174       | `SLEEPING_CAR_ICON`           |
+| ![](../images/catalog-of-code-lists/graphics-icons/image125.jpg) | car-carrier                                | 175       | `CAR_CARRIER_ICON`            |
+| to do                                                            | multi function                             | -         | `MULTI_FUNCTION_ICON`         |
+| to do                                                            | wheelchair                                 | -         | `WHEELCHAIR_ICON`             |
+| to do                                                            | pram                                       | -         | `PRAM_ICON`                   |
+| to do                                                            | playground                                 | -         | `PLAYGROUND_ICON`             |
+| to do                                                            | easy access                                | -         | `EASY_ACCESS_ICON`            |
+| to do                                                            | toilet                                     | -         | `TOILET_ICON`                 |
+| to do                                                            | toilet for PRM                             | -         | `TOILET_PRM_ICON`             |
+| to do                                                            | toilet for pram                            | -         | `TOILET_PRAM_ICON`            |
+| to do                                                            | ski                                        | -         | `SKI_ICON`                    |
+| to do                                                            | trolley                                    | -         | `TROLLEY_ICON`                |
 
 ## Interface Type <a name="InterfaceType">
 
@@ -916,12 +940,12 @@ required.
 
 ## Product Tags <a name="ProductTags">
 
-| Code              | Description                                                                                                                                                                                                                                                                                                                                                                                              |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SPLIT_RESERVATION | Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation Without this indication the provider is not allowed to use the SplitSection Object inside a reservation. The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover a full leg multiple reservations as offerParts should be created. |
-| Product Types     | All product types can be used as Product Tags in the search                                                                                                                                                                                                                                                                                                                                              |
-| CARD_LOST         | Tag used to request a non-trip offer to replace a lost card. This applies to physical cards only.                                                                                                                                                                                                                                                                                                        |
-| TICKET_LOST       | Tag used to request a non-trip offer to replace a lost ticket. This applies to physical tickts only.                                                                                                                                                                                                                                                                                                     |
+| Code                | Description                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SPLIT_RESERVATION` | Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation Without this indication the provider is not allowed to use the SplitSection Object inside a reservation. The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover a full leg multiple reservations as offerParts should be created. |
+| `PRODUCT_TYPES`     | All product types can be used as Product Tags in the search                                                                                                                                                                                                                                                                                                                                              |
+| `CARD_LOST`         | Tag used to request a non-trip offer to replace a lost card. This applies to physical cards only.                                                                                                                                                                                                                                                                                                        |
+| `TICKET_LOST`       | Tag used to request a non-trip offer to replace a lost ticket. This applies to physical tickts only.                                                                                                                                                                                                                                                                                                     |
 
 ## Product Types <a name="ProductTypes">
 
@@ -944,9 +968,9 @@ see Transport Modes
 
 ## Point of Interest (POI) <a name="PointOfInterrest">
 
-POICodeList: By default the code list is set to UIC.
-
-POICode: Values are depending on code list and set is too large to be reproduced
+- `POICodeList`: By default the code list is set to UIC.
+- `POICode`: Values are depending on code list and set is too large to be
+  reproduced
 
 ## Reduction cards <a name="ReductionCard">
 
@@ -1424,10 +1448,10 @@ Corresponding to numerical codes in TAP-TSI (B.2.3) / UIC
 | `COACH_GROUP`       | Group of coaches included in multiple trains (through coaches) | 31                 |
 | `SHIP`              |                                                                | 33                 |
 | `BUS`               |                                                                | 32                 |
-| 'ON_DEMAND_SERVICE' |                                                                |                    |
-| 'BICYCLE'           |                                                                |                    |
-| 'SCOOTER'           |                                                                |                    |
-| 'TAXI'              |                                                                |                    |
+| `ON_DEMAND_SERVICE` |                                                                |                    |
+| `BICYCLE`           |                                                                |                    |
+| `SCOOTER`           |                                                                |                    |
+| `TAXI`              |                                                                |                    |
 
 ## TransactionType <a name="TransactionType">
 
@@ -1444,13 +1468,13 @@ Transaction type used in after sales rules for fares.
 
 ## Travel Account Types <a name="TravelAccountType">
 
-| Code           | Description                                                              |
-| -------------- | ------------------------------------------------------------------------ |
-| TRAVEL_PASS    | A travel account or card that also serves as ticket in some area         |
-| REDUCTION_CARD | A customer card providing reductions                                     |
-| MULTI_RIDE     | A travel account that provides a limited number of trips or item         |
-| LOYALTY_CARD   | A customer/traveler card that only serves to collect loyality incentives |
-| LINKED_TICKET  | A travel account that is only valid with a given other travel account    |
+| Code             | Description                                                              |
+| ---------------- | ------------------------------------------------------------------------ |
+| `TRAVEL_PASS`    | A travel account or card that also serves as ticket in some area         |
+| `REDUCTION_CARD` | A customer card providing reductions                                     |
+| `MULTI_RIDE`     | A travel account that provides a limited number of trips or item         |
+| `LOYALTY_CARD`   | A customer/traveler card that only serves to collect loyality incentives |
+| `LINKED_TICKET`  | A travel account that is only valid with a given other travel account    |
 
 ## TravelDirection <a name="TravelDirection">
 
