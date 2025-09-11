@@ -10713,17 +10713,6 @@ components:
         amount:
           type: integer
           format: int32
-
-
-    IndicatedTravelAccountUsage:
-      type: object
-      additionalProperties: false
-      required:
-        - amount
-      properties:
-        amount:
-          type: integer
-          format: int32
         scale:
           type:
             - 'integer'
@@ -12155,7 +12144,7 @@ components:
           $ref: '#/components/schemas/AccessFeature'          
         accessFeatureCount:
           type: integer
-          formast: int32
+          format: int32
           minValue: 0
         accessFeatureStatus:
           $ref: '#/components/schemas/AccessFeatureStatus'       
