@@ -9735,10 +9735,14 @@ components:
         - $ref: '#/components/schemas/PlaceRef'
         - type: object
           additionalProperties: false
+          required:
+            - fareConnectionPoint
           properties:
+            fareConnectionPoint:
+              $ref: '#/components/schemas/FareConnectionPoint'          
             name:
               type: string
-              nullable: true
+              nullable: true          
 
     FareReferenceStation:
       type: object
