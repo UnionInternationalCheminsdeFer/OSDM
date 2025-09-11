@@ -726,38 +726,38 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
 ### Service Icons
 
-| Icons concerning the entire coach                                | description                                | icon code | Code of Service Icon          |
-| ---------------------------------------------------------------- | ------------------------------------------ | --------- | ----------------------------- |
-| ![](../images/catalog-of-code-lists/graphics-icons/image102.png) | 1st class coach                            | 121       | `FIRST_CLASS_ICON`            |
-| ![](../images/catalog-of-code-lists/graphics-icons/image103.png) | 2nd class coach                            | 122       | `SECOND_CLASS_ICON`           |
-| ![](../images/catalog-of-code-lists/graphics-icons/image104.png) | mobile phone coach                         | 127       | `MOBILE_PHONE_ICON`           |
-| ![](../images/catalog-of-code-lists/graphics-icons/image105.png) | mobile phone forbidden in the entire coach | 128       | `MOBILE_PHONE_FORBIDDEN_ICON` |
-| ![](../images/catalog-of-code-lists/graphics-icons/image106.png) | silence coach                              | 126       | `SILENCE_ICON`                |
-| ![](../images/catalog-of-code-lists/graphics-icons/image107.png) | bistro                                     | 123       | `BISTRO_ICON`                 |
-| ![](../images/catalog-of-code-lists/graphics-icons/image108.png) | restaurant car                             | 124       | `RESTAURANT_ICON`             |
-| ![](../images/catalog-of-code-lists/graphics-icons/image109.png) | bicycle coach                              | 125       | `BICYCLE_ICON`                |
-| to do | bicycle coach (lower hock)                 | -         | `BICYCLE_LOW_ICON`            |
-| to do | bicycle coach (middle hock)                | -         | `BICYCLE_MIDDLE_ICON`         |
-| to do | bicycle coach (upper hock)                 | -         | `BICYCLE_UPPER_ICON`          |
-| ![](../images/catalog-of-code-lists/graphics-icons/image110.png) | mixed group/individual coach               | 129       | `MIXED_GROUP_ICON`            |
-| ![](../images/catalog-of-code-lists/graphics-icons/image112.jpg) | WiFi area                                  | 139       | `WIFI_ICON`                   |
-| ![](../images/catalog-of-code-lists/graphics-icons/image114.jpg) | air condition                              | 140       | `AC_ICON`                     |
-| ![](../images/catalog-of-code-lists/graphics-icons/image116.jpg) | USB ports for charging                     | 141       | `USB_PORT_ICON`               |
-| ![](../images/catalog-of-code-lists/graphics-icons/image118.jpg) | business class                             | 142       | `BUSINESS_ICON`               |
-| ![](../images/catalog-of-code-lists/graphics-icons/image119.png) | panorama coach                             | 143       | `PANORAMA_ICON`               |
-| ![](../images/catalog-of-code-lists/graphics-icons/image121.jpg) | luggage coach                              | 173       | `LUGGAGE_ICON`                |
-| ![](../images/catalog-of-code-lists/graphics-icons/image123.jpg) | sleeping car                               | 174       | `SLEEPING_CAR_ICON`           |
-| ![](../images/catalog-of-code-lists/graphics-icons/image125.jpg) | car-carrier                                | 175       | `CAR_CARRIER_ICON`            |
-| to do                                                            | multi function                             | -         | `MULTI_FUNCTION_ICON`         |
-| to do                                                            | wheelchair                                 | -         | `WHEELCHAIR_ICON`             |
-| to do                                                            | pram                                       | -         | `PRAM_ICON`                   |
-| to do                                                            | playground                                 | -         | `PLAYGROUND_ICON`             |
-| to do                                                            | easy access                                | -         | `EASY_ACCESS_ICON`            |
-| to do                                                            | toilet                                     | -         | `TOILET_ICON`                 |
-| to do                                                            | toilet for PRM                             | -         | `TOILET_PRM_ICON`             |
-| to do                                                            | toilet for pram                            | -         | `TOILET_PRAM_ICON`            |
-| to do                                                            | ski                                        | -         | `SKI_ICON`                    |
-| to do                                                            | trolley                                    | -         | `TROLLEY_ICON`                |
+| Icons concerning the entire coach                                           | description                                | icon code | Code of Service Icon          |
+| --------------------------------------------------------------------------- | ------------------------------------------ | --------- | ----------------------------- |
+| ![](../images/catalog-of-code-lists/graphics-icons/image102.png)            | 1st class coach                            | 121       | `FIRST_CLASS_ICON`            |
+| ![](../images/catalog-of-code-lists/graphics-icons/image103.png)            | 2nd class coach                            | 122       | `SECOND_CLASS_ICON`           |
+| ![](../images/catalog-of-code-lists/graphics-icons/image104.png)            | mobile phone coach                         | 127       | `MOBILE_PHONE_ICON`           |
+| ![](../images/catalog-of-code-lists/graphics-icons/image105.png)            | mobile phone forbidden in the entire coach | 128       | `MOBILE_PHONE_FORBIDDEN_ICON` |
+| ![](../images/catalog-of-code-lists/graphics-icons/image106.png)            | silence coach                              | 126       | `SILENCE_ICON`                |
+| ![](../images/catalog-of-code-lists/graphics-icons/image107.png)            | bistro                                     | 123       | `BISTRO_ICON`                 |
+| ![](../images/catalog-of-code-lists/graphics-icons/image108.png)            | restaurant car                             | 124       | `RESTAURANT_ICON`             |
+| ![](../images/catalog-of-code-lists/graphics-icons/BICYCLE_ICON.png)        | bicycle coach                              | 125       | `BICYCLE_ICON`                |
+| ![](../images/catalog-of-code-lists/graphics-icons/BICYCLE_LOW_ICON.png)    | bicycle coach (lower hock)                 | -         | `BICYCLE_LOW_ICON`            |
+| ![](../images/catalog-of-code-lists/graphics-icons/BICYCLE_MIDDLE_ICON.png) | bicycle coach (middle hock)                | -         | `BICYCLE_MIDDLE_ICON`         |
+| ![](../images/catalog-of-code-lists/graphics-icons/BICYCLE_HIGH_ICON.png)   | bicycle coach (upper hock)                 | -         | `BICYCLE_UPPER_ICON`          |
+| ![](../images/catalog-of-code-lists/graphics-icons/image110.png)            | mixed group/individual coach               | 129       | `MIXED_GROUP_ICON`            |
+| ![](../images/catalog-of-code-lists/graphics-icons/image112.jpg)            | WiFi area                                  | 139       | `WIFI_ICON`                   |
+| ![](../images/catalog-of-code-lists/graphics-icons/image114.jpg)            | air condition                              | 140       | `AC_ICON`                     |
+| ![](../images/catalog-of-code-lists/graphics-icons/image116.jpg)            | USB ports for charging                     | 141       | `USB_PORT_ICON`               |
+| ![](../images/catalog-of-code-lists/graphics-icons/image118.jpg)            | business class                             | 142       | `BUSINESS_ICON`               |
+| ![](../images/catalog-of-code-lists/graphics-icons/image119.png)            | panorama coach                             | 143       | `PANORAMA_ICON`               |
+| ![](../images/catalog-of-code-lists/graphics-icons/image121.jpg)            | luggage coach                              | 173       | `LUGGAGE_ICON`                |
+| ![](../images/catalog-of-code-lists/graphics-icons/image123.jpg)            | sleeping car                               | 174       | `SLEEPING_CAR_ICON`           |
+| ![](../images/catalog-of-code-lists/graphics-icons/image125.jpg)            | car-carrier                                | 175       | `CAR_CARRIER_ICON`            |
+| ![](../images/catalog-of-code-lists/graphics-icons/MULTI_FUNCTION_ICON.png) | multi function                             | -         | `MULTI_FUNCTION_ICON`         |
+| ![](../images/catalog-of-code-lists/graphics-icons/WHEELCHAIR_ICON.png)    | wheelchair                                 | -         | `WHEELCHAIR_ICON`             |
+| ![](../images/catalog-of-code-lists/graphics-icons/PRAM_ICON.png)          | pram                                       | -         | `PRAM_ICON`                   |
+| ![](../images/catalog-of-code-lists/graphics-icons/PLAYGROUND_ICON.png)   | playground                                 | -         | `PLAYGROUND_ICON`             |
+| ![](../images/catalog-of-code-lists/graphics-icons/EASY_ACCESS_ICON.png)  | easy access                                | -         | `EASY_ACCESS_ICON`            |
+| ![](../images/catalog-of-code-lists/graphics-icons/TOILET_ICON.png)       | toilet                                     | -         | `TOILET_ICON`                 |
+| ![](../images/catalog-of-code-lists/graphics-icons/TOILET_WHEELCHAIR_ICON.png)  | toilet supporting wheelchairs                           | -         | `TOILET_PRM_ICON`             |
+| ![](../images/catalog-of-code-lists/graphics-icons/TOILET_PRAM_ICON.png) | toilet for pram                            | -         | `TOILET_PRAM_ICON`            |
+| ![](../images/catalog-of-code-lists/graphics-icons/SKI_ICON.png)         | ski                                        | -         | `SKI_ICON`                    |
+| ![](../images/catalog-of-code-lists/graphics-icons/TROLLEY_ICON.png)    | trolley                                    | -         | `TROLLEY_ICON`                |
 
 ## Interface Type <a name="InterfaceType">
 
