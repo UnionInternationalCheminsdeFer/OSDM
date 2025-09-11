@@ -10720,7 +10720,7 @@ components:
           format: int32
           default: 2
 
-    IndividualMode:
+    PersonalMode:
       description: |
         Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
       type: string
@@ -12070,8 +12070,8 @@ components:
           description: azimuth, 0 = north
           type: integer
           format: int32
-          minValue: 0
-          maxValue: 360
+          minimum: 0
+          maximum: 360
         situationRefs:
           type: array
           items:
@@ -12145,7 +12145,7 @@ components:
         accessFeatureCount:
           type: integer
           format: int32
-          minValue: 0
+          minimum: 0
         accessFeatureStatus:
           $ref: '#/components/schemas/AccessFeatureStatus'       
         accessibilityFeatures:
@@ -12472,8 +12472,8 @@ components:
           - number
           - 'null'
         format: float
-        minValue: 0.0
-        maxValue: 100.0        
+        minimum: 0.0
+        maximum: 100.0        
 
     PersonDetail:
       type: object
