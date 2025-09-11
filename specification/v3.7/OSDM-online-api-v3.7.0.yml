@@ -10296,7 +10296,12 @@ components:
       allOf:
         - $ref: '#/components/schemas/PlaceRef'
         - type: object
-          additionalProperties: false
+          additionalProperties: false        
+          required:
+            - fareConnectionPoint
+          properties:
+            fareConnectionPoint:
+              $ref: '#/components/schemas/FareConnectionPoint'
           properties:
             name:
               type: string
