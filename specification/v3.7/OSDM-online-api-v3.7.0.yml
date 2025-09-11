@@ -10302,7 +10302,6 @@ components:
           properties:
             fareConnectionPoint:
               $ref: '#/components/schemas/FareConnectionPoint'
-          properties:
             name:
               type: string
               nullable: true
