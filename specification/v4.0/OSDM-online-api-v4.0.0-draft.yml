@@ -12136,7 +12136,6 @@ components:
       description: |
         guidance path link decribing change of level, provided by OJP 2.0
       additionalProperties: false
-      required:
       properties:         
         transition:
           $ref: '#/components/schemas/PathGuidanceTransition'       
