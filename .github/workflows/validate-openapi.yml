@@ -1,0 +1,27 @@
+name: Validate OpenAPI Documents
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: latest
+
+      - name: Install redocly cli
+        run: npm i -g @redocly/cli@latest
+
+      - name: Validate OpenAPI documents
+        run: redocly lint --format=github-actions specification/**/*.yml
