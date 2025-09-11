@@ -5488,7 +5488,7 @@ components:
           type: string
 
     AccessibilityFeature:
-      desciption: accessibility features, provided by OJP 2.0
+      description: accessibility features, provided by OJP 2.0
       type: string
       x-extensible-enumeration:   
         - 'LOW_FLOOR_ACCESS'
@@ -15700,13 +15700,13 @@ components:
             - 'FULLY_BOOKED'
             - 'NO_RESTAURANT_SERVICE'
             - 'OPEN'
-          mobilityImpairedAccess:
-            type: boolean
-          travelerInformations:
-            description: human readable information on features of the coach (e.g. family compartment, dining car)
-            type: array
-            items: 
-              type: string
+        mobilityImpairedAccess:
+          type: boolean
+        travelerInformations:
+          description: human readable information on features of the coach (e.g. family compartment, dining car)
+          type: array
+          items: 
+            type: string
 
     BoardingPositionAssignment:
       type: object
@@ -16177,7 +16177,7 @@ components:
         parallelServices:
           type: array
           items:
-            $ref: '#/components/schemas/DatedJourney'
+            $ref: '#/components/schemas/ParallelService'
         co2Emission:
           $ref: '#/components/schemas/Quantity'
         attributes:
@@ -16189,7 +16189,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        service description of services running in parallel to the definedmain service (OJP 2.0)
+        service description of services running in parallel to the defined main service (OJP 2.0)
         - different service numbers for train parts 
         - different service produc categories / service brands along a leg
       required:
