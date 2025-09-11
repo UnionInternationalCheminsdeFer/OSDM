@@ -5523,7 +5523,7 @@ components:
         - 'VALIDATOR'
 
     AccessFeature:
-      desciption:  types of features for a guidance path transition, provided by OJP 2.0
+      description:  types of features for a guidance path transition, provided by OJP 2.0
       type: string
       x-extensible-enumeration:     
         - 'ELEVATOR'
@@ -5539,7 +5539,7 @@ components:
         - 'UNKNOWN'        
 
     AccessFeatureStatus:
-      desciption: status values of guidance path access features, provided by OJP 2.0
+      description: status values of guidance path access features, provided by OJP 2.0
       type: string
       x-extensible-enumeration:   
         - 'UNKNOWN'
@@ -12091,7 +12091,7 @@ components:
           $ref: '#/components/schemas/PathGuidancePathLink'          
 
     PathGuidanceTurnAction:
-      desciption: types of a turn, provided by OJP 2.0
+      description: types of a turn, provided by OJP 2.0
       type: string
       x-extensible-enumeration:
         - 'STRAIGHT-ON'            : '338-21 degrees'
@@ -12107,7 +12107,7 @@ components:
         - 'GENERIC_TURN_ACTION'
 
     PathGuidanceAdvice:
-      desciption: types of a guidance advices, provided by OJP 2.0
+      description: types of a guidance advices, provided by OJP 2.0
       type: string
       x-extensible-enumeration:  
         - 'ORIGIN' 
@@ -12173,7 +12173,7 @@ components:
             $ref: '#/components/schemas/PathGuidancePathLinkEnd'  
 
     PathGuidancePathLinkEnd:
-      desciption:  end or start of a guidance path link, provided by OJP 2.0
+      description:  end or start of a guidance path link, provided by OJP 2.0
       additionalProperties: false
       properties:     
         id: 
@@ -12185,7 +12185,7 @@ components:
           type: string
 
     PathGuidanceTransition:
-      desciption: types of a guidance path transition, provided by OJP 2.0
+      description: types of a guidance path transition, provided by OJP 2.0
       type: string
       x-extensible-enumeration:  
         - 'UP'
