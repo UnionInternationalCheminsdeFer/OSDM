@@ -11003,7 +11003,7 @@ components:
           additionalProperties: false
           required:
             - contactName
-            - licansePlate
+            - licensePlate
           properties:
             contactName:
               description: |
