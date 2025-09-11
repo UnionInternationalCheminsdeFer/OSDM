@@ -49,8 +49,18 @@ a size (width, height). A graphical element can also be rotated using a rotation
 angle. This e.g. allows to use only one graphical element of a seat and to
 arrange them around a table.
 
-Per convention the grid is layout out in vertical presentation of a vehicle
-driving from left to right. The (0, 0) position is at the top left corner of the
+Per convention the grid layout out is in horizontal presentation of a vehicle
+driving from right to left. The (0, 0) position is at the top left corner of the
 grid.
 
-![Example of a coach deck layout](../images/graphical-place-reservation/coach-deck-layout.png)
+![Example of a coach deck layout](../images/graphical-place-reservation/coach-layout.png)
+
+Next is an example with orientation values of graphical elements and seats
+shown. Zero degree denotes to the right direction, 90 degree to the bottom
+direction, 180 degree to the left direction and 270 degree to the top direction.
+
+Additionally, some of the graphical elements and service icons are denoted: (1)
+driver area, (2) silence icon, (3) compartment passage, (4) entry/exit, (5)
+luggage area and (6) coach passage.
+
+![Example of a coach deck layout with explanations](../images/graphical-place-reservation/coach-layout-with-explanations.png)
