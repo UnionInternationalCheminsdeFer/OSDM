@@ -9743,9 +9743,6 @@ components:
             name:
               type: string
               nullable: true          
-            name:
-              type: string
-              nullable: true
 
     FareReferenceStation:
       type: object
