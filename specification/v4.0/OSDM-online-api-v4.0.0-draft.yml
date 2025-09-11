@@ -10824,15 +10824,6 @@ components:
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
 
-    JourneyRef:
-      type:
-        - 'string'
-        - 'null'
-      description: |
-        Reference to a journey. Provided by OJP.
-      examples:
-        - ServiceJourney:1
-
     Latitude:
       type: number
       format: double
@@ -10842,41 +10833,6 @@ components:
       maximum: 90
       examples:
         - 47.37818
-
-
-    LegAttribute:
-      type: object
-      additionalProperties: false
-      description: |
-        Attributes that are not valid on the whole service, but only on section of a trip made on a single mode without interchange between boarding and alighting.
-      required:
-        - text
-      properties:
-        text:
-          description: |
-            Text of the attribute to be shown to the user.
-          type: string
-        code:
-          description: |
-            Internal code of the attribute. Can be used for detection of double occurrences. Refers to Service Facilities / Leg Attributes from the Catalog of Code Lists
-          type:
-            - 'string'
-            - 'null'
-        fromStopSeqNumber:
-          description: |
-            The attribute is valid from the stop point with this sequence number within the leg. If missing it is valid from the beginning of the leg.
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
-        toStopSeqNumber:
-          description: |
-            The attribute is valid to the stop point (inclusively) with this sequence number within the leg. If missing it is valid to the end of the leg.
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
 
     LegTrack:
       type: object
