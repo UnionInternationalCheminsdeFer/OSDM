@@ -7549,8 +7549,9 @@ components:
             contactName:
               description: |
                 Name of a contact person or company in case the car transport is booked stand alone.
-              type: string
-              nullable: true        
+              type: 
+                - string
+                - 'null'        
             contactDetail:
               $ref: '#/components/schemas/ContactDetail'    
             licensePlate:
