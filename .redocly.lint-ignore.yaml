@@ -225,9 +225,6 @@ specification/v3.4/OSDM-online-api-v3.4.0.yml:
 specification/v3.4/OSDM-online-api-v3.4.1.yml:
   no-unused-components:
     - '#/components/schemas/IndicatedTravelAccountConsumption'
-specification/v3.4/OSDM-online-api-v3.4.2.yml:
-  no-unused-components:
-    - '#/components/schemas/IndicatedTravelAccountConsumption'
 specification/v3.4/OSDM-online-webhook-v3.4.0.yml:
   no-server-example.com:
     - '#/servers/0/url'
@@ -249,12 +246,6 @@ specification/v3.5/OSDM-online-api-v3.5.0.yml:
   no-unused-components:
     - '#/components/schemas/IndicatedTravelAccountConsumption'
 specification/v3.5/OSDM-online-api-v3.5.1.yml:
-  no-required-schema-properties-undefined:
-    - '#/components/schemas/ProductTagsResponse/required/1'
-    - '#/components/schemas/ProductTagsResponse/required/2'
-  no-unused-components:
-    - '#/components/schemas/IndicatedTravelAccountConsumption'
-specification/v3.5/OSDM-online-api-v3.5.2.yml:
   no-required-schema-properties-undefined:
     - '#/components/schemas/ProductTagsResponse/required/1'
     - '#/components/schemas/ProductTagsResponse/required/2'

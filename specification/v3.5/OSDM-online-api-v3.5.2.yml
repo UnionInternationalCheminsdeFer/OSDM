@@ -10581,22 +10581,6 @@ components:
           format: int32
           nullable: false
 
-    IndicatedTravelAccountConsumption:
-      type: object
-      additionalProperties: false
-      required:
-        - amount
-      properties:
-        amount:
-          type: integer
-          format: int32
-          nullable: false
-        scale:
-          type: integer
-          format: int32
-          nullable: true
-          default: 2
-
     IndividualMode:
       description: |
         Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
@@ -13094,8 +13078,7 @@ components:
         Result of a product search
       required:
         - productTagNames
-        - productTagGroupNames
-        - productTagGroupings
+        - productTagGroups
       properties:
         productTagNames:
           type: array
