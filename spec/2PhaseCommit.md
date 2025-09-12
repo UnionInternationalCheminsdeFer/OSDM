@@ -52,6 +52,6 @@ The endpoints are not mandatory for provider systems, but aggregators will likel
 ## Sequence diagrm
 This sequence diagram describe the two phase commit secuence at fulfillment. Same approach can be used for refund and exchange.
 
-![Calendar](../images/2PCommit.png)
+![Calendar](../../images/2PCommit.png)
 
 

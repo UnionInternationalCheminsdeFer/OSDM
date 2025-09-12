@@ -192,7 +192,7 @@ additionally.
 
 <!-- Figure 4 Calendar data structure -->
 
-![Calendar](../images/common-data-structures/calendar.png)
+![Calendar](../../images/common-data-structures/calendar.png)
 
 #### Data Constraints on Calendar <a name="DataConstraintsonCalendar">
 
@@ -213,7 +213,7 @@ Carriers are specified by their Company code (RICS code).
 
 <!-- Figure 5 carrier constraint data structure (offline) -->
 
-![Carrier Constraint Type](../images/common-data-structures/carrier-constraint-type.png)
+![Carrier Constraint Type](../../images/common-data-structures/carrier-constraint-type.png)
 
 The included / excluded carriers are also part of the FCB barcode (_IRS
 90918-4_) content and the ticket control data (_IRS 90918-9_).
@@ -261,17 +261,17 @@ should allow to connect sets of stations.
 
 <!-- Figure 6 connection points - simple case 1 -->
 
-![Fare Connection Point - Simple Case](../images/common-data-structures/fare-connection-point-simple-case.png)
+![Fare Connection Point - Simple Case](../../images/common-data-structures/fare-connection-point-simple-case.png)
 
 <!-- Figure 7 connection points - complex case 2 -->
 
-![Fare Connection Point - Complex Case](../images/common-data-structures/fare-connection-point-complex-case.png)
+![Fare Connection Point - Complex Case](../../images/common-data-structures/fare-connection-point-complex-case.png)
 
 The online data structure does not include the id and the legacy code.
 
 <!-- Figure 8 ConnectionPoint data structure offline -->
 
-![Fare Connection Point](../images/common-data-structures/fare-connection-point.png)
+![Fare Connection Point](../../images/common-data-structures/fare-connection-point.png)
 
 #### Data Constraints on ConnectionPoint <a name="DataConstraintsonConnectionPoint">
 
@@ -311,7 +311,7 @@ An elementary fare to create an offer linking all constraints to one price.
 
 <!-- Figure 9 Fare element data structure (online) -->
 
-![Fare (Online)](../images/fare-data-structure/fare-online.png)
+![Fare (Online)](../../images/fare-data-structure/fare-online.png)
 
 #### Data Constraints on Fare <a name="DataConstraintsonFare">
 
@@ -342,11 +342,11 @@ choose of.
 
 <!-- Figure 10 fare combination constraint data structure -->
 
-![Fare Combination Model](../images/common-data-structures/fare-combination-model.png)
+![Fare Combination Model](../../images/common-data-structures/fare-combination-model.png)
 
 <!-- Figure 11 fare combination constraint data structure -->
 
-![Fare Combination Constraint](../images/common-data-structures/fare-combination-constraint.png)
+![Fare Combination Constraint](../../images/common-data-structures/fare-combination-constraint.png)
 
 #### Combination Model <a name="CombinationModel">
 
@@ -492,23 +492,23 @@ The online link provides information on:
 
 <!-- Figure 12 FareResourceLocation data structure -->
 
-![Fare Resource Location Type](../images/common-data-structures/fare-resource-location-type.png)
+![Fare Resource Location Type](../../images/common-data-structures/fare-resource-location-type.png)
 
 <!-- Figure 13 FareResourceLocation data structure - carrier link -->
 
-![Fare Resource Location Type - Carrier Link](../images/common-data-structures/fare-resource-location-type-carrier-link.png)
+![Fare Resource Location Type - Carrier Link](../../images/common-data-structures/fare-resource-location-type-carrier-link.png)
 
 <!-- Figure 14 FareResourceLocation data structure - train link -->
 
-![Fare Resource Location Type - Train Link](../images/common-data-structures/fare-resource-location-type-train-link.png)
+![Fare Resource Location Type - Train Link](../../images/common-data-structures/fare-resource-location-type-train-link.png)
 
 <!-- Figure 15 FareResourceLocation data structure - station link -->
 
-![Fare Resource Location Type - Station Link](../images/common-data-structures/fare-resource-location-type-station-link.png)
+![Fare Resource Location Type - Station Link](../../images/common-data-structures/fare-resource-location-type-station-link.png)
 
 <!-- Figure 16 FareResourceLocation data structure - online resource -->
 
-![Fare Resource Location Type - Online Resource](../images/common-data-structures/fare-resource-location-type-online-resource.png)
+![Fare Resource Location Type - Online Resource](../../images/common-data-structures/fare-resource-location-type-online-resource.png)
 
 #### Graphics Icons <a name="GraphicsIcons">
 
@@ -550,7 +550,7 @@ A `legacyCode` can be provided to include the current code in the 108.1 data.
 
 <!-- Figure 17 FareReferenceStationSet Definition data structure -->
 
-![Fare Reference Station Set](../images/common-data-structures/fare-reference-station-set.png)
+![Fare Reference Station Set](../../images/common-data-structures/fare-reference-station-set.png)
 
 #### Data Constraints on FareReferenceStationSet <a name="DataConstraintsonFareReferenceStationSet">
 
@@ -567,7 +567,7 @@ defined whether control data need to be transferred via a standard interface
 
 <!-- Figure 18 Fulfillment constraint data structure -->
 
-![Fulfillment Constraint](../images/common-data-structures/fulfillment-constraint.png)
+![Fulfillment Constraint](../../images/common-data-structures/fulfillment-constraint.png)
 
 Code lists for required `SiS`: `CardType`
 
@@ -598,7 +598,7 @@ or city only.
 
 <!-- Figure 19 Line data structure -->
 
-![Line](../images/common-data-structures/line.png)
+![Line](../../images/common-data-structures/line.png)
 
 ### PassengerConstraint <a name="PassengerConstraint">
 
@@ -608,7 +608,7 @@ on for control to bar codes and control registries.
 
 <!-- Figure 20 PassengerConstraint data structure online -->
 
-![Passenger Constraint](../images/common-data-structures/passenger-constraint.png)
+![Passenger Constraint](../../images/common-data-structures/passenger-constraint.png)
 
 #### Data Constraints on PassengerConstraint <a name="DataConstraintsonPassengerConstraint">
 
@@ -644,15 +644,15 @@ specific border crossings.
 
 <!-- Figure 21 Required Personal data structure -->
 
-![Personal Data](../images/common-data-structures/personal-data-required-data.png)
+![Personal Data](../../images/common-data-structures/personal-data-required-data.png)
 
 <!-- Figure 22 allowed changes on personal data -->
 
-![Personal Data - Allowed Changes](../images/common-data-structures/personal-data-allowed-changes.png)
+![Personal Data - Allowed Changes](../../images/common-data-structures/personal-data-allowed-changes.png)
 
 <!-- Figure 23 cross border conditions for personal data -->
 
-![Personal Date - Cross Border Conditions](../images/common-data-structures/personal-data-cross-border-conditions.png)
+![Personal Date - Cross Border Conditions](../../images/common-data-structures/personal-data-cross-border-conditions.png)
 
 ### Price <a name="Price">
 
@@ -661,15 +661,15 @@ optionally in different currencies.
 
 <!-- Figure 24 Price data structure with a list of currency prices -->
 
-![Price](../images/common-data-structures/price.png)
+![Price](../../images/common-data-structures/price.png)
 
 <!-- Figure 25 Price data structure of one currency -->
 
-![Currency Price](../images/common-data-structures/currency-price.png)
+![Currency Price](../../images/common-data-structures/currency-price.png)
 
 <!-- Figure 26 VAT details within a price -->
 
-![VAT Detail](../images/common-data-structures/vat-detail.png)
+![VAT Detail](../../images/common-data-structures/vat-detail.png)
 
 Scope: see code list TaxScope
 
@@ -696,7 +696,7 @@ The reduction cards of a carrier are listed in the bulk data.
 
 <!-- Figure 27 reduction card offline -->
 
-![Reduction Card](../images/common-data-structures/reduction-card.png)
+![Reduction Card](../../images/common-data-structures/reduction-card.png)
 
 ### ReductionConstraint <a name="ReductionConstraint">
 
@@ -707,11 +707,11 @@ Reduction “cards”.
 
 <!-- Figure 28 ReductionCardConstraint data structure offline -->
 
-![Reduction Constraint](../images/common-data-structures/reduction-constraint.png)
+![Reduction Constraint](../../images/common-data-structures/reduction-constraint.png)
 
 <!-- Figure 29 ReductionCardReference data structure -->
 
-![Reduction Card Reference](../images/common-data-structures/reduction-card-reference.png)
+![Reduction Card Reference](../../images/common-data-structures/reduction-card-reference.png)
 
 ### RegionalConstraint <a name="RegionalConstraint">
 
@@ -757,11 +757,11 @@ point code linked with the timetable.
 
 <!-- Figure 30 Connection points and timetable routes -->
 
-![Connection Points and Timetable Routes](../images/common-data-structures/connection-points-timetable-routes.png)
+![Connection Points and Timetable Routes](../../images/common-data-structures/connection-points-timetable-routes.png)
 
 <!-- Figure 31 Regional validity constraint data structure -->
 
-![Regional Constraint](../images/common-data-structures/regional-constraint.png)
+![Regional Constraint](../../images/common-data-structures/regional-constraint.png)
 
 The online data structure will not use the id and will directly include the
 entry and exit connection point, whereas the offline structure will include the
@@ -779,18 +779,18 @@ extended to include fare reference station sets within the route.
 
 <!-- Figure 32 regional validity data structure -->
 
-![Regional Validity 1/2](../images/common-data-structures/regional-validity.png)
-![Regional Validity 2/2](../images/common-data-structures/regional-validity-2.png)
+![Regional Validity 1/2](../../images/common-data-structures/regional-validity.png)
+![Regional Validity 2/2](../../images/common-data-structures/regional-validity-2.png)
 
 Extended route data structure including fare reference station sets.
 
 <!-- Figure 33 route description (Route (ViaStation in previous versions) data structure -->
 
-![Route](../images/common-data-structures/route.png)
+![Route](../../images/common-data-structures/route.png)
 
 <!-- Figure 34 RegionalConstraint data structure - copy of 90918-4 -->
 
-![Regional Constraint](../images/common-data-structures/regional-constraint.png)
+![Regional Constraint](../../images/common-data-structures/regional-constraint.png)
 
 ### ReservationParameter <a name="ReservationParameter">
 
@@ -806,15 +806,15 @@ passenger has for reservation.
 
 <!-- Figure 35 ReservationParameter data structure -->
 
-![Reservation Parameter](../images/common-data-structures/reservation-parameter-type.png)
+![Reservation Parameter](../../images/common-data-structures/reservation-parameter-type.png)
 
 <!-- Figure 36 ReservationParameter - support for 90918-1 reservation interface -->
 
-![Reservation Parameter - 90918-1 Parameters](../images/common-data-structures/reservation-parameter-type-reservation-params918-1.png)
+![Reservation Parameter - 90918-1 Parameters](../../images/common-data-structures/reservation-parameter-type-reservation-params918-1.png)
 
 <!-- Figure 37 ReservationParameter data structure - reservation options -->
 
-![Reservation Parameter - Reservation Options](../images/common-data-structures/reservation-options.png)
+![Reservation Parameter - Reservation Options](../../images/common-data-structures/reservation-options.png)
 
 Code Lists
 
@@ -828,7 +828,7 @@ code in case it is defined for a station.
 
 <!-- Figure 38 structure Station detail data -->
 
-![Station Detail](../images/common-data-structures/station-detail.png)
+![Station Detail](../../images/common-data-structures/station-detail.png)
 
 ### Text <a name="Text">
 
@@ -836,11 +836,11 @@ Used for all textual descriptions where translations might be needed.
 
 <!-- Figure 40 structure Text Data Structure -->
 
-![Text](../images/common-data-structures/text.png)
+![Text](../../images/common-data-structures/text.png)
 
 <!-- Figure 41 structure Translation Data Structure -->
 
-![Translation](../images/common-data-structures/translation.png)
+![Translation](../../images/common-data-structures/translation.png)
 
 ### ServiceClass <a name="ServiceClass">
 
@@ -848,7 +848,7 @@ Service class provides textual descriptions for the predefined service classes.
 
 <!-- Figure 44 structure Service Class -->
 
-![Service Constraint](../images/common-data-structures/service-class-definition.png)
+![Service Constraint](../../images/common-data-structures/service-class-definition.png)
 
 ### ServiceConstraint <a name="ServiceConstraint">
 
@@ -860,7 +860,7 @@ The online data structure will not provide the id.
 
 <!-- Figure 45 structure Service Constraints -->
 
-![Service Constraint](../images/common-data-structures/service-constraint.png)
+![Service Constraint](../../images/common-data-structures/service-constraint.png)
 
 #### Data Constraints on ServiceConstraint <a name="DataConstraintsonServiceConstraint">
 
@@ -890,7 +890,7 @@ berth in the service level for double Sleeper compartment).
 
 <!-- Figure 46 Service level description (offline) -->
 
-![Service Level](../images/common-data-structures/service-level.png)
+![Service Level](../../images/common-data-structures/service-level.png)
 
 ### TravelValidityConstraint <a name="TravelValidityConstraint">
 
@@ -901,19 +901,19 @@ to travel.
 
 <!-- Figure 47 travel validity data structure -->
 
-![Travel Validity](../images/common-data-structures/travel-validity.png)
+![Travel Validity](../../images/common-data-structures/travel-validity.png)
 
 <!-- Figure 48 travel validity data structure – validity range -->
 
-![Travel Validity - validity range](../images/common-data-structures/travel-validity-validity-range.png)
+![Travel Validity - validity range](../../images/common-data-structures/travel-validity-validity-range.png)
 
 <!-- Figure 49 travel validity data structure – excluded time range -->
 
-![Travel Validity - excluded time range](../images/common-data-structures/travel-validity-excluded-time-range.png)
+![Travel Validity - excluded time range](../../images/common-data-structures/travel-validity-excluded-time-range.png)
 
 <!-- Figure 50 travel validity data structure - return constraint -->
 
-![Travel Validity - return constraint](../images/common-data-structures/travel-validity-return-constraint.png)
+![Travel Validity - return constraint](../../images/common-data-structures/travel-validity-return-constraint.png)
 
 | Code                 | Description                       |
 | -------------------- | --------------------------------- |
@@ -931,4 +931,4 @@ define the same area.
 
 <!-- Figure 51 zone definition -->
 
-![Zone Definition](../images/common-data-structures/zone-definition.png).
+![Zone Definition](../../images/common-data-structures/zone-definition.png).

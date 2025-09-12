@@ -40,13 +40,13 @@ concepts.
 
 ### Legend
 
-![Legend](../images/models/legend.png)
+![Legend](../../images/models/legend.png)
 
 ## Trips and Places <a name="TripsAndPlaces">
 
 ### Places Data Model
 
-![Place Data Model](../images/models/places.png)
+![Place Data Model](../../images/models/places.png)
 
 ### Places
 
@@ -75,7 +75,7 @@ getting full location details in transactional operations.
 
 ### Trip Data Model
 
-![Trip Data Model](../images/models/trips.png)
+![Trip Data Model](../../images/models/trips.png)
 
 ### Trips
 
@@ -113,7 +113,7 @@ A trip can be in states _planned_, _confirmed_, _changed_ or _cancelled_.
 
 ### Data Model
 
-![Offers Data Model](../images/models/offers-data-model.png)
+![Offers Data Model](../../images/models/offers-data-model.png)
 
 ### Offers
 
@@ -182,11 +182,11 @@ trip under specific conditions:
 
 _Example with no overlap_
 
-![Clusters-no-overlap](../images/models/clusters1.png)
+![Clusters-no-overlap](../../images/models/clusters1.png)
 
 _Example with no gap_
 
-![Clusters-no-gap](../images/models/clusters2.png)
+![Clusters-no-gap](../../images/models/clusters2.png)
 
 ### OfferParts
 
@@ -412,16 +412,16 @@ The data model makes use of recursive definitions to simplify implementations
 but the message contains a non-recursive representation of the data where
 recursive links have been replaced by a reference to an index in a list.
 
-![Route data model](../images/models/OSDM-model-Routes-online.png)
+![Route data model](../../images/models/OSDM-model-Routes-online.png)
 
 For the following example object models are shown for the message representation
 and the recursive model:
 
-![Route example](../images/fare-data-structure/viaExample.PNG)
+![Route example](../../images/fare-data-structure/viaExample.PNG)
 
-![Route example recursive](../images/models/OSDM-model-route-object-model.png)
+![Route example recursive](../../images/models/OSDM-model-route-object-model.png)
 
-![Route example non-recursive](../images/models/OSDM-model-route-message-object-model.png)
+![Route example non-recursive](../../images/models/OSDM-model-route-message-object-model.png)
 
 ### Passengers
 
@@ -482,7 +482,7 @@ modelings for pure-OSDM offers.
 
 ### Booking Data Model
 
-![Bookings Data Model](../images/models/bookings-data-model.png)
+![Bookings Data Model](../../images/models/bookings-data-model.png)
 
 ### Main Resources
 
@@ -621,7 +621,7 @@ Coach layouts describe the static layout of a coach and are used for graphical r
 
 Coordinates are horizontal left to right with x=0,y=0 in the top left corner:
 
-![Coach Layout Koordinates](../images/models/coach-layout-coordinates.png)
+![Coach Layout Koordinates](../../images/models/coach-layout-coordinates.png)
 
 
 Width is defined on the x-axis. Orientation (see catalog of code list) of an icon is relative to the landscape layout mode. Landscape rendering means that the width of coach is layouted/rendered vertically.

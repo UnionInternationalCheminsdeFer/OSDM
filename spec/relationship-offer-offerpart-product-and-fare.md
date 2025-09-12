@@ -38,7 +38,7 @@ This border points are thus called `virtual border points` which can be modelled
 by `ConnectionPoints`. Fares are combined following a `fare combination model`
 to an offer.
 
-![Relationships between Offers, OfferParts, Products and Fares](../images/models/relationship-offer-offerpart-product-fare.png)
+![Relationships between Offers, OfferParts, Products and Fares](../../images/models/relationship-offer-offerpart-product-fare.png)
 
 _Note_: This example assumes that the complete trip can be priced.
 
@@ -72,7 +72,7 @@ offering retailer.
 
 ## Attributes of an Online Fare <a name="AttributesofanOnlineFare">
 
-![Attributes of An Online Fare](../images/models/attributes-online-fare.png)
+![Attributes of An Online Fare](../../images/models/attributes-online-fare.png)
 
 ## Roles of Fare Attributes in the Booking and After Sales Processes <a name="RolesofFareAttributesintheBookingandAfterSalesProcesses">
 

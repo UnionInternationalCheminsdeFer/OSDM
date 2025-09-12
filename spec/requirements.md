@@ -536,7 +536,7 @@ readable form if it is not at a “real” station.
 
 ##### Are routes used as line routes or as bubble routes? <a name="Areroutesusedaslineroutesorasbubbleroutes?">
 
-![Line- vs. Bubble Route interpretation](../images/business-capabilities/line-vs-buble-route.png)
+![Line- vs. Bubble Route interpretation](../../images/business-capabilities/line-vs-buble-route.png)
 
 `A*B/D*C` as line routes: `A-E-C` is not allowed
 
@@ -597,11 +597,11 @@ As in principle every station can become a connection point (e.g. all stops from
 Aachen to Brussels are connection points from DB to SNCB as the train is a DB
 train also inside of Belgium).
 
-![Connection point](../images/business-capabilities/connection-point.png)
+![Connection point](../../images/business-capabilities/connection-point.png)
 
-![Connection point](../images/business-capabilities/connection-point-simple.png)
+![Connection point](../../images/business-capabilities/connection-point-simple.png)
 
-![Connection point](../images/business-capabilities/connection-point-complex.png)
+![Connection point](../../images/business-capabilities/connection-point-complex.png)
 
 As on both sides of a connection multiple small stations could be connected and
 not all of them might be in the timetable of a train the connection point should

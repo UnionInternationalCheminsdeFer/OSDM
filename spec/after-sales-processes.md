@@ -71,7 +71,7 @@ booking parts.
 
 #### Request a Refund Offer
 
-![Request a Refund Offer](../images/processes/seq-request-a-refund-offer.png)
+![Request a Refund Offer](../../images/processes/seq-request-a-refund-offer.png)
 
 On a confirmed booking, and if it is allowed, after sales operations are also
 possible via the OSDM API. In OSDM, the refunds are taking place based on
@@ -99,11 +99,11 @@ request.
 
 #### Cancel a Refund Offer
 
-![Cancel a Refund Offer](../images/processes/seq-cancel-a-refund-offer.png)
+![Cancel a Refund Offer](../../images/processes/seq-cancel-a-refund-offer.png)
 
 #### Confirm a Refund Offer
 
-![Confirm a Refund Offer](../images/processes/seq-confirm-a-refund-offer.png)
+![Confirm a Refund Offer](../../images/processes/seq-confirm-a-refund-offer.png)
 
 In case of multiple refundOffers for the same set of fulfillments, confirming
 one of them will delete the other refundOffers for the same set of fulfillments.
@@ -124,7 +124,7 @@ be requested until the original refundOffer(s) have either been (a) cancelled
 
 #### Request a release Offer
 
-![Request a Release Offer](../images/processes/seq-request-a-release-offer.png)
+![Request a Release Offer](../../images/processes/seq-request-a-release-offer.png)
 
 The release of a ticket is an intermediate step towards a refund. The release
 invalidates the admission and frees resources such as reserved seats. It does
@@ -138,11 +138,11 @@ offer is requested and needs to be confirmed to be applied.
 
 #### Cancel a Release Offer
 
-![Cancel a Release Offer](../images/processes/seq-cancel-a-release-offer.png)
+![Cancel a Release Offer](../../images/processes/seq-cancel-a-release-offer.png)
 
 #### Confirm a Release Offer
 
-![Confirm a Release Offer](../images/processes/seq-confirm-a-release-offer.png)
+![Confirm a Release Offer](../../images/processes/seq-confirm-a-release-offer.png)
 
 ### Partial Refund <a name="partialRefund">
 
@@ -167,7 +167,7 @@ Partial Refund Use Cses:
 
 #### Cancel Fulfillment request
 
-![Request a cancelFulfillment Offer](../images/processes/seq-request-a-cancelFulfillment-offer.png)
+![Request a cancelFulfillment Offer](../../images/processes/seq-request-a-cancelFulfillment-offer.png)
 
 A fulfillment can be cancelled and regenerated. This might be necessary in case
 of fulfillments linked to physical items (secure paper, phones or cards). The
@@ -178,11 +178,11 @@ offer can be confirmed to delete the fulfillment.
 
 #### Cancel a CancelFulfillment Offer
 
-![Cancel a Cancel a cancelFulfillment Offer](../images/processes/seq-cancel-a-cancelFulfilment-offer.png)
+![Cancel a Cancel a cancelFulfillment Offer](../../images/processes/seq-cancel-a-cancelFulfilment-offer.png)
 
 #### Confirm a CancelFulfillment Offer
 
-![Confirm a CancelFulfillment Offer](../images/processes/seq-confirm-a-cancelFulfillment-offer.png)
+![Confirm a CancelFulfillment Offer](../../images/processes/seq-confirm-a-cancelFulfillment-offer.png)
 
 ### On Hold Bookings <a name="onHoldBookings">
 
@@ -193,7 +193,7 @@ be requested and needs to be confirmed to extend the time limit. The
 
 ### Example End-to-end Interaction <a name="exampleEnd-To-End">
 
-![Example End to End Interaction](../images/processes/seq-end-to-end-interaction.png)
+![Example End to End Interaction](../../images/processes/seq-end-to-end-interaction.png)
 
 ### Exchange <a name="exchange">
 
@@ -241,14 +241,14 @@ accept vouchers.
 The handling of a claim is an asynchronous process, where the claim is placed
 and decided by the carriers/fare provides involved later-on.
 
-![Complaint](../images/processes/seq-complaintManagement1.png)
+![Complaint](../../images/processes/seq-complaintManagement1.png)
 
 As the distributor is usually also involved as a carrier and then responsible to
 keep the legal time lines he can decide to compensate and inform the fare
 provides/carriers on his decision if the time line would otherwise can not be
 held.
 
-![Complaint](../images/processes/seq-complaintManagement2.png)
+![Complaint](../../images/processes/seq-complaintManagement2.png)
 
 ### Reimbursement <a name="reimbursement">
 

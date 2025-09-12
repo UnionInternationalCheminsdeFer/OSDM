@@ -28,7 +28,7 @@ and a brief explanation of your interest in OSDM to
 documentation of the content of the API will be provided along with the
 credentials.
 
-![Sqills](../images/logo/Sqills-logo.png)
+![Sqills](../../images/logo/Sqills-logo.png)
 
 ## Bileto OSDM Sandbox
 
@@ -41,7 +41,7 @@ provides example client credentials to access the environment, a Postman
 collection with examples as well as the documentation of content and local
 specifics implemented in the OSDM API.
 
-![Bileto](../images/logo/bileto-logo.png)
+![Bileto](../../images/logo/bileto-logo.png)
 
 ## benerail OSDM Sandbox
 
@@ -62,7 +62,7 @@ project and in future a developer portal with more information.
 The link to our form is available on
 [benerail OSDM sandbox](https://benerail.com/sandbox_osdm_api/).
 
-![benerail](../images/logo/benerail-logo.jpg)
+![benerail](../../images/logo/benerail-logo.jpg)
 
 ## Turnit OSDM Sandbox
 
@@ -74,7 +74,7 @@ Access is available upon request. Registered users receive API credentials, docu
 
 To request access, please fill in the form at [Turnit OSDM Sandbox](https://turnit.com/osdm-sandbox/).
 
-![Turnit](../images/logo/turnit-logo-blue-w200.png)
+![Turnit](../../images/logo/turnit-logo-blue-w200.png)
 
 ## PAXONE OSDM Sandbox
 [PAXONE by Wiremind](https://www.wiremind.io/passenger/paxone) is an innovative, highly-scalable inventory and distribution solution.
@@ -85,5 +85,5 @@ Try out their [OSDM Sandbox](https://content.wiremind.io/paxone-osdm-sandbox) to
 
 Click on this [link](https://content.wiremind.io/paxone-osdm-sandbox) to test the PAXONE OSDM Sandbox.
 
-![PAXONE](../images/logo/paxone-logo.png)
+![PAXONE](../../images/logo/paxone-logo.png)
 
