@@ -16650,7 +16650,7 @@ components:
     VAT:
       type: object
       description: |
-        Included VAT. The currency is inherited from the currency of the assosiciated price.
+        VAT included in the associated Price object. The currency is inherited from the currency of the assosiciated price.
       additionalProperties: false
       required:
         - countryCode
