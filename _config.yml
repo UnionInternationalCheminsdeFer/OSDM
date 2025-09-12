@@ -19,10 +19,7 @@ fixed_navbar: top
 # Build settings
 remote_theme: chrisrhymes/bulma-clean-theme@v1.3.0
 theme: bulma-clean-theme
-
 force_theme: light
-
-layout: page
 
 # Don't publish posts in the future
 future: false
