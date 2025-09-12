@@ -6772,6 +6772,8 @@ components:
           $ref: '#/components/schemas/Gender'
         residency:
           $ref: '#/components/schemas/CountryCode'
+        transportable:
+          $ref: '#/components/schemas/TransportableSpecification'  
 
     ApplicabilityType:
       type: string
@@ -8069,7 +8071,7 @@ components:
         - 'PROPOSED'
         - 'CONFIRMED'
 
-    Car:
+    AbstractTransportableVehicleSpecification:
       type: object
       additionalProperties: false
       required:
@@ -8078,44 +8080,136 @@ components:
         - width
         - height
         - model
+        - brand
       properties:
         weight:
+          description: weight in kg
           type: integer
           format: int32
           minimum: 0
-          nullable: false
         length:
+          description: size in cm
           type: integer
           format: int32
           minimum: 0
-          nullable: false
         width:
+          description: size in cm
           type: integer
           format: int32
           minimum: 0
-          nullable: false
         height:
+          description: size in cm
           type: integer
           format: int32
-          minimum: 0
-          nullable: false
+          minimum: 0        
+        brand:
+          description: |
+            Free text description of the brand (e.g. BMW)
+          type: string       
         model:
           description: |
-            Free text description of the model (e.g. BMW X5)
-          type: string
-          nullable: false
-        attachedItems:
-          description: |
-            Indication of items attached to the car
-          type: array
-          items:
-            $ref: '#/components/schemas/AttachableItemType'
-        licensePlate:
-          description: |
-            The license plate is a personal data item and must not be provided in an offer request.
-            It must be patched into the offer after the customer accepted the offer for booking.
-          type: string
-          nullable: true
+            Free text description of the model (e.g. X5)
+          type: string     
+
+    MotorcycleSpecification:
+      allOf:      
+        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'    
+        - type: object
+          properties:
+            isSideCarIncluded:
+              description: deprecated use car of type SPECIAL_VEHILE instead
+              deprecated: true
+              type: boolean
+              nullable: true
+              default: false          
+
+    CarSpecification:
+      description: |
+        car, trailer or special vehicle to be transported (car carriage trains)
+      allOf:      
+        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'    
+        - type: object
+          additionalProperties: false
+          required:
+            - roofWidth
+          properties:
+            specialType:
+              type: string
+              nullable: true
+              x-extensible-enum:
+                - 'TRIKE'
+                - 'QUAD'
+                - 'MOTOCYCLE_WITH_SIDECAR'  
+            roofWidth:
+              type: integer
+              format: int32
+              minimum: 0
+              nullable: false 
+            textileRoof:
+              description: indication that the car has a textile rook only
+              type: boolean  
+            rack:
+              $ref: '#/components/schemas/CarRack'
+            attachedItems:
+              description: Indication of items attached to the car
+              type: array
+              items:
+                $ref: '#/components/schemas/AttachableItemType'
+
+    CarRack:
+      description: |
+        a rack on a car 
+      type: object
+      additionalProperties: false        
+      properties:      
+        mounting:
+         type: string
+         x-extensible-enum:
+          - 'REAR'
+          - 'TOP'
+        type:
+         type: string
+         x-extensible-enum:
+          - 'LUGGAGE_RACK'
+          - 'ROOF_RAILING'     
+        additionalHeight:
+          description: additional heigth in cm
+          type: integer
+          format: int32
+          minimum: 0
+          nullable: false     
+        additionalLength:
+          description: additional length in cm
+          type: integer
+          format: int32
+          minimum: 0
+          nullable: false              
+        numberOfBicycles:
+          description: numberof bicycles on the rack
+          type: integer
+          format: int32
+          minimum: 0
+          nullable: false              
+
+    Car:
+      allOf:
+        - $ref: '#/components/schemas/CarSpecification'
+        - type: object
+          additionalProperties: false       
+          required:
+            - licensePlate
+          properties:
+            contactName:
+              description: |
+                Name of a contact person or company in case the car transport is booked stand alone.
+              type: string
+            contactDetail:
+              $ref: '#/components/schemas/ContactDetail'          
+            licensePlate:
+              description: |
+                 The license plate is a personal data item and must not be provided in an offer request.
+                 It must be patched into the offer after the customer accepted the offer for booking.
+              type: string
 
     CardReference:
       type: object
@@ -11682,20 +11776,26 @@ components:
               default: 2
 
     MotorCycle:
-      type: object
-      additionalProperties: false
-      properties:
-        isSideCarIncluded:
-          type: boolean
-          nullable: true
-          default: false
-        licensePlate:
-          description: |
-            The license plate is a personal data item and must not be provided in an offer request.
-            It must be patched into the offer after the customer accepted the offer for booking
-          type: string
-          nullable: true
-
+      allOf:
+        - $ref: '#/components/schemas/MotorcycleSpecification'
+        - type: object
+          additionalProperties: false       
+          required:
+          - contactName
+          - licensePlate
+          properties:      
+            contactName:
+              description: |
+                Name of a contact person or company in case the car transport is booked stand alone.
+              type: string
+            contactDetail:
+              $ref: '#/components/schemas/ContactDetail'      
+            licensePlate:
+              description: |
+                The license plate is a personal data item and must not be provided in an offer request.
+                It must be patched into the offer after the customer accepted the offer for booking
+              type: string
+              
     MountingType:
       type: string
       enum:
@@ -12766,7 +12866,9 @@ components:
           $ref: '#/components/schemas/PassengerType'
         gender:
           $ref: '#/components/schemas/Gender'
-
+        transportableDetails:
+          $ref: '#/components/schemas/Transportable'
+          
     PassengerType:
       description: |
         Passenger type according to UIC passenger, i.e. passenger type list.
@@ -16063,51 +16165,7 @@ components:
           nullable: true
         accountingRef:
           $ref: '#/components/schemas/AccountingRef'
-
-    Trailer:
-      type: object
-      additionalProperties: false
-      required:
-        - weight
-        - length
-        - width
-        - height
-      properties:
-        weight:
-          description: |
-            weight in kg
-          type: integer
-          format: int32
-          minimum: 0
-          nullable: false
-        length:
-          description: |
-            length in cm
-          type: integer
-          format: int32
-          minimum: 0
-          nullable: false
-        width:
-          description: |
-            width in cm
-          type: integer
-          format: int32
-          minimum: 0
-          nullable: false
-        height:
-          description: |
-            height in cm
-          type: integer
-          format: int32
-          minimum: 0
-          nullable: false
-        licensePlate:
-          description: |
-            The license plate is a personal data item and must not be provided in an offer request.
-            It must be patched into the offer after the customer accepted the offer for booking
-          type: string
-          nullable: true
-
+     
     TrainLink:
       type: object
       additionalProperties: false
@@ -16280,7 +16338,25 @@ components:
         motorCycle:
           $ref: '#/components/schemas/MotorCycle'
         trailer:
-          $ref: '#/components/schemas/Trailer'
+          $ref: '#/components/schemas/Car'
+
+    TransportableSpecification:
+      type: object
+      additionalProperties: false
+      description: |
+        Transportables which are handled similar to passengers like dogs, bicycles, car transport.
+        These transportables might need a ticket or reservation. The Transportable specification does not include personal data (e.g. a license plate.)
+      required:
+        - type
+      properties:
+        type:
+          $ref: '#/components/schemas/TransportableType'
+        car:
+          $ref: '#/components/schemas/CarSpecification'
+        motorcycle:
+          $ref: '#/components/schemas/MotorcycleSpecification'          
+        trailer:
+          $ref: '#/components/schemas/CarSpecification'          
 
     TransportableType:
       description: |
@@ -16296,6 +16372,7 @@ components:
         - 'LUGGAGE'        
         - 'PRAM'        
         - 'CAR'
+        - 'SPECIAL_VEHICLE' # used in car carriage e.g. a trike, a quad or a motorbike with a sidecar
         - 'MOTOCYCLE'
         - 'TRAILER'
 
