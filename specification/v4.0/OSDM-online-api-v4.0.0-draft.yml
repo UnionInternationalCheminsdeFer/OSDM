@@ -12275,7 +12275,10 @@ components:
         reservedPlaces:
           description: |
             Reserved places in a confirmed reservation.
-            Multiple place packs are needed to combined person and bicycle reservations
+            Reserved Place inludes multiple places, however there might be multiple objects needed in case:
+            - places are in separate coaches, then one object per coach is needed
+            - places have different place properties that need to be shown (e.g. 5 Places in family compartment + 4 other places)
+            - optional: group places by compartments (in case compartments are indicated on the train)           
           type: array
           items:
             $ref: '#/components/schemas/ReservedPlace'
@@ -14560,7 +14563,7 @@ components:
           type: string
         placeDescription:
           description: |
-            description of the places (e.g. 11-35,51)
+            description of the places (e.g. used to provide a short description of all places of large groups in compressed form: "11-35,51")
           type: string
         placeNumbers:
           description: |
