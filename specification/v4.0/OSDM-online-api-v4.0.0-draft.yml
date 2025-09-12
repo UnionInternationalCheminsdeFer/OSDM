@@ -14558,6 +14558,16 @@ components:
           type: string
         coachNumber:
           type: string
+        compartmentNumber:
+          description: |
+           Compartment number as indicated at the compartment in the coach. A compartment number must be set if the compartment is selectable as a whole only.
+          type: 
+            - string
+            - 'null'
+          examples:
+            - "C1"
+            - "6"
+            - "61-66"          
         placeDescription:
           description: |
             description of the places (e.g. 11-35,51)
