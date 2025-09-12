@@ -6,7 +6,7 @@ email: andreas.schlapbach@sbb.ch
 description: >- # this means to ignore newlines until "baseurl:"
   Open Sales and Distribution Model to simplify rail distribution.
 
-baseurl: "/" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 
 # url: "http://osdm.github.com"
 
@@ -17,9 +17,12 @@ favicon: favicon.png
 fixed_navbar: top
 
 # Build settings
-remote_theme: chrisrhymes/bulma-clean-theme@v1.0.0
+remote_theme: chrisrhymes/bulma-clean-theme@v1.3.0
+theme: bulma-clean-theme
 
 force_theme: light
+
+layout: page
 
 # Don't publish posts in the future
 future: false
