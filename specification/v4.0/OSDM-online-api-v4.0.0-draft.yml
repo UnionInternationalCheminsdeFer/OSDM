@@ -16658,7 +16658,7 @@ components:
           $ref: '#/components/schemas/CountryCode'
         amount:
           description: |
-            amount in cents
+            amount in cents (default), for calculation the legal requiremets from local counties and the EU need to be applied.
           type: integer
           format: int32
           examples:
@@ -16672,6 +16672,8 @@ components:
           format: int32
           default: 2
         percentage:
+          description: |
+            statutory VAT percentage       
           type:
             - 'number'
             - 'null'
