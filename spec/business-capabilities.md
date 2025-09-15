@@ -132,17 +132,6 @@ criteria can be tags, regions, geo-coordinates.
 
 ### Offer Structure <a name="OfferStructure">
 
-For fares, the following rules apply:
-
-1. An offer should contain all fares per travel class and per
-   flexibility/product code.
-2. Per passenger there should be a fare for different parts of the trip, e.g.
-   legs.
-3. Even if a trip provides partial first class support only, a first class offer
-   is always provided.
-4. If a part of a trip is free, a fare with price 0 must be provided.
-5. Pricing is individual (if possible).
-
 For offer parts such as admissions, reservations, or ancillaries, the following
 rules apply:
 
@@ -152,7 +141,21 @@ rules apply:
    e.g. legs.
 3. Even if a trip provides partial first class support only, a first class offer
    is provided.
-4. If a part of a trip is free, an offer part with price 0 must be provided.
+4. If a part of a trip is free, an offer part with price zero must be provided.
+
+For fares, the following rules apply:
+
+1. An offer should contain all fares per travel class and per
+   flexibility/product code.
+2. Per passenger there should be a fare for different parts of the trip, e.g.
+   legs.
+3. Even if a trip provides partial first class support only, a first class offer
+   is always provided.
+4. If a part of a trip is free, a fare with price zero must be provided.
+5. Pricing is individual (if possible).
+
+More information for the structuring of offers can be found in [Offer
+Structure](offer-structure.md).
 
 ### Offer combination <a name="Offercombination">
 
