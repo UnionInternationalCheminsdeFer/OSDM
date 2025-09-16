@@ -755,9 +755,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | ![](../images/catalog-of-code-lists/graphics-icons/EASY_ACCESS_ICON.png)       | easy access                                | -         | `EASY_ACCESS_ICON`            |
 | ![](../images/catalog-of-code-lists/graphics-icons/TOILET_ICON.png)            | toilet                                     | -         | `TOILET_ICON`                 |
 | ![](../images/catalog-of-code-lists/graphics-icons/TOILET_WHEELCHAIR_ICON.png) | toilet supporting wheelchairs              | -         | `TOILET_PRM_ICON`             |
-| ![](../images/catalog-of-code-lists/graphics-icons/TOILET_PRAM_ICON.png)       | toilet for pram                            | -         | `TOILET_PRAM_ICON`            |
 | ![](../images/catalog-of-code-lists/graphics-icons/SKI_ICON.png)               | ski                                        | -         | `SKI_ICON`                    |
-| ![](../images/catalog-of-code-lists/graphics-icons/TROLLEY_ICON.png)           | trolley                                    | -         | `TROLLEY_ICON`                |
 
 ## Interface Type <a name="InterfaceType">
 
