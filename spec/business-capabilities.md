@@ -142,17 +142,18 @@ rules apply:
 3. Even if a trip provides partial first class support only, a first class offer
    is provided.
 4. If a part of a trip is free, an offer part with price zero must be provided.
+5. In an offer there should be no overlapping offer parts.
 
 For fares, the following rules apply:
 
 1. An offer should contain all fares per travel class and per
    flexibility/product code.
-2. Per passenger there should be a fare for different parts of the trip, e.g.
-   legs.
+2. Per passenger there should be non-overlapping fares for the complete trip.
 3. Even if a trip provides partial first class support only, a first class offer
    is always provided.
 4. If a part of a trip is free, a fare with price zero must be provided.
 5. Pricing is individual (if possible).
+6. In an offer there should be no overlapping fares.
 
 More information for the structuring of offers can be found in [Offer
 Structure](offer-structure.md).

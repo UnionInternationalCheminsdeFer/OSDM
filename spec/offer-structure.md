@@ -14,20 +14,22 @@ permalink: /spec/offer-structure/
   - [2. Per passenger there should be an offer part for different parts of the trip, e.g. legs.](#2-per-passenger-there-should-be-an-offer-part-for-different-parts-of-the-trip-eg-legs)
   - [3. Even if a trip provides partial first class support only, a first class offer is provided.](#3-even-if-a-trip-provides-partial-first-class-support-only-a-first-class-offer-is-provided)
   - [4. If a part of a trip is free, an offer part with price 0 must be provided.](#4-if-a-part-of-a-trip-is-free-an-offer-part-with-price-0-must-be-provided)
+  - [5. In one offer there should be no overlapping offer parts.](#5-in-one-offer-there-should-be-no-overlapping-offer-parts)
 - [General rules for fares](#general-rules-for-fares)
   - [1. An offer should contain all fares per travel class and per flexibility/product code.](#1-an-offer-should-contain-all-fares-per-travel-class-and-per-flexibilityproduct-code)
-  - [2. Per passenger there should be a fare for different parts of the trip, e.g. legs.](#2-per-passenger-there-should-be-a-fare-for-different-parts-of-the-trip-eg-legs)
+  - [2. Per passenger there should be non-overlapping fares for the complete trip.](#2-per-passenger-there-should-be-non-overlapping-fares-for-the-complete-trip)
   - [3. Even if a trip provides partial first class support only, a first class offer is always provided.](#3-even-if-a-trip-provides-partial-first-class-support-only-a-first-class-offer-is-always-provided)
   - [4. If a part of a trip is free, a fare with price 0 must be provided.](#4-if-a-part-of-a-trip-is-free-a-fare-with-price-0-must-be-provided)
   - [5. Pricing is individual (if possible).](#5-pricing-is-individual-if-possible)
+  - [6. In one offer there should be no overlapping fares.](#6-in-one-offer-there-should-be-no-overlapping-fares)
 - [Incorrect offer structures](#incorrect-offer-structures)
 
 ## Introduction <a name="introduction">
 
-The OSDM offer structure is very powerful and flexible. However if various
+The OSDM offer structure is very powerful and flexible. However, if various
 parties interpret the structure in different ways, this can lead to
 interoperability issues. As interoperability is a key goal of OSDM, this
-document defines some rules for the structuring of offers. To ensure real
+document defines some rules for the structuring of offers. To ensure true
 interoperability, an offer must not only be syntactically valid, but also comply
 with these rules.
 
@@ -40,8 +42,7 @@ The following figure shows the overall structure of an offer in OSDM:
 Individual offer mode means that each passenger is given individual admissions
 and reservations. Thus, in individual mode, for every passenger a distinct offer
 part should be provided. In collective mode, one offer part per trip part should
-be provided. Collective mode is used by DB foremost, but is also needed for
-group bookings.
+be provided.
 
 For offer parts such as admissions, reservations, or ancillaries, the following
 rules apply:
@@ -61,10 +62,17 @@ contain six offer parts per passenger:
 
 ### 2. Per passenger there should be an offer part for different parts of the trip, e.g. legs.
 
-Assuming a trip consists of three legs, then the offer should contain three
-offer parts per passenger, one for each leg of the trip. Or one offer part could
-span multiple legs. Most importantly, there should be no leg without an offer
-part.
+Assuming a trip consists of three legs, then the offer could contain three offer
+parts per passenger, one for each leg of the trip. Or one offer part could cover
+the first two legs and another offer part covers the third leg or vice versa. Or
+one offer part covers the whole trip.
+
+Ideally, there should be no leg without an offer part. Especially a retailer
+must try hard to provide offer parts for all legs by calling various
+distributors and aggregate their contents.
+
+In cases where only a sub part of the requested trip can be provided, this must
+be expressed via teh `tripCoverage` attribute in the offer response.
 
 ### 3. Even if a trip provides partial first class support only, a first class offer is provided.
 
@@ -77,6 +85,11 @@ the whole trip.
 Again, assuming a trip consists of three legs, and one leg is free of charge.
 Then the offer should nevertheless contain an offer part for that leg, with
 price 0.
+
+### 5. In one offer there should be no overlapping offer parts.
+
+Overlapping offer parts would imply that a customer pays some parts of a trip
+twice.
 
 ## General rules for fares
 
@@ -92,11 +105,13 @@ Contrary to offer parts, multiple fares might be needed to cover one leg as
 fares regional validity is not always bound to a trip. E.g a fare's validity can
 end at a countries border with no train station or stop.
 
-![](../images/models/offer-structure-fares.png)
+![](../images/models/offer-structure-with-fares.png)
 
-### 2. Per passenger there should be a fare for different parts of the trip, e.g. legs.
+### 2. Per passenger there should be non-overlapping fares for the complete trip.
 
-Similar to offer parts, there should be no leg without a fare.
+In similar spirit to offer parts, there should be a many fares as needed to
+cover the requested section. The relevant attribute indicating the coverage is
+the `regionalConstraint` attribute of a fare.
 
 ### 3. Even if a trip provides partial first class support only, a first class offer is always provided.
 
@@ -111,6 +126,10 @@ provided.
 ### 5. Pricing is individual (if possible).
 
 In fare mode pricing is always individual, i.e. each passenger has its fare(s).
+
+### 6. In one offer there should be no overlapping fares.
+
+Overlapping fares would imply that a customer pays some parts of a trip twice.
 
 ## Incorrect offer structures
 
