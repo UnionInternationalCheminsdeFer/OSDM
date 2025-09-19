@@ -79,14 +79,24 @@
       link: spec/offer-structure/
     - name: Graphical Place Reservation
       link: spec/graphical-place-reservation/
-    - name: Catalog of Code Lists
-      link: spec/catalog-of-code-lists/
     - name: Roles
       link: spec/roles/
     - name: Processes
       link: spec/processes/
     - name: After Sales Processes
       link: spec/after-sales-processes/
+    - name: Catalog of Code Lists
+      link: spec/catalog-of-code-lists/
+    - name: Errors & Problems
+      link: spec/errors-problems/
+    - name: Non-Functional Requirements
+      link: spec/non-functional-requirements/
+    - name: Compliance
+      link: spec/compliance/
+
+- name: Deep Dives
+  link: deep-dives/
+  dropdown: 
     - name: Persons with reduced mobility (PRM) and accessability
       link: spec/prm_and_access/
     - name: Continuous On-Demand Services
@@ -105,12 +115,6 @@
       link: spec/authentication/
     - name: Pagination
       link: spec/pagination/
-    - name: Errors & Problems
-      link: spec/errors-problems/
-    - name: Non-Functional Requirements
-      link: spec/non-functional-requirements/
-    - name: Compliance
-      link: spec/compliance/
     - name: Two phase commit
       link: spec/2PhaseCommit/
 
@@ -133,9 +137,10 @@
       link: https://unioninternationalcheminsdefer.github.io/OSDM-Converter/
 - name: Organization
   link: organization/
-- name: Team
-  link: team/
-- name: Blog
-  link: blog/
-- name: About
-  link: about/
+  dropdown:
+    - name: Organization
+      link: organization/
+    - name: Team
+      link: team/
+    - name: About
+      link: about/
