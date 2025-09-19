@@ -15,6 +15,7 @@ permalink: /spec/offer-structure/
   - [3. Even if a trip provides partial first class support only, a first class offer is provided.](#3-even-if-a-trip-provides-partial-first-class-support-only-a-first-class-offer-is-provided)
   - [4. If a part of a trip is free, an offer part with price 0 must be provided.](#4-if-a-part-of-a-trip-is-free-an-offer-part-with-price-0-must-be-provided)
   - [5. In one offer there should be no overlapping offer parts.](#5-in-one-offer-there-should-be-no-overlapping-offer-parts)
+  - [6. Any offer part of an offer must be bookable.](#6-any-offer-part-of-an-offer-must-be-bookable)
 - [General rules for fares](#general-rules-for-fares)
   - [1. An offer should contain all fares per travel class and per flexibility/product code.](#1-an-offer-should-contain-all-fares-per-travel-class-and-per-flexibilityproduct-code)
   - [2. Per passenger there should be non-overlapping fares for the complete trip.](#2-per-passenger-there-should-be-non-overlapping-fares-for-the-complete-trip)
@@ -22,6 +23,7 @@ permalink: /spec/offer-structure/
   - [4. If a part of a trip is free, a fare with price 0 must be provided.](#4-if-a-part-of-a-trip-is-free-a-fare-with-price-0-must-be-provided)
   - [5. Pricing is individual (if possible).](#5-pricing-is-individual-if-possible)
   - [6. In one offer there should be no overlapping fares.](#6-in-one-offer-there-should-be-no-overlapping-fares)
+  - [7. Any fares of an offer must be bookable.](#7-any-fares-of-an-offer-must-be-bookable)
 - [Incorrect offer structures](#incorrect-offer-structures)
 
 ## Introduction <a name="introduction">
@@ -91,6 +93,10 @@ price 0.
 Overlapping offer parts would imply that a customer pays some parts of a trip
 twice.
 
+### 6. Any offer part of an offer must be bookable.
+
+If an offer part is not bookable, this is considered as a bug.
+
 ## General rules for fares
 
 Apart from offer parts, OSDM also supports the distribution of fares. Fares
@@ -130,6 +136,10 @@ In fare mode pricing is always individual, i.e. each passenger has its fare(s).
 ### 6. In one offer there should be no overlapping fares.
 
 Overlapping fares would imply that a customer pays some parts of a trip twice.
+
+### 7. Any fares of an offer must be bookable.
+
+If a fare is not bookable, this is considered as a bug.
 
 ## Incorrect offer structures
 

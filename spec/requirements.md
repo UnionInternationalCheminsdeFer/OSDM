@@ -193,7 +193,7 @@ services.
 
 An offer should contain all offer parts, or fares, respectively per travel class and per flexibility/product code.
 
-Per passenger there should be an offer part, or fare for different parts of the trip, e.g. legs.
+Per passenger there should be an offer part, or fare for different parts of the trip, e.g. legs. I.e., all offers generated are always proposed for the complete set of passengers.
 
 Even if a trip provides partial first class support only, a first class offer is always provided.
 
