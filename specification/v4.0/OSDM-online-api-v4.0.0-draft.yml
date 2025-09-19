@@ -1172,7 +1172,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Purchaser'
+              $ref: '#/components/schemas/PurchaserSpecification'
       responses:
         '200':
           description: |
@@ -5436,6 +5436,49 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
+    AbstractPassenger:
+      type: object
+      additionalProperties: false
+      description: |
+        Minimal common specification of a passenger used for inheritance.
+      properties:
+        externalRef:
+          description: |
+            A stable reference to a passenger from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
+          type: string
+          examples:
+            - TK-id-12345
+        dateOfBirth:
+          description: |
+            Date of birth of the passenger. Only needed for passengers of type persons, family child, PRM
+            and wheelchair.
+          type:
+            - 'string'
+            - 'null'
+          format: date
+        age:
+          type:
+            - 'integer'
+            - 'null'
+          format: int32
+          minimum: 0
+        cards:
+          description: |
+            reduction or loyalty cards owned by the passenger
+          type: array
+          items:
+            $ref: '#/components/schemas/CardReference'
+        prmNeeds:
+          description: |
+            For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
+          type: array
+          items:
+            $ref: '#/components/schemas/PRMNeedType'
+        type:
+          $ref: '#/components/schemas/PassengerType'
+        gender:
+          $ref: '#/components/schemas/Gender'
+
     AbstractTravelAccount:
       type: object
       additionalProperties: false
@@ -6150,50 +6193,22 @@ components:
         - 'MUSICAL_INSTRUMENT'
 
     AnonymousPassengerSpecification:
-      type: object
-      additionalProperties: false
       description: |
         Minimal specification of a passenger to request offers without any GDPR relevant attributes such as name or address.
 
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
-      required:
-        - externalRef
-        - type
-      properties:
-        externalRef:
-          description: |
-            A stable reference to a passenger from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
-          type: string
-        dateOfBirth:
-          description: |
-            Date of birth of the passenger. Only needed for passengers of type persons, family child, PRM
-            and wheelchair.
-          type:
-            - 'string'
-            - 'null'
-          format: date
-        age:
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
-        type:
-          $ref: '#/components/schemas/PassengerType'
-        prmNeeds:
-          type: array
-          items:
-            $ref: '#/components/schemas/PRMNeedType'
-        cards:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardReference'
-        gender:
-          $ref: '#/components/schemas/Gender'
-        residency:
-          $ref: '#/components/schemas/CountryCode'
-        transportable:
-          $ref: '#/components/schemas/TransportableSpecification'           
+      allOf:
+      - $ref: '#/components/schemas/AbstractPassenger'
+      - type: object
+        additionalProperties: false
+        required:
+          - externalRef
+          - type
+        properties:
+          residency:
+            $ref: '#/components/schemas/CountryCode'
+          transportable:
+            $ref: '#/components/schemas/TransportableSpecification'           
 
     ApplicabilityType:
       type: string
@@ -7835,8 +7850,6 @@ components:
     CompanyDetail:
       type: object
       additionalProperties: false
-      required:
-        - name
       properties:
         name:
           type: string
@@ -11891,66 +11904,33 @@ components:
         Information about a passenger.
 
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
-      required:
-        - id
-        - externalRef
-        - type
-      properties:
-        id:
-          type: string
-        summary:
-          description: |
-            A human-readable description of the passenger.
-          type:
-            - 'string'
-            - 'null'
-        externalRef:
-          description: |
-            A stable reference to a passenger from other elements, or from caller system.
-            When passed in passenger specification in an offer request, it must be echoed back in the
-            response.
-          type: string
-        dateOfBirth:
-          description: |
-            date of birth of the passenger
-          type:
-            - 'string'
-            - 'null'
-          format: date
-        age:
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
-        type:
-          $ref: '#/components/schemas/PassengerType'
-        cards:
-          description: |
-            reduction or loyalty cards owned by the passenger
-          type: array
-          items:
-            $ref: '#/components/schemas/CardReference'
-        gender:
-          $ref: '#/components/schemas/Gender'
-        detail:
-          $ref: '#/components/schemas/PersonDetail'
-        identificationCard:
-          $ref: '#/components/schemas/IdentificationCard'
-        transportableDetails:
-          $ref: '#/components/schemas/Transportable'
-        prmNeeds:
-          description: |
-            For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
-          type: array
-          items:
-            $ref: '#/components/schemas/PRMNeedType'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+      allOf:
+      - $ref: '#/components/schemas/PassengerSpecification'
+      - type: object
+        additionalProperties: false
+        required:
+          - id
+          - externalRef
+          - type
+        properties:
+          id:
+            type: string
+          summary:
+            description: |
+              A human-readable description of the passenger.
+            type:
+              - 'string'
+              - 'null'
+          identificationCard:
+            $ref: '#/components/schemas/IdentificationCard'
+          transportableDetails:
+            $ref: '#/components/schemas/Transportable'
+          _links:
+            description: |
+              Java Property Name: 'links'
+            type: array
+            items:
+              $ref: '#/components/schemas/Link'
 
     PassengerCategory:
       type: object
@@ -12022,55 +12002,20 @@ components:
           $ref: '#/components/schemas/Passenger'
 
     PassengerSpecification:
-      type: object
-      additionalProperties: false
       description: |
         Minimal specification of a passenger to request offers.
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
-      required:
-        - externalRef
-        - type
-      properties:
-        externalRef:
-          description: |
-            A stable reference to a passenger from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
-          type: string
-          examples:
-            - TK-id-12345
-        dateOfBirth:
-          description: |
-            Date of birth of the passenger. Only needed for passengers of type persons, family child, PRM
-            and wheelchair.
-          type:
-            - 'string'
-            - 'null'
-          format: date
-        age:
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
-        cards:
-          description: |
-            reduction or loyalty cards owned by the passenger
-          type: array
-          items:
-            $ref: '#/components/schemas/CardReference'
-        prmNeeds:
-          description: |
-            For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
-          type: array
-          items:
-            $ref: '#/components/schemas/PRMNeedType'
-        detail:
-          $ref: '#/components/schemas/PersonDetail'
-        type:
-          $ref: '#/components/schemas/PassengerType'
-        gender:
-          $ref: '#/components/schemas/Gender'
-        transportableDetails:
-          $ref: '#/components/schemas/Transportable'        
+        Business rules for mandatory and non patchable items must be checked on the backend.
+        Forward business rules for mandatory items using a requestedInformation field.
+      allOf:
+      - $ref: '#/components/schemas/AbstractPassenger'
+      - type: object
+        additionalProperties: false
+        properties:
+          detail:
+            $ref: '#/components/schemas/PersonDetail'
+          transportableDetails:
+            $ref: '#/components/schemas/Transportable'        
 
     PassengerType:
       description: |
@@ -12138,9 +12083,6 @@ components:
       description: |
         Personal information potentially needed at booking step. To support privacy by design,
         it is not permitted to send personal information not required to create a valid booking.
-      required:
-        - firstName
-        - lastName
       properties:
         summary:
           description: |
@@ -13600,27 +13542,19 @@ components:
             - 'null'
 
     Purchaser:
-      type: object
-      additionalProperties: false
       description: |
-        Purchaser information. Exactly one of `detail` or `companyDetails` must be provided.
-      properties:
-        externalRef:
-          description: |
-            A stable reference to a purchaser from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
-          type:
-            - 'string'
-            - 'null'
-        detail:
-          $ref: '#/components/schemas/PersonDetail'
-        companyDetails:
-          $ref: '#/components/schemas/CompanyDetail'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        Purchaser information.
+      allOf:
+      - $ref: '#/components/schemas/PurchaserSpecification'
+      - type: object
+        additionalProperties: false
+        properties:
+          _links:
+            description: |
+              Java Property Name: 'links'
+            type: array
+            items:
+              $ref: '#/components/schemas/Link'
 
     PurchaserResponse:
       type: object
@@ -13669,6 +13603,8 @@ components:
       additionalProperties: false
       description: |
         Minimal specification of a purchaser to request booking of an offer. Exactly one of `detail` or `companyDetails` must be provided.
+        Business rules for mandatory and non patchable items must be checked on the backend.
+        Forward business rules for mandatory items using a requestedInformation field.
       properties:
         externalRef:
           description: |
