@@ -11,13 +11,13 @@
     - name: Online API v3.3.0 (stable version) - Swagger
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.3/OSDM-online-api-v3.3.0.yml
     - name: Online API v3.4.0 (stable version) - Swagger
-      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.4/OSDM-online-api-v3.4.0.yml   
+      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.4/OSDM-online-api-v3.4.0.yml
     - name: Online API v3.5.0 (stable version) - Swagger
-      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.5/OSDM-online-api-v3.5.0.yml 
+      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.5/OSDM-online-api-v3.5.0.yml
     - name: Online API v3.6.0 (stable version) - Swagger
-      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.6/OSDM-online-api-v3.6.0.yml   
+      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.6/OSDM-online-api-v3.6.0.yml
     - name: Online API v3.7.0 (draft version) - Swagger
-      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.7/OSDM-online-api-v3.7.0.yml         
+      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.7/OSDM-online-api-v3.7.0.yml
     - name: Online API v4.0.0 (draft version) - Swagger
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-api-v4.0.0-draft.yml
 
@@ -42,17 +42,17 @@
     - name: Online API v3.4.0 (stable version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.4/OSDM-online-api-v3.4.0.yml&nocors
     - name: Online API v3.5.0 Webhook - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.5/OSDM-online-webhook-v3.5.0.yml&nocors      
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.5/OSDM-online-webhook-v3.5.0.yml&nocors
     - name: Online API v3.5.0 (stable version) - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.5/OSDM-online-api-v3.5.0.yml&nocors  
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.5/OSDM-online-api-v3.5.0.yml&nocors
     - name: Online API v3.6.0 Webhook - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.6/OSDM-online-webhook-v3.6.0.yml&nocors      
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.6/OSDM-online-webhook-v3.6.0.yml&nocors
     - name: Online API v3.6.0 (stable version) - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.6/OSDM-online-api-v3.6.0.yml&nocors      
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.6/OSDM-online-api-v3.6.0.yml&nocors
     - name: Online API v3.7.0 Webhook (draft version) - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.7/OSDM-online-webhook-v3.7.0.yml&nocors      
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.7/OSDM-online-webhook-v3.7.0.yml&nocors
     - name: Online API v3.7.0 (draft version) - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.7/OSDM-online-api-v3.7.0.yml&nocors        
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.7/OSDM-online-api-v3.7.0.yml&nocors
     - name: Online API v4.0.0 (draft version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-api-v4.0.0-draft.yml&nocors
 
@@ -75,44 +75,45 @@
       link: spec/offline-model/
     - name: State Models
       link: spec/state-models/
+    - name: Offer Structure
+      link: spec/offer-structure/
     - name: Graphical Place Reservation
       link: spec/graphical-place-reservation/
     - name: Catalog of Code Lists
-      link: spec/catalog-of-code-lists/         
+      link: spec/catalog-of-code-lists/
     - name: Roles
       link: spec/roles/
     - name: Processes
       link: spec/processes/
     - name: After Sales Processes
-      link: spec/after-sales-processes/  
+      link: spec/after-sales-processes/
     - name: Persons with reduced mobility (PRM) and accessability
       link: spec/prm_and_access/
     - name: Continuous On-Demand Services
       link: spec/on-demand-services/
     - name: Account Based Ticketing
-      link: spec/account-based-ticketing/      
+      link: spec/account-based-ticketing/
     - name: Dual Approaches
-      link: spec/dual-approaches/  
+      link: spec/dual-approaches/
     - name: Requested Information - Grammar
       link: spec/requested-information-grammar.html
     - name: Synchronization
-      link: spec/synchronization/      
+      link: spec/synchronization/
     - name: Language
       link: spec/language/
     - name: Authentication
-      link: spec/authentication/      
+      link: spec/authentication/
     - name: Pagination
       link: spec/pagination/
     - name: Errors & Problems
-      link: spec/errors-problems/      
+      link: spec/errors-problems/
     - name: Non-Functional Requirements
-      link: spec/non-functional-requirements/      
+      link: spec/non-functional-requirements/
     - name: Compliance
       link: spec/compliance/
     - name: Two phase commit
-      link: spec/2PhaseCommit/      
+      link: spec/2PhaseCommit/
 
-      
 - name: Tools
   link: tools/
   dropdown:
