@@ -37,7 +37,7 @@ with these rules.
 
 The following figure shows the overall structure of an offer in OSDM:
 
-![Offer structure](../images/models/offer-structure.png)
+![Offer structure](../../images/models/offer-structure.png)
 
 Individual offer mode means that each passenger is given individual admissions
 and reservations. Thus, in individual mode, for every passenger a distinct offer
@@ -105,7 +105,7 @@ Contrary to offer parts, multiple fares might be needed to cover one leg as
 fares regional validity is not always bound to a trip. E.g a fare's validity can
 end at a countries border with no train station or stop.
 
-![](../images/models/offer-structure-with-fares.png)
+![](../../images/models/offer-structure-with-fares.png)
 
 ### 2. Per passenger there should be non-overlapping fares for the complete trip.
 
@@ -135,7 +135,7 @@ Overlapping fares would imply that a customer pays some parts of a trip twice.
 
 Next examples of incorrect offer structures are given:
 
-![Incorrect reuse of offer](../images/models/offer-structure-incorrect-reuse.png)
+![Incorrect reuse of offer](../../images/models/offer-structure-incorrect-reuse.png)
 
 Here the same offer part is reused for two different passengers. This data
 structure make it difficult when booking as the same offer part of fare needs to
@@ -144,7 +144,7 @@ be booked twice.
 Next is an example where multiple offers need to be booked to get a complete
 booking for three passengers:
 
-![Incorrect splitting in offers](../images/models/offer-structure-incorrect-splitting.png)
+![Incorrect splitting in offers](../../images/models/offer-structure-incorrect-splitting.png)
 
 This would force a distributor to do complex book keeping to ensure that for all
 passenger a booking exists. Also multiple booking would be needed, which
