@@ -1,3 +1,10 @@
+---
+layout: page
+title: Two phase commit
+hide_hero: true
+permalink: /spec/2PhaseCommit/
+---
+
 # Two phase commit
 This feature is intended for aggregators and distributors to build robust integrations for trips operated by multiple provider systems.
 In a distributed environment, it is impossible to be 100% bulletproof.
