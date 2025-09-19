@@ -20,7 +20,7 @@ The current implementation of the [**OSDM-Demo-App**](https://github.com/UnionIn
 
 A deployed version of the demo application can be found here: [https://osdm-demo.xatellite.space/](https://osdm-demo.xatellite.space/)
 
-![Demo App](../images/blog/osdm-demo-app-landingpage.png)
+![Demo App](../../images/blog/osdm-demo-app-landingpage.png)
 
 To test the demo-application one needs a [sandbox](/tools/sandboxes/) or production OSDM service, that supports the [client credentials authentification](/spec/authentication/#client_credentials) flow and sets http access control headers accordingly.
 

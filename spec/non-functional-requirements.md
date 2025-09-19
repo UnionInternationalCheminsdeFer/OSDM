@@ -43,7 +43,7 @@ called in parallel.
 
 The following illustration highlights the different response times:
 
-![Response Times](../images/non-functional-requirements/responseTimes.png)
+![Response Times](../../images/non-functional-requirements/responseTimes.png)
 
 To achieve a good user experience with fast response time the following the
 three response times are crucial.

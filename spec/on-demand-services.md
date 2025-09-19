@@ -286,7 +286,7 @@ payment:
 
 ### continous service usage - state model
 
-![Continous Service Usage State Model](../images/on-demand-services/continous-service-usage-state-model.png)
+![Continous Service Usage State Model](../../images/on-demand-services/continous-service-usage-state-model.png)
 
 ### Reimbursement <a name="Reimbursement">
 

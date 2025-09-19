@@ -21,7 +21,7 @@ retailer about that fact, that a trip or a booking has changed. The retailer can
 then itself inform a passenger or the purchaser e.g. a travel agency about
 changes to the trip, the booking or the complaint.
 
-![Synchronization](../images/synchronization/synchronization.png)
+![Synchronization](../../images/synchronization/synchronization.png)
 
 The API informs authorized listener of the fact that changes have occurred using
 [Webhook](https://en.wikipedia.org/wiki/Webhook).

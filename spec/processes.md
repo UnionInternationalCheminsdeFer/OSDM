@@ -80,7 +80,7 @@ Some more complex preocesses are decribed in separate chapters:
 
 ## Process Flow <a name="ProcessFlow">
 
-![Process Flow](../images/processes/act-process-flow.png)
+![Process Flow](../../images/processes/act-process-flow.png)
 
 The process flow starts with getting offers which can be chosen by the customer.
 Once selected they can be pre-booked and after the payment process (which is
@@ -94,7 +94,7 @@ with a refund or exchange offer which can then be booked by the customer.
 
 ### Looking Up Places <a name="LookingUpPlaces">
 
-![Looking Up Places](../images/processes/seq-looking-up-places.png)
+![Looking Up Places](../../images/processes/seq-looking-up-places.png)
 
 The `\places` Lookup can be used by an API provider in order to search for
 places. Two typical uses cases would be
@@ -129,7 +129,7 @@ additional details such as the incriminated field in the detail property of the
 
 ### Getting and Browsing Trips <a name="GettingTrips">
 
-![Getting and Browsing Trips](../images/processes/seq-getting-and-browsing-trips.png)
+![Getting and Browsing Trips](../../images/processes/seq-getting-and-browsing-trips.png)
 
 If the API consumer only needs a schedule, and no bookable offer, it has the
 possibility to create a trips collection using `POST /trip-collection`. If the
@@ -182,7 +182,7 @@ additional details such as the incriminated field in the detail property of the
 
 ### Getting and Browsing Offers <a name="GettingOffers">
 
-![Getting and Browsing Offers](../images/processes/seq-getting-and-browsing-offers.png)
+![Getting and Browsing Offers](../../images/processes/seq-getting-and-browsing-offers.png)
 
 Requesting and browsing offers works a lot like the trips: the API consumer
 submits search criteria, and a collection of "trip offers" is returned. This
@@ -376,11 +376,11 @@ specification of customer requirements (at a table, at the window, etc..).
 
 The basic flow is shown here:
 
-![Reservations on a pre-booked Booking](../images/processes/seq-graphical-reservation.png)
+![Reservations on a pre-booked Booking](../../images/processes/seq-graphical-reservation.png)
 
 Reservations can aso be added to an already confirmed booking:
 
-![Adding Reservations on a confirmed booking](../images/processes/seq-graphical-reservation-after-booking.png)
+![Adding Reservations on a confirmed booking](../../images/processes/seq-graphical-reservation-after-booking.png)
 
 ##### Place Availability of Offers for Reservation
 
@@ -513,7 +513,7 @@ Proposed trip by timetable system:
 
 ### Creating a Booking Based on Offers <a name="CreatingBookings">
 
-![Creating a Booking Based on Offers](../images/processes/seq-creating-a-booking-based-on-offers.png)
+![Creating a Booking Based on Offers](../../images/processes/seq-creating-a-booking-based-on-offers.png)
 
 Once the offer has been selected, the API consumer can proceed to the booking of
 that offer. Along with the offer, optional or mandatory reservations or
@@ -554,7 +554,7 @@ information on the availability of places with the selected offer:
 - Places nearby another place.
 - A graphical display of available places.
 
-![Graphical reservation](../images/processes/seq-graphical-reservation.png)
+![Graphical reservation](../../images/processes/seq-graphical-reservation.png)
 
 In some cases, additional information must be provided before or at the time of
 provisional booking in order to be taken into account, such as:
@@ -673,7 +673,7 @@ applies for each direction.
 
 ### Handling Partial Success of Pre-Booking <a name="HandlingPartialSuccess">
 
-![Handling Partial Success of Pre-Booking](../images/processes/seq-handling-partial-success-of-pre-booking.png)
+![Handling Partial Success of Pre-Booking](../../images/processes/seq-handling-partial-success-of-pre-booking.png)
 
 As a **Retailer**, partial pre-booking is not expected. As a consequence all
 pre-booking operations are either fully successful or not executed at all.
@@ -718,7 +718,7 @@ situations can be communicated through the `Warning` messages:
 
 ### Completing Booking for Confirmation and Fulfillment <a name="CompleteBooking">
 
-![Completing Booking for Confirmation and Fulfillment](../images/processes/seq-completing-booking-for-confirmation-and-fulfillment.png)
+![Completing Booking for Confirmation and Fulfillment](../../images/processes/seq-completing-booking-for-confirmation-and-fulfillment.png)
 
 When the booking has been successfully created, some additional changes may be
 desired or even required before the booking can be confirmed.
@@ -755,7 +755,7 @@ between the offered product and the updated passenger property.
 
 ### Cancel a Not Confirmed Booking <a name="CancelUnconfirmedBooking">
 
-![Cancel a Not Confirmed Booking ](../images/processes/seq-cancel-a-not-confirmed-booking.png)
+![Cancel a Not Confirmed Booking ](../../images/processes/seq-cancel-a-not-confirmed-booking.png)
 
 In case a pre-booked booking is abandoned by its user, and this event is
 captured, it is recommended for the API consumer to properly cancel the booking
@@ -819,7 +819,7 @@ specifies the means of payment, is as follows:
 
 ### Fulfillment Process
 
-![Fulfillment Process](../images/processes/seq-fulfillment-process.png)
+![Fulfillment Process](../../images/processes/seq-fulfillment-process.png)
 
 The fulfillment is the final step of the booking. In most cases, the booking
 will be confirmed and fulfilled in one step from the API consumer standpoint:
@@ -1020,13 +1020,13 @@ Reservation and Ancillary Booking Parts are added and deleted via:
   As long as the anxillary offerPart is not confirmed. If confirmed the refund
   must be used.
 
-![Adding parts to a booked offer](../images/processes/seq-add-parts-2-booking.png)
+![Adding parts to a booked offer](../../images/processes/seq-add-parts-2-booking.png)
 
 - POST /offers{OfferCollectionRequest}
 - POST /bookings/5678/booked-offers{offers,passengers}
 - DELETE /bookings/{bookingId}/booked-offers/{bookedOfferId}
 
-![Adding parts to an existing booking](../images/processes/seq-add-parts-2-booking-2.png)
+![Adding parts to an existing booking](../../images/processes/seq-add-parts-2-booking-2.png)
 
 
 ### Remarks on the Booking Process with Fares <a name=BookingProcessFares>

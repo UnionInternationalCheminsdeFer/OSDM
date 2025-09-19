@@ -54,7 +54,7 @@ This method makes it unnecessary to exchange actual client secrets between the c
 
 The general flow between consumer and provider looks like this:
 
-![Authentication_flow](../images/authentication/authentication_flow_be_to_be.png)
+![Authentication_flow](../../images/authentication/authentication_flow_be_to_be.png)
 
 In this flow, the following services are defined:
 
@@ -213,7 +213,7 @@ and the OSDM consumer.
 
 The flow to be implemented by the OSDM consumer is somewhat simpler to the other method.
 
-![Authentication_flow](../images/authentication/authentication_flow_client_secret.png)
+![Authentication_flow](../../images/authentication/authentication_flow_client_secret.png)
 
 ### Request for an access token using a client secret <a name="request_for_access_token_with_client_credentials">
 

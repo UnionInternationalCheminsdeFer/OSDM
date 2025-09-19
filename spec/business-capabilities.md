@@ -72,7 +72,7 @@ The following diagram shows the actors and principal use cases involved in rail
 distribution and control. The principal use case relevant for this specification
 is marked in yellow.
 
-![Actor Model](../images/business-capabilities/business-use-cases.png)
+![Actor Model](../../images/business-capabilities/business-use-cases.png)
 
 ### Actors in OSDM <a name="ActorsinOSDM">
 

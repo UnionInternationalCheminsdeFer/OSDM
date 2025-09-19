@@ -113,7 +113,7 @@ Queue authentication and encryption must use TLS version 1.2.
 The fare structure delivery is the bulk data object collecting the fare data
 `fareStructure` of a delivery and the delivery meta data `delivery`.
 
-![Data Structure for Bulk Data](../images/fare-data-structure/data-structure-for-bulk-data.png)
+![Data Structure for Bulk Data](../../images/fare-data-structure/data-structure-for-bulk-data.png)
 
 ### Definition of a single fare <a name="Definitionofasinglefare">
 
@@ -121,12 +121,12 @@ The single fare represents the smallest unit to be integrated in an offer.
 Within the offline data the fare collects the references to the constraints that
 need to be applied and the price.
 
-![Fare Structure](../images/fare-data-structure/fare-offline.png)
+![Fare Structure](../../images/fare-data-structure/fare-offline.png)
 
 Some constraints are bundled within the fare constraint bundle to avoid
 repeating the same data too many times:
 
-![Fare Structure](../images/fare-data-structure/fare-bundle.png)
+![Fare Structure](../../images/fare-data-structure/fare-bundle.png)
 
 ## Basic definitions included in the data delivery <a name="Basicdefinitionsincludedinthedatadelivery">
 
@@ -137,7 +137,7 @@ are included only once and are references within the data via their id.
 
 A data structure to define a calendar e.g. used in sales availability.
 
-![Fare Structure](../images/fare-data-structure/calendar.png)
+![Fare Structure](../../images/fare-data-structure/calendar.png)
 
 ### Text <a name="Text">
 
@@ -146,7 +146,7 @@ long texts and translations in different languages. To support legacy
 implementations and the conversation to the 108.1 specification additional texts
 without special characters can be defined.
 
-![Fare Structure](../images/fare-data-structure/text.png)
+![Fare Structure](../../images/fare-data-structure/text.png)
 
 ### Station Names <a name="StationNames">
 
@@ -163,7 +163,7 @@ route descriptions whereas the long for is used for entry and exit stations.
 A legacy border point code can be provided during the migration to the OSDM data
 model.
 
-![Fare Structure](../images/fare-data-structure/stationNames.png)
+![Fare Structure](../../images/fare-data-structure/stationNames.png)
 
 ### Reduction Cards <a name="ReductionCards">
 
@@ -174,7 +174,7 @@ price. Some provider specific cards are accepted by other carriers as a generic
 card. This can be expressed via the included cards feature. E.g. MyCard could be
 accepted as RailPlus card by others, so MyCard includes RailPlus.
 
-![Fare Structure](../images/fare-data-structure/reductionCards.png)
+![Fare Structure](../../images/fare-data-structure/reductionCards.png)
 
 ### Connection Points <a name="ConnectionPoints">
 
@@ -187,14 +187,14 @@ more than two stations, in this rare case the set(s) might contain more than one
 station (e.g. Stations _A_ and _B_ for carrier 1 are connected to stations _C_
 and _D_ of carrier 2 and allowed route go via _A-C_ or _B-D_).
 
-![Fare Structure](../images/fare-data-structure/connectionPoint.png)
+![Fare Structure](../../images/fare-data-structure/connectionPoint.png)
 
 ### fare reference station set <a name="farereferencestationset">
 
 Fare reference station set defines a set of stations that can be used in a
 route. All station(s) of the set can be used by the passenger.
 
-![Fare Structure](../images/fare-data-structure/fare-referenceStationSet.png)
+![Fare Structure](../../images/fare-data-structure/fare-referenceStationSet.png)
 
 ### Price <a name="Price">
 
@@ -202,7 +202,7 @@ The price of a fare of the refund fee on an after-sale. VAT details can be
 provided for the price. The default currency is EUR, but other currencies might
 be used based on bilateral agreements.
 
-![Fare Structure](../images/fare-data-structure/price.png)
+![Fare Structure](../../images/fare-data-structure/price.png)
 
 ## Definitions of a Different Fare Constraints <a name="DefinitionsofaDifferentFareConstraints">
 
@@ -212,7 +212,7 @@ Definition of the after sales conditions to be applied. Depending on the fare
 combination mode the after sales constraint can be omitted in case the
 distributor is responsible for the after sales fees.
 
-![Fare Structure](../images/fare-data-structure/fare-afterSalesCondition.png)
+![Fare Structure](../../images/fare-data-structure/fare-afterSalesCondition.png)
 
 ### Fare Carrier Constraint <a name="FareCarrierConstraint">
 
@@ -230,48 +230,48 @@ Carriers are specified by their company code (RICS code).
 
 <!-- Figure 5 carrier constraint data structure (offline) -->
 
-![Carrier Constraint Type](../images/common-data-structures/carrier-constraint-type.png)
+![Carrier Constraint Type](../../images/common-data-structures/carrier-constraint-type.png)
 
 The included / excluded carriers are also part of the FCB barcode (_IRS
 90918-4_) content and the ticket control data (_IRS 90918-9_).
 
-![Fare Structure](../images/fare-data-structure/fare-carrierConstraint.png)
+![Fare Structure](../../images/fare-data-structure/fare-carrierConstraint.png)
 
 ### Fare Combination Constraint <a name="FareCombinationConstraint">
 
 Constraints ruling the possible combinations with other fares of other
 providers.
 
-![Fare Structure](../images/fare-data-structure/combinationConstraint.png)
+![Fare Structure](../../images/fare-data-structure/combinationConstraint.png)
 
 ### Fare Passenger Combination Constraint <a name="FarePassengerCombinationConstraint">
 
 Constraints ruling the possible combinations of passengers for combination on a
 ticket.
 
-![Fare Structure](../images/fare-data-structure/passengerCombinationConstraint.png)
+![Fare Structure](../../images/fare-data-structure/passengerCombinationConstraint.png)
 
 ### Fare Personal Data Constraint <a name="FarePersonalDataConstraint">
 
 Definition of the personal data required e.g. in a bar code of via online ticket
 control.
 
-![Fare Structure](../images/fare-data-structure/personalData.png)
+![Fare Structure](../../images/fare-data-structure/personalData.png)
 
 ### Fare Reduction Constraint <a name="FareReductionConstraint">
 
-![Fare Structure](../images/fare-data-structure/reductionConstraint.png)
+![Fare Structure](../../images/fare-data-structure/reductionConstraint.png)
 
 ### Fare Regional Constraint <a name="FareRegionalConstraint">
 
 The regional constraint defines the options to combine the fare at the start and
 end point via connection points.
 
-![Fare Structure](../images/fare-data-structure/regionalConstraint.png)
+![Fare Structure](../../images/fare-data-structure/regionalConstraint.png)
 
 Data model regional constraints:
 
-![Fare Structure](../images/fare-data-structure/OSDMmodelregionalconstraint.png)
+![Fare Structure](../../images/fare-data-structure/OSDMmodelregionalconstraint.png)
 
 The regional validity defines the geographical validity of the fare. It is
 defined as an ordered list along the route. Options to define a part of the
@@ -279,17 +279,17 @@ route include Zones (regional areas), Lines, route descriptions (viaStations)
 that can define sequences of stations, alternative routes and fare reference
 sets. Areas can also be defined by geo-coordinates.
 
-![Fare Structure](../images/fare-data-structure/regionalValidity.png)
+![Fare Structure](../../images/fare-data-structure/regionalValidity.png)
 
 ### Route Description example in the regional validity <a name="RouteDescriptionexampleintheregionalvalidity">
 
 Route example:
 
-![Fare Structure](../images/fare-data-structure/viaExample.PNG)
+![Fare Structure](../../images/fare-data-structure/viaExample.PNG)
 
 Object model:
 
-![Fare Structure](../images/fare-data-structure/OSDMmodelviaStationobjectmodel.png)
+![Fare Structure](../../images/fare-data-structure/OSDMmodelviaStationobjectmodel.png)
 
 ### Fare Sales Availability Constraint <a name="FareSalesAvailabilityConstraint">
 
@@ -303,7 +303,7 @@ of sale or the date of travel.
 
 A reference to a calendar can be provided to indicate all sales dates.
 
-![Fare Structure](../images/fare-data-structure/salesAvailability.png)
+![Fare Structure](../../images/fare-data-structure/salesAvailability.png)
 
 #### Data Constraint on SalesAvailability <a name="DataConstraintonSalesAvailability">
 
@@ -316,7 +316,7 @@ A reference to a calendar can be provided to indicate all sales dates.
 The service constraint defines restrictions to specific service brands. Either a
 list of service brands of a list of excluded service brands can be provided.
 
-![Fare Structure](../images/fare-data-structure/serviceConstraint.png)
+![Fare Structure](../../images/fare-data-structure/serviceConstraint.png)
 
 #### Data Constraint on ServiceConstraint <a name="DataConstraintonServiceConstraint">
 
@@ -329,7 +329,7 @@ list of service brands of a list of excluded service brands can be provided.
 The travel validity defines the duration the passenger has to make his travel.
 Optional time slots (e.g. peak hours) can be excluded.
 
-![Fare Structure](../images/fare-data-structure/travelValidity.png)
+![Fare Structure](../../images/fare-data-structure/travelValidity.png)
 
 #### Data Constraint on TravelValidity <a name="DataConstraintonTravelValidity">
 
@@ -341,11 +341,11 @@ Optional time slots (e.g. peak hours) can be excluded.
 
 #### Constraint on Trip Interruptions <a name="ConstraintonTripInterruptions">
 
-![Fare Structure](../images/fare-data-structure/TripInterruption.PNG)
+![Fare Structure](../../images/fare-data-structure/TripInterruption.PNG)
 
 #### Constraint on Activation of Multi Journey Fares <a name="ConstraintonActivationofMultiJourneyFares">
 
-![Fare Structure](../images/fare-data-structure/MultipleTripTicketAllocation.PNG)
+![Fare Structure](../../images/fare-data-structure/MultipleTripTicketAllocation.PNG)
 
 ## Data Supporting Online Services <a name="DataSupportingOnlineServices">
 
@@ -356,10 +356,10 @@ Additional data to support the online sales services can be exchanged.
 Information on where to fine resources for online services of OSDM online or via
 90918-1 APIs
 
-![Fare Structure](../images/fare-data-structure/fare-resourceLocations.png)
+![Fare Structure](../../images/fare-data-structure/fare-resourceLocations.png)
 
 ### Fare Reservation Parameters <a name="FareReservationParameters">
 
 Data to define reservation requirements related to a fare.
 
-![Fare Structure](../images/fare-data-structure/reservationParameter.png)
+![Fare Structure](../../images/fare-data-structure/reservationParameter.png)
