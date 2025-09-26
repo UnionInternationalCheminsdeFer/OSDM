@@ -155,7 +155,7 @@ For fares, the following rules apply:
 4. If a part of a trip is free, a fare with price zero must be provided.
 5. Pricing is individual (if possible).
 6. In an offer there should be no overlapping fares.
-7. 
+7. Any fares of an offer must be bookable.
 
 More information for the structuring of offers can be found in [Offer
 Structure](offer-structure.md).
