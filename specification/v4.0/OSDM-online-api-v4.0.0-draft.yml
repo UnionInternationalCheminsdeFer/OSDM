@@ -16463,7 +16463,7 @@ components:
             - 'null'
           format: duration
           examples:
-            - 30M
+            - PT30M
         dataFilter:
           $ref: '#/components/schemas/TripDataFilter'
 
