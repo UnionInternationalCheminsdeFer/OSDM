@@ -244,9 +244,11 @@ of by the customer.
 | `WHEELCHAIR_NO_SEAT`      | Y                      | Y                | Y              | Wheelchair space without additional seat                                                                            | `SPECIAL_COMPARTMENT_TYPE`       |
 | `WIFI`                    | N                      | Y                | Y              | Place with WiFi access point                                                                                        | `PLACE_OR_COMPARTMENT_FEATURE`   |
 | `WINDOW_SEAT`             | N                      | Y                | Y              | Place at the window                                                                                                 | `PLACE_OR_COMPARTMENT_LOCATION`  |
+| `RESTRICTED_VIEW`         | N                      | N                | Y              | Place at the window with restricted view                                                                            | `PLACE_OR_COMPARTMENT_LOCATION`  |
 | `WITH_ANIMALS`            | Y                      | Y                | Y              | Place with animals (animals allowed)                                                                                | `SPECIAL_COMPARTMENT_TYPE`       |
 | `WITH_SMALL_CHILDREN`     | Y                      | Y                | Y              | Place for passengers with small children                                                                            | `PLACE_OR_COMPARTMENT_POSITION`  |
 | `WITHOUT_ANIMALS`         | Y                      | Y                | Y              | Place in an area where animals are not allowed                                                                      | `SPECIAL_COMPARTMENT_TYPE`       |
+| `WITHOUT_TRAY_TABLE`      | N                      | N                | Y              | Place without a tray table                                                                                               | `PLACE_OR_COMPARTMENT_FEATURE`       |
 
 ## Ancillary category <a name="AncillaryCategory">
 
@@ -693,6 +695,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 | ![](../../images/catalog-of-code-lists/graphics-icons/image092.jpg)                 | interconnectible sleeping compartments                                | 162       | -                             | -                | -             |
 | ![](../../images/catalog-of-code-lists/graphics-icons/image094.jpg)                 | Shower                                                                | 163       | -                             | -                | -             |
 | ![](../../images/catalog-of-code-lists/graphics-icons/image096.jpg)                 | Baby-care table                                                       | 168       | `BABY_CARE_TABLE`             | -                | -             |
+| ![](../../images/catalog-of-code-lists/graphics-icons/TODDLER_AREA.png)             | Toddler Area                                                          | 169       | `TODDLER_AREA`                | -                | -             |
 | ![](../../images/catalog-of-code-lists/graphics-icons/image098.jpg)                 | push-button operated wheelchair ramp                                  | 170       | -                             | -                | -             |
 | ![](../../images/catalog-of-code-lists/graphics-icons/image099.png)                 | Sink / washbasin                                                      | 171       | -                             | -                | -             |
 | ![](../../images/catalog-of-code-lists/graphics-icons/image101.jpg)                 | Ladies compartment                                                    | 172       | -                             | -                | -             |
