@@ -8909,6 +8909,8 @@ components:
           $ref: '#/components/schemas/Price'
         refundVoucher:
           $ref: '#/components/schemas/FulfillmentDocument'
+        decisionType:
+          $ref: '#/components/schemas/DecisionType'
         explanation:
           $ref: '#/components/schemas/SupportingDocument'
         shortExplanation:
@@ -9566,6 +9568,23 @@ components:
         - $ref: '#/components/schemas/AbstractTravelAccountUnit'
         - type: object
           additionalProperties: false
+
+    DecisionType:
+      description: |
+        Summary result of decision on a complaint
+
+        - `ACCEPTED`: the complaint is accepted and refund or compensation will be paid
+        - `REJECTED`: the complaint is rejected and no refund or compensation will be paid
+        - `GOOD_WILL`: a good will compensation is offered, no legal obligation
+          to pay refund or compensation exists
+        - `PARTIALLY_ACCEPTED`: the complaint is partially accepted, e.g. for
+          part of the journey or part of the passengers
+      type: string
+      enum:
+        - 'ACCEPTED'
+        - 'REJECTED'
+        - 'GOOD_WILL'
+        - 'PARTIALLY_ACCEPTED'
 
     DeckAvailability:
       type: object
