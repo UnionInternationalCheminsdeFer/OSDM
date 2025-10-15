@@ -15145,6 +15145,9 @@ components:
               items:
                 $ref: '#/components/schemas/BookingPartReference'
             ancillaryRefs:
+              deprecated: true
+              description: |
+                *DEPRECATED* Formerly OSDM allowed to link ancillaries to reservation. Since 3.7.0, it is recommended to only link reservations to admissions, ancillaries, and not the other way round. Referrence will be removed in 4.0.0
               type: array
               items:
                 $ref: '#/components/schemas/BookingPartReference'
@@ -15203,6 +15206,9 @@ components:
           additionalProperties: false
           properties:
             ancillaries:
+              deprecated: true
+              description: |
+                *DEPRECATED* Formerly OSDM allowed to link ancillaries to reservation. Since 3.7.0, it is recommended to only link reservations to admissions, ancillaries, and not the other way round. Referrence will be removed in 4.0.0
               type: array
               items:
                 $ref: '#/components/schemas/AncillaryRelation'
