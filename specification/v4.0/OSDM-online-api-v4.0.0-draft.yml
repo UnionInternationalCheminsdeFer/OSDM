@@ -1891,11 +1891,7 @@ paths:
         - Bookings
       summary: Deletes a booking.
       description: |
-        It is only possible before the booking is confirmed or in case of a technical problem in confirming multiple
-        independent bookings within a sales transaction. Deletes on a confirmed booking must be documented
-        and evidence on the issue must be provided on request.
-        The delete on a confirmed booking is allowed immediately after the confirmation of the booking,
-        but must be repeated according to the error handling rules in case the delete fails.
+        It is only possible before the booking is confirmed.
       operationId: deleteBookingsId
       parameters:
         - $ref: '#/components/parameters/requestor'
