@@ -3113,7 +3113,7 @@ paths:
       responses:
         '200':
           description: |
-            release offer created
+            Release offer created
           content:
             application/json:
               schema:
@@ -3124,7 +3124,13 @@ paths:
                 type: string
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-
+        '202':
+          description: |
+            Release offer created asynchronously. Retrieve release offer or booking for the offer and state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseOfferRequestAsyncResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -3180,7 +3186,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReleaseOfferResponse'
-
+        '202':
+          description: |
+            Release offer is iniated but not yet successfully created. Once finished a 200 OK must be returned.
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -15022,6 +15030,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    ReleaseOfferRequestAsyncResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        warnings:
+          deprecated: true
+          $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        releaseOfferIds:
+          description: |
+            Ids of the release offers created asynchronously. Retrieve GET release-offers/{releaseOfferId} to poll the status
+          type: array
+          items:
+            type: string
 
     ReleaseOfferPatchRequest:
       type: object
