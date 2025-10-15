@@ -13,6 +13,12 @@ deck layout.
 While the availability is called after a offer request dynamically, the coach
 deck layout data should be imported periodically as a master data import.
 
+Fare providers must ensure that coach deck layouts and displayed elements are 
+presented to partners as they appear in the provider's own sales channels.
+
+Coach deck layouts must represent the entire coach, not just a subset (e.g., 
+return all seats, not only those in one compartment).
+
 ## Getting Availabilities
 
 There are two flows to get place availabilities. Either you pass in a offer id,
