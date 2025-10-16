@@ -1177,7 +1177,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Purchaser'
+              $ref: '#/components/schemas/PurchaserSpecification'
       responses:
         '200':
           description: |
@@ -1425,244 +1425,6 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations:
-    post:
-      tags:
-        - BookingPart
-      summary:
-        Adds a reservation to a booking. A provider can decide to allow or
-        reject additional admissions, reservations or ancillaries on an
-        confirmed booking.
-      operationId: createBookingBookedOffersReservations
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BookedOfferReservationRequest'
-      responses:
-        '200':
-          description: |
-            reservation added to booked offer
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BookedOfferReservationResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: |
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations/{reservationId}:
-    delete:
-      tags:
-        - BookingPart
-      summary:
-        Removes a reservation from a booking in case the reservation was not yet
-        confirmed. On confirmed reservations use the refund.
-      operationId: deleteBookingBookedOffersReservations
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-        - name: reservationId
-          in: path
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-      responses:
-        '204':
-          description: |
-            In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '409':
-          $ref: '#/components/responses/ConflictResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries:
-    post:
-      tags:
-        - BookingPart
-      summary:
-        Adds an ancillary to a booking. A provider can decide to allow or reject
-        additional admissions, reservations or ancillaries on an confirmed
-        booking.
-      operationId: createBookingBookedOffersAncillaries
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BookedOfferAncillaryRequest'
-      responses:
-        '200':
-          description: |
-            ancillary added to booked offer
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BookedOfferAncillaryResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: |
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries/{ancillaryId}:
-    delete:
-      tags:
-        - BookingPart
-      summary:
-        Removes an ancillary from a booking in case the ancillary is not jet
-        confirmed. On confirmed ancillaries use the refund.
-      operationId: deleteBookingBookedOffersAncillary
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-        - name: ancillaryId
-          in: path
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-      responses:
-        '204':
-          description: |
-            In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '409':
-          $ref: '#/components/responses/ConflictResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
   /bookings/{bookingId}/booked-offers/{bookedOfferId}/admissions/{admissionId}:
     delete:
       tags:
@@ -1701,6 +1463,123 @@ paths:
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
 
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+  /bookings/{bookingId}/booked-offers/{bookedOfferId}/offer-parts:
+    post:
+      tags:
+        - BookingPart
+      summary: |
+        Adds a reservation or ancillary not previously added from offer to a booking.
+      description: |
+        Adds a reservation or an ancillary to a booking. A provider can decide to allow or reject additional admissions, reservations or ancillaries on an
+        confirmed booking.
+      operationId: createBookingBookedOffersParts
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: bookedOfferId
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 32768
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookedOfferPartRequest'
+      responses:
+        '200':
+          description: |
+            reservation or ancillary added to booked offer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookedOfferPartResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+    delete:
+      tags:
+        - BookingPart
+      summary:
+        Removes reservations or ancillaries from a booking in case the parts were not yet confirmed. On confirmed reservations use the refund.
+      operationId: deleteBookingBookedOffersParts
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: bookedOfferId
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 32768
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookedOfferPartDeleteRequest'
+      responses:
+        '204':
+          description: |
+            In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1896,11 +1775,7 @@ paths:
         - Bookings
       summary: Deletes a booking.
       description: |
-        It is only possible before the booking is confirmed or in case of a technical problem in confirming multiple
-        independent bookings within a sales transaction. Deletes on a confirmed booking must be documented
-        and evidence on the issue must be provided on request.
-        The delete on a confirmed booking is allowed immediately after the confirmation of the booking,
-        but must be repeated according to the error handling rules in case the delete fails.
+        It is only possible before the booking is confirmed.
       operationId: deleteBookingsId
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -5443,6 +5318,49 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
+    AbstractPassenger:
+      type: object
+      additionalProperties: false
+      description: |
+        Minimal common specification of a passenger used for inheritance.
+      properties:
+        externalRef:
+          description: |
+            A stable reference to a passenger from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
+          type: string
+          examples:
+            - TK-id-12345
+        dateOfBirth:
+          description: |
+            Date of birth of the passenger. Only needed for passengers of type persons, family child, PRM
+            and wheelchair.
+          type:
+            - 'string'
+            - 'null'
+          format: date
+        age:
+          type:
+            - 'integer'
+            - 'null'
+          format: int32
+          minimum: 0
+        cards:
+          description: |
+            reduction or loyalty cards owned by the passenger
+          type: array
+          items:
+            $ref: '#/components/schemas/CardReference'
+        prmNeeds:
+          description: |
+            For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
+          type: array
+          items:
+            $ref: '#/components/schemas/PRMNeedType'
+        type:
+          $ref: '#/components/schemas/PassengerType'
+        gender:
+          $ref: '#/components/schemas/Gender'
+
     AbstractTravelAccount:
       type: object
       additionalProperties: false
@@ -6206,48 +6124,22 @@ components:
         - 'MUSICAL_INSTRUMENT'
 
     AnonymousPassengerSpecification:
-      type: object
-      additionalProperties: false
       description: |
         Minimal specification of a passenger to request offers without any GDPR relevant attributes such as name or address.
 
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
-      required:
-        - externalRef
-        - type
-      properties:
-        externalRef:
-          description: |
-            A stable reference to a passenger from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
-          type: string
-        dateOfBirth:
-          description: |
-            Date of birth of the passenger. Only needed for passengers of type persons, family child, PRM
-            and wheelchair.
-          type:
-            - 'string'
-            - 'null'
-          format: date
-        age:
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
-        type:
-          $ref: '#/components/schemas/PassengerType'
-        prmNeeds:
-          type: array
-          items:
-            $ref: '#/components/schemas/PRMNeedType'
-        cards:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardReference'
-        gender:
-          $ref: '#/components/schemas/Gender'
-        residency:
-          $ref: '#/components/schemas/CountryCode'
+      allOf:
+      - $ref: '#/components/schemas/AbstractPassenger'
+      - type: object
+        additionalProperties: false
+        required:
+          - externalRef
+          - type
+        properties:
+          residency:
+            $ref: '#/components/schemas/CountryCode'
+          transportable:
+            $ref: '#/components/schemas/TransportableSpecification'           
 
     ApplicabilityType:
       type: string
@@ -6751,32 +6643,60 @@ components:
             $ref: '#/components/schemas/Product'
           minItems: 1
 
-    BookedOfferAncillaryRequest:
+    BookedOfferPartDeleteRequest:
+      description: |
+        Request with ancillary or reservation booked offer parts
+        to be removed from the booked offer.
+      type: object
+      additionalProperties: false
+      properties:
+        ancillaryIds:
+          type: array
+          minItems: 1
+          description: Ancillary IDs in the booked offer
+          items:
+            type: string
+            maxLength: 32768
+        reservationIds:
+          type: array
+          minItems: 1
+          description: Reservation IDs in the booked offer
+          items:
+            type: string
+            maxLength: 32768
+
+    BookedOfferPartRequest:
       type: object
       additionalProperties: false
       required:
         - offerId
-        - ancillaryOfferId
+        - passengerRefs
       properties:
         offerId:
           type: string
           maxLength: 32768
-        ancillaryOfferId:
-          type: string
-          maxLength: 32768
+        ancillaryOfferIds:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            maxLength: 32768
+        placeSelections:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/PlaceSelection'
         passengerRefs:
-          description: |
-            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
           minItems: 1
         tripCoverage:
-          type: array
-          items:
-            $ref: '#/components/schemas/TripCoverage'
+          $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
 
-    BookedOfferAncillaryResponse:
+    BookedOfferPartResponse:
       type: object
       additionalProperties: false
       properties:
@@ -6812,50 +6732,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PromotionCode'
-
-    BookedOfferReservationRequest:
-      type: object
-      additionalProperties: false
-      required:
-        - offerId
-        - reservationOfferId
-        - placeSelections
-      properties:
-        offerId:
-          type: string
-          maxLength: 32768
-        reservationOfferId:
-          type: string
-          maxLength: 32768
-        passengerRefs:
-          description: |
-            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
-          type: array
-          items:
-            type: string
-          minItems: 1
-        placeSelections:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlaceSelection'
-          minItems: 1
-        tripCoverage:
-          type: array
-          items:
-            $ref: '#/components/schemas/TripCoverage'
-
-    BookedOfferReservationResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        problems:
-          type: array
-          items:
-            $ref: '#/components/schemas/Problem'
-        bookedOffers:
-          type: array
-          items:
-            $ref: '#/components/schemas/BookedOffer'
 
     BookedOfferResponse:
       type: object
@@ -7579,7 +7455,7 @@ components:
         - 'PROPOSED'
         - 'CONFIRMED'
 
-    Car:
+    AbstractTransportableVehicleSpecification:
       type: object
       additionalProperties: false
       required:
@@ -7588,40 +7464,132 @@ components:
         - width
         - height
         - model
+        - brand
       properties:
         weight:
+          description: weight in kg
           type: integer
           format: int32
           minimum: 0
         length:
+          description: size in cm
           type: integer
           format: int32
           minimum: 0
         width:
+          description: size in cm
           type: integer
           format: int32
           minimum: 0
         height:
+          description: size in cm
+          type: integer
+          format: int32
+          minimum: 0        
+        brand:
+          description: |
+            Free text description of the brand (e.g. BMW)
+          type: string       
+        model:
+          description: |
+            Free text description of the model (e.g. X5)
+          type: string      
+
+
+    MotorcycleSpecification:
+      allOf:      
+        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'
+
+    CarSpecification:
+      allOf:      
+        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'      
+        - type: object
+          additionalProperties: false
+          required:
+            - roofWidth
+          properties:
+            specialType:
+              type: 
+                - string
+                - 'null'
+              x-extensible-enum:
+                - 'TRIKE'
+                - 'QUAD'
+                - 'MOTOCYCLE_WITH_SIDECAR' 
+            roofWidth:
+              type: integer
+              format: int32
+              minimum: 0    
+            textileRoof:
+              description:
+                indication that the car has a textile rook only
+              type: boolean             
+            rack:
+              $ref: '#/components/schemas/CarRack'
+            attachedItems:
+              description: |
+                Indication of items attached to the car
+              type: array
+              items:
+                $ref: '#/components/schemas/AttachableItemType'
+
+    CarRack:
+      description: |
+        a rack on a car 
+      type: object
+      additionalProperties: false       
+      required:
+        - mounting
+      properties:      
+        mounting:
+         type: string
+         x-extensible-enum:
+          - 'REAR'
+          - 'TOP'
+        type:
+          type: string
+          x-extensible-enum:
+            - 'LUGGAGE_RACK'
+            - 'ROOF_RAILING'     
+        additionalHeight:
+          description: additional heigth in cm
           type: integer
           format: int32
           minimum: 0
-        model:
-          description: |
-            Free text description of the model (e.g. BMW X5)
-          type: string
-        attachedItems:
-          description: |
-            Indication of items attached to the car
-          type: array
-          items:
-            $ref: '#/components/schemas/AttachableItemType'
-        licensePlate:
-          description: |
-            The license plate is a personal data item and must not be provided in an offer request.
-            It must be patched into the offer after the customer accepted the offer for booking.
-          type:
-            - 'string'
-            - 'null'
+        additionalLength:
+          description: additional length in cm
+          type: integer
+          format: int32
+          minimum: 0  
+        numberOfBicycles:
+          description: numberof bicycles on the rack
+          type: integer
+          format: int32
+          minimum: 0
+
+    Car:
+      allOf:
+        - $ref: '#/components/schemas/CarSpecification'
+        - type: object
+          additionalProperties: false        
+          required:
+            - licensePlate 
+          properties:
+            contactName:
+              description: |
+                Name of a contact person or company in case the car transport is booked stand alone.
+              type: 
+                - string
+                - 'null'        
+            contactDetail:
+              $ref: '#/components/schemas/ContactDetail'    
+            licensePlate:
+              description: |
+                 The license plate is a personal data item and must not be provided in an offer request.
+                 It must be patched into the offer after the customer accepted the offer for booking.
+              type: 
+                - string
+                - 'null'
 
     CardReference:
       type: object
@@ -7896,8 +7864,6 @@ components:
     CompanyDetail:
       type: object
       additionalProperties: false
-      required:
-        - name
       properties:
         name:
           type: string
@@ -8041,6 +8007,8 @@ components:
           $ref: '#/components/schemas/Price'
         refundVoucher:
           $ref: '#/components/schemas/FulfillmentDocument'
+        decisionType:
+          $ref: '#/components/schemas/DecisionType'
         explanation:
           $ref: '#/components/schemas/SupportingDocument'
         shortExplanation:
@@ -8873,6 +8841,23 @@ components:
         - $ref: '#/components/schemas/AbstractTravelAccountUnit'
         - type: object
           additionalProperties: false
+
+    DecisionType:
+      description: |
+        Summary result of decision on a complaint
+
+        - `ACCEPTED`: the complaint is accepted and refund or compensation will be paid
+        - `REJECTED`: the complaint is rejected and no refund or compensation will be paid
+        - `GOOD_WILL`: a good will compensation is offered, no legal obligation
+          to pay refund or compensation exists
+        - `PARTIALLY_ACCEPTED`: the complaint is partially accepted, e.g. for
+          part of the journey or part of the passengers
+      type: string
+      enum:
+        - 'ACCEPTED'
+        - 'REJECTED'
+        - 'GOOD_WILL'
+        - 'PARTIALLY_ACCEPTED'
 
     DeckAvailability:
       type: object
@@ -9847,8 +9832,11 @@ components:
       allOf:
         - $ref: '#/components/schemas/PlaceRef'
         - type: object
-          additionalProperties: false
+          required:
+            - fareConnectionPoint
           properties:
+            fareConnectionPoint:
+              $ref: '#/components/schemas/FareConnectionPoint'
             name:
               type:
                 - 'string'
@@ -11135,21 +11123,25 @@ components:
               default: 2
 
     MotorCycle:
-      type: object
-      additionalProperties: false
-      properties:
-        isSideCarIncluded:
-          type:
-            - 'boolean'
-            - 'null'
-          default: false
-        licensePlate:
-          description: |
-            The license plate is a personal data item and must not be provided in an offer request.
-            It must be patched into the offer after the customer accepted the offer for booking
-          type:
-            - 'integer'
-            - 'null'
+      allOf:
+        - $ref: '#/components/schemas/MotorcycleSpecification'
+        - type: object      
+          additionalProperties: false
+          required:
+            - contactName
+            - licensePlate
+          properties:
+            contactName:
+              description: |
+                Name of a contact person or company in case the car transport is booked stand alone.
+              type: string
+            contactDetail:
+              $ref: '#/components/schemas/ContactDetail'            
+            licensePlate:
+              description: |
+                The license plate is a personal data item and must not be provided in an offer request.
+                It must be patched into the offer after the customer accepted the offer for booking
+              type: string
 
     MultiRideAccount:
       allOf:
@@ -12182,66 +12174,33 @@ components:
       description: |
         Information about a passenger.
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
-      required:
-        - id
-        - externalRef
-        - type
-      properties:
-        id:
-          type: string
-        summary:
-          description: |
-            A human-readable description of the passenger.
-          type:
-            - 'string'
-            - 'null'
-        externalRef:
-          description: |
-            A stable reference to a passenger from other elements, or from caller system.
-            When passed in passenger specification in an offer request, it must be echoed back in the
-            response.
-          type: string
-        dateOfBirth:
-          description: |
-            date of birth of the passenger
-          type:
-            - 'string'
-            - 'null'
-          format: date
-        age:
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
-        type:
-          $ref: '#/components/schemas/PassengerType'
-        cards:
-          description: |
-            reduction or loyalty cards owned by the passenger
-          type: array
-          items:
-            $ref: '#/components/schemas/CardReference'
-        gender:
-          $ref: '#/components/schemas/Gender'
-        detail:
-          $ref: '#/components/schemas/PersonDetail'
-        identificationCard:
-          $ref: '#/components/schemas/IdentificationCard'
-        transportableDetails:
-          $ref: '#/components/schemas/Transportable'
-        prmNeeds:
-          description: |
-            For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
-          type: array
-          items:
-            $ref: '#/components/schemas/PRMNeedType'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+      allOf:
+      - $ref: '#/components/schemas/PassengerSpecification'
+      - type: object
+        additionalProperties: false
+        required:
+          - id
+          - externalRef
+          - type
+        properties:
+          id:
+            type: string
+          summary:
+            description: |
+              A human-readable description of the passenger.
+            type:
+              - 'string'
+              - 'null'
+          identificationCard:
+            $ref: '#/components/schemas/IdentificationCard'
+          transportableDetails:
+            $ref: '#/components/schemas/Transportable'
+          _links:
+            description: |
+              Java Property Name: 'links'
+            type: array
+            items:
+              $ref: '#/components/schemas/Link'
 
     PassengerCategory:
       type: object
@@ -12313,53 +12272,20 @@ components:
           $ref: '#/components/schemas/Passenger'
 
     PassengerSpecification:
-      type: object
-      additionalProperties: false
       description: |
         Minimal specification of a passenger to request offers.
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
-      required:
-        - externalRef
-        - type
-      properties:
-        externalRef:
-          description: |
-            A stable reference to a passenger from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
-          type: string
-          examples:
-            - TK-id-12345
-        dateOfBirth:
-          description: |
-            Date of birth of the passenger. Only needed for passengers of type persons, family child, PRM
-            and wheelchair.
-          type:
-            - 'string'
-            - 'null'
-          format: date
-        age:
-          type:
-            - 'integer'
-            - 'null'
-          format: int32
-          minimum: 0
-        cards:
-          description: |
-            reduction or loyalty cards owned by the passenger
-          type: array
-          items:
-            $ref: '#/components/schemas/CardReference'
-        prmNeeds:
-          description: |
-            For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
-          type: array
-          items:
-            $ref: '#/components/schemas/PRMNeedType'
-        detail:
-          $ref: '#/components/schemas/PersonDetail'
-        type:
-          $ref: '#/components/schemas/PassengerType'
-        gender:
-          $ref: '#/components/schemas/Gender'
+        Business rules for mandatory and non patchable items must be checked on the backend.
+        Forward business rules for mandatory items using a requestedInformation field.
+      allOf:
+      - $ref: '#/components/schemas/AbstractPassenger'
+      - type: object
+        additionalProperties: false
+        properties:
+          detail:
+            $ref: '#/components/schemas/PersonDetail'
+          transportableDetails:
+            $ref: '#/components/schemas/Transportable'        
 
     PassengerType:
       description: |
@@ -12436,9 +12362,6 @@ components:
       description: |
         Personal information potentially needed at booking step. To support privacy by design,
         it is not permitted to send personal information not required to create a valid booking.
-      required:
-        - firstName
-        - lastName
       properties:
         summary:
           description: |
@@ -12807,7 +12730,10 @@ components:
         reservedPlaces:
           description: |
             Reserved places in a confirmed reservation.
-            Multiple place packs are needed to combined person and bicycle reservations
+            Reserved Place inludes multiple places, however there might be multiple objects needed in case:
+            - places are in separate coaches, then one object per coach is needed
+            - places have different place properties that need to be shown (e.g. 5 Places in family compartment + 4 other places)
+            - optional: group places by compartments (in case compartments are indicated on the train)           
           type: array
           items:
             $ref: '#/components/schemas/ReservedPlace'
@@ -14139,27 +14065,19 @@ components:
             - 'null'
 
     Purchaser:
-      type: object
-      additionalProperties: false
       description: |
-        Purchaser information. Exactly one of `detail` or `companyDetails` must be provided.
-      properties:
-        externalRef:
-          description: |
-            A stable reference to a purchaser from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
-          type:
-            - 'string'
-            - 'null'
-        detail:
-          $ref: '#/components/schemas/PersonDetail'
-        companyDetails:
-          $ref: '#/components/schemas/CompanyDetail'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        Purchaser information.
+      allOf:
+      - $ref: '#/components/schemas/PurchaserSpecification'
+      - type: object
+        additionalProperties: false
+        properties:
+          _links:
+            description: |
+              Java Property Name: 'links'
+            type: array
+            items:
+              $ref: '#/components/schemas/Link'
 
     PurchaserResponse:
       type: object
@@ -14208,6 +14126,8 @@ components:
       additionalProperties: false
       description: |
         Minimal specification of a purchaser to request booking of an offer. Exactly one of `detail` or `companyDetails` must be provided.
+        Business rules for mandatory and non patchable items must be checked on the backend.
+        Forward business rules for mandatory items using a requestedInformation field.
       properties:
         externalRef:
           description: |
@@ -15093,9 +15013,19 @@ components:
           type: string
         coachNumber:
           type: string
+        compartmentNumber:
+          description: |
+           Compartment number as indicated at the compartment in the coach. A compartment number must be set if the compartment is selectable as a whole only.
+          type: 
+            - string
+            - 'null'
+          examples:
+            - "C1"
+            - "6"
+            - "61-66"          
         placeDescription:
           description: |
-            description of the places (e.g. 11-35,51)
+            description of the places (e.g. used to provide a short description of all places of large groups in compressed form: "11-35,51")
           type: string
         placeNumbers:
           description: |
@@ -16206,47 +16136,6 @@ components:
         accountingRef:
           $ref: '#/components/schemas/AccountingRef'
 
-    Trailer:
-      type: object
-      additionalProperties: false
-      required:
-        - weight
-        - length
-        - width
-        - height
-      properties:
-        weight:
-          description: |
-            weight in kg
-          type: integer
-          format: int32
-          minimum: 0
-        length:
-          description: |
-            length in cm
-          type: integer
-          format: int32
-          minimum: 0
-        width:
-          description: |
-            width in cm
-          type: integer
-          format: int32
-          minimum: 0
-        height:
-          description: |
-            height in cm
-          type: integer
-          format: int32
-          minimum: 0
-        licensePlate:
-          description: |
-            The license plate is a personal data item and must not be provided in an offer request.
-            It must be patched into the offer after the customer accepted the offer for booking
-          type:
-            - 'string'
-            - 'null'
-
     TrainLink:
       type: object
       additionalProperties: false
@@ -16427,7 +16316,24 @@ components:
         motorCycle:
           $ref: '#/components/schemas/MotorCycle'
         trailer:
-          $ref: '#/components/schemas/Trailer'
+          $ref: '#/components/schemas/Car'
+
+
+    TransportableSpecification:
+      type: object
+      additionalProperties: false
+      description: |
+        Transportables which are handled similar to passengers like dogs, bicycles, car transport.
+        These transportables might need a ticket or reservation. The Transportable specification does not include personal data (e.g. a license plate.)
+      required:
+        - type
+      properties:
+        type:
+          $ref: '#/components/schemas/TransportableType'
+        car:
+          $ref: '#/components/schemas/CarSpecification'
+        trailer:
+          $ref: '#/components/schemas/CarSpecification'          
 
     TransportableType:
       description: |
@@ -16443,6 +16349,7 @@ components:
         - 'LUGGAGE'        
         - 'PRAM'        
         - 'CAR'
+        - 'SPECIAL_VEHICLE' # used in car carriage e.g. a trike, a quad or a motorbike with a sidecar
         - 'MOTOCYCLE'
         - 'TRAILER'
 
@@ -17613,12 +17520,14 @@ components:
             - 'null'
           format: duration
           examples:
-            - 30M
+            - PT30M
         dataFilter:
           $ref: '#/components/schemas/TripDataFilter'
 
     VAT:
       type: object
+      description: |
+        VAT included in the associated Price object. The currency is inherited from the currency of the assosiciated price.
       additionalProperties: false
       required:
         - countryCode
@@ -17628,7 +17537,7 @@ components:
           $ref: '#/components/schemas/CountryCode'
         amount:
           description: |
-            amount in cents
+            amount in cents (in case of EUR). For calculation the legal requiremets from local counties and the EU need to be applied.
           type: integer
           format: int32
           examples:

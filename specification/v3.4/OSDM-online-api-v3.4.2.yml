@@ -8673,7 +8673,11 @@ components:
         - $ref: '#/components/schemas/PlaceRef'
         - type: object
           additionalProperties: false
+          required:
+            - fareConnectionPoint
           properties:
+            fareConnectionPoint:
+              $ref: '#/components/schemas/FareConnectionPoint'          
             name:
               type: string
               nullable: true
@@ -9434,22 +9438,6 @@ components:
           type: integer
           format: int32
           nullable: false
-
-    IndicatedTravelAccountConsumption:
-      type: object
-      additionalProperties: false
-      required:
-        - amount
-      properties:
-        amount:
-          type: integer
-          format: int32
-          nullable: false
-        scale:
-          type: integer
-          format: int32
-          nullable: true
-          default: 2
 
     IndividualMode:
       description: |
