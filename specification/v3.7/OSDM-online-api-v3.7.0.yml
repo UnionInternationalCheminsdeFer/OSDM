@@ -7386,12 +7386,11 @@ components:
           items:
             type: string
             maxLength: 32768
-        reservationOfferIds:
+        placeSelections:
           type: array
           minItems: 1
           items:
-            type: string
-            maxLength: 32768
+            $ref: '#/components/schemas/PlaceSelection'
         passengerRefs:
           type: array
           items:
