@@ -1605,7 +1605,6 @@ paths:
         Adds a reservation or an ancillary to a booking. A provider can decide to allow or reject additional admissions, reservations or ancillaries on an
         confirmed booking.
       operationId: createBookingBookedOffersParts
-      deprecated: true
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
@@ -1672,8 +1671,6 @@ paths:
       operationId: deleteBookingBookedOffersParts
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-          description: deprecated
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: bookingId
