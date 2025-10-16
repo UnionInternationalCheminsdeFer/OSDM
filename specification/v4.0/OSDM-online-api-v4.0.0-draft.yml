@@ -14267,10 +14267,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/BookingPartReference'
-            ancillaryRefs:
-              type: array
-              items:
-                $ref: '#/components/schemas/BookingPartReference'
             availablePlacePreferences:
               description:
                 options for place selection in case the place selection is made
@@ -14303,10 +14299,6 @@ components:
         - type: object
           additionalProperties: false
           properties:
-            ancillaries:
-              type: array
-              items:
-                $ref: '#/components/schemas/AncillaryRelation'
             availablePlaces:
               type: array
               items:
