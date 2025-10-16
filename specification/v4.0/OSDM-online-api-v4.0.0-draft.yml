@@ -1420,244 +1420,6 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations:
-    post:
-      tags:
-        - BookingPart
-      summary:
-        Adds a reservation to a booking. A provider can decide to allow or
-        reject additional admissions, reservations or ancillaries on an
-        confirmed booking.
-      operationId: createBookingBookedOffersReservations
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BookedOfferReservationRequest'
-      responses:
-        '200':
-          description: |
-            reservation added to booked offer
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BookedOfferReservationResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: |
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations/{reservationId}:
-    delete:
-      tags:
-        - BookingPart
-      summary:
-        Removes a reservation from a booking in case the reservation was not yet
-        confirmed. On confirmed reservations use the refund.
-      operationId: deleteBookingBookedOffersReservations
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-        - name: reservationId
-          in: path
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-      responses:
-        '204':
-          description: |
-            In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '409':
-          $ref: '#/components/responses/ConflictResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries:
-    post:
-      tags:
-        - BookingPart
-      summary:
-        Adds an ancillary to a booking. A provider can decide to allow or reject
-        additional admissions, reservations or ancillaries on an confirmed
-        booking.
-      operationId: createBookingBookedOffersAncillaries
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - $ref: '#/components/parameters/idempotencyKey'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BookedOfferAncillaryRequest'
-      responses:
-        '200':
-          description: |
-            ancillary added to booked offer
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BookedOfferAncillaryResponse'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: |
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries/{ancillaryId}:
-    delete:
-      tags:
-        - BookingPart
-      summary:
-        Removes an ancillary from a booking in case the ancillary is not jet
-        confirmed. On confirmed ancillaries use the refund.
-      operationId: deleteBookingBookedOffersAncillary
-      parameters:
-        - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/traceParent'
-        - $ref: '#/components/parameters/traceState'
-        - name: bookingId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: bookedOfferId
-          in: path
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-        - name: ancillaryId
-          in: path
-          required: true
-          schema:
-            type: string
-            maxLength: 32768
-      responses:
-        '204':
-          description: |
-            In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
-
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '409':
-          $ref: '#/components/responses/ConflictResponse'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          $ref: '#/components/responses/NotImplementedResponse'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        'default':
-          $ref: '#/components/responses/DefaultErrorResponse'
   /bookings/{bookingId}/booked-offers/{bookedOfferId}/admissions/{admissionId}:
     delete:
       tags:
@@ -1696,6 +1458,126 @@ paths:
           description: |
             In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
 
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+  /bookings/{bookingId}/booked-offers/{bookedOfferId}/offer-parts:
+    post:
+      tags:
+        - BookingPart
+      summary: |
+        Adds a reservation or ancillary not previously added from offer to a booking.
+      description: |
+        Adds a reservation or an ancillary to a booking. A provider can decide to allow or reject additional admissions, reservations or ancillaries on an
+        confirmed booking.
+      operationId: createBookingBookedOffersParts
+      deprecated: true
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/idempotencyKey'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: bookedOfferId
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 32768
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookedOfferPartRequest'
+      responses:
+        '200':
+          description: |
+            reservation or ancillary added to booked offer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookedOfferPartResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+    delete:
+      tags:
+        - BookingPart
+      summary:
+        Removes reservations or ancillaries from a booking in case the parts were not yet confirmed. On confirmed reservations use the refund.
+      operationId: deleteBookingBookedOffersParts
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+          description: deprecated
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: bookedOfferId
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 32768
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookedOfferPartDeleteRequest'
+      responses:
+        '204':
+          description: |
+            In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -6611,32 +6493,61 @@ components:
             $ref: '#/components/schemas/Product'
           minItems: 1
 
-    BookedOfferAncillaryRequest:
+    BookedOfferPartDeleteRequest:
+      description: |
+        Request with ancillary or reservation booked offer parts
+        to be removed from the booked offer.
+      type: object
+      additionalProperties: false
+      properties:
+        ancillaryIds:
+          type: array
+          minItems: 1
+          description: Ancillary IDs in the booked offer
+          items:
+            type: string
+            maxLength: 32768
+        reservationIds:
+          type: array
+          minItems: 1
+          description: Reservation IDs in the booked offer
+          items:
+            type: string
+            maxLength: 32768
+
+    BookedOfferPartRequest:
       type: object
       additionalProperties: false
       required:
         - offerId
-        - ancillaryOfferId
+        - passengerRefs
       properties:
         offerId:
           type: string
           maxLength: 32768
-        ancillaryOfferId:
-          type: string
-          maxLength: 32768
+        ancillaryOfferIds:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            maxLength: 32768
+        reservationOfferIds:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            maxLength: 32768
         passengerRefs:
-          description: |
-            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
           type: array
           items:
             type: string
           minItems: 1
         tripCoverage:
-          type: array
-          items:
-            $ref: '#/components/schemas/TripCoverage'
+          $ref: '#/components/schemas/TripCoverage'
+        inboundTripCoverage:
+          $ref: '#/components/schemas/TripCoverage'
 
-    BookedOfferAncillaryResponse:
+    BookedOfferPartResponse:
       type: object
       additionalProperties: false
       properties:
@@ -6672,50 +6583,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PromotionCode'
-
-    BookedOfferReservationRequest:
-      type: object
-      additionalProperties: false
-      required:
-        - offerId
-        - reservationOfferId
-        - placeSelections
-      properties:
-        offerId:
-          type: string
-          maxLength: 32768
-        reservationOfferId:
-          type: string
-          maxLength: 32768
-        passengerRefs:
-          description: |
-            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.              
-          type: array
-          items:
-            type: string
-          minItems: 1
-        placeSelections:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlaceSelection'
-          minItems: 1
-        tripCoverage:
-          type: array
-          items:
-            $ref: '#/components/schemas/TripCoverage'
-
-    BookedOfferReservationResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        problems:
-          type: array
-          items:
-            $ref: '#/components/schemas/Problem'
-        bookedOffers:
-          type: array
-          items:
-            $ref: '#/components/schemas/BookedOffer'
 
     BookedOfferResponse:
       type: object
