@@ -17970,8 +17970,7 @@ components:
         - DECIDED
         - SETTLED
         - INFORMATION_MISSING
-      default:
-        - INITIATED
+      default: INITIATED
 
     Revision:
       type: object
