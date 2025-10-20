@@ -17,7 +17,7 @@ permalink: /spec/non-trip-based-sales/
 
 Many products can not be sold (efficiently) in a trip based approach like:
 
-  - multi ride products valid for multiple trips. Either the customer does not know the trips beforehand or the prices would be too high for a singel requested trip.
+  - multi ride products valid for multiple trips. Either the customer does not know the trips before-hand or the prices would be too high for a singel requested trip.
   - reduction cards 
   - merchandising articles
 
