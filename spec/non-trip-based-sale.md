@@ -9,12 +9,17 @@ permalink: /spec/non-trip-based-sales/
 
 1. [Introduction](#introduction)
 2. [Offer Search](#offerSearch)
-3. [Search by Product Tags](#productTags)
+3. [Using Product Tags](#productTags)
+4. [Search for Products](#productSearch)
 
 
 ## Introduction <a name="introduction">
 
+Many products can not be sold (efficiently) in a trip based approach like:
 
+  - multi ride products valid for multiple trips. Either the customer does not know the trips beforehand or the prices would be too high for a singel requested trip.
+  - reduction cards 
+  - merchandising articles
 
 
 ## Offer Search <a name="offerSearch">
@@ -36,7 +41,6 @@ The offerSearchCriteria include:
     - a list of product tags to narrow the list of results
     
 
-
 The offer request as usual provides:
     - the list of anonymous passengers
     - optionally codes to allow for corporate offers
@@ -45,5 +49,77 @@ The offer request as usual provides:
 
 
 ## Using Product Tags <a name="productTags">
+
+Product tags can be used as search parameters in the search for offers and they are included in the product definition. Product tags are grouped to allow a selection of tags within a tag category by the customer. 
+
+The definition of product tags and their grouping is up to the provider of OSDM. The product tags including their grouping can be retrieved via GET /product-tags
+
+The retailer can provide a selection to the customer on the product tag groups to find the parmeter for the offer (POST /offers) directly or in the product search to first search all relevant products (POST /products-search).
+
+### Examples:
+
+#### Sale of passes:
+ 
+        ProductTag:   
+                  tag:  RP_DE
+                  text: Germany
+
+        ProductTag:   
+                  tag: VAL_14
+                  text: 2 weeks validity  
+
+        ProductTag:   
+                  tag: VAL_30
+                  text: 1 month validity                      
+                  
+        ProductTagGroup: 
+                  tagGroup: COUNTRY
+                  text: Valid countries
+                  productTags:  RP_DE,RP_DE,  RP_DE2
+
+        ProductTagGroup: 
+                  tagGroup: VAL
+                  text: Validity
+                  productTags: VAL_14, VAL_30                 
+        
+        Product: 
+                  name: German Rail Pass 2 weeks
+                  tags: RP_DE, VAL_14  
+
+       A retailer can provide a selection on country and on validity to the customer to select the product tags used in the offer search.
+
+
+#### Sale of merch:
+ 
+        ProductTag:   
+                  tag:  SHIRT_1
+                  text: T-shirt with railway logo
+
+        ProductTag:   
+                  tag: SIZE_L
+                  text: size L     
+
+        ProductTag:   
+                  tag: SIZE_XL
+                  text: size XL    
+                  
+        ProductTagGroup: 
+                  tagGroup: G_SIZE
+                  text: size
+                  productTags:  SIZE_L,SIZE_XL        
+        Product: 
+                  name: T-shirt with railway logo
+                  tags: SIZE_L
+
+       A retailer can provide a selection on the size of a mechandising article to select the product tags used in the offer search.
+   
+
+
+## Using Product Search <a name="productSearch">
+
+The 'POST \products-search' end-point can be used to search for products. The product provides a description of the product and its conditions without giving an offer with prices that can be booked.
+
+The search can be retricted by product tags ans other parameters like flexibility or class.
+
 
 
