@@ -103,6 +103,8 @@
       link: spec/on-demand-services/
     - name: Account Based Ticketing
       link: spec/account-based-ticketing/
+    - name: Non-Trip-Based Sales
+      link: spec/non-trip-based-sale/      
     - name: Dual Approaches
       link: spec/dual-approaches/
     - name: Requested Information - Grammar
