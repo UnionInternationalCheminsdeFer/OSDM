@@ -2,7 +2,7 @@
 layout: page
 title: Non-Trip-Based Sales
 hide_hero: true
-permalink: /spec/non-trip-based-sales/
+permalink: /spec/non-trip-based-sale/
 ---
 
 ## Table of contents
