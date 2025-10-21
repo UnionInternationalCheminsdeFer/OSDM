@@ -9,8 +9,9 @@ permalink: /spec/non-trip-based-sales/
 
 1. [Introduction](#introduction)
 2. [Offer Search](#offerSearch)
-3. [Using Product Tags](#productTags)
-4. [Search for Products](#productSearch)
+3. [Using Product Tags for selection](#productTags)
+4. [Using Product Tags as Text](#productTagsText)
+6. [Search for Products](#productSearch)
 
 
 ## Introduction <a name="introduction">
@@ -48,11 +49,11 @@ The offer request as usual provides:
     - available fulfillment methods
 
 
-## Using Product Tags <a name="productTags">
+## Using Product Tags for selections <a name="productTags">
 
 Product tags can be used as search parameters in the search for offers and they are included in the product definition. Product tags are grouped to allow a selection of tags within a tag category by the customer. 
 
-The definition of product tags and their grouping is up to the provider of OSDM. The product tags including their grouping can be retrieved via GET /product-tags
+The definition of product tags and their grouping is up to the provider of OSDM. The product tags including their grouping can be retrieved via GET /product-tags. This allows a structured access to the providers products via separate selections. E.g. searching for passes by selecting regions and selecting validity ranges or selecting merchandising articles by selecting the type of item and the size.
 
 The retailer can provide a selection to the customer on the product tag groups to find the parmeter for the offer (POST /offers) directly or in the product search to first search all relevant products (POST /products-search).
 
@@ -93,7 +94,7 @@ The retailer can provide a selection to the customer on the product tag groups t
  
         ProductTag:   
                   tag:  SHIRT_1
-                  text: T-shirt with railway logo
+                  text: T-Shirt with railway logo
 
         ProductTag:   
                   tag: SIZE_L
@@ -103,6 +104,11 @@ The retailer can provide a selection to the customer on the product tag groups t
                   tag: SIZE_XL
                   text: size XL    
                   
+        ProductTagGroup: 
+                  tagGroup: G_TYPE
+                  text: item
+                  productTags:  SHIRT_1, CAP        
+        
         ProductTagGroup: 
                   tagGroup: G_SIZE
                   text: size
@@ -114,6 +120,11 @@ The retailer can provide a selection to the customer on the product tag groups t
        A retailer can provide a selection on the size of a mechandising article to select the product tags used in the offer search.
    
 
+## Using Product Tags as Text<a name="productTagsText">
+
+Product Tags might be used as free text search in case a provider supports this. The provider would need to implement AI search on his products.
+
+E.g. ProductTag "I want to travel for two weeks in Germany".
 
 ## Using Product Search <a name="productSearch">
 
