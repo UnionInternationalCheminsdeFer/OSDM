@@ -25,15 +25,15 @@ Many products can not be sold (efficiently) in a trip based approach like:
 
 ## Offer Search <a name="offerSearch">
 
-In a non trip based offer search the tripSearchCriteria are replaced by the nonTripSearchCriteria. These provide parameters, that would otherwise have been take from a trip:
+In a non trip based offer search the `tripSearchCriteria` are replaced by the `nonTripSearchCriteria`. These provide parameters, that would otherwise have been take from a trip:
 
      - Begin of validity
-     - Regional where the offers should be valid, provided as NUTS codes or as places
+     - Regiona where the offers should be valid, provided as NUTS codes or as places
 
 The offers to be provided should be valid at least on the begin of validity and within the area specified. The region is provided as a hint for the offer search, the response might include offers 
 that are valid in a relevant part of the region or where the requested region is part of the offers validity. 
 
-Besides the nonTripSearchCriteria the generic offerSearchCriteria can be used. 
+Besides the `nonTripSearchCriteria` the generic `offerSearchCriteria` can be used. 
 
 The offerSearchCriteria include:
 
@@ -55,7 +55,7 @@ Product tags can be used as search parameters in the search for offers and they 
 
 The definition of product tags and their grouping is up to the provider of OSDM. The product tags including their grouping can be retrieved via GET /product-tags. This allows a structured access to the providers products via separate selections. E.g. searching for passes by selecting regions and selecting validity ranges or selecting merchandising articles by selecting the type of item and the size.
 
-The retailer can provide a selection to the customer on the product tag groups to find the parmeter for the offer (POST /offers) directly or in the product search to first search all relevant products (POST /products-search).
+The retailer can provide a selection to the customer on the product tag groups to find the parmeter for the offer ( `POST /offers`) directly or in the product search to first search all relevant products (`POST /products-search`).
 
 ### Examples:
 
@@ -128,7 +128,7 @@ E.g. ProductTag "I want to travel for two weeks in Germany".
 
 ## Using Product Search <a name="productSearch">
 
-The 'POST \products-search' end-point can be used to search for products. The product provides a description of the product and its conditions without giving an offer with prices that can be booked.
+The `POST \products-search` end-point can be used to search for products. The product provides a description of the product and its conditions without giving an offer with prices that can be booked.
 
 The search can be retricted by product tags ans other parameters like flexibility or class.
 
