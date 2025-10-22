@@ -16428,7 +16428,6 @@ components:
         - toStation
         - train
         - travelDate
-        - serviceBrandCode
         - serviceBrandAbbreviation
       properties:
         fromStation:
