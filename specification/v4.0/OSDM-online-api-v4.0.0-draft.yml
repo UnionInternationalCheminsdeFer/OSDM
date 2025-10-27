@@ -165,7 +165,7 @@ paths:
           description: |
             places found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/PlaceResponse'
           headers:
@@ -218,7 +218,7 @@ paths:
         description: |
           request for place
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/PlaceRequest'
       responses:
@@ -226,7 +226,7 @@ paths:
           description: |
             places found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/PlacesMasterDataResponse'
 
@@ -271,7 +271,7 @@ paths:
           description: |
             place found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/PlacesMasterDataResponse'
           headers:
@@ -324,7 +324,7 @@ paths:
         description: |
           request for trips
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               oneOf:
                 - $ref: '#/components/schemas/TripSearchCriteria'
@@ -334,7 +334,7 @@ paths:
           description: |
             trips found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/TripCollectionResponse'
 
@@ -405,7 +405,7 @@ paths:
           description: |
             trips found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/TripCollectionResponse'
           headers:
@@ -457,7 +457,7 @@ paths:
         description: |
           request for trips
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/TripChangeCriteria'
       responses:
@@ -465,7 +465,7 @@ paths:
           description: |
             trips changed
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/TripResponse'
 
@@ -530,7 +530,7 @@ paths:
           description: |
             trip found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/TripResponse'
           headers:
@@ -573,7 +573,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/OfferCollectionRequest'
       responses:
@@ -581,7 +581,7 @@ paths:
           description: |
             collection of offers found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/OfferCollectionResponse'
           headers:
@@ -640,7 +640,7 @@ paths:
           description: |
             additional offers found for booked offer
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/AdditionalOfferCollectionResponse'
           headers:
@@ -690,7 +690,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/OnHoldOfferRequest'
       responses:
@@ -698,7 +698,7 @@ paths:
           description: |
             on-hold offer created
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/OnHoldOfferResponse'
 
@@ -740,7 +740,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/OfferOverviewRouteRequest'
       responses:
@@ -752,7 +752,7 @@ paths:
               schema:
                 type: string
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/OfferOverviewRouteResponse'
         '400':
@@ -788,7 +788,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/OfferOverviewTripRequest'
       responses:
@@ -800,7 +800,7 @@ paths:
               schema:
                 type: string
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/OfferOverviewTripResponse'
         '400':
@@ -844,7 +844,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/OnHoldOfferPatchRequest'
       responses:
@@ -852,7 +852,7 @@ paths:
           description: |
             on-hold offer confirmed
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/OnHoldOfferResponse'
 
@@ -952,7 +952,7 @@ paths:
           description: |
             passenger found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/PassengerResponse'
           headers:
@@ -1007,7 +1007,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/PassengerSpecification'
       responses:
@@ -1015,7 +1015,7 @@ paths:
           description: |
             passenger successfully patched
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/PassengerResponse'
           headers:
@@ -1069,7 +1069,7 @@ paths:
           description: |
             purchaser found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/PurchaserResponse'
           headers:
@@ -1117,7 +1117,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/PurchaserSpecification'
       responses:
@@ -1125,7 +1125,7 @@ paths:
           description: |
             purchaser patched
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/PurchaserResponse'
           headers:
@@ -1175,7 +1175,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/PurchaserSpecification'
       responses:
@@ -1183,7 +1183,7 @@ paths:
           description: |
             purchaser posted
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/PurchaserResponse'
           headers:
@@ -1234,7 +1234,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/BookedOfferRequest'
       responses:
@@ -1242,7 +1242,7 @@ paths:
           description: |
             booking pre-booked
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/BookedOfferResponse'
           headers:
@@ -1299,7 +1299,7 @@ paths:
           description: |
             bookedOffer found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/BookedOfferResponse'
           headers:
@@ -1513,7 +1513,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/BookedOfferPartRequest'
       responses:
@@ -1521,7 +1521,7 @@ paths:
           description: |
             reservation or ancillary added to booked offer
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/BookedOfferPartResponse'
           headers:
@@ -1573,7 +1573,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/BookedOfferPartDeleteRequest'
       responses:
@@ -1616,7 +1616,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/BookingRequest'
       responses:
@@ -1624,7 +1624,7 @@ paths:
           description: |
             booking pre-booked
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/BookingResponse'
           headers:
@@ -1686,7 +1686,7 @@ paths:
           description: |
             booking found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/BookingResponse'
           headers:
@@ -1738,7 +1738,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/BookingPatchRequest'
       responses:
@@ -1746,7 +1746,7 @@ paths:
           description: |
             booking fulfillment type updated
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/BookingResponse'
 
@@ -1837,7 +1837,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/BookingCleanupRequest'
       responses:
@@ -1884,7 +1884,7 @@ paths:
           description: |
             booking history found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/BookingHistoryResponse'
 
@@ -1926,7 +1926,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/BookingSearchRequest'
       responses:
@@ -1934,7 +1934,7 @@ paths:
           description: |
             booking search results found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/BookingSearchResponse'
           headers:
@@ -1985,7 +1985,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/BookingSplitRequest'
       responses:
@@ -1993,7 +1993,7 @@ paths:
           description: |
             booking split
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/BookingSplitResponse'
 
@@ -2047,7 +2047,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/FulfillmentPostRequest'
       responses:
@@ -2055,14 +2055,14 @@ paths:
           description: |
             Fulfillment successfully completed
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/FulfillmentCollectionResponse'
         '202':
           description: |
             Fulfillment successfully completed
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/FulfillmentCollectionResponse'
         '400':
@@ -2109,7 +2109,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/FulfillmentsPatchRequest'
       responses:
@@ -2117,7 +2117,7 @@ paths:
           description: |
             Fulfillment successfully completed
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/FulfillmentCollectionResponse'
         '202':
@@ -2168,7 +2168,7 @@ paths:
           description: |
             fulfillment found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/FulfillmentResponse'
           headers:
@@ -2220,7 +2220,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/FulfillmentPatchRequest'
       responses:
@@ -2228,7 +2228,7 @@ paths:
           description: |
             fulfillment patched
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/FulfillmentResponse'
           headers:
@@ -2338,7 +2338,7 @@ paths:
           description: |
             continuous service usage found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ContinuousServiceUsage'
           headers:
@@ -2397,7 +2397,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/ContinuousServiceUsagePatchRequest'
       responses:
@@ -2405,7 +2405,7 @@ paths:
           description: |
             fulfillment patched
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ContinuousServiceUsage'
           headers:
@@ -2462,7 +2462,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/RefundOfferRequest'
       responses:
@@ -2470,7 +2470,7 @@ paths:
           description: |
             refund offer created
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/RefundOfferCollectionResponse'
 
@@ -2582,7 +2582,7 @@ paths:
           description: |
             refund offer found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/RefundOfferResponse'
           headers:
@@ -2640,7 +2640,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/RefundOfferPatchRequest'
       responses:
@@ -2648,7 +2648,7 @@ paths:
           description: |
             refund offer confirmed
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/RefundOfferResponse'
           headers:
@@ -2754,7 +2754,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/ReleaseOfferRequest'
       responses:
@@ -2762,7 +2762,7 @@ paths:
           description: |
             release offer created
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ReleaseOfferCollectionResponse'
           headers:
@@ -2822,7 +2822,7 @@ paths:
           description: |
             release offer found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ReleaseOfferResponse'
 
@@ -2875,7 +2875,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/ReleaseOfferPatchRequest'
       responses:
@@ -2883,7 +2883,7 @@ paths:
           description: |
             release offer confirmed
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ReleaseOfferResponse'
           headers:
@@ -2989,7 +2989,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/CancelFulfillmentsOfferRequest'
       responses:
@@ -2997,7 +2997,7 @@ paths:
           description: |
             Refund offer created
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/CancelFulfillmentsOfferCollectionResponse'
           headers:
@@ -3055,7 +3055,7 @@ paths:
           description: |
             RefundOffer found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/CancelFulfillmentsOfferResponse'
           headers:
@@ -3113,7 +3113,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/CancelFulfillmentsOfferPatchRequest'
       responses:
@@ -3121,7 +3121,7 @@ paths:
           description: |
             RefundOffer confirmed
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/CancelFulfillmentsOfferResponse'
           headers:
@@ -3226,7 +3226,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/ExchangeOfferRequest'
       responses:
@@ -3234,7 +3234,7 @@ paths:
           description: |
             Collection of exchange offers found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ExchangeOfferCollectionResponse'
           headers:
@@ -3283,7 +3283,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/ExchangeOperationRequest'
       responses:
@@ -3291,7 +3291,7 @@ paths:
           description: |
             exchange offer pre-booked
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ExchangeOperationResponse'
 
@@ -3357,7 +3357,7 @@ paths:
           description: |
             ExchangeOperation found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ExchangeOperationResponse'
           headers:
@@ -3414,7 +3414,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/ExchangeOperationPatchRequest'
       responses:
@@ -3422,7 +3422,7 @@ paths:
           description: |
             Exchange successfully completed
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ExchangeOperationResponse'
           headers:
@@ -3517,7 +3517,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/ComplaintRequest'
       responses:
@@ -3525,7 +3525,7 @@ paths:
           description: |
             complaint
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ComplaintResponse'
 
@@ -3572,7 +3572,7 @@ paths:
           description: |
             the requested complaint
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ComplaintResponse'
           headers:
@@ -3625,7 +3625,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/ComplaintPatchRequest'
       responses:
@@ -3633,7 +3633,7 @@ paths:
           description: |
             complaint updated
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ComplaintResponse'
 
@@ -3678,7 +3678,7 @@ paths:
           description: |
             coach layouts
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/CoachDeckLayoutCollectionResponse'
           headers:
@@ -3740,7 +3740,7 @@ paths:
           description: |
             coach layouts
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/CoachDeckLayoutResponse'
 
@@ -3782,7 +3782,7 @@ paths:
         '200':
           description: 'OK'
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 type: array
                 items:
@@ -3820,7 +3820,7 @@ paths:
           description: |
             Reduction cards provided
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ReductionCardTypeCollectionResponse'
           headers:
@@ -3874,7 +3874,7 @@ paths:
           description: |
             zones provided
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ZoneCollectionResponse'
           headers:
@@ -3932,7 +3932,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/DocumentRequest'
       responses:
@@ -3940,7 +3940,7 @@ paths:
           description: |
             booking documents created
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/DocumentCollectionResponse'
           headers:
@@ -3996,7 +3996,7 @@ paths:
           description: |
             booking document found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/DocumentResponse'
           headers:
@@ -4091,7 +4091,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/ReimbursementRequest'
       responses:
@@ -4099,7 +4099,7 @@ paths:
           description: |
             Reimbursement created
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ReimbursementResponse'
           headers:
@@ -4155,7 +4155,7 @@ paths:
           description: |
             reimbursement found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ReimbursementResponse'
           headers:
@@ -4208,7 +4208,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/ReimbursementPatchRequest'
       responses:
@@ -4216,7 +4216,7 @@ paths:
           description: |
             reimbursement updated
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ReimbursementResponse'
           headers:
@@ -4282,7 +4282,7 @@ paths:
           description: |
             travel account found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/TravelAccountResponse'
           headers:
@@ -4327,7 +4327,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/PlaceAvailabilityMapRequest'
       responses:
@@ -4335,7 +4335,7 @@ paths:
           description: |
             place availabilities for the requested fares and offer parts
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/PlaceAvailabilityMapResponse'
 
@@ -4410,7 +4410,7 @@ paths:
           description: |
             place availabilities found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/PlaceAvailabilityCollectionResponse'
           headers:
@@ -4472,7 +4472,7 @@ paths:
           description: |
             place availabilities found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/PlaceAvailabilityCollectionResponse'
           headers:
@@ -4535,7 +4535,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/ContinuousServiceAvailabilityScope'
       responses:
@@ -4543,7 +4543,7 @@ paths:
           description: |
             pick up places
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ContinuousServicesAvailabilityResponse'
           headers:
@@ -4593,7 +4593,7 @@ paths:
           description: |
             Product found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ProductCollectionResponse'
           headers:
@@ -4652,7 +4652,7 @@ paths:
           description: |
             Product found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ProductResponse'
           headers:
@@ -4707,7 +4707,7 @@ paths:
           description: |
             Product-Tags found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ProductTagsResponse'
           headers:
@@ -4762,7 +4762,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/ProductSearchRequest'
       responses:
@@ -4770,7 +4770,7 @@ paths:
           description: |
             booking search results found
           content:
-            application/vnd.uic.osdm+json;version=4:
+            application/vnd.uic.osdm+json:
               schema:
                 $ref: '#/components/schemas/ProductSearchResponse'
           headers:
@@ -4812,7 +4812,7 @@ webhooks:
       requestBody:
         description: Information about the event
         content:
-          application/vnd.uic.osdm+json;version=4:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: '#/components/schemas/NotificationEvent'
       responses:
@@ -4947,7 +4947,7 @@ components:
       description: |
         Cleanup successfully initiated
       content:
-        application/vnd.uic.osdm+json;version=4:
+        application/vnd.uic.osdm+json:
           schema:
             $ref: '#/components/schemas/ProblemCollection'
 
@@ -4979,7 +4979,7 @@ components:
       description: |
         Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
       content:
-        application/vnd.uic.osdm+json;version=4:
+        application/vnd.uic.osdm+json:
           schema:
             $ref: '#/components/schemas/ProblemCollection'
 
