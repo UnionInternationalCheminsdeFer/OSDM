@@ -10950,6 +10950,11 @@ components:
           nullable: false
         applicationProvider:
           $ref: '#/components/schemas/CompanyRef'
+        controlNumber:
+          description: |
+            Ticket Control Number. Used for secure paper stock of referencing tickets in fulfillment applications.
+          type: string
+          nullable: true            
 
     FulfillmentDocumentType:
       description: |
@@ -10975,6 +10980,7 @@ components:
         - 'image/png'
         - 'text/calendar'
         - 'text/html'
+        - 'application/json'  # e.g. used for tickets in google wallets (JWT)
 
     FulfillmentId:
       type: string
