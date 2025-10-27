@@ -11020,12 +11020,15 @@ components:
         - 'DISTRIBUTOR_APP'
         - 'RETAILER_APP'
         - 'FULFILLMENT_PARTS'
-        - 'PDF_A4'
-        - 'PKPASS'
-        - 'RCCST'
-        - 'RCT2'
-        - 'UIC_PDF'
+        - 'PDF_A4'                
+        - 'PKPASS'        # deprecated use WALLET
+        - 'RCCST'         # secure paper
+        - 'RCT2'          # secure paper
+        - 'UIC_PDF'       # deprecated, use PDF_A4
         - 'TICKETLESS'
+        - 'APPLICATION'
+        - 'WALLET'
+        - 'CHIP_CARD'
 
     FulfillmentOption:
       type: object
@@ -11040,6 +11043,23 @@ components:
           $ref: '#/components/schemas/FulfillmentType'
         media:
           $ref: '#/components/schemas/FulfillmentMediaType'
+        applications:
+          description: |
+            list of applications that can 
+            handle the fulfillment. This is required in case of media APPLICATION.
+            The applications might be modules on a vending machine to handle chop cards or smartphone apps handling NFC communication..
+          type: array
+          items:
+            type: string  
+          minItems: 1  
+        specification:
+          description:  
+            accepted fulfillment specifications in case the fulfillment via APPLICATION or CHIP_CARD is not not limited to a specific application.  
+          type: array
+          items:
+            type: string  
+            example: ['CALYPSO']
+          minItems: 1            
 
     FulfillmentPart:
       type: object
