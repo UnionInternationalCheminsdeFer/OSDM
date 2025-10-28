@@ -67,9 +67,40 @@ The combination rules include:
   - allowed distributors (Offline Fares only)
   - list of fare providers with whoom a throught ticket is allowed ('allowedCommonContracts'). Note: Separate contracts can be contained on one fulfillment Document (Ticket) but the separation of contracts has to be indicated clearly on the ticket.
 
+A Fare can have multiple combination constraints. One of them must match to construct a combination. 
+
+
 ## Combining Regional Validity <a name="RegionalValidity">
 
+THe usage of the regional vaidity is different in Offline and in Online Fares. In Offline Fares they must provide the data to match the route with a trip from the distributors time table engine. In Online fares the matching is done by the fare provider, the 
+distributor implementation is therfore much simpler.
 
+
+![Fare Structure](../../images/fare-data-structure/OSDMmodelregionalconstraint.png)
+
+[Regional Constraint - Data Structures](https://osdm.io/spec/common-data-structures/#RegionalConstraint)
+
+[Regional Constraint - Data Structures](https://osdm.io/spec/common-data-structures/#RegionalConstraint)
+
+
+
+
+
+### Regional Validity in Online Fares
+
+The route description of a product combined from fares is a concatenation of the route descriptions of the individual Fares with the addition of an indication of the tariff border usually using an abbreviation '(GR)' od '(fr)' and '*' as separation signs. A Station name from the connection point of the two regional constraint might be added:
+
+   '<route description fare 1>*connectionPointStation name (fr)*<route description of fare 2>'
+
+The online fare does not neccessarily need the structured route description from routeItem/routeItemList, the description can b build from the route summary. However the structured route enables more use cases e.g. automated control of bar codes, graphical displays of the route).
+
+If structured route data are provided it is recommended to build the description based on the structured data.
+
+The connection point(s) where the route can be connected to other fare routes is provided by the fare provider. It is recommended to check the matching of the comnnection points on distributor side to ensure that the routes from different providers are seleced properly and match without gap.
+
+### Regional Validity in Offline Fares
+
+For offline fares the connection point(s) and the structured route data are essential for aligning the route to trips, therefore the structured route information is mandatory. Combinations with other fares are only allowed when the connectionPoint(s) are matching.
 
 
 ## Combining After Sales Rules <a name="AfterSalesRules">
