@@ -127,7 +127,8 @@ In the clustering model the distributor applies his own after sales conditions d
 
 ### Combination Model
 
-The fare provides the aftersales fees. 
+The fare provides the aftersales fees. The product adds the after sales fees of all included fares. This results in an aftersales fee that increases whenever one of the fare after sales fees changes.
+
 
 ## Creating Fulfillments <a name="Fulfillments">
 
@@ -142,12 +143,16 @@ The fare provides additional information on age restrictions ('passengerConstrai
 
 ## Handling Aftersales <a name="Aftersales">
 
+
+
 ### Clustering Model
 
 In the clustering model the distributor applies his own after sales conditions depending of the cluster of the product. Although the distributor calculates the refund fee the refund has to be made via the OSDM API online.
 
---> TODO discussion on exchange of fee (seems to be lost in the messages)
+--> TODO discussion on exchange of fee (seems to be lost in the messages), indication of carrier fee lost in online fares
 
 ### Combination Model
 
-The fare provides the aftersales fees. 
+The fare provides the aftersales fees. The product adds the after sales fees of all included fares. This results in an aftersales fee that increases whenever one of the fare after sales fees changes.
+
+The Fee is subject to VAT according to the fare provider.
