@@ -53,9 +53,19 @@ The offer request might ask for product based admissions at the same time. Use c
 
 ## Fare Combination Rules <a name="CombinationRules">
 
+Fare Combination Rules are included in Offline and Online Fares. They govern the combination of fares from different providers. 
 
+[Fare Combination Rules - Data Structures](https://osdm.io/spec/common-data-structures/#FareCombinationConstraint)
 
-
+The combination rules include:
+  - business model ('model') that governs the combination. This mainly defines the was after sales conditions must be applied:
+     - CLUSTERING_MODEL:   The Distributor is allowed to apply his standard after sales rules for the flexibility cluster of the final product.
+     - COMBINING_MODEL:  The distributor must obey the after sales fees provided for the fare. In case of an Online Fare these are provided in the offer for customer information and during the online after sales in the message exchange.
+  - providers where a fare combination is allowed
+  - indication whether the fare is allowed to be converter into a product without combining with another fare provider
+  - list of flexibility clusters of the final product that can contain this fare ('allowedClusters')
+  - allowed distributors (Offline Fares only)
+  - list of fare providers with whoom a throught ticket is allowed ('allowedCommonContracts').
 
 ## Combining Regional Validity <a name="RegionalValidity">
 
