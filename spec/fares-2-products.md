@@ -8,11 +8,12 @@ permalink: /spec/fares-2-products/
 ## Table of contents
 
 1. [Introduction](#Intro)
-2. [Combination Rules](#CombinationRules)
-3. [Combining Rules](#RegionalValidity)
-4. [Combining After Sales Rules](#AfterSalesRules)
-5. [Creating Fulfillments](#Fulfillments)
-6. [Handling Aftersales](#Aftersales)
+2. [Passengers](#Passengers)
+3. [Combination Rules](#CombinationRules)
+4. [Combining Rules](#RegionalValidity)
+5. [Combining After Sales Rules](#AfterSalesRules)
+6. [Creating Fulfillments](#Fulfillments)
+7. [Handling Aftersales](#Aftersales)
 
 ## Introduction <a name="Intro">
 
@@ -50,6 +51,9 @@ Fares are via the 'POST \offfers' indicating 'FARE_ADMISSION','FARE_RESERVATION'
 
 The offer request might ask for product based admissions at the same time. Use cases for a mixed request might be that some part of the requested trip part is covered by products only. E.g. Fare Salzburg-Vienna + Prduct Based admission for Vienna city traffic.
 
+## Passengers <a name="Passengers">
+
+An offer must include always fares for all passengers. In case the pricing can be split between passengers a fare per passenger should be created. Otherwise Fares for multiple passegers are used.
 
 ## Fare Combination Rules <a name="CombinationRules">
 
@@ -75,15 +79,15 @@ A Fare can have multiple combination constraints. One of them must match to cons
 THe usage of the regional vaidity is different in Offline and in Online Fares. In Offline Fares they must provide the data to match the route with a trip from the distributors time table engine. In Online fares the matching is done by the fare provider, the 
 distributor implementation is therfore much simpler.
 
+The data model of the Route is identical in online and offline fares but the representation differs as the online representation avoids recursice data strucrures for security reasons. 
 
-![Fare Structure](../../images/fare-data-structure/OSDMmodelregionalconstraint.png)
 
 [Regional Constraint - Data Structures](https://osdm.io/spec/common-data-structures/#RegionalConstraint)
 
-[Regional Constraint - Data Structures](https://osdm.io/spec/common-data-structures/#RegionalConstraint)
 
+Route example:
 
-
+![Fare Structure](../images/fare-data-structure/viaExample.PNG)
 
 
 ### Regional Validity in Online Fares
@@ -103,12 +107,47 @@ The connection point(s) where the route can be connected to other fare routes is
 For offline fares the connection point(s) and the structured route data are essential for aligning the route to trips, therefore the structured route information is mandatory. Combinations with other fares are only allowed when the connectionPoint(s) are matching.
 
 
+![Trip Alignment](../images/common-data-structures/connection-points-timetable-routes.png))
+
+
+Data model:
+
+![Fare Structure](../images/fare-data-structure/OSDMmodelregionalconstraint.png)
+
+Object model:
+
+![Fare Structure](../images/fare-data-structure/OSDMmodelviaStationobjectmodel.png)
+
+
 ## Combining After Sales Rules <a name="AfterSalesRules">
 
+### Clustering Model
 
+In the clustering model the distributor applies his own after sales conditions depending of the cluster of the product.
 
+### Combination Model
+
+The fare provides the aftersales fees. 
 
 ## Creating Fulfillments <a name="Fulfillments">
 
+The distributor constructs the fulfillment for the product offer. The booking of the fare returns a fulfillmentId for the fares, but usually the conet of the fulfillment will be empty. The restrictions on fulfillments provided in 'fulfillmentConstraint' must be obeyed.
+
+In special cases additional filfilment parts can be provided by the fare provider (e.g. proprietary bar codes) based on bilateral agreements.
+
+The fare provides a list on TCOs involved in the ticket control ('involvedTCOs') that should be informed by the distributor in case a ticket control exchange is in place.
+
+The fare provides additional information on age restrictions ('passengerConstraints') to be included in the barcode. 
+
 
 ## Handling Aftersales <a name="Aftersales">
+
+### Clustering Model
+
+In the clustering model the distributor applies his own after sales conditions depending of the cluster of the product. Although the distributor calculates the refund fee the refund has to be made via the OSDM API online.
+
+--> TODO discussion on exchange of fee (seems to be lost in the messages)
+
+### Combination Model
+
+The fare provides the aftersales fees. 
