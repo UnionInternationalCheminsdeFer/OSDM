@@ -65,7 +65,7 @@ The combination rules include:
   - indication whether the fare is allowed to be converter into a product without combining with another fare provider
   - list of flexibility clusters of the final product that can contain this fare ('allowedClusters')
   - allowed distributors (Offline Fares only)
-  - list of fare providers with whoom a throught ticket is allowed ('allowedCommonContracts').
+  - list of fare providers with whoom a throught ticket is allowed ('allowedCommonContracts'). Note: Separate contracts can be contained on one fulfillment Document (Ticket) but the separation of contracts has to be indicated clearly on the ticket.
 
 ## Combining Regional Validity <a name="RegionalValidity">
 
