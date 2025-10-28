@@ -26,7 +26,7 @@ Offline and Online Fares share some data objects, but the data context is differ
 
 As fares are only bricks to construct a product they do not include all data a product incudes. A fare does not include:
 
- - A product object as this will be conbstructed by teh Distributor
+ - A product 
  - A FulfillmentDocument as the fulfillment is constructed by the Distributor. However a fare might include fulfillment parts that need to be integrated in the fulfillment (e.g. additional bar code,..)
  - In some Business Models the Fare specifies a type of after sales rule only, not the exact after sales fees 
 
