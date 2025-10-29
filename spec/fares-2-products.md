@@ -157,6 +157,8 @@ reservation fare does not incude a fulfillment document as the reservation will 
 
 As the difference to normal reservations is almost nglectable and with version 4 there will be only one reservation object the general reservation might already with version 3 be used as fare reservation on a bilateral agreement.
 
+Reservations obtailed by the H2O converter of hitrail are by definition fare reservations as the 'H'ermes Protokoll only implements the fare model.
+
 ## Creating Fulfillments <a name="Fulfillments">
 
 The distributor constructs the fulfillment for the product offer. The booking of the fare returns a fulfillmentId for the fares, but usually the conet of the fulfillment will be empty. The restrictions on fulfillments provided in 'fulfillmentConstraint' must be obeyed.
