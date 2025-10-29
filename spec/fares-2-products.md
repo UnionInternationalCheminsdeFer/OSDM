@@ -11,8 +11,8 @@ permalink: /spec/fares-2-products/
 2. [Passengers](#Passengers)
 3. [Combination Rules](#CombinationRules)
 4. [Combining Rules](#RegionalValidity)
-5. [Combining After Sales Rules](#AfterSalesRules)
-6. [Reservation Fares](reservation)
+5. [Reservation Fares](reservation)
+6. [Combining After Sales Rules](#AfterSalesRules)
 7. [Creating Fulfillments](#Fulfillments)
 8. [Handling Aftersales](#Aftersales)
 
@@ -52,6 +52,7 @@ Fares are via the 'POST \offfers' indicating 'FARE_ADMISSION','FARE_RESERVATION'
 
 The offer request might ask for product based admissions at the same time. Use cases for a mixed request might be that some part of the requested trip part is covered by products only. E.g. Fare Salzburg-Vienna + Prduct Based admission for Vienna city traffic.
 
+I case  of free transport a fare with zero price needs to be provided to allow the construction of products.
 
 ## Passengers <a name="Passengers">
 
@@ -88,9 +89,6 @@ CLUSTERING and COMBINING rules are based on a classification of Products and Far
 A Product build from Fares must follow one of the cluster modeels. The Fare provides rules on the cluster models that are allowed to contain the fare. The rules usually ensure, that a Fare can only be included in a product of the samecluster model or a cluster model that allows less felxibility in terms of after sales rules.
 
 E.g. A FULL_FLEX fare might be allowed to be included in a SEMI_FLEX product, but not in a BUSINESS product.
-
-
-
 
 
 
@@ -139,17 +137,6 @@ Object model:
 ![Fare Structure](../images/fare-data-structure/OSDMmodelviaStationobjectmodel.png)
 
 
-## Combining After Sales Rules <a name="AfterSalesRules">
-
-### Clustering Model
-
-In the clustering model the distributor applies his own after sales conditions depending of the cluster of the product.
-
-### Combination Model
-
-The fare provides the aftersales fees. The product adds the after sales fees of all included fares. This results in an aftersales fee that increases whenever one of the fare after sales fees changes.
-
-
 ## Reservation Fares <a name="Reservation">
 
 Reservations can follow the fare model. These are then indicated as 'FARE_RESERVATION'. The differences to Product based reservations are marginal (with version 4.0 the reservation object will be used in both cases), the fulfillment of a 
@@ -168,6 +155,17 @@ In special cases additional filfilment parts can be provided by the fare provide
 The fare provides a list of TCOs involved in the ticket control ('involvedTCOs') that should be informed by the distributor in case a ticket control exchange is in place.
 
 The fare provides additional information on age restrictions ('passengerConstraints') to be included in the barcode. 
+
+
+## Combining After Sales Rules <a name="AfterSalesRules">
+
+### Clustering Model
+
+In the clustering model the distributor applies his own after sales conditions depending of the cluster of the product.
+
+### Combination Model
+
+The fare provides the aftersales fees. The product adds the after sales fees of all included fares. This results in an aftersales fee that increases whenever one of the fare after sales fees changes.
 
 
 ## Handling Aftersales <a name="Aftersales">
