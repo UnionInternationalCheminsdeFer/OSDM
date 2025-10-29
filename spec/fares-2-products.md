@@ -73,6 +73,24 @@ The combination rules include:
 
 A Fare can have multiple combination constraints. One of them must match to construct a combination. 
 
+CLUSTERING and COMBINING rules are based on a classification of Products and Fares according to theit flexibility:
+
+| CLUSTER_MODCEL    | description                                                                                           |
+| ----------------- | ----------------------------------------------------------------------------------------------------- |
+| `BUSINESS`        | Refundable/Exchangeable after the departure or last day of validity                                   |
+| `FULL_FLEX`       | Refundable/Exchangeable before the departure or last day of validity                                  |
+| `SEMI_FLEX`       | Refundable/Exchangeable with fee depending on conditions of the distributor. Minimum validity applies |
+| `NON_FLEX`        | Non refundable. Non exchangeable. Minimum validity applies                                            |
+| `PROMO`           | Used on a bilateral basis only. Non refundable. Non exchangeable. Minimum validity applies            |
+
+A Product build from Fares must follow one of the cluster modeels. The Fare provides rules on the cluster models that are allowed to contain the fare. The rules usually ensure, that a Fare can only be included in a product of the samecluster model or a cluster model that allows less felxibility in terms of after sales rules.
+
+E.g. A FULL_FLEX fare might be allowed to be included in a SEMI_FLEX product, but not in a BUSINESS product.
+
+
+
+
+
 
 ## Combining Regional Validity <a name="RegionalValidity">
 
@@ -136,7 +154,7 @@ The distributor constructs the fulfillment for the product offer. The booking of
 
 In special cases additional filfilment parts can be provided by the fare provider (e.g. proprietary bar codes) based on bilateral agreements.
 
-The fare provides a list on TCOs involved in the ticket control ('involvedTCOs') that should be informed by the distributor in case a ticket control exchange is in place.
+The fare provides a list of TCOs involved in the ticket control ('involvedTCOs') that should be informed by the distributor in case a ticket control exchange is in place.
 
 The fare provides additional information on age restrictions ('passengerConstraints') to be included in the barcode. 
 
