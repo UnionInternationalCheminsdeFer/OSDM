@@ -12,8 +12,9 @@ permalink: /spec/fares-2-products/
 3. [Combination Rules](#CombinationRules)
 4. [Combining Rules](#RegionalValidity)
 5. [Combining After Sales Rules](#AfterSalesRules)
-6. [Creating Fulfillments](#Fulfillments)
-7. [Handling Aftersales](#Aftersales)
+6. [Reservation Fares](reservation)
+7. [Creating Fulfillments](#Fulfillments)
+8. [Handling Aftersales](#Aftersales)
 
 ## Introduction <a name="Intro">
 
@@ -24,13 +25,13 @@ By nature the fares are forseen to be used in combination with other fares, Howe
 
 Offline and Online Fares share some data objects, but the data context is different. Online Fares are always part of an offer for a specified trip and a specified list of travellers, whereas in Offline Fares this context is missing and the Offline Fares must provide all data required to link them into such a context. 
 
-As fares are only bricks to construct a product they do not include all data a product incudes. A fare does not include:
+As fares are only bricks to construct a product they do not include all data a product based admission incudes. The Fare and Fulfillments on Fares do not include:
 
- - A product 
+ - A product definition
  - A FulfillmentDocument as the fulfillment is constructed by the Distributor. However a fare might include fulfillment parts that need to be integrated in the fulfillment (e.g. additional bar code,..)
  - In some Business Models the Fare specifies a type of after sales rule only, not the exact after sales fees 
 
-Additionally Fares include data to support the construction process. These are not included in products likke admissions.
+Additionally Fares include data to support the construction process. These are not included in products like admissions.
 
  - Combination Models defining the allowed combinations with other fares
  - AfterSales Models defining the way after sales can be handled by the distributor
@@ -47,9 +48,10 @@ Offline Fares need to provide additional data to link them to the sales context 
 The RegionalValidity is included in Offline and Online Fares, but the usage of the data is different. The data included in the Offline Fares are used to link the fare to possible trips by the distributor. With online fares this is already done by 
 the fare provider. The regional validity in the online fare is used to provide this information to the traveller and to the controll staff via ticket bar codes. 
 
-Fares are via the 'POST \offfers' indicating 'FARE_ADMISSION','FARE_RESERVATION' in 'offerSearchCriteria.requestedOfferParts'. 
+Fares are via the 'POST \offfers' indicating 'FARE_ADMISSION','FARE_RESERVATION', 'FARE_ANCILLARY' in 'offerSearchCriteria.requestedOfferParts'. 
 
 The offer request might ask for product based admissions at the same time. Use cases for a mixed request might be that some part of the requested trip part is covered by products only. E.g. Fare Salzburg-Vienna + Prduct Based admission for Vienna city traffic.
+
 
 ## Passengers <a name="Passengers">
 
@@ -147,6 +149,13 @@ In the clustering model the distributor applies his own after sales conditions d
 
 The fare provides the aftersales fees. The product adds the after sales fees of all included fares. This results in an aftersales fee that increases whenever one of the fare after sales fees changes.
 
+
+## Reservation Fares <a name="Reservation">
+
+Reservations can follow the fare model. These are then indicated as 'FARE_RESERVATION'. The differences to Product based reservations are marginal (with version 4.0 the reservation object will be used in both cases), the fulfillment of a 
+reservation fare does not incude a fulfillment document as the reservation will be integrated in the documents constructed by the distributor. The fare reservation will not include or link to a reservation fee as the fee is added by the distributor according to his general reservation fee rules.
+
+As the difference to normal reservations is almost nglectable and with version 4 there will be only one reservation object the general reservation might already with version 3 be used as fare reservation on a bilateral agreement.
 
 ## Creating Fulfillments <a name="Fulfillments">
 
