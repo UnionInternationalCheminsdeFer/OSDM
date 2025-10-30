@@ -5755,8 +5755,12 @@ components:
                 - 'string'
                 - 'null'
               format: date-time          
-            regionalValidity:
-              $ref: '#/components/schemas/RegionalValidity'
+            regionalValidities:
+              description: This contains multiple regional validities for this item 
+              type: array
+              items:
+                $ref: '#/components/schemas/RegionalValidity'
+              minItems: 1
             feeRefs:
               type: array
               items:
@@ -5799,8 +5803,13 @@ components:
               format: date-time  
             regionalValiditySummary:
               $ref: '#/components/schemas/RegionalValiditySummary'
-            regionalValidity:
-              $ref: '#/components/schemas/RegionalValidity'
+            regionalValidities:
+              description: |
+                 This contains multiple regional validities for this item
+              type: array
+              items:
+                $ref: '#/components/schemas/RegionalValidity'
+              minItems: 1
             reservations:
               type: array
               items:
@@ -15137,6 +15146,29 @@ components:
       description: |
         Route description including the first and last real stopPoint
       properties:
+        viaSummary:
+          description: |
+            Printable representation of the allowed routing ("Wegetext") excluding the start and end point (via-description). 
+          type: 
+            - string
+            - 'null'
+          maxLength: 140 
+        routeStartName:
+          description: 
+            name of the route start, eigther a station of a tariff border. When concatenated with another fare only one of the end and start points remains.
+          type: 
+            - string
+            - 'null'
+          maxLength: 40 
+        routeEndName:
+          description: 
+            name of the route end, eigther a station of a tariff border. When concatenated with another fare only one of the end and start points remains.           
+          type: 
+            - string
+            - 'null'
+          maxLength: 40 
+          examples:
+            - 'Salzburg Hbf (GR)'
         routeItem:
           $ref: '#/components/schemas/RouteItem'
         routeItemList:
@@ -17675,13 +17707,11 @@ components:
       type: object
       additionalProperties: false
       description: |
-        carrier - carrier responsible for the transport.
+        carrier - carrier or PTA responsible for the transport.
         entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station
         (e.g. local zone ticket to start from the main rail station).
         terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket
         to go to the main rail station).
-      required:
-        - carrier
       properties:
         binaryZoneId:
           description: |
@@ -17715,7 +17745,17 @@ components:
           type:
             - 'string'
             - 'null'
-
+        validFrom:
+          type: 
+            - string
+            - 'null'
+          format: date-time
+        validUntil:
+          type: 
+            - string
+            - 'null'        
+          format: date-time
+          
     ZoneCollectionResponse:
       type: object
       additionalProperties: false
