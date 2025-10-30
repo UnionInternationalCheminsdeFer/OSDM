@@ -14279,7 +14279,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        reductions granted by a reduction card type. Eigther carrier or country must be provided. 
+        reductions granted by a reduction card type. Either carrier or country must be provided. 
       required:
         - description
       properties:
@@ -15155,14 +15155,14 @@ components:
           maxLength: 140 
         routeStartName:
           description: 
-            name of the route start, eigther a station of a tariff border. When concatenated with another fare only one of the end and start points remains.
+            name of the route start, either a station or a tariff border. When concatenated with another fare only one of the end and start points remains.
           type: 
             - string
             - 'null'
           maxLength: 40 
         routeEndName:
           description: 
-            name of the route end, eigther a station of a tariff border. When concatenated with another fare only one of the end and start points remains.           
+            name of the route end, either a station or a tariff border. When concatenated with another fare only one of the end and start points remains.           
           type: 
             - string
             - 'null'
