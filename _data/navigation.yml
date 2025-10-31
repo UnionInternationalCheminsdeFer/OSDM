@@ -19,7 +19,7 @@
     - name: Online API v3.7.0 (draft version) - Swagger
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.7/OSDM-online-api-v3.7.0.yml
     - name: Online API v3.8.0 (draft version) - Swagger
-      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.8/OSDM-online-api-v3.8.0.yml      
+      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.8/OSDM-online-api-v3.8.0.yml
     - name: Online API v4.0.0 (draft version) - Swagger
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-api-v4.0.0-draft.yml
 
@@ -35,20 +35,18 @@
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.2/OSDM-online-api-v3.2.4.yml&nocors
     - name: Online API v3.2.0 Webhook (stable version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.2/OSDM-online-webhook-v3.2.0.yml&nocors
-    - name: Online API v3.3.3 Webhook (stable version) - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.3/OSDM-online-webhook-v3.3.3.yml&nocors
     - name: Online API v3.3.3 (stable version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.3/OSDM-online-api-v3.3.3.yml&nocors
-    - name: Online API v3.4.4 Webhook - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.4/OSDM-online-webhook-v3.4.4.yml&nocors
+    - name: Online API v3.4.0 Webhook - Redoc
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.4/OSDM-online-webhook-v3.4.0.yml&nocors
     - name: Online API v3.4.4 (stable version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.4/OSDM-online-api-v3.4.4.yml&nocors
-    - name: Online API v3.5.4 Webhook - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.5/OSDM-online-webhook-v3.5.4.yml&nocors
+    - name: Online API v3.5.0 Webhook - Redoc
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.5/OSDM-online-webhook-v3.5.0.yml&nocors
     - name: Online API v3.5.4 (stable version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.5/OSDM-online-api-v3.5.4.yml&nocors
-    - name: Online API v3.6.2 Webhook - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.6/OSDM-online-webhook-v3.6.2.yml&nocors
+    - name: Online API v3.6.0 Webhook - Redoc
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.6/OSDM-online-webhook-v3.6.0.yml&nocors
     - name: Online API v3.6.2 (stable version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.6/OSDM-online-api-v3.6.2.yml&nocors
     - name: Online API v3.7.0 Webhook (draft version) - Redoc
@@ -58,7 +56,7 @@
     - name: Online API v3.8.0 Webhook (draft version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.8/OSDM-online-webhook-v3.8.0.yml&nocors
     - name: Online API v3.8.0 (draft version) - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.8/OSDM-online-api-v3.8.0.yml&nocors      
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.8/OSDM-online-api-v3.8.0.yml&nocors
     - name: Online API v4.0.0 (draft version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-api-v4.0.0-draft.yml&nocors
 
@@ -102,7 +100,7 @@
 
 - name: Deep Dives
   link: deep-dives/
-  dropdown: 
+  dropdown:
     - name: Persons with reduced mobility (PRM) and accessability
       link: spec/prm_and_access/
     - name: Continuous On-Demand Services
@@ -110,7 +108,7 @@
     - name: Account Based Ticketing
       link: spec/account-based-ticketing/
     - name: Non-Trip-Based Sales
-      link: spec/non-trip-based-sale/      
+      link: spec/non-trip-based-sale/
     - name: Dual Approaches
       link: spec/dual-approaches/
     - name: Requested Information - Grammar
