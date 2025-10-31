@@ -9387,6 +9387,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentOption'
+        exchangeFee:
+          description: |
+            In some business models the distributor has the right to define the exchange fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditributor submits the amount to the fare provider in exchange fee amount and the fare provider uses this amount to create the fees including the VAT split. 
+          $ref: '#/components/schemas/CurrencyAmount'            
         embed:
           type: array
           items:
@@ -13470,6 +13474,29 @@ components:
             $ref: '#/components/schemas/VAT'
         appliedCurrenyConversion:
             $ref: '#/components/schemas/CurrencyConversion'
+
+    CurrencyAmount:
+      type: object
+      additionalProperties: false
+      required:
+        - currency
+        - amount
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        amount:
+          description: |
+            amount in cents
+          type: integer
+          format: int32
+        scale:
+          description: |
+            scale of the amount - the number of positions after the comma
+          type:
+            - 'integer'
+            - 'null'
+          format: int32
+          default: 2              
           
     CurrencyConversion:
       description: | 
@@ -14647,6 +14674,11 @@ components:
           description: ids of passengers to be removed from the fulfillment
           items:
             type: string
+        refundFee:
+          description: |
+            In some business models the distributor has the right to define the refund fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. IN this case the ditributor submits the amount to the fare provider in refund fee amount and the fare provider uses this amount to create the fees including the VAT split. 
+          $ref: '#/components/schemas/CurrencyAmount'
+
 
     RefundStatus:
       type: string
