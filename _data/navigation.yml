@@ -18,6 +18,8 @@
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.6/OSDM-online-api-v3.6.2.yml
     - name: Online API v3.7.0 (draft version) - Swagger
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.7/OSDM-online-api-v3.7.0.yml
+    - name: Online API v3.8.0 (draft version) - Swagger
+      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.8/OSDM-online-api-v3.8.0.yml      
     - name: Online API v4.0.0 (draft version) - Swagger
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-api-v4.0.0-draft.yml
 
@@ -51,8 +53,12 @@
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.6/OSDM-online-api-v3.6.2.yml&nocors
     - name: Online API v3.7.0 Webhook (draft version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.7/OSDM-online-webhook-v3.7.0.yml&nocors
-    - name: Online API v3.7.0 (draft version) - Redoc
+    - name: Online API v3.7.0 (stable version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.7/OSDM-online-api-v3.7.0.yml&nocors
+    - name: Online API v3.8.0 Webhook (draft version) - Redoc
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.8/OSDM-online-webhook-v3.8.0.yml&nocors
+    - name: Online API v3.8.0 (draft version) - Redoc
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.8/OSDM-online-api-v3.8.0.yml&nocors      
     - name: Online API v4.0.0 (draft version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-api-v4.0.0-draft.yml&nocors
 
