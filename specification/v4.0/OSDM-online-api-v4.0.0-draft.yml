@@ -5976,19 +5976,10 @@ components:
         - 'EXCHANGE'
         - 'REFUND'
 
-    AfterSalesConditionsLink:
+    FareAfterSalesRules:
       type: object
       additionalProperties: false
-      required:
-        - conditions
       properties:
-        conditions:
-          description: |
-            Structured description of the after-sales conditions.
-          type: array
-          items:
-            $ref: '#/components/schemas/AfterSaleCondition'
-          minItems: 1
         isSupportingIndividualContracts:
           description: |
             Indicates that the after sales of this fare can be treated independently per person.
@@ -5996,6 +5987,11 @@ components:
             - 'boolean'
             - 'null'
           default: false
+        isProviderFee:
+          description: |
+            The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
+          type: boolean
+          default: true
 
     AfterSalesOverrideDetails:
       description: |
@@ -9760,8 +9756,8 @@ components:
                $ref: '#/components/schemas/ServiceClass'
             travelClass:
                $ref: '#/components/schemas/TravelClass'
-            afterSalesCondition:
-               $ref: '#/components/schemas/AfterSalesConditionsLink'
+            afterSalesRules:
+               $ref: '#/components/schemas/FareAfterSalesRules'
             combinationConstraint:
                type: array
                minItems: 1
@@ -9831,8 +9827,8 @@ components:
                $ref: '#/components/schemas/ServiceClass'
             travelClass:
                $ref: '#/components/schemas/TravelClass'
-            afterSalesCondition:
-               $ref: '#/components/schemas/AfterSalesConditionsLink'
+            afterSalesRules:
+               $ref: '#/components/schemas/FareAfterSalesRules'
             combinationConstraint:
                type: array
                minItems: 1
