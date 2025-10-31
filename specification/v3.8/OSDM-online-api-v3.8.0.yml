@@ -8921,6 +8921,9 @@ components:
     CompanyDetail:
       type: object
       additionalProperties: false
+      description: |
+        Details a company. Note that the legalAddress attribute has been deprecated and
+        is replaced by legalPostalAddress.
       required:
         - name
       properties:
@@ -8938,6 +8941,8 @@ components:
             Deprecated in favor of `legalPostalAddress`
         legalPostalAddress:
           $ref: '#/components/schemas/PostalAddress'
+        contact:
+          $ref: '#/components/schemas/ContactDetail'
         taxId:
           type: string
           nullable: false
