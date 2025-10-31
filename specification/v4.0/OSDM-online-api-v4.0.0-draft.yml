@@ -6599,7 +6599,7 @@ components:
         bookingContact:
           $ref: '#/components/schemas/ContactDetail'
         bookingMethod:
-          $ref: '#/components/schemas/BookingMethod'	    
+          $ref: '#/components/schemas/BookingMethod'    
         bookingAccess:
           $ref: '#/components/schemas/BookingAccess'
         bookingAccessTime:
@@ -10959,7 +10959,7 @@ components:
         sections:
           type: array
           items:
-            $ref: '#/components/schemas/LegTrackSection'	  
+            $ref: '#/components/schemas/LegTrackSection'  
 
     LegTrackSection:
       type: object
@@ -10972,14 +10972,14 @@ components:
         positions:
           type: array
           items:
-            $ref: '#/components/schemas/GeoPosition'	  
+            $ref: '#/components/schemas/GeoPosition'  
         end:
-          $ref: '#/components/schemas/PlaceRef'	  
+          $ref: '#/components/schemas/PlaceRef'  
         duration:
           type: string
           format: duration
         distance:
-          $ref: '#/components/schemas/Distance'	 
+          $ref: '#/components/schemas/Distance' 
           minimum: 0
 
     Line:
@@ -14691,7 +14691,7 @@ components:
             $ref: '#/components/schemas/RegionalValidity'
           minItems: 1
         distance:
-          $ref: '#/components/schemas/Distance'	 
+          $ref: '#/components/schemas/Distance' 
 
     RegionalValidity:
       type: object
@@ -16740,7 +16740,7 @@ components:
         distance:
           description: |
             Distance in meters over the the complete trip, i.e., including transfer legs.
-          $ref: '#/components/schemas/Distance'	 
+          $ref: '#/components/schemas/Distance' 
         legs:
           description: |
             Legs ot the trip
@@ -17658,7 +17658,7 @@ components:
             - 'null'
           format: int32
         distance:
-          $ref: '#/components/schemas/Distance'	 
+          $ref: '#/components/schemas/Distance' 
 
     TripTravelAccountUnit:
       allOf:
