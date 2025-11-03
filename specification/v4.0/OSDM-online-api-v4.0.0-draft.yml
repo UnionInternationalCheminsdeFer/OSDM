@@ -6277,6 +6277,11 @@ components:
               $ref: '#/components/schemas/ApplicabilityType'
             transactionContext:
               $ref: '#/components/schemas/TransactionContextType'
+            isProviderFee:
+              description: |
+                The fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
+              type: boolean
+              default: true              
 
 
     TransactionContextType:
@@ -9996,6 +10001,11 @@ components:
               $ref: '#/components/schemas/ApplicabilityType'
             transactionContext:
               $ref: '#/components/schemas/TransactionContextType'
+            isProviderFee:
+              description: |
+                 The fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
+              type: boolean
+              default: true                 
 
     Flexibility:
       type: string
