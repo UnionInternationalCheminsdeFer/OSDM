@@ -10061,7 +10061,8 @@ components:
           format: date-time
         controlNumber:
           description: |
-            Ticket Control Number.
+            Ticket Control Number. Used for secure paper stock of referencing tickets in fulfillment applications.
+          type: string
           type:
             - 'string'
             - 'null'
@@ -10270,6 +10271,7 @@ components:
         - 'image/png'
         - 'text/calendar'
         - 'text/html'
+        - 'application/json'  # e.g. used for tickets in google wallets (JWT)        
 
     FulfillmentId:
       type: string
@@ -10311,15 +10313,13 @@ components:
         Listed values here are examples.
       type: string
       x-extensible-enum:
-        - 'DISTRIBUTOR_APP'
-        - 'RETAILER_APP'
-        - 'FULFILLMENT_PARTS'
-        - 'PDF_A4'
-        - 'PKPASS'
-        - 'RCCST'
-        - 'RCT2'
-        - 'UIC_PDF'
+        - 'PDF_A4'                
+        - 'RCCST'         # secure paper
+        - 'RCT2'          # secure paper
         - 'TICKETLESS'
+        - 'APPLICATION'
+        - 'WALLET'
+        - 'CHIP_CARD'
 
     FulfillmentOption:
       type: object
@@ -10334,6 +10334,23 @@ components:
           $ref: '#/components/schemas/FulfillmentType'
         media:
           $ref: '#/components/schemas/FulfillmentMediaType'
+        applications:
+          description: |
+            list of applications that can 
+            handle the fulfillment. This is required in case of media APPLICATION.
+            The applications might be modules on a vending machine to handle chop cards or smartphone apps handling NFC communication..
+          type: array
+          items:
+            type: string  
+          minItems: 1  
+        specification:
+          description:  
+            accepted fulfillment specifications in case the fulfillment via APPLICATION or CHIP_CARD is not not limited to a specific application.  
+          type: array
+          items:
+            type: string  
+            example: ['CALYPSO']
+          minItems: 1    
 
     FulfillmentPart:
       type: object
