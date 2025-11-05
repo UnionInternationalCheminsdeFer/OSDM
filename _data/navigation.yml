@@ -109,6 +109,8 @@
       link: spec/account-based-ticketing/
     - name: Non-Trip-Based Sales
       link: spec/non-trip-based-sale/
+    - name: fulfillment on wallets ad chip crads
+      link: spec/fulfillment-wallet-chip-card/
     - name: Dual Approaches
       link: spec/dual-approaches/
     - name: Requested Information - Grammar
