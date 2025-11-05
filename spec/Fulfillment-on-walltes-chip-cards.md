@@ -2,7 +2,7 @@
 layout: page
 title: Fulfillment on Wallets and Chip Cards
 hide_hero: true
-permalink: /spec/fulfillment-wallets-chip-cards/
+permalink: /spec/fulfillment-wallet-chip-card/
 ---
 
 ## Table of contents
