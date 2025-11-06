@@ -13,14 +13,14 @@ permalink: /spec/fulfillment-wallet-chip-card/
 
 ## Introduction <a name="introduction">
 
-The fulfillment on wallets and on chip cards is supported by OSDM. The fulfillment options available at the client side need to be indicated in the offer request. The resulting fulfillments 
+The fulfillment on wallets and chip cards is supported by OSDM. The fulfillment options available on the client side need to be indicated in the offer request. The resulting fulfillments 
 at the end of the booking process need to indicate clearly how the fulfillment needs to be handled by the client.
 
-The fulfillment on wallets and on chip cards has some similarities as in both cases the fulfillment requires additional components on the client side.
+The fulfillment on wallets and chip cards have some similarities as in both cases the fulfillment requires additional components on the client side.
 
 ## Use Cases <a name="usecases">
 
-### Fulfillment in wallets
+### Fulfillment on wallets
 
 A fulfillment on wallets requires an installed wallet on the traveler side. 
 
@@ -29,7 +29,7 @@ If a wallet is available the offer request indicates this by:
  - FulfillmentType: ETICKET
  - FulFillmentMediaType: WALLET  (or PKPASS in older versions, PKPASS is deprecated with v3.8)
 
-With version 3.8 it is possible to provide a dedicated applications (GOOGLE, APPLE, ..) for specific wallets, however it is recommended to provide always fulfillments for the Apple and the Google wallet.
+With version 3.8 it is possible to provide a dedicated applications provider (GOOGLE, APPLE, ..) for specific wallets, however it is recommended to always provide fulfillment documents for both the Apple and Google wallets.
 
 There are multiple options to provide the fulfillment:
 
@@ -59,7 +59,7 @@ There are multiple options to provide the fulfillment:
 
 ### Fulfillment on chip cards
 
-A fulfillment on chip cards requires additional software on the client side to handle the chip card. This is usually provided by the distributor of ia a common chip card module for dedicated cards.
+A fulfillment on chip cards requires additional software on the client side to handle the chip card. This is usually provided by the distributor or is a common chip card module for dedicated cards.
 
 Whether such an application is available must be indicated in the offer request:
 
@@ -73,17 +73,17 @@ Whether such an application is available must be indicated in the offer request:
 
   It is recommended to request the application and card names to be published in an OSDM code list.
 
-  The data for the card depend on the proprietary solution that handles the card. This might just be the fulfillmetDocumnt.controlId in case the local DISTRUBUTOR_APP module 
-  internally accesses the distributor or additional data provided as content
+  The data for the card depend on the proprietary solution that handles the card. This might just be the fulfillmentDocument.controlNumber in case the local DISTRUBUTOR_APP module 
+  internally accesses the distributor or additional data provided as content.
 
-  **using a controlNumber only:**
+  **Using controlNumber only:**
   - DocumentMedia: any
   - applicationProvider: XYZ-LIB: 
   - controlNumber: ticketId 
     content: empty
     downloadLink: empty
 
-  **using a additional content:**
+  **Using additional content:**
   - DocumentMedia: application/json
   - applicationProvider: XYZ-LIB
     content: content needed by the local application to write the card

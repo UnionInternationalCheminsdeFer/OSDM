@@ -109,7 +109,7 @@
       link: spec/account-based-ticketing/
     - name: Non-Trip-Based Sales
       link: spec/non-trip-based-sale/
-    - name: fulfillment on wallets ad chip crads
+    - name: Fulfillment on Wallets and Chip Cards
       link: spec/fulfillment-wallet-chip-card/
     - name: Dual Approaches
       link: spec/dual-approaches/
