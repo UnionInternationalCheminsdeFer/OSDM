@@ -13,7 +13,7 @@ permalink: /spec/fulfillment-wallet-chip-card/
 
 ## Introduction <a name="introduction">
 
-The fulfillment on wallets and on chip cards is supported by OSDM. The fulfillment oprions available at the client side neeed to be indicated in the offer request. The resulting fulfillments 
+The fulfillment on wallets and on chip cards is supported by OSDM. The fulfillment options available at the client side need to be indicated in the offer request. The resulting fulfillments 
 at the end of the booking process need to indicate clearly how the fulfillment needs to be handled by the client.
 
 The fulfillment on wallets and on chip cards has some similarities as in both cases the fulfillment requires additional components on the client side.
