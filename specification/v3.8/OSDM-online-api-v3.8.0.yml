@@ -6077,7 +6077,7 @@ components:
           description:
             Attribute is used as discriminator for inheritance between data
             types.
-          type: string
+          type: string      
         id:
           type: string
           maxLength: 32768
@@ -10498,12 +10498,15 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidity'
         availablePlaces:
+          deprecated: true   
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlace'
         placeSelection:
+          deprecated: true
           $ref: '#/components/schemas/PlaceSelection'
         placeAllocation:
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/PlaceAllocation'
@@ -10539,8 +10542,9 @@ components:
             $ref: '#/components/schemas/CardReference'
           minItems: 1
         luggageConstraint:
-          $ref: '#/components/schemas/LuggageConstraint'
+          $ref: '#/components/schemas/LuggageConstraint'            
         availablePreferences:
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlacePreferences'
@@ -15383,6 +15387,9 @@ components:
         - type: object
           additionalProperties: false
           properties:
+            offerPartType:
+              description: indication of a reservation to be used as a fare
+              $ref: '#/components/schemas/OfferPartType'            
             placeSelection:
               $ref: '#/components/schemas/PlaceSelection'
             placeAllocation:
@@ -15452,6 +15459,9 @@ components:
         - type: object
           additionalProperties: false
           properties:
+            offerPartType:
+              description: indication of a reservation to be used as a fare
+              $ref: '#/components/schemas/OfferPartType'
             ancillaries:
               deprecated: true
               description: |
