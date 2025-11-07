@@ -7999,6 +7999,8 @@ components:
           type: string
         legalPostalAddress:
           $ref: '#/components/schemas/PostalAddress'
+        contact:
+          $ref: '#/components/schemas/ContactDetail'
         taxId:
           type: string
 
