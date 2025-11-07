@@ -5217,9 +5217,9 @@ components:
           type: string
           default: 'PRICING_FINAL'
           x-extensible-enum:
-            - 'PRICING_UPCOMING'# post payment scenario, no costs yet
-            - 'PRICING_ONGOING'# post payment scenario, costs are collected
-            - 'PRICING_FINAL' # pricing is final
+            - 'PRICING_UPCOMING' # post payment scenario, no costs yet
+            - 'PRICING_ONGOING'  # post payment scenario, costs are collected
+            - 'PRICING_FINAL'    # pricing is final
         offerMode:
           $ref: '#/components/schemas/OfferMode'
         bookingPartCode:
@@ -8740,12 +8740,12 @@ components:
         - 'DEEP_INTEGRATION'
         - 'PREPAID'
         - 'POSTPAID'
-        - 'AUTO_START_USAGE'# usage starts automatically (e.g. by entering a key code at the vehicle)
-        - 'AUTO_END_USAGE' #  usage ends automatically (e.g. by locking the service), the end of the usage does not need to be handled via OSDM
+        - 'AUTO_START_USAGE'  # usage starts automatically (e.g. by entering a key code at the vehicle)
+        - 'AUTO_END_USAGE'    #  usage ends automatically (e.g. by locking the service), the end of the usage does not need to be handled via OSDM
         - 'BLOCKING_TRACKING' # updates provided before pick-up (e.g. current location of a taxi)
-        - 'USAGE_TRACKING' # updates provided after pick-up (e.g. price for current usage)
+        - 'USAGE_TRACKING'    # updates provided after pick-up (e.g. price for current usage)
         - 'PARKING_IMAGE_REQUIRED' #  parking image required at the end of the usage
-        - 'TIP_SUPPORTED' # a driver tip is supported
+        - 'TIP_SUPPORTED'     # a driver tip is supported
 
     ContinuousServiceVehicleAvailability:
       description: |
