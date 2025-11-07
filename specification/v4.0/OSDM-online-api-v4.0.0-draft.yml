@@ -10062,7 +10062,6 @@ components:
         controlNumber:
           description: |
             Ticket Control Number. Used for secure paper stock of referencing tickets in fulfillment applications.
-          type: string
           type:
             - 'string'
             - 'null'
