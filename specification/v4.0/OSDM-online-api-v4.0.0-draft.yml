@@ -5442,6 +5442,8 @@ components:
       additionalProperties: false
       description: |
         Minimal common specification of a passenger used for inheritance.
+      required:
+        - externalRef
       properties:
         externalRef:
           description: |
@@ -6255,7 +6257,6 @@ components:
       description: |
         Minimal specification of a passenger to request offers without any GDPR relevant attributes such as name or address.
         Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
-        The externalRef of the passenger must be provided.
       allOf:
       - $ref: '#/components/schemas/AbstractPassenger'
       - type: object
