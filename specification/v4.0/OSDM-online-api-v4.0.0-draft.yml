@@ -326,9 +326,7 @@ paths:
         content:
           application/vnd.uic.osdm+json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/TripSearchCriteria'
-                - $ref: '#/components/schemas/TripSearchCriteriaMultiOD'
+              $ref: '#/components/schemas/TripCollectionRequest'
       responses:
         '200':
           description: |
@@ -16847,6 +16845,17 @@ components:
         - 'TRIP'
         - 'DAY'
         - 'DURATION'
+
+    TripCollectionRequest:
+      type: object
+      additionalProperties: false
+      description: |
+        You must define only one of tripSearchCriteria or tripSearchCriteriaMultiOd, they are mutually exclusive.
+      properties:
+        tripSearchCriteria:
+          $ref: '#/components/schemas/TripSearchCriteria'
+        tripSearchCriteriaMultiOd:
+          $ref: '#/components/schemas/TripSearchCriteriaMultiOD'
 
     TripCollectionResponse:
       type: object
