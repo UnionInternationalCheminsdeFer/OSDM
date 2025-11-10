@@ -5262,10 +5262,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PromotionCode'
-        appliedReductions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardReference'
         indicatedUsage:
           $ref: '#/components/schemas/IndicatedUsage'
         accountingRef:
