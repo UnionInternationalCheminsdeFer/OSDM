@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.8.0
+  version: 3.7.1
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
 
@@ -8922,9 +8922,6 @@ components:
     CompanyDetail:
       type: object
       additionalProperties: false
-      description: |
-        Details a company. Note that the legalAddress attribute has been deprecated and
-        is replaced by legalPostalAddress.
       required:
         - name
       properties:
@@ -8942,8 +8939,6 @@ components:
             Deprecated in favor of `legalPostalAddress`
         legalPostalAddress:
           $ref: '#/components/schemas/PostalAddress'
-        contact:
-          $ref: '#/components/schemas/ContactDetail'
         taxId:
           type: string
           nullable: false
@@ -10956,11 +10951,6 @@ components:
           nullable: false
         applicationProvider:
           $ref: '#/components/schemas/CompanyRef'
-        controlNumber:
-          description: |
-            Ticket Control Number. Used for secure paper stock of referencing tickets in fulfillment applications.
-          type: string
-          nullable: true            
 
     FulfillmentDocumentType:
       description: |
@@ -10986,7 +10976,6 @@ components:
         - 'image/png'
         - 'text/calendar'
         - 'text/html'
-        - 'application/json'  # e.g. used for tickets in google wallets (JWT)
 
     FulfillmentId:
       type: string
@@ -11032,15 +11021,12 @@ components:
         - 'DISTRIBUTOR_APP'
         - 'RETAILER_APP'
         - 'FULFILLMENT_PARTS'
-        - 'PDF_A4'                
-        - 'PKPASS'        # deprecated use WALLET
-        - 'RCCST'         # secure paper
-        - 'RCT2'          # secure paper
-        - 'UIC_PDF'       # deprecated, use PDF_A4
+        - 'PDF_A4'
+        - 'PKPASS'
+        - 'RCCST'
+        - 'RCT2'
+        - 'UIC_PDF'
         - 'TICKETLESS'
-        - 'APPLICATION'
-        - 'WALLET'
-        - 'CHIP_CARD'
 
     FulfillmentOption:
       type: object
@@ -11055,23 +11041,6 @@ components:
           $ref: '#/components/schemas/FulfillmentType'
         media:
           $ref: '#/components/schemas/FulfillmentMediaType'
-        applications:
-          description: |
-            list of applications that can 
-            handle the fulfillment. This is required in case of media APPLICATION.
-            The applications might be modules on a vending machine to handle chop cards or smartphone apps handling NFC communication..
-          type: array
-          items:
-            type: string  
-          minItems: 1  
-        specification:
-          description:  
-            accepted fulfillment specifications in case the fulfillment via APPLICATION or CHIP_CARD is not not limited to a specific application.  
-          type: array
-          items:
-            type: string  
-            example: ['CALYPSO']
-          minItems: 1            
 
     FulfillmentPart:
       type: object
