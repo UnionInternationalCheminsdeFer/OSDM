@@ -13487,6 +13487,7 @@ components:
 
     CurrencyAmount:
       type: object
+      description: amount in a currency used when not VAT can be provided
       additionalProperties: false
       required:
         - currency
@@ -14686,7 +14687,7 @@ components:
             type: string
         refundFee:
           description: |
-            In some business models the distributor has the right to define the refund fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. IN this case the ditributor submits the amount to the fare provider in refund fee amount and the fare provider uses this amount to create the fees including the VAT split. 
+            In some business models the distributor has the right to define the refund fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditsributor submits the amount to the fare provider in refund fee amount and the fare provider uses this amount to create the fees including the VAT split. 
           $ref: '#/components/schemas/CurrencyAmount'
 
 
