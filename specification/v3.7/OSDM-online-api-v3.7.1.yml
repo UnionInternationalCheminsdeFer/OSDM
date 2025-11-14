@@ -10554,6 +10554,7 @@ components:
         luggageConstraint:
           $ref: '#/components/schemas/LuggageConstraint'
         availablePreferences:
+          deprecated: true        
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlacePreferences'
