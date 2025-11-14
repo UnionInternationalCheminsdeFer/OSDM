@@ -9849,7 +9849,7 @@ components:
          into tickes on the OSDM client side. In fare mode the conditions are defined on the client 
          side the restrictions on conditions and combinability layed down in the booking part (fare). 
          By definition admissions and ancillaries are in PRODUCT_MODE and fares are in _MODE. Reservation 
-         might be in PRODUCT_MODE or in _MODE. Offers in _MODE must not be provided unless they are
+         might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
          requested in the offer part type list.
       type: string
       enum:
