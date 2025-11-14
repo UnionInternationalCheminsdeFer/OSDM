@@ -9686,9 +9686,8 @@ components:
         scale:
           description: |
             scale of the amount - the number of positions after the comma
-          type:
-            - 'integer'
-            - 'null'
+          type: integer
+          nullable: true
           format: int32
           default: 2          
 
