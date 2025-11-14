@@ -9916,9 +9916,6 @@ components:
           $ref: '#/components/schemas/PlaceSelection'
         placeAllocation:
           deprecated: true
-          $ref: '#/components/schemas/PlaceSelection'
-        placeAllocation:
-          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/PlaceAllocation'
