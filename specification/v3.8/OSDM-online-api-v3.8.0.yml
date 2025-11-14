@@ -5881,7 +5881,7 @@ components:
     AbstractBookingPart:
       type: object
       additionalProperties: false
-      criminator:
+      discriminator:
         propertyName: objectType
       required:
         - objectType
