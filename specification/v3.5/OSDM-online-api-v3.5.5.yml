@@ -8958,6 +8958,21 @@ components:
         - 'UP'
         - 'DOWN'
 
+    DistributionMode:
+      description: |
+         booking parts in product mode are provided as complete products where the tickets and 
+         conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assambled 
+         into tickes on the OSDM client side. In fare mode the conditions are defined on the client 
+         side the restrictions on conditions and combinability layed down in the booking part (fare). 
+         By definition admissions and ancillaries are in PRODUCT_MODE and fares are in FARE_MODE. Reservation 
+         might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
+         requested in the offer part type list.
+      type: string
+      enum:
+        - 'PRODUCT_MODE'
+        - 'FARE_MODE'
+      default:  'PRODUCT_MODE'   
+
     Document:
       type: object
       additionalProperties: false
@@ -9610,12 +9625,15 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidity'
         availablePlaces:
+          deprecated: true           
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlace'
         placeSelection:
+          deprecated: true           
           $ref: '#/components/schemas/PlaceSelection'
         placeAllocation:
+          deprecated: true           
           type: array
           items:
             $ref: '#/components/schemas/PlaceAllocation'
@@ -9653,6 +9671,7 @@ components:
         luggageConstraint:
           $ref: '#/components/schemas/LuggageConstraint'
         availablePreferences:
+          deprecated: true           
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlacePreferences'
@@ -14163,6 +14182,9 @@ components:
         - type: object
           additionalProperties: false
           properties:
+            distributionMode:
+              description: indication of a reservation to be used as a fare or as a product
+              $ref: '#/components/schemas/DistributionMode'            
             placeSelection:
               $ref: '#/components/schemas/PlaceSelection'
             placeAllocation:
@@ -14227,6 +14249,9 @@ components:
         - type: object
           additionalProperties: false
           properties:
+            distributionMode:
+              description: indication of a reservation to be used as a fare or as a product
+              $ref: '#/components/schemas/DistributionMode'            
             ancillaries:
               type: array
               items:
