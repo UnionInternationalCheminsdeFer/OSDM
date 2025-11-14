@@ -15402,9 +15402,9 @@ components:
         - type: object
           additionalProperties: false
           properties:
-            offerPartType:
-              description: indication of a reservation to be used as a fare
-              $ref: '#/components/schemas/OfferPartType'            
+            distributionMode:
+              description: indication of a reservation to be used as a fare or as a product
+              $ref: '#/components/schemas/DistributionMode'        
             placeSelection:
               $ref: '#/components/schemas/PlaceSelection'
             placeAllocation:
