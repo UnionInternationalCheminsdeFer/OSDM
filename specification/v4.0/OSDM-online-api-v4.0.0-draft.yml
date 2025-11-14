@@ -5976,19 +5976,10 @@ components:
         - 'EXCHANGE'
         - 'REFUND'
 
-    AfterSalesConditionsLink:
+    FareAfterSalesRules:
       type: object
       additionalProperties: false
-      required:
-        - conditions
       properties:
-        conditions:
-          description: |
-            Structured description of the after-sales conditions.
-          type: array
-          items:
-            $ref: '#/components/schemas/AfterSaleCondition'
-          minItems: 1
         isSupportingIndividualContracts:
           description: |
             Indicates that the after sales of this fare can be treated independently per person.
@@ -5996,6 +5987,11 @@ components:
             - 'boolean'
             - 'null'
           default: false
+        isProviderFee:
+          description: |
+            The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
+          type: boolean
+          default: true
 
     AfterSalesOverrideDetails:
       description: |
@@ -6281,6 +6277,11 @@ components:
               $ref: '#/components/schemas/ApplicabilityType'
             transactionContext:
               $ref: '#/components/schemas/TransactionContextType'
+            isProviderFee:
+              description: |
+                The fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
+              type: boolean
+              default: true              
 
 
     TransactionContextType:
@@ -9391,6 +9392,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentOption'
+        exchangeFee:
+          description: |
+            In some business models the distributor has the right to define the exchange fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditributor submits the amount to the fare provider in exchange fee amount and the fare provider uses this amount to create the fees including the VAT split. 
+          $ref: '#/components/schemas/CurrencyAmount'            
         embed:
           type: array
           items:
@@ -9760,8 +9765,8 @@ components:
                $ref: '#/components/schemas/ServiceClass'
             travelClass:
                $ref: '#/components/schemas/TravelClass'
-            afterSalesCondition:
-               $ref: '#/components/schemas/AfterSalesConditionsLink'
+            afterSalesRules:
+               $ref: '#/components/schemas/FareAfterSalesRules'
             combinationConstraint:
                type: array
                minItems: 1
@@ -9831,8 +9836,8 @@ components:
                $ref: '#/components/schemas/ServiceClass'
             travelClass:
                $ref: '#/components/schemas/TravelClass'
-            afterSalesCondition:
-               $ref: '#/components/schemas/AfterSalesConditionsLink'
+            afterSalesRules:
+               $ref: '#/components/schemas/FareAfterSalesRules'
             combinationConstraint:
                type: array
                minItems: 1
@@ -9996,6 +10001,11 @@ components:
               $ref: '#/components/schemas/ApplicabilityType'
             transactionContext:
               $ref: '#/components/schemas/TransactionContextType'
+            isProviderFee:
+              description: |
+                 The fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
+              type: boolean
+              default: true                 
 
     Flexibility:
       type: string
@@ -13474,6 +13484,30 @@ components:
             $ref: '#/components/schemas/VAT'
         appliedCurrenyConversion:
             $ref: '#/components/schemas/CurrencyConversion'
+
+    CurrencyAmount:
+      type: object
+      description: amount in a currency used when not VAT can be provided
+      additionalProperties: false
+      required:
+        - currency
+        - amount
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        amount:
+          description: |
+            amount in cents
+          type: integer
+          format: int32
+        scale:
+          description: |
+            scale of the amount - the number of positions after the comma
+          type:
+            - 'integer'
+            - 'null'
+          format: int32
+          default: 2              
           
     CurrencyConversion:
       description: | 
@@ -14651,6 +14685,11 @@ components:
           description: ids of passengers to be removed from the fulfillment
           items:
             type: string
+        refundFee:
+          description: |
+            In some business models the distributor has the right to define the refund fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditsributor submits the amount to the fare provider in refund fee amount and the fare provider uses this amount to create the fees including the VAT split. 
+          $ref: '#/components/schemas/CurrencyAmount'
+
 
     RefundStatus:
       type: string
