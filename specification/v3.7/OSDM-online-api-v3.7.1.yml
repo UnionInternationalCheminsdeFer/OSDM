@@ -10509,7 +10509,7 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidity'
         availablePlaces:
-          deprecated: true        
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlace'
@@ -10518,8 +10518,6 @@ components:
           $ref: '#/components/schemas/PlaceSelection'
         placeAllocation:
           deprecated: true
-          $ref: '#/components/schemas/PlaceSelection'
-        placeAllocation:
           type: array
           items:
             $ref: '#/components/schemas/PlaceAllocation'
@@ -10557,7 +10555,7 @@ components:
         luggageConstraint:
           $ref: '#/components/schemas/LuggageConstraint'
         availablePreferences:
-          deprecated: true        
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlacePreferences'
