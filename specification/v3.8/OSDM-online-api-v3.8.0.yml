@@ -2557,7 +2557,7 @@ paths:
       description: |
         Optionally finalizes the fulfillment in case of an asynchronous fulfillment mode when the provider doesn't complete the asynchronous fulfillment automatically.
 
-        This step may be used as an indication of the `proof of delivery` to disallow the cancellation of booking.
+        This step may be used as an indication of the `proof of delivery` to allow the cancellation of booking.
       operationId: finalizeFulfillments
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -5881,7 +5881,7 @@ components:
     AbstractBookingPart:
       type: object
       additionalProperties: false
-      discriminator:
+      criminator:
         propertyName: objectType
       required:
         - objectType
@@ -9841,6 +9841,21 @@ components:
         - 'LEFT'
         - 'UP'
         - 'DOWN'
+
+    DistributionMode:
+      description: |
+         booking parts in product mode are provided as complete products where the tickets and 
+         conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assambled 
+         into tickes on the OSDM client side. In fare mode the conditions are defined on the client 
+         side the restrictions on conditions and combinability layed down in the booking part (fare). 
+         By definition admissions and ancillaries are in PRODUCT_MODE and fares are in _MODE. Reservation 
+         might be in PRODUCT_MODE or in _MODE. Offers in _MODE must not be provided unless they are
+         requested in the offer part type list.
+      type: string
+      enum:
+        - 'PRODUCT_MODE'
+        - 'FARE_MODE'
+      default:  'PRODUCT_MODE'   
 
     Document:
       type: object
@@ -15459,9 +15474,9 @@ components:
         - type: object
           additionalProperties: false
           properties:
-            offerPartType:
-              description: indication of a reservation to be used as a fare
-              $ref: '#/components/schemas/OfferPartType'
+            distributionMode:
+              description: indication of a reservation to be used as a fare or as a product
+              $ref: '#/components/schemas/DistributionMode'
             ancillaries:
               deprecated: true
               description: |
