@@ -6078,7 +6078,7 @@ components:
           description:
             Attribute is used as discriminator for inheritance between data
             types.
-          type: string      
+          type: string
         id:
           type: string
           maxLength: 32768
@@ -10558,7 +10558,7 @@ components:
             $ref: '#/components/schemas/CardReference'
           minItems: 1
         luggageConstraint:
-          $ref: '#/components/schemas/LuggageConstraint'            
+          $ref: '#/components/schemas/LuggageConstraint'
         availablePreferences:
           deprecated: true
           type: array
