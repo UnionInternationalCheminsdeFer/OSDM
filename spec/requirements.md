@@ -87,13 +87,20 @@ permalink: /spec/requirements/
 
 ## Common Functional Requirements <a name="CommonFunctionalRequirements">
 
+Content provided to a client in a transaction must be complete, no additional information besides basic code lists (e.g. locations) is needed to process them.
+
 ### Requirements on Product Range <a name="RequirementsonProductRange">
 
-It must be possible to distribute and sell all existing products on a fare as
-well as on an product basis. Existing products include admissions (a.k.a Tickets),
+It must be possible to distribute and sell all existing products. Existing products include admissions (a.k.a Tickets),
 reservations and ancillaries.
 
 ### Requirements on Price <a name="RequirementsonPrice">
+
+The pice must always be provided, no calculations on the client side despite the addition in receipts are allowed. 
+
+The price must already consider all applicable reductions and promotions.
+
+THe price of an offer is not guaranteed before pre-booking.
 
 A price has a currency, an amount and a scale. Per default the scale is set to
 two.
@@ -107,6 +114,9 @@ The needed personal data must be indicated. Only personal data needed for the
 given business process can be transferred between the parties involved.
 
 ## Functional Requirements of the Retailer <a name="FunctionalRequirementsoftheRetailer">
+
+Content provided to the retailer must be self contained and include all required textual descriptions needed for the presentation of the products to a client.
+
 
 ### Requirements on Passenger <a name="RequirementsonPassenger">
 
@@ -175,6 +185,20 @@ A vehicle is defined by a number or line and a service brand.
 A transfer is a special kind of tripLeg, defining how long the transfer takes.
 
 ### Requirements on Offers <a name="RequirementsonOffers">
+
+Search for offers must be possible by specifying a trip and the part of the trip where the offer is requried.
+
+Serach for offers must be possible without specifying a trip to search for mutli journey passes of related non transport offers.
+
+The serach for offers must provide offers including the price.
+
+The availability of offers provided should be checked when they are provided. 
+
+The availability of offers does not need to be garanteed before booking.
+
+The offer must provide its internal dependencies for the selection of optional offer parts.
+
+The offer must provide descriptions on its conditions to be used for display to the customer.
 
 An overall offer presented to a retailer or a distributer bundles offers that
 contain admissions, reservation and ancillaries.
