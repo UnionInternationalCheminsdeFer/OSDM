@@ -101,6 +101,8 @@
 - name: Deep Dives
   link: deep-dives/
   dropdown:
+    - name: Constructing Products from Fares
+      link: spec/constructing-products-from-fares/
     - name: Persons with reduced mobility (PRM) and accessability
       link: spec/prm_and_access/
     - name: Continuous On-Demand Services
