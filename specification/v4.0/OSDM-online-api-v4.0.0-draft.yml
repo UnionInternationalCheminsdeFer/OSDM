@@ -2203,7 +2203,6 @@ paths:
     patch:
       tags:
         - Bookings
-        - 
       summary: Optionally finalizes the fulfillments in asynchronous mode.
       description: |
         Optionally finalizes the fulfillment in case of an asynchronous fulfillment mode when the provider doesn't complete the asynchronous fulfillment automatically.
