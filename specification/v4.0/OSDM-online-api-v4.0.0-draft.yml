@@ -7739,10 +7739,11 @@ components:
         chipCardContent:
           description: |
             base64 encoded content of the chip card. This is in some scenarios needed to validate whether the new ticket will be compatible with the tickets already on the card.
-          type: string
+          type: 
+           - string
+           - 'null'
           format: byte
-          maxLength: 4194304
-          nullable: true          
+          maxLength: 4194304  
 
     CardTypeReference:
       type: object
