@@ -9620,12 +9620,12 @@ components:
             - 'string'
             - 'null'
           format: date-time
-        fulfillmentType:
-          $ref: '#/components/schemas/FulfillmentType'
-        fulfillments:
+        fulfillmentRefs:
+          description: |
+            references to the fulfillments affeted by the exchange operation. 
           type: array
           items:
-            $ref: '#/components/schemas/Fulfillment'
+            $ref: '#/components/schemas/FulfillmentRefs'
         issuedVouchers:
           type: array
           items:
