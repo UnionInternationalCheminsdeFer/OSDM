@@ -2,7 +2,7 @@
 layout: page
 title: Compliance
 hide_hero: true
-permalink: /spec/fares-2-products/
+permalink: /spec/constructing-products-from-fares/
 ---
 
 ## Table of contents
