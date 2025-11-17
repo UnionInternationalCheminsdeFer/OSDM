@@ -159,7 +159,7 @@ Structures](https://osdm.io/spec/common-data-structures/#RegionalConstraint)
 
 Route example:
 
-![Fare Structure](./images/fare-data-structure/viaExample.PNG)
+![Fare Structure](../../images/fare-data-structure/viaExample.PNG)
 
 ### Regional Validity in Online Fares
 
@@ -192,16 +192,15 @@ essential for aligning the route to trips, therefore the structured route
 information is mandatory. Combinations with other fares are only allowed when
 the connectionPoint(s) are matching.
 
-![Trip Alignment](./images/common-data-structures/connection-points-timetable-routes.png))
+![Trip Alignment](../../images/common-data-structures/connection-points-timetable-routes.png))
 
 Data model:
 
-![Fare Structure](./images/fare-data-structure/OSDMmodelregionalconstraint.png)
+![Fare Structure](../../images/fare-data-structure/OSDMmodelregionalconstraint.png)
 
 Object model:
 
-![Fare Structure](./images/fare-data-structure/OSDMmodelviaStationobjectmodel.png)
-
+![Fare Structure](../../images/fare-data-structure/OSDMmodelviaStationobjectmodel.png)
 ## Reservation Fares <a name="Reservation">
 
 Reservations can follow the fare model. These are then requested as
