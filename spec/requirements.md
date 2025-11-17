@@ -1309,6 +1309,6 @@ The following guidelines apply:
 
 - Validation of customer cards
 
-- Combination with non-rail related fares, e.g., flight
+- Combination with flight
 
-- Combination with fares build on pay-per-use basis. e.g., scooters
+
