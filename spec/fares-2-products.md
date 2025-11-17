@@ -139,10 +139,9 @@ Object model:
 
 ## Reservation Fares <a name="Reservation">
 
-Reservations can follow the fare model. These are then indicated as 'FARE_RESERVATION'. The differences to Product based reservations are marginal (with version 4.0 the reservation object will be used in both cases), the fulfillment of a 
-reservation fare does not incude a fulfillment document as the reservation will be integrated in the documents constructed by the distributor. The fare reservation will not include or link to a reservation fee as the fee is added by the distributor according to his general reservation fee rules.
+Reservations can follow the fare model. These are then requested as 'FARE_RESERVATION' and indicated with distributionMode 'FARE_MODE'. The differences to Product based reservations are marginal (with version 4.0 the reservation object will be used in both cases), the fulfillment of a reservation fare does not incude a fulfillment document as the reservation will be integrated in the documents constructed by the distributor. The fare reservation will not include or link to a reservation fee as the fee is added by the distributor according to his general reservation fee rules.
 
-As the difference to normal reservations is almost neglectable and with version 4 there will be only one reservation object the general reservation might already with version 3 be used as fare reservation on a bilateral agreement.
+As the difference to normal reservations is almost neglectable and with version 4 there will be only one reservation object. With version 3 the fare object with resrevation data is available but deprecated. The general reservation should already with version 3 be used as fare reservation indicating the distributionMode 'FARE_MODE' in the reservation.
 
 Reservations obtailed by the H2O converter of hitrail are by definition fare reservations as the 'H'ermes Protokoll only implements the fare model.
 
@@ -165,18 +164,42 @@ In the clustering model the distributor applies his own after sales conditions d
 
 ### Combination Model
 
-The fare provides the aftersales fees. The product adds the after sales fees of all included fares. This results in an aftersales fee that increases whenever one of the fare after sales fees changes.
+The fare provides the exact aftersales fees. The product adds the after sales fees of all included fares. This results in an aftersales fee that increases whenever one of its fares after sales fees changes.
+
+E.g. 
+  - Distributor product including fare 1 and fare 2
+  - Fare 1 refund fee 10€ 10 days before travelling
+  - Fare 2 refund fee 8€  15 days before travelling
+  - Product: 8€ refund fee 15 days before travelling, 18€ refund fee 10 days before travelling. 
 
 
 ## Handling Aftersales <a name="Aftersales">
-
-
 
 ### Clustering Model
 
 In the clustering model the distributor applies his own after sales conditions depending of the cluster of the product. Although the distributor calculates the refund fee the refund has to be made via the OSDM API online.
 
---> TODO discussion on exchange of fee (seems to be lost in the messages), indication of carrier fee lost in online fares
+The refund fees or exchange fees can follow two accounting models. In one model the fee belongs to the client (distributor), in the other model the fee belongs to the provider (fare provider / carrier). This is indicated
+in the AfterSalesConditionsLink of the Fare ('isProviderFee: true'). If the fee belongs to the provider the client will indicate the fee amount in the refund / exchange request in RefundSpecification.refundFee. The provider will then 
+use this amount as refund fee and add the VAT split. The accounting flow fillows the usual fees, the privide debits the fee to the client.
+
+The accounting model will also be indicated in the resulting fee object created by the provider.
+
+### clustering model with provider fee flow
+
+```mermaid
+sequenceDiagram
+    participant distributor
+    participant fare-provider
+    distributor->>fare-provider: refund request (refundFee 12€)
+    fare-provider->>distributor: refundOffer.(refundFee 12€, VAT19%,..)
+
+    distributor->>fare-provider: get booked offer
+    fare-provider->>distributor: bookedOffer.fees.fee (12€, VAT19%,isProviderFee, ..)
+    fare-provider->>distributor: accounting (debit fee , credit original amount)
+```
+
+
 
 ### Combination Model
 
