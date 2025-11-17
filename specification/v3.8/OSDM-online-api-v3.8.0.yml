@@ -7638,11 +7638,7 @@ components:
           items:
             $ref: '#/components/schemas/Fulfillment'
         fulfillmentStatus:
-          type: string
-          x-extensible-enum:
-            - 'PENDING'  : some fulfillmentids are not jet there
-            - 'CREATED'  : all fulfillmentids are created
-            - 'COMPLETE' : no more documents are to be expected
+            $ref: '#/components/schemas/FulfillmentSummaryStatus'        
         issuedVouchers:
           type: array
           items:
@@ -11192,6 +11188,15 @@ components:
         - 'REFUNDED'
         - 'EXCHANGED'
         - 'EXPIRED'
+
+    FulfillmentSummaryStatus:
+      description: |
+        status of a fulfillment
+      type: string
+      x-extensible-enum:
+        - 'PENDING'  # some fulfillmentids are not jet there
+        - 'CREATED'  # all fulfillmentids are created
+        - 'COMPLETE' # no more documents are to be expected   
 
     FulfillmentPatchRequest:
       type: object
