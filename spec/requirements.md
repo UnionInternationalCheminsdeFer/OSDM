@@ -41,7 +41,7 @@ permalink: /spec/requirements/
     - [Station ](#station-)
     - [Fare reference station set (virtual pricing point) ](#fare-reference-station-set-virtual-pricing-point-)
     - [Route ](#route-)
-      - [Are routes used as line routes or as bubble routes? ](#are-routes-used-as-line-routes-or-as-bubble-routes-)
+      - [routes used as line routes or as bubble routes](#are-routes-used-as-line-routes-or-as-bubble-routes-)
     - [Areas ](#areas-)
     - [Connection Point ](#connection-point-)
   - [Requirements on Allowed Service ](#requirements-on-allowed-service-)
@@ -90,7 +90,7 @@ permalink: /spec/requirements/
 ### Requirements on Product Range <a name="RequirementsonProductRange">
 
 It must be possible to distribute and sell all existing products on a fare as
-well as on an offer basis. Existing products include admissions (a.k.a Tickets),
+well as on an product basis. Existing products include admissions (a.k.a Tickets),
 reservations and ancillaries.
 
 ### Requirements on Price <a name="RequirementsonPrice">
@@ -141,7 +141,7 @@ if this is supported by the transport vehicle.
 A location uniquely identifies a place in space. A location can be of type
 station, point-of-interest, address or geo-coordinate.
 
-For railway stations the UIC station codes most be supported.
+For railway stations the UIC station codes must be supported.
 
 To support other means of transportation the types can potentially be extended.
 
@@ -543,7 +543,7 @@ The end of a route of one carrier when combined to another route of another
 carrier might be indicated with an additional text (e.g. FR or GR) in the human
 readable form if it is not at a “real” station.
 
-##### Are routes used as line routes or as bubble routes? <a name="Areroutesusedaslineroutesorasbubbleroutes?">
+##### routes used as line routes or as bubble routes <a name="Areroutesusedaslineroutesorasbubbleroutes">
 
 ![Line- vs. Bubble Route interpretation](../../images/business-capabilities/line-vs-buble-route.png)
 
@@ -551,8 +551,6 @@ readable form if it is not at a “real” station.
 
 `A*B/D*C` as bubble route: `A-E-C` is allowed
 
-_Decision_: only the line routes will be supported, “bubbles” must be defined as
-areas
 
 More than two alternative routes must be possible in the route description.
 
