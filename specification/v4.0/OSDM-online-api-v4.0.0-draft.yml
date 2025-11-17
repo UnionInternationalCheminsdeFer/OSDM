@@ -7731,6 +7731,18 @@ components:
           $ref: '#/components/schemas/CompanyRef'
         type:
           $ref: '#/components/schemas/TravelAccountType'
+        chipCardContentFormat:
+          type: string
+          x-extensible-enum:
+           - 'CALYPSO-ABT'  # Calypso Account based ticketing
+           - 'CALYPSO-CBT'  # Calypso Card Based Ticketing
+        chipCardContent:
+          description: |
+            base64 encoded content of the chip card. This is in some scenarios needed to validate whether the new ticket will be compatible with the tickets already on the card.
+          type: string
+          format: byte
+          maxLength: 4194304
+          nullable: true          
 
     CardTypeReference:
       type: object
