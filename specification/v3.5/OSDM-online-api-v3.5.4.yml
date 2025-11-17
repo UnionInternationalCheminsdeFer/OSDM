@@ -32,7 +32,7 @@ servers:
       benerail Sandbox
   - url: https://api.sandbox.turnit.tech/retailer
     description: |
-      Turnit Sandbox      
+      Turnit Sandbox
 
 tags:
   - name: Places
@@ -9739,10 +9739,10 @@ components:
             - fareConnectionPoint
           properties:
             fareConnectionPoint:
-              $ref: '#/components/schemas/FareConnectionPoint'          
+              $ref: '#/components/schemas/FareConnectionPoint'
             name:
               type: string
-              nullable: true          
+              nullable: true
 
     FareReferenceStation:
       type: object
@@ -15376,11 +15376,11 @@ components:
       type: string
       x-extensible-enum:
         - 'PET'
-        - 'DOG' 
-        - 'ACCOMP_DOG'        
+        - 'DOG'
+        - 'ACCOMP_DOG'
         - 'BICYCLE'
-        - 'LUGGAGE'        
-        - 'PRAM'        
+        - 'LUGGAGE'
+        - 'PRAM'
         - 'CAR'
         - 'MOTOCYCLE'
         - 'TRAILER'
