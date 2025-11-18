@@ -1,5 +1,12 @@
 # Changelog for OSDM 3.5.2
 
-## Modified Enum
+## Deleted Objects
 
-* `ActualPassengerType`: added `ACCOMP_PRM` (see code lists) introduced in #996
+- Deleted `IndicatedTravelAccountConsumption`.
+
+## Modified Objects
+
+- Add `fareConnectionPoint` as required attribute to `FareConnectionPointRef`.
+- Add `ACCOMP_PRM` to `PassengerType`.
+- Remove `productTagGroupNames` and `productTagGroupings` and make
+  `productTagGroups` mandatory in `ProductTagsResponse`.
