@@ -41,13 +41,11 @@ of the API and its underlying concepts. As such, some of the details of how the
 information is structured in the API are not represented or simplified in the
 data models.
 
-Some more complex preocesses are decribed in separate chapters:
+Some more complex processes are described in separate chapters:
 
 - ![After Sales Processes](../after-sales-processes/)
 - ![Handling On-Demand Services](../on-demand-services/)
 - ![Account Based Ticketing](../account-based-ticketing/)
-
-
 
 ## Overview of Services <a name="OverviewofServices">
 
@@ -201,7 +199,7 @@ one or several trips. This the only way to go for a request to a fare provider
 working according to fare rules. The trips provided may be larger than the part
 for which fares are requested. For this reason, the requested section must then
 be provided so that the provider knows which portion to work on. When this
-method is used, the API consumer can provide a "tripkey" together with the trip
+method is used, the API consumer can provide a `tripkey` together with the trip
 specification, which will be echoed in the tripoffer element matching that
 specific trip, for an explicit reconciliation between requested trips and
 provided offers.
@@ -229,20 +227,23 @@ the processing at hand, and only that information.
 #### Reduction Cards
 
 When the **Retailer** requests an offer, they may enter all the reduction cards
-the customer provided. There is no need to filter the list of reduction cards
-by retrieving the reduction cards the **distributor** or **fare provider** supports
+the customer provided. There is no need to filter the list of reduction cards by
+retrieving the reduction cards the **distributor** or **fare provider** supports
 via the master data interface.
 
 This can lead to the following exceptions when the request ist processed:
 
-- a reduction card may be completely unknown to the provider of the API. In this case,
-  an appropriate warning (`VALUE_NOT_SUPPORTED`) **should** be given in the problems structure
-  (see [Errors and Problems](../errors-problems#StandardizedFunctionalWarnings).
-- a reduction card may be known to the provider of the API, but not applicable in the
-  context of the current offer construction. In this case, the provider **may** give
-  an appropriate warning in the problems structure, and may also provide this information
-  by setting the appropriate values in the `appliedPassengerTypes.appliedReductions` structure
-- in either case, the provider of the API **must not** return an error and stop processing.
+- a reduction card may be completely unknown to the provider of the API. In this
+  case, an appropriate warning (`VALUE_NOT_SUPPORTED`) **should** be given in
+  the problems structure (see [Errors and
+  Problems](../errors-problems#StandardizedFunctionalWarnings).
+- a reduction card may be known to the provider of the API, but not applicable
+  in the context of the current offer construction. In this case, the provider
+  **may** give an appropriate warning in the problems structure, and may also
+  provide this information by setting the appropriate values in the
+  `appliedPassengerTypes.appliedReductions` structure
+- in either case, the provider of the API **must not** return an error and stop
+  processing.
 
 #### Offer Messages
 
@@ -259,100 +260,129 @@ are identified and relevant to this section
 ### Return Trip Offers <a name="ReturnTrips">
 
 We define a return trip as a mirrored couple of trips _(A-B B-A)_, each made of
-one or more segments. The outbound trip (or outward) is the A-B trip, the inbound trip (or inward or return trip) is the B-A trip.
+one or more segments. The outbound trip (or outward) is the A-B trip, the
+inbound trip (or inward or return trip) is the B-A trip.
 
 The routes between A and B might differ for the outbound and inbound trip.
 
-The outbound trip search parameters, outbound tripIs and outbound tripSpecifications are provided in the usual trip search parameter, ids and specifications. The return search parameters, ids and specifications are provided in dedicated return parameters.
+The outbound trip search parameters, outbound tripIs and outbound
+tripSpecifications are provided in the usual trip search parameter, ids and
+specifications. The return search parameters, ids and specifications are
+provided in dedicated return parameters.
 
 #### Using trip search parameters
 
-The return trip search parameters are used to provide the search parameters for the inbound trip additionally to the outbound trip search parameters in the offer request. The return trip search parameters are part of the trip search parameters. The return trip search parameters with the full set of parameters were added in version 3.7.0.
+The return trip search parameters are used to provide the search parameters for
+the inbound trip additionally to the outbound trip search parameters in the
+offer request. The return trip search parameters are part of the trip search
+parameters. The return trip search parameters with the full set of parameters
+were added in version 3.7.0.
 
-A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of combinations was limited for technical reasons.
+A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of
+combinations was limited for technical reasons.
 
 #### Using trip ids
- 
+
 The trips have been requested via independent trip searches beforehand.
 
-The inbound trip ids are used to provide the inbound trips additionally to the outbound trips provided in the usual the trip ids.
+The inbound trip ids are used to provide the inbound trips additionally to the
+outbound trips provided in the usual the trip ids.
 
 The inbound trip ids were added in version 3.7.0.
 
-A warning is provided in case the number of combinations was limited for technicql reasons.
+A warning is provided in case the number of combinations was limited for
+technical reasons.
 
 #### Using trip specifications
 
-The inbound trip specifications are used to provide the inbound trips additionally to the outbound trips provided in the usual the trip specifications.
+The inbound trip specifications are used to provide the inbound trips
+additionally to the outbound trips provided in the usual the trip
+specifications.
 
 The inbound trip specifications were added in version 3.7.0.
 
-Dedicated return offers that can not be separated must include the inbound and outbound trip. The inbound trip coverage must be provided.
+Dedicated return offers that can not be separated must include the inbound and
+outbound trip. The inbound trip coverage must be provided.
 
-A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of combinations was limited for technical reasons.
+A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of
+combinations was limited for technical reasons.
 
 #### Using trip ids and trip search parameter
 
-The return trip search parameters are used to provide the search parameters for the inbound trips additionally to the outbound trips provided by its id.
+The return trip search parameters are used to provide the search parameters for
+the inbound trips additionally to the outbound trips provided by its id.
 
-The inbound trip provides the additional travel dates and times and might include different parameters and via stations. 
+The inbound trip provides the additional travel dates and times and might
+include different parameters and via stations.
 
-The return trip search parameters with the full set of parameters were added in version 3.7.0.
+The return trip search parameters with the full set of parameters were added in
+version 3.7.0.
 
-A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of combinations was limited for technical reasons.
+A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of
+combinations was limited for technical reasons.
 
 #### Using outbound offer id and trip search parameter
 
-The return trip search parameters are used to provide the search parameters for the inbound trips additionally to an outbound offer referenced by its id.
+The return trip search parameters are used to provide the search parameters for
+the inbound trips additionally to an outbound offer referenced by its id.
 
-The return trip search parameters provides the additional travel dates and times and might include different parameters and via stations. The return trip search parameters with the full set of parameters were added in version 3.7.0.
+The return trip search parameters provides the additional travel dates and times
+and might include different parameters and via stations. The return trip search
+parameters with the full set of parameters were added in version 3.7.0.
 
-A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of combinations was limited for technical reasons.
+A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of
+combinations was limited for technical reasons.
 
 #### Combined Offers for inbound and outbound trip
 
-Offers provided for a request including an inbound offer might or might not depend on inbound and outbound trips. This dependency can be expressed in the following ways:
+Offers provided for a request including an inbound offer might or might not
+depend on inbound and outbound trips. This dependency can be expressed in the
+following ways:
 
-- Independent offers related to inbound or outbound trip only. The tripCoverage links to eigther the inbound or the outbound trip.
-  
-- Dependent offers related to inbound and outbound trip (up to version 3.6): The offers must be provided as separate offers, each linking to one of the trips.
-  The offer parts offers include return offer tags. Offers must be combined with othre offers including the same offer tag only. If an offer does not provide return tags
-  it is combinalble with all other offers without return tag.
+- Independent offers related to inbound or outbound trip only. The tripCoverage
+  links to either the inbound or the outbound trip.
+- Dependent offers related to inbound and outbound trip (up to version 3.6): The
+  offers must be provided as separate offers, each linking to one of the trips.
+  The offer parts offers include return offer tags. Offers must be combined with
+  other offers including the same offer tag only. If an offer does not provide
+  return tags it is combinable with all other offers without return tag.
 
-  The price of the combined offer can eighter be placed in foll on one offer part or split between both parts.
-  
-- Dependent offers related to inbound and outbound trip (version 3.7 onwards). The offers can be provided as one offer
-  linking to the inbound and the outbound trip using tripCovreage and inboundTripCoverage objects. With version 4 the inboundTripCoverage is part of the tripCoverage array.  This is the
-  prefered way to provide real return offers, although the option to use separate offers with return offer tags is still allowed.
+  The price of the combined offer can either be placed in foll on one offer part
+  or split between both parts.
 
+- Dependent offers related to inbound and outbound trip (version OSDM v.3.7
+  onwards). The offers can be provided as one offer linking to the inbound and
+  the outbound trip using `tripCoverage` and `inboundTripCoverage` objects. With
+  version OSDM v.4 the inboundTripCoverage is part of the tripCoverage array.
+  This is the preferred way to provide real return offers, although the option
+  to use separate offers with return offer tags is still allowed.
 
 ##### Example Using returnTags
 
-  - Outbound Offers
+- Outbound Offers
 
-      - Offer1: -
-      - Offer2: #123
-      - Offer3: #234, #123
-      - Offer4: -
+  - Offer1: -
+  - Offer2: #123
+  - Offer3: #234, #123
+  - Offer4: -
 
-   - Inbound Offers
+- Inbound Offers
 
-      - Offer5: -
-      - Offer6: #123
-      - Offer7: #345
-      - Offer8: #123, #234
+  - Offer5: -
+  - Offer6: #123
+  - Offer7: #345
+  - Offer8: #123, #234
 
-  - Valid Combinations
+- Valid Combinations
 
-      - Offer1 + Offer5 (no constraint on Tags)
-      - Offer4 + Offer5 (no constraint on Tags)
-      - Offer2 + Offer6
-      - Offer2 + Offer8
-      - Offer3 + Offer6 
-      - Offer3 + Offer8
+  - Offer1 + Offer5 (no constraint on Tags)
+  - Offer4 + Offer5 (no constraint on Tags)
+  - Offer2 + Offer6
+  - Offer2 + Offer8
+  - Offer3 + Offer6
+  - Offer3 + Offer8
 
-      Offer7 cannot be combined with any offer on the outbound set.
-
+  Offer7 cannot be combined with any offer on the outbound set.
 
 #### Error Handling
 
@@ -468,16 +498,21 @@ and can be used during the on-line offering and booking process.
 
 ### Partial Offers <a name="PartialOffers">
 
-Partial Offers are offers that do not cover the entire requested section of the trip. An offer is 
-complete if it covers the whole requested section even if this does not cover the whole trip.
+Partial Offers are offers that do not cover the entire requested section of the
+trip. An offer is complete if it covers the whole requested section even if this
+does not cover the whole trip.
 
-There are cases where offers that do not cover the entire requested section can occure and are usefull.
+There are cases where offers that do not cover the entire requested section can
+occur and are useful.
 
-- In case the trip includes a small part of city traffic or regional traffic where a ticktet can not be sold
-- In case the trip includes a part of city traffic or regional traffic where the ticket needs to be bought on board
-- In case a provided reduction card / pass is accepted as a full ticket on part of the trip
-- In case the travel is free for some part of the trip (e.g. second class travel in Luxembourgh)
-
+- In case the trip includes a small part of city traffic or regional traffic
+  where a ticktet can not be sold
+- In case the trip includes a part of city traffic or regional traffic where the
+  ticket needs to be bought on board
+- In case a provided reduction card / pass is accepted as a full ticket on part
+  of the trip
+- In case the travel is free for some part of the trip (e.g. second class travel
+  in Luxembourg)
 
 ## A Complex Example Mixing Offers and Fares <a name="ComplexExample">
 
@@ -627,7 +662,7 @@ the reply to `POST /offers`. Reusable offers however should be favored whenever
 possible: while the OSDM provider retains control, it allows implementation of
 powerful business use-cases (e.g. a ticket machine at the station that could
 continue selling reusable offers while experiencing network issues and would
-then synchronize the sales upon connection re-establishement).
+then synchronize the sales upon connection re-establishment).
 
 Reminder: the accommodation preferences can be found in the `reservationOptions`
 elements
@@ -812,8 +847,8 @@ specifies the means of payment, is as follows:
    Should the value of the vouchers exceed the value of the booking, an
    Ancillary Offer will have been added to the booking which represents a new
    voucher covering the overpayment.
-4. Add if needed the payment information (used payment methods) to the booking in another `PATCH /bookings` call
-
+4. Add if needed the payment information (used payment methods) to the booking
+   in another `PATCH /bookings` call
 
 ## Confirmation and Fulfillment Processes
 
@@ -826,7 +861,8 @@ will be confirmed and fulfilled in one step from the API consumer standpoint:
 
 - fulfillments elements are created with the appropriate status (see below)
 - the bookingParts become confirmed
-- the value of the provisional price on booking level is added to the confirmed price and the providional price is removed or set to zero.
+- the value of the provisional price on booking level is added to the confirmed
+  price and the provisional price is removed or set to zero.
 - the status of the booking changes to `FULFILLED` (for most systems) or
   `CONFIRMED` (see below)
 - if relevant the documents elements in the fulfillment resources are created
@@ -935,8 +971,8 @@ The following options are then available to the API Consumer:
     do so by sending a PATCH on the booking where the `cleanupPartialBooking`
     property set on TRUE. This will result in
     - the cancellation of all non confirmed content,
-    - adaptation of the prices on booking level (provisional price = 0, confirmed price
-      = sum of confirmed products)
+    - adaptation of the prices on booking level (provisional price = 0,
+      confirmed price = sum of confirmed products)
     - a reset of the booking status to `FULFILLED` (or `CONFIRMED`, depending on
       the confirmed content fulfillment status)
   - If deemed relevant, the API consumer can even completely remove the booking
@@ -999,8 +1035,8 @@ These are the required information needed per process step for major parties
 
 ### Add parts to a booking <a name=AddPartsToABookings>
 
-Admissions, reservations and anxillaries might be added to an existing booking.
-A provider may decide whether he allows this opreation on unconfirmed and/or
+Admissions, reservations and ancillaries might be added to an existing booking.
+A provider may decide whether he allows this operation on unconfirmed and/or
 confirmed bookings.
 
 Adding offers to an existing booking is done via: POST
@@ -1017,7 +1053,7 @@ Reservation and Ancillary Booking Parts are added and deleted via:
 - POST /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries
 - DELETE
   /bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries/{ancillaryId}
-  As long as the anxillary offerPart is not confirmed. If confirmed the refund
+  As long as the ancillary offerPart is not confirmed. If confirmed the refund
   must be used.
 
 ![Adding parts to a booked offer](../../images/processes/seq-add-parts-2-booking.png)
@@ -1028,62 +1064,42 @@ Reservation and Ancillary Booking Parts are added and deleted via:
 
 ![Adding parts to an existing booking](../../images/processes/seq-add-parts-2-booking-2.png)
 
-
 ### Remarks on the Booking Process with Fares <a name=BookingProcessFares>
 
-The booking process for fares is the same as the booking process for product based booking parts. Fares and product 
-based booking parts can be mixed in one booking process. However fulfillments can only cover eigther fares or product based booking parts.
+The booking process for fares is the same as the booking process for product
+based booking parts. Fares and product based booking parts can be mixed in one
+booking process. However fulfillments can only cover either fares or product
+based booking parts.
 
-As fares are only parts to be integrated in a ticket (admission, reservation, ancillary) the fulfillment for fares 
-has a limited content only. 
+As fares are only parts to be integrated in a ticket (admission, reservation,
+ancillary) the fulfillment for fares has a limited content only.
 
-Fares in the offer must be requested via the offer part type in the offer request, otherwiese only product based offers are delivered.:
+Fares in the offer must be requested via the offer part type in the offer
+request, otherwise only product based offers are delivered.:
 
-   - 'FARE_ADMISSION'
-   - 'FARE_RESERVATION'
-   - 'FARE_ANCILLARY'
+- 'FARE_ADMISSION'
+- 'FARE_RESERVATION'
+- 'FARE_ANCILLARY'
 
 Fare booking parts are indicated by the part types (Version 4):
 
-   - 'FARE_ADMISSION'
-   - 'FARE_RESERVATION'
-   - 'FARE_ANCILLARY'
+- 'FARE_ADMISSION'
+- 'FARE_RESERVATION'
+- 'FARE_ANCILLARY'
 
 The status of a fulfillment of a fare is limited to the values:
 
-   - 'CONFIRMED'
-   - 'FULFILLED'  -- no more additiona data on the fulillment will be provided
-   - 'CANCELLED'
-   - 'RELEASED'
-   - 'REFUNDED'
-   - 'EXCHANGED'
+- 'CONFIRMED'
+- 'FULFILLED' -- no more additional data on the fulfillment will be provided
+- 'CANCELLED'
+- 'RELEASED'
+- 'REFUNDED'
+- 'EXCHANGED'
 
 The fulfillment of a fare does not include the following items:
 
-   - fulfillment documents
-   - control Number
-   - issuer
-   - continuousServiceUsage
-   - links
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- fulfillment documents
+- control Number
+- issuer
+- continuousServiceUsage
+- links
