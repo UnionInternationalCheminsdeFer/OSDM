@@ -9741,7 +9741,7 @@ components:
             - type
             - regionalConstraint
             - travelClass
-            - afterSalesCondition
+            - afterSalesRules
             - combinationConstraint
             - travelValidityConstraint
           properties:
@@ -9812,7 +9812,7 @@ components:
             - type
             - regionalConstraint
             - travelClass
-            - afterSalesCondition
+            - afterSalesRules
             - combinationConstraint
             - travelValidityConstraint
           properties:
@@ -10331,7 +10331,8 @@ components:
           type: array
           items:
             type: string  
-            example: ['CALYPSO']
+            examples: 
+             - 'CALYPSO'
           minItems: 1    
 
     FulfillmentPart:
