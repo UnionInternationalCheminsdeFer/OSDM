@@ -273,8 +273,8 @@ to the provider (fare provider / carrier). This is indicated in the
 AfterSalesConditionsLink of the Fare (`isProviderFee: true`). If the fee belongs
 to the provider the client will indicate the fee amount in the refund / exchange
 request in `RefundSpecification.refundFee`. The provider will then use this amount
-as refund fee and add the VAT split. The accounting flow fillows the usual fees,
-the privide debits the fee to the client.
+as refund fee and add the VAT split. The accounting flow follows the usual accounting of provider fees,
+the provider debits the fee to the consumer.
 
 The accounting model will also be indicated in the resulting fee object created
 by the provider.
