@@ -100,9 +100,10 @@ The pice must always be provided, no calculations on the client side despite the
 
 Vouchers might be issued for a refund, claim or reimboursement. Vouchers can also be purchased as non trip offers. 
 
-Vouchers can be used as payment method. The used vouchers and possible remaining amounts must be shown in the booking.
+Vouchers can be used as payment method. The used vouchers and possible remaining voucher amounts must be shown in the booking. It must be possible to use multiple vvouchers in one payment. 
+A payment parcially by currency andpartially by voucher must be possible.
 
-The payment is not prt of OSDM. However the payment method needs to be provided to avoid missuse, e.g. refund in cash on a booking made by card.
+The payment is not part of OSDM except for payment by vouchers. However the payment method needs to be provided to avoid missuse, e.g. refund in cash on a booking made by card.
 
 The price must already consider all applicable reductions and promotions.
 
