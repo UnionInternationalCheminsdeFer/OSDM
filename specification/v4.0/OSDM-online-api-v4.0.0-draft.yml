@@ -2135,7 +2135,7 @@ paths:
   /bookings/{bookingId}/fulfillments:
     post:
       tags:
-        - Booking
+        - Bookings
       summary: |
         Confirms the booking a triggers the fulfillment of the booking
         synchronously or asynchronously.
@@ -2365,7 +2365,7 @@ paths:
           $ref: '#/components/responses/DefaultErrorResponse'
     patch:
       tags:
-        - Booking
+        - Bookings
       summary: Activates a fulfillment, i.e. changes the status from AVAILABLE to FULFILLED.
       description: |
         Changes the fulfillment from status AVAILABLE to FULFILLED. In the case of multi-trip product
@@ -10555,6 +10555,7 @@ components:
         - 'CIT_PAPER'
         - 'PASS_CHIP'
         - 'PASS_REFERENCE'
+        - 'NO_FULFILLMENT' # the fulfillment will not have content. For some use cases (e.g. fares, fare reservations, ...) the fulfillment does not provide content and is only included to have a harmonized flow on refund and exchange.        
 
     FulfillmentUsage:
       type: object
