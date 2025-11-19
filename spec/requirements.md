@@ -94,19 +94,24 @@ Content provided to a client in a transaction must be complete, no additional in
 It must be possible to distribute and sell all existing products. Existing products include admissions (a.k.a Tickets),
 reservations and ancillaries.
 
-### Requirements on Price <a name="RequirementsonPrice">
+### Requirements on Price and Payment <a name="RequirementsonPrice">
 
 The pice must always be provided, no calculations on the client side despite the addition in receipts are allowed. 
 
+Vouchers might be issued for a refund, claim or reimboursement. Vouchers can also be purchased as non trip offers. 
+
+Vouchers can be used as payment method. The used vouchers and possible remaining amounts must be shown in the booking.
+
+The payment is not prt of OSDM. However the payment method needs to be provided to avoid missuse, e.g. refund in cash on a booking made by card.
+
 The price must already consider all applicable reductions and promotions.
 
-THe price of an offer is not guaranteed before pre-booking.
+The price of an offer is not guaranteed before pre-booking.
 
-A price has a currency, an amount and a scale. Per default the scale is set to
-two.
+A price has a currency, an amount and a scale. Per default the scale is set to two.
 
-A price has a set of value added taxes. A tax is valid for a country and has
-amount.
+A price has a set of value added taxes. A tax is valid for a country and has amount.
+
 
 ### Requirements on Personal Data <a name="RequirementsonPersonalData">
 
