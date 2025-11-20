@@ -1687,12 +1687,16 @@ paths:
           schema:
             type: string
             maxLength: 32768
-      requestBody:
-        required: true
-        content:
-          application/vnd.uic.osdm+json:
-            schema:
-              $ref: '#/components/schemas/BookedOfferPartDeleteRequest'
+        - name: bookedOfferPartIds
+          in: query
+          required: true
+          description: |
+            list of bookedOfferPartIds of parts to be deleted
+          schema:
+            type: array
+            minItems: 1
+            items:
+              type: string
       responses:
         '204':
           description: |
@@ -6819,28 +6823,6 @@ components:
           items:
             $ref: '#/components/schemas/Product'
           minItems: 1
-
-    BookedOfferPartDeleteRequest:
-      description: |
-        Request with ancillary or reservation booked offer parts
-        to be removed from the booked offer.
-      type: object
-      additionalProperties: false
-      properties:
-        ancillaryIds:
-          type: array
-          minItems: 1
-          description: Ancillary IDs in the booked offer
-          items:
-            type: string
-            maxLength: 32768
-        reservationIds:
-          type: array
-          minItems: 1
-          description: Reservation IDs in the booked offer
-          items:
-            type: string
-            maxLength: 32768
 
     BookedOfferPartRequest:
       type: object
