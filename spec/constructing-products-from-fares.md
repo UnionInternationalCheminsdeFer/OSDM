@@ -281,17 +281,7 @@ by the provider.
 
 ### clustering model with provider fee flow
 
-```mermaid
-sequenceDiagram
-    participant distributor
-    participant fare-provider
-    distributor->>fare-provider: refund request (refundFee 12€)
-    fare-provider->>distributor: refundOffer.(refundFee 12€, VAT19%,..)
-
-    distributor->>fare-provider: get booked offer
-    fare-provider->>distributor: bookedOffer.fees.fee (12€, VAT19%,isProviderFee, ..)
-    fare-provider->>distributor: accounting (debit fee , credit original amount)
-```
+![Provider Fee Flow](../../images/fare-data-structure/provider-fee-flow.png)
 
 ### Combination Model
 

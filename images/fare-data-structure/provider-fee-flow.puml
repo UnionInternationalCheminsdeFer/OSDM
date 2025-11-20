@@ -1,0 +1,14 @@
+@startuml
+
+hide footbox
+
+participant distributor
+participant "fare-provider" as fp
+
+distributor -> fp: refund request (refundFee 12€)
+fp -> distributor: refundOffer.(refundFee 12€, VAT19%,..)
+
+distributor -> fp: get booked offer
+fp -> distributor: bookedOffer.fees.fee (12€, VAT19%,isProviderFee, ..)
+fp -> distributor: accounting (debit fee , credit original amount)
+@enduml
