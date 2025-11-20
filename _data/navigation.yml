@@ -103,6 +103,8 @@
   dropdown:
     - name: Constructing Products from Fares
       link: spec/constructing-products-from-fares/
+    - name: Handling Reservations
+      link: spec/handling-reservations/      
     - name: Persons with reduced mobility (PRM) and accessability
       link: spec/prm_and_access/
     - name: Continuous On-Demand Services
