@@ -5302,20 +5302,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CorporateCode'
-        appliedPassengerTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppliedPassengerType'
         appliedPromotionCodes:
           type: array
           items:
-            $ref: '#/components/schemas/PromotionCode'
+            $ref: '#/components/schemas/PromotionCode'            
+        appliedReductions:
+          description: |
+            applied reductions. 
+          type: array
+          items:
+            $ref: '#/components/schemas/AppliedReductions'
         indicatedUsage:
           $ref: '#/components/schemas/IndicatedUsage'
         accountingRef:
           $ref: '#/components/schemas/AccountingRef'
-        grantedReductionAmounts:
-          $ref: '#/components/schemas/GrantedReductionAmounts'
 
     AccountingRef:
       description: |
@@ -5460,20 +5460,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CorporateCode'
-        appliedPassengerTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppliedPassengerType'
         appliedPromotionCodes:
           type: array
           items:
-            $ref: '#/components/schemas/PromotionCode'
+            $ref: '#/components/schemas/PromotionCode'            
+        appliedReductions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppliedReductions'
         regionalValiditySummary:
           $ref: '#/components/schemas/RegionalValiditySummary'
         indicatedUsage:
           $ref: '#/components/schemas/IndicatedUsage'
-        grantedReductionAmounts:
-          $ref: '#/components/schemas/GrantedReductionAmounts'
         _links:
           description: |
             Java Property Name: 'links'
@@ -6397,14 +6395,12 @@ components:
             - $ref: '#/components/schemas/ApiNextVersion'
             - type: 'null'
 
-    AppliedPassengerType:
+    AppliedReductions:
       type: object
       additionalProperties: false
       description: |
-        Applied passenger types and reductions per passenger, per offer part and per part of the trip.
+        Applied reductions per passenger, per offer part and per part of the trip.
       required:
-        - passengerRef
-        - type
         - description
       properties:
         passengerRef:
@@ -6412,20 +6408,36 @@ components:
             id of the passenger.  
             In the offer flow the id refers to the externalRef as the passenger id is created at booking time only.
           type: string
-        type:
-          $ref: '#/components/schemas/ActualPassengerType'
         description:
           description: |
             Clear text representation of the actual passenger type, suitable to be presented to a client.
-          type: string
+          type: string          
+        passengerType:
+          description: |
+            reduction applied due to passenger type. passenger types that do not grant a reduction must not be provided due to GDPR.
+          $ref: '#/components/schemas/ActualPassengerType'
         tripCoverage:
           type: array
           items:
             $ref: '#/components/schemas/TripCoverage'
-        appliedReductions:
+        appliedCards:
           type: array
           items:
             $ref: '#/components/schemas/CardReference'
+        appliedCorporateCodes:
+          description: | 
+            applied corporate codes in case they provided a reduction
+          type: array
+          items:
+            $ref: '#/components/schemas/CorporateCode'
+        appliedPromotionCodes:
+          description: | 
+            applied promotional codes in case they provided a reduction          
+          type: array
+          items:
+            $ref: '#/components/schemas/PromotionCode'            
+        reductionAmount:
+          $ref: '#/components/schemas/Price'
 
     AttachableItemType:
       description: |
@@ -10720,60 +10732,6 @@ components:
               $ref: '#/components/schemas/Latitude'
             longitude:
               $ref: '#/components/schemas/Longitude'
-
-    GrantedReductionAmounts:
-      type: object
-      additionalProperties: false
-      description: |
-        granted reduction amounts
-      properties:
-        grantedReductionAmount:
-          type: array
-          items:
-            $ref: '#/components/schemas/GrantedReductionAmount'
-
-    GrantedReductionAmount:
-      type: object
-      additionalProperties: false
-      description: |
-        Applied passenger types and reductions per passenger, per offerpart, booking part and per part of the trip. 
-        Passengers might be omitted in case the reduction applies to the complete booking part.
-      required:
-        - grantedAmount
-        - description
-      properties:
-        description:
-          description: |
-            Clear text representation of the actual passenger type, suitable to be presented to a client.
-          type: string
-        grantedAmount:
-          $ref: '#/components/schemas/Price'
-        passengerRefs:
-          description: |
-            ids of the passengers that were granted the reduction
-          type: array
-          items:
-            type: string
-        tripCoverage:
-          type: array
-          items:
-            $ref: '#/components/schemas/TripCoverage'
-        appliedPassengerTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActualPassengerType'
-        appliedReductions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardReference'
-        appliedCorporateCodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/CorporateCode'
-        appliedPromotionCodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/PromotionCode'
 
     GraphicElement:
       type: object
