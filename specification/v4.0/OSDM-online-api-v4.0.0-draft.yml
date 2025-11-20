@@ -2135,7 +2135,7 @@ paths:
   /bookings/{bookingId}/fulfillments:
     post:
       tags:
-        - Fulfillments
+        - Bookings
       summary: |
         Confirms the booking a triggers the fulfillment of the booking
         synchronously or asynchronously.
@@ -2202,7 +2202,7 @@ paths:
           $ref: '#/components/responses/DefaultErrorResponse'
     patch:
       tags:
-        - Fulfillments
+        - Bookings
       summary: Optionally finalizes the fulfillments in asynchronous mode.
       description: |
         Optionally finalizes the fulfillment in case of an asynchronous fulfillment mode when the provider doesn't complete the asynchronous fulfillment automatically.
@@ -2239,7 +2239,6 @@ paths:
                 $ref: '#/components/schemas/FulfillmentCollectionResponse'
         '202':
           $ref: '#/components/responses/FulfillmentRequestAcceptedResponse'
-
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2250,6 +2249,57 @@ paths:
           $ref: '#/components/responses/NotFoundResponse'
         '409':
           $ref: '#/components/responses/ConflictResponse'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaTypeResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          $ref: '#/components/responses/NotImplementedResponse'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+        'default':
+          $ref: '#/components/responses/DefaultErrorResponse'
+
+  /fullfillments:
+    get:  
+      tags:
+        - Fulfillments
+      summary: get all fulfillments for a booking
+      description: |
+        get all fulfillments of a booking
+      operationId: getFulfillments
+      parameters:
+        - $ref: '#/components/parameters/requestor'
+        - $ref: '#/components/parameters/acceptLanguage'
+        - $ref: '#/components/parameters/traceParent'
+        - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/acceptNamespace'
+        - name: bookingId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |
+            fulfillment found
+          content:
+            application/vnd.uic.osdm+json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentsResponse'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: |
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
         '415':
           $ref: '#/components/responses/UnsupportedMediaTypeResponse'
         '500':
@@ -2315,7 +2365,7 @@ paths:
           $ref: '#/components/responses/DefaultErrorResponse'
     patch:
       tags:
-        - Fulfillments
+        - Bookings
       summary: Activates a fulfillment, i.e. changes the status from AVAILABLE to FULFILLED.
       description: |
         Changes the fulfillment from status AVAILABLE to FULFILLED. In the case of multi-trip product
@@ -2379,7 +2429,7 @@ paths:
   /bookings/{bookingId}/fulfillment-check:          
     get:
       tags:
-        - Fulfillments
+        - Bookings
       summary:
         Check step (step 1 in a two phase commit process) to run before the effective fulfillment endpoint. Provider do all checks to "guarantee" that fullfillment will work.
       description: |
@@ -6951,12 +7001,10 @@ components:
             - 'string'
             - 'null'
           format: date-time
-        fulfillmentType:
-          $ref: '#/components/schemas/FulfillmentType'
-        fulfillments:
+        fulfillmentRefs:
           type: array
           items:
-            $ref: '#/components/schemas/Fulfillment'
+            $ref: '#/components/schemas/FulfillmentRefs'
         fulfillmentStatus:
           $ref: '#/components/schemas/FulfillmentSummaryStatus'        
         issuedVouchers:
@@ -9567,12 +9615,12 @@ components:
             - 'string'
             - 'null'
           format: date-time
-        fulfillmentType:
-          $ref: '#/components/schemas/FulfillmentType'
-        fulfillments:
+        fulfillmentRefs:
+          description: |
+            references to the fulfillments affeted by the exchange operation. 
           type: array
           items:
-            $ref: '#/components/schemas/Fulfillment'
+            $ref: '#/components/schemas/FulfillmentRefs'
         issuedVouchers:
           type: array
           items:
@@ -10241,6 +10289,49 @@ components:
         - 'TICKET'
         - 'VOUCHER'
 
+    FulfillmentRefs:
+      description: | 
+         references to fulfillments including the status and related bookingPart references
+      required:
+        - fulfillmentRefs   
+      properties:
+        fulfillmentRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentRef'
+          minItems: 1
+
+    FulfillmentRef:
+      description: | 
+         reference to a fulfillment including the status and related bookingPart references
+      required:
+        - id
+        - status
+        - summary
+        - bookingParts
+        - fulfillmentType
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/FulfillmentStatus'
+        summary:
+          description: |
+            A human-readable description of the fulfillment.
+          type:
+            - 'string'
+            - 'null'     
+        bookingParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingPartReference'  
+          minItems: 1
+        fulfillmentType:
+          $ref: '#/components/schemas/FulfillmentType'          
+        createdOn:
+          type: string
+          format: date-time
+
     DocumentFormat:
       description: |
         Physical format of the document provided in the content field in Mime-Type format, e.g.
@@ -10438,6 +10529,19 @@ components:
         fulfillment:
           $ref: '#/components/schemas/Fulfillment'
 
+    FulfillmentsResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        fulfillments:
+          type: array
+          items:          
+            $ref: '#/components/schemas/Fulfillment'
+
     FulfillmentType:
       description: |
         Values from the [Fulfillment Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentType)
@@ -10448,6 +10552,7 @@ components:
         - 'CIT_PAPER'
         - 'PASS_CHIP'
         - 'PASS_REFERENCE'
+        - 'NO_FULFILLMENT' # the fulfillment will not have content. For some use cases (e.g. fares, fare reservations, ...) the fulfillment does not provide content and is only included to have a harmonized flow on refund and exchange.        
 
     FulfillmentUsage:
       type: object
