@@ -66,7 +66,7 @@ A ProblemPointer structure supports the following **additional** properties:
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
 | requestPointer  | A pointer to the attribute in the request which causes the problem                                                                                           | no            |
 | responsePointer | A pointer to the attribute in the response which causes the problem                                                                                          | no            |
-| originator      | Identifier of the origin server for this occurence of the problem                                                                                            | no            |
+| originator      | Identifier of the origin server for this occurrence of the problem                                                                                           | no            |
 
 A problem message is typically made of a code, title and a detail. The title and
 detail are not translated and the expected language there should be in English.

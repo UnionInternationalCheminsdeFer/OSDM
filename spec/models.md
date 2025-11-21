@@ -507,11 +507,11 @@ The confirmation time limit is the time during which the booking is guaranteed t
 for the price and possible reservations assigned at provisional booking time.
 Basically, it is the time given to the API consumer to perform all updates
 needed to confirm the booking, and trigger that confirmation. 
-(The confirmation time limit is refered to as ticket time limit TTL in other contexts)
+(The confirmation time limit is referred to as ticket time limit TTL in other contexts)
 
 In an environment with multiple OSDM providers the minimal time limit of all providers needs
-to be dispolayed for the curstomer. The confirmation time limit might be extended 
-by some provides when changing a provisional booking.
+to be displayed for the customer. The confirmation time limit might be extended
+by some providers when changing a provisional booking.
 
 The time limit within a booking part has been deprecated by version 3.3 and should not be used any more. 
 A API consumer should work with the time limit in booking only.

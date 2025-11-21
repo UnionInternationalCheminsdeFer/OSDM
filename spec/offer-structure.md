@@ -74,7 +74,7 @@ must try hard to provide offer parts for all legs by calling various
 distributors and aggregate their contents.
 
 In cases where only a sub part of the requested trip can be provided, this must
-be expressed via teh `tripCoverage` attribute in the offer response.
+be expressed via the `tripCoverage` attribute in the offer response.
 
 ### 3. Even if a trip provides partial first class support only, a first class offer is provided.
 

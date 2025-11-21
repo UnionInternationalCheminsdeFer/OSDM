@@ -920,10 +920,10 @@ required.
 
 | Code           | Description                                                                            |
 | -------------- | -------------------------------------------------------------------------------------- |
-| `BOOKING`      | The data will be transfered via the booking services                                   |
-| `PRE_BOOOKING` | The data will be transfered via the pre-booking (offer) services                       |
-| `SIS_CONTROL`  | The data will be transfered via security in system control data exchange (IRS 90918-4) |
-| `SID`          | The data will be transfered via a barcode                                              |
+| `BOOKING`      | The data will be transferred via the booking services                                   |
+| `PRE_BOOOKING` | The data will be transferred via the pre-booking (offer) services                       |
+| `SIS_CONTROL`  | The data will be transferred via security in system control data exchange (IRS 90918-4) |
+| `SID`          | The data will be transferred via a barcode                                              |
 
 ## Personal data change reasons <a name="PersonalDataChangeReason">
 
