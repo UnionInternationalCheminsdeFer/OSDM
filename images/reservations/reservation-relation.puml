@@ -1,0 +1,41 @@
+@startuml
+
+hide empty methods
+hide empty attributes
+
+title "Reservation Relation"
+
+class Offer {
+}
+
+class AdmissionOfferPart {
+}
+
+class AncillaryOfferPart {
+}
+
+class ReservationOfferPart {
+}
+
+class ReservationRelation {
+    int minGroupItemsToBeBooked
+    int maxGroupItemsToBeBooked
+    boolean isIncluded
+}
+
+class ReservationGroup {
+    id
+    name
+}
+
+note top of ReservationRelation : Constraints between admissions,\nancillaries and reservations
+
+Offer "1" *-- "0..n" AdmissionOfferPart
+Offer "1" *-- "0..n" AncillaryOfferPart
+Offer "1" *-- "0..n" ReservationOfferPart
+
+AdmissionOfferPart "0..1" *-- "0..n" ReservationRelation
+AncillaryOfferPart "0..1" *-- "0..n" ReservationRelation
+ReservationRelation "0..n" *-- "1..n" ReservationGroup
+ReservationGroup "0..n" --> "1..n" ReservationOfferPart
+@enduml

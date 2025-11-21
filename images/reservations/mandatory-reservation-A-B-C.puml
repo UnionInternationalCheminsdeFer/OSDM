@@ -1,0 +1,52 @@
+@startuml
+
+hide empty methods
+hide empty attributes
+
+title "Mandatory Reservation A to B to C"
+
+class Admission {
+    TripCoverage = A-B-C
+}
+
+class ReservationRelation1 {
+    minGroupItemsToBeBooked = 1
+    maxGroupItemsToBeBooked = 1
+}
+
+class ReservationGroup1 {
+    name = A-B
+}
+
+class ReservationGroup2 {
+    name = B-C
+}
+
+class ReservationOfferPart1 {
+    AccommodationType = SimpleSeat
+    tripCoverage = A-B
+}
+
+class ReservationOfferPart2 {
+    AccommodationType = SimpleSeat
+    tripCoverage = B-C
+}
+
+class ReservationOfferPart3 {
+    AccommodationType = LuxurySeat
+    tripCoverage = A-B
+}
+
+class ReservationOfferPart4 {
+    AccommodationType = LuxurySeat
+    tripCoverage = B-C
+}
+
+Admission --> ReservationRelation1
+ReservationRelation1 --> ReservationGroup1
+ReservationRelation1 --> ReservationGroup2
+ReservationGroup1 --> ReservationOfferPart1
+ReservationGroup1 --> ReservationOfferPart3
+ReservationGroup2 --> ReservationOfferPart2
+ReservationGroup2 --> ReservationOfferPart4
+@enduml

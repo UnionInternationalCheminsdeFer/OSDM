@@ -1,0 +1,21 @@
+@startuml
+
+hide empty methods
+hide empty attributes
+
+title "Reservation Fees"
+
+class Fee {
+    id
+    price
+    productRef
+}
+
+class ReservationOfferPart
+
+class Offer
+
+ReservationOfferPart "0..n" --> "0..m" Fee
+Offer "1" *-- "0..n" Fee
+Offer "1" *-- "0..n" ReservationOfferPart
+@enduml
