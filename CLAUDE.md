@@ -107,15 +107,21 @@ This requires [Pandoc](https://pandoc.org) installed. The script concatenates al
 
 The site uses **Algolia DocSearch** for semantic search across all documentation:
 
-**Setup** (see `DOCSEARCH_SETUP.md` for full guide):
-1. Apply at https://docsearch.algolia.com/apply/ (free for open source)
-2. Once approved, update credentials in `_includes/docsearch.html`
-3. Algolia crawls the site automatically (weekly by default)
+**Current Status**: Fully integrated and configured with Algolia credentials
+- App ID: 8KEBFKR571
+- Search bar appears in top-right of navbar
+- Covers all specifications, documentation pages, and blog posts
+
+**Setup** (see `DOCSEARCH_SETUP.md` for full guide if reconfiguring):
+1. Credentials already configured in `_includes/docsearch.html`
+2. Algolia crawls the site automatically (weekly by default)
+3. Custom header overrides theme navbar at `_includes/header.html`
 
 **Configuration files**:
-- `_includes/docsearch.html`: Search widget and initialization
+- `_includes/docsearch.html`: Search widget and initialization (credentials configured)
 - `_includes/search-bar.html`: Search bar component for navbar
-- `_includes/head-custom.html`: Includes DocSearch scripts in page head
+- `_includes/head-scripts.html`: Includes DocSearch scripts in page head
+- `_includes/header.html`: Custom navbar with search bar integrated
 - `docsearch-config.json`: Crawler configuration (what/how to index)
 
 **Customization**:
