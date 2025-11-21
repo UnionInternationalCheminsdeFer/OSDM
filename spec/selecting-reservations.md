@@ -41,7 +41,7 @@ an admission offer part or an ancillary offer part. An ancillary or an admission
 can have multiple reservation relations. Each of these needs to be satisfied to
 make the booking.
 
-![ReservationRelation Class Diagram](../../images/reservation-relation.png)
+![ReservationRelation Class Diagram](../../images/reservations/reservation-relation.png)
 
 ### Example 1: A reservation is mandatory on both legs, A-B and B-C.
 
@@ -53,7 +53,7 @@ Either a simple seat or a luxury seat can be selected.
 
 Either a simple seat or a luxury seat can be selected.
 
-![Optional Reservation A to B, Mandatory Reservation B to C](../../images/reservations/optional-mandatory-reservation-A-B-C.png)
+![Optional Reservation A to B, Mandatory Reservation B to C](../../images/reservations/optional-reservation-A-B-mandatory-reservation-B-C.png)
 
 ## Reservation Fees
 
