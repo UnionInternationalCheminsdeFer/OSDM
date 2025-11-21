@@ -5959,9 +5959,11 @@ components:
             In offer mode, in almost all cases exactly one product is referenced. Only on some French
             trips consisting of a TGV and a TER two products need to be used.
             In fare mode, no product exists as first needs to created from the different fares.
+            No product is also returned in case of `FARE_RESERVATION` part.
           type: array
           items:
             $ref: '#/components/schemas/ProductLegAssociation'
+          minItems: 0
         status:
           $ref: '#/components/schemas/BookingPartStatus'
         pricingStatus:
@@ -6174,10 +6176,12 @@ components:
             offer part. Although not currently mandatory, this attribute should
             in all cases be facilitate product based processing at the client
         products:
+          description: |
+            For `FARE_RESERVATION` offer parts, no product is returned. Otherwise at least 1 product is returned.
           type: array
           items:
             $ref: '#/components/schemas/ProductLegAssociation'
-          minItems: 1
+          minItems: 0
         availableFulfillmentOptions:
           type: array
           items:
