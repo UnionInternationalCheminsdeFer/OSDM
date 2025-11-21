@@ -1,0 +1,98 @@
+<!-- Algolia DocSearch Integration -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+
+<script type="text/javascript">
+  // Initialize DocSearch when DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    // Check if search container exists
+    var searchContainer = document.querySelector('#docsearch');
+    if (searchContainer) {
+      docsearch({
+        // REPLACE THESE VALUES after receiving credentials from Algolia
+        appId: '8KEBFKR571',
+        apiKey: 'b3b6b7a611fe46db4c69144277457af1',
+        indexName: 'OSDM Document Crawler',
+
+        container: '#docsearch',
+
+        // Search configuration
+        searchParameters: {
+          facetFilters: [],
+        },
+
+        // UI configuration
+        placeholder: 'Search OSDM documentation...',
+        translations: {
+          button: {
+            buttonText: 'Search',
+            buttonAriaLabel: 'Search'
+          }
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Custom styling for DocSearch to match Bulma navbar */
+  .navbar-item #docsearch {
+    display: inline-block;
+    padding: 0;
+  }
+
+  .DocSearch-Button {
+    height: 2.5rem;
+    min-height: 2.5rem;
+    border-radius: 4px;
+    padding: 0 1rem;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+  }
+
+  .DocSearch-Button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: none;
+  }
+
+  .DocSearch-Button-Keys,
+  .DocSearch-Button-Key {
+    display: none;
+  }
+
+  .DocSearch-Search-Icon {
+    color: white;
+    width: 16px;
+    height: 16px;
+  }
+
+  .DocSearch-Button-Placeholder {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+  }
+
+  /* Mobile responsive adjustments */
+  @media screen and (max-width: 1023px) {
+    .navbar-menu .navbar-item #docsearch {
+      margin: 0.5rem 0;
+    }
+
+    .DocSearch-Button {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+
+  /* Desktop adjustments */
+  @media screen and (min-width: 1024px) {
+    .DocSearch-Button {
+      min-width: 200px;
+    }
+  }
+</style>
