@@ -5,7 +5,7 @@
 
 <script type="text/javascript">
   // Initialize DocSearch when DOM is ready
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     // Check if search container exists
     var searchContainer = document.querySelector('#docsearch');
     if (searchContainer) {
@@ -50,14 +50,14 @@
     margin: 0;
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
+    color: color: rgba(0, 0, 0, 0.9);
     font-size: 0.875rem;
     transition: all 0.2s ease;
   }
 
   .DocSearch-Button:hover {
     background-color: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(1, 58, 23, 0.5);
     box-shadow: none;
   }
 
@@ -73,7 +73,7 @@
   }
 
   .DocSearch-Button-Placeholder {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.9);
     font-size: 0.875rem;
   }
 
@@ -86,13 +86,6 @@
     .DocSearch-Button {
       width: 100%;
       justify-content: flex-start;
-    }
-  }
-
-  /* Desktop adjustments */
-  @media screen and (min-width: 1024px) {
-    .DocSearch-Button {
-      min-width: 200px;
     }
   }
 </style>

@@ -1,4 +1,4 @@
-- name: APIs (Swagger view)
+- name: APIs (Swagger)
   dropdown:
     - name: Online API v2.0.7 (previous version) - Swagger
       link: https://app.swaggerhub.com/apis/schlpbch/uic-90918_10_osdm/2.0.7
@@ -23,7 +23,7 @@
     - name: Online API v4.0.0 (draft version) - Swagger
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-api-v4.0.0-draft.yml
 
-- name: APIs (Redoc view)
+- name: APIs (Redoc)
   dropdown:
     - name: Online API v2.0.7 (previous version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v2.0.0/OSDM-online-api-v2.0.7.yml&nocors
