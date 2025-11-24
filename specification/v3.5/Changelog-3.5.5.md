@@ -3,6 +3,13 @@
 ## Modified Objects
 
 - Deprecate `appliedReductions` in `AbstractBookingPart`
-- Add a `DistributionMode` object, to indicate whether a reservation is in PRODUCT_MODE or FARE_MODE
-- In `Fare`, deprecate `availablePlaces`, `placeSelection`, and `placeAllocation` and `availablePreferences`
-- Add a `distributionMode` in `Reservation` to indicate whether a reservation is used a fare or as a product
+- Add a `DistributionMode` object, to indicate whether a reservation is in
+  `PRODUCT_MODE` or `FARE_MODE`
+- In `Fare`, deprecate `availablePlaces`, `placeSelection`, and
+  `placeAllocation` and `availablePreferences`
+- Add a `distributionMode` in `Reservation` to indicate whether a reservation is
+  used a fare or as a product
+- Add `distributionMode` in `ReservationPart` to indicate whether a reservation
+  part is used as a fare or as a product
+- Add a flag `providerFee` in `Fare` to indicate whether the possible fee for
+  refund or exchange belongs to the fare provider or the distributor
