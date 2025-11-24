@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Site Search now Available'
+title: 'OSDM Site is now Searchable'
 author: Andreas Schlapbach
 date: 2025-11-22 10:06:00 +0100
 categories: osdm update
