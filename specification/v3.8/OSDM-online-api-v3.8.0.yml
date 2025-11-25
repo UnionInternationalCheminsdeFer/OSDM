@@ -1167,11 +1167,11 @@ paths:
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
         '207':
-          description: | 
+          description: |
             Partial success – some updates failed. updatedPassengers contains successfully updates. Failed updates are listed in the problems with at least following attributes:
             * problem.status indicates the http code of the encountered error for the specific request item, f ex "404" if the given passenger Id is not found
             * requestPointer indicates the specific request item the error relates to, f ex: #/passengerBatchUpdateRequest/passengers[2]/id
-       
+
           content:
             application/json:
               schema:
@@ -1197,7 +1197,7 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
-          $ref: '#/components/responses/DefaultErrorResponse'          
+          $ref: '#/components/responses/DefaultErrorResponse'
   /bookings/{bookingId}/purchaser:
     get:
       tags:
@@ -1667,7 +1667,8 @@ paths:
       tags:
         - BookingPart
       summary:
-        Removes reservations or ancillaries from a booking in case the parts were not yet confirmed. On confirmed reservations use the refund.
+        Removes reservations or ancillaries from a booking in case the parts
+        were not yet confirmed. On confirmed reservations use the refund.
       operationId: deleteBookingBookedOffersParts
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -1851,8 +1852,7 @@ paths:
     post:
       tags:
         - BookingPart
-      summary:
-        Adds an ancillary not previously added from offer to a booking.
+      summary: Adds an ancillary not previously added from offer to a booking.
       description: |
         *DEPRECATED* in favour to unified endpoint handling both ancillaries and reservations.
 
@@ -2549,7 +2549,6 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-          
     patch:
       tags:
         - Fulfillments
@@ -2612,15 +2611,17 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  
-  /bookings/{bookingId}/fulfillment-check:          
+
+  /bookings/{bookingId}/fulfillment-check:
     get:
       tags:
         - Fulfillments
       summary:
-        Verification step (step 1 in a two phase commit process) to run before the effective fulfillment endpoint. Provider do all checks to "guarantee" that fullfillment will work.
+        Verification step (step 1 in a two phase commit process) to run before
+        the effective fulfillment endpoint. Provider do all checks to
+        "guarantee" that fulfillment will work.
       description: |
-        Step 1 in a two phase commit process. An aggregator can use this to secure that all underlaying provider systems are up and running and the provider booking is ready to be fulfilled.
+        Step 1 in a two phase commit process. An aggregator can use this to secure that all underlying provider systems are up and running and the provider booking is ready to be fulfilled.
       operationId: getCheckFulfillments
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -2659,8 +2660,8 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
-          $ref: '#/components/responses/DefaultErrorResponse'                    
-          
+          $ref: '#/components/responses/DefaultErrorResponse'
+
   /fulfillments/{fulfillmentId}:
     get:
       tags:
@@ -2718,7 +2719,9 @@ paths:
     patch:
       tags:
         - Fulfillments
-      summary: Activates a fulfillment, i.e. changes the status from AVAILABLE to FULFILLED.
+      summary:
+        Activates a fulfillment, i.e. changes the status from AVAILABLE to
+        FULFILLED.
       description: |
         Changes the fulfillment from status AVAILABLE to FULFILLED. In the case of multi-trip product
         with usage quota, the fulfillment must be referenced in booking of a trip to produce Fulfillment 
@@ -2966,15 +2969,17 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  
-  /bookings/{bookingId}/refund-offers/{refundOfferId}/confirmation-check:        
+
+  /bookings/{bookingId}/refund-offers/{refundOfferId}/confirmation-check:
     get:
       tags:
         - Refund
       summary:
-        Validation step (step 1 in a two phase commit process) to run before the effective patch endpoint. Provider do all checks to "guarantee" that refund will work.
+        Validation step (step 1 in a two phase commit process) to run before the
+        effective patch endpoint. Provider do all checks to "guarantee" that
+        refund will work.
       description: |
-        Step 1 in a two phase commit process. An aggregator can use this to secure that all underlaying provider systems are up and running and the provider booking is ready to be refunded.
+        Step 1 in a two phase commit process. An aggregator can use this to secure that all underlying provider systems are up and running and the provider booking is ready to be refunded.
       operationId: postPrepareRefundOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -3022,8 +3027,8 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
-          $ref: '#/components/responses/DefaultErrorResponse'          
-          
+          $ref: '#/components/responses/DefaultErrorResponse'
+
   /bookings/{bookingId}/refund-offers/{refundOfferId}:
     get:
       tags:
@@ -3160,11 +3165,11 @@ paths:
       tags:
         - Refund
       summary: Deletes a refundOffer without waiting for expiry.
-      description: | 
-               In case the unconfimed refund offer is not sored in the booking 
-               object the delete request must return an ok (http 204). In case the 
-               refund offer is already confirmed and can not be deleted the reply 
-               must be an error (http 409 conflict).
+      description: |
+        In case the unconfirmed refund offer is not stored in the booking 
+        object the delete request must return an ok (http 204). In case the 
+        refund offer is already confirmed and can not be deleted the reply 
+        must be an error (http 409 conflict).
       operationId: deleteRefundOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -3317,7 +3322,7 @@ paths:
                 $ref: '#/components/schemas/ReleaseOfferResponse'
         '202':
           description: |
-            Release offer is iniated but not yet successfully created. Once finished a 200 OK must be returned.
+            Release offer is initiated but not yet successfully created. Once finished a 200 OK must be returned.
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -5346,7 +5351,7 @@ paths:
       operationId: getAvailabilitiesContinuousServices
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'        
+        - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: contextId
@@ -6545,7 +6550,9 @@ components:
               $ref: '#/components/schemas/RegionalValidity'
               deprecated: true
             regionalValidities:
-              description: This contains multiple regional validities for this item and replaces the `regionalValidity` (deprecated) attribute.
+              description:
+                This contains multiple regional validities for this item and
+                replaces the `regionalValidity` (deprecated) attribute.
               type: array
               items:
                 $ref: '#/components/schemas/RegionalValidity'
@@ -6585,7 +6592,9 @@ components:
               $ref: '#/components/schemas/RegionalValidity'
               deprecated: true
             regionalValidities:
-              description: This contains multiple regional validities for this item and replaces the `regionalValidity` (deprecated) attribute.
+              description:
+                This contains multiple regional validities for this item and
+                replaces the `regionalValidity` (deprecated) attribute.
               type: array
               items:
                 $ref: '#/components/schemas/RegionalValidity'
@@ -6675,7 +6684,7 @@ components:
           description: |
             The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
           type: boolean
-          default: true          
+          default: true
 
     AfterSalesOverrideDetails:
       description: |
@@ -6756,8 +6765,10 @@ components:
         stopPlaceRef:
           $ref: '#/components/schemas/StopPlaceRef'
         replacedPlaceRef:
-          description: reference to the original place in case of a replacement (e.g. bus stop of a replacement bus for a train)
-          $ref: '#/components/schemas/StopPlaceRef'             
+          description:
+            reference to the original place in case of a replacement (e.g. bus
+            stop of a replacement bus for a train)
+          $ref: '#/components/schemas/StopPlaceRef'
         serviceArrival:
           $ref: '#/components/schemas/ServiceTime'
 
@@ -6920,7 +6931,7 @@ components:
         residency:
           $ref: '#/components/schemas/CountryCode'
         transportable:
-          $ref: '#/components/schemas/TransportableSpecification'  
+          $ref: '#/components/schemas/TransportableSpecification'
 
     ApplicabilityType:
       type: string
@@ -6957,7 +6968,7 @@ components:
           format: date-time
           description: |
             Date from which the next version is available.
-          example: "2025-01-01T00:00:00+01:00"
+          example: '2025-01-01T00:00:00+01:00'
           nullable: true
 
     ApiVersion:
@@ -6980,7 +6991,7 @@ components:
           description: |
             Date after which the API version will no longer be available.
           nullable: true
-          example: "2024-12-31T23:59:59+01:00"
+          example: '2024-12-31T23:59:59+01:00'
         nextVersion:
           $ref: '#/components/schemas/ApiNextVersion'
           nullable: true
@@ -7265,8 +7276,10 @@ components:
         stopPlaceRef:
           $ref: '#/components/schemas/StopPlaceRef'
         replacedPlaceRef:
-          description: reference to the original place in case of a replacement (e.g. bus stop of a replacement bus for a train)
-          $ref: '#/components/schemas/StopPlaceRef'          
+          description:
+            reference to the original place in case of a replacement (e.g. bus
+            stop of a replacement bus for a train)
+          $ref: '#/components/schemas/StopPlaceRef'
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
 
@@ -7642,7 +7655,7 @@ components:
           items:
             $ref: '#/components/schemas/Fulfillment'
         fulfillmentStatus:
-            $ref: '#/components/schemas/FulfillmentSummaryStatus'        
+          $ref: '#/components/schemas/FulfillmentSummaryStatus'
         issuedVouchers:
           type: array
           items:
@@ -8312,33 +8325,33 @@ components:
           description: size in cm
           type: integer
           format: int32
-          minimum: 0        
+          minimum: 0
         brand:
           description: |
             Free text description of the brand (e.g. BMW)
-          type: string       
+          type: string
         model:
           description: |
             Free text description of the model (e.g. X5)
-          type: string     
+          type: string
 
     MotorcycleSpecification:
-      allOf:      
-        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'    
+      allOf:
+        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'
         - type: object
           properties:
             isSideCarIncluded:
-              description: deprecated use car of type SPECIAL_VEHILE instead
+              description: deprecated use car of type SPECIAL_VEHICLE instead
               deprecated: true
               type: boolean
               nullable: true
-              default: false          
+              default: false
 
     CarSpecification:
       description: |
         car, trailer or special vehicle to be transported (car carriage trains)
-      allOf:      
-        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'    
+      allOf:
+        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'
         - type: object
           additionalProperties: false
           required:
@@ -8350,15 +8363,15 @@ components:
               x-extensible-enum:
                 - 'TRIKE'
                 - 'QUAD'
-                - 'MOTOCYCLE_WITH_SIDECAR'  
+                - 'MOTOCYCLE_WITH_SIDECAR'
             roofWidth:
               type: integer
               format: int32
               minimum: 0
-              nullable: false 
+              nullable: false
             textileRoof:
               description: indication that the car has a textile rook only
-              type: boolean  
+              type: boolean
             rack:
               $ref: '#/components/schemas/CarRack'
             attachedItems:
@@ -8369,44 +8382,44 @@ components:
 
     CarRack:
       description: |
-        a rack on a car 
+        a rack on a car
       type: object
-      additionalProperties: false        
-      properties:      
+      additionalProperties: false
+      properties:
         mounting:
-         type: string
-         x-extensible-enum:
-          - 'REAR'
-          - 'TOP'
+          type: string
+          x-extensible-enum:
+            - 'REAR'
+            - 'TOP'
         type:
-         type: string
-         x-extensible-enum:
-          - 'LUGGAGE_RACK'
-          - 'ROOF_RAILING'     
+          type: string
+          x-extensible-enum:
+            - 'LUGGAGE_RACK'
+            - 'ROOF_RAILING'
         additionalHeight:
-          description: additional heigth in cm
+          description: additional height in cm
           type: integer
           format: int32
           minimum: 0
-          nullable: false     
+          nullable: false
         additionalLength:
           description: additional length in cm
           type: integer
           format: int32
           minimum: 0
-          nullable: false              
+          nullable: false
         numberOfBicycles:
-          description: numberof bicycles on the rack
+          description: number of bicycles on the rack
           type: integer
           format: int32
           minimum: 0
-          nullable: false              
+          nullable: false
 
     Car:
       allOf:
         - $ref: '#/components/schemas/CarSpecification'
         - type: object
-          additionalProperties: false       
+          additionalProperties: false
           required:
             - licensePlate
           properties:
@@ -8415,11 +8428,11 @@ components:
                 Name of a contact person or company in case the car transport is booked stand alone.
               type: string
             contactDetail:
-              $ref: '#/components/schemas/ContactDetail'          
+              $ref: '#/components/schemas/ContactDetail'
             licensePlate:
               description: |
-                 The license plate is a personal data item and must not be provided in an offer request.
-                 It must be patched into the offer after the customer accepted the offer for booking.
+                The license plate is a personal data item and must not be provided in an offer request.
+                It must be patched into the offer after the customer accepted the offer for booking.
               type: string
 
     CardReference:
@@ -8448,8 +8461,8 @@ components:
         chipCardContentFormat:
           type: string
           x-extensible-enum:
-           - 'CALYPSO-ABT'  # Calypso Account based ticketing
-           - 'CALYPSO-CBT'  # Calypso Card Based Ticketing
+            - 'CALYPSO-ABT' # Calypso Account based ticketing
+            - 'CALYPSO-CBT' # Calypso Card Based Ticketing
         chipCardContent:
           description: |
             base64 encoded content of the chip card. This is in some scenarios needed to validate whether the new ticket will be compatible with the tickets already on the card.
@@ -9241,7 +9254,7 @@ components:
         phoneNumber:
           description: |
             Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g., in case of delays or interruptions.
-            Format according to E.164 The international public telecommunication numbering plan 
+            Format according to E.164 The international public telecommunication numbering plan
           type: string
           nullable: true
         address:
@@ -9701,7 +9714,7 @@ components:
           type: integer
           nullable: true
           format: int32
-          default: 2          
+          default: 2
 
     CustomerComplaint:
       type: object
@@ -9862,7 +9875,7 @@ components:
           $ref: '#/components/schemas/StopPlaceRef'
         stopPlaceName:
           description: |
-                  Name of the station where the direction changes
+            Name of the station where the direction changes
           type: string
           nullable: false
 
@@ -9885,18 +9898,18 @@ components:
 
     DistributionMode:
       description: |
-         booking parts in product mode are provided as complete products where the tickets and 
-         conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assambled 
-         into tickes on the OSDM client side. In fare mode the conditions are defined on the client 
-         side the restrictions on conditions and combinability layed down in the booking part (fare). 
-         By definition admissions and ancillaries are in PRODUCT_MODE and fares are in _MODE. Reservation 
-         might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
-         requested in the offer part type list.
+        booking parts in product mode are provided as complete products where the tickets and 
+        conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assembled 
+        into tickets on the OSDM client side. In fare mode the conditions are defined on the client 
+        side the restrictions on conditions and combinability laid down in the booking part (fare). 
+        By definition admissions and ancillaries are in PRODUCT_MODE and fares are in _MODE. Reservation 
+        might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
+        requested in the offer part type list.
       type: string
       enum:
         - 'PRODUCT_MODE'
         - 'FARE_MODE'
-      default:  'PRODUCT_MODE'   
+      default: 'PRODUCT_MODE'
 
     Document:
       type: object
@@ -10155,7 +10168,9 @@ components:
           type: string
           nullable: true
         offerSummary:
-          description:  The offerSummary must be provided for product based offers. It is not needed for fares.
+          description:
+            The offerSummary must be provided for product based offers. It is
+            not needed for fares.
           $ref: '#/components/schemas/OfferSummary'
         createdOn:
           type: string
@@ -10300,8 +10315,8 @@ components:
             $ref: '#/components/schemas/FulfillmentOption'
         exchangeFee:
           description: |
-            In some business models the distributor has the right to define the exchange fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditributor submits the amount to the fare provider in exchange fee amount and the fare provider uses this amount to create the fees including the VAT split. 
-          $ref: '#/components/schemas/CurrencyAmount'                
+            In some business models the distributor has the right to define the exchange fee amount for a fare provided by the fare provider. This need to be indicated in the fare after sales rules to be applied. In this case the distributor submits the amount to the fare provider in exchange fee amount and the fare provider uses this amount to create the fees including the VAT split.
+          $ref: '#/components/schemas/CurrencyAmount'
         embed:
           type: array
           items:
@@ -10558,7 +10573,7 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidity'
         availablePlaces:
-          deprecated: true   
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlace'
@@ -10687,7 +10702,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/PlaceRef'
         - type: object
-          additionalProperties: false        
+          additionalProperties: false
           required:
             - fareConnectionPoint
           properties:
@@ -10764,7 +10779,7 @@ components:
           description: |
             The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
           type: boolean
-          default: true          
+          default: true
         status:
           $ref: '#/components/schemas/FeeStatus'
         distributorBookingRef:
@@ -10841,7 +10856,10 @@ components:
           type: string
           nullable: true
         bookingParts:
-          description: reference to all booking parts that contributed to this fulfillment. If the fulfillment is made based on booking parts these references must be provided.
+          description:
+            reference to all booking parts that contributed to this fulfillment.
+            If the fulfillment is made based on booking parts these references
+            must be provided.
           type: array
           items:
             $ref: '#/components/schemas/BookingPartReference'
@@ -11028,7 +11046,7 @@ components:
           description: |
             Ticket Control Number. Used for secure paper stock of referencing tickets in fulfillment applications.
           type: string
-          nullable: true            
+          nullable: true
 
     FulfillmentDocumentType:
       description: |
@@ -11054,7 +11072,7 @@ components:
         - 'image/png'
         - 'text/calendar'
         - 'text/html'
-        - 'application/json'  # e.g. used for tickets in google wallets (JWT)
+        - 'application/json' # e.g. used for tickets in google wallets (JWT)
 
     FulfillmentId:
       type: string
@@ -11100,11 +11118,11 @@ components:
         - 'DISTRIBUTOR_APP'
         - 'RETAILER_APP'
         - 'FULFILLMENT_PARTS'
-        - 'PDF_A4'                
-        - 'PKPASS'        # deprecated use WALLET
-        - 'RCCST'         # secure paper
-        - 'RCT2'          # secure paper
-        - 'UIC_PDF'       # deprecated, use PDF_A4
+        - 'PDF_A4'
+        - 'PKPASS' # deprecated use WALLET
+        - 'RCCST' # secure paper
+        - 'RCT2' # secure paper
+        - 'UIC_PDF' # deprecated, use PDF_A4
         - 'TICKETLESS'
         - 'APPLICATION'
         - 'WALLET'
@@ -11134,7 +11152,9 @@ components:
           minItems: 1
         specification:
           description:
-            accepted fulfillment specifications in case the fulfillment via `APPLICATION` or `CHIP_CARD` is not not limited to a specific application.  
+            accepted fulfillment specifications in case the fulfillment via
+            `APPLICATION` or `CHIP_CARD` is not not limited to a specific
+            application.
           type: array
           items:
             type: string
@@ -11210,9 +11230,9 @@ components:
         status of a fulfillment
       type: string
       x-extensible-enum:
-        - 'PENDING'  # some fulfillmentids are not jet there
-        - 'CREATED'  # all fulfillmentids are created
-        - 'COMPLETE' # no more documents are to be expected   
+        - 'PENDING' # some fulfillmentids are not jet there
+        - 'CREATED' # all fulfillmentids are created
+        - 'COMPLETE' # no more documents are to be expected
 
     FulfillmentPatchRequest:
       type: object
@@ -12112,23 +12132,23 @@ components:
       allOf:
         - $ref: '#/components/schemas/MotorcycleSpecification'
         - type: object
-          additionalProperties: false       
+          additionalProperties: false
           required:
-          - contactName
-          - licensePlate
-          properties:      
+            - contactName
+            - licensePlate
+          properties:
             contactName:
               description: |
                 Name of a contact person or company in case the car transport is booked stand alone.
               type: string
             contactDetail:
-              $ref: '#/components/schemas/ContactDetail'      
+              $ref: '#/components/schemas/ContactDetail'
             licensePlate:
               description: |
                 The license plate is a personal data item and must not be provided in an offer request.
                 It must be patched into the offer after the customer accepted the offer for booking
               type: string
-              
+
     MountingType:
       type: string
       enum:
@@ -12266,7 +12286,9 @@ components:
           type: string
           nullable: true
         offerSummary:
-          description: The offerSummary must be provided for product based offers. It is not needed for fares.
+          description:
+            The offerSummary must be provided for product based offers. It is
+            not needed for fares.
           $ref: '#/components/schemas/OfferSummary'
         createdOn:
           type: string
@@ -12341,7 +12363,8 @@ components:
             type: string
             maxLength: 32768
           nullable: true
-          description: ID of trips representing single or outbound trips to be offered.
+          description:
+            ID of trips representing single or outbound trips to be offered.
         inboundTripIds:
           type: array
           items:
@@ -12639,8 +12662,8 @@ components:
           type: array
           items:
             description: |
-              product selection by product code or product tag for an offer request. The number of items indicates the quantity to be required. Passengers must be referenced in case the product is intended for passengers.            
-            $ref: '#/components/schemas/ProductRequestOfferSelection'          
+              product selection by product code or product tag for an offer request. The number of items indicates the quantity to be required. Passengers must be referenced in case the product is intended for passengers.
+            $ref: '#/components/schemas/ProductRequestOfferSelection'
         flexibilities:
           description: |
             Defines the flexibility levels desired of the fares returned.
@@ -13014,9 +13037,9 @@ components:
         - 'COACH_GROUP'
         - 'SHIP'
         - 'BUS'
-        - 'ON_DEMAND_SERVICE'  
-        - 'BICYCLE' 
-        - 'SCOOTER' 
+        - 'ON_DEMAND_SERVICE'
+        - 'BICYCLE'
+        - 'SCOOTER'
         - 'TAXI'
 
     Passenger:
@@ -13090,8 +13113,7 @@ components:
       type: object
       description: |
         Passenger Category predefines a set of passenger specification properties that result to offer of a specific passenger type. 
-        `title` is the localized name of the passenger category and `specification` describes exact passenger specification that may results into offer for selected
-        passenger category. Passenger category specification doesn't guarante availability of expected passenger type on offered trip. `appliedPassengerType` must always be checked in the offer response.
+        `title` is the localized name of the passenger category and `specification` describes exact passenger specification that may results into offer for selected passenger category. Passenger category specification doesn't guarantee availability of expected passenger type on offered trip. `appliedPassengerType` must always be checked in the offer response.
       additionalProperties: false
       required:
         - title
@@ -13201,7 +13223,7 @@ components:
           $ref: '#/components/schemas/Gender'
         transportableDetails:
           $ref: '#/components/schemas/Transportable'
-          
+
     PassengerType:
       description: |
         Passenger type according to UIC passenger, i.e. passenger type list.
@@ -13314,7 +13336,7 @@ components:
           description: |
             Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g.,
             in case of interruptions.
-            Format according to E.164 The international public telecommunication numbering plan 
+            Format according to E.164 The international public telecommunication numbering plan
           type: string
           deprecated: true
           nullable: true
@@ -13360,7 +13382,9 @@ components:
           format: date
           nullable: true
         phoneNumber:
-          description: format according to E.164 The international public telecommunication numbering plan 
+          description:
+            format according to E.164 The international public telecommunication
+            numbering plan
           type: string
           nullable: true
         email:
@@ -13779,6 +13803,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SelectedPlace'
+        compartments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedCompartment'
         tripLegCoverage:
           $ref: '#/components/schemas/TripLegCoverage'
           deprecated: true
@@ -14208,7 +14236,7 @@ components:
 
     ProductRequestOfferSelection:
       type: object
-      additionalProperties: false        
+      additionalProperties: false
       description: |
         product selection by product code or product tag for an offer request (exactly one of `productCode` and `productTag` must be provided). The number of items indicates the quantity 
         to be required. Passengers must be referenced in case the product is intended for passengers.
@@ -14226,7 +14254,7 @@ components:
         externalPassengerRefs:
           type: array
           items:
-           type: string
+            type: string
 
     ProductSearchRequest:
       type: object
@@ -14309,7 +14337,7 @@ components:
         - CARD_LOST
           Tag used to request a non-trip offer to replace a lost card. This applies to physical cards only.
         - TICKET_LOST
-          Tag used to request a non-trip offer to replace a lost ticket. This applies to physical tickts only.
+          Tag used to request a non-trip offer to replace a lost ticket. This applies to physical tickets only.
         - Product Types
           All product types can be used as Product Tags in the search
       type: string
@@ -14629,7 +14657,9 @@ components:
           nullable: true
           deprecated: true
         phoneNumber:
-          description: Format according to E.164 The international public telecommunication numbering plan 
+          description:
+            Format according to E.164 The international public telecommunication
+            numbering plan
           type: string
           nullable: true
         email:
@@ -15029,8 +15059,8 @@ components:
             type: string
         refundFee:
           description: |
-            In some business models the distributor has the right to define the refund fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditsributor submits the amount to the fare provider in refund fee amount and the fare provider uses this amount to create the fees including the VAT split. 
-          $ref: '#/components/schemas/CurrencyAmount'            
+            In some business models the distributor has the right to define the refund fee amount for a fare provided by the fare provider. This need to be indicated in the fare after sales rules to be applied. In this case the distributor submits the amount to the fare provider in refund fee amount and the fare provider uses this amount to create the fees including the VAT split.
+          $ref: '#/components/schemas/CurrencyAmount'
 
     RefundStatus:
       type: string
@@ -15466,8 +15496,9 @@ components:
           additionalProperties: false
           properties:
             distributionMode:
-              description: indication of a reservation to be used as a fare or as a product
-              $ref: '#/components/schemas/DistributionMode'        
+              description:
+                indication of a reservation to be used as a fare or as a product
+              $ref: '#/components/schemas/DistributionMode'
             placeSelection:
               $ref: '#/components/schemas/PlaceSelection'
             placeAllocation:
@@ -15518,7 +15549,7 @@ components:
           type: string
           nullable: false
         name:
-          deprecated: true        
+          deprecated: true
           type: string
           nullable: false
         reservationRefs:
@@ -15538,7 +15569,8 @@ components:
           additionalProperties: false
           properties:
             distributionMode:
-              description: indication of a reservation to be used as a fare or as a product
+              description:
+                indication of a reservation to be used as a fare or as a product
               $ref: '#/components/schemas/DistributionMode'
             ancillaries:
               deprecated: true
@@ -15658,10 +15690,10 @@ components:
           nullable: false
         compartmentNumber:
           description: |
-           Compartment number as indicated at the compartment in the coach. A compartment number must be set if the compartment is selectable as a whole only.
+            Compartment number as indicated at the compartment in the coach. A compartment number must be set if the compartment is selectable as a whole only.
           type: string
           nullable: true
-          example: "C1"       
+          example: 'C1'
         placeDescription:
           description: |
             description of the places (e.g. 11-35,51)
@@ -15819,7 +15851,8 @@ components:
         Route description including the first and last real stopPoint
       properties:
         routeSummary:
-          description: Printable representation of the allowed routing ("Wegetext")
+          description:
+            Printable representation of the allowed routing ("Wegetext")
           type: string
           nullable: true
           maxLength: 140
@@ -15945,6 +15978,29 @@ components:
             type: string
           nullable: true
 
+    SelectedCompartment:
+      type: object
+      additionalProperties: false
+      description: |
+        selected compartment in case of graphical booking
+      required:
+        - coachNumber
+        - compartmentNumber
+        - passengerRefs
+      properties:
+        coachNumber:
+          type: string
+          nullable: false
+        compartmentNumber:
+          type: string
+          nullable: false
+        passengerRefs:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          nullable: false
+
     SelectedPlace:
       type: object
       additionalProperties: false
@@ -16068,9 +16124,9 @@ components:
           $ref: '#/components/schemas/Text'
 
     ServiceDegradation:
+      type: string
       description: |
         enumeration of service degradations
-      type: string
       x-extensible-enum:
         - 'RESERVED_PLACES_MISSING'
         - 'BOOKED_ACCOMMODATION_TYPE_MISSING'
@@ -16156,11 +16212,11 @@ components:
           nullable: true
 
     SiSType:
+      type: string
       description: |
         Type of the exchange of control data for security in system implementations.
         Values from the [Control Data Exchange Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ControlDataExchangeType)
         Listed values here are examples.
-      type: string
       x-extensible-enum:
         - 'REGISTRY'
         - 'PEER_TO_PEER' # deprecated
@@ -16174,9 +16230,9 @@ components:
       nullable: true
 
     SpecialCoachType:
+      type: string
       description: |
         indication of special coach
-      type: string
       x-extensible-enum:
         - 'RESTAURANT_COACH'
         - 'BICYCLE_COACH'
@@ -16230,7 +16286,7 @@ components:
         - 'REAL_BOARDING_ALIGHTING'
       default: 'ORIGIN_DESTINATION_ONLY'
       description: |
-         Influences what stops are to be returned in response (ORIGIN_DESTINATION_ONLY returns no intermediate stops; REAL_BOARDING_ALIGHTING returns all stops except virtual stops). Default value: ORIGIN_DESTINATION_ONLY
+        Influences what stops are to be returned in response (ORIGIN_DESTINATION_ONLY returns no intermediate stops; REAL_BOARDING_ALIGHTING returns all stops except virtual stops). Default value: ORIGIN_DESTINATION_ONLY
 
     StopCallStatus:
       type: object
@@ -16353,9 +16409,9 @@ components:
           nullable: false
 
     Symbology:
+      type: string
       description: |
         Symbology to use when rendering the binary data.
-      type: string
       enum:
         - 'AZTEC'
         - 'Code128A'
@@ -16506,10 +16562,10 @@ components:
           $ref: '#/components/schemas/DatedJourney'
 
     TimeFrameSegmentation:
-     type: string
-     enum:
-      - 'HOUR'
-      - 'DAY'
+      type: string
+      enum:
+        - 'HOUR'
+        - 'DAY'
 
     Tip:
       type: object
@@ -16538,7 +16594,7 @@ components:
           nullable: true
         accountingRef:
           $ref: '#/components/schemas/AccountingRef'
-     
+
     TrainLink:
       type: object
       additionalProperties: false
@@ -16726,9 +16782,9 @@ components:
         car:
           $ref: '#/components/schemas/CarSpecification'
         motorcycle:
-          $ref: '#/components/schemas/MotorcycleSpecification'          
+          $ref: '#/components/schemas/MotorcycleSpecification'
         trailer:
-          $ref: '#/components/schemas/CarSpecification'          
+          $ref: '#/components/schemas/CarSpecification'
 
     TransportableType:
       description: |
@@ -16738,11 +16794,11 @@ components:
       type: string
       x-extensible-enum:
         - 'PET'
-        - 'DOG' 
-        - 'ACCOMP_DOG'        
+        - 'DOG'
+        - 'ACCOMP_DOG'
         - 'BICYCLE'
-        - 'LUGGAGE'        
-        - 'PRAM'        
+        - 'LUGGAGE'
+        - 'PRAM'
         - 'CAR'
         - 'SPECIAL_VEHICLE' # used in car carriage e.g. a trike, a quad or a motorbike with a sidecar
         - 'MOTOCYCLE'
@@ -17779,7 +17835,7 @@ components:
             $ref: '#/components/schemas/CoachAvailability'
         directionChanges:
           description: |
-            List of direction changes (in direction of travel). 
+            List of direction changes (in direction of travel).
           type: array
           items:
             $ref: '#/components/schemas/DirectionChange'
