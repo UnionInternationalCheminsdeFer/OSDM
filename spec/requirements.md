@@ -21,6 +21,7 @@ permalink: /spec/requirements/
     - [Requirements on Reservation ](#requirements-on-reservation-)
     - [Requirements on Ancillary ](#requirements-on-ancillary-)
     - [Requirements on Fees ](#requirements-on-fees-)
+    - [Requirements on Non-Trip Offers ](#requirements-on-Non-Trip-Offers-)
   - [Requirements on Prolonging an Offer ](#requirements-on-prolonging-an-offer-)
   - [Requirements on Offer Combination ](#requirements-on-offer-combination-)
   - [Requirements on Round Trips ](#requirements-on-round-trips-)
@@ -36,6 +37,7 @@ permalink: /spec/requirements/
   - [Requirement to Cancel a Fulfillment ](#requirement-to-cancel-a-fulfillment-)
   - [Requirements on Complaints ](#requirements-on-complaints-)
   - [Requirements on Reimbursements ](#requirements-on-reimbursements-)
+  - [Requirements on Masterdata ](#requirements-on-masterdata-)
 - [Functional Requirements of a Distributor ](#functional-requirements-of-a-distributor-)
   - [Requirements on regional validity ](#requirements-on-regional-validity-)
     - [Station ](#station-)
@@ -50,7 +52,7 @@ permalink: /spec/requirements/
   - [Requirements on availability for purchase ](#requirements-on-availability-for-purchase-)
   - [Requirements on validity for usage ](#requirements-on-validity-for-usage-)
   - [Requirements on validity for passengers / transportables ](#requirements-on-validity-for-passengers--transportables-)
-  - [Requirements on validity for reductions ](#requirements-on-validity-for-reductions-)
+  - [Requirements on reductions ](#requirements-on-reductions-)
   - [Requirements on prices ](#requirements-on-prices-)
   - [Requirements on the basic fare structure ](#requirements-on-the-basic-fare-structure-)
   - [Requirements on the after sales conditions ](#requirements-on-the-after-sales-conditions-)
@@ -98,12 +100,14 @@ reservations and ancillaries.
 
 The pice must always be provided, no calculations on the client side despite the addition in receipts are allowed. 
 
-Vouchers might be issued for a refund, claim or reimboursement. Vouchers can also be purchased as non trip offers. 
+Vouchers might be issued for a refund, claim or reimbursement. Vouchers can also be purchased as non trip offers. 
 
 Vouchers can be used as payment method. The used vouchers and possible remaining voucher amounts must be shown in the booking. It must be possible to use multiple vvouchers in one payment. 
 A payment parcially by currency andpartially by voucher must be possible.
 
-The payment is not part of OSDM except for payment by vouchers. However the payment method needs to be provided to avoid missuse, e.g. refund in cash on a booking made by card.
+The payment is not part of OSDM except for payment by vouchers orbonus points. However the payment method needs to be provided to avoid missuse, e.g. refund in cash on a booking made by card.
+
+In case of payment with vouchers or bonus points the payment information must be part of the booking including remaining amounts of vouchers. 
 
 The price must already consider all applicable reductions and promotions.
 
@@ -151,6 +155,8 @@ A passenger can have a set of reduction cards.
 
 A passenger can further transport dogs, bicycles, cars, motorcycles or trailers
 if this is supported by the transport vehicle.
+
+The customer might be a company. It must be possible to provide and change company details (e.g. address).
 
 ### Requirements on Location <a name="RequirementsonLocation">
 
@@ -264,10 +270,23 @@ A reservation is linked to one or more passengers.
 
 For the possible states of a reservation, refer to the [state model](../state-models#bookingPart) for booking parts.
 
-A reservation has a one-to-one relationship to a product.
+A reservation in product mode must have an assigned product.
 
 An integrated reservation shall be modelled as an admission with an included
 reservation.
+
+Places in reservations can optionaly be selected graphically, by requesting place properties or by referencing a nearby place.
+
+It must be possible to provide data for a graphical representation of the train and coaches with the places on an abstract level allowing a retailer to use his own look and feel. The representation of 
+vehicles for a graphical display must be provided as master data.
+
+It must be possible to request the available vehicles and places on the vehicles for a leg.
+
+Reservations are made on places or on compartments. 
+
+The possible and mandatory selections of reservations must be provided by the API as part of the offer. Reservation might be mandatory on the trains or part of the trains of a trip.
+
+
 
 #### Requirements on Ancillary <a name="RequirementsonAncillary">
 
@@ -305,6 +324,21 @@ been selected.
 Whether a fee is refundable is defined by the tariff.
 
 The state of a fee depends on the state of the associated product.
+
+#### Requirements on Non-Trip Offers <a name="RequirementsonNonTRipOffers">
+
+Some products are not linked to a trip. These might be:
+
+  - passes 
+  - reduction cards
+  - vouchers
+  - merchandising items
+
+It must be possble to search for such offers without a trip. 
+
+Non-trip based search must be possible by searching for areas and periods. 
+
+Non-trip based serach must be possible by searching products via the API. Products might be categorized and it must be possible to retrieve the categories and to search via these categories.
 
 ### Requirements on Prolonging an Offer <a name="RequirementsonProlonginganOffer">
 
@@ -392,8 +426,20 @@ documents in form of a UIC PDF ticket most be supported by all parties. A
 fulfillment is provided for a specific FulfillmentType (e.g. `CIT_PAPER`) and
 FulfillmentMedia specifying the format (e.g. `RCT2`).
 
-**In distributor mode only:** A fulfillment may reference fulfillment items such
+**In fare mode only:** A fulfillment may reference fulfillment items such
 as visual security elements, additional bar codes or control key.
+
+A fulfillment to wallets must be supported.
+
+**fulfillment on chip card:**
+A fulfillment on chip cards (card based ticketing) should be supported. The specification of the card not part of OSDM.
+
+Fulfillment via a card library should be supported. The available card libraries must eb provided.
+To validate the compatibility with existing card content the card contrent might need to be provided to the provider.
+
+**fulfillment on an account:**
+A fulfillment on an account must be suported (account based ticketing). The account id might eb provied via a chip card.
+
 
 ### Requirements on Documents <a name="RequirementsonDocuments">
 
@@ -524,11 +570,29 @@ electronic form by a carrier.
 The customer must be able to make the claim via a retailer to the distributor
 who needs to forward the request to the involved carriers.
 
+### Requirements on Masterdata <a name="RequirementsonMasterdata">
+
+Provider specific masterdata referenced should be available via the API.
+
+The masterdata provided must support mutiple languages.
+
+
 ## Functional Requirements of a Distributor <a name="FunctionalRequirementsofaDistributor">
 
 The requirements covered by this specification are listed here with references
 to the implementation. Changes in the requirements during the lifecycle of this
 specification might lead to changes in the corresponding implementations.
+
+OSDM supports different business model of fares, where the distributor creates the product based on the fares provided via OSDM.
+
+OSDM supports the fare combination models limiting the combination options based of flexibility.
+    
+OSDM supports the fare after sales models:
+
+  - combined after sales fees, fees kept by the distributor
+  - combined after sales fees, fees kept by the fare provider
+  - distributer after sales rules applied, after sales fees are kept by the distributor
+  - distributer after sales rules applied, after sales fees are kept by the fare provider
 
 ### Requirements on regional validity <a name="Requirementsonregionalvalidity">
 
@@ -820,12 +884,25 @@ fares):
 
 The passenger weight of each passenger type needs to be considered.
 
-### Requirements on validity for reductions <a name="Requirementsonvalidityforreductions">
+### Requirements reductions <a name="Requirementsonreductions">
 
 Reductions are price reductions due to a reduction “card” an existing ticket or
 a pass which the passenger already holds. It might be that the physical card
 does not correspond to a specific reduction but provides the option to carry
 different reductions.
+
+Reductions might be granted due to the age of passengers. OSDM must support reductions due to passenger age. 
+The relevant age is the age at the start of the journey.
+
+Reductions might also be granted due to corporate agreements and due to promotions. 
+
+Reductions due to corporate agreements must be supported
+
+Reductions due to proomotions must be supported..
+
+It must be possible to display the applied reductions to the customer.
+
+It must be possible to display the granted reduction amounts to the customer as an option.
 
 Different prices due to the age of the passenger are separate fares, not
 reductions to a fare.
@@ -1186,7 +1263,7 @@ Relevant attributes:
 
 It should be possible to book reservations within the same technology.
 
-The existing reservation services in IRS 90918-1 should also be supported.
+Reservations can be provided in product mode and fare mode. In fare mode the reservations will be integrated by the distributor into a product.
 
 ### Requirements on Trip Interruptions <a name="RequirementsonTripInterruptions">
 
@@ -1329,8 +1406,7 @@ The following guidelines apply:
 
 ## Requirements not in Scope <a name="RequirementsnotinScope">
 
-- Payment procedures including payment procedures via private currencies alike
-  bonus points
+- Payment procedures in national currencies. Payment procedures via private currencies alike bonus points and vouchers are included.
 
   Information whether such payments are allowed can be included in the fare
   data, but the required service to handle such payments are not specified here.
