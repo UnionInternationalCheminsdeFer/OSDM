@@ -24,5 +24,5 @@ to an offer.
 
 ![Relationships between Offers, OfferParts, Products and Fares](../../images/models/relationship-offer-offerpart-product-fare.png)
 
-See [Constructing Products from Fares](./constructing-products-from-fares.md) to
-understand how fares are combined to products, offerparts and offers.
+See [Constructing Products from Fares](../constructing-products-from-fares/)
+to understand how fares are combined to products, offerparts and offers.
