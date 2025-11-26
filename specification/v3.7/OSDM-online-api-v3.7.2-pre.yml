@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.8.0
+  version: 3.7.2-pre
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
 
@@ -2556,7 +2556,7 @@ paths:
       description: |
         Optionally finalizes the fulfillment in case of an asynchronous fulfillment mode when the provider doesn't complete the asynchronous fulfillment automatically.
 
-        This step may be used as an indication of the `proof of delivery` to allow the cancellation of booking.
+        This step may be used as an indication of the `proof of delivery` to disallow the cancellation of booking.
       operationId: finalizeFulfillments
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -5964,11 +5964,9 @@ components:
             In offer mode, in almost all cases exactly one product is referenced. Only on some French
             trips consisting of a TGV and a TER two products need to be used.
             In fare mode, no product exists as first needs to created from the different fares.
-            No product is also returned in case of `FARE_RESERVATION` part.
           type: array
           items:
             $ref: '#/components/schemas/ProductLegAssociation'
-          minItems: 0
         status:
           $ref: '#/components/schemas/BookingPartStatus'
         pricingStatus:
@@ -6181,12 +6179,10 @@ components:
             offer part. Although not currently mandatory, this attribute should
             in all cases be facilitate product based processing at the client
         products:
-          description: |
-            For `FARE_RESERVATION` offer parts, no product is returned. Otherwise at least 1 product is returned.
           type: array
           items:
             $ref: '#/components/schemas/ProductLegAssociation'
-          minItems: 0
+          minItems: 1
         availableFulfillmentOptions:
           type: array
           items:
@@ -7655,7 +7651,11 @@ components:
           items:
             $ref: '#/components/schemas/Fulfillment'
         fulfillmentStatus:
-          $ref: '#/components/schemas/FulfillmentSummaryStatus'
+          type: string
+          x-extensible-enum:
+            - 'PENDING': some fulfillmentids are not jet there
+            - 'CREATED': all fulfillmentids are created
+            - 'COMPLETE': no more documents are to be expected
         issuedVouchers:
           type: array
           items:
@@ -8458,18 +8458,6 @@ components:
           $ref: '#/components/schemas/CompanyRef'
         type:
           $ref: '#/components/schemas/TravelAccountType'
-        chipCardContentFormat:
-          type: string
-          x-extensible-enum:
-            - 'CALYPSO-ABT' # Calypso Account based ticketing
-            - 'CALYPSO-CBT' # Calypso Card Based Ticketing
-        chipCardContent:
-          description: |
-            base64 encoded content of the chip card. This is in some scenarios needed to validate whether the new ticket will be compatible with the tickets already on the card.
-          type: string
-          format: byte
-          maxLength: 4194304
-          nullable: true
 
     CardTypeReference:
       type: object
@@ -8952,9 +8940,6 @@ components:
     CompanyDetail:
       type: object
       additionalProperties: false
-      description: |
-        Details a company. Note that the legalAddress attribute has been deprecated and
-        is replaced by legalPostalAddress.
       required:
         - name
       properties:
@@ -8972,8 +8957,6 @@ components:
             Deprecated in favor of `legalPostalAddress`
         legalPostalAddress:
           $ref: '#/components/schemas/PostalAddress'
-        contact:
-          $ref: '#/components/schemas/ContactDetail'
         taxId:
           type: string
           nullable: false
@@ -9879,6 +9862,21 @@ components:
           type: string
           nullable: false
 
+    DistributionMode:
+      description: |
+        booking parts in product mode are provided as complete products where the tickets and 
+        conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assembled 
+        into tickets on the OSDM client side. In fare mode the conditions are defined on the client 
+        side the restrictions on conditions and combinability laid down in the booking part (fare). 
+        By definition admissions and ancillaries are in PRODUCT_MODE and fares are in _MODE. Reservation 
+        might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
+        requested in the offer part type list.
+      type: string
+      enum:
+        - 'PRODUCT_MODE'
+        - 'FARE_MODE'
+      default: 'PRODUCT_MODE'
+
     DirectionType:
       description: |
         Direction of a place, defined optional as it might be omitted in
@@ -9895,21 +9893,6 @@ components:
         - 'LEFT'
         - 'UP'
         - 'DOWN'
-
-    DistributionMode:
-      description: |
-        booking parts in product mode are provided as complete products where the tickets and 
-        conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assembled 
-        into tickets on the OSDM client side. In fare mode the conditions are defined on the client 
-        side the restrictions on conditions and combinability laid down in the booking part (fare). 
-        By definition admissions and ancillaries are in PRODUCT_MODE and fares are in _MODE. Reservation 
-        might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
-        requested in the offer part type list.
-      type: string
-      enum:
-        - 'PRODUCT_MODE'
-        - 'FARE_MODE'
-      default: 'PRODUCT_MODE'
 
     Document:
       type: object
@@ -11042,11 +11025,6 @@ components:
           nullable: false
         applicationProvider:
           $ref: '#/components/schemas/CompanyRef'
-        controlNumber:
-          description: |
-            Ticket Control Number. Used for secure paper stock of referencing tickets in fulfillment applications.
-          type: string
-          nullable: true
 
     FulfillmentDocumentType:
       description: |
@@ -11072,7 +11050,6 @@ components:
         - 'image/png'
         - 'text/calendar'
         - 'text/html'
-        - 'application/json' # e.g. used for tickets in google wallets (JWT)
 
     FulfillmentId:
       type: string
@@ -11119,14 +11096,11 @@ components:
         - 'RETAILER_APP'
         - 'FULFILLMENT_PARTS'
         - 'PDF_A4'
-        - 'PKPASS' # deprecated use WALLET
-        - 'RCCST' # secure paper
-        - 'RCT2' # secure paper
-        - 'UIC_PDF' # deprecated, use PDF_A4
+        - 'PKPASS'
+        - 'RCCST'
+        - 'RCT2'
+        - 'UIC_PDF'
         - 'TICKETLESS'
-        - 'APPLICATION'
-        - 'WALLET'
-        - 'CHIP_CARD'
 
     FulfillmentOption:
       type: object
@@ -11141,25 +11115,6 @@ components:
           $ref: '#/components/schemas/FulfillmentType'
         media:
           $ref: '#/components/schemas/FulfillmentMediaType'
-        applications:
-          description: |
-            list of applications that can 
-            handle the fulfillment. This is required in case of media `APPLICATION`.
-            The applications might be modules on a vending machine to handle chop cards or smartphone apps handling NFC communication.
-          type: array
-          items:
-            type: string
-          minItems: 1
-        specification:
-          description:
-            accepted fulfillment specifications in case the fulfillment via
-            `APPLICATION` or `CHIP_CARD` is not not limited to a specific
-            application.
-          type: array
-          items:
-            type: string
-            example: 'CALYPSO'
-          minItems: 1
 
     FulfillmentPart:
       type: object
@@ -11224,15 +11179,6 @@ components:
         - 'REFUNDED'
         - 'EXCHANGED'
         - 'EXPIRED'
-
-    FulfillmentSummaryStatus:
-      description: |
-        status of a fulfillment
-      type: string
-      x-extensible-enum:
-        - 'PENDING' # some fulfillmentids are not jet there
-        - 'CREATED' # all fulfillmentids are created
-        - 'COMPLETE' # no more documents are to be expected
 
     FulfillmentPatchRequest:
       type: object
@@ -12658,7 +12604,7 @@ components:
           nullable: true
         productSelections:
           description: |
-            preselection of products where offers are requested
+            pre-selection of products where offers are requested
           type: array
           items:
             description: |
@@ -13112,8 +13058,9 @@ components:
     PassengerCategory:
       type: object
       description: |
-        Passenger Category predefines a set of passenger specification properties that result to offer of a specific passenger type. 
-        `title` is the localized name of the passenger category and `specification` describes exact passenger specification that may results into offer for selected passenger category. Passenger category specification doesn't guarantee availability of expected passenger type on offered trip. `appliedPassengerType` must always be checked in the offer response.
+        Passenger Category pre-defines a set of passenger specification properties that result to offer of a specific passenger type. 
+        `title` is the localized name of the passenger category and `specification` describes exact passenger specification that may results into offer for selected
+        passenger category. Passenger category specification doesn't guarantee availability of expected passenger type on offered trip. `appliedPassengerType` must always be checked in the offer response.
       additionalProperties: false
       required:
         - title
@@ -16124,9 +16071,9 @@ components:
           $ref: '#/components/schemas/Text'
 
     ServiceDegradation:
-      type: string
       description: |
         enumeration of service degradations
+      type: string
       x-extensible-enum:
         - 'RESERVED_PLACES_MISSING'
         - 'BOOKED_ACCOMMODATION_TYPE_MISSING'
@@ -16212,11 +16159,11 @@ components:
           nullable: true
 
     SiSType:
-      type: string
       description: |
         Type of the exchange of control data for security in system implementations.
         Values from the [Control Data Exchange Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ControlDataExchangeType)
         Listed values here are examples.
+      type: string
       x-extensible-enum:
         - 'REGISTRY'
         - 'PEER_TO_PEER' # deprecated
@@ -16230,9 +16177,9 @@ components:
       nullable: true
 
     SpecialCoachType:
-      type: string
       description: |
         indication of special coach
+      type: string
       x-extensible-enum:
         - 'RESTAURANT_COACH'
         - 'BICYCLE_COACH'
@@ -16409,9 +16356,9 @@ components:
           nullable: false
 
     Symbology:
-      type: string
       description: |
         Symbology to use when rendering the binary data.
+      type: string
       enum:
         - 'AZTEC'
         - 'Code128A'
