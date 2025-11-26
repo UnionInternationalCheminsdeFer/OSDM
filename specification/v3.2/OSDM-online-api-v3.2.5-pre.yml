@@ -10615,7 +10615,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SelectedAccommodation'
-        compartements:
+        compartments:
           type: array
           items:
             $ref: '#/components/schemas/SelectedCompartment'
