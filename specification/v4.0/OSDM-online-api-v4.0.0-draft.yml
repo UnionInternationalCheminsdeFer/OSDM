@@ -18087,57 +18087,69 @@ components:
             
 
     NotificationEvent:
-      description: |
-        Notification on an event that occured on the provider side and changed a resource.
-      oneOf:
-        - $ref: "#/components/schemas/BookingEvent"
-        - $ref: "#/components/schemas/ComplaintEvent"
-        - $ref: "#/components/schemas/ReimbursementEvent"
-
-    BookingEvent:
       type: object
-      description: An event that has occurred on a booking.
+      description: |
+        Notification on an event that occured on the provider side and changed a resource. Base event for inheritance.
+      discriminator:
+        propertyName: objectType
       required:
         - objectType
         - summary
-        - type
         - revision
-        - bookingId
         - resources
       properties:
         objectType:
+          description: |
+            Attribute is used as discriminator for inheritance between data types.
           type: string
           enum:
             - BookingEvent
-          default: BookingEvent
+            - ComplaintEvent
+            - ReimbursementEvent
         summary:
           type: string
           description: >-
             Human readable description of what has changed on the booking. e.g.
-            "Train ICE 34 at 2021-12-22 13:30 has been cancelled".
-        type:
-          $ref: "#/components/schemas/BookingChangeType"
+            "Train ICE 34 at 2021-12-22 13:30 has been cancelled",
+            "Complaint 123456 has been settled",
+            "Reimbursement 456-xyz has been settled".
         revision:
-          $ref: "#/components/schemas/Revision"
-        bookingId:
-          type: string
-          description: The ID of the booking that has changed.
-        affectedBookingPartIds:
-          description: list of ids of affected booking parts 
-          type: array
-          items:
-            type: string
-        affectedFulfillmentIds:
-          description: list of ids of affected fulillments 
-          type: array
-          items:
-            type: string
+          $ref: '#/components/schemas/Revision'
         resources:
           description: >-
             Resources to be called by receiver to update a booking.
           type: array
           items:
-            $ref: "#/components/schemas/Resource"
+            $ref: '#/components/schemas/Resource'
+
+
+    BookingEvent:
+      type: object
+      description: An event that has occurred on a booking.
+      allOf:
+        - $ref: '#/components/schemas/NotificationEvent'
+        - type: object
+          additionalProperties: false
+          required:
+            - type
+            - bookingId
+          properties:
+            type:
+              $ref: '#/components/schemas/BookingChangeType'
+            bookingId:
+              type: string
+              description: The ID of the booking that has changed.
+            affectedBookingPartIds:
+              description: list of ids of affected booking parts 
+              type: array
+              items:
+                type: string
+            affectedFulfillmentIds:
+              description: list of ids of affected fulillments 
+              type: array
+              items:
+                type: string
+
 
     BookingChangeType:
       type: string
@@ -18176,77 +18188,44 @@ components:
       examples: 
         - FULFILLMENT_REFUNDED
 
+
     ComplaintEvent:
       type: object
       description: >-
         An event that has occurred on a complaint.
-      required:
-        - objectType
-        - summary
-        - type
-        - revision
-        - complaintId
-        - resources
-      properties:
-        objectType:
-          type: string
-          enum:
-            - ComplaintEvent
-          default: ComplaintEvent
-        summary:
-          type: string
-          description: >-
-            Human readable description of what has changed on the complaint.
-            E.g. "Complaint 123456 has been settled".
-        type:
-          $ref: "#/components/schemas/BackOfficeChangeType"
-        revision:
-          $ref: "#/components/schemas/Revision"
-        complaintId:
-          type: string
-          description: The ID of the complaint.
-        resources:
-          description: >-
-            Resources to be called by receiver to update a complaint.
-          type: array
-          items:
-            $ref: "#/components/schemas/Resource"
+      allOf:
+        - $ref: '#/components/schemas/NotificationEvent'
+        - type: object
+          additionalProperties: false
+          required:
+            - type
+            - complaintId
+          properties:
+            type:
+              $ref: '#/components/schemas/BackOfficeChangeType'
+            complaintId:
+              type: string
+              description: The ID of the complaint.
+
 
     ReimbursementEvent:
       type: object
       description: >-
         An event that has occurred on a reimbursement.
-      required:
-        - objectType
-        - summary
-        - type
-        - revision
-        - reimbursementId
-        - resources
-      properties:
-        objectType:
-          type: string
-          enum:
-            - ReimbursementEvent
-          default: ReimbursementEvent
-        summary:
-          type: string
-          description: >-
-            Human readable description of what has changed on the reimbursement.
-            E.g. "Reimbursement 456-xyz has been settled".
-        type:
-          $ref: "#/components/schemas/BackOfficeChangeType"
-        revision:
-          $ref: "#/components/schemas/Revision"
-        reimbursementId:
-          type: string
-          description: The ID of the reimbursement.
-        resources:
-          description: >-
-            Resources to be called by receiver to update a reimbursement.
-          type: array
-          items:
-            $ref: "#/components/schemas/Resource"
+      allOf:
+        - $ref: '#/components/schemas/NotificationEvent'
+        - type: object
+          additionalProperties: false
+          required:
+            - type
+            - reimbursementId
+          properties:
+            type:
+              $ref: '#/components/schemas/BackOfficeChangeType'
+            reimbursementId:
+              type: string
+              description: The ID of the reimbursement.
+
 
     BackOfficeChangeType:
       type: string
@@ -18258,6 +18237,7 @@ components:
         - SETTLED
         - INFORMATION_MISSING
       default: INITIATED
+
 
     Revision:
       type: object
@@ -18273,6 +18253,7 @@ components:
         timestamp:
           type: string
           format: date-time
+
 
     Resource:
       type: object
@@ -18291,7 +18272,7 @@ components:
           type: string
           format: url
           examples: 
-            - "https://db.de/osdm/bookings/2345/fulfillments/ASBV"
+            - 'https://db.de/osdm/bookings/2345/fulfillments/ASBV'
 
 
     MasterDataValidity:
