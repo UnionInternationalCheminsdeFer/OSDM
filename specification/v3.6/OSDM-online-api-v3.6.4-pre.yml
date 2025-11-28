@@ -13082,6 +13082,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SelectedAccommodation'
+        compartments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedCompartment'
         places:
           type: array
           items:
@@ -15123,6 +15127,29 @@ components:
           items:
             type: string
           nullable: true
+
+    SelectedCompartment:
+      type: object
+      additionalProperties: false
+      description: |
+        selected compartment in case of graphical booking
+      required:
+        - coachNumber
+        - compartmentNumber
+        - passengerRefs
+      properties:
+        coachNumber:
+          type: string
+          nullable: false
+        compartmentNumber:
+          type: string
+          nullable: false
+        passengerRefs:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          nullable: false
 
     SelectedPlace:
       type: object
