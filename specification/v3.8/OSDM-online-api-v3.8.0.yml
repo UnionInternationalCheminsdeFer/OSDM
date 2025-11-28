@@ -14832,6 +14832,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ServiceBrandCode'
+          deprecated: true
+        serviceBrands:
+          description:
+            ServiceBrands where the reduction is granted, any service brand of
+            the carrier in case the list is not provided.
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceBrandCode'
         description:
           description:
             text describing the reduction granted. In the context of master data
