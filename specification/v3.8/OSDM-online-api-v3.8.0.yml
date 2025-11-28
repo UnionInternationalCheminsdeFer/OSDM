@@ -6045,22 +6045,6 @@ components:
         grantedReductionAmounts:
           $ref: '#/components/schemas/GrantedReductionAmounts'
 
-    AccountingRef:
-      description: |
-        reference to accounting data in case the accounting is not provided by the API provider
-      type: object
-      required:
-        - accountingCompany
-      properties:
-        accountingCompany:
-          $ref: '#/components/schemas/CompanyRef'
-        accountingIds:
-          description: |
-            ids of accounting data used to link the booking part with accounting data in the billing send by the accounting company
-          type: array
-          items:
-            type: string
-
     AbstractOfferPart:
       type: object
       additionalProperties: false
@@ -6222,6 +6206,46 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
+    AbstractTransportableVehicleSpecification:
+      type: object
+      additionalProperties: false
+      required:
+        - weight
+        - length
+        - width
+        - height
+        - model
+        - brand
+      properties:
+        weight:
+          description: weight in kg
+          type: integer
+          format: int32
+          minimum: 0
+        length:
+          description: size in cm
+          type: integer
+          format: int32
+          minimum: 0
+        width:
+          description: size in cm
+          type: integer
+          format: int32
+          minimum: 0
+        height:
+          description: size in cm
+          type: integer
+          format: int32
+          minimum: 0
+        brand:
+          description: |
+            Free text description of the brand (e.g. BMW)
+          type: string
+        model:
+          description: |
+            Free text description of the model (e.g. X5)
+          type: string
+
     AbstractTravelAccount:
       type: object
       additionalProperties: false
@@ -6367,6 +6391,22 @@ components:
         - 'VEHICLE'
         - 'STORAGE'
 
+    AccountingRef:
+      description: |
+        reference to accounting data in case the accounting is not provided by the API provider
+      type: object
+      required:
+        - accountingCompany
+      properties:
+        accountingCompany:
+          $ref: '#/components/schemas/CompanyRef'
+        accountingIds:
+          description: |
+            ids of accounting data used to link the booking part with accounting data in the billing send by the accounting company
+          type: array
+          items:
+            type: string
+
     ActualPassengerType:
       description: |
         Actual Passenger type according to UIC passenger, i.e. passenger type list. 
@@ -6499,43 +6539,6 @@ components:
             addressRef:
               type: string
               nullable: false
-
-    PostalAddress:
-      type: object
-      properties:
-        countryName:
-          description: |
-            Country of the address.
-          type: string
-          nullable: true
-          example: The Netherlands
-        countryCode:
-          $ref: '#/components/schemas/CountryCode'
-        postCode:
-          description: |
-            Postal code of the address.
-          type: string
-          nullable: true
-          example: 2265CA
-        city:
-          description: |
-            City name
-          type: string
-          nullable: true
-          example: Leidschendam
-        street:
-          description: |
-            Street name of the address. Can also contain the house number.
-          type: string
-          nullable: true
-          example: Oude Trambaan
-        houseNumber:
-          description: |
-            House number of the address. House number can either be in this separate field, or can be
-            contained in the street field.
-          type: string
-          nullable: true
-          example: 7
 
     Admission:
       description: |
@@ -6933,20 +6936,6 @@ components:
         transportable:
           $ref: '#/components/schemas/TransportableSpecification'
 
-    ApplicabilityType:
-      type: string
-      x-extensible-enum:
-        - 'BOOKING'
-        - 'TRIP'
-        - 'OFFERPART'
-        - 'SEAT_SELECTION': (https://osdm.io/spec/processes/#SeatSelectionFees)
-
-    TransactionContextType:
-      type: string
-      x-extensible-enum:
-        - 'SALES'
-        - 'AFTER_SALES'
-
     ApiNextVersion:
       type: object
       description: |
@@ -6995,6 +6984,14 @@ components:
         nextVersion:
           $ref: '#/components/schemas/ApiNextVersion'
           nullable: true
+
+    ApplicabilityType:
+      type: string
+      x-extensible-enum:
+        - 'BOOKING'
+        - 'TRIP'
+        - 'OFFERPART'
+        - 'SEAT_SELECTION': (https://osdm.io/spec/processes/#SeatSelectionFees)
 
     AppliedPassengerType:
       type: object
@@ -7058,26 +7055,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PartReference'
-
-    PartReference:
-      type: object
-      description: reference to a fare or offerPart
-      required:
-        - contextId
-        - contextType
-        - resourceId
-        - resourceType
-      properties:
-        contextId:
-          type: string
-          maxLength: 32768
-        contextType:
-          $ref: '#/components/schemas/ContextType'
-        resourceId:
-          type: string
-          maxLength: 32768
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
 
     AvailabilityStatus:
       description: |
@@ -7389,6 +7366,28 @@ components:
           items:
             $ref: '#/components/schemas/BookedOffer'
 
+    BookedOfferPartDeleteRequest:
+      description: |
+        Request with ancillary or reservation booked offer parts
+        to be removed from the booked offer.
+      type: object
+      additionalProperties: false
+      properties:
+        ancillaryIds:
+          type: array
+          minItems: 1
+          description: Ancillary IDs in the booked offer
+          items:
+            type: string
+            maxLength: 32768
+        reservationIds:
+          type: array
+          minItems: 1
+          description: Reservation IDs in the booked offer
+          items:
+            type: string
+            maxLength: 32768
+
     BookedOfferPartRequest:
       type: object
       additionalProperties: false
@@ -7434,28 +7433,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BookedOffer'
-
-    BookedOfferPartDeleteRequest:
-      description: |
-        Request with ancillary or reservation booked offer parts
-        to be removed from the booked offer.
-      type: object
-      additionalProperties: false
-      properties:
-        ancillaryIds:
-          type: array
-          minItems: 1
-          description: Ancillary IDs in the booked offer
-          items:
-            type: string
-            maxLength: 32768
-        reservationIds:
-          type: array
-          minItems: 1
-          description: Reservation IDs in the booked offer
-          items:
-            type: string
-            maxLength: 32768
 
     BookedOfferRequest:
       type: object
@@ -7783,13 +7760,6 @@ components:
         - 'EXCHANGE_ONGOING'
         - 'EXCHANGED'
         - 'ERROR'
-
-    FeeStatus:
-      type: string
-      enum:
-        - 'PREBOOKED'
-        - 'CONFIRMED'
-        - 'REFUNDED'
 
     BookingPartSummary:
       type: object
@@ -8295,126 +8265,6 @@ components:
         - 'PROPOSED'
         - 'CONFIRMED'
 
-    AbstractTransportableVehicleSpecification:
-      type: object
-      additionalProperties: false
-      required:
-        - weight
-        - length
-        - width
-        - height
-        - model
-        - brand
-      properties:
-        weight:
-          description: weight in kg
-          type: integer
-          format: int32
-          minimum: 0
-        length:
-          description: size in cm
-          type: integer
-          format: int32
-          minimum: 0
-        width:
-          description: size in cm
-          type: integer
-          format: int32
-          minimum: 0
-        height:
-          description: size in cm
-          type: integer
-          format: int32
-          minimum: 0
-        brand:
-          description: |
-            Free text description of the brand (e.g. BMW)
-          type: string
-        model:
-          description: |
-            Free text description of the model (e.g. X5)
-          type: string
-
-    MotorcycleSpecification:
-      allOf:
-        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'
-        - type: object
-          properties:
-            isSideCarIncluded:
-              description: deprecated use car of type SPECIAL_VEHICLE instead
-              deprecated: true
-              type: boolean
-              nullable: true
-              default: false
-
-    CarSpecification:
-      description: |
-        car, trailer or special vehicle to be transported (car carriage trains)
-      allOf:
-        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'
-        - type: object
-          additionalProperties: false
-          required:
-            - roofWidth
-          properties:
-            specialType:
-              type: string
-              nullable: true
-              x-extensible-enum:
-                - 'TRIKE'
-                - 'QUAD'
-                - 'MOTOCYCLE_WITH_SIDECAR'
-            roofWidth:
-              type: integer
-              format: int32
-              minimum: 0
-              nullable: false
-            textileRoof:
-              description: indication that the car has a textile rook only
-              type: boolean
-            rack:
-              $ref: '#/components/schemas/CarRack'
-            attachedItems:
-              description: Indication of items attached to the car
-              type: array
-              items:
-                $ref: '#/components/schemas/AttachableItemType'
-
-    CarRack:
-      description: |
-        a rack on a car
-      type: object
-      additionalProperties: false
-      properties:
-        mounting:
-          type: string
-          x-extensible-enum:
-            - 'REAR'
-            - 'TOP'
-        type:
-          type: string
-          x-extensible-enum:
-            - 'LUGGAGE_RACK'
-            - 'ROOF_RAILING'
-        additionalHeight:
-          description: additional height in cm
-          type: integer
-          format: int32
-          minimum: 0
-          nullable: false
-        additionalLength:
-          description: additional length in cm
-          type: integer
-          format: int32
-          minimum: 0
-          nullable: false
-        numberOfBicycles:
-          description: number of bicycles on the rack
-          type: integer
-          format: int32
-          minimum: 0
-          nullable: false
-
     Car:
       allOf:
         - $ref: '#/components/schemas/CarSpecification'
@@ -8486,6 +8336,41 @@ components:
           type: string
           nullable: true
 
+    CarRack:
+      description: |
+        a rack on a car
+      type: object
+      additionalProperties: false
+      properties:
+        mounting:
+          type: string
+          x-extensible-enum:
+            - 'REAR'
+            - 'TOP'
+        type:
+          type: string
+          x-extensible-enum:
+            - 'LUGGAGE_RACK'
+            - 'ROOF_RAILING'
+        additionalHeight:
+          description: additional height in cm
+          type: integer
+          format: int32
+          minimum: 0
+          nullable: false
+        additionalLength:
+          description: additional length in cm
+          type: integer
+          format: int32
+          minimum: 0
+          nullable: false
+        numberOfBicycles:
+          description: number of bicycles on the rack
+          type: integer
+          format: int32
+          minimum: 0
+          nullable: false
+
     CarrierConstraint:
       type: object
       additionalProperties: false
@@ -8521,6 +8406,39 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CompanyRef'
+
+    CarSpecification:
+      description: |
+        car, trailer or special vehicle to be transported (car carriage trains)
+      allOf:
+        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'
+        - type: object
+          additionalProperties: false
+          required:
+            - roofWidth
+          properties:
+            specialType:
+              type: string
+              nullable: true
+              x-extensible-enum:
+                - 'TRIKE'
+                - 'QUAD'
+                - 'MOTOCYCLE_WITH_SIDECAR'
+            roofWidth:
+              type: integer
+              format: int32
+              minimum: 0
+              nullable: false
+            textileRoof:
+              description: indication that the car has a textile rook only
+              type: boolean
+            rack:
+              $ref: '#/components/schemas/CarRack'
+            attachedItems:
+              description: Indication of items attached to the car
+              type: array
+              items:
+                $ref: '#/components/schemas/AttachableItemType'
 
     ClaimedJourneyDetails:
       type: object
@@ -8689,14 +8607,6 @@ components:
           items:
             $ref: '#/components/schemas/ServiceIcon'
 
-    CoachDeckLevel:
-      type: string
-      x-extensible-enum:
-        - 'SINGLE_DECK'
-        - 'LOWER_DECK'
-        - 'MIDDLE_DECK'
-        - 'UPPER_DECK'
-
     CoachDeckLayoutCollectionResponse:
       type: object
       additionalProperties: false
@@ -8726,6 +8636,14 @@ components:
             $ref: '#/components/schemas/Problem'
         coachDeckLayout:
           $ref: '#/components/schemas/CoachDeckLayout'
+
+    CoachDeckLevel:
+      type: string
+      x-extensible-enum:
+        - 'SINGLE_DECK'
+        - 'LOWER_DECK'
+        - 'MIDDLE_DECK'
+        - 'UPPER_DECK'
 
     CoachLayout:
       type: object
@@ -8803,6 +8721,40 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
+    CoachLayoutCompartmentNumber:
+      description:
+        Layout item to place a compartment number. The number has no icon, it
+        only places the number
+      type: object
+      additionalProperties: false
+      required:
+        - number
+        - coords
+      properties:
+        number:
+          type: string
+        coords:
+          $ref: '#/components/schemas/LayoutCoordinates'
+
+    CoachLayoutDirectedInternal:
+      type: object
+      additionalProperties: false
+      required:
+        - icon
+        - coords
+      properties:
+        icon:
+          description: |
+            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
+          type: string
+          nullable: false
+        direction:
+          $ref: '#/components/schemas/DirectionType'
+        mounting:
+          $ref: '#/components/schemas/MountingType'
+        coords:
+          $ref: '#/components/schemas/LayoutCoordinates'
+
     CoachLayoutGridSize:
       type: object
       additionalProperties: false
@@ -8831,25 +8783,6 @@ components:
             Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
           type: string
           nullable: false
-        mounting:
-          $ref: '#/components/schemas/MountingType'
-        coords:
-          $ref: '#/components/schemas/LayoutCoordinates'
-
-    CoachLayoutDirectedInternal:
-      type: object
-      additionalProperties: false
-      required:
-        - icon
-        - coords
-      properties:
-        icon:
-          description: |
-            Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
-          type: string
-          nullable: false
-        direction:
-          $ref: '#/components/schemas/DirectionType'
         mounting:
           $ref: '#/components/schemas/MountingType'
         coords:
@@ -8908,21 +8841,6 @@ components:
           nullable: false
         direction:
           $ref: '#/components/schemas/DirectionType'
-        coords:
-          $ref: '#/components/schemas/LayoutCoordinates'
-
-    CoachLayoutCompartmentNumber:
-      description:
-        Layout item to place a compartment number. The number has no icon, it
-        only places the number
-      type: object
-      additionalProperties: false
-      required:
-        - number
-        - coords
-      properties:
-        number:
-          type: string
         coords:
           $ref: '#/components/schemas/LayoutCoordinates'
 
@@ -9414,119 +9332,6 @@ components:
               minItems: 1
               maxItems: 500
 
-    ContinuousServiceUsage:
-      description: Usage of a continuos service vehicle
-      type: object
-      additionalProperties: false
-      required:
-        - id
-        - status
-        - startUsageDescription
-        - endUsageDescription
-      properties:
-        id:
-          type: string
-          maxLength: 1024
-        status:
-          $ref: '#/components/schemas/ContinuousServiceUsageStatus'
-        geoPosition:
-          $ref: '#/components/schemas/GeoPosition'
-        startUsageDescription:
-          description: start usage procedure description
-          type: string
-          maxLength: 32768
-        endUsageDescription:
-          description: end usage procedure description
-          type: string
-          maxLength: 32768
-        startUsageCredentials:
-          description: credentials to start the usage, e.g. nfc-enabled pkpass
-          $ref: '#/components/schemas/FulfillmentDocument'
-        startUsageTimeLimit:
-          description: time limit to start the usage
-          type: string
-          format: date-time
-        blockingFeeRef:
-          description: id of the fee taken on blocking the vehicle
-          type: string
-          maxLength: 1024
-        tipRef:
-          description: id of the tip provided to staff
-          type: string
-          maxLength: 1024
-        consumptionForPostPayment:
-          $ref: '#/components/schemas/IndicatedConsumption'
-        remainingConsumptionFromPrePayment:
-          $ref: '#/components/schemas/IndicatedConsumption'
-        estimatedTimeOfArrivalAtPickUpPlace:
-          type: string
-          format: date-time
-
-    ContinuousServiceUsageStatus:
-      description: status of the usage of a vehicle
-      type: string
-      x-extensible-enum:
-        - 'VEHICLE_BLOCKED': vehicle is blocked
-        - 'USAGE_STARTED': the traveler started to use the vehicle
-        - 'USAGE_ENDED': the traveler ended the to use of the vehicle
-        - 'BLOCKING_TIME_OUT':
-            the traveler did not start the usage in time and the vehicle is
-            available for other customers.
-        - 'USAGE_TIME_OUT':
-            the traveler did not end the usage but the maximal length of the
-            usage was reached.
-
-    ContinuousServiceUsagePatchRequest:
-      description: Usage of a continuos service vehicle
-      type: object
-      additionalProperties: false
-      required:
-        - id
-        - status
-      properties:
-        id:
-          type: string
-          maxLength: 1024
-        status:
-          $ref: '#/components/schemas/ContinuousServiceUsageStatus'
-        parkingImage:
-          description: |
-            base64 encoded binary of the jpg image of the parked vehicle when ending the usage.
-          type: string
-          format: byte
-          maxLength: 4194304
-        tip:
-          $ref: '#/components/schemas/Tip'
-
-    ContinuousServiceVehicleSelection:
-      type: object
-      additionalProperties: false
-      required:
-        - pickUpPlaceRef
-        - vehicleType
-      properties:
-        pickUpPlaceRef:
-          description: id of the selected pick-up place
-          type: string
-          maxLength: 1024
-        vehicleType:
-          $ref: '#/components/schemas/ContinuousServiceVehicleType'
-
-    ContinuousServicesAvailabilityResponse:
-      type: object
-      additionalProperties: false
-      required:
-        - pickUpPlaces
-      properties:
-        pickUpPlaces:
-          description: |
-            list of pick-up places for on-demand vehicles. The list might include more or other pick up places than mentioned originally in the trip specification.
-          type: array
-          items:
-            $ref: '#/components/schemas/ContinuousServicePickUpPlace'
-          minItems: 1
-          maxItems: 500
-
     ContinuousServicePickUpPlace:
       description: |
         Pick-up places for on-demand vehicles like taxis, bicycles or scooters
@@ -9610,6 +9415,105 @@ components:
             parking image required at the end of the usage
         - 'TIP_SUPPORTED': a driver tip is supported
 
+    ContinuousServicesAvailabilityResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - pickUpPlaces
+      properties:
+        pickUpPlaces:
+          description: |
+            list of pick-up places for on-demand vehicles. The list might include more or other pick up places than mentioned originally in the trip specification.
+          type: array
+          items:
+            $ref: '#/components/schemas/ContinuousServicePickUpPlace'
+          minItems: 1
+          maxItems: 500
+
+    ContinuousServiceUsage:
+      description: Usage of a continuos service vehicle
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - status
+        - startUsageDescription
+        - endUsageDescription
+      properties:
+        id:
+          type: string
+          maxLength: 1024
+        status:
+          $ref: '#/components/schemas/ContinuousServiceUsageStatus'
+        geoPosition:
+          $ref: '#/components/schemas/GeoPosition'
+        startUsageDescription:
+          description: start usage procedure description
+          type: string
+          maxLength: 32768
+        endUsageDescription:
+          description: end usage procedure description
+          type: string
+          maxLength: 32768
+        startUsageCredentials:
+          description: credentials to start the usage, e.g. nfc-enabled pkpass
+          $ref: '#/components/schemas/FulfillmentDocument'
+        startUsageTimeLimit:
+          description: time limit to start the usage
+          type: string
+          format: date-time
+        blockingFeeRef:
+          description: id of the fee taken on blocking the vehicle
+          type: string
+          maxLength: 1024
+        tipRef:
+          description: id of the tip provided to staff
+          type: string
+          maxLength: 1024
+        consumptionForPostPayment:
+          $ref: '#/components/schemas/IndicatedConsumption'
+        remainingConsumptionFromPrePayment:
+          $ref: '#/components/schemas/IndicatedConsumption'
+        estimatedTimeOfArrivalAtPickUpPlace:
+          type: string
+          format: date-time
+
+    ContinuousServiceUsagePatchRequest:
+      description: Usage of a continuos service vehicle
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - status
+      properties:
+        id:
+          type: string
+          maxLength: 1024
+        status:
+          $ref: '#/components/schemas/ContinuousServiceUsageStatus'
+        parkingImage:
+          description: |
+            base64 encoded binary of the jpg image of the parked vehicle when ending the usage.
+          type: string
+          format: byte
+          maxLength: 4194304
+        tip:
+          $ref: '#/components/schemas/Tip'
+
+    ContinuousServiceUsageStatus:
+      description: status of the usage of a vehicle
+      type: string
+      x-extensible-enum:
+        - 'VEHICLE_BLOCKED': vehicle is blocked
+        - 'USAGE_STARTED': the traveler started to use the vehicle
+        - 'USAGE_ENDED': the traveler ended the to use of the vehicle
+        - 'BLOCKING_TIME_OUT':
+            the traveler did not start the usage in time and the vehicle is
+            available for other customers.
+        - 'USAGE_TIME_OUT':
+            the traveler did not end the usage but the maximal length of the
+            usage was reached.
+
     ContinuousServiceVehicleAvailability:
       description: |
         number and type of available vehicles
@@ -9628,6 +9532,20 @@ components:
           description: number of available vehicles
           type: integer
           format: int32
+
+    ContinuousServiceVehicleSelection:
+      type: object
+      additionalProperties: false
+      required:
+        - pickUpPlaceRef
+        - vehicleType
+      properties:
+        pickUpPlaceRef:
+          description: id of the selected pick-up place
+          type: string
+          maxLength: 1024
+        vehicleType:
+          $ref: '#/components/schemas/ContinuousServiceVehicleType'
 
     ContinuousServiceVehicleType:
       description: |
@@ -9716,6 +9634,39 @@ components:
           format: int32
           default: 2
 
+    CurrencyConversion:
+      description: |
+        details on a currency conversion applied
+      required:
+        - originalCurrency
+        - originalAmount
+      properties:
+        description:
+          description: |
+            description of the conversion, e.g. rate, rounding rules, reference to rules
+          type: string
+        originalCurrency:
+          $ref: '#/components/schemas/Currency'
+        originalAmount:
+          description: |
+            amount in cents
+          type: integer
+          format: int32
+          nullable: false
+        scale:
+          description: |
+            scale of the amount - the number of positions after the comma
+          type: integer
+          format: int32
+          nullable: true
+          default: 2
+        appliedRate:
+          type: number
+        originalVats:
+          type: array
+          items:
+            $ref: '#/components/schemas/VAT'
+
     CustomerComplaint:
       type: object
       additionalProperties: false
@@ -9758,19 +9709,6 @@ components:
           $ref: '#/components/schemas/PaymentType'
         bankAccount:
           $ref: '#/components/schemas/BankAccountReference'
-
-    DateRange:
-      type: object
-      additionalProperties: false
-      properties:
-        startTime:
-          type: string
-          format: date-time
-          nullable: true
-        endDate:
-          type: string
-          format: date-time
-          nullable: true
 
     DatedJourney:
       type: object
@@ -9818,6 +9756,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GeneralAttribute'
+
+    DateRange:
+      type: object
+      additionalProperties: false
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
 
     DayTravelAccountUnit:
       allOf:
@@ -9984,6 +9935,20 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
+    DocumentFormat:
+      description: |
+        Physical format of the document provided in the content field in Mime-Type format, e.g.
+        application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
+      type: string
+      enum:
+        - 'application/pdf'
+        - 'application/vnd.apple.pkpass'
+        - 'image/jpeg'
+        - 'image/png'
+        - 'text/calendar'
+        - 'text/html'
+        - 'application/json' # e.g. used for tickets in google wallets (JWT)
+
     DocumentRequest:
       type: object
       additionalProperties: false
@@ -10120,6 +10085,42 @@ components:
         - 'REFUND_INITIATED'
         - 'EXCHANGE_INITIATED'
 
+    ExchangeableType:
+      description: |
+        If set to YES the offerpart is exchangeable without a fee before the day of departure. 
+        NO when not exchangeable or exchangeable with 100% fee, WITH_CONDITIONS in all other cases.
+      type: string
+      enum:
+        - 'YES'
+        - 'NO'
+        - 'WITH_CONDITION'
+
+    ExchangeBreakdownItem:
+      type: object
+      required:
+        - bookingPartIds
+        - exchangeFee
+        - exchangePrice
+      properties:
+        exchangeFee:
+          $ref: '#/components/schemas/Price'
+        exchangePrice:
+          description: |
+            price of the new booking parts
+          $ref: '#/components/schemas/Price'
+        refundableAmount:
+          description: |
+            amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.
+          $ref: '#/components/schemas/Price'
+        amountToBePaid:
+          description: |
+            amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.
+          $ref: '#/components/schemas/Price'
+        bookingPartIds:
+          type: array
+          items:
+            type: string
+
     ExchangeOffer:
       type: object
       additionalProperties: false
@@ -10229,32 +10230,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-
-    ExchangeBreakdownItem:
-      type: object
-      required:
-        - bookingPartIds
-        - exchangeFee
-        - exchangePrice
-      properties:
-        exchangeFee:
-          $ref: '#/components/schemas/Price'
-        exchangePrice:
-          description: |
-            price of the new booking parts
-          $ref: '#/components/schemas/Price'
-        refundableAmount:
-          description: |
-            amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.
-          $ref: '#/components/schemas/Price'
-        amountToBePaid:
-          description: |
-            amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.
-          $ref: '#/components/schemas/Price'
-        bookingPartIds:
-          type: array
-          items:
-            type: string
 
     ExchangeOfferCollectionRequest:
       type: object
@@ -10464,16 +10439,6 @@ components:
         - 'CONFIRMED'
         - 'FULFILLED'
         - 'ERROR'
-
-    ExchangeableType:
-      description: |
-        If set to YES the offerpart is exchangeable without a fee before the day of departure. 
-        NO when not exchangeable or exchangeable with 100% fee, WITH_CONDITIONS in all other cases.
-      type: string
-      enum:
-        - 'YES'
-        - 'NO'
-        - 'WITH_CONDITION'
 
     ExcludedTimeRange:
       type: object
@@ -10809,6 +10774,13 @@ components:
         accountingRef:
           $ref: '#/components/schemas/AccountingRef'
 
+    FeeStatus:
+      type: string
+      enum:
+        - 'PREBOOKED'
+        - 'CONFIRMED'
+        - 'REFUNDED'
+
     Flexibility:
       type: string
       x-extensible-enum:
@@ -11060,20 +11032,6 @@ components:
         - 'TICKET'
         - 'VOUCHER'
 
-    DocumentFormat:
-      description: |
-        Physical format of the document provided in the content field in Mime-Type format, e.g.
-        application/pdf, image/jpeg, etc. Must be filled if the 'content' field is present.
-      type: string
-      enum:
-        - 'application/pdf'
-        - 'application/vnd.apple.pkpass'
-        - 'image/jpeg'
-        - 'image/png'
-        - 'text/calendar'
-        - 'text/html'
-        - 'application/json' # e.g. used for tickets in google wallets (JWT)
-
     FulfillmentId:
       type: string
       nullable: false
@@ -11209,31 +11167,6 @@ components:
           nullable: true
           default: false
 
-    FulfillmentStatus:
-      description: |
-        Individual fulfillments of a multi journey booking need an separate patch to create the usable fulfillment in status FULFILLED before they are in an intermediate state AVAILABLE where they don't provide a document for travel. Fulfillments can be ON_HOLD in case they are booked but not yet available (e.g. a booking providing two journeys per week) or passed in case the fulfillment was not patched for usage within the required time.
-      type: string
-      enum:
-        - 'AVAILABLE'
-        - 'ON_HOLD'
-        - 'CONFIRMED'
-        - 'FULFILLED'
-        - 'CHECKEDIN'
-        - 'CANCELLED'
-        - 'RELEASED'
-        - 'REFUNDED'
-        - 'EXCHANGED'
-        - 'EXPIRED'
-
-    FulfillmentSummaryStatus:
-      description: |
-        status of a fulfillment
-      type: string
-      x-extensible-enum:
-        - 'PENDING' # some fulfillmentids are not jet there
-        - 'CREATED' # all fulfillmentids are created
-        - 'COMPLETE' # no more documents are to be expected
-
     FulfillmentPatchRequest:
       type: object
       additionalProperties: false
@@ -11271,6 +11204,31 @@ components:
             $ref: '#/components/schemas/Problem'
         fulfillment:
           $ref: '#/components/schemas/Fulfillment'
+
+    FulfillmentStatus:
+      description: |
+        Individual fulfillments of a multi journey booking need an separate patch to create the usable fulfillment in status FULFILLED before they are in an intermediate state AVAILABLE where they don't provide a document for travel. Fulfillments can be ON_HOLD in case they are booked but not yet available (e.g. a booking providing two journeys per week) or passed in case the fulfillment was not patched for usage within the required time.
+      type: string
+      enum:
+        - 'AVAILABLE'
+        - 'ON_HOLD'
+        - 'CONFIRMED'
+        - 'FULFILLED'
+        - 'CHECKEDIN'
+        - 'CANCELLED'
+        - 'RELEASED'
+        - 'REFUNDED'
+        - 'EXCHANGED'
+        - 'EXPIRED'
+
+    FulfillmentSummaryStatus:
+      description: |
+        status of a fulfillment
+      type: string
+      x-extensible-enum:
+        - 'PENDING' # some fulfillmentids are not jet there
+        - 'CREATED' # all fulfillmentids are created
+        - 'COMPLETE' # no more documents are to be expected
 
     FulfillmentType:
       description: |
@@ -11373,17 +11331,6 @@ components:
             longitude:
               $ref: '#/components/schemas/Longitude'
 
-    GrantedReductionAmounts:
-      type: object
-      additionalProperties: false
-      description: |
-        granted reduction amounts
-      properties:
-        grantedReductionAmount:
-          type: array
-          items:
-            $ref: '#/components/schemas/GrantedReductionAmount'
-
     GrantedReductionAmount:
       type: object
       additionalProperties: false
@@ -11428,6 +11375,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PromotionCode'
+
+    GrantedReductionAmounts:
+      type: object
+      additionalProperties: false
+      description: |
+        granted reduction amounts
+      properties:
+        grantedReductionAmount:
+          type: array
+          items:
+            $ref: '#/components/schemas/GrantedReductionAmount'
 
     GraphicElement:
       type: object
@@ -11741,39 +11699,6 @@ components:
           format: int32
           nullable: false
 
-    LegAttribute:
-      type: object
-      additionalProperties: false
-      description: |
-        Attributes that are not valid on the whole service, but only on section of a trip made on a single mode without interchange between boarding and alighting.
-      required:
-        - text
-      properties:
-        text:
-          description: |
-            Text of the attribute to be shown to the user.
-          type: string
-          nullable: false
-        code:
-          description: |
-            Internal code of the attribute. Can be used for detection of double occurrences. Refers to Service Facilities / Leg Attributes from the Catalog of Code Lists
-          type: string
-          nullable: true
-        fromStopSeqNumber:
-          description: |
-            The attribute is valid from the stop point with this sequence number within the leg. If missing it is valid from the beginning of the leg.
-          type: integer
-          format: int32
-          minimum: 0
-          nullable: true
-        toStopSeqNumber:
-          description: |
-            The attribute is valid to the stop point (inclusively) with this sequence number within the leg. If missing it is valid to the end of the leg.
-          type: integer
-          format: int32
-          minimum: 0
-          nullable: true
-
     LegacyAccountingIdentifier:
       type: object
       additionalProperties: false
@@ -11872,6 +11797,39 @@ components:
             legacy tariff code
           type: integer
           format: int32
+          nullable: true
+
+    LegAttribute:
+      type: object
+      additionalProperties: false
+      description: |
+        Attributes that are not valid on the whole service, but only on section of a trip made on a single mode without interchange between boarding and alighting.
+      required:
+        - text
+      properties:
+        text:
+          description: |
+            Text of the attribute to be shown to the user.
+          type: string
+          nullable: false
+        code:
+          description: |
+            Internal code of the attribute. Can be used for detection of double occurrences. Refers to Service Facilities / Leg Attributes from the Catalog of Code Lists
+          type: string
+          nullable: true
+        fromStopSeqNumber:
+          description: |
+            The attribute is valid from the stop point with this sequence number within the leg. If missing it is valid from the beginning of the leg.
+          type: integer
+          format: int32
+          minimum: 0
+          nullable: true
+        toStopSeqNumber:
+          description: |
+            The attribute is valid to the stop point (inclusively) with this sequence number within the leg. If missing it is valid to the end of the leg.
+          type: integer
+          format: int32
+          minimum: 0
           nullable: true
 
     Line:
@@ -12148,6 +12106,18 @@ components:
                 The license plate is a personal data item and must not be provided in an offer request.
                 It must be patched into the offer after the customer accepted the offer for booking
               type: string
+
+    MotorcycleSpecification:
+      allOf:
+        - $ref: '#/components/schemas/AbstractTransportableVehicleSpecification'
+        - type: object
+          properties:
+            isSideCarIncluded:
+              description: deprecated use car of type SPECIAL_VEHICLE instead
+              deprecated: true
+              type: boolean
+              nullable: true
+              default: false
 
     MountingType:
       type: string
@@ -12458,6 +12428,19 @@ components:
         - 'NONE'
       default: 'ALL'
 
+    OfferMode:
+      description: |
+        Offer mode applied to provide offers for given criteria. 
+
+        Individual offer mode means that each passenger is given individual admissions and reservations  to allow to refund individual passengers booked in a single booking.
+
+        If collective mode is not supported,  reverts back to the other mode and provides warning instead.
+
+      type: string
+      enum:
+        - 'COLLECTIVE'
+        - 'INDIVIDUAL'
+
     OfferOverviewRoute:
       type: object
       properties:
@@ -12473,6 +12456,55 @@ components:
           nullable: false
         routeSpecification:
           $ref: '#/components/schemas/RouteSpecification'
+
+    OfferOverviewRouteRequest:
+      type: object
+      description: |
+        Defines the parameters needed to request an offer overview for a route. Travel class and flexibility are optional parameters to filter the desired offers.
+      required:
+        - routeSpecification
+        - passengerSpecifications
+        - startDateTime
+        - endDateTime
+      properties:
+        routeSpecification:
+          $ref: '#/components/schemas/RouteSpecification'
+        passengerSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnonymousPassengerSpecification'
+          minItems: 1
+        startDateTime:
+          type: string
+          format: date-time
+          nullable: false
+        endDateTime:
+          type: string
+          format: date-time
+          nullable: false
+        timeFrameSegmentation:
+          allOf:
+            - $ref: '#/components/schemas/TimeFrameSegmentation'
+          default: 'DAY'
+          description: |
+            Defines the segmentation of the time frame for the offer overview. The default is DAY, which means that one price offer overview is given for 
+            each day of the requested time frame (provided there aren't more than one travel classes or flexibilities for one time segment).
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        flexibility:
+          $ref: '#/components/schemas/Flexibility'
+
+    OfferOverviewRouteResponse:
+      type: object
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        offerOverviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferOverviewRoute'
 
     OfferOverviewTrip:
       type: object
@@ -12538,68 +12570,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OfferOverviewTrip'
-
-    OfferOverviewRouteRequest:
-      type: object
-      description: |
-        Defines the parameters needed to request an offer overview for a route. Travel class and flexibility are optional parameters to filter the desired offers.
-      required:
-        - routeSpecification
-        - passengerSpecifications
-        - startDateTime
-        - endDateTime
-      properties:
-        routeSpecification:
-          $ref: '#/components/schemas/RouteSpecification'
-        passengerSpecifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnonymousPassengerSpecification'
-          minItems: 1
-        startDateTime:
-          type: string
-          format: date-time
-          nullable: false
-        endDateTime:
-          type: string
-          format: date-time
-          nullable: false
-        timeFrameSegmentation:
-          allOf:
-            - $ref: '#/components/schemas/TimeFrameSegmentation'
-          default: 'DAY'
-          description: |
-            Defines the segmentation of the time frame for the offer overview. The default is DAY, which means that one price offer overview is given for 
-            each day of the requested time frame (provided there aren't more than one travel classes or flexibilities for one time segment).
-        travelClass:
-          $ref: '#/components/schemas/TravelClass'
-        flexibility:
-          $ref: '#/components/schemas/Flexibility'
-
-    OfferOverviewRouteResponse:
-      type: object
-      properties:
-        problems:
-          type: array
-          items:
-            $ref: '#/components/schemas/Problem'
-        offerOverviews:
-          type: array
-          items:
-            $ref: '#/components/schemas/OfferOverviewRoute'
-
-    OfferMode:
-      description: |
-        Offer mode applied to provide offers for given criteria. 
-
-        Individual offer mode means that each passenger is given individual admissions and reservations  to allow to refund individual passengers booked in a single booking.
-
-        If collective mode is not supported,  reverts back to the other mode and provides warning instead.
-
-      type: string
-      enum:
-        - 'COLLECTIVE'
-        - 'INDIVIDUAL'
 
     OfferPartReference:
       type: object
@@ -13004,43 +12974,25 @@ components:
         - 'CERTIFIED_MEDICAL_CONDITION'
         - 'DELAY_COMPENSATION'
 
-    PRMNeedType:
-      type: string
-      x-extensible-enum:
-        - 'NEED_PRM_SUPPORT'
-        - 'WHEELCHAIR'
-        - 'ACCOMPANYING_DOG'
-        - 'COMPANION_SEAT'
-        - 'COMPANION'
-
-    PTMode:
-      description: |
-        TAP-TSI/UIC contains a sensible subset of SIRI Transport Modes.
-        Values from the [Transport Mode Code List](https://osdm.io/spec/catalog-of-code-lists/#TransportMode)
-        Listed values here are examples.
-      type: string
-      x-extensible-enum:
-        - 'HIGH_SPEED_TRAIN'
-        - 'HISTORIC_TRAIN'
-        - 'INTERCITY'
-        - 'REGIONAL'
-        - 'INTERREGIONAL'
-        - 'URBAN'
-        - 'TRAIN'
-        - 'TRAM'
-        - 'UNDERGROUND'
-        - 'NIGHT_TRAIN'
-        - 'SHARED_TAXI'
-        - 'MOTOR_RAIL'
-        - 'MOUNTAIN_TRAIN'
-        - 'PLANE'
-        - 'COACH_GROUP'
-        - 'SHIP'
-        - 'BUS'
-        - 'ON_DEMAND_SERVICE'
-        - 'BICYCLE'
-        - 'SCOOTER'
-        - 'TAXI'
+    PartReference:
+      type: object
+      description: reference to a fare or offerPart
+      required:
+        - contextId
+        - contextType
+        - resourceId
+        - resourceType
+      properties:
+        contextId:
+          type: string
+          maxLength: 32768
+        contextType:
+          $ref: '#/components/schemas/ContextType'
+        resourceId:
+          type: string
+          maxLength: 32768
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
 
     Passenger:
       type: object
@@ -13174,6 +13126,58 @@ components:
             $ref: '#/components/schemas/Problem'
         passenger:
           $ref: '#/components/schemas/Passenger'
+
+    PassengersBatchUpdateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        passengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Passenger'
+
+    PassengersCollectionResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        passengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Passenger'
+
+    PassengerSearchRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        externalRef:
+          description: |
+            A stable reference to a person from other elements, or from caller system.
+            When received in input of a request, it must be echoed back in the response.
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        dateOfBirth:
+          type: string
+          format: date
+          nullable: true
+        phoneNumber:
+          description:
+            format according to E.164 The international public telecommunication
+            numbering plan
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
 
     PassengerSpecification:
       type: object
@@ -13360,36 +13364,6 @@ components:
             receipt
           nullable: true
           example: CZ1234567890
-
-    PassengerSearchRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        externalRef:
-          description: |
-            A stable reference to a person from other elements, or from caller system.
-            When received in input of a request, it must be echoed back in the response.
-          type: string
-          nullable: true
-        firstName:
-          type: string
-          nullable: true
-        lastName:
-          type: string
-          nullable: true
-        dateOfBirth:
-          type: string
-          format: date
-          nullable: true
-        phoneNumber:
-          description:
-            format according to E.164 The international public telecommunication
-            numbering plan
-          type: string
-          nullable: true
-        email:
-          type: string
-          nullable: true
 
     Place:
       type: object
@@ -13656,6 +13630,30 @@ components:
         selectionFee:
           $ref: '#/components/schemas/SelectionFee'
 
+    PlacePreferenceGroup:
+      type: object
+      additionalProperties: false
+      required:
+        - preferenceGroup
+        - preferences
+      properties:
+        preferenceGroup:
+          description: |
+            Values from the [Reservation Preference Group Code List](https://osdm.io/spec/catalog-of-code-lists/#ReservationPreferenceGroup)
+          type: string
+          nullable: false
+          example: 'BERTH_LOCATION'
+        preferences:
+          description: |
+            Place preferences in the group. 
+            Values from the [Place Property Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
+          type: array
+          items:
+            type: string
+          minItems: 1
+          nullable: false
+          example: 'WINDOW'
+
     PlacePreSelection:
       type: object
       additionalProperties: false
@@ -13681,30 +13679,6 @@ components:
             Place number as indicated at the place in the coach
           type: string
           nullable: false
-
-    PlacePreferenceGroup:
-      type: object
-      additionalProperties: false
-      required:
-        - preferenceGroup
-        - preferences
-      properties:
-        preferenceGroup:
-          description: |
-            Values from the [Reservation Preference Group Code List](https://osdm.io/spec/catalog-of-code-lists/#ReservationPreferenceGroup)
-          type: string
-          nullable: false
-          example: 'BERTH_LOCATION'
-        preferences:
-          description: |
-            Place preferences in the group. 
-            Values from the [Place Property Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
-          type: array
-          items:
-            type: string
-          minItems: 1
-          nullable: false
-          example: 'WINDOW'
 
     PlaceProperty:
       type: string
@@ -13939,6 +13913,43 @@ components:
             $ref: '#/components/schemas/GeoPosition'
           minItems: 1
 
+    PostalAddress:
+      type: object
+      properties:
+        countryName:
+          description: |
+            Country of the address.
+          type: string
+          nullable: true
+          example: The Netherlands
+        countryCode:
+          $ref: '#/components/schemas/CountryCode'
+        postCode:
+          description: |
+            Postal code of the address.
+          type: string
+          nullable: true
+          example: 2265CA
+        city:
+          description: |
+            City name
+          type: string
+          nullable: true
+          example: Leidschendam
+        street:
+          description: |
+            Street name of the address. Can also contain the house number.
+          type: string
+          nullable: true
+          example: Oude Trambaan
+        houseNumber:
+          description: |
+            House number of the address. House number can either be in this separate field, or can be
+            contained in the street field.
+          type: string
+          nullable: true
+          example: 7
+
     Price:
       type: object
       additionalProperties: false
@@ -13968,38 +13979,14 @@ components:
         appliedCurrencyConversion:
           $ref: '#/components/schemas/CurrencyConversion'
 
-    CurrencyConversion:
-      description: |
-        details on a currency conversion applied
-      required:
-        - originalCurrency
-        - originalAmount
-      properties:
-        description:
-          description: |
-            description of the conversion, e.g. rate, rounding rules, reference to rules
-          type: string
-        originalCurrency:
-          $ref: '#/components/schemas/Currency'
-        originalAmount:
-          description: |
-            amount in cents
-          type: integer
-          format: int32
-          nullable: false
-        scale:
-          description: |
-            scale of the amount - the number of positions after the comma
-          type: integer
-          format: int32
-          nullable: true
-          default: 2
-        appliedRate:
-          type: number
-        originalVats:
-          type: array
-          items:
-            $ref: '#/components/schemas/VAT'
+    PRMNeedType:
+      type: string
+      x-extensible-enum:
+        - 'NEED_PRM_SUPPORT'
+        - 'WHEELCHAIR'
+        - 'ACCOMPANYING_DOG'
+        - 'COMPANION_SEAT'
+        - 'COMPANION'
 
     Problem:
       type: object
@@ -14234,203 +14221,6 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    ProductRequestOfferSelection:
-      type: object
-      additionalProperties: false
-      description: |
-        product selection by product code or product tag for an offer request (exactly one of `productCode` and `productTag` must be provided). The number of items indicates the quantity 
-        to be required. Passengers must be referenced in case the product is intended for passengers.
-      properties:
-        productCode:
-          type: string
-          example: PT00AD
-        productTag:
-          type: string
-        numberOfItems:
-          type: integer
-          nullable: true
-          format: int32
-          minimum: 1
-        externalPassengerRefs:
-          type: array
-          items:
-            type: string
-
-    ProductSearchRequest:
-      type: object
-      additionalProperties: false
-      description: |
-        Search criteria to search for products
-      properties:
-        id:
-          description: |
-            id of the product
-          type: string
-          nullable: false
-        types:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductType'
-        codes:
-          description: |
-            The product codes to be searched.
-          type: array
-          items:
-            type: string
-        flexibilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Flexibility'
-        serviceClasses:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceClass'
-        travelClasses:
-          type: array
-          items:
-            $ref: '#/components/schemas/TravelClass'
-        fulfillmentOptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentOption'
-        productTags:
-          description: product tags associated with the product
-          type: array
-          items:
-            type: string
-            nullable: true
-
-    ProductSearchResponse:
-      type: object
-      additionalProperties: false
-      description: |
-        Result of a product search
-      required:
-        - products
-      properties:
-        products:
-          type: array
-          minItems: 1
-          maxItems: 500
-          items:
-            $ref: '#/components/schemas/Product'
-        problems:
-          type: array
-          items:
-            $ref: '#/components/schemas/Problem'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-
-    ProductTag:
-      description: |
-        Values from the [Product Tags Code List](https://osdm.io/spec/catalog-of-code-lists/#ProductTags)
-        Known values:
-        - SPLIT_RESERVATION
-          Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation
-          Without this indication the provider is not allowed to use the SplitSection Object inside a reservation. 
-          The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover a full leg 
-          multiple reservations as offerParts should be created.
-        - CARD_LOST
-          Tag used to request a non-trip offer to replace a lost card. This applies to physical cards only.
-        - TICKET_LOST
-          Tag used to request a non-trip offer to replace a lost ticket. This applies to physical tickets only.
-        - Product Types
-          All product types can be used as Product Tags in the search
-      type: string
-      x-extensible-enum:
-        - 'SPLIT_RESERVATION'
-        - 'CARD_LOST'
-        - 'TICKET_LOST'
-        - 'ADMISSION_MULTI_RIDE'
-        - 'ADMISSION_POINT2POINT'
-        - 'ADMISSION_PASS'
-        - 'UPGRADE_PASS'
-        - 'UPGRADE_POINT2POINT'
-        - 'UPGRADE_MULTI_RIDE'
-        - 'RESERVATION'
-        - 'ANCILLARY_SERVICE'
-        - 'ANCILLARY_ITEM'
-        - 'REDUCTION_CARD'
-
-    ProductTagsResponse:
-      type: object
-      additionalProperties: false
-      description: |
-        Result of a product search
-      required:
-        - productTagNames
-        - productTagGroups
-      properties:
-        productTagNames:
-          type: array
-          minItems: 1
-          maxItems: 1000
-          items:
-            $ref: '#/components/schemas/ProductTagName'
-        productTagGroups:
-          type: array
-          minItems: 1
-          maxItems: 500
-          items:
-            $ref: '#/components/schemas/ProductTagGroup'
-        problems:
-          type: array
-          items:
-            $ref: '#/components/schemas/Problem'
-
-    ProductTagName:
-      description: |
-        Product tags including a description,  The short text of the description should serve as a name on a button.
-      required:
-        - tag
-        - description
-      properties:
-        tag:
-          $ref: '#/components/schemas/ProductTag'
-        description:
-          $ref: '#/components/schemas/Text'
-
-    ProductTagGroup:
-      description: |
-        Group of product tags with a description.
-      required:
-        - code
-        - description
-      properties:
-        code:
-          type: string
-          maxLength: 1024
-        description:
-          $ref: '#/components/schemas/Text'
-        productTags:
-          type: array
-          minItems: 1
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/ProductTag'
-
-    ProductType:
-      description: |
-        General product types harmonized across fare providers. (More to be added, use null for types not listed yet.)
-        Values from the [Product Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ProductTypes)
-        Listed values here are examples.
-      type: string
-      x-extensible-enum:
-        - 'ADMISSION_PASS'
-        - 'ADMISSION_MULTI_RIDE'
-        - 'ADMISSION_POINT2POINT'
-        - 'UPGRADE_PASS'
-        - 'UPGRADE_MULTI_RIDE'
-        - 'UPGRADE_POINT2POINT'
-        - 'RESERVATION'
-        - 'ANCILLARY_SERVICE'
-        - 'ANCILLARY_ITEM'
-        - 'REDUCTION_CARD'
-
     ProductCategory:
       type: object
       additionalProperties: false
@@ -14513,6 +14303,28 @@ components:
             type: string
           nullable: true
 
+    ProductRequestOfferSelection:
+      type: object
+      additionalProperties: false
+      description: |
+        product selection by product code or product tag for an offer request (exactly one of `productCode` and `productTag` must be provided). The number of items indicates the quantity 
+        to be required. Passengers must be referenced in case the product is intended for passengers.
+      properties:
+        productCode:
+          type: string
+          example: PT00AD
+        productTag:
+          type: string
+        numberOfItems:
+          type: integer
+          nullable: true
+          format: int32
+          minimum: 1
+        externalPassengerRefs:
+          type: array
+          items:
+            type: string
+
     ProductResponse:
       type: object
       additionalProperties: false
@@ -14526,6 +14338,75 @@ components:
             $ref: '#/components/schemas/Problem'
         product:
           $ref: '#/components/schemas/Product'
+
+    ProductSearchRequest:
+      type: object
+      additionalProperties: false
+      description: |
+        Search criteria to search for products
+      properties:
+        id:
+          description: |
+            id of the product
+          type: string
+          nullable: false
+        types:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductType'
+        codes:
+          description: |
+            The product codes to be searched.
+          type: array
+          items:
+            type: string
+        flexibilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Flexibility'
+        serviceClasses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceClass'
+        travelClasses:
+          type: array
+          items:
+            $ref: '#/components/schemas/TravelClass'
+        fulfillmentOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOption'
+        productTags:
+          description: product tags associated with the product
+          type: array
+          items:
+            type: string
+            nullable: true
+
+    ProductSearchResponse:
+      type: object
+      additionalProperties: false
+      description: |
+        Result of a product search
+      required:
+        - products
+      properties:
+        products:
+          type: array
+          minItems: 1
+          maxItems: 500
+          items:
+            $ref: '#/components/schemas/Product'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        _links:
+          description: |
+            Java Property Name: 'links'
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     ProductSummary:
       type: object
@@ -14546,6 +14427,112 @@ components:
         code:
           type: string
           nullable: false
+
+    ProductTag:
+      description: |
+        Values from the [Product Tags Code List](https://osdm.io/spec/catalog-of-code-lists/#ProductTags)
+        Known values:
+        - SPLIT_RESERVATION
+          Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation
+          Without this indication the provider is not allowed to use the SplitSection Object inside a reservation. 
+          The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover a full leg 
+          multiple reservations as offerParts should be created.
+        - CARD_LOST
+          Tag used to request a non-trip offer to replace a lost card. This applies to physical cards only.
+        - TICKET_LOST
+          Tag used to request a non-trip offer to replace a lost ticket. This applies to physical tickets only.
+        - Product Types
+          All product types can be used as Product Tags in the search
+      type: string
+      x-extensible-enum:
+        - 'SPLIT_RESERVATION'
+        - 'CARD_LOST'
+        - 'TICKET_LOST'
+        - 'ADMISSION_MULTI_RIDE'
+        - 'ADMISSION_POINT2POINT'
+        - 'ADMISSION_PASS'
+        - 'UPGRADE_PASS'
+        - 'UPGRADE_POINT2POINT'
+        - 'UPGRADE_MULTI_RIDE'
+        - 'RESERVATION'
+        - 'ANCILLARY_SERVICE'
+        - 'ANCILLARY_ITEM'
+        - 'REDUCTION_CARD'
+
+    ProductTagGroup:
+      description: |
+        Group of product tags with a description.
+      required:
+        - code
+        - description
+      properties:
+        code:
+          type: string
+          maxLength: 1024
+        description:
+          $ref: '#/components/schemas/Text'
+        productTags:
+          type: array
+          minItems: 1
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/ProductTag'
+
+    ProductTagName:
+      description: |
+        Product tags including a description,  The short text of the description should serve as a name on a button.
+      required:
+        - tag
+        - description
+      properties:
+        tag:
+          $ref: '#/components/schemas/ProductTag'
+        description:
+          $ref: '#/components/schemas/Text'
+
+    ProductTagsResponse:
+      type: object
+      additionalProperties: false
+      description: |
+        Result of a product search
+      required:
+        - productTagNames
+        - productTagGroups
+      properties:
+        productTagNames:
+          type: array
+          minItems: 1
+          maxItems: 1000
+          items:
+            $ref: '#/components/schemas/ProductTagName'
+        productTagGroups:
+          type: array
+          minItems: 1
+          maxItems: 500
+          items:
+            $ref: '#/components/schemas/ProductTagGroup'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+
+    ProductType:
+      description: |
+        General product types harmonized across fare providers. (More to be added, use null for types not listed yet.)
+        Values from the [Product Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ProductTypes)
+        Listed values here are examples.
+      type: string
+      x-extensible-enum:
+        - 'ADMISSION_PASS'
+        - 'ADMISSION_MULTI_RIDE'
+        - 'ADMISSION_POINT2POINT'
+        - 'UPGRADE_PASS'
+        - 'UPGRADE_MULTI_RIDE'
+        - 'UPGRADE_POINT2POINT'
+        - 'RESERVATION'
+        - 'ANCILLARY_SERVICE'
+        - 'ANCILLARY_ITEM'
+        - 'REDUCTION_CARD'
 
     PromotionCode:
       type: object
@@ -14569,27 +14556,34 @@ components:
           type: string
           nullable: true
 
-    PassengersBatchUpdateRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        passengers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Passenger'
-
-    PassengersCollectionResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        problems:
-          type: array
-          items:
-            $ref: '#/components/schemas/Problem'
-        passengers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Passenger'
+    PTMode:
+      description: |
+        TAP-TSI/UIC contains a sensible subset of SIRI Transport Modes.
+        Values from the [Transport Mode Code List](https://osdm.io/spec/catalog-of-code-lists/#TransportMode)
+        Listed values here are examples.
+      type: string
+      x-extensible-enum:
+        - 'HIGH_SPEED_TRAIN'
+        - 'HISTORIC_TRAIN'
+        - 'INTERCITY'
+        - 'REGIONAL'
+        - 'INTERREGIONAL'
+        - 'URBAN'
+        - 'TRAIN'
+        - 'TRAM'
+        - 'UNDERGROUND'
+        - 'NIGHT_TRAIN'
+        - 'SHARED_TAXI'
+        - 'MOTOR_RAIL'
+        - 'MOUNTAIN_TRAIN'
+        - 'PLANE'
+        - 'COACH_GROUP'
+        - 'SHIP'
+        - 'BUS'
+        - 'ON_DEMAND_SERVICE'
+        - 'BICYCLE'
+        - 'SCOOTER'
+        - 'TAXI'
 
     Purchaser:
       type: object
@@ -15398,24 +15392,6 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    ReleaseOfferRequestAsyncResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        warnings:
-          deprecated: true
-          $ref: '#/components/schemas/WarningCollection'
-        problems:
-          type: array
-          items:
-            $ref: '#/components/schemas/Problem'
-        releaseOfferIds:
-          description: |
-            Ids of the release offers created asynchronously. Retrieve GET release-offers/{releaseOfferId} to poll the status
-          type: array
-          items:
-            type: string
-
     ReleaseOfferPatchRequest:
       type: object
       additionalProperties: false
@@ -15441,6 +15417,24 @@ components:
             $ref: '#/components/schemas/RefundSpecification'
         overruleCode:
           $ref: '#/components/schemas/OverruleCode'
+
+    ReleaseOfferRequestAsyncResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        warnings:
+          deprecated: true
+          $ref: '#/components/schemas/WarningCollection'
+        problems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Problem'
+        releaseOfferIds:
+          description: |
+            Ids of the release offers created asynchronously. Retrieve GET release-offers/{releaseOfferId} to poll the status
+          type: array
+          items:
+            type: string
 
     ReleaseOfferResponse:
       type: object
@@ -15903,6 +15897,14 @@ components:
           $ref: '#/components/schemas/StopPlace'
         fareReferenceStation:
           $ref: '#/components/schemas/FareReferenceStation'
+
+    RouteSpecification:
+      type: object
+      properties:
+        origin:
+          $ref: '#/components/schemas/PlaceRef'
+        destination:
+          $ref: '#/components/schemas/PlaceRef'
 
     Section:
       type: object
@@ -16501,15 +16503,6 @@ components:
       x-extensible-enum:
         - 'RESPLUS'
 
-    TimeUnit:
-      description: |
-        Values from the [Time Unit Code List](https://osdm.io/spec/catalog-of-code-lists/#TimeUnit)
-      type: string
-      enum:
-        - 'DAYS'
-        - 'HOURS'
-        - 'MINUTES'
-
     TimedLeg:
       type: object
       additionalProperties: false
@@ -16574,6 +16567,15 @@ components:
       enum:
         - 'HOUR'
         - 'DAY'
+
+    TimeUnit:
+      description: |
+        Values from the [Time Unit Code List](https://osdm.io/spec/catalog-of-code-lists/#TimeUnit)
+      type: string
+      enum:
+        - 'DAYS'
+        - 'HOURS'
+        - 'MINUTES'
 
     Tip:
       type: object
@@ -16677,6 +16679,12 @@ components:
       enum:
         - 'BOARDING'
         - 'ARRIVAL'
+
+    TransactionContextType:
+      type: string
+      x-extensible-enum:
+        - 'SALES'
+        - 'AFTER_SALES'
 
     TransferLeg:
       type: object
@@ -17148,6 +17156,15 @@ components:
         - 'DAY'
         - 'DURATION'
 
+    TripChangeCriteria:
+      type: object
+      additionalProperties: false
+      description: |
+        Trip change request structure. Provided by OJP.
+      properties:
+        TripResult:
+          $ref: '#/components/schemas/TripResult'
+
     TripCollectionResponse:
       type: object
       additionalProperties: false
@@ -17336,14 +17353,6 @@ components:
           type: string
           nullable: false
 
-    RouteSpecification:
-      type: object
-      properties:
-        origin:
-          $ref: '#/components/schemas/PlaceRef'
-        destination:
-          $ref: '#/components/schemas/PlaceRef'
-
     TripLegSpecification:
       type: object
       additionalProperties: false
@@ -17439,15 +17448,6 @@ components:
         itModesToCover:
           $ref: '#/components/schemas/IndividualMode'
 
-    TripChangeCriteria:
-      type: object
-      additionalProperties: false
-      description: |
-        Trip change request structure. Provided by OJP.
-      properties:
-        TripResult:
-          $ref: '#/components/schemas/TripResult'
-
     TripResponse:
       type: object
       additionalProperties: false
@@ -17472,6 +17472,15 @@ components:
         - 'NONE'
       default: 'ALL'
 
+    TripResponseParameters:
+      type: object
+      additionalProperties: false
+      description: |
+        Options to control response contents on Trip objects.
+      properties:
+        stopBehavior:
+          $ref: '#/components/schemas/StopBehavior'
+
     TripResult:
       type: object
       additionalProperties: false
@@ -17481,14 +17490,14 @@ components:
         TripSummary:
           $ref: '#/components/schemas/TripSpecificationSummary'
 
-    TripResponseParameters:
-      type: object
-      additionalProperties: false
-      description: |
-        Options to control response contents on Trip objects.
-      properties:
-        stopBehavior:
-          $ref: '#/components/schemas/StopBehavior'
+    TripsCollectionResponseContent:
+      type: string
+      enum:
+        - 'ALL'
+        - 'TRIPS'
+        - 'TRIPSUMMARIES'
+        - 'NONE'
+      default: ALL
 
     TripSearchCriteria:
       type: object
@@ -17582,6 +17591,26 @@ components:
         returnSearchParameters:
           $ref: '#/components/schemas/ReturnSearchParameters'
 
+    TripSpecificationSummary:
+      type: object
+      additionalProperties: false
+      description: |
+        Trip specification summary. Provided by OJP. 
+        It requires the id of an already existing trip to change and specifies the parameters which must be used to generate the new trip.
+      required:
+        - id
+      properties:
+        id:
+          description: |
+            The id of an already existing trip to change.
+          type: string
+          maxLength: 32768
+          nullable: false
+        origin:
+          $ref: '#/components/schemas/PlaceRef'
+        destination:
+          $ref: '#/components/schemas/PlaceRef'
+
     TripStatus:
       type: object
       additionalProperties: false
@@ -17616,26 +17645,6 @@ components:
           type: boolean
           nullable: true
           default: false
-
-    TripSpecificationSummary:
-      type: object
-      additionalProperties: false
-      description: |
-        Trip specification summary. Provided by OJP. 
-        It requires the id of an already existing trip to change and specifies the parameters which must be used to generate the new trip.
-      required:
-        - id
-      properties:
-        id:
-          description: |
-            The id of an already existing trip to change.
-          type: string
-          maxLength: 32768
-          nullable: false
-        origin:
-          $ref: '#/components/schemas/PlaceRef'
-        destination:
-          $ref: '#/components/schemas/PlaceRef'
 
     TripSummary:
       type: object
@@ -17723,14 +17732,36 @@ components:
         dataFilter:
           $ref: '#/components/schemas/TripDataFilter'
 
-    TripsCollectionResponseContent:
+    ValidityRange:
+      type: object
+      additionalProperties: false
+      required:
+        - timeUnit
+        - value
+      properties:
+        timeUnit:
+          $ref: '#/components/schemas/TimeUnit'
+        value:
+          type: integer
+          format: int32
+          nullable: false
+        hoursAfterMidnight:
+          description: |
+            validity extended after midnight
+          type: integer
+          format: int32
+          nullable: true
+
+    ValidityType:
+      description: |
+        Type of usage, either as single trip or multiple trips. Unrestricted fares might be combined into single trips if appropriate. Values from the [Travel Validity Type Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelValidityType) 
+        Values from the [Tavel Validity Type Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelValidityType)
+        Listed values here are examples.
       type: string
-      enum:
-        - 'ALL'
-        - 'TRIPS'
-        - 'TRIPSUMMARIES'
-        - 'NONE'
-      default: ALL
+      x-extensible-enum:
+        - 'SINGLE_TRIP'
+        - 'MULTIPLE_TRIPS'
+        - 'UNRESTRICTED'
 
     VAT:
       type: object
@@ -17764,37 +17795,6 @@ components:
           nullable: true
         scope:
           $ref: '#/components/schemas/VatScope'
-
-    ValidityRange:
-      type: object
-      additionalProperties: false
-      required:
-        - timeUnit
-        - value
-      properties:
-        timeUnit:
-          $ref: '#/components/schemas/TimeUnit'
-        value:
-          type: integer
-          format: int32
-          nullable: false
-        hoursAfterMidnight:
-          description: |
-            validity extended after midnight
-          type: integer
-          format: int32
-          nullable: true
-
-    ValidityType:
-      description: |
-        Type of usage, either as single trip or multiple trips. Unrestricted fares might be combined into single trips if appropriate. Values from the [Travel Validity Type Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelValidityType) 
-        Values from the [Tavel Validity Type Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelValidityType)
-        Listed values here are examples.
-      type: string
-      x-extensible-enum:
-        - 'SINGLE_TRIP'
-        - 'MULTIPLE_TRIPS'
-        - 'UNRESTRICTED'
 
     VatScope:
       description: |
