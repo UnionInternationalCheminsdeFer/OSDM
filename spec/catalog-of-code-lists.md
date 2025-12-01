@@ -1197,12 +1197,20 @@ List](https://uic.org/passenger/passenger-services-group/article/service-brand-c
 
 ## Service Class <a name="ServiceClass">
 
-| Code       | Description           |
-| ---------- | --------------------- |
-| `BEST`     |                       |
-| `HIGH`     | Standard first class  |
-| `STANDARD` |                       |
-| `BASIC`    | Standard second class |
+Service classes are assigned by the individual carriers. Note that the Code (used in `ServiceClassType` and in `ServiceClass.type`) should
+not be confused with the marketing name used for the Service class. The marketing name is returned in `ServiceClass.name`.
+
+Specifically, there are carriers which market their `BASIC` Service class as "Standard".
+
+Note also that the assignment of Service classes to Travel classes is defined by the carriers.
+
+| Code        | Description               | Travel Class     |
+| ----------- | ------------------------- | ---------------- |
+| `BEST`      | Highest service class     | usually "FIRST"  |
+| `HIGH`      |                           |                  |
+| `STANDARD`  |                           |                  |
+| `BASIC`     | Lowest service class      | usually "SECOND" |
+| `ANY_CLASS` | Unspecified service class |                  |
 
 ## Service Degradation <a name="ServiceDegradation">
 
@@ -1541,3 +1549,4 @@ passenger to interrupt a trip.
 | `NONE`       | No action is required from the passenger in case he is interrupting his trip.                               |
 | `MANUAL`     | In case a passenger is interrupting his trip he needs to receive a confirmation from train or station staff |
 | `ACTIVATION` | The electronic ticket needs to be deactivated during the interruption.                                      |
+
