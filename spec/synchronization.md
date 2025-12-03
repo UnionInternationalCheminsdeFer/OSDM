@@ -7,11 +7,12 @@ permalink: /spec/synchronization/
 
 ## Table of contents
 
-1. [Synchronization](#Synchronization)
-2. [Event Types and Their Semantics](#EventTypesandTheirSemantics)
-   1. [Booking](#Booking)
-   2. [Complaints](#Complaints)
-3. [Subscribing to Events](#SubscribingtoEvents)
+- [Table of contents](#table-of-contents)
+- [Synchronization ](#synchronization-)
+- [Event Types and Their Semantics ](#event-types-and-their-semantics-)
+  - [Booking ](#booking-)
+  - [Complaints ](#complaints-)
+- [Subscribing to Events ](#subscribing-to-events-)
 
 ## Synchronization <a name="Synchronization">
 
@@ -48,6 +49,15 @@ The API informs authorized listener of the fact that changes have occurred using
   The recommended action is to reload the booking from this provider. If part of
   a multi-provider trip, check the total trip is still feasible and bubble the
   event up. If final partner, inform the client.
+
+- `BOOKING_REACCOMMODATED`
+
+  An accommodation, i.e. coach and/or place has changed. This can happen if a
+  train formation has changed or if the carrier has re-accommodated the
+  passenger for some reason.
+
+  The recommended action is to retrieve the booking and update the local
+  representation. If final partner, inform the customer.
 
 - `BOOKING_REAL_TIME_EVENT_OCCURRED`
 
