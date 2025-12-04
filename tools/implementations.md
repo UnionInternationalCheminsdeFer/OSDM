@@ -52,3 +52,5 @@ overview of known OSDM implementations and their status.
 | Twiliner                | Retailer, Distributor & Provider         | 3.0.5       | in production |
 | VY Train                | Retailer, Distributor & Provider         | 3.0.5       | in production |
 | VY Bus                  | Retailer, Distributor & Provider         | 3.0.5       | in production |
+
+*State of December 2025*
