@@ -1,6 +1,6 @@
 ---
 layout: page
-title: OSDM Sandbox
+title: OSDM Sandboxes
 permalink: /tools/sandboxes/
 ---
 
