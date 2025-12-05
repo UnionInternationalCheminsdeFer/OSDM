@@ -10195,6 +10195,7 @@ components:
         - 'RCT2'
         - 'UIC_PDF'
         - 'TICKETLESS'
+        - 'WALLET'
 
     FulfillmentOption:
       type: object
