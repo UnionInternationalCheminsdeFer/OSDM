@@ -247,8 +247,8 @@ reservations or ancillaries, and the link will be qualified. Ancillaries can be
 either included or optional, while reservation can also be mandatory to travel.
 Finally there can be a cases where all reservations associated are optional
 while it is mandatory to pick at least one (it can be the case for night trains
-for example). In this case the reservations will all be qualified as optional,
-but the reservationRequired flag of the admission will be set to true.
+for example). This is expressed by linking the reservations to the admission via
+[Linking Admissions, Reservations and Ancillaries](#linking).
 
 ### Offer Parts - Reservations  <a name="reservations">
 
@@ -258,6 +258,11 @@ admissions, a reservation is in essence bound to a specific train, although it
 does not include the entitlement to board the train. Passengers therefore
 typically need an a associated admission offer part or other entitlement (such
 as a pass)  in order to actually travel.
+
+A reservation always relates to a single leg, i.e. the `tripCoverage` attribute
+of the ReservationOfferPart can only refer to a single leg, even though the API
+syntax allows to specify multiple entries for `tripCoverage.coveredLegs`, due to
+the fact that `TripCoverage` is used for all offer part types.
 
 Note booking an offer will not book the reservations in the offer unless they
 have an `included` relationship with an admission of that offer. In order to add
@@ -283,7 +288,6 @@ compared to admission products:
     relevant in case of graphical place selection.
 
 #### Modelling Lump Sum Reservations <a name="lumpSumReservations">
-
 
 For some trains, especially in Germany, Austria and Switzerland today, a specific form of
 reservation booking can be found where the price for adding an optional or
@@ -320,7 +324,6 @@ This offer part is significantly simpler than those instantiating transport
 products, and only has one additional attribute, being the category of the
 ancillary.
 
-
 ### Offer Parts - Linking Admissions, Reservations and Ancillaries <a name="linking">
 
 Rerservations and Ancillaries might depend on the each other or on Admissions. E.g. an optional ancillary offer representing 
@@ -332,7 +335,6 @@ to define groups of parts from which some need to be choosen.
 **Example 1**:
 
   An ancillary depending on reservations with specific service. The ancillary is priced independent from the number of reservations:
-
 
   - admissionOffer:
     - in case of mandatory reservation: `ReservationRelation` to
@@ -352,7 +354,17 @@ to define groups of parts from which some need to be choosen.
 In case the reservations with the ancillary can be on specific places only it is up to the provider system to ensure that appropriate places are reserved
 and shown in graphical reservation displays.
 
+**Example 2**:
 
+  An admission which requires **exactly one** of several reservation options to be booked. The typical use case for this are night trains, 
+  where either a seat, a berth or a cabin needs to be reserved.
+
+  - admissionOffer:
+    - `ReservationGroup` with reservations 1,2,3 and minGroupItemsToBeBooked = maxGroupItemsToBeBooked = 1
+
+  - reservationOffer 1 for a seat
+  - reservationOffer 2 for a berth
+  - reservationOffer 3 for a cabin
 
 ### Offer Parts - Fees  <a name="fees">
 
@@ -724,6 +736,7 @@ the extension. He has the option to add a fee for this extension.
 | Fulfillment | controlNumber | control number given by the provider and unique within the provider context and for a short time only. The control number is used as identifier within bar codes. |
 ||||
 ||||
+
 
 
 

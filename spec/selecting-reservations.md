@@ -28,6 +28,11 @@ be sold stand-alone if the passenger already has a ticket.
 Reservations might come with an additional fee or an additional price or both.
 The reservation fee might cover multiple reservations.
 
+A reservation always relates to a single leg, i.e. the `tripCoverage` attribute
+of the ReservationOfferPart can only refer to a single leg, even though the API
+syntax allows to specify multiple entries for `tripCoverage.coveredLegs`, due to
+the fact that `TripCoverage` is used for all offer part types.
+
 ## Mandatory and Optional Reservations
 
 For some trains a reservation is mandatory. This might be the case due to
