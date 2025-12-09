@@ -117,6 +117,12 @@ A price has a currency, an amount and a scale. Per default the scale is set to t
 
 A price has a set of value added taxes. A tax is valid for a country and has amount.
 
+In case of a booking on a travel account the price might depend on the account or be payed via the account. In such cases it must be possible to provide the travel account in an offer request. 
+
+Prices must be referenable in the corresponding accounting data.
+
+In case e
+
 
 ### Requirements on Personal Data <a name="RequirementsonPersonalData">
 
@@ -342,6 +348,10 @@ Non-trip based search must be possible by searching for areas and periods.
 
 Non-trip based serach must be possible by searching products via the API. Products might be categorized and it must be possible to retrieve the categories and to search via these categories.
 
+_Optional requirement_
+
+It should be possible to request replacements for lost cards and tickets.
+
 ### Requirements on Prolonging an Offer <a name="RequirementsonProlonginganOffer">
 
 _Optional requirement_
@@ -431,10 +441,8 @@ The providers may have implemented different pricing and payment schemes that sh
                   - prepaid with pay per use and a refund on unused time or distance
                   - post payment with pay per use based on time or distance
 
-OSDM should allow for lightweight integration linking tp a service proviedr app.
-                  
-
-                  
+OSDM should allow for lightweight integration linking to a service provider app.
+                                    
 ### Requirements on Fulfillment <a name="RequirementsonFulfillment">
 
 A fulfillment must be in a well-defined state and have a unique control number. The fulfillment must
@@ -462,7 +470,7 @@ Fulfillment via a card library should be supported. The available card libraries
 To validate the compatibility with existing card content the card contrent might need to be provided to the provider.
 
 **fulfillment on an account:**
-A fulfillment on an account must be suported (account based ticketing). The account id might eb provied via a chip card.
+A fulfillment on an account must be suported (account based ticketing). The account id might be provied via a chip card.
 
 Prepaid accounts must be supported. The consumption on the account must be displayed during urchase and/or during usage. 
                                  
