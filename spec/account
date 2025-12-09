@@ -255,6 +255,8 @@ product.
 
 An admission may be linked mandatorily or optionally to one or more reservations.
 
+Return offers should be supported. A real return offer has a specific price and or conditions depending on the sale of inward and outward trip together.                                              
+
 #### Requirements on Reservation <a name="RequirementsonReservation">
 
 A reservation provides the right to sit or lay on dedicated place in a vehicle.
@@ -286,7 +288,7 @@ Reservations are made on places or on compartments.
 
 The possible and mandatory selections of reservations must be provided by the API as part of the offer. Reservation might be mandatory on the trains or part of the trains of a trip.
 
-
+It should be possible to provide a compressed description of reserved places for larger groups, e.g. places "11-55". 
 
 #### Requirements on Ancillary <a name="RequirementsonAncillary">
 
@@ -411,6 +413,28 @@ A product must contain the following information:
 A product does not have a price, as the price is bound to an offer as an
 instantiation of a product.
 
+**requirements on on-demand services**
+
+On-demand services (with the exception of car sharing) should be supported by OSDM. 
+                  
+A consumer of a trip offer collection where the first mile can be made via an On-Demand-Service. The retailer expects a complete offer and the distributor to handle the connection to the provider of the On-Demand-Service. The consumer can search for available vehicles that can provide the service. He can select a service which becomes blocked for other consumers.
+
+A consumer of a trip offer collection where the last mile can be made via an On-Demand-Service. The retailer expects a complete offer and the distributor to handle the connection to the provider of the On-Demand-Service. The offer can be confirmed and the consumer can search for available vehicles that can provide the service later-on during the journey. He can select a service which becomes blocked for other consumers.
+
+The consumer can start the usage of the service with the allocated vehicle.
+
+The consumer can end the usage of the service with the vehicle in use.
+
+The providers may have implemented different pricing and payment schemes that should be supported:
+      
+                  - prepaid fixed price or included in an overall admission booking part
+                  - prepaid with pay per use and a refund on unused time or distance
+                  - post payment with pay per use based on time or distance
+
+OSDM should allow for lightweight integration linking tp a service proviedr app.
+                  
+
+                  
 ### Requirements on Fulfillment <a name="RequirementsonFulfillment">
 
 A fulfillment must be in a well-defined state and have a unique control number. The fulfillment must
@@ -439,6 +463,11 @@ To validate the compatibility with existing card content the card contrent might
 
 **fulfillment on an account:**
 A fulfillment on an account must be suported (account based ticketing). The account id might eb provied via a chip card.
+
+Prepaid accounts must be supported. The consumption on the account must be displayed during urchase and/or during usage. 
+                                 
+**asynchronous fulfillment**
+As fulfillment might be a time consuming process an asynchronous fulfillment needs to be supported.
 
 
 ### Requirements on Documents <a name="RequirementsonDocuments">
@@ -554,6 +583,8 @@ It must be possible for a distributor to inform the fare provider that the claim
 was accepted because the fare provider missed a legal timeline to handling the
 claim.
 
+It should be possible to inform about the statu change of a pending complaint.
+
 ### Requirements on Reimbursements <a name="RequirementsonReimbursements">
 
 Customers who have bought a ticket which allows reimbursement and which have not
@@ -604,6 +635,8 @@ Users of the data:
   use (manual)
 - A controller to validate the ticket on a train or station or station (manual
   and/or automated (e.g. gates))
+
+- A retailer might use the data for automated proposals of rerouting. 
 
 Non-functional:
 
