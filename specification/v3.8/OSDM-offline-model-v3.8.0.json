@@ -2630,10 +2630,10 @@
 		        "UPGRADE_POINT2POINT",        
 		        "RESERVATION",      
 		        "ANCILLARY_SERVICE",   
-                        "ANCILLARY_ITEM", 
-                        "REDUCTION_CARD"
-                        ]
-                 }
+                "ANCILLARY_ITEM", 
+                "REDUCTION_CARD"
+              ]
+        },
 		"CarrierGroup": {
 			"type": "object",
 			"properties": {
