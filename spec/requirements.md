@@ -241,6 +241,8 @@ Even if a trip provides partial first class support only, a first class offer is
 
 If a part of a trip is free, a fare or offer part with price zero must be provided.
 
+The search for offers must incude the option to search for promotional offers. 
+
 #### Requirements on Admission <a name="RequirementsonAdmission">
 
 An admission provides the right to travel on a vehicle.
@@ -510,7 +512,7 @@ Partial refund may be supported by all parties.
 
 ### Requirements on Exchange <a name="RequirementsonExchange">
 
-Exchange allows to change trip and passengers.
+Exchange allows to change trip(s), passengers and products. This might include adding and removing passengers, changing to another trip or changing the product (e.g. to another calss or selecting another meal).
 
 An exchange can have a fee.
 
