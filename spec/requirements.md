@@ -92,6 +92,12 @@ permalink: /spec/requirements/
 
 Content provided to a client in a transaction must be complete, no additional information besides basic code lists (e.g. locations) is needed to process them.
 
+The client must be able to provide requested languages for texts. The provider can follow this request or choose an appropriate language.
+
+_Optional Requiremet_
+
+It should be possible to request the supported and future version(s) of the API including the start and end of the support for versions.
+
 ### Requirements on Product Range <a name="RequirementsonProductRange">
 
 It must be possible to distribute and sell all existing products. Existing products include admissions (a.k.a Tickets),
@@ -120,7 +126,9 @@ A price has a set of value added taxes. A tax is valid for a country and has amo
 
 In case of a booking on a travel account the price might depend on the account or be payed via the account. In such cases it must be possible to provide the travel account in an offer request. 
 
-Prices in bookings and booking parts  must have a reference to the corresponding accounting data.
+In case of bookings on travel account it must be possibl to display the consumption on the travel account.
+
+Prices in bookings and booking parts  must have a reference to the corresponding accounting data. The reference must include the company providing the accounting.
 
 
 ### Requirements on Personal Data <a name="RequirementsonPersonalData">
@@ -205,7 +213,7 @@ A transfer is a special kind of tripLeg, defining how long the transfer takes.
 
 ### Requirements on Offers <a name="RequirementsonOffers">
 
-Search for offers must be possible by specifying a trip and the part of the trip where the offer is requried.
+Search for offers must be possible by specifying a trip and the part of the trip where the offer is required. It must be possible to indicate a gap in the covered part (e.g. on a city part connecting two rail parts).
 
 Serach for offers must be possible without specifying a trip to search for mutli journey passes of related non transport offers.
 
@@ -213,7 +221,7 @@ The serach for offers must provide offers including the price.
 
 The availability of offers provided should be checked when they are provided. 
 
-The availability of offers does not need to be garanteed before booking.
+The availability of offers does not need to be garanteed before booking. 
 
 The offer must provide its internal dependencies for the selection of optional offer parts.
 
@@ -243,6 +251,13 @@ Even if a trip provides partial first class support only, a first class offer is
 If a part of a trip is free, a fare or offer part with price zero must be provided.
 
 The search for offers must incude the option to search for promotional offers. 
+
+
+_Optional Requirement_
+Search for product based offers must be possible by specifying trip search criteria. 
+
+Trip search criterea must provide the option to select different transport modes between via stops.
+
 
 #### Requirements on Admission <a name="RequirementsonAdmission">
 
@@ -290,7 +305,9 @@ Places in reservations can optionaly be selected graphically, by requesting plac
 
 It must be possible to provide data for a graphical representation of the train and coaches with the places on an abstract level allowing a retailer to use his own look and feel. The representation of 
 vehicles for a graphical display must be provided as master data. The representation must be on an abstract level allowing the client to use a harmonized look and feel in it's UI independent from the different providers.
-The service providing the available places must also be able to indicate a preselection to the client that should be used with the first display of the seat map. As an option ist should be possible to indicate the direction of travel for seats.
+
+The service providing the available places must also be able to indicate a preselection to the client that should be used with the first display of the seat map. As an option ist should be possible to indicate the direction of travel for seats. 
+To prepare a preselction it must be possible to provide accomodation sub types in the request.
 
 It must be possible to apply fees for the use of agraphical place selection for reservation. It must be possible to apply fees depending on the places selected. The client must be able to display the amount of the fees depending on the selected places. 
 
@@ -655,6 +672,7 @@ Provider specific masterdata referenced should be available via the API.
 
 The masterdata provided must support mutiple languages.
 
+Large volume Master data (e.g. Places) must allow an asynchronous download.
 
 ## Functional Requirements of a Distributor <a name="FunctionalRequirementsofaDistributor">
 
