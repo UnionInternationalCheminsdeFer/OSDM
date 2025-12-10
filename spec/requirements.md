@@ -98,6 +98,9 @@ _Optional Requiremet_
 
 It should be possible to request the supported and future version(s) of the API including the start and end of the support for versions.
 
+The provider must be able to inform the cient on changes of a booking triggered by the provider or involved carrier. These can include changed reservations due to change of material or rerouting and 
+change of after sales conditions due to cancelled or delayed services. The changed after sales conditions must be visible in the booking.
+
 ### Requirements on Product Range <a name="RequirementsonProductRange">
 
 It must be possible to distribute and sell all existing products. Existing products include admissions (a.k.a Tickets),
@@ -321,6 +324,12 @@ The possible and mandatory selections of reservations must be provided by the AP
 
 It should be possible to provide a compressed description of reserved places for larger groups, e.g. places "11-55". 
 
+A reserevation must reference the vehicle and trip leg. In case the leg is assigned to multiple vehicle numbers the link must provide the one where the reserved places are located.
+
+_Optional Requirement_
+
+It should be possible to provide reservation offers that do not cover a whole leg on the same seat.
+
 #### Requirements on Ancillary <a name="RequirementsonAncillary">
 
 An ancillary is a service that can be offered to a customer. Examples for
@@ -366,12 +375,16 @@ Some products are not linked to a trip. These might be:
   - reduction cards
   - vouchers
   - merchandising items
+  - multi-ride Tickets
+  - travel accounts
 
 It must be possble to search for such offers without a trip. 
 
 Non-trip based search must be possible by searching for areas and periods. 
 
 Non-trip based serach must be possible by searching products via the API. Products might be categorized and it must be possible to retrieve the categories and to search via these categories.
+
+On passes,  travel accounts and multi ride tickets a balance on the usage should be provided.
 
 _Optional requirement_
 
@@ -1077,6 +1090,10 @@ are:
 
 After sales transactions due to service violations of the carrier are governed
 by PRR rules and are not considered here.
+
+After sales conditions may indicate restrictions on payment methods.
+
+After saes conditions might be chnaged due to delays of service cancellations.
 
 Some railways make refunds using other “means of payment” like bonus points,
 vouchers. These are not considered here and thus will not apply to the fares
