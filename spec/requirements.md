@@ -32,9 +32,10 @@ permalink: /spec/requirements/
   - [Requirements on Refund ](#requirements-on-refund-)
   - [Requirements on Partial Refund  ](#requirements-on-partial-refund--)
   - [Requirements on Exchange ](#requirements-on-exchange-)
+  - [Requirements on Add-Ons](#requirements-on-add-ons-)
   - [Requirements on Seat Change ](#requirements-on-seat-change-)
   - [Requirement to Release Allocated Resources ](#requirement-to-release-allocated-resources-)
-  - [Requirement to Cancel a Fulfillment ](#requirement-to-cancel-a-fulfillment-)
+  - [Requirement to Cancel a ent ](#requirement-to-cancel-a-ent-)
   - [Requirements on Complaints ](#requirements-on-complaints-)
   - [Requirements on Reimbursements ](#requirements-on-reimbursements-)
   - [Requirements on Masterdata ](#requirements-on-masterdata-)
@@ -56,7 +57,7 @@ permalink: /spec/requirements/
   - [Requirements on prices ](#requirements-on-prices-)
   - [Requirements on the basic fare structure ](#requirements-on-the-basic-fare-structure-)
   - [Requirements on the after sales conditions ](#requirements-on-the-after-sales-conditions-)
-  - [Requirements on conditions on fulfillment ](#requirements-on-conditions-on-fulfillment-)
+  - [Requirements on conditions on ent ](#requirements-on-conditions-on-ent-)
   - [Requirements on dynamic fares and train linked tickets ](#requirements-on-dynamic-fares-and-train-linked-tickets-)
     - [Indication of dynamic fares available online ](#indication-of-dynamic-fares-available-online-)
     - [Indication of train links on the ticket ](#indication-of-train-links-on-the-ticket-)
@@ -119,9 +120,7 @@ A price has a set of value added taxes. A tax is valid for a country and has amo
 
 In case of a booking on a travel account the price might depend on the account or be payed via the account. In such cases it must be possible to provide the travel account in an offer request. 
 
-Prices must be referenable in the corresponding accounting data.
-
-In case e
+Prices in bookings and booking parts  must have a reference to the corresponding accounting data.
 
 
 ### Requirements on Personal Data <a name="RequirementsonPersonalData">
@@ -192,13 +191,15 @@ type:
 - **ContinuosLeg**: A type of leg that is not bound to a timetable. This leg is
   mainly aimed at new modes such as scooter, taxis,..
 
-A tripLeg represents a subsection of a trip that is realized with the same
-transport vehicle. In railways it is typically one train (between the moment
+**A tripLeg represents a subsection of a trip that is realized with the same
+transport vehicle**. In railways it is typically one train (between the moment
 passenger steps on-board until stepping out of that train) but could be using
 different means of transportation. A tripLeg has an origin, a destination and
-duration.
+duration. 
 
-A vehicle is defined by a number or line and a service brand.
+A tripLeg might be associated with two vehicles in case they are running as multiple units and each unit has its own vehicle number.
+
+A vehicle is defined by a number or line and a service brand at the start of the leg. A service brand might change along a leg.  
 
 A transfer is a special kind of tripLeg, defining how long the transfer takes.
 
@@ -288,7 +289,12 @@ reservation.
 Places in reservations can optionaly be selected graphically, by requesting place properties or by referencing a nearby place.
 
 It must be possible to provide data for a graphical representation of the train and coaches with the places on an abstract level allowing a retailer to use his own look and feel. The representation of 
-vehicles for a graphical display must be provided as master data.
+vehicles for a graphical display must be provided as master data. The representation must be on an abstract level allowing the client to use a harmonized look and feel in it's UI independent from the different providers.
+The service providing the available places must also be able to indicate a preselection to the client that should be used with the first display of the seat map. As an option ist should be possible to indicate the direction of travel for seats.
+
+It must be possible to apply fees for the use of agraphical place selection for reservation. It must be possible to apply fees depending on the places selected. The client must be able to display the amount of the fees depending on the selected places. 
+
+It must be indicated in the offer whether a graphical place selection is available.
 
 It must be possible to request the available vehicles and places on the vehicles for a leg.
 
@@ -335,7 +341,7 @@ Whether a fee is refundable is defined by the tariff.
 
 The state of a fee depends on the state of the associated product.
 
-#### Requirements on Non-Trip Offers <a name="RequirementsonNonTRipOffers">
+#### Requirements on Non-Trip Offers <a name="RequirementsonNonTripOffers">
 
 Some products are not linked to a trip. These might be:
 
@@ -395,7 +401,7 @@ It must be possible to search for bookings:
 
 - Passenger first name, last name or passenger date
 - Booking reference
-- Fulfillment reference
+- ent reference
 - Travel date or end
 - Origin or destination
 
@@ -406,6 +412,8 @@ A booking has a purchaser which has booked the booking. The purchaser may, but d
 be a passenger.
 
 Booking must be supported by all parties.
+
+The client is managing its own booking data and this booking needs to be referenced in the providers booking. It must be possible to add or change this reference later-on in the booking process. 
 
 ### Requirements on Products <a name="RequirementsonProducts">
 
@@ -420,7 +428,7 @@ A product must contain the following information:
 - A indication whether a product is _exchangeable_, _exchangeable with
   conditions_ or _not exchangeable_.
 - The service class describing the level of comfort.
-- Define the supported fulfillment media types.
+- Define the supported ent media types.
 
 A product does not have a price, as the price is bound to an offer as an
 instantiation of a product.
@@ -445,7 +453,7 @@ The providers may have implemented different pricing and payment schemes that sh
 
 OSDM should allow for lightweight integration linking to a service provider app.
                                     
-### Requirements on Fulfillment <a name="RequirementsonFulfillment">
+### Requirements on Fulfillments <a name="RequirementsonFulfillment">
 
 A fulfillment must be in a well-defined state and have a unique control number. The fulfillment must
 reference the offer parts covered by the fulfillment.
@@ -465,11 +473,16 @@ as visual security elements, additional bar codes or control key.
 
 A fulfillment to wallets must be supported.
 
-**fulfillment on chip card:**
+**fulfillment on a chip card:**
 A fulfillment on chip cards (card based ticketing) should be supported. The specification of the card not part of OSDM.
 
 Fulfillment via a card library should be supported. The available card libraries must eb provided.
 To validate the compatibility with existing card content the card contrent might need to be provided to the provider.
+
+**fulfillment on an app:**
+A fulfillment on applications managing the ticket should be supported. These might be dedicated chip card writers used in public transport or specific apps of a retailer. 
+The application needs to be indicated in the options for fulfillment.
+
 
 **fulfillment on an account:**
 A fulfillment on an account must be suported (account based ticketing). The account id might be provied via a chip card.
@@ -477,7 +490,7 @@ A fulfillment on an account must be suported (account based ticketing). The acco
 Prepaid accounts must be supported. The consumption on the account must be displayed during urchase and/or during usage. 
                                  
 **asynchronous fulfillment**
-As fulfillment might be a time consuming process an asynchronous fulfillment needs to be supported.
+As fulfillment might be a time consuming process an asynchronous fulfillment needs to be supported. The client needs information on whether the fulfillment will be generated asynchronously.
 
 
 ### Requirements on Documents <a name="RequirementsonDocuments">
@@ -501,6 +514,10 @@ Cancellation must be supported by all parties.
 
 Total refund must be supported by all parties.
 
+_Optional requirement_
+
+The refund must provide a detailer breackdown of the prices and fees related to affected booking parts
+
 ### Requirements on Partial Refund  <a name="RequirementsonPartialRefund">
 
 Partial refund allows to remove passengers and booking parts (only if supported by the
@@ -517,6 +534,24 @@ Exchange allows to change trip(s), passengers and products. This might include a
 An exchange can have a fee.
 
 Exchange may be supported by all parties.
+
+_Optional requirement_
+
+The exchange must provide a detailer breackdown of the prices and fees related to affected booking parts
+
+### Requirements on Add-Ons <a name="requirements-on-add-ons")
+
+_Optional requirement_
+
+It must be possible to add additional products to an existing booking. 
+
+ - adding additional optional parrts from the offer during the pre-booking phase
+ - requesting additional offers for an already confirmed booking 
+
+These might be:
+ - additional ancillaries (meals, ..)
+ - optional reservations
+ - upgrades of the service class on a confirmed booking
 
 ### Requirements on Seat Change <a name="RequirementsonSeatChange">
 
@@ -544,8 +579,11 @@ affect allocation or update the inventory.
 
 _Optional requirement_
 
-For some systems (e.g in the French or Swedish market) it must be possible to
-allocated resources such as places, meal or others.
+For some systems it must be possible to release allocated resources such as places, meal or others. This might be needed in case a journey is abandoned. 
+
+The release will release allocated resources (e.g. reserved places, meals,..) depending on the indicated passengers, booking parts and fulfillments and mark the corresponding tickets as not any more valid.
+It will not refund, but a subsequent refund uses the release time for calculation cancellation fees.
+
 
 ### Requirement to Cancel a Fulfillment <a name="RequirementtoCancelaFulfillment">
 
@@ -939,9 +977,11 @@ The relevant age is the age at the start of the journey.
 
 Reductions might also be granted due to corporate agreements and due to promotions. 
 
-Reductions due to corporate agreements must be supported
+Reductions due to corporate agreements must be supported.
 
-Reductions due to proomotions must be supported..
+Reductions due to proomotions must be supported.
+
+Reductions granted due to personal data (e.g. age, PRM status, ..) must be indicated. These personal data must be kept only in case a reduction is granted.
 
 It must be possible to display the applied reductions to the customer.
 
