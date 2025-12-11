@@ -6480,6 +6480,10 @@ components:
               type: string
               nullable: true
               example: Oude Trambaan 7, 2265CA Leidschendam, Nederland
+            nameTranslations:
+              description: Translations for the name
+              type: array
+              items: '#/components/schemas/Translation'            
             code:
               description: |
                 id of the address
@@ -10659,6 +10663,10 @@ components:
             name:
               type: string
               nullable: true
+            nameTranslations:
+              description: Translations for the name
+              type: array
+              items: '#/components/schemas/Translation'
             stationSets:
               type: array
               items:
@@ -13847,6 +13855,10 @@ components:
               type: string
               nullable: false
               example: Park Rozenrust
+            nameTranslations:
+              description: Translations for the name
+              type: array
+              items: '#/components/schemas/Translation'
             code:
               description: |
                 id of the Point of Interest.
@@ -16390,6 +16402,10 @@ components:
               type: string
               nullable: false
               example: Zürich HB
+            nameTranslations:
+              description: Translations for the name
+              type: array
+              items: '#/components/schemas/Translation'
 
     StopPlaceRef:
       description: |
