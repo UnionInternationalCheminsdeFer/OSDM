@@ -9133,6 +9133,10 @@ components:
           type: string
           minLength: 1
           nullable: false
+        descriptionTranslations:
+          description: Translations of the description and shortDescription
+          type: array
+          items: '#/components/schemas/Translation'
         shortDescription:
           description: |
             short description of the condition no longer than 64 characters
@@ -11294,6 +11298,10 @@ components:
         text:
           type: string
           nullable: false
+        textTranslations:
+          description: Translation of the text attribute
+          type: array
+          items: '#/components/schemas/Translation'
         code:
           type: string
           nullable: true
@@ -14145,6 +14153,10 @@ components:
             A human-readable description of the product.
           type: string
           nullable: true
+        summaryTranslations:
+          description: Translations of the summary attribute
+          type: array
+          items: '#/components/schemas/Translations'
         type:
           $ref: '#/components/schemas/ProductType'
         code:
@@ -14159,6 +14171,10 @@ components:
             Textual description of the product.
           type: string
           nullable: true
+        descriptionTranslations:
+          description: Translations of the description attribute
+          type: array
+          items: '#/components/schemas/Translations'
         owner:
           $ref: '#/components/schemas/CompanyRef'
         conditions:
@@ -14188,9 +14204,17 @@ components:
         serviceConstraintText:
           type: string
           nullable: true
+        serviceConstraintTextTranslations:
+          description: Translations of the service constaint text attribute
+          type: array
+          items: '#/components/schemas/Translations'
         carrierConstraintText:
           type: string
           nullable: true
+        carrierConstraintTextTranslations:
+          description: Translations of the carrier constaint text attribute
+          type: array
+          items: '#/components/schemas/Translations'
         descriptiveTexts:
           type: array
           items:
@@ -16471,6 +16495,10 @@ components:
           minLength: 1
           maxLength: 32768
           nullable: false
+        descriptionTranslations:
+          description: Translations of description and shortDescription attributes
+          type: array
+          items: '#/components/schemas/Translation'
         shortDescription:
           description: |
             Brief version of the text for display in space restricted environments, e.g. mobile phone. No longer than 64 characters.
