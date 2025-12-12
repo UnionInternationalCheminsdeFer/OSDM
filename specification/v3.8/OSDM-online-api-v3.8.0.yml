@@ -18027,6 +18027,10 @@ components:
         name:
           type: string
           nullable: true
+        nameTranslations:
+          description: Translations for the zone name
+          type: array
+          items: '#/components/schema/Translation'
         entryStation:
           $ref: '#/components/schemas/StopPlace'
         terminalStation:
