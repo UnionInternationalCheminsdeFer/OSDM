@@ -357,7 +357,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
         - name: embed
           in: query
           description: |
@@ -1983,7 +1982,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       requestBody:
         required: true
         content:
@@ -3785,7 +3783,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       responses:
         '200':
           description: |
@@ -3902,7 +3899,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       responses:
         '200':
           description: |
@@ -3961,7 +3957,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       responses:
         '200':
           description: |
@@ -4856,7 +4851,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
         - name: productCode
           in: query
           description: the product code
