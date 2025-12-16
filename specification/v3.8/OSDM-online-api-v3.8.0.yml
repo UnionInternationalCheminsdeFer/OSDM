@@ -14904,6 +14904,10 @@ components:
           type: string
           nullable: true
           example: Refund Offer for Paris-Barcelona Andre Dupont 2022-07-23
+        summaryTranslations:
+          description: Translations for the summary
+          type: array
+          items: '#/components/schemas/Translation'
         createdOn:
           type: string
           format: date-time
