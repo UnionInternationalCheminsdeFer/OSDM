@@ -6483,7 +6483,8 @@ components:
             nameTranslations:
               description: Translations for the name
               type: array
-              items: '#/components/schemas/Translation'            
+              items: 
+                $ref: '#/components/schemas/Translation'            
             code:
               description: |
                 id of the address
@@ -9140,7 +9141,8 @@ components:
         descriptionTranslations:
           description: Translations of the description and shortDescription
           type: array
-          items: '#/components/schemas/Translation'
+          items:
+            $ref: '#/components/schemas/Translation'
         shortDescription:
           description: |
             short description of the condition no longer than 64 characters
@@ -10666,7 +10668,8 @@ components:
             nameTranslations:
               description: Translations for the name
               type: array
-              items: '#/components/schemas/Translation'
+              items: 
+                $ref: '#/components/schemas/Translation'
             stationSets:
               type: array
               items:
@@ -11309,7 +11312,8 @@ components:
         textTranslations:
           description: Translation of the text attribute
           type: array
-          items: '#/components/schemas/Translation'
+          items: 
+            $ref: '#/components/schemas/Translation'
         code:
           type: string
           nullable: true
@@ -13858,7 +13862,8 @@ components:
             nameTranslations:
               description: Translations for the name
               type: array
-              items: '#/components/schemas/Translation'
+              items:
+                $ref: '#/components/schemas/Translation'
             code:
               description: |
                 id of the Point of Interest.
@@ -14907,7 +14912,8 @@ components:
         summaryTranslations:
           description: Translations for the summary
           type: array
-          items: '#/components/schemas/Translation'
+          items:
+            $ref: '#/components/schemas/Translation'
         createdOn:
           type: string
           format: date-time
@@ -16409,7 +16415,8 @@ components:
             nameTranslations:
               description: Translations for the name
               type: array
-              items: '#/components/schemas/Translation'
+              items:
+                $ref: '#/components/schemas/Translation'
 
     StopPlaceRef:
       description: |
@@ -16518,7 +16525,8 @@ components:
         descriptionTranslations:
           description: Translations of description and shortDescription attributes
           type: array
-          items: '#/components/schemas/Translation'
+          items: 
+            $ref: '#/components/schemas/Translation'
         shortDescription:
           description: |
             Brief version of the text for display in space restricted environments, e.g. mobile phone. No longer than 64 characters.
@@ -18034,7 +18042,8 @@ components:
         nameTranslations:
           description: Translations for the zone name
           type: array
-          items: '#/components/schema/Translation'
+          items: 
+            $ref: '#/components/schema/Translation'
         entryStation:
           $ref: '#/components/schemas/StopPlace'
         terminalStation:
