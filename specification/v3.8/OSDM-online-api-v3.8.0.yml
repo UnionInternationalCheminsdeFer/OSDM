@@ -18047,7 +18047,7 @@ components:
           description: Translations for the zone name
           type: array
           items: 
-            $ref: '#/components/schema/Translation'
+            $ref: '#/components/schemas/Translation'
         entryStation:
           $ref: '#/components/schemas/StopPlace'
         terminalStation:
