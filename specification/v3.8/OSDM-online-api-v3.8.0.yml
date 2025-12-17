@@ -14173,7 +14173,8 @@ components:
         summaryTranslations:
           description: Translations of the summary attribute
           type: array
-          items: '#/components/schemas/Translations'
+          items: 
+            $ref: '#/components/schemas/Translation'
         type:
           $ref: '#/components/schemas/ProductType'
         code:
@@ -14191,7 +14192,8 @@ components:
         descriptionTranslations:
           description: Translations of the description attribute
           type: array
-          items: '#/components/schemas/Translations'
+          items:
+            $ref: '#/components/schemas/Translation'
         owner:
           $ref: '#/components/schemas/CompanyRef'
         conditions:
@@ -14224,14 +14226,16 @@ components:
         serviceConstraintTextTranslations:
           description: Translations of the service constaint text attribute
           type: array
-          items: '#/components/schemas/Translations'
+          items:
+            $ref: '#/components/schemas/Translation'
         carrierConstraintText:
           type: string
           nullable: true
         carrierConstraintTextTranslations:
           description: Translations of the carrier constaint text attribute
           type: array
-          items: '#/components/schemas/Translations'
+          items:
+            $ref: '#/components/schemas/Translation'
         descriptiveTexts:
           type: array
           items:
