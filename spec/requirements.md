@@ -10,11 +10,13 @@ permalink: /spec/requirements/
 - [Table of contents](#table-of-contents)
 - [Common Functional Requirements ](#common-functional-requirements-)
   - [Requirements on Product Range ](#requirements-on-product-range-)
-  - [Requirements on Price ](#requirements-on-price-)
+  - [Requirements on Priceing and Payment ](#requirements-on-price-)
   - [Requirements on Personal Data ](#requirements-on-personal-data-)
+  - [Requirements on Passenger ](#common-requirements-on-passenger-)-
+  - [Requirements on Location ](#requirements-on-location-)
+  - [Requirements on Offers ](#common-requirements-on-offers-)- 
 - [Functional Requirements of the Retailer ](#functional-requirements-of-the-retailer-)
   - [Requirements on Passenger ](#requirements-on-passenger-)
-  - [Requirements on Location ](#requirements-on-location-)
   - [Requirements on Trip ](#requirements-on-trip-)
   - [Requirements on Offers ](#requirements-on-offers-)
     - [Requirements on Admission ](#requirements-on-admission-)
@@ -35,7 +37,7 @@ permalink: /spec/requirements/
   - [Requirements on Add-Ons](#requirements-on-add-ons-)
   - [Requirements on Seat Change ](#requirements-on-seat-change-)
   - [Requirement to Release Allocated Resources ](#requirement-to-release-allocated-resources-)
-  - [Requirement to Cancel a ent ](#requirement-to-cancel-a-ent-)
+  - [Requirement to Cancel a fulfillment ](#requirement-to-cancel-a-fulfilment-)
   - [Requirements on Complaints ](#requirements-on-complaints-)
   - [Requirements on Reimbursements ](#requirements-on-reimbursements-)
   - [Requirements on Masterdata ](#requirements-on-masterdata-)
@@ -103,57 +105,64 @@ change of after sales conditions due to cancelled or delayed services. The chang
 
 ### Requirements on Product Range <a name="RequirementsonProductRange">
 
-It must be possible to distribute and sell all existing products. Existing products include admissions (a.k.a Tickets),
-reservations and ancillaries.
+It must be possible to distribute and sell all existing products related to passenger transport. This might even includ merchandising artcles. Existing products include admissions (a.k.a Tickets), reservations and ancillaries.
 
-### Requirements on Price and Payment <a name="RequirementsonPrice">
+Covered transport modes are rail, bus and ferries as well as on demand servces for micromobility. Currently nt covered is car sharing.
 
-The pice must always be provided, no calculations on the client side despite the addition in receipts are allowed. 
+### Requirements on Priceing and Payment <a name="RequirementsonPrice">
 
-Vouchers might be issued for a refund, claim or reimbursement. Vouchers can also be purchased as non trip offers. 
+The pice must always be provided, no calculations on the client side despite the addition in receipts are allowed. A price has a currency, an amount and a scale. 
 
-Vouchers can be used as payment method. The used vouchers and possible remaining voucher amounts must be shown in the booking. It must be possible to use multiple vvouchers in one payment. 
-A payment parcially by currency andpartially by voucher must be possible.
-
-The payment is not part of OSDM except for payment by vouchers orbonus points. However the payment method needs to be provided to avoid missuse, e.g. refund in cash on a booking made by card.
-
-In case of payment with vouchers or bonus points the payment information must be part of the booking including remaining amounts of vouchers. 
+The payment is not part of OSDM except for payment by vouchers, bonus points or travel accounts. However the payment method needs to be provided to avoid missuse, e.g. refund in cash on a booking made by card.
 
 The price must already consider all applicable reductions and promotions.
 
+It must be possible to apply corporate prices.
+
 The price of an offer is not guaranteed before pre-booking.
 
-A price has a currency, an amount and a scale. Per default the scale is set to two.
+#### Value Added Tax
 
-A price has a set of value added taxes. A tax is valid for a country and has amount.
+A price has a set of value added taxes. A tax is valid for a country and has an amount. The tax might depend on the intention of the traveler to cross boarders. This needs to be indicated in the offer request.
 
-In case of a booking on a travel account the price might depend on the account or be payed via the account. In such cases it must be possible to provide the travel account in an offer request. 
+#### Vouchers
 
-In case of bookings on travel account it must be possibl to display the consumption on the travel account.
+Vouchers represent a value that can be used to pay bookings or part of a boking. The acceptance depends on commercial rules. Vouchers are means of payment, they do no change the price of a booking. 
 
-Prices in bookings and booking parts  must have a reference to the corresponding accounting data. The reference must include the company providing the accounting.
+Vouchers might be issued for a refund, claim or reimbursement. Vouchers can also be purchased as non trip offers (e.g. gift cards). 
 
+Vouchers can be used as payment method. The used vouchers and possible remaining voucher amounts must be shown in the booking. It must be possible to use multiple vvouchers in one payment. 
 
-### Requirements on Personal Data <a name="RequirementsonPersonalData">
+A payment parcially by currency and partially by voucher must be possible.
 
-The needed personal data must be indicated. Only personal data needed for the
-given business process can be transferred between the parties involved.
+It must be possible to use multiple vouchers for one payment.
 
-## Functional Requirements of the Retailer <a name="FunctionalRequirementsoftheRetailer">
+It must be possible to use a voucher with a higher value and receive the remaining value as a voucher again.
 
-Content provided to the retailer must be self contained and include all required textual descriptions needed for the presentation of the products to a client.
+In case of payment with vouchers or bonus points the payment information must be part of the booking including the remaining amounts of vouchers. 
 
+#### Travel Account
 
-### Requirements on Passenger <a name="RequirementsonPassenger">
+In case of a booking on a travel account the price might depend on the account or be payed via the account or payed vai a pre-payment on the account. In such cases it must be possible to provide the travel account in an offer request. 
 
-A passenger is the person travailing on a vehicle. A passenger may not
+In case of bookings on travel account it must be possible to display the consumption on the travel account.
+
+#### Accounting
+
+The accounting and clearing flow is not part of OSDM, however OSDM must support the traceability of accountings.
+
+Prices in bookings and booking parts  must have a reference to the corresponding accounting data. The reference must include the company providing the accounting as this might differ from the company providinf the booking.
+
+### Requirements on Passenger <a name="CommonRequirementsonPassenger">
+
+A passenger is the person travelling on a vehicle. A passenger may not
 necessarily be the person who has performed the booking, i.e. the customer.
 
-A passenger has a gender (male, female or X) and date of birth. A passenger can
-own reductions, most often in the form of cards.
+A passenger has a date of birth. A Passenger might need to provide a gender (male, female or X) in case offers are restricted by gender (e.g. compartments for female travellers, parking on female parking areas).
 
-A reduction has a type, a name and an issuer.
-
+The passenger date of birth is used to check reductions based on age and to check restrictions based on age (e.g. the allowance to travel 
+alone for minors. Note: in case no reduction based on age is granted of age dependent restrictions apply the date of birth must not be stored on the provider side. 
+ 
 Passenger information must be collected sparsely and only if needed for a
 dedicated process step. Passenger details providing personal information shall
 only be used to meet the requirements of the offer. It is not allowed to send
@@ -167,6 +176,7 @@ For certain context it might be necessary to have information about the
 passenger’s passport. This information can be added to a passenger if needed
 (e.g. Eurostar trains).
 
+A passenger can own reductions, most often in the form of cards. A reduction has a type, a name and an issuer.
 A passenger can have a set of reduction cards.
 
 A passenger can further transport dogs, bicycles, cars, motorcycles or trailers
@@ -174,14 +184,65 @@ if this is supported by the transport vehicle.
 
 The customer might be a company. It must be possible to provide and change company details (e.g. address).
 
+### Requirements on Personal Data <a name="RequirementsonPersonalData">
+
+The needed personal data must be indicated. Only personal data needed for the
+given business process can be transferred between the parties involved.
+
 ### Requirements on Location <a name="RequirementsonLocation">
 
 A location uniquely identifies a place in space. A location can be of type
-station, point-of-interest, address or geo-coordinate.
+station, point-of-interest, address or geo-coordinate or a connection-point between tariff areas. Connection-points are only used between distributor and fare provider. 
 
 For railway stations the UIC station codes must be supported.
 
 To support other means of transportation the types can potentially be extended.
+
+### Requirements on Offers <a name="CommonRequirementsonOffers">
+
+Search for offers must be possible by specifying a trip and the part of the trip where the offer is required. 
+It must be possible to indicate a gap in the covered part (e.g. on a city part connecting two rail parts).
+
+The search for offers must provide offers including the price.
+
+The availability of offers provided should be checked when they are provided. 
+
+The availability of offers does not need to be garanteed before booking. 
+
+The offer must provide its internal dependencies for the selection of optional offer parts.
+
+An overall offer presented to a retailer or a distributer bundles offers that
+contain admissions, reservation and ancillaries. An offer to a distributor additionally includes fares.
+
+An offer has an overall comfort class and an overall flexibility to indicate the main feature of the offer. It must still be possible to include deviating offer parts on minor parts of the trip in thee offer (e.g. including a short second class part in a first class travel).
+
+An offer has a minimal price. The minimal price is the price that does not
+include optional reservations or ancillaries.
+
+An offer is valid for a given time. The expiry time must be indicated in the offer.
+
+An offer should contain all offer parts, or fares, respectively per travel class and per flexibility/product code.
+
+Offers must always cover the complete set of requested passengers. 
+
+Even if a trip provides partial first class support only, a first class offer can be provided.
+
+If a part of a trip is free, an offer part (or fare) with price zero must be provided.
+
+The search for offers must incude the option to search for promotional offers. 
+
+The search for offers must incude the option to search for corporate offers. 
+
+An offer can be pre-booked.
+
+## Functional Requirements of the Retailer <a name="FunctionalRequirementsoftheRetailer">
+
+Content provided to the retailer must be self contained and include all required textual descriptions needed for the presentation of the products to a client.
+
+A retailer will not use fares, so requirements concerning fares are located in the distributor requirement section.
+
+### Requirements on Passenger <a name="RequirementsonPassenger">
+
 
 ### Requirements on Trip <a name="RequirementsonTrip">
 
@@ -216,45 +277,27 @@ A transfer is a special kind of tripLeg, defining how long the transfer takes.
 
 ### Requirements on Offers <a name="RequirementsonOffers">
 
-Search for offers must be possible by specifying a trip and the part of the trip where the offer is required. It must be possible to indicate a gap in the covered part (e.g. on a city part connecting two rail parts).
+Search for offers must be possible by specifying a trip and the part of the trip where the offer is required. 
+It must be possible to indicate a gap in the covered part (e.g. on a city part connecting two rail parts).
 
-Serach for offers must be possible without specifying a trip to search for mutli journey passes of related non transport offers.
-
-The serach for offers must provide offers including the price.
-
-The availability of offers provided should be checked when they are provided. 
-
-The availability of offers does not need to be garanteed before booking. 
-
-The offer must provide its internal dependencies for the selection of optional offer parts.
+Serach for offers must be possible without specifying a trip to search for multi-journey passes or related non-transport offers (e.g. to offer reduction cards, vouchers, pre-paid accounts, merchandising articles, ...).
 
 The offer must provide descriptions on its conditions to be used for display to the customer.
 
 An overall offer presented to a retailer or a distributer bundles offers that
 contain admissions, reservation and ancillaries.
 
-An offer has an overall comfort class and an overall flexibility.
+An offer has an overall comfort class and an overall flexibility to indicate the main feature of the offer. It must still be possible to include deviating offer parts on minor parts of the trip in thee offer (e.g. including a short second class part in a first calss travel).
 
 An offer has a minimal price. The minimal price is the price that does not
 include optional reservations or ancillaries.
-
-An offer is valid for a given time.
-
-An offer can be pre-booked.
 
 An offer should span at least one tripLeg of the trip and include all needed
 services.
 
 An offer should contain all offer parts, or fares, respectively per travel class and per flexibility/product code.
 
-Per passenger there should be an offer part, or fare for different parts of the trip, e.g. legs. I.e., all offers generated are always proposed for the complete set of passengers.
-
-Even if a trip provides partial first class support only, a first class offer is always provided.
-
-If a part of a trip is free, a fare or offer part with price zero must be provided.
-
-The search for offers must incude the option to search for promotional offers. 
-
+The available fulfillment methods on the client side might restrict the offers (e.g. a vending machine can not print a4 tickets). The offer request must provide the available methods. 
 
 _Optional Requirement_
 Search for product based offers must be possible by specifying trip search criteria. 
@@ -266,34 +309,35 @@ Trip search criterea must provide the option to select different transport modes
 
 An admission provides the right to travel on a vehicle.
 
-An admission has a price. In general, the price is calculated per passenger.
+An admission has a price.
 
 An admission offer is valid for a given time. An admission offer shows which
-reductions has been applied.
+reductions have been applied. This includes reductions baed on reduction cards as well as reductions based on age or other criteria.
 
 An admission is linked to one or more passengers.
 
 For the possible states of an admission, refer to the [state model](../state-models#bookingPart) for booking parts.
 
-In general, there’s a one-to-one relationship between offer and product. Only
+In general, there’s a one-to-one relationship between an offer part and a product. Only
 for some combinations of TGV and TER in France an offer must support referencing
 two products. Additionally, an included reservation does not reference a
 product.
 
+The offer part can have a summary offer representing a more abstract definition of the product.
+
 An admission may be linked mandatorily or optionally to one or more reservations.
 
-Return offers should be supported. A real return offer has a specific price and or conditions depending on the sale of inward and outward trip together.                                              
+Return offers should be supported. A real return offer has a specific price and/or conditions depending on the sale of inward and outward trip together.                                              
 
 #### Requirements on Reservation <a name="RequirementsonReservation">
 
-A reservation provides the right to sit or lay on dedicated place in a vehicle.
+A reservation provides the right to sit or lay on dedicated places in a vehicle.
 
 A reservation has a price.
 
-A reservation can be **OPTIONAL, MANDATORY, INCLUDED** to an admission.
+A reservation can be **OPTIONAL, MANDATORY** to an admission.
 
-A reservation offer is valid for a given time. An admission offer shows which
-reductions have been applied.
+A reservation offer is valid for a given time. 
 
 A reservation is linked to one or more passengers.
 
@@ -301,8 +345,7 @@ For the possible states of a reservation, refer to the [state model](../state-mo
 
 A reservation in product mode must have an assigned product.
 
-An integrated reservation shall be modelled as an admission with an included
-reservation.
+An integrated reservation shall be modelled as an admission with a mandatory reservation.
 
 Places in reservations can optionaly be selected graphically, by requesting place properties or by referencing a nearby place.
 
@@ -1528,6 +1571,14 @@ The following guidelines apply:
 
   Information whether such payments are allowed can be included in the fare
   data, but the required service to handle such payments are not specified here.
+
+- Ticket control
+
+  The API for ticket control is not part of OSDM. A ticket control API is specified in UIC IRS 90918-4 / EU TA-TSI.
+
+- Booking of assistance for PRMs at stations
+
+  The booking of assistance for PRMs at stations is not part of OSDM. An API for booking assistance a tstations is specifiec in UIC IRS 90918-6 / EU TA-TSI B.10.
 
 - Validation of customer cards
 
