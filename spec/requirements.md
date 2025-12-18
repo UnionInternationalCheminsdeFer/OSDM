@@ -14,7 +14,8 @@ permalink: /spec/requirements/
   - [Requirements on Personal Data ](#requirements-on-personal-data-)
   - [Requirements on Passenger ](#common-requirements-on-passenger-)-
   - [Requirements on Location ](#requirements-on-location-)
-  - [Requirements on Offers ](#common-requirements-on-offers-)- 
+  - [Requirements on Offers ](#common-requirements-on-offers-)-
+    - [Requirements on Reservation ](#common-requirements-on-reservation-)
 - [Functional Requirements of the Retailer ](#functional-requirements-of-the-retailer-)
   - [Requirements on Passenger ](#requirements-on-passenger-)
   - [Requirements on Trip ](#requirements-on-trip-)
@@ -235,6 +236,47 @@ The search for offers must incude the option to search for corporate offers.
 
 An offer can be pre-booked.
 
+
+#### Requirements on Reservation <a name="CommonRequirementsonReservation">
+
+A reservation provides the right to sit or lay on dedicated places in a vehicle.
+
+A reservation has a price.
+
+A reservation can be **OPTIONAL, MANDATORY** to an admission.
+
+A reservation offer is valid for a given time. 
+
+A reservation is linked to one or more passengers.
+
+For the possible states of a reservation, refer to the [state model](../state-models#bookingPart) for booking parts.
+
+A reservation in product mode must have an assigned product.
+
+An integrated reservation (IRS) shall be modelled as an admission with a mandatory reservation.
+
+Places in reservations can optionaly be selected graphically, by requesting place properties or by referencing a nearby place. If a selection by properties is possible the reservation offer must provide the possible properties and their grouping.
+
+It must be possible to provide data for a graphical representation of the train and coaches with the places on an abstract level allowing a retailer to use his own look and feel. The representation of vehicles for a graphical display must be provided as master data. 
+The representation must be on an abstract level allowing the client to use a harmonized look and feel in it's UI independent from the different providers.
+
+The service providing the available places must also be able to indicate a pre-selection to the client that should be used with the first display of the seat map. To prepare a pre-selction it must be possible to provide accomodation sub types in the request.
+As an option it should be possible to indicate the direction of travel for seats. 
+
+It must be possible to request the available vehicles and places on the vehicles for a leg.
+
+Reservations are made on places or on entire compartments. 
+
+The possible and mandatory selections of reservations must be provided by the API as part of the offer. Reservation might be mandatory on the trains or part of the trains of a trip.
+
+It should be possible to provide a compressed description of reserved places for larger groups, e.g. places "11-55". 
+
+A reservation must reference the vehicle and trip leg. In case the leg is assigned to multiple vehicle numbers the link must provide the one where the reserved places are located.
+
+_Optional Requirement_
+
+It should be possible to provide reservation offers that do not cover a whole leg on the same seat.
+
 ## Functional Requirements of the Retailer <a name="FunctionalRequirementsoftheRetailer">
 
 Content provided to the retailer must be self contained and include all required textual descriptions needed for the presentation of the products to a client.
@@ -280,7 +322,7 @@ A transfer is a special kind of tripLeg, defining how long the transfer takes.
 Search for offers must be possible by specifying a trip and the part of the trip where the offer is required. 
 It must be possible to indicate a gap in the covered part (e.g. on a city part connecting two rail parts).
 
-Serach for offers must be possible without specifying a trip to search for multi-journey passes or related non-transport offers (e.g. to offer reduction cards, vouchers, pre-paid accounts, merchandising articles, ...).
+Search for offers must be possible without specifying a trip to search for multi-journey passes or related non-transport offers (e.g. to offer reduction cards, vouchers, pre-paid accounts, merchandising articles, ...).
 
 The offer must provide descriptions on its conditions to be used for display to the customer.
 
@@ -331,47 +373,9 @@ Return offers should be supported. A real return offer has a specific price and/
 
 #### Requirements on Reservation <a name="RequirementsonReservation">
 
-A reservation provides the right to sit or lay on dedicated places in a vehicle.
+It must be possible to apply fees for the use of a graphical place selection for reservation. It must be possible to apply fees depending on the places selected (e.g. a higher fee for selecting a window seat). The client must be able to display the amount of the fees depending on the selected places. Selecting a plkce will change the price of the pre-booked reservation offer.
 
-A reservation has a price.
-
-A reservation can be **OPTIONAL, MANDATORY** to an admission.
-
-A reservation offer is valid for a given time. 
-
-A reservation is linked to one or more passengers.
-
-For the possible states of a reservation, refer to the [state model](../state-models#bookingPart) for booking parts.
-
-A reservation in product mode must have an assigned product.
-
-An integrated reservation shall be modelled as an admission with a mandatory reservation.
-
-Places in reservations can optionaly be selected graphically, by requesting place properties or by referencing a nearby place.
-
-It must be possible to provide data for a graphical representation of the train and coaches with the places on an abstract level allowing a retailer to use his own look and feel. The representation of 
-vehicles for a graphical display must be provided as master data. The representation must be on an abstract level allowing the client to use a harmonized look and feel in it's UI independent from the different providers.
-
-The service providing the available places must also be able to indicate a preselection to the client that should be used with the first display of the seat map. As an option ist should be possible to indicate the direction of travel for seats. 
-To prepare a preselction it must be possible to provide accomodation sub types in the request.
-
-It must be possible to apply fees for the use of agraphical place selection for reservation. It must be possible to apply fees depending on the places selected. The client must be able to display the amount of the fees depending on the selected places. 
-
-It must be indicated in the offer whether a graphical place selection is available.
-
-It must be possible to request the available vehicles and places on the vehicles for a leg.
-
-Reservations are made on places or on compartments. 
-
-The possible and mandatory selections of reservations must be provided by the API as part of the offer. Reservation might be mandatory on the trains or part of the trains of a trip.
-
-It should be possible to provide a compressed description of reserved places for larger groups, e.g. places "11-55". 
-
-A reserevation must reference the vehicle and trip leg. In case the leg is assigned to multiple vehicle numbers the link must provide the one where the reserved places are located.
-
-_Optional Requirement_
-
-It should be possible to provide reservation offers that do not cover a whole leg on the same seat.
+Booking reservations might have a fee. The fee might be per reservation or per trip. The fee must be indicated in the offer. IN case of optional reservations the fee does not contribute to the minimal price of the offer.
 
 #### Requirements on Ancillary <a name="RequirementsonAncillary">
 
@@ -380,8 +384,7 @@ ancillary services: Wifi access or on-board meal.
 
 An ancillary has a price.
 
-An ancillary can be **OPTIONAL, MANDATORY,INCLUDED** to an admission or
-reservation.
+An ancillary can be **OPTIONAL, MANDATORY** to an admission or reservation.
 
 An ancillary offer is valid for a given time.
 
@@ -427,7 +430,7 @@ Non-trip based search must be possible by searching for areas and periods.
 
 Non-trip based serach must be possible by searching products via the API. Products might be categorized and it must be possible to retrieve the categories and to search via these categories.
 
-On passes,  travel accounts and multi ride tickets a balance on the usage should be provided.
+On passes, travel accounts and multi-ride tickets a balance on the usage should be provided.
 
 _Optional requirement_
 
@@ -452,7 +455,7 @@ can be requested once the prolonged offer is actually booked.
 Offers from different providers might have a restriction to be sold in
 combination only.
 
-The combination might not be be required by all offers. E.g. an offer from
+The combination might not be required by all offers. E.g. an offer from
 provider A might only be sold if offer B of another provider is sold but offer B
 can be sold stand alone.
 
