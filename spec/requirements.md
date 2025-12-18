@@ -13,9 +13,10 @@ permalink: /spec/requirements/
   - [Requirements on Priceing and Payment ](#requirements-on-price-)
   - [Requirements on Personal Data ](#requirements-on-personal-data-)
   - [Requirements on Passenger ](#common-requirements-on-passenger-)-
-  - [Requirements on Location ](#requirements-on-location-)
+  - [Requirements on Location ](#common-requirements-on-location-)
   - [Requirements on Offers ](#common-requirements-on-offers-)-
     - [Requirements on Reservation ](#common-requirements-on-reservation-)
+  - [Requirements on Round Trips ](#requirements-on-round-trips-)- 
 - [Functional Requirements of the Retailer ](#functional-requirements-of-the-retailer-)
   - [Requirements on Passenger ](#requirements-on-passenger-)
   - [Requirements on Trip ](#requirements-on-trip-)
@@ -27,7 +28,6 @@ permalink: /spec/requirements/
     - [Requirements on Non-Trip Offers ](#requirements-on-Non-Trip-Offers-)
   - [Requirements on Prolonging an Offer ](#requirements-on-prolonging-an-offer-)
   - [Requirements on Offer Combination ](#requirements-on-offer-combination-)
-  - [Requirements on Round Trips ](#requirements-on-round-trips-)
   - [Requirements on Booking ](#requirements-on-booking-)
   - [Requirements on Products ](#requirements-on-products-)
   - [Requirements on Fulfillment ](#requirements-on-fulfillment-)
@@ -60,7 +60,7 @@ permalink: /spec/requirements/
   - [Requirements on prices ](#requirements-on-prices-)
   - [Requirements on the basic fare structure ](#requirements-on-the-basic-fare-structure-)
   - [Requirements on the after sales conditions ](#requirements-on-the-after-sales-conditions-)
-  - [Requirements on conditions on ent ](#requirements-on-conditions-on-ent-)
+  - [Requirements on conditions on fulfillment ](#requirements-on-conditions-on-ent-)
   - [Requirements on dynamic fares and train linked tickets ](#requirements-on-dynamic-fares-and-train-linked-tickets-)
     - [Indication of dynamic fares available online ](#indication-of-dynamic-fares-available-online-)
     - [Indication of train links on the ticket ](#indication-of-train-links-on-the-ticket-)
@@ -190,7 +190,7 @@ The customer might be a company. It must be possible to provide and change compa
 The needed personal data must be indicated. Only personal data needed for the
 given business process can be transferred between the parties involved.
 
-### Requirements on Location <a name="RequirementsonLocation">
+### Requirements on Location <a name="CommonRequirementsonLocation">
 
 A location uniquely identifies a place in space. A location can be of type
 station, point-of-interest, address or geo-coordinate or a connection-point between tariff areas. Connection-points are only used between distributor and fare provider. 
@@ -276,6 +276,15 @@ A reservation must reference the vehicle and trip leg. In case the leg is assign
 _Optional Requirement_
 
 It should be possible to provide reservation offers that do not cover a whole leg on the same seat.
+
+### Requirements on Round Trips <a name="RequirementsonRoundTrips">
+
+Round trip offers should be possible considering both trips when making the
+offer.
+
+Support for round trips consisting of multiple products need to be supported.
+
+Note: Trips with custom added via stations offer the possibility of fraud (e.g. A-->via B-->A is forbidden, but would be cheaper than A-B & B-A). It is up to the provider to validate the trip in the request. 
 
 ## Functional Requirements of the Retailer <a name="FunctionalRequirementsoftheRetailer">
 
@@ -461,13 +470,6 @@ can be sold stand alone.
 
 The combination logic needs to be fast (<20ms).
 
-### Requirements on Round Trips <a name="RequirementsonRoundTrips">
-
-Round trip offers should be possible considering both trips when making the
-offer.
-
-Support for round trips consisting of one or two products need to be supported.
-
 ### Requirements on Booking <a name="RequirementsonBooking">
 
 A booking consists of one or more selected offers and optionally reservations or optional
@@ -477,7 +479,7 @@ It must be possible to search for bookings:
 
 - Passenger first name, last name or passenger date
 - Booking reference
-- ent reference
+- Fulfillment reference
 - Travel date or end
 - Origin or destination
 
@@ -504,7 +506,7 @@ A product must contain the following information:
 - A indication whether a product is _exchangeable_, _exchangeable with
   conditions_ or _not exchangeable_.
 - The service class describing the level of comfort.
-- Define the supported ent media types.
+- Define the supported fulfillment media types.
 
 A product does not have a price, as the price is bound to an offer as an
 instantiation of a product.
