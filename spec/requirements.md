@@ -16,7 +16,8 @@ permalink: /spec/requirements/
   - [Requirements on Location ](#common-requirements-on-location-)
   - [Requirements on Offers ](#common-requirements-on-offers-)-
     - [Requirements on Reservation ](#common-requirements-on-reservation-)
-  - [Requirements on Round Trips ](#requirements-on-round-trips-)- 
+  - [Requirements on Round Trips ](#requirements-on-round-trips-)-
+  - [Requirements on Booking ](#common-requirements-on-booking-)- 
 - [Functional Requirements of the Retailer ](#functional-requirements-of-the-retailer-)
   - [Requirements on Passenger ](#requirements-on-passenger-)
   - [Requirements on Trip ](#requirements-on-trip-)
@@ -30,6 +31,7 @@ permalink: /spec/requirements/
   - [Requirements on Offer Combination ](#requirements-on-offer-combination-)
   - [Requirements on Booking ](#requirements-on-booking-)
   - [Requirements on Products ](#requirements-on-products-)
+  - [Requirements on On-Demand Services](#requirements-on-on-demand-services-)
   - [Requirements on Fulfillment ](#requirements-on-fulfillment-)
   - [Requirements on Documents ](#requirements-on-documents-)
   - [Requirements on Refund ](#requirements-on-refund-)
@@ -279,12 +281,22 @@ It should be possible to provide reservation offers that do not cover a whole le
 
 ### Requirements on Round Trips <a name="RequirementsonRoundTrips">
 
-Round trip offers should be possible considering both trips when making the
-offer.
+Round trip offers should be possible considering both trips when making the offer.
 
 Support for round trips consisting of multiple products need to be supported.
 
 Note: Trips with custom added via stations offer the possibility of fraud (e.g. A-->via B-->A is forbidden, but would be cheaper than A-B & B-A). It is up to the provider to validate the trip in the request. 
+
+### Requirements on Booking <a name="CommonRequirementsonBooking">
+
+A booking consists of one or more selected offers and optionally reservations or optional
+ancillaries.
+
+It should be possible to validate a booking in pre-booked state. The validation checks whether a confirmation is possible.
+
+It should be possible to add optional offer parts to a pre-booked booking from the original offer. 
+
+It should be possible to request additional offers based on an existing booking.
 
 ## Functional Requirements of the Retailer <a name="FunctionalRequirementsoftheRetailer">
 
@@ -379,6 +391,7 @@ The offer part can have a summary offer representing a more abstract definition 
 An admission may be linked mandatorily or optionally to one or more reservations.
 
 Return offers should be supported. A real return offer has a specific price and/or conditions depending on the sale of inward and outward trip together.                                              
+The offer parts should contain structured after sales conditions sowing at which time which fee will be applied on refund, exchange and optionally a place change in reservation. The structured information allows the client to warn the customer on aproaching time lines with fees. 
 
 #### Requirements on Reservation <a name="RequirementsonReservation">
 
@@ -480,16 +493,11 @@ It must be possible to search for bookings:
 - Passenger first name, last name or passenger date
 - Booking reference
 - Fulfillment reference
-- Travel date or end
+- Travel date 
 - Origin or destination
-
-To support stateless booking an explicit pre-booking step is _not_ supported by
-design.
 
 A booking has a purchaser which has booked the booking. The purchaser may, but does not have to
 be a passenger.
-
-Booking must be supported by all parties.
 
 The client is managing its own booking data and this booking needs to be referenced in the providers booking. It must be possible to add or change this reference later-on in the booking process. 
 
@@ -499,8 +507,7 @@ A product must contain the following information:
 
 - An id uniquely identifying the product, e.g. "Sparschiene".
 - A textual description of the product.
-- A structured description of the sales or after-sales conditions which are
-  machine interpretable as well as a human readable.
+- A textual description of the sales or after-sales conditions.
 - A indication whether a product is _refundable_, _refundable with conditions_
   or _not refundable_.
 - A indication whether a product is _exchangeable_, _exchangeable with
@@ -511,7 +518,7 @@ A product must contain the following information:
 A product does not have a price, as the price is bound to an offer as an
 instantiation of a product.
 
-**requirements on on-demand services**
+### Requirements on on-demand services <a name="RequirementsonOnDemandServices">
 
 On-demand services (with the exception of car sharing) should be supported by OSDM. 
                   
