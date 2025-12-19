@@ -9446,7 +9446,7 @@ components:
         - exchangeFee
         - exchangePrice
         - refundableAmount
-        - fulfillments
+        - fulfillmentRefs
         - offerId
         - createdOn
         - preBookableUntil
