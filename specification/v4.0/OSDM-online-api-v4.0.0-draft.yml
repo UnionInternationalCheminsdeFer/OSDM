@@ -9446,7 +9446,7 @@ components:
         - exchangeFee
         - exchangePrice
         - refundableAmount
-        - fulfillments
+        - fulfillmentRefs
         - offerId
         - createdOn
         - preBookableUntil
@@ -9472,11 +9472,11 @@ components:
           $ref: '#/components/schemas/Price'
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
-        fulfillments:
+        fulfillmentRefs:
           type: array
           items:
-            $ref: '#/components/schemas/Fulfillment'
-          minItems: 1
+            $ref: '#/components/schemas/FulfillmentRefs'
+          minItems: 1  
         offerId:
           type: string
           maxLength: 32768
