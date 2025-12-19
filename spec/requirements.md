@@ -10,15 +10,20 @@ permalink: /spec/requirements/
 - [Table of contents](#table-of-contents)
 - [Common Functional Requirements ](#common-functional-requirements-)
   - [Requirements on Product Range ](#requirements-on-product-range-)
+  - [Requirements on Trip ](#common-requirements-on-trip-)
+    - [Requirements on Round Trips ](#requirements-on-round-trips-)
   - [Requirements on Priceing and Payment ](#requirements-on-priceing-)
-    - [Requirements on reductions ](#requirements-on-reductions-)
+    - [Requirements on Reductions ](#requirements-on-reductions-)
   - [Requirements on Personal Data ](#requirements-on-personal-data-)
   - [Requirements on Passenger ](#common-requirements-on-passenger-)
   - [Requirements on Location ](#common-requirements-on-location-)
   - [Requirements on Offers ](#common-requirements-on-offers-)
     - [Requirements on Reservation ](#common-requirements-on-reservation-)
-  - [Requirements on Round Trips ](#requirements-on-round-trips-)
-  - [Requirements on Booking ](#common-requirements-on-booking-) 
+  - [Requirements on Booking ](#common-requirements-on-booking-)
+  - [Requirements on Refund ](#common-requirements-on-refund-)
+    - [Requirements on Partial Refund  ](#common-requirements-on-partial-refund-)
+  - [Requirements on Exchange ](#common-requirements-on-exchange-)
+  - [Requirements on Seat Change ](#requirements-on-seat-change-)    
 - [Functional Requirements of the Retailer ](#functional-requirements-of-the-retailer-)
   - [Requirements on Passenger ](#requirements-on-passenger-)
   - [Requirements on Trip ](#requirements-on-trip-)
@@ -36,15 +41,13 @@ permalink: /spec/requirements/
   - [Requirements on Fulfillment ](#requirements-on-fulfillment-)
   - [Requirements on Documents ](#requirements-on-documents-)
   - [Requirements on Refund ](#requirements-on-refund-)
-  - [Requirements on Partial Refund  ](#requirements-on-partial-refund--)
+    - [Requirements on Partial Refund ](#requirements-on-partial-refund-)
   - [Requirements on Exchange ](#requirements-on-exchange-)
   - [Requirements on Add-Ons](#requirements-on-add-ons-)
-  - [Requirements on Seat Change ](#requirements-on-seat-change-)
   - [Requirement to Release Allocated Resources ](#requirement-to-release-allocated-resources-)
   - [Requirement to Cancel a fulfillment ](#requirement-to-cancel-a-fulfilment-)
   - [Requirements on Complaints ](#requirements-on-complaints-)
   - [Requirements on Reimbursements ](#requirements-on-reimbursements-)
-  - [Requirements on Masterdata ](#requirements-on-masterdata-)
 - [Functional Requirements of a Distributor ](#functional-requirements-of-a-distributor-)
   - [Requirements on regional validity ](#requirements-on-regional-validity-)
     - [Station ](#station-)
@@ -80,6 +83,7 @@ permalink: /spec/requirements/
   - [Requirements on Trip Interruptions ](#requirements-on-trip-interruptions-)
   - [Requirements on Multi-Journeys Tickets ](#requirements-on-multi-journeys-tickets-)
   - [Requirements on Fare Exchange ](#requirements-on-fare-exchange-)
+- [Requirements on Masterdata ](#requirements-on-masterdata-)
 - [Architectural Requirements ](#architectural-requirements-)
   - [Requirements on aligned processes end to end ](#requirements-on-aligned-processes-end-to-end-)
   - [Requirements on aligned services ](#requirements-on-aligned-services-)
@@ -111,6 +115,50 @@ change of after sales conditions due to cancelled or delayed services. The chang
 It must be possible to distribute and sell all existing products related to passenger transport. This might even includ merchandising artcles. Existing products include admissions (a.k.a Tickets), reservations and ancillaries.
 
 Covered transport modes are rail, bus and ferries as well as on demand servces for micromobility. Currently nt covered is car sharing.
+
+
+### Requirements on Trip <a name="common-requirements-on-trip-">
+
+A trip must contain the following information.
+
+- `origin`: a location where the vehicle departs
+- `destination`: a location where the vehicle arrives
+- `duration`: the duration of the trip
+- `tripLegs`: a list of tripLegs
+
+A trip is composed of one or more `tripLegs` and can be of one the following
+type:
+
+- **TimedLeg**: A type of leg with a timetable schedule such a provided by
+  public transport
+- **TransferLeg**: A type of leg that links two legs such as walking from one
+  stop to another
+- **ContinuosLeg**: A type of leg that is not bound to a timetable. This leg is
+  mainly aimed at new modes such as scooter, taxis,..
+
+**A tripLeg represents a subsection of a trip that is realized with the same
+transport vehicle**. In railways it is typically one train (between the moment
+passenger steps on-board until stepping out of that train) but could be using
+different means of transportation. A tripLeg has an origin, a destination and
+duration. 
+
+A tripLeg might be associated with two vehicles in case they are running as multiple units and each unit has its own vehicle number.
+
+A vehicle is defined by a number or line and a service brand at the start of the leg. A service brand might change along a leg.  
+
+A transfer is a special kind of tripLeg, defining how long the transfer takes.
+
+It must be possible to request offers for a part of a trip.
+    
+
+#### Requirements on Round Trips <a name="RequirementsonRoundTrips">
+
+Round trip offers should be possible considering both trips when making the offer.
+
+Support for round trips consisting of multiple products need to be supported.
+
+Note: Trips with custom added via stations offer the possibility of fraud (e.g. A-->via B-->A is forbidden, but would be cheaper than A-B & B-A). It is up to the provider to validate the trip in the request.
+
 
 ### Requirements on Priceing and Payment <a name="requirements-on-priceing-">
 
@@ -156,7 +204,7 @@ The accounting and clearing flow is not part of OSDM, however OSDM must support 
 
 Prices in bookings and booking parts  must have a reference to the corresponding accounting data. The reference must include the company providing the accounting as this might differ from the company providinf the booking.
 
-#### Requirements reductions <a name="Requirementsonreductions">
+#### Requirements on Reductions <a name="Requirementsonreductions">
 
 Reductions are price reductions due to:
 
@@ -228,7 +276,7 @@ The customer might be a company. It must be possible to provide and change compa
 
 ### Requirements on Personal Data <a name="RequirementsonPersonalData">
 
-The needed personal data must be indicated. Only personal data needed for the
+The needed personal data must be indicated by the API provider. Only personal data needed for the
 given business process can be transferred between the parties involved.
 
 ### Requirements on Location <a name="common-requirements-on-location-">
@@ -318,14 +366,6 @@ _Optional Requirement_
 
 It should be possible to provide reservation offers that do not cover a whole leg on the same seat.
 
-### Requirements on Round Trips <a name="RequirementsonRoundTrips">
-
-Round trip offers should be possible considering both trips when making the offer.
-
-Support for round trips consisting of multiple products need to be supported.
-
-Note: Trips with custom added via stations offer the possibility of fraud (e.g. A-->via B-->A is forbidden, but would be cheaper than A-B & B-A). It is up to the provider to validate the trip in the request. 
-
 ### Requirements on Booking <a name="common-requirements-on-booking-">
 
 A booking consists of one or more selected offers and optionally reservations or optional
@@ -336,6 +376,60 @@ It should be possible to validate a booking in pre-booked state. The validation 
 It should be possible to add optional offer parts to a pre-booked booking from the original offer. 
 
 It should be possible to request additional offers based on an existing booking.
+
+### Requirements on Refund <a name="common-requirements-on-refund-">
+
+For a given a booking a refund can be requested.
+
+A refund can have a fee.
+
+Cancellation (a.k.a. revoke) is a special kind of refund where no fees apply,
+and the complete amount is returned triggered by an overrule code.
+
+Cancellation must be supported by all parties. The acceptance of the overrule code depends on the business rules of the provider. The acceptance might be restricted by a time-span after booking.
+
+Total refund must be supported by all parties.
+
+#### Requirements on Partial Refund  <a name="common-requirements-on-partial-refund-">
+
+Partial refund allows to remove passengers and booking parts (only if supported by the
+underlying tarif) from a booking.
+
+A partial refund might have a fee.
+
+Partial refund may be supported by all parties.
+
+### Requirements on Exchange <a name="common-requirements-on-exchange-">
+
+Exchange allows to change trip(s), passengers and products. This might include adding and removing passengers, changing to another trip or changing the product (e.g. to another calss or selecting another meal).
+
+The exchange offers must comply with the same requirements as applicable for usual offers without exchange.
+
+An exchange can have a fee.
+
+In some situations an exchange subject to a fee might be allowed without a fee. These are indicated via ovrerule codes. Accepance of over rule codes msut be indicated by the provider.
+
+### Requirements on Seat Change <a name="RequirementsonSeatChange">
+
+_Optional requirement_
+
+If supported by the underlying system, it must be possible to change of seat
+after the booking is confirmed and fulfilled. This change can either be free or
+for a fee when requested by the carrier.
+
+The following scenarii exist:
+
+1. Specific seat and coach requested: optionally, a seat map can be requested,
+   so that the user knows which seat is available. The user can then select a
+   specific coach and seat number.
+2. Near to a given seat: The user provides in the request a seat number he
+   wishes to be seated next to.
+3. Seat preferences: The user provides seat arrangement such as window, aisle
+   etc…
+
+Some providers give the possibility to up-sell to a better seat after booking.
+This is an adjacent but not equivalent case, as the change of seat should not
+affect allocation or update the inventory.
 
 ## Functional Requirements of the Retailer <a name="FunctionalRequirementsoftheRetailer">
 
@@ -351,34 +445,11 @@ identical to common requirements.
 
 ### Requirements on Trip <a name="RequirementsonTrip">
 
-A trip must contain the following information.
+It should be possible for a provider to give additional information in the trip even after the booking was made:
 
-- `origin`: a location where the vehicle departs
-- `destination`: a location where the vehicle arrives
-- `duration`: the duration of the trip
-- `tripLegs`: a list of tripLegs
-
-A trip is composed of one or more `tripLegs` and can be of one the following
-type:
-
-- **TimedLeg**: A type of leg with a timetable schedule such a provided by
-  public transport
-- **TransferLeg**: A type of leg that links two legs such as walking from one
-  stop to another
-- **ContinuosLeg**: A type of leg that is not bound to a timetable. This leg is
-  mainly aimed at new modes such as scooter, taxis,..
-
-**A tripLeg represents a subsection of a trip that is realized with the same
-transport vehicle**. In railways it is typically one train (between the moment
-passenger steps on-board until stepping out of that train) but could be using
-different means of transportation. A tripLeg has an origin, a destination and
-duration. 
-
-A tripLeg might be associated with two vehicles in case they are running as multiple units and each unit has its own vehicle number.
-
-A vehicle is defined by a number or line and a service brand at the start of the leg. A service brand might change along a leg.  
-
-A transfer is a special kind of tripLeg, defining how long the transfer takes.
+  - informations on delays
+  - informations on available service on the vehicle
+  - information on platforms and platform sections
 
 ### Requirements on Offers <a name="RequirementsonOffers">
 
@@ -408,7 +479,6 @@ _Optional Requirement_
 Search for product based offers must be possible by specifying trip search criteria. 
 
 Trip search criterea must provide the option to select different transport modes between via stops.
-
 
 #### Requirements on Admission <a name="RequirementsonAdmission">
 
@@ -572,6 +642,8 @@ The consumer can start the usage of the service with the allocated vehicle.
 
 The consumer can end the usage of the service with the vehicle in use.
 
+The consumer can interrupt the usage of the service with the vehicle in use depending on the business rules.
+
 The providers may have implemented different pricing and payment schemes that should be supported:
       
                   - prepaid fixed price or included in an overall admission booking part
@@ -630,41 +702,25 @@ A document can reference a booking or a passenger in a booking.
 
 ### Requirements on Refund <a name="RequirementsonRefund">
 
-For a given a booking a refund can be requested.
-
-A refund can have a fee.
-
-Cancellation (a.k.a. revoke) is a special kind of refund where no fees apply,
-and the complete amount is returned triggered by an overrule code.
-
-Cancellation must be supported by all parties.
-
-Total refund must be supported by all parties.
+A refund might provide the customer the choice to be refunded by vouchers or on the original account.
 
 _Optional requirement_
 
-The refund must provide a detailer breackdown of the prices and fees related to affected booking parts
+The refund must provide a detailed breackdown of the prices and fees related to affected booking parts.
 
-### Requirements on Partial Refund  <a name="RequirementsonPartialRefund">
+#### Requirements on Partial Refund  <a name="RequirementsonPartialRefund">
 
-Partial refund allows to remove passengers and booking parts (only if supported by the
-underlying tarif) from a booking.
-
-A partial refund can have a fee.
+A partial refund can also be made based on fulfillments. In case of dependencies between fulfillments it is up to the provider to create a consistent offer for the refund.
 
 Partial refund may be supported by all parties.
 
 ### Requirements on Exchange <a name="RequirementsonExchange">
 
-Exchange allows to change trip(s), passengers and products. This might include adding and removing passengers, changing to another trip or changing the product (e.g. to another calss or selecting another meal).
-
-An exchange can have a fee.
-
 Exchange may be supported by all parties.
 
 _Optional requirement_
 
-The exchange must provide a detailer breackdown of the prices and fees related to affected booking parts
+The exchange must provide a detailed breackdown of the prices and fees related to affected booking parts
 
 ### Requirements on Add-Ons <a name="requirements-on-add-ons")
 
@@ -672,35 +728,13 @@ _Optional requirement_
 
 It must be possible to add additional products to an existing booking. 
 
- - adding additional optional parrts from the offer during the pre-booking phase
+ - adding additional optional parts from the offer during the pre-booking phase
  - requesting additional offers for an already confirmed booking 
 
 These might be:
  - additional ancillaries (meals, ..)
  - optional reservations
  - upgrades of the service class on a confirmed booking
-
-### Requirements on Seat Change <a name="RequirementsonSeatChange">
-
-_Optional requirement_
-
-If supported by the underlying system, it must be possible to change of seat
-after the booking is confirmed and fulfilled. This change can either be free or
-for a fee when requested by the carrier.
-
-The following scenarii exist:
-
-1. Specific seat and coach requested: optionally, a seat map can be requested,
-   so that the user knows which seat is available. The user can then select a
-   specific coach and seat number.
-2. Near to a given seat: The user provides in the request a seat number he
-   wishes to be seated next to.
-3. Seat preferences: The user provides seat arrangement such as window, aisle
-   etc…
-
-Some providers give the possibility to up-sell to a better seat after booking.
-This is an adjacent but not equivalent case, as the change of seat should not
-affect allocation or update the inventory.
 
 ### Requirement to Release Allocated Resources <a name="RequirementtoReleaseAllocatedResources">
 
@@ -716,8 +750,9 @@ It will not refund, but a subsequent refund uses the release time for calculatio
 
 _Optional requirement_
 
-For some systems (e.g. in the French) it must be possible to cancel a
-fulfillment (_Void PNR_).
+For some systems (e.g. in the French) it must be possible to cancel a fulfillment (_Void PNR_) in order to reissue it.
+
+This scenario might also be used with traditional secured paper to manage misprints.  
 
 ### Requirements on Complaints <a name="RequirementsonComplaints">
 
@@ -775,14 +810,6 @@ electronic form by a carrier.
 
 The customer must be able to make the claim via a retailer to the distributor
 who needs to forward the request to the involved carriers.
-
-### Requirements on Masterdata <a name="RequirementsonMasterdata">
-
-Provider specific masterdata referenced should be available via the API.
-
-The masterdata provided must support mutiple languages.
-
-Large volume Master data (e.g. Places) must allow an asynchronous download.
 
 ## Functional Requirements of a Distributor <a name="FunctionalRequirementsofaDistributor">
 
@@ -1446,7 +1473,7 @@ Reservations can be provided in product mode and fare mode. In fare mode the res
 
 ### Requirements on Trip Interruptions <a name="RequirementsonTripInterruptions">
 
-Restrictions oon allowed trip interruptions must be indicated in a fare.
+Restrictions on allowed trip interruptions must be indicated in a fare.
 
 Restrictions on interruptions can specify the maximal number of interruptions
 and the maximal duration of interruptions.
@@ -1473,6 +1500,14 @@ regulations.
 
 Conversion from Euro into a national currency (if necessary, vice versa) is
 subject to national distribution systems of the carrier/distributor concerned.
+
+## Requirements on Masterdata <a name="RequirementsonMasterdata">
+
+Masterdata referenced should be available via the API.
+
+The masterdata provided must support mutiple languages.
+
+Large volume Master data (e.g. Places) must allow an asynchronous download.
 
 ## Architectural Requirements <a name="ArchitecturalRequirements">
 
@@ -1587,18 +1622,17 @@ The following guidelines apply:
 
 - Payment procedures in national currencies. Payment procedures via private currencies alike bonus points and vouchers are included.
 
-  Information whether such payments are allowed can be included in the fare
-  data, but the required service to handle such payments are not specified here.
-
 - Ticket control
 
   The API for ticket control is not part of OSDM. A ticket control API is specified in UIC IRS 90918-4 / EU TA-TSI.
 
 - Booking of assistance for PRMs at stations
 
-  The booking of assistance for PRMs at stations is not part of OSDM. An API for booking assistance a tstations is specifiec in UIC IRS 90918-6 / EU TA-TSI B.10.
+  The booking of assistance for PRMs at stations is not part of OSDM. An API for booking assistance a stops is specifiec in UIC IRS 90918-6 / EU TA-TSI B.10.
 
 - Validation of customer cards
+
+  As the customer involved in the sale might be different from the traveller cards are validated during the control on the trip. 
 
 - Combination with flight
 
