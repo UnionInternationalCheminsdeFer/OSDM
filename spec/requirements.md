@@ -10,14 +10,14 @@ permalink: /spec/requirements/
 - [Table of contents](#table-of-contents)
 - [Common Functional Requirements ](#common-functional-requirements-)
   - [Requirements on Product Range ](#requirements-on-product-range-)
-  - [Requirements on Priceing and Payment ](#requirements-on-price-)
+  - [Requirements on Priceing and Payment ](#requirements-on-priceing-)
   - [Requirements on Personal Data ](#requirements-on-personal-data-)
   - [Requirements on Passenger ](#common-requirements-on-passenger-)
   - [Requirements on Location ](#common-requirements-on-location-)
-  - [Requirements on Offers ](#common-requirements-on-offers-)-
+  - [Requirements on Offers ](#common-requirements-on-offers-)
     - [Requirements on Reservation ](#common-requirements-on-reservation-)
-  - [Requirements on Round Trips ](#requirements-on-round-trips-)-
-  - [Requirements on Booking ](#common-requirements-on-booking-)- 
+  - [Requirements on Round Trips ](#requirements-on-round-trips-)
+  - [Requirements on Booking ](#common-requirements-on-booking-) 
 - [Functional Requirements of the Retailer ](#functional-requirements-of-the-retailer-)
   - [Requirements on Passenger ](#requirements-on-passenger-)
   - [Requirements on Trip ](#requirements-on-trip-)
@@ -112,7 +112,7 @@ It must be possible to distribute and sell all existing products related to pass
 
 Covered transport modes are rail, bus and ferries as well as on demand servces for micromobility. Currently nt covered is car sharing.
 
-### Requirements on Priceing and Payment <a name="RequirementsonPrice">
+### Requirements on Priceing and Payment <a name="requirements-on-priceing-">
 
 The pice must always be provided, no calculations on the client side despite the addition in receipts are allowed. A price has a currency, an amount and a scale. 
 
@@ -192,7 +192,7 @@ The customer might be a company. It must be possible to provide and change compa
 The needed personal data must be indicated. Only personal data needed for the
 given business process can be transferred between the parties involved.
 
-### Requirements on Location <a name="CommonRequirementsonLocation">
+### Requirements on Location <a name="common-requirements-on-location-">
 
 A location uniquely identifies a place in space. A location can be of type
 station, point-of-interest, address or geo-coordinate or a connection-point between tariff areas. Connection-points are only used between distributor and fare provider. 
@@ -201,7 +201,7 @@ For railway stations the UIC station codes must be supported.
 
 To support other means of transportation the types can potentially be extended.
 
-### Requirements on Offers <a name="CommonRequirementsonOffers">
+### Requirements on Offers <a name="common-requirements-on-offers-">
 
 Search for offers must be possible by specifying a trip and the part of the trip where the offer is required. 
 It must be possible to indicate a gap in the covered part (e.g. on a city part connecting two rail parts).
@@ -239,7 +239,7 @@ The search for offers must incude the option to search for corporate offers.
 An offer can be pre-booked.
 
 
-#### Requirements on Reservation <a name="CommonRequirementsonReservation">
+#### Requirements on Reservation <a name="common-requirements-on-reservation-">
 
 A reservation provides the right to sit or lay on dedicated places in a vehicle.
 
@@ -287,7 +287,7 @@ Support for round trips consisting of multiple products need to be supported.
 
 Note: Trips with custom added via stations offer the possibility of fraud (e.g. A-->via B-->A is forbidden, but would be cheaper than A-B & B-A). It is up to the provider to validate the trip in the request. 
 
-### Requirements on Booking <a name="CommonRequirementsonBooking">
+### Requirements on Booking <a name="common-requirements-on-booking-">
 
 A booking consists of one or more selected offers and optionally reservations or optional
 ancillaries.
@@ -300,12 +300,15 @@ It should be possible to request additional offers based on an existing booking.
 
 ## Functional Requirements of the Retailer <a name="FunctionalRequirementsoftheRetailer">
 
+Requirements for the interaction beween retailer and distributor are listed here.
+
 Content provided to the retailer must be self contained and include all required textual descriptions needed for the presentation of the products to a client.
 
 A retailer will not use fares, so requirements concerning fares are located in the distributor requirement section.
 
 ### Requirements on Passenger <a name="RequirementsonPassenger">
 
+identical to common requirements.
 
 ### Requirements on Trip <a name="RequirementsonTrip">
 
