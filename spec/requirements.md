@@ -11,6 +11,7 @@ permalink: /spec/requirements/
 - [Common Functional Requirements ](#common-functional-requirements-)
   - [Requirements on Product Range ](#requirements-on-product-range-)
   - [Requirements on Priceing and Payment ](#requirements-on-priceing-)
+    - [Requirements on reductions ](#requirements-on-reductions-)
   - [Requirements on Personal Data ](#requirements-on-personal-data-)
   - [Requirements on Passenger ](#common-requirements-on-passenger-)
   - [Requirements on Location ](#common-requirements-on-location-)
@@ -58,7 +59,6 @@ permalink: /spec/requirements/
   - [Requirements on availability for purchase ](#requirements-on-availability-for-purchase-)
   - [Requirements on validity for usage ](#requirements-on-validity-for-usage-)
   - [Requirements on validity for passengers / transportables ](#requirements-on-validity-for-passengers--transportables-)
-  - [Requirements on reductions ](#requirements-on-reductions-)
   - [Requirements on prices ](#requirements-on-prices-)
   - [Requirements on the basic fare structure ](#requirements-on-the-basic-fare-structure-)
   - [Requirements on the after sales conditions ](#requirements-on-the-after-sales-conditions-)
@@ -155,6 +155,45 @@ In case of bookings on travel account it must be possible to display the consump
 The accounting and clearing flow is not part of OSDM, however OSDM must support the traceability of accountings.
 
 Prices in bookings and booking parts  must have a reference to the corresponding accounting data. The reference must include the company providing the accounting as this might differ from the company providinf the booking.
+
+#### Requirements reductions <a name="Requirementsonreductions">
+
+Reductions are price reductions due to:
+
+  - a reduction card 
+  - a special status of the traveller (students, military staff, ... ). These are usually managed via a "reduction" card indicating the status of the person 
+  - an existing ticket or pass which the passenger already holds
+  - the age of the passenger (usually at the start of the travel)
+  - a traveller serving as accompagning person
+
+It might be that the physical card does not correspond to a specific reduction but provides the option to carry
+different reductions.
+
+Reductions might be granted due to the age of passengers. OSDM must support reductions due to passenger age. 
+The relevant age is the age at the start of the journey. 
+
+Reductions might also be granted due to corporate agreements and due to promotions. 
+
+Reductions due to corporate agreements must be supported.
+
+Reductions due to promotions must be supported.
+
+Reductions granted due to personal data (e.g. age, PRM status, ..) must be indicated. These personal data must be kept only in case a reduction is granted.
+
+It must be possible to display the applied reductions to the customer.
+
+It must be possible to display the granted reduction amounts to the customer (_Optional Requirement_).
+
+Different prices due to the age of the passenger are separate fares, not reductions to a fare.
+
+A card might be valid only for combined tickets only (special NS card)
+
+Multiple cards might apply to the same route or tripLeg. In case only one card can be applied it s up to the provider to choose the best option for the customer. The applied cards must be indicated in an offer.
+
+A reduction might grant a 100% price reduction
+
+In case a 100% reduction is granted an offer and booking of price 0 must still be provided to allow forming a complete offer to the traveller.
+
 
 ### Requirements on Passenger <a name="common-requirements-on-passenger-">
 
@@ -1054,43 +1093,7 @@ fares):
 
 The passenger weight of each passenger type needs to be considered.
 
-### Requirements reductions <a name="Requirementsonreductions">
 
-Reductions are price reductions due to a reduction “card” an existing ticket or
-a pass which the passenger already holds. It might be that the physical card
-does not correspond to a specific reduction but provides the option to carry
-different reductions.
-
-Reductions might be granted due to the age of passengers. OSDM must support reductions due to passenger age. 
-The relevant age is the age at the start of the journey.
-
-Reductions might also be granted due to corporate agreements and due to promotions. 
-
-Reductions due to corporate agreements must be supported.
-
-Reductions due to proomotions must be supported.
-
-Reductions granted due to personal data (e.g. age, PRM status, ..) must be indicated. These personal data must be kept only in case a reduction is granted.
-
-It must be possible to display the applied reductions to the customer.
-
-It must be possible to display the granted reduction amounts to the customer as an option.
-
-Different prices due to the age of the passenger are separate fares, not
-reductions to a fare.
-
-- A card might be valid only for combined tickets only (special NS card)
-
-- Multiple cards might apply to the same route tripLeg, but only one of them
-  would be applied.
-
-- A reduction might grant a 100% price reduction
-
-  In this case an NRT is created up to the final station the customer goes with
-  the price to the border of the area. The ticket indicates that the ticket has
-  a reduction of 100% within the area and an indication that it is valid only
-  together with the card. Pricing data are needed for the free travel area to
-  get the route description.
 
 ### Requirements on prices <a name="Requirementsonprices">
 
