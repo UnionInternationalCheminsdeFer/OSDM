@@ -12,7 +12,7 @@ permalink: /spec/requirements/
   - [Requirements on Product Range ](#requirements-on-product-range-)
   - [Requirements on Priceing and Payment ](#requirements-on-price-)
   - [Requirements on Personal Data ](#requirements-on-personal-data-)
-  - [Requirements on Passenger ](#common-requirements-on-passenger-)-
+  - [Requirements on Passenger ](#common-requirements-on-passenger-)
   - [Requirements on Location ](#common-requirements-on-location-)
   - [Requirements on Offers ](#common-requirements-on-offers-)-
     - [Requirements on Reservation ](#common-requirements-on-reservation-)
@@ -156,7 +156,7 @@ The accounting and clearing flow is not part of OSDM, however OSDM must support 
 
 Prices in bookings and booking parts  must have a reference to the corresponding accounting data. The reference must include the company providing the accounting as this might differ from the company providinf the booking.
 
-### Requirements on Passenger <a name="CommonRequirementsonPassenger">
+### Requirements on Passenger <a name="common-requirements-on-passenger-">
 
 A passenger is the person travelling on a vehicle. A passenger may not
 necessarily be the person who has performed the booking, i.e. the customer.
