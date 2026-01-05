@@ -911,6 +911,7 @@
 			"type": "object",
 			"properties": {
 				"isBorder": {
+					"deprecated": true,
 					"type": "boolean",
 					"default": false
 				},
