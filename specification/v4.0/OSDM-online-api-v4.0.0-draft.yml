@@ -154,12 +154,7 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/ifNoneMatch'
         - $ref: '#/components/parameters/acceptNamespace'
-        - name: page
-          in: query
-          description: |
-            can be used for pagination
-          schema:
-            type: string
+        - $ref: '#/components/parameters/page'
       responses:
         '200':
           description: |
@@ -167,7 +162,7 @@ paths:
           content:
             application/vnd.uic.osdm+json:
               schema:
-                $ref: '#/components/schemas/PlaceResponse'
+                $ref: '#/components/schemas/PlaceCollectionResponse'
           headers:
             Cache-Control:
               schema:
@@ -370,6 +365,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
+        - $ref: '#/components/parameters/page'
         - name: tripsCollectionId
           in: path
           description: |
@@ -382,10 +378,6 @@ paths:
           schema:
             $ref: '#/components/schemas/StopBehavior'
           required: false
-        - name: page
-          in: query
-          schema:
-            type: string
         - name: embed
           in: query
           description: |
@@ -2038,10 +2030,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
-        - name: page
-          in: query
-          schema:
-            type: string
+        - $ref: '#/components/parameters/page'
       requestBody:
         required: true
         content:
@@ -3850,6 +3839,7 @@ paths:
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/ifNoneMatch'
         - $ref: '#/components/parameters/acceptNamespace'
+        - $ref: '#/components/parameters/page'
       responses:
         '200':
           description: |
@@ -3988,10 +3978,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
-        - name: page
-          in: query
-          schema:
-            type: string
+        - $ref: '#/components/parameters/page'
       responses:
         '200':
           description: |
@@ -4042,10 +4029,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
-        - name: page
-          in: query
-          schema:
-            type: string
+        - $ref: '#/components/parameters/page'
       responses:
         '200':
           description: |
@@ -4547,6 +4531,7 @@ paths:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/page'
         - name: contextId
           in: query
           description: |
@@ -4627,6 +4612,7 @@ paths:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
+        - $ref: '#/components/parameters/page'
         - name: contextId
           in: query
           required: true
@@ -4761,10 +4747,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
-        - name: page
-          in: query
-          schema:
-            type: string
+        - $ref: '#/components/parameters/page'
       responses:
         '200':
           description: |
@@ -4932,10 +4915,7 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
-        - name: page
-          in: query
-          schema:
-            type: string
+        - $ref: '#/components/parameters/page'
       requestBody:
         required: true
         content:
@@ -5090,6 +5070,13 @@ components:
           - x_swe
           - uic
           - iata
+
+    page:
+      name: page
+      in: query
+      description: can be used for pagination
+      schema:
+        type: string
 
   responses:
     SeeOtherResponse:
@@ -5465,12 +5452,6 @@ components:
           $ref: '#/components/schemas/RegionalValiditySummary'
         indicatedUsage:
           $ref: '#/components/schemas/IndicatedUsage'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     AbstractPassenger:
       type: object
@@ -6951,12 +6932,6 @@ components:
             - 'null'
           items:
             type: string
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     BookingAccess:
       description: |
@@ -7007,12 +6982,6 @@ components:
         maximumBookingPeriod:
           type: string
           format: duration
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
         bookingNotes:
           description: human readable description on booking arrangement
           type: array
@@ -7139,12 +7108,6 @@ components:
           type:
             - 'string'
             - 'null'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     BookingPartStatus:
       type: string
@@ -7403,6 +7366,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BookingSearchResult'
+        _links:
+          description: A collection of hypermedia links associated with this resource.
+            These links facilitate navigation and discovery of related resources, following HATEOAS principles.
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     BookingSearchResult:
       type: object
@@ -7623,12 +7592,6 @@ components:
           items:
             $ref: '#/components/schemas/Fulfillment'
           minItems: 1
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     CancelFulfillmentsOfferCollectionResponse:
       type: object
@@ -7642,12 +7605,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CancelFulfillmentsOffer'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     CancelFulfillmentsOfferPatchRequest:
       type: object
@@ -8009,8 +7966,8 @@ components:
           items:
             $ref: '#/components/schemas/CoachDeckLayout'
         _links:
-          description: |
-            Java Property Name: 'links'
+          description: A collection of hypermedia links associated with this resource.
+            These links facilitate navigation and discovery of related resources, following HATEOAS principles.
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -8168,12 +8125,6 @@ components:
             maxLength: 32768
         decision:
           $ref: '#/components/schemas/ComplaintDecision'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     ComplaintChangeReason:
       description: |
@@ -8405,12 +8356,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RefundBreakdownItem'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     ConfirmedRelease:
       type: object
@@ -8449,12 +8394,6 @@ components:
           items:
             $ref: '#/components/schemas/RefundedFulfillmentSpecification'
           minItems: 1
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     ContactDetail:
       type: object
@@ -9541,12 +9480,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FareOfferPart'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     ExchangeOfferCollectionResponse:
       type: object
@@ -9572,12 +9505,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     ExchangeOfferCollectionResponseContent:
       type: string
@@ -10424,12 +10351,6 @@ components:
             $ref: '#/components/schemas/TripCoverage'
         continuousServiceUsage:
           $ref: '#/components/schemas/ContinuousServiceUsage'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     FulfillmentCollectionResponse:
       type: object
@@ -10925,12 +10846,6 @@ components:
         importance:
           description: importance as percentage
           $ref: '#/components/schemas/Percentage'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     GeneralAttributeMasterData:
       type: object
@@ -10964,12 +10879,6 @@ components:
         importance:
           description: importance as percentage
           $ref: '#/components/schemas/Percentage'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     GeoPosition:
       type: object
@@ -11848,12 +11757,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FareOfferPart'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     OfferCollectionRequest:
       type: object
@@ -11950,13 +11853,6 @@ components:
             $ref: '#/components/schemas/Trip'
         tripContext:
           $ref: '#/components/schemas/TripContext'
-        _links:
-          description: |
-
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     OfferCollectionResponseContent:
       type: string
@@ -12123,12 +12019,6 @@ components:
           type:
             - 'string'
             - 'null'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     OfferSearchCriteria:
       type: object
@@ -12338,12 +12228,6 @@ components:
             Increased time-to-live.
           type: string
           format: date-time
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     OnHoldOfferPatchRequest:
       type: object
@@ -12563,12 +12447,6 @@ components:
               $ref: '#/components/schemas/IdentificationCard'
             transportableDetails:
               $ref: '#/components/schemas/Transportable'
-            _links:
-              description: |
-                Java Property Name: 'links'
-              type: array
-              items:
-                $ref: '#/components/schemas/Link'
 
     PassengerCategory:
       type: object
@@ -13065,12 +12943,6 @@ components:
           description:
             area of the place described as a polygon of geo-coordinates
           $ref: '#/components/schemas/Polygon'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     PlaceAllocation:
       type: object
@@ -13114,8 +12986,8 @@ components:
           items:
             $ref: '#/components/schemas/AvailablePlace'
         _links:
-          description: |
-            Java Property Name: 'links'
+          description: A collection of hypermedia links associated with this resource.
+            These links facilitate navigation and discovery of related resources, following HATEOAS principles.
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -13259,12 +13131,6 @@ components:
           description:
             area of the place described as a polygon of geo-coordinates
           $ref: '#/components/schemas/Polygon'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     PlaceParam:
       type: object
@@ -13532,7 +13398,7 @@ components:
         restrictions:
           $ref: '#/components/schemas/PlaceParam'
 
-    PlaceResponse:
+    PlaceCollectionResponse:
       type: object
       additionalProperties: false
       required:
@@ -13547,6 +13413,12 @@ components:
           items:
             $ref: '#/components/schemas/Place'
           minItems: 1
+        _links:
+          description: A collection of hypermedia links associated with this resource.
+            These links facilitate navigation and discovery of related resources, following HATEOAS principles.
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     PlaceRestriction:
       type: object
@@ -14069,12 +13941,6 @@ components:
             - 'null'
           items:
             type: string
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     ProductCategory:
       type: object
@@ -14128,6 +13994,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Product'
+        _links:
+          description: A collection of hypermedia links associated with this resource.
+            These links facilitate navigation and discovery of related resources, following HATEOAS principles.
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     ProductLegAssociation:
       type: object
@@ -14250,8 +14122,8 @@ components:
           items:
             $ref: '#/components/schemas/Problem'
         _links:
-          description: |
-            Java Property Name: 'links'
+          description: A collection of hypermedia links associated with this resource.
+            These links facilitate navigation and discovery of related resources, following HATEOAS principles.
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -14343,12 +14215,6 @@ components:
           type: 'array'
           items:
             type: string
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     ProductSummary:
       type: object
@@ -14532,13 +14398,6 @@ components:
         - $ref: '#/components/schemas/PurchaserSpecification'
         - type: object
           additionalProperties: false
-          properties:
-            _links:
-              description: |
-                Java Property Name: 'links'
-              type: array
-              items:
-                $ref: '#/components/schemas/Link'
 
     PurchaserResponse:
       type: object
@@ -14707,12 +14566,6 @@ components:
             $ref: '#/components/schemas/ReductionGranted'
           minItems: 1
           maxItems: 500
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     ReductionCardTypeCollectionResponse:
       type: object
@@ -14726,6 +14579,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReductionCardType'
+        _links:
+          description: A collection of hypermedia links associated with this resource.
+            These links facilitate navigation and discovery of related resources, following HATEOAS principles.
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     ReductionGranted:
       type: object
@@ -14871,12 +14730,6 @@ components:
             $ref: '#/components/schemas/RefundBreakdownItem'
         reimbursementMethod:
           $ref: '#/components/schemas/ReimbursementMethod'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     RefundOfferCollectionResponse:
       type: object
@@ -14890,12 +14743,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RefundOffer'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     RefundOfferPatchRequest:
       type: object
@@ -15094,12 +14941,6 @@ components:
             type: string
         decision:
           $ref: '#/components/schemas/ReimbursementDecision'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     ReimbursementDecision:
       type: object
@@ -15279,12 +15120,6 @@ components:
           minItems: 1
         appliedOverruleCode:
           $ref: '#/components/schemas/OverruleCode'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     ReleaseOfferCollectionResponse:
       type: object
@@ -15298,12 +15133,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReleaseOffer'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     ReleaseOfferPatchRequest:
       type: object
@@ -15977,12 +15806,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ServiceFormationPartAssignment'
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     ServiceFormationPart:
       type: object
@@ -16241,12 +16064,6 @@ components:
           type: string
         advice:
           type: string
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     SituationRef:
       type:
@@ -17088,12 +16905,6 @@ components:
           description: |
             indication that this trip was found due to the request parameter to search for alternatives
           type: boolean
-        _links:
-          description: |
-            Java Property Name: 'links'
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
 
     TripAllocationConstraint:
       type: object
@@ -17226,8 +17037,8 @@ components:
         tripContext:
           $ref: '#/components/schemas/TripContext'
         _links:
-          description: |
-            Java Property Name: 'links'
+          description: A collection of hypermedia links associated with this resource.
+            These links facilitate navigation and discovery of related resources, following HATEOAS principles.
           type: array
           items:
             $ref: '#/components/schemas/Link'
@@ -18233,6 +18044,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ZoneSpecification'
+        _links:
+          description: A collection of hypermedia links associated with this resource.
+            These links facilitate navigation and discovery of related resources, following HATEOAS principles.
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
     ZoneDefinition:
       type: object
