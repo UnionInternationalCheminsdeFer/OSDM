@@ -15864,13 +15864,13 @@ components:
           deprecated: true
         departureTime:
           description: |
-            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
           nullable: true
         arrivalTime:
           description: |
-            Needs to in be local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+            Needs to in be local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
           nullable: true
@@ -17563,13 +17563,13 @@ components:
       properties:
         departureTime:
           description: |
-            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
           nullable: true
         arrivalTime:
           description: |
-            Needs to in be local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+            Needs to in be local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
           nullable: true

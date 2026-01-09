@@ -15607,14 +15607,14 @@ components:
             maxLength: 32768
         departureTime:
           description: |
-            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type:
             - 'string'
             - 'null'
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
         arrivalTime:
           description: |
-            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type:
             - 'string'
             - 'null'
@@ -17680,14 +17680,14 @@ components:
       properties:
         departureTime:
           description: |
-            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type:
             - 'string'
             - 'null'
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
         arrivalTime:
           description: |
-            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type:
             - 'string'
             - 'null'
@@ -17738,14 +17738,14 @@ components:
       properties:
         departureTime:
           description: |
-            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type:
             - 'string'
             - 'null'
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
         arrivalTime:
           description: |
-            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type:
             - 'string'
             - 'null'
