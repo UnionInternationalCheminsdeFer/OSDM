@@ -6473,6 +6473,11 @@ components:
               type: string
               nullable: true
               example: Oude Trambaan 7, 2265CA Leidschendam, Nederland
+            nameTranslations:
+              description: Translations for the name
+              type: array
+              items: 
+                $ref: '#/components/schemas/Translation'            
             code:
               description: |
                 id of the address
@@ -9126,6 +9131,11 @@ components:
           type: string
           minLength: 1
           nullable: false
+        descriptionTranslations:
+          description: Translations of the description and shortDescription
+          type: array
+          items:
+            $ref: '#/components/schemas/Translation'
         shortDescription:
           description: |
             short description of the condition no longer than 64 characters
@@ -10648,6 +10658,11 @@ components:
             name:
               type: string
               nullable: true
+            nameTranslations:
+              description: Translations for the name
+              type: array
+              items: 
+                $ref: '#/components/schemas/Translation'
             stationSets:
               type: array
               items:
@@ -11287,6 +11302,11 @@ components:
         text:
           type: string
           nullable: false
+        textTranslations:
+          description: Translation of the text attribute
+          type: array
+          items: 
+            $ref: '#/components/schemas/Translation'
         code:
           type: string
           nullable: true
@@ -13832,6 +13852,11 @@ components:
               type: string
               nullable: false
               example: Park Rozenrust
+            nameTranslations:
+              description: Translations for the name
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
             code:
               description: |
                 id of the Point of Interest.
@@ -14138,6 +14163,11 @@ components:
             A human-readable description of the product.
           type: string
           nullable: true
+        summaryTranslations:
+          description: Translations of the summary attribute
+          type: array
+          items: 
+            $ref: '#/components/schemas/Translation'
         type:
           $ref: '#/components/schemas/ProductType'
         code:
@@ -14152,6 +14182,11 @@ components:
             Textual description of the product.
           type: string
           nullable: true
+        descriptionTranslations:
+          description: Translations of the description attribute
+          type: array
+          items:
+            $ref: '#/components/schemas/Translation'
         owner:
           $ref: '#/components/schemas/CompanyRef'
         conditions:
@@ -14181,9 +14216,19 @@ components:
         serviceConstraintText:
           type: string
           nullable: true
+        serviceConstraintTextTranslations:
+          description: Translations of the service constaint text attribute
+          type: array
+          items:
+            $ref: '#/components/schemas/Translation'
         carrierConstraintText:
           type: string
           nullable: true
+        carrierConstraintTextTranslations:
+          description: Translations of the carrier constaint text attribute
+          type: array
+          items:
+            $ref: '#/components/schemas/Translation'
         descriptiveTexts:
           type: array
           items:
@@ -14861,6 +14906,11 @@ components:
           type: string
           nullable: true
           example: Refund Offer for Paris-Barcelona Andre Dupont 2022-07-23
+        summaryTranslations:
+          description: Translations for the summary
+          type: array
+          items:
+            $ref: '#/components/schemas/Translation'
         createdOn:
           type: string
           format: date-time
@@ -16359,6 +16409,11 @@ components:
               type: string
               nullable: false
               example: Zürich HB
+            nameTranslations:
+              description: Translations for the name
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
 
     StopPlaceRef:
       description: |
@@ -16464,6 +16519,11 @@ components:
           minLength: 1
           maxLength: 32768
           nullable: false
+        descriptionTranslations:
+          description: Translations of description and shortDescription attributes
+          type: array
+          items: 
+            $ref: '#/components/schemas/Translation'
         shortDescription:
           description: |
             Brief version of the text for display in space restricted environments, e.g. mobile phone. No longer than 64 characters.
@@ -17976,6 +18036,11 @@ components:
         name:
           type: string
           nullable: true
+        nameTranslations:
+          description: Translations for the zone name
+          type: array
+          items: 
+            $ref: '#/components/schemas/Translation'
         entryStation:
           $ref: '#/components/schemas/StopPlace'
         terminalStation:
