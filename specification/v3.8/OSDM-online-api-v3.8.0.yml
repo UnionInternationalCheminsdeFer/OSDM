@@ -1536,7 +1536,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/booked-offers/{offerId}/passengers/{passengerId}:
+  /bookings/{bookingId}/booked-offers/{bookedOfferId}/passengers/{passengerId}:
     delete:
       tags:
         - BookedOffers
@@ -1555,7 +1555,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: offerId
+        - name: bookedOfferId
           in: path
           required: true
           schema:
