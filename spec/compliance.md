@@ -59,7 +59,7 @@ The following services/features are mandatory/optional to implement:
 | `POST /trips                          | Returns a new trip for given search parameters based on an existing trip    | _Optional_         |                                      |
 | `GET  /trips/{tripId}                 | Returns a trp based on the tripid                                           | _Optional_         |                                      |
 | **Offer Resources**                   | resources to get bookable offers                                            |                    |                                      |
-| POST  /offers                         | Returns offers for trips or trip search criteria.                           | **Mandatory**      |  trips and trip search criteria must be supported in the request |
+| POST  /offers                         | Returns offers for trips or trip search criteria.                           | **Mandatory**      |  trip specifications and trip search criteria must be supported in the request |
 | GET  /bookings/{bookingId}/booked-offers/{bookedOfferId}/additional-offers  |   Get additional offers of booked offer for a given booking. |   _Optional_  |                                      |
 | **Offer Overview**                   | resources to get an overview of prices without detailed offer information   |                    |                                      |
 | POST  /offer-overview-route           | Returns an overview of prices based on route                                |  _Optional_        |                                     |
@@ -192,7 +192,7 @@ The following services/features are mandatory/optional to implement:
 | POST  /availabilities/on-demand-services |  Get availabilities of an on-demand service.                            |  **Conditional**   | Mandatory if on demand services are supported    | 
 | **Booking Resource**                 | manipulate bookings                                                         |                    |                                      |
 | POST  /bookings                      |  Creates a booking based on a previously requested offer.                   | **Mandatory**      |                                      |
-| GET  /bookings/{bookingId}           |  Returns a booking.                                                         | **Mandatory**      |                                      |
+| GET  /bookings/{bookingId}           |  Returns a booking.                                                         | **Mandatory**      |  The booking must represent the latest state of the booking. Bookings need to be kept for all following processes including the claim handling.   |
 | PATCH  /bookings/{bookingId}         |  Updates a booking but does *not* confirm the booking.                      | Recommended        |                                      |
 | DELETE  /bookings/{bookingId}        |  Deletes a booking.                                                         | Recommended        |                                      |
 | POST  /bookings/{bookingId}/cleanup  |  Performs a complete cleanup of a booking in a single step                  | Recommended        |                                      |
@@ -209,9 +209,9 @@ The following services/features are mandatory/optional to implement:
 | DELETE  /bookings/{bookingId}/booked-offers/{bookedOfferId}  |  Delete a bookedOffer from a booking.               | Recommended        |                                      |
 | DELETE  /bookings/{bookingId}/booked-offers/{offerId}/passengers/{passengerId}  |  Delete a passenger from bookedOffer of a booking.  |  _Optional_   |        |
 | **Purchaser Resource**            | manipulate purchaser                                                           |                    |                                      |                   
-| GET  /bookings/{bookingId}/purchaser    | Returns the purchaser's information at booking step.                     | **Mandatory**      |                                      |           
-| PATCH  /bookings/{bookingId}/purchaser  |  Allows updating a purchaser's information at booking step.              | **Mandatory**      |                                      |           
-| POST  /bookings/{bookingId}/purchaser   | Allows creating a purchaser for a booking already existing.              | **Mandatory**      |                                      |           
+| GET  /bookings/{bookingId}/purchaser    | Returns the purchaser's information at booking step.                     | Conditional        |  must be provided if the distributor requires purcharser data |           
+| PATCH  /bookings/{bookingId}/purchaser  | Allows updating a purchaser's information at booking step.               | Conditional        |  must be provided if the distributor requires purcharser data |           
+| POST  /bookings/{bookingId}/purchaser   | Allows creating a purchaser for a booking already existing.              | Conditional        |  must be provided if the distributor requires purcharser data |           
 | **Passenger Resource**            | manipulate passengers                                                          |                    |                                      |                                                     
 | GET  /bookings/{bookingId}/passengers/{passengerId} | Returns the passenger's information at booking step.         | **Mandatory**      |                                      |                   
 | PATCH  /bookings/{bookingId}/passengers/{passengerId} | Allows updating a passenger's information at booking step. | **Mandatory**      |                                      |                   
@@ -226,7 +226,7 @@ The following services/features are mandatory/optional to implement:
 | **Refund resources**                 | to get and accept a refund offer                                            |                    |                                      |
 | POST  /bookings/{bookingId}/refund-offers  | Initiates a refund process by creating a refundOffer resource.        | **Mandatory**      |                                      |         
 | GET  /bookings/{bookingId}/refund-offers/{refundOfferId}/confirmation-check  | Verification step (step 1 in a two phase commit process) to run before the effective patch endpoint. Provider do all checks to "guarantee" that refund will work. | Recommended    |   |           
-| GET  /bookings/{bookingId}/refund-offers/{refundOfferId}  | Returns the refund offer for the ids provided. Does not return confirmed refunds. | **Mandatory**       |          |         
+| GET  /bookings/{bookingId}/refund-offers/{refundOfferId}  | Returns the refund offer for the ids provided. Does not return confirmed refunds. |   Recommended    |          |
 | PATCH  /bookings/{bookingId}/refund-offers/{refundOfferId}  | Allows to accept and confirm a refund offer.         | **Mandatory**      |                                      |         
 | DELETE  /bookings/{bookingId}/refund-offers/{refundOfferId}  | Deletes a refundOffer without waiting for expiry.   | **Mandatory**      |                                      |         
 | **Exchange resources**                 | to get and accept a exchange offer                                        |  _Optional_        |                                      |
