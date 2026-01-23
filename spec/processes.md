@@ -589,6 +589,12 @@ information on the availability of places with the selected offer:
 - Places nearby another place.
 - A graphical display of available places.
 
+### Price changes when creating a booking
+
+The price of an offer is not guaranteed before the pre-booking step. In case the price is 
+changing in the pre-booking step the booked offer parts will still be provided but have a different 
+price. A warning should be added in the reply to indicate the price change.
+
 ![Graphical reservation](../../images/processes/seq-graphical-reservation.png)
 
 In some cases, additional information must be provided before or at the time of
@@ -1103,3 +1109,4 @@ The fulfillment of a fare does not include the following items:
 - issuer
 - continuousServiceUsage
 - links
+
