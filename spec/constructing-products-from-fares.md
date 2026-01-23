@@ -204,6 +204,28 @@ Route example:
 
 ![Fare Structure](../../images/fare-data-structure/viaExample.PNG)
 
+
+**Note:** In OSDM Online the recursive Route data model is included as a flat list and the route items are referenced by their index in the list. 
+
+For the example abouve that representation would look like:
+
+- RouteItem 0: the entire route including routeItemIndices 1,2,9 = [A-ship-B], [X or Y*Z], [(G,F,H)]
+- RouteItem 1: routeItemIndices 3,4 with the serviceConstraint: ship
+- RouteItem 2: alternativeRouteIndices5,6 = [X],[Y *Z]
+- RouteItem 3: station A
+- RouteItem 4: station B
+- RouteItem 5: station X
+- RouteItem 6: routeItemIndices 7,8 = [Y],[Z]
+- RouteItem 7: station Y
+- RouteItem 8: station Z
+- RouteItem 9: the farestationSet containing station G,H,F
+
+The routeIndice simply allows to flatten the recursive route data structure as used in OSDM offline to a list for the message and to reconstruct the data again from the message. This avoids security issues with potential infinite sized structures in the messaging.
+
+The indices do not carry information on the sequence along the route. The sequence along the route is provided by the order in the list routeItemIndices.
+
+You could skip the Route item 0 nd add the that content list to the starting routeItem in the message.
+
 ### Regional Validity in Online Fares
 
 The route description of a product combined from fares is a concatenation of the
