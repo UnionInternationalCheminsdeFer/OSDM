@@ -917,10 +917,6 @@
 		"ViaStationsDef": {
 			"type": "object",
 			"properties": {
-				"isBorder": {
-					"type": "boolean",
-					"default": false
-				},
 				"routeId": {
 					"type": "integer",
 					"format": "int32"
