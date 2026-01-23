@@ -205,7 +205,7 @@ Route example:
 ![Fare Structure](../../images/fare-data-structure/viaExample.PNG)
 
 
-**Note:** In OSDM Online the recursive Route data model is included as a flat list and the route items are reerenced by their index in the list. 
+**Note:** In OSDM Online the recursive Route data model is included as a flat list and the route items are referenced by their index in the list. 
 
 For the example abouve that representation would look like:
 
