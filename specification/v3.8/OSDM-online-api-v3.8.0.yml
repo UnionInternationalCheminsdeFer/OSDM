@@ -11227,6 +11227,12 @@ components:
             $ref: '#/components/schemas/Problem'
         fulfillment:
           $ref: '#/components/schemas/Fulfillment'
+        fulfillmentDocuments:
+          description: |
+            Final document created for fulfillment.
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentDocument'
 
     FulfillmentStatus:
       description: |
