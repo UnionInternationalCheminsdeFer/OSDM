@@ -1536,7 +1536,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
-  /bookings/{bookingId}/booked-offers/{bookedOfferId}/passengers/{passengerId}:
+  /bookings/{bookingId}/booked-offers/{offerId}/passengers/{passengerId}:
     delete:
       tags:
         - BookedOffers
@@ -1555,7 +1555,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: bookedOfferId
+        - name: offerId
           in: path
           required: true
           schema:
@@ -7629,6 +7629,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fulfillment'
+        fulfillmentDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentDocument'
         fulfillmentStatus:
           $ref: '#/components/schemas/FulfillmentSummaryStatus'
         issuedVouchers:
@@ -10850,9 +10854,18 @@ components:
         fulfillmentDocuments:
           description: |
             Final document created for fulfillment.
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentDocument'
+        fulfillmentDocumentsRefs:
+          description: |
+            References to the ticket documents.
+          type: array
+          items:
+            type: string
+            description: |
+              Ticket document ID
         issuingLanguage:
           type: string
           description: the issuing language (ISO-639-1 language code).
@@ -10994,6 +11007,8 @@ components:
         - type
         - format
       properties:
+        id:
+          type: string
         medium:
           $ref: '#/components/schemas/FulfillmentMediaType'
         type:
@@ -15864,13 +15879,13 @@ components:
           deprecated: true
         departureTime:
           description: |
-            Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
           nullable: true
         arrivalTime:
           description: |
-            Needs to in be local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
+            Needs to in be local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
           nullable: true
@@ -17563,13 +17578,13 @@ components:
       properties:
         departureTime:
           description: |
-            Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
+            Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
           nullable: true
         arrivalTime:
           description: |
-            Needs to in be local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
+            Needs to in be local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
           type: string
           pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
           nullable: true
