@@ -232,7 +232,7 @@ all implementations:
 | Trips/Offers        | `BOOKING_ALREADY_CLOSED`             | Booking of the requested products is already closed                              |
 | Trips/Offers        | `BOOKING_TEMPORARILY_CLOSED`         | Booking of the requested products is temporarily closed                          |
 | Trips/Offers        | `VALUE_NOT_SUPPORTED`                | A request parameter value is not supported and has been ignored                  |
-| Offers/Booking      | 'OFFER_PART_PRICE_CHANGE`            | A request to confirm an offer results in bookedofferparts with a price change    |       
+| Offers/Booking      | `OFFER_PART_PRICE_CHANGE`            | A request to confirm an offer results in bookedofferparts with a price change    |       
 | Booking             | `OVERRULE_CODE_NOT_ACCEPTED`         | The overrule code provided was not accepted                                      |
 | Booking             | `OVERRULE_CODE_NOT_SUPPORTED`        | The overrule code provided is not supported                                      |
 
