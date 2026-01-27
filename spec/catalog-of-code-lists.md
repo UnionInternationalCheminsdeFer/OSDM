@@ -1046,6 +1046,7 @@ Other cards should start with the RICS code of the issuer.
 | `CIV`                                       |  terms and conditions according to COTIV regulation  |
 | `MD`                                        |  terms and conditions according to SMPS regulation   |
 | `EU_PRR`                                    |  terms and conditions according to EU-PRR regulation |
+| `CIT_AJC`                                   |  `CIT Agreement on Journey Continuation` applies     |
 
 ## Reservation Preference Group <a name="ReservationPreferenceGroup">
 
@@ -1558,5 +1559,6 @@ passenger to interrupt a trip.
 | `NONE`       | No action is required from the passenger in case he is interrupting his trip.                               |
 | `MANUAL`     | In case a passenger is interrupting his trip he needs to receive a confirmation from train or station staff |
 | `ACTIVATION` | The electronic ticket needs to be deactivated during the interruption.                                      |
+
 
 
