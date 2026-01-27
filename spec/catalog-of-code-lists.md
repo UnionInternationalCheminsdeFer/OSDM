@@ -52,6 +52,7 @@ permalink: /spec/catalog-of-code-lists/
 - [Point of Interest (POI) ](#point-of-interest-poi-)
 - [Reduction cards ](#reduction-cards-)
 - [Reimbursement Reason ](#reimbursement-reason-)
+- [Regulatory Condition ](#regulatory-condition-)  
 - [Reservation Preference Group ](#reservation-preference-group-)
 - [Service Brands ](#service-brands-)
 - [Service Class ](#service-class-)
@@ -1038,6 +1039,14 @@ Other cards should start with the RICS code of the issuer.
 | `CONTINUOUS_SERVICE_USAGE_ENDING_FAILED`    |             |
 | `CONTINUOUS_SERVICE_USAGE_REPORT_WRONG`     |             |
 
+## Regulatory Condition <a name="RegulatoryCondition">
+
+| Code                                        | Description                                          |
+| ------------------------------------------- | ---------------------------------------------------- |
+| `CIV`                                       |  terms and conditions according to COTIV regulation  |
+| `MD`                                        |  terms and conditions according to SMPS regulation   |
+| `EU_PRR`                                    |  terms and conditions according to EU-PRR regulation |
+
 ## Reservation Preference Group <a name="ReservationPreferenceGroup">
 
 | Code                             | Description                                                     |
@@ -1549,4 +1558,5 @@ passenger to interrupt a trip.
 | `NONE`       | No action is required from the passenger in case he is interrupting his trip.                               |
 | `MANUAL`     | In case a passenger is interrupting his trip he needs to receive a confirmation from train or station staff |
 | `ACTIVATION` | The electronic ticket needs to be deactivated during the interruption.                                      |
+
 
