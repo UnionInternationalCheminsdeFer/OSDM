@@ -11317,7 +11317,6 @@ components:
             description: |
               the 'rel' field in HATEOAS navigation.
             type: string
-            nullable: false
             example: self
           href:
             description: |
@@ -11326,20 +11325,21 @@ components:
             type: string
             maxLength: 32768
             format: uri
-            nullable: false
           type:
             description: |
               Hint to indicate the media type expected when dereferencing the target resource.
-            type: string
-            nullable: true
+            type:
+              - 'string'
+              - 'null'
             example: application/json
           value:
             description: |
               Allows to provide a value to the link, for example id of the targeted 
               resource or displayable representation for the link.
-            type: string
+            type:
+              - 'string'
+              - 'null'
             maxLength: 32768
-            nullable: true
 
     Longitude:
       type: number
@@ -14429,8 +14429,8 @@ components:
         - type: object
           additionalProperties: false
           properties:
-          _links:
-            $ref: '#/components/schemas/Links'
+            _links:
+              $ref: '#/components/schemas/Links'
 
     PurchaserResponse:
       type: object
