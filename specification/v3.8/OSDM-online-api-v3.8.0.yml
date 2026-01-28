@@ -10858,14 +10858,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentDocument'
-        fulfillmentDocumentsRefs:
+        fulfillmentDocumentRefs:
           description: |
-            References to the ticket documents.
+            References to the fulfillment documents.
           type: array
           items:
             type: string
             description: |
-              Ticket document ID
+              Fulfillment document ID
         issuingLanguage:
           type: string
           description: the issuing language (ISO-639-1 language code).
@@ -11009,6 +11009,8 @@ components:
       properties:
         id:
           type: string
+          description: |
+            Technical reference. Required if referencing from fulfilment.fulfillmentDocumentRefs
         medium:
           $ref: '#/components/schemas/FulfillmentMediaType'
         type:
