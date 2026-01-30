@@ -466,6 +466,7 @@ reservation offers. In case the request is for multiple reservation offers the
 client application must implement the switch of the offers based on selected
 places.
 
+
 ##### Partial Reservation
 
 A provider might offer a reservation even in case the seat is not available on
@@ -589,7 +590,13 @@ information on the availability of places with the selected offer:
 - Places nearby another place.
 - A graphical display of available places.
 
-![Graphical reservation](../../images/processes/seq-graphical-reservation.png)
+### Price changes when creating a booking
+
+The price of an offer is not guaranteed before the pre-booking step. In case the price is 
+changing in the pre-booking step the booked offer parts will still be provided but have a different 
+price. A warning (`OFFER_PART_PRICE_CHANGE`) should be added in the reply to indicate the price change.
+
+### Requiring additional information
 
 In some cases, additional information must be provided before or at the time of
 provisional booking in order to be taken into account, such as:
@@ -1103,3 +1110,5 @@ The fulfillment of a fare does not include the following items:
 - issuer
 - continuousServiceUsage
 - links
+
+
