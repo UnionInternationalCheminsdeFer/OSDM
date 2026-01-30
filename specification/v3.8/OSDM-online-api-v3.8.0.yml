@@ -8647,6 +8647,9 @@ components:
             $ref: '#/components/schemas/CoachLayoutCompartmentNumber'
         gridSize:
           $ref: '#/components/schemas/CoachLayoutGridSize'
+        _links:
+          $ref: '#/components/schemas/Links'
+          deprecated: true
 
     CoachLayoutCollectionResponse:
       type: object
