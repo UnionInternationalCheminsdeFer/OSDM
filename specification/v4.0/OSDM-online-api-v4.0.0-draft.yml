@@ -11973,7 +11973,9 @@ components:
 
         Individual offer mode means that each passenger is given individual admissions and reservations  to allow to refund individual passengers booked in a single booking.
 
-        If collective mode is not supported, reverts back to the other mode and provides problem with warning message instead.
+        If collective mode is not supported,  reverts back to the other mode and provides warning.
+
+        If individual mode is not supported,  reverts back to the other mode and provides warning.
 
       type: string
       enum:
