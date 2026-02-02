@@ -17653,6 +17653,14 @@ components:
         - 'UNRESTRICTED'
 
     VAT:
+      description: |
+        The VAT structure details a VAT amount (in case of international travel, there may be multiple VAT structures).
+        The netAmount is the amount before adding the VAT; the grossAmount is the amount including VAT, where
+        the amount is the actual VAT being described here. So the equation netAmount + amount = grossAmount holds.
+        Furthermore, the equation netAmount * percentage = amount also holds, but is susceptible to possible rounding
+        errors.
+        All the grossAmounts of the VAT structures should add up to the overall amount of the enclosing price structure.
+        The currency is inherited from the currency of the associated price.
       type: object
       additionalProperties: false
       required:
@@ -17663,7 +17671,7 @@ components:
           $ref: '#/components/schemas/CountryCode'
         amount:
           description: |
-            amount in cents
+            VAT amount in cents
           type: integer
           format: int32
           nullable: false
@@ -17675,6 +17683,34 @@ components:
           format: int32
           nullable: true
           default: 2
+        netAmount:
+          description: |
+            amount before adding VAT
+          type: integer
+          format: int32
+          nullable: false
+          example: 5
+        netAmountScale:
+          description: |
+            scale of the netAmount - the number of positions after the comma
+          type: integer
+          format: int32
+          nullable: true
+          default: 2
+        grossAmount:
+          description: |
+            total amount after adding VAT in cents
+          type: integer
+          format: int32
+          nullable: false
+          example: 5
+        grossAmountScale:
+          description: |
+            scale of the grossAmount - the number of positions after the comma
+          type: integer
+          format: int32
+          nullable: true
+          default: 2
         percentage:
           type: number
           format: float
@@ -17682,13 +17718,21 @@ components:
         taxId:
           type: string
           nullable: true
+        vatOnInvoice:
+          type: boolean
+          nullable: true
+          default: false
+        taxIdOnInvoice: 
+          type: boolean
+          nullable: true
+          default: false
         scope:
           $ref: '#/components/schemas/VatScope'
 
     VatScope:
       description: |
         scope where the VAT applies.
-        Values from the [Tax Scope Code List](https://osdm.io/spec/catalog-of-code-lists/#TaxScope)
+        Values from the [Tax Scope Code List](https://osdm.io/spec/catalog-of-code-lists/#VatScope)
         Listed values here are examples.
       type: string
       x-extensible-enum:
@@ -17696,6 +17740,7 @@ components:
         - 'NATIONAL'
         - 'SHORT_DISTANCE'
         - 'LONG_DISTANCE'
+        - 'NOT_REGISTERED'
 
     Vehicle:
       type: object
