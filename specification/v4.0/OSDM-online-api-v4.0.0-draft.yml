@@ -18078,30 +18078,36 @@ components:
         netAmount:
           description: |
             amount before adding VAT
-          type: integer
+          type: 
+            - 'integer'
+            - 'null'
           format: int32
-          nullable: false
-          example: 5
+          examples: 
+            - 5
         netAmountScale:
           description: |
             scale of the netAmount - the number of positions after the comma
-          type: integer
+          type:
+            - 'integer'
+            - 'null'
           format: int32
-          nullable: true
           default: 2
         grossAmount:
           description: |
             total amount after adding VAT in cents
-          type: integer
+          type: 
+            - 'integer'
+            - 'null'
           format: int32
-          nullable: false
-          example: 5
+          examples: 
+            - 5
         grossAmountScale:
           description: |
             scale of the grossAmount - the number of positions after the comma
-          type: integer
+          type:
+            - 'integer'
+            - 'null'
           format: int32
-          nullable: true
           default: 2
         percentage:
           $ref: '#/components/schemas/Percentage'
@@ -18110,12 +18116,14 @@ components:
             - 'string'
             - 'null'
         vatOnInvoice:
-          type: boolean
-          nullable: true
+          type: 
+            - 'boolean'
+            - 'null'
           default: false
         taxIdOnInvoice: 
-          type: boolean
-          nullable: true
+          type: 
+            - 'boolean'
+            - 'null'
           default: false
         scope:
           $ref: '#/components/schemas/VatScope'
@@ -18123,7 +18131,7 @@ components:
     VatScope:
       description: |
         scope where the VAT applies.
-        Values from the [Tax Scope Code List](https://osdm.io/spec/catalog-of-code-lists/#TaxScope)
+        Values from the [Tax Scope Code List](https://osdm.io/spec/catalog-of-code-lists/#VatScope)
         Listed values here are examples.
       type: string
       x-extensible-enum:
