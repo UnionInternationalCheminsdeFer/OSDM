@@ -17903,6 +17903,7 @@ components:
         - 'NATIONAL'
         - 'SHORT_DISTANCE'
         - 'LONG_DISTANCE'
+        - 'NOT_REGISTERED'
 
     Vehicle:
       type: object
