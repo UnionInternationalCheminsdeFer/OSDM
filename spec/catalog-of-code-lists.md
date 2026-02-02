@@ -61,7 +61,6 @@ permalink: /spec/catalog-of-code-lists/
 - [Special Coach Type ](#special-coach-type-)
 - [Stations ](#stations-)
 - [Supported Online Services ](#supported-online-services-)
-- [TaxScope ](#taxscope-)
 - [TimeReference ](#timereference-)
 - [TimeUnit ](#timeunit-)
 - [Transfer Type ](#transfer-type-)
@@ -73,6 +72,7 @@ permalink: /spec/catalog-of-code-lists/
 - [TripAllocationProcess ](#tripallocationprocess-)
 - [TripAllocationUnit ](#tripallocationunit-)
 - [TripInterruptionProcess ](#tripinterruptionprocess-)
+- [VatScope ](#vatscope-)
 
 The mandatory code lists on enums and extensible enums are provided within the
 schema files.
@@ -1413,15 +1413,6 @@ reproduced.
 | `FULFILLMENT`              | Provides an entire tickets                                        |
 | `FULFILLMENT_ITEMS`        | Providing security items for a ticket (e.g. additional bar codes) |
 
-## TaxScope <a name="TaxScope">
-
-| Code             | Description                                                                                                                     |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `INTERNATIONAL`  | VAT applies in international tickets only. This needs to be applied in case the fare is integrated into an international ticket |
-| `NATIONAL`       | VAT applies in national tickets only                                                                                            |
-| `SHORT_DISTANCE` | VAT applies in short distance tickets only                                                                                      |
-| `LONG_DISTANCE`  | VAT applies in long distance tickets only. This needs to be applied in case the fare is integrated in a longer journey.         |
-
 ## TimeReference <a name="TimeReference">
 
 | Code                    | Description                                                                                                                |
@@ -1558,5 +1549,16 @@ passenger to interrupt a trip.
 | `NONE`       | No action is required from the passenger in case he is interrupting his trip.                               |
 | `MANUAL`     | In case a passenger is interrupting his trip he needs to receive a confirmation from train or station staff |
 | `ACTIVATION` | The electronic ticket needs to be deactivated during the interruption.                                      |
+
+## VatScope <a name="VatScope">
+
+| Code             | Description                                                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `INTERNATIONAL`  | VAT applies in international tickets only. This needs to be applied in case the fare is integrated into an international ticket |
+| `NATIONAL`       | VAT applies in national tickets only                                                                                            |
+| `SHORT_DISTANCE` | VAT applies in short distance tickets only                                                                                      |
+| `LONG_DISTANCE`  | VAT applies in long distance tickets only. This needs to be applied in case the fare is integrated in a longer journey.         |
+| `NOT_REGISTERED` | Company is not registered for VAT in the relevant country.                                                                      |
+
 
 
