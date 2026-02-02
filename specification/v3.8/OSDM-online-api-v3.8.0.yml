@@ -17818,12 +17818,13 @@ components:
 
     VAT:
       description: |
-        The VAT structure details a VAT amount (in case of international travel, there may be multiple VAT structures.
+        The VAT structure details a VAT amount (in case of international travel, there may be multiple VAT structures).
         The netAmount is the amount before adding the VAT; the grossAmount is the amount including VAT, where
         the amount is the actual VAT being described here. So the equation netAmount + amount = grossAmount holds.
         Furthermore, the equation netAmount * percentage = amount also holds, but is susceptible to possible rounding
         errors.
-        All the grossAmounts of the VAT structures should add up to the overall amount of the enclosing price structure.      
+        All the grossAmounts of the VAT structures should add up to the overall amount of the enclosing price structure.
+        The currency is inherited from the currency of the associated price.
       type: object
       additionalProperties: false
       required:
