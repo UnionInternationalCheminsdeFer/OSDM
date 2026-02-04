@@ -8,7 +8,7 @@ permalink: /tools/implementations/
 
 More and more Solution Providers, Distributors, Retailers and Fare Providers are
 implementing the OSDM API in their systems. The following table Provides an
-overview of known OSDM implementations and their status (January 2026).
+overview of known OSDM implementations and their status (**January 2026**).
 
 | Party                   | Description                              | Versions | State         | Link                                                                                                                    |
 | ----------------------- | ---------------------------------------- | -------- | ------------- | ----------------------------------------------------------------------------------------------------------------------- |
@@ -54,5 +54,5 @@ overview of known OSDM implementations and their status (January 2026).
 | VY Bus                  | Retailer, Distributor & Provider         | 3.0.5    | in production | [Link](https://www.vy.no/)                                                                                              |
 | VY Train                | Retailer, Distributor & Provider         | 3.0.5    | in production | [Link](https://www.vy.no/)                                                                                              |
 
-\_State of January 2026. If you want to add your implementation to the list,
+**State of January 2026**. If you want to add your implementation to the list,
 please contact us.
