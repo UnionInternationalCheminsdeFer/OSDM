@@ -13316,6 +13316,14 @@ components:
           nullable: true
         geoPosition:
           $ref: '#/components/schemas/GeoPosition'
+        modes:
+          description: |
+            List of Transport modes calling the place.
+
+            This field is added in later OJP 2.0, used here as propertary for forward compatibility.
+          type: array
+          items:
+            $ref: '#/components/schemas/Mode'
         ref:
           description: |
             Reference to another a place, e.g. to link address information. Provided by OJP.
