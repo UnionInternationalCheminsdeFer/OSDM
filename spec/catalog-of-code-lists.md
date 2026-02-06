@@ -1046,6 +1046,7 @@ Other cards should start with the RICS code of the issuer.
 | `CIV`                                       |  terms and conditions according to COTIV regulation  |
 | `MD`                                        |  terms and conditions according to SMPS regulation   |
 | `EU_PRR`                                    |  terms and conditions according to EU-PRR regulation |
+| `CIT_AJC`                                   |  `CIT Agreement on Journey Continuation` applies     |
 
 ## Reservation Preference Group <a name="ReservationPreferenceGroup">
 
@@ -1559,6 +1560,7 @@ passenger to interrupt a trip.
 | `SHORT_DISTANCE` | VAT applies in short distance tickets only                                                                                      |
 | `LONG_DISTANCE`  | VAT applies in long distance tickets only. This needs to be applied in case the fare is integrated in a longer journey.         |
 | `NOT_REGISTERED` | Company is not registered for VAT in the relevant country.                                                                      |
+
 
 
 
