@@ -13231,11 +13231,11 @@ components:
           nullable: true
         firstName:
           type: string
-          nullable: false
+          nullable: true
         lastName:
           description: full last names of the person
           type: string
-          nullable: false
+          nullable: true
           example: 'Diaz Lopez'
         firstFamilyName:
           description:
