@@ -4451,7 +4451,7 @@ paths:
       summary: Returns all promotion code definitions.
       description: |
         returns a collection of promotion code definitions, typically filtered to contain only those that the caller should see
-      operationId: getReductionCards
+      operationId: getPromotionCodes
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/traceParent'
