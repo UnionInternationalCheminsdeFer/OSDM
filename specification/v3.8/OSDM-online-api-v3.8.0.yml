@@ -7608,6 +7608,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fulfillment'
+        fulfillmentDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentDocument'
         fulfillmentStatus:
           $ref: '#/components/schemas/FulfillmentSummaryStatus'
         issuedVouchers:
@@ -10780,9 +10784,18 @@ components:
         fulfillmentDocuments:
           description: |
             Final document created for fulfillment.
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentDocument'
+        fulfillmentDocumentRefs:
+          description: |
+            References to the fulfillment documents.
+          type: array
+          items:
+            type: string
+            description: |
+              Fulfillment document ID
         issuingLanguage:
           type: string
           description: the issuing language (ISO-639-1 language code).
@@ -10914,6 +10927,10 @@ components:
         - type
         - format
       properties:
+        id:
+          type: string
+          description: |
+            Technical reference. Required if referencing from fulfilment.fulfillmentDocumentRefs
         medium:
           $ref: '#/components/schemas/FulfillmentMediaType'
         type:
@@ -11132,6 +11149,12 @@ components:
             $ref: '#/components/schemas/Problem'
         fulfillment:
           $ref: '#/components/schemas/Fulfillment'
+        fulfillmentDocuments:
+          description: |
+            Final document created for fulfillment.
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentDocument'
 
     FulfillmentStatus:
       description: |
