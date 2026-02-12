@@ -12848,24 +12848,32 @@ components:
             - 'string'
             - 'null'
         firstName:
-          type: string
+          type:
+            - 'string'
+            - 'null'
         lastName:
           description: full last names of the person
-          type: string
+          type:
+            - 'string'
+            - 'null'
           examples:
             - 'Diaz Lopez'
         firstFamilyName:
           description:
             first family name in case of multiple family names. The element
             lastName includes all family names.
-          type: string
+          type:
+            - 'string'
+            - 'null'
           examples:
             - 'Diaz'
         secondFamilyName:
           description:
             second family name in case of multiple family names. The element
             lastName includes all family names.
-          type: string
+          type:
+            - 'string'
+            - 'null'
           examples:
             - 'Lopez'
         postalAddress:
