@@ -15,17 +15,18 @@ permalink: /spec/technical-principles/
    3. [Development](#Development)
    4. [Release](#Release)
    5. [Negotiating versions](#versionNegotiation)
-4. [Implementation principles](#Implementationprinciples)
-5. [HTTP headers](#httpHeaders)
-6. [Caching](#Caching)
-7. [Idempotency](#Idempotency) 
-8. [Identify Caller](#IdentifyCaller)
-9. [Namespaces](#Namespaces)
-10. [PATCH behaviour](#PatchBehaviour)
-11. [Error Handling](#ErrorHandling)
-12. [Functional Errors and Error Codes](#FunctionalErrorsandErrorCodes)
-13. [Tracing across systems](#Tracing)
-14. [Authentication](#Authentication)
+4. [Version Support](#VersionSupport)
+5. [Implementation principles](#Implementationprinciples)
+6. [HTTP headers](#httpHeaders)
+7. [Caching](#Caching)
+8. [Idempotency](#Idempotency) 
+9. [Identify Caller](#IdentifyCaller)
+10. [Namespaces](#Namespaces)
+11. [PATCH behaviour](#PatchBehaviour)
+12. [Error Handling](#ErrorHandling)
+13. [Functional Errors and Error Codes](#FunctionalErrorsandErrorCodes)
+14. [Tracing across systems](#Tracing)
+15. [Authentication](#Authentication)
    1. [User Lookup](#UserLookup)
 
 
@@ -100,6 +101,18 @@ If a backport is expected, pull request must provide files for a new patch versi
 ### Release <a name="Release">
 
 The openapi file is considered final when there is git tag and github release for given version that marks a respective commit where the final version of that file was saved.
+
+## Version Support <a name="VersionSupport">
+
+The OSDM Team supports the following version:
+
+| Version | Remark |
+| ----    | ------ |
+| 1.x     | no support |
+| 2.x     | no support |
+| 3.x     | supported  |
+| 3.9     | in developement, publication planned for June 2026 |
+| 4.x     | in developement, no publication date yet |
 
 ## Implementation principles <a name="Implementationprinciples">
 
