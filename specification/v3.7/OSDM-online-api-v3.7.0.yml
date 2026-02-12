@@ -15626,7 +15626,7 @@ components:
         This property can be used in case a return trip is being requested.
         This will allow to benefit from return-specific fares or product.
 
-        Only one of `outwardTripIds`, `outwardOfferIds`, or  should be provided.
+        Only one of `outboundTripIds` or `outwardOfferIds` should be provided.
 
         `inwardReturnDate` and `outwardOfferTag` should not be used as they are deprecated in 3.7.0 and will be removed in 4.0.0.
       properties:
