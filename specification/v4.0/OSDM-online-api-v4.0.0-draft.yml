@@ -11317,7 +11317,8 @@ components:
             description: |
               the 'rel' field in HATEOAS navigation.
             type: string
-            example: self
+            example: 
+             - self
           href:
             description: |
               Allows to provide a value to the link, for example id of the targeted 
@@ -11331,7 +11332,8 @@ components:
             type:
               - 'string'
               - 'null'
-            example: application/json
+            examples: 
+              - application/json
           value:
             description: |
               Allows to provide a value to the link, for example id of the targeted 
