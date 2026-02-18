@@ -12592,6 +12592,23 @@ components:
               $ref: '#/components/schemas/PersonDetail'
             transportableDetails:
               $ref: '#/components/schemas/Transportable'
+            imageData:
+              description: |
+                base64 encoded binary of the jpg image of the person or transportable. Used to upload an image
+              type:
+                - 'string'
+                - 'null'
+              format: byte
+              maxLength: 4194304              
+            imageLink:
+              description: |
+                link to the image resource where the image is stored on provider side
+              type:
+                - 'string'
+                - 'null'
+              format: uri
+              examples:
+                - https://example.com/probs/image-of-john-doe.jpg              
 
     PassengerType:
       description: |
