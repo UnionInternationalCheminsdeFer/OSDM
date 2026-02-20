@@ -34,10 +34,10 @@ A retailer can request to have Individual or Collective ticketing and pricing vi
 
 With individual ticketing the OSDM provider will provide fulfillments per passenger to provide the tickets. A partial refund of some passengers is possible by providing the fulfillments to be refunded. The remaining fulfillments will stay valid.
 
-With collective ticketing multiple passengers are included in one fulfillment. A partial refund of passengers needs to provide the passengers to be refunded. The fulfillment containing the original passengers becomes invaliud and a new fulfillment is created that containsthe remaining passengers.
+With collective ticketing multiple passengers are included in one fulfillment. A partial refund of passengers needs to provide the passengers to be refunded. The fulfillment containing the original passengers becomes invaliud and a new fulfillment is created that contains the remaining passengers.
 
 ## Collective and Individual Pricing in OSDM <a name="CPinOSDM">
 
 With individual pricing the booking parts of the refunded passengers will set to status refunded, whereas the remaining booking parts are unchanged.
 
-With collective pricing the booking part(s) would include more than one passenger. A partial refund of passengers would create a new booking part including the remaining apssengers and the original booking part would be set to status refunded.
+With collective pricing the booking part(s) would include more than one passenger. A partial refund of passengers would create a new booking part including the remaining passengers and the original booking part would be set to status refunded.
