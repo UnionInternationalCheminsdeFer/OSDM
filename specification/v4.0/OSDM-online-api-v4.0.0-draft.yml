@@ -11107,22 +11107,25 @@ components:
             - 'null'
           format: byte
           maxLength: 4194304 
-       mimetype:
-          description: mime type of the image data
-          type: string
-          x-extensible-enum:
-            - image/png
-            - image/jepg
-            - image/webp      
-       imageLink:
-         description: |
-           link to the image resource where the image is stored on provider side
-         type:
-          - 'string'
-          - 'null'
-         format: uri
-         examples:
-           - https://example.com/probs/image-of-john-doe.webp  
+        mediatype:
+          $ref: '#/components/schemas/ImageMediaType'   
+        imageLink:
+          description: |
+            link to the image resource where the image is stored on provider side
+          type:
+            - 'string'
+            - 'null'
+          format: uri
+          examples:
+            - https://example.com/probs/image-of-john-doe.webp   
+
+    ImageMediaType:
+      description: media type of the image data as defined by IANA
+      type: string
+      x-extensible-enum:
+        - image/png
+        - image/jpeg
+        - image/webp     
 
     IndicatedUsage:
       type: object
