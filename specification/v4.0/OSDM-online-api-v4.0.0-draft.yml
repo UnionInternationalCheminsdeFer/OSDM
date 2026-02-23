@@ -11106,7 +11106,7 @@ components:
             - 'string'
             - 'null'
           format: byte
-          maxLength: 4194304 
+          maxLength: 4194304
         mediatype:
           $ref: '#/components/schemas/ImageMediaType'   
         imageLink:
