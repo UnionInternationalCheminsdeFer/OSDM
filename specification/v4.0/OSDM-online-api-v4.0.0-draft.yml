@@ -9022,10 +9022,12 @@ components:
           items:
             $ref: '#/components/schemas/SituationRef'
         carriers:
+          description: |
+           the carrier might not be provided be in case the dated journey is used in a request as part of trip specification. 
+           In case the trip specification is therefore ambiguous the provider might reply with an error.
           type: array
           items:
             $ref: '#/components/schemas/NamedCompany'
-          minItems: 1
         attributes:
           type: array
           items:
