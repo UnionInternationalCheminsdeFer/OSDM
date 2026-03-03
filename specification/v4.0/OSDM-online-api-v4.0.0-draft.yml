@@ -17347,6 +17347,8 @@ components:
           $ref: '#/components/schemas/TimedLegSpecification'
         transferLeg:
           $ref: '#/components/schemas/TransferLeg'
+        continuousLeg:
+          $ref: '#/components/schemas/ContinuousLeg'          
 
     TripMobilityFilter:
       type: object
