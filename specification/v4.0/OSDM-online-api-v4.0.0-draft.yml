@@ -6780,13 +6780,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Problem'
-        bookedOfferIds:
-          type: array
-          items:
-            type: string
-            maxLength: 32768
-          description: |
-            IDs of offers booked by the request. Will be always provided, single of the booked offer may not be provided in bookedOffer attribute.
+        bookedOffer:
+          $ref: '#/components/schemas/BookedOffer'
 
     BookedOfferSummary:
       type: object
