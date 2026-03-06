@@ -86,6 +86,7 @@ schema files.
 | service brands , products | `urn:uic`             | `sbc`     | UIC service brand code (TAP-TSI B.4.7009 / <https://uic.org/passenger/passenger-services-group/article/service-brand-code-list>)                                                                                                                                                                                                                                 | `urn:uic:sbc:17`           | `urn:uic:sbc:`                    |
 | companies                 | `urn:uic`             | `rics:ac` | company code (TAP-TSI <https://www.era.europa.eu/registers/ocr_en> / <https://uic.org/support-activities/it/rics>) and optional administration code (AC)                                                                                                                                                                                                         | `urn:uic:rics:1080:000011` | `urn:uic:rics:`                   |
 | stations                  | `urn:iata`            | `li`      | IATA Location Identifiers for airports or rail stations defined in [IATA Airline Coding Directory (ACD)](https://www.iata.org/en/publications/manuals/airline-coding-directory/)                                                                                                                                                                                 | `urn:iata:li:XWC`          | `urn:iata:li:`                    |
+| countries |  `urn:iso:std:iso` | `3166:-1:code:alpha-2` |  ISO country code 2 digits | `urn:iso:std:iso:3166:-1:code:alpha-2:DE` |  |
 
 Note: we do not use URN notation for country codes (we use ISO-3166-1 alpha-2
 notation, e.g. 'CH') and for currency codes (we use ISO-4217 notation, e.g.
@@ -1560,6 +1561,7 @@ passenger to interrupt a trip.
 | `SHORT_DISTANCE` | VAT applies in short distance tickets only                                                                                      |
 | `LONG_DISTANCE`  | VAT applies in long distance tickets only. This needs to be applied in case the fare is integrated in a longer journey.         |
 | `NOT_REGISTERED` | Company is not registered for VAT in the relevant country.                                                                      |
+
 
 
 
