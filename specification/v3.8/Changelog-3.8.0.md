@@ -29,6 +29,7 @@
 * `FareConnectionPoint`: new property `nameTranslations`
 * `Fee`: new property `isProviderFee`
 * `Fulfillment`: property `fulfillmentDocuments` deprecated, property `fulfillmentDocumentRefs` added
+* `FulfillmentCollectionResponse`: property `fulfillmentDocuments` added
 * `FulfillmentDocument`: property `id` added
 * `FulfillmentResponse`: property `fulfillmentDocuments` added
 * `GeneralAttribute`: new property `textTranslations`
