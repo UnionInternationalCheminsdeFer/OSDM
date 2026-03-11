@@ -14976,7 +14976,7 @@ components:
             provider knows when a return travel can be expected and propose appropriate
             product and fares.
           type: string
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          format: date-time
           nullable: true
         outwardOfferIds:
           description: |
@@ -16662,13 +16662,13 @@ components:
           description: |
             Needs to be in local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
           type: string
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          format: date-time
           nullable: true
         arrivalTime:
           description: |
             Needs to in be local date time format of the stop. Exactly one of `departureTime` and `arrivalTime` must be provided.
           type: string
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          format: date-time
           nullable: true
         origin:
           $ref: '#/components/schemas/PlaceRef'
