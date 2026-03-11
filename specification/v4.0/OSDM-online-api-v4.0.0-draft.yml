@@ -12114,7 +12114,7 @@ components:
           type:
             - 'string'
             - 'null'
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          format: date-time
 
     OfferSelection:
       type: object
@@ -15489,14 +15489,14 @@ components:
           type:
             - 'string'
             - 'null'
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          format: date-time
         arrivalTime:
           description: |
             Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type:
             - 'string'
             - 'null'
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          format: date-time
         origin:
           $ref: '#/components/schemas/PlaceRef'
         destination:
@@ -17546,14 +17546,14 @@ components:
           type:
             - 'string'
             - 'null'
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          format: date-time
         arrivalTime:
           description: |
             Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type:
             - 'string'
             - 'null'
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          format: date-time
         origin:
           $ref: '#/components/schemas/PlaceRef'
         destination:
@@ -17604,14 +17604,14 @@ components:
           type:
             - 'string'
             - 'null'
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          format: date-time
         arrivalTime:
           description: |
             Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
           type:
             - 'string'
             - 'null'
-          pattern: '(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)'
+          format: date-time
         origins:
           type: array
           items:
