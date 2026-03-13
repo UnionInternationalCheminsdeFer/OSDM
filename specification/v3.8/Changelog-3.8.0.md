@@ -33,6 +33,7 @@
 * `FulfillmentDocument`: property `id` added
 * `FulfillmentResponse`: property `fulfillmentDocuments` added
 * `GeneralAttribute`: new property `textTranslations`
+* `PaymentMethod`: new property `appliedVoucherAmount`
 * `PersonDetail`: properties `firstName`, `lastName` changed to nullable
 * `Place`: property `modes` added
 * `PlaceSelection`: property `compartments` added
