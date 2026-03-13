@@ -10930,6 +10930,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fulfillment'
+        fulfillmentDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentDocument'
         issuedVouchers:
           type: array
           items:
