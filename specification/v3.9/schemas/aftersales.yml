@@ -310,7 +310,7 @@ ExchangeOffer:
     fares:
       type: array
       items:
-        $ref: ./product.yml#/Fare
+        $ref: ./fare.yml#/Fare
     _links:
       $ref: ./_common.yml#/Links
 ExchangeOfferCollectionRequest:

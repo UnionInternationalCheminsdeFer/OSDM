@@ -510,7 +510,7 @@ ExcludedTimeRange:
       format: int32
       nullable: false
     scope:
-      $ref: ./product.yml#/ExclusionScope
+      $ref: ./fare.yml#/ExclusionScope
 Fee:
   type: object
   additionalProperties: false

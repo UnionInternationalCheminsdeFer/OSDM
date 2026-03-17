@@ -482,7 +482,7 @@ components:
     CarRack:
       $ref: ./schemas/transport.yml#/CarRack
     CarrierConstraint:
-      $ref: ./schemas/product.yml#/CarrierConstraint
+      $ref: ./schemas/fare.yml#/CarrierConstraint
     CarrierFilter:
       $ref: ./schemas/ojp/_common.yml#/CarrierFilter
     CarSpecification:
@@ -660,19 +660,19 @@ components:
     ExcludedTimeRange:
       $ref: ./schemas/_common.yml#/ExcludedTimeRange
     ExclusionScope:
-      $ref: ./schemas/product.yml#/ExclusionScope
+      $ref: ./schemas/fare.yml#/ExclusionScope
     Fare:
-      $ref: ./schemas/product.yml#/Fare
+      $ref: ./schemas/fare.yml#/Fare
     FareCombinationModel:
-      $ref: ./schemas/product.yml#/FareCombinationModel
+      $ref: ./schemas/fare.yml#/FareCombinationModel
     FareConnectionPoint:
-      $ref: ./schemas/product.yml#/FareConnectionPoint
+      $ref: ./schemas/fare.yml#/FareConnectionPoint
     FareConnectionPointRef:
-      $ref: ./schemas/product.yml#/FareConnectionPointRef
+      $ref: ./schemas/fare.yml#/FareConnectionPointRef
     FareReferenceStation:
-      $ref: ./schemas/product.yml#/FareReferenceStation
+      $ref: ./schemas/fare.yml#/FareReferenceStation
     FareType:
-      $ref: ./schemas/product.yml#/FareType
+      $ref: ./schemas/fare.yml#/FareType
     Fee:
       $ref: ./schemas/_common.yml#/Fee
     FeeStatus:
@@ -776,15 +776,15 @@ components:
     Longitude:
       $ref: ./schemas/_common.yml#/Longitude
     LuggageConstraint:
-      $ref: ./schemas/product.yml#/LuggageConstraint
+      $ref: ./schemas/fare.yml#/LuggageConstraint
     LuggageDimension:
-      $ref: ./schemas/product.yml#/LuggageDimension
+      $ref: ./schemas/fare.yml#/LuggageDimension
     LuggageDimensionEnum:
-      $ref: ./schemas/product.yml#/LuggageDimensionEnum
+      $ref: ./schemas/fare.yml#/LuggageDimensionEnum
     LuggageRestriction:
-      $ref: ./schemas/product.yml#/LuggageRestriction
+      $ref: ./schemas/fare.yml#/LuggageRestriction
     LuggageRestrictionRuleEnum:
-      $ref: ./schemas/product.yml#/LuggageRestrictionRuleEnum
+      $ref: ./schemas/fare.yml#/LuggageRestrictionRuleEnum
     Mode:
       $ref: ./schemas/ojp/_common.yml#/Mode
     ModeFilter:
@@ -1026,11 +1026,11 @@ components:
     RefundType:
       $ref: ./schemas/aftersales.yml#/RefundType
     RegionalConstraint:
-      $ref: ./schemas/product.yml#/RegionalConstraint
+      $ref: ./schemas/fare.yml#/RegionalConstraint
     RegionalValidity:
-      $ref: ./schemas/product.yml#/RegionalValidity
+      $ref: ./schemas/fare.yml#/RegionalValidity
     RegionalValiditySummary:
-      $ref: ./schemas/product.yml#/RegionalValiditySummary
+      $ref: ./schemas/fare.yml#/RegionalValiditySummary
     RegulatoryCondition:
       $ref: ./schemas/_common.yml#/RegulatoryCondition
     Reimbursement:
@@ -1142,7 +1142,7 @@ components:
     SpecificPlaceAvailability:
       $ref: ./schemas/place.yml#/SpecificPlaceAvailability
     StationSet:
-      $ref: ./schemas/product.yml#/StationSet
+      $ref: ./schemas/fare.yml#/StationSet
     StopBehavior:
       $ref: ./schemas/trip.yml#/StopBehavior
     StopCallStatus:
@@ -1176,9 +1176,9 @@ components:
     TrainLink:
       $ref: ./schemas/trip.yml#/TrainLink
     TrainValidity:
-      $ref: ./schemas/product.yml#/TrainValidity
+      $ref: ./schemas/fare.yml#/TrainValidity
     TrainValidityScope:
-      $ref: ./schemas/product.yml#/TrainValidityScope
+      $ref: ./schemas/fare.yml#/TrainValidityScope
     TransactionContextType:
       $ref: ./schemas/_common.yml#/TransactionContextType
     TransferLeg:
@@ -1208,9 +1208,9 @@ components:
     TravelPassAccount:
       $ref: ./schemas/travel-account.yml#/TravelPassAccount
     TravelValidity:
-      $ref: ./schemas/product.yml#/TravelValidity
+      $ref: ./schemas/fare.yml#/TravelValidity
     TravelValidityRange:
-      $ref: ./schemas/product.yml#/TravelValidityRange
+      $ref: ./schemas/fare.yml#/TravelValidityRange
     Trip:
       $ref: ./schemas/ojp/trip.yml#/Trip
     TripAllocationConstraint:
@@ -1292,8 +1292,8 @@ components:
     WarningCollection:
       $ref: ./schemas/_common.yml#/WarningCollection
     Zone:
-      $ref: ./schemas/product.yml#/Zone
+      $ref: ./schemas/fare.yml#/Zone
     ZoneCollectionResponse:
-      $ref: ./schemas/product.yml#/ZoneCollectionResponse
+      $ref: ./schemas/fare.yml#/ZoneCollectionResponse
     ZoneDefinition:
-      $ref: ./schemas/product.yml#/ZoneDefinition
+      $ref: ./schemas/fare.yml#/ZoneDefinition

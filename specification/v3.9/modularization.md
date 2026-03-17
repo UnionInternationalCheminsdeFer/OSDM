@@ -11,7 +11,7 @@ graph LR
     subgraph "Target (v3.9)"
         HUB["OSDM-online-api.yml<br/>~150 lines<br/>hub/entrypoint"]
         P["paths/<br/>22 files"]
-        S["schemas/<br/>13 files"]
+        S["schemas/<br/>14 files"]
         C["components/<br/>3 files"]
         HUB --> P
         HUB --> S
@@ -55,7 +55,8 @@ graph TD
     SCHEMAS --> S4["fulfillment.yml<br/>~25 schemas"]
     SCHEMAS --> S5["aftersales.yml<br/>~40 schemas"]
     SCHEMAS --> S6["place.yml<br/>~40 schemas"]
-    SCHEMAS --> S7["...6 more"]
+    SCHEMAS --> S7["fare.yml<br/>~24 schemas"]
+    SCHEMAS --> S8["...5 more"]
 
     COMP --> C1["parameters.yml"]
     COMP --> C2["responses.yml"]
@@ -82,7 +83,9 @@ graph TD
 
     PLACE["place.yml<br/>Place, CoachLayout,<br/>Availability,<br/>Compartment, ..."]
 
-    PRODUCT["product.yml<br/>Product, Fare, Zone,<br/>RegionalValidity, ..."]
+    PRODUCT["product.yml<br/>Product, ProductType,<br/>ProductTag, ..."]
+
+    FARE["fare.yml<br/>Fare, FareType, Zone,<br/>RegionalValidity,<br/>TravelValidity, ..."]
 
     COMPLAINT["complaint.yml<br/>Complaint,<br/>Reimbursement, ..."]
 
@@ -100,6 +103,7 @@ graph TD
     COMMON --> AFTERSALES
     COMMON --> PLACE
     COMMON --> PRODUCT
+    COMMON --> FARE
     COMMON --> COMPLAINT
     COMMON --> TRAVEL
     COMMON --> CONT
@@ -110,6 +114,10 @@ graph TD
     PASSENGER --> BOOKING
     FULFILLMENT --> BOOKING
     PLACE --> OFFER
+    FARE --> OFFER
+    FARE --> BOOKING
+    FARE --> AFTERSALES
+    FARE --> FULFILLMENT
     PRODUCT --> OFFER
     BOOKING --> AFTERSALES
     FULFILLMENT --> AFTERSALES
@@ -192,7 +200,31 @@ graph TD
     BUNDLED --> REDOC
 ```
 
-## 6. Schema Size Distribution
+## 6. Fare / Product Separation
+
+The original `product.yml` (38 schemas) mixed two distinct concerns:
+
+- **Fare domain** — pricing rules, regional validity, zones, luggage constraints, travel validity
+- **Product domain** — product catalog, search, tags, promotion codes
+
+These were split into `fare.yml` (24 schemas) and `product.yml` (12 schemas):
+
+| `fare.yml` | `product.yml` |
+|---|---|
+| Fare, FareType, FareCombinationModel | Product, ProductType, ProductSummary |
+| FareConnectionPoint, FareConnectionPointRef | ProductSearch/Response/Collection |
+| FareReferenceStation, StationSet | ProductTag, ProductTagGroup, ProductTagName |
+| RegionalConstraint, RegionalValidity, RegionalValiditySummary | ProductTagsResponse |
+| CarrierConstraint, ExclusionScope | PromotionCodeCollectionResponse |
+| TravelValidity, TravelValidityRange | |
+| TrainValidity, TrainValidityScope | |
+| Zone, ZoneDefinition, ZoneCollectionResponse | |
+| LuggageConstraint, LuggageDimension, LuggageDimensionEnum | |
+| LuggageRestriction, LuggageRestrictionRuleEnum | |
+
+**Rationale:** Fare schemas are referenced by offer, booking, aftersales, fulfillment, and travel-account — they form a distinct dependency cluster. Product schemas primarily serve the product catalog API. Separating them reduces cognitive load and aligns file boundaries with domain boundaries.
+
+## 7. Schema Size Distribution
 
 ```mermaid
 ---
@@ -203,7 +235,7 @@ config:
 ---
 xychart-beta
     title "Schemas per domain file (494 total)"
-    x-axis ["_common", "place", "trip", "offer", "aftersales", "product", "booking", "fulfillment", "passenger", "transport", "complaint", "travel-acct", "cont-svc"]
+    x-axis ["_common", "place", "trip", "offer", "aftersales", "fare", "booking", "fulfillment", "passenger", "transport", "complaint", "product", "travel-acct", "cont-svc"]
     y-axis "Number of schemas" 0 --> 120
-    bar [105, 66, 56, 42, 38, 38, 34, 32, 23, 17, 18, 13, 12]
+    bar [105, 66, 56, 42, 38, 24, 34, 32, 23, 17, 18, 12, 13, 12]
 ```

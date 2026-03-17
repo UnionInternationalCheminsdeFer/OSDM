@@ -69,7 +69,7 @@ NonTripSearchCriteria:
     zones:
       type: array
       items:
-        $ref: ./product.yml#/ZoneDefinition
+        $ref: ./fare.yml#/ZoneDefinition
     places:
       type: array
       items:
@@ -177,7 +177,7 @@ RouteItem:
         format: int32
       nullable: true
     carrierConstraint:
-      $ref: ./product.yml#/CarrierConstraint
+      $ref: ./fare.yml#/CarrierConstraint
     routeItemIndices:
       description: |
         sequence of route items along the travel path referenced by the index in the provided list of route items
@@ -191,7 +191,7 @@ RouteItem:
     station:
       $ref: './ojp/trip.yml#/StopPlace'
     fareReferenceStation:
-      $ref: ./product.yml#/FareReferenceStation
+      $ref: ./fare.yml#/FareReferenceStation
 RouteSpecification:
   type: object
   properties:

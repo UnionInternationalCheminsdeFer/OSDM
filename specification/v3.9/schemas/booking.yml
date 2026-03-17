@@ -203,7 +203,7 @@ BookedOffer:
     fares:
       type: array
       items:
-        $ref: ./product.yml#/Fare
+        $ref: ./fare.yml#/Fare
     tripCoverage:
       $ref: ./trip.yml#/TripCoverage
     inboundTripCoverage:

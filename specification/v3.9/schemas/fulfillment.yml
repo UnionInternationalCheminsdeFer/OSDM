@@ -613,7 +613,7 @@ FulfillmentUsage:
     travelValidityRanges:
       type: array
       items:
-        $ref: ./product.yml#/TravelValidityRange
+        $ref: ./fare.yml#/TravelValidityRange
     maxAvailableZones:
       description: |
         upper limit to the number of selected zones
@@ -623,7 +623,7 @@ FulfillmentUsage:
     availableZones:
       type: array
       items:
-        $ref: ./product.yml#/ZoneDefinition
+        $ref: ./fare.yml#/ZoneDefinition
 SecurityElementFormat:
   type: string
   enum:
