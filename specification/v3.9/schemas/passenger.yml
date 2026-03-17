@@ -1,0 +1,612 @@
+ActualPassengerType:
+  description: "Actual Passenger type according to UIC passenger, i.e. passenger type list. \nReturns the passenger type according\
+    \ to the underlying fare system. \nE.g. a passenger of type PERSON is categorized as a ADULT or YOUTH.\nValues from the\
+    \ [Passenger Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)\nListed values here are examples.\n"
+  type: string
+  x-extensible-enum:
+  - YOUNG_CHILD
+  - CHILD
+  - YOUTH
+  - ADULT
+  - SENIOR
+  - FAMILY_CHILD
+  - ACCOMP_PRM
+  - PRM_CHILD
+  - WHEELCHAIR
+  - PERSON
+  - PRM
+  - DOG
+  - PET
+  - LUGGAGE
+  - PRM
+  - PRM_CHILD
+  - BICYCLE
+  - PRAM
+  - ACCOMP_DOG
+  - ACCOMP_PRM
+  - CAR
+  - MOTOCYCLE
+  - TRAILER
+  default: PERSON
+AnonymousPassengerSpecification:
+  type: object
+  additionalProperties: false
+  description: |
+    Minimal specification of a passenger to request offers without any GDPR relevant attributes such as name or address.
+
+    Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
+  required:
+  - externalRef
+  - type
+  properties:
+    externalRef:
+      description: |
+        A stable reference to a passenger from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
+      type: string
+      nullable: false
+    dateOfBirth:
+      description: |
+        Date of birth of the passenger. Only needed for passengers of type persons, family child, PRM
+        and wheelchair.
+      type: string
+      format: date
+      nullable: true
+    age:
+      type: integer
+      format: int32
+      minimum: 0
+      nullable: true
+    type:
+      $ref: '#/PassengerType'
+    prmNeeds:
+      type: array
+      items:
+        $ref: '#/PRMNeedType'
+    cards:
+      type: array
+      items:
+        $ref: ./_common.yml#/CardReference
+    gender:
+      $ref: ./_common.yml#/Gender
+    residency:
+      $ref: ./_common.yml#/CountryCode
+    transportable:
+      $ref: ./transport.yml#/TransportableSpecification
+AppliedPassengerType:
+  type: object
+  additionalProperties: false
+  description: |
+    Applied passenger types and reductions per passenger, per offer part and per part of the trip.
+  required:
+  - passengerRef
+  - type
+  - description
+  properties:
+    passengerRef:
+      description: "id of the passenger.  \nIn the offer flow the id refers to the externalRef as the passenger id is created\
+        \ at booking time only.\n"
+      type: string
+      nullable: false
+    type:
+      $ref: '#/ActualPassengerType'
+    description:
+      description: |
+        Clear text representation of the actual passenger type, suitable to be presented to a client.
+      type: string
+      nullable: false
+    tripCoverage:
+      $ref: ./trip.yml#/TripCoverage
+    inboundTripCoverage:
+      $ref: ./trip.yml#/TripCoverage
+    appliedReductionCardTypes:
+      deprecated: true
+      type: array
+      items:
+        $ref: '#/ReductionCardType'
+    appliedReductions:
+      type: array
+      items:
+        $ref: ./_common.yml#/CardReference
+GrantedReductionAmount:
+  type: object
+  additionalProperties: false
+  description: "Applied passenger types and reductions per passenger, per offerpart, booking part and per part of the trip.\
+    \ \nPassengers might be omitted in case the reduction applies to the complete booking part.\n"
+  required:
+  - grantedAmount
+  - description
+  properties:
+    description:
+      description: |
+        Clear text representation of the actual passenger type, suitable to be presented to a client.
+      type: string
+      nullable: false
+    grantedAmount:
+      $ref: ./_common.yml#/Price
+    passengerRefs:
+      description: |
+        ids of the passengers that were granted the reduction
+      type: array
+      items:
+        type: string
+        nullable: false
+    tripCoverage:
+      $ref: ./trip.yml#/TripCoverage
+    inboundTripCoverage:
+      $ref: ./trip.yml#/TripCoverage
+    appliedPassengerTypes:
+      type: array
+      items:
+        $ref: '#/ActualPassengerType'
+    appliedReductions:
+      type: array
+      items:
+        $ref: ./_common.yml#/CardReference
+    appliedCorporateCodes:
+      type: array
+      items:
+        $ref: ./_common.yml#/CorporateCode
+    appliedPromotionCodes:
+      type: array
+      items:
+        $ref: ./_common.yml#/PromotionCode
+GrantedReductionAmounts:
+  type: object
+  additionalProperties: false
+  description: |
+    granted reduction amounts
+  properties:
+    grantedReductionAmount:
+      type: array
+      items:
+        $ref: '#/GrantedReductionAmount'
+Passenger:
+  type: object
+  additionalProperties: false
+  description: |
+    Information about a passenger.
+
+    Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
+  required:
+  - id
+  - externalRef
+  - type
+  properties:
+    id:
+      type: string
+      nullable: false
+    summary:
+      description: |
+        A human-readable description of the passenger.
+      type: string
+      nullable: true
+    externalRef:
+      description: |
+        A stable reference to a passenger from other elements, or from caller system.
+        When passed in passenger specification in an offer request, it must be echoed back in the
+        response.
+      type: string
+      nullable: false
+    dateOfBirth:
+      description: |
+        date of birth of the passenger
+      type: string
+      format: date
+      nullable: true
+    age:
+      type: integer
+      format: int32
+      minimum: 0
+      nullable: true
+    type:
+      $ref: '#/PassengerType'
+    cards:
+      description: |
+        reduction or loyalty cards owned by the passenger
+      type: array
+      items:
+        $ref: ./_common.yml#/CardReference
+    gender:
+      $ref: ./_common.yml#/Gender
+    detail:
+      $ref: ./_common.yml#/PersonDetail
+    identificationCard:
+      $ref: ./_common.yml#/IdentificationCard
+    transportableDetails:
+      $ref: ./transport.yml#/Transportable
+    prmNeeds:
+      description: |
+        For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
+      type: array
+      items:
+        $ref: '#/PRMNeedType'
+    _links:
+      $ref: ./_common.yml#/Links
+PassengerCategory:
+  type: object
+  description: "Passenger Category predefines a set of passenger specification properties that result to offer of a specific\
+    \ passenger type. \n`title` is the localized name of the passenger category and `specification` describes exact passenger\
+    \ specification that may results into offer for selected passenger category. Passenger category specification doesn't\
+    \ guarantee availability of expected passenger type on offered trip. `appliedPassengerType` must always be checked in\
+    \ the offer response.\n"
+  additionalProperties: false
+  required:
+  - title
+  - specification
+  properties:
+    base:
+      type: boolean
+      nullable: true
+      default: false
+      description: "Indicate whether this passenger category should be preselected \nas a default option in the passenger\
+        \ selection. Usually results \nto a \"full fare\" or \"adult fare\" offers.\n"
+    additional:
+      type: boolean
+      nullable: true
+      default: false
+      description: |
+        Indicate whether this passenger category should be always visible in UI or folded into "additional" section.
+    title:
+      description: |
+        Default and localized name of the passenger category.
+      $ref: ./_common.yml#/Text
+    specification:
+      description: |
+        Exact passenger specification to be used in order to request an offer for given passenger category.
+      $ref: '#/AnonymousPassengerSpecification'
+PassengerConstraints:
+  type: object
+  additionalProperties: false
+  properties:
+    number:
+      description: |
+        number of passengers with this constraint
+      type: integer
+      format: int32
+      nullable: true
+    upperAgeLimit:
+      type: integer
+      format: int32
+      nullable: true
+    lowerAgeLimit:
+      type: integer
+      format: int32
+      nullable: true
+PassengerResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    passenger:
+      $ref: '#/Passenger'
+PassengersBatchUpdateRequest:
+  type: object
+  additionalProperties: false
+  properties:
+    passengers:
+      type: array
+      items:
+        $ref: '#/Passenger'
+PassengersCollectionResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    passengers:
+      type: array
+      items:
+        $ref: '#/Passenger'
+PassengerSearchRequest:
+  type: object
+  additionalProperties: false
+  properties:
+    externalRef:
+      description: |
+        A stable reference to a person from other elements, or from caller system.
+        When received in input of a request, it must be echoed back in the response.
+      type: string
+      nullable: true
+    firstName:
+      type: string
+      nullable: true
+    lastName:
+      type: string
+      nullable: true
+    dateOfBirth:
+      type: string
+      format: date
+      nullable: true
+    phoneNumber:
+      description: format according to E.164 The international public telecommunication numbering plan
+      type: string
+      nullable: true
+    email:
+      type: string
+      nullable: true
+PassengerSpecification:
+  type: object
+  additionalProperties: false
+  description: |
+    Minimal specification of a passenger to request offers.
+    Either the date of birth or the age at the time of travel needs to be set. We recommend to use date of birth as it is more stable than age.
+  required:
+  - externalRef
+  - type
+  properties:
+    externalRef:
+      description: |
+        A stable reference to a passenger from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
+      type: string
+      nullable: false
+      example: TK-id-12345
+    dateOfBirth:
+      description: |
+        Date of birth of the passenger. Only needed for passengers of type persons, family child, PRM
+        and wheelchair.
+      type: string
+      format: date
+      nullable: true
+    age:
+      type: integer
+      format: int32
+      minimum: 0
+      nullable: true
+    cards:
+      description: |
+        reduction or loyalty cards owned by the passenger
+      type: array
+      items:
+        $ref: ./_common.yml#/CardReference
+    prmNeeds:
+      description: |
+        For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
+      type: array
+      items:
+        $ref: '#/PRMNeedType'
+    detail:
+      $ref: ./_common.yml#/PersonDetail
+    type:
+      $ref: '#/PassengerType'
+    gender:
+      $ref: ./_common.yml#/Gender
+    transportableDetails:
+      $ref: ./transport.yml#/Transportable
+PassengerType:
+  description: "Passenger type according to UIC passenger, i.e. passenger type list.\nValues from the [Passenger Type Code\
+    \ List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)\nListed values here are examples.   \nProposed default\
+    \ PERSON\n"
+  type: string
+  x-extensible-enum:
+  - YOUNG_CHILD
+  - CHILD
+  - YOUTH
+  - ADULT
+  - SENIOR
+  - FAMILY_CHILD
+  - ACCOMP_PRM
+  - PRM_CHILD
+  - WHEELCHAIR
+  - PERSON
+  - PRM
+  - DOG
+  - PET
+  - LUGGAGE
+  - BICYCLE
+  - PRAM
+  - ACCOMP_DOG
+  - CAR
+  - MOTOCYCLE
+  - TRAILER
+  default: PERSON
+PRMNeedType:
+  type: string
+  x-extensible-enum:
+  - NEED_PRM_SUPPORT
+  - WHEELCHAIR
+  - ACCOMPANYING_DOG
+  - COMPANION_SEAT
+  - COMPANION
+Purchaser:
+  type: object
+  additionalProperties: false
+  description: |
+    Purchaser information. Exactly one of `detail` or `companyDetails` must be provided.
+  properties:
+    externalRef:
+      description: |
+        A stable reference to a purchaser from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
+      type: string
+      nullable: true
+    detail:
+      $ref: ./_common.yml#/PersonDetail
+      nullable: true
+    companyDetails:
+      $ref: ./_common.yml#/CompanyDetail
+      nullable: true
+    _links:
+      $ref: ./_common.yml#/Links
+PurchaserResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    purchaser:
+      $ref: '#/Purchaser'
+PurchaserSearchRequest:
+  type: object
+  additionalProperties: false
+  properties:
+    externalRef:
+      description: |
+        A stable reference to a purchaser from other elements, or from caller system.
+        When received in input of a request, it must be echoed back in the response.
+      type: string
+      nullable: true
+    companyName:
+      type: string
+      nullable: true
+    companyRef:
+      $ref: ./_common.yml#/CompanyRef
+    firstName:
+      type: string
+      nullable: true
+    lastName:
+      type: string
+      nullable: true
+    dateOfBirth:
+      type: string
+      format: date
+      nullable: true
+      deprecated: true
+    phoneNumber:
+      description: Format according to E.164 The international public telecommunication numbering plan
+      type: string
+      nullable: true
+    email:
+      type: string
+      nullable: true
+PurchaserSpecification:
+  type: object
+  additionalProperties: false
+  description: |
+    Minimal specification of a purchaser to request booking of an offer. Exactly one of `detail` or `companyDetails` must be provided.
+  properties:
+    externalRef:
+      description: |
+        A stable reference to a purchaser from other elements, or from caller system. When received in input of a request, it must be echoed back in the response.
+      type: string
+      nullable: true
+    detail:
+      $ref: ./_common.yml#/PersonDetail
+      nullable: true
+    companyDetails:
+      $ref: ./_common.yml#/CompanyDetail
+      nullable: true
+ReductionCardAccount:
+  allOf:
+  - $ref: ./travel-account.yml#/AbstractTravelAccount
+  - type: object
+    additionalProperties: false
+    required:
+    - type
+    properties:
+      type:
+        $ref: '#/ReductionCardType'
+ReductionCardCollectionResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    reductionCardTypes:
+      type: array
+      items:
+        $ref: '#/ReductionCardType'
+    _links:
+      $ref: ./_common.yml#/Links
+ReductionCardType:
+  type: object
+  additionalProperties: false
+  required:
+  - code
+  - issuer
+  - name
+  properties:
+    code:
+      type: string
+      nullable: false
+    shortCode:
+      description: |
+        reduction card code to be used in bar codes. The code is defined within
+        the context of the issuer and is required to be very short (usually 1-4 positions).
+        The code is used in ticket bar codes to indicate required checks of this reduction card during travel.
+      type: string
+      nullable: true
+    issuer:
+      $ref: ./_common.yml#/CompanyRef
+    name:
+      $ref: ./_common.yml#/Text
+    cardIdRequired:
+      description: |
+        the card id must be delivered in online sales
+      type: boolean
+      nullable: true
+      default: false
+    includedCardTypes:
+      description: |
+        This card includes the listed cards
+      type: array
+      items:
+        $ref: ./_common.yml#/CardTypeReference
+    serviceClassTypes:
+      description: |
+        list of service classes where this card applies
+      type: array
+      items:
+        $ref: ./_common.yml#/ServiceClassType
+      maxItems: 4
+    reductionsGranted:
+      description: reductions that will be granted by this reduction card type
+      type: array
+      items:
+        $ref: '#/ReductionGranted'
+      minItems: 1
+      maxItems: 500
+    _links:
+      $ref: ./_common.yml#/Links
+ReductionGranted:
+  type: object
+  additionalProperties: false
+  description: |
+    reductions granted by a reduction card type. Either carrier or country must be provided.
+  required:
+  - description
+  properties:
+    carrier:
+      $ref: ./_common.yml#/CompanyRef
+    country:
+      $ref: ./_common.yml#/CountryCode
+    transportModes:
+      description: transport modes where the reduction is granted, any mode of the carrier in case the list is not provided.
+      type: array
+      items:
+        $ref: ./_common.yml#/Mode
+    serviceBands:
+      description: ServiceBrands where the reduction is granted, any service brand of the carrier in case the list is not
+        provided.
+      type: array
+      items:
+        $ref: ./_common.yml#/ServiceBrandCode
+      deprecated: true
+    serviceBrands:
+      description: ServiceBrands where the reduction is granted, any service brand of the carrier in case the list is not
+        provided.
+      type: array
+      items:
+        $ref: ./_common.yml#/ServiceBrandCode
+    description:
+      description: text describing the reduction granted. In the context of master data translations should be provided.
+      $ref: ./_common.yml#/Text
+    percentage:
+      type: number
+      format: float

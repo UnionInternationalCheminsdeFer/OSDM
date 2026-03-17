@@ -1,0 +1,1387 @@
+AccommodationSubType:
+  type: string
+  description: "Accommodation sub type definition out of the \n[Accommodation Sub Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)\n\
+    Listed values here are examples.\n"
+  default: ANY_SEAT
+  nullable: false
+  x-extensible-enum:
+  - ANY_SEAT
+  - BISTRO
+  - BICYCLE
+  - BICYCLE_LOW
+  - BICYCLE_MIDDLE
+  - BICYCLE_HIGH
+  - BUSINESS
+  - BUSINESS_COMFORT
+  - CABIN8
+  - CAR_LARGE
+  - CAR_SMALL
+  - CARRE
+  - CHILDREN_AREA
+  - CLUB
+  - CLUB_2
+  - CLUB_4
+  - COMPARTMENT
+  - COUCHETTE_2
+  - COUCHETTE_4
+  - COUCHETTE_5
+  - COUCHETTE_6
+  - COUCHETTE_COMFORT_4
+  - COUCHETTE_COMFORT_5
+  - COUCHETTE_COMFORT_6
+  - COUCHETTE_PRM_2
+  - COUCHETTE_PRM_3
+  - COUCHETTE_PRM_4
+  - DOUBLE
+  - DOUBLE_WC
+  - DOUBLE_SWC
+  - DOUBLE_S
+  - EASY_ACCESS
+  - EXCELLENCE
+  - FAMILY
+  - FRONT_VIEW
+  - HISTORIC_COACH
+  - KIOSQUE
+  - MINI_SUITE
+  - MOTOR_CYCLE
+  - MOTOR_CYCLE_SC
+  - NEAR_ANIMALS
+  - NEAR_ASSISTANT_DOG_AREA
+  - NEAR_DINING
+  - NEAR_PLAY_AREA
+  - NEAR_BICYCLE_AREA
+  - NEAR_WHEELCHAIR
+  - OPEN_SPACE
+  - PANORAMA
+  - PRAM
+  - PRAM_WITH_SEAT
+  - PREMIUM
+  - RESTAURANT
+  - SALON
+  - SILENCE
+  - SINGLE
+  - SINGLE_WC
+  - SINGLE_SWC
+  - SLEEPERETTE
+  - SOLO
+  - SOLO_COM
+  - SPECIAL_SLEEPER
+  - TANDEM
+  - TOURIST_SLEEPER_2
+  - TOURIST_SLEEPER_3
+  - TOURIST_SLEEPER_3_WC
+  - TOURIST_SLEEPER_3_SWC
+  - TOURIST_SLEEPER_4
+  - WHEELCHAIR
+  - WHEELCHAIR_AND_SEAT
+  - WHEELCHAIR_NO_SEAT
+  - WITH_ANIMALS
+  - WITH_SMALL_CHILDREN
+  - WITHOUT_ANIMALS
+AccommodationType:
+  type: string
+  description: "Accommodation type definition out of the \n[Accommodation Type Code List](https://osdm.io/spec/catalog-of-code-lists/#AccomodationType)\n\
+    Listed values here are examples.\n"
+  default: SEAT
+  nullable: false
+  x-extensible-enum:
+  - SEAT
+  - COUCHETTE
+  - BERTH
+  - VEHICLE
+  - STORAGE
+AvailabilityScope:
+  type: object
+  description: fare or offerParts which should be covered by the available seats
+  required:
+  - partReferences
+  properties:
+    singleSelectionMapsRequired:
+      description: if true the place map must include places for a single reservation or fare only
+      type: boolean
+      default: true
+    partReferences:
+      type: array
+      items:
+        $ref: ./booking.yml#/PartReference
+AvailabilityStatus:
+  description: |
+    Availability status of a place or a compartment.
+  type: string
+  enum:
+  - ALLOCATED
+  - FREE
+  - RESTRICTED
+  default: FREE
+AvailablePlace:
+  type: object
+  additionalProperties: false
+  description: |
+    Describes the details of the available places.
+  required:
+  - accommodationType
+  - accommodationSubType
+  - tripLegCoverage
+  properties:
+    accommodationType:
+      $ref: '#/AccommodationType'
+    accommodationSubType:
+      $ref: '#/AccommodationSubType'
+    placeProperties:
+      description: |
+        Selectable place properties for the offer. For AccommodationSubType=ANY_SEAT all available and bookable properties need to be returned to give a sales tool a list of possible selections.
+      type: array
+      items:
+        type: string
+      nullable: true
+    numericAvailability:
+      description: |
+        For the AccommodationSubType=ANY_SEAT the total amount of places for the combination of AccommodationType and AccommodationSubType needs to returned.
+      type: integer
+      format: int32
+      nullable: true
+    tripLegCoverage:
+      $ref: ./trip.yml#/TripLegCoverage
+AvailablePlacePreferences:
+  type: object
+  additionalProperties: false
+  properties:
+    preferenceGroups:
+      description: |
+        possible preferences to be requested in reservation without changing the fare
+      type: array
+      items:
+        $ref: '#/PlacePreferenceGroup'
+    graphicalReservation:
+      description: |
+        graphical reservation is supported, interface type 'WITH_FEE', 'NO', (https://osdm.io/spec/processes/#SeatSelectionFees)
+      type: string
+      x-extensible-enum:
+      - WITHOUT_FEE: No additional fees will be added during seat selection. All fees are already linked with the reservation
+          offer or booking
+      - WITH_FEE: Additional selection fees might be applied in the seat selection. In case selection fees are applied this
+          must be indicated here (https://osdm.io/spec/processes/#SeatSelectionFees)
+      - 'NO': No graphical reservation supported
+      nullable: true
+      deprecated: true
+BorderRadius:
+  type: object
+  additionalProperties: false
+  description: |
+    Rounds the corners of an element's border edge.
+  properties:
+    topLeft:
+      type: integer
+      format: int32
+      nullable: true
+    topRight:
+      type: integer
+      format: int32
+      nullable: true
+    bottomRight:
+      type: integer
+      format: int32
+      nullable: true
+    bottomLeft:
+      type: integer
+      format: int32
+      nullable: true
+Coach:
+  type: object
+  additionalProperties: false
+  required:
+  - number
+  - layoutId
+  properties:
+    compartments:
+      type: array
+      items:
+        $ref: '#/Compartment'
+    number:
+      description: |
+        coach number
+      type: string
+      nullable: false
+    layoutId:
+      description: "Id to identify the coach layout. In case of two deck vehicles, \nboth upper and lower deck layouts are\
+        \ provided next to each other.\n"
+      type: string
+      nullable: false
+    layoutIdUpperDeck:
+      description: |
+        id to identify a layout for the upper deck in a double deck coach
+      type: string
+      nullable: true
+    layoutIdLowerDeck:
+      description: |
+        id to identify a layout for the lower deck in a double deck coach
+      type: string
+      nullable: true
+    direction:
+      $ref: ./_common.yml#/TravelDirectionType
+    owner:
+      $ref: ./_common.yml#/CompanyRef
+    specialCoach:
+      $ref: '#/SpecialCoachType'
+    reservationRefs:
+      description: |
+        references to the reservations/fares for which all places in the coach can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+      type: array
+      items:
+        type: string
+CoachAvailability:
+  type: object
+  additionalProperties: false
+  required:
+  - number
+  - travelDirection
+  properties:
+    number:
+      description: |
+        Coach number
+      type: string
+      nullable: false
+    travelDirection:
+      $ref: ./_common.yml#/TravelDirectionType
+    noPassageToNextCoach:
+      description: |
+        Indicates that there is no passage to the next coach.
+      type: boolean
+      default: false
+      nullable: true
+    decks:
+      description: |
+        The decks of a coach ordered in ascending order from the lowest to the highest deck. Optional as for some coaches (especially special/not reservable coach types) no coach layout might exist.
+      type: array
+      items:
+        $ref: '#/DeckAvailability'
+CoachDeckLayout:
+  type: object
+  additionalProperties: false
+  description: |
+    A deck of a coach.
+  required:
+  - name
+  - dimension
+  - id
+  - deckLevel
+  properties:
+    name:
+      type: string
+      maxLength: 255
+      nullable: false
+    dimension:
+      $ref: '#/GridDimension'
+    lowFloorEntry:
+      description: |
+        Typically set on the lowest deck. Empty if unknown.
+      type: boolean
+      nullable: true
+    id:
+      type: string
+      nullable: false
+    deckLevel:
+      $ref: '#/CoachDeckLevel'
+    placeGroups:
+      description: |
+        Groups places. No place groups might exist for special coach types (e.g. traction units without seats).
+      type: array
+      items:
+        $ref: '#/PlaceGroup'
+    graphicElements:
+      type: array
+      items:
+        $ref: '#/GraphicElement'
+    serviceIcons:
+      type: array
+      items:
+        $ref: ./_common.yml#/ServiceIcon
+CoachDeckLayoutCollectionResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    coachDeckLayouts:
+      type: array
+      items:
+        $ref: '#/CoachDeckLayout'
+    _links:
+      $ref: ./_common.yml#/Links
+CoachDeckLayoutResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    coachDeckLayout:
+      $ref: '#/CoachDeckLayout'
+CoachDeckLevel:
+  type: string
+  x-extensible-enum:
+  - SINGLE_DECK
+  - LOWER_DECK
+  - MIDDLE_DECK
+  - UPPER_DECK
+CoachLayout:
+  type: object
+  additionalProperties: false
+  description: |
+    coach layout providing data to draw a coach layout. The items of a coach
+    are located via coordinates with (0,0) in the upper left corner. All
+    coordinates are given without sign.
+  required:
+  - id
+  - gridSize
+  properties:
+    id:
+      description: |
+        id of this coachLayout on this server
+      type: string
+      nullable: false
+    summary:
+      description: |
+        A human-readable description of the coach layout.
+      type: string
+      nullable: true
+      example: Coach 3 in train T-122
+    places:
+      description: |
+        list of places included in the layout
+      type: array
+      items:
+        $ref: '#/CoachLayoutPlace'
+    signs:
+      type: array
+      items:
+        $ref: '#/CoachLayoutSign'
+    internals:
+      type: array
+      items:
+        $ref: '#/CoachLayoutInternal'
+    directedInternals:
+      type: array
+      items:
+        $ref: '#/CoachLayoutDirectedInternal'
+    compartmentNumbers:
+      type: array
+      items:
+        $ref: '#/CoachLayoutCompartmentNumber'
+    gridSize:
+      $ref: '#/CoachLayoutGridSize'
+    _links:
+      $ref: ./_common.yml#/Links
+      deprecated: true
+CoachLayoutCollectionResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    layouts:
+      type: array
+      items:
+        $ref: '#/CoachLayout'
+    _links:
+      $ref: ./_common.yml#/Links
+CoachLayoutCompartmentNumber:
+  description: Layout item to place a compartment number. The number has no icon, it only places the number
+  type: object
+  additionalProperties: false
+  required:
+  - number
+  - coords
+  properties:
+    number:
+      type: string
+    coords:
+      $ref: '#/LayoutCoordinates'
+CoachLayoutDirectedInternal:
+  type: object
+  additionalProperties: false
+  required:
+  - icon
+  - coords
+  properties:
+    icon:
+      description: |
+        Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
+      type: string
+      nullable: false
+    direction:
+      $ref: ./transport.yml#/DirectionType
+    mounting:
+      $ref: ./transport.yml#/MountingType
+    coords:
+      $ref: '#/LayoutCoordinates'
+CoachLayoutGridSize:
+  type: object
+  additionalProperties: false
+  required:
+  - x
+  - y
+  properties:
+    x:
+      type: integer
+      format: int32
+      nullable: false
+    y:
+      type: integer
+      format: int32
+      nullable: false
+CoachLayoutInternal:
+  type: object
+  additionalProperties: false
+  required:
+  - icon
+  - coords
+  properties:
+    icon:
+      description: |
+        Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
+      type: string
+      nullable: false
+    mounting:
+      $ref: ./transport.yml#/MountingType
+    coords:
+      $ref: '#/LayoutCoordinates'
+CoachLayoutPlace:
+  type: object
+  additionalProperties: false
+  required:
+  - icon
+  - number
+  - coords
+  properties:
+    icon:
+      type: string
+      description: |
+        Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
+      nullable: false
+    number:
+      description: |
+        place number as displayed physically on the place
+      type: string
+      nullable: false
+    direction:
+      $ref: ./transport.yml#/DirectionType
+    remarkId:
+      $ref: ./_common.yml#/RemarkType
+    coords:
+      $ref: '#/LayoutCoordinates'
+CoachLayoutResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    coachLayout:
+      $ref: '#/CoachLayout'
+CoachLayoutSign:
+  type: object
+  additionalProperties: false
+  required:
+  - icon
+  - coords
+  properties:
+    icon:
+      description: |
+        Values from the [Graphics Items Code List](https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems)
+      type: string
+      nullable: false
+    direction:
+      $ref: ./transport.yml#/DirectionType
+    coords:
+      $ref: '#/LayoutCoordinates'
+Compartment:
+  type: object
+  additionalProperties: false
+  description: |
+    Areas within a coach that holds places. Areas might be selectable
+    as a whole. Usual areas would be classic compartments.
+  required:
+  - places
+  properties:
+    places:
+      type: array
+      items:
+        $ref: '#/PlacePosition'
+      minItems: 1
+    number:
+      description: Compartment number
+      type: string
+    isSelectable:
+      description: |
+        Indicates whether compartments are selectable as a whole only
+      type: boolean
+      nullable: true
+      default: false
+    reservationRefs:
+      description: |
+        references to the reservations/fares for which this place can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+      type: array
+      items:
+        type: string
+    status:
+      $ref: '#/AvailabilityStatus'
+    travelClass:
+      $ref: ./_common.yml#/TravelClass
+    serviceClass:
+      $ref: ./_common.yml#/ServiceClassType
+    selectionFee:
+      $ref: ./_common.yml#/SelectionFee
+CompartmentAvailability:
+  type: object
+  additionalProperties: false
+  description: |
+    Area within a coach deck that holds places.
+  required:
+  - serviceClass
+  - accommodationType
+  - accommodationSubType
+  - places
+  - isSelectable
+  properties:
+    serviceClass:
+      $ref: ./_common.yml#/ServiceClassType
+    accommodationType:
+      $ref: '#/AccommodationType'
+    accommodationSubType:
+      $ref: '#/AccommodationSubType'
+    places:
+      description: |
+        Seats or bicycle hooks in a coach compartment that are covered by a requested reservation fare/offerPart/bookingPart. No place availabilities must be returned for places that are NOT covered by a requested offer.
+      type: array
+      items:
+        $ref: '#/SpecificPlaceAvailability'
+      minItems: 1
+    isSelectable:
+      description: |
+        Indicates whether the compartment is selectable as a whole only.
+      type: boolean
+      nullable: false
+      default: false
+    number:
+      description: |
+        Compartment number as indicated at the compartment in the coach. A compartment number must be set if the compartment is selectable as a whole only.
+      type: string
+      nullable: true
+    status:
+      $ref: '#/AvailabilityStatus'
+    reservationRefs:
+      description: |
+        reservationRefs must be set if the compartment is selectable as a whole only
+      type: array
+      items:
+        $ref: ./offer.yml#/ReservationReference
+    selectionFee:
+      $ref: ./_common.yml#/SelectionFee
+CompartmentPreSelection:
+  type: object
+  additionalProperties: false
+  description: |
+    A preselected compartment
+  required:
+  - coach
+  - compartment
+  properties:
+    coach:
+      description: |
+        Coach number
+      type: string
+      nullable: false
+    compartment:
+      description: |
+        Compartment number as indicated at the compartment in the coach.
+      type: string
+      nullable: false
+DeckAvailability:
+  type: object
+  additionalProperties: false
+  description: |
+    A coach deck
+  properties:
+    layoutId:
+      description: |
+        Identifies the coach deck layout. It is recommended to import coach deck layout master data periodically by calling GET /coach-deck-layouts
+      type: string
+      nullable: true
+    compartments:
+      description: |
+        Only compartments that match a requested place restriction must be returned (e.g. only return bike hook compartments if availabilities for a bicycle reservation offer were requested). Empty if the whole deck contains no compartments (e.g. traction unit) or no places that matches a requested place restriction.
+      type: array
+      items:
+        $ref: '#/CompartmentAvailability'
+GraphicElement:
+  type: object
+  additionalProperties: false
+  description: |
+    An element in the coach deck layout (e.g. table, stair, toilet etc.).
+  required:
+  - rectangle
+  - orientation
+  - code
+  properties:
+    rectangle:
+      $ref: '#/RectangleGeometry'
+    orientation:
+      $ref: '#/Orientation'
+    code:
+      $ref: '#/GraphicElementCode'
+GraphicElementCode:
+  type: string
+  description: |
+    See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
+  nullable: false
+  example: DRIVER_AREA
+GridDimension:
+  type: object
+  additionalProperties: false
+  description: |
+    Describes the dimension of a grid element.
+  required:
+  - width
+  - height
+  properties:
+    width:
+      type: integer
+      format: int32
+      nullable: false
+    height:
+      type: integer
+      format: int32
+      nullable: false
+    borderRadius:
+      $ref: '#/BorderRadius'
+GridPosition:
+  type: object
+  additionalProperties: false
+  description: |
+    Describes the position in a 3D grid on which the element must be placed. The grid origin (x=0, y=0) is on the top left, the x coordinate increases to the right, the y coordinate increases downwards and the z coordinate increases towards the foreground.
+  required:
+  - x
+  - y
+  - z
+  properties:
+    x:
+      type: integer
+      format: int32
+      nullable: false
+    y:
+      type: integer
+      format: int32
+      nullable: false
+    z:
+      type: integer
+      format: int32
+      nullable: false
+InitialPlaceInput:
+  type: object
+  additionalProperties: false
+  description: |
+    Initial input for the place information request. This input defines what is originally looked for.
+    Provided by OJP.
+  properties:
+    name:
+      description: |
+        Name of the place object which is looked after. This is usually the user's input. If not given,
+        the name of the resulting place objects is not relevant.
+      type: string
+      nullable: true
+      example: Bern Bärengraben
+    geoPosition:
+      $ref: ./_common.yml#/GeoPosition
+LayoutCoordinates:
+  type: object
+  additionalProperties: false
+  required:
+  - x
+  - y
+  - zOrder
+  properties:
+    x:
+      description: |
+        horizontal coordinate of the center of the place
+      type: integer
+      format: int32
+      nullable: false
+    y:
+      description: |
+        vertical coordinate of the center of the place
+      type: integer
+      format: int32
+      nullable: false
+    zOrder:
+      description: |
+        Graphical layer where this item has to be placed.
+        Code list according to UIC90918-1
+          - value 0: lowest layer usually used for walls
+          - value 1: middle layer usually used by places
+          - value 2: top layer usually used by icons
+      type: integer
+      format: int32
+      nullable: false
+Orientation:
+  type: integer
+  format: int32
+  description: |
+    Orientation angle in degrees
+  default: 0
+  nullable: false
+  example: 90
+Place:
+  type: object
+  additionalProperties: false
+  description: |
+    A geographic place of any type which may be specified as the origin or destination of a trip. Provided by OJP.
+  discriminator:
+    propertyName: objectType
+  required:
+  - objectType
+  - id
+  properties:
+    objectType:
+      description: Attribute is used as discriminator for inheritance between data types.
+      type: string
+    id:
+      description: |
+        id  defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn '0850000'
+      type: string
+      nullable: false
+      example: urn:uic:stn:8500000
+    alternativeIds:
+      description: "For a place with ids in different reference systems, the alternative ids can be returned. \nThe reference\
+        \ system is encoded in the string. E.g.: 'urn:uic:std:80000', 'x_swe:stn:10000', 'ch:1:sloid:343434'\n"
+      type: array
+      items:
+        type: string
+      nullable: true
+    geoPosition:
+      $ref: ./_common.yml#/GeoPosition
+    modes:
+      description: |
+        List of Transport modes calling the place.
+
+        This field is added in later OJP 2.0, used here as propertary for forward compatibility.
+      type: array
+      items:
+        $ref: ./_common.yml#/Mode
+    ref:
+      description: |
+        Reference to another a place, e.g. to link address information. Provided by OJP.
+      $ref: '#/PlaceRef'
+    _links:
+      $ref: ./_common.yml#/Links
+PlaceAllocation:
+  type: object
+  additionalProperties: false
+  description: |
+    Describes the details of the reserved place(s).
+  required:
+  - accommodationType
+  - accommodationSubType
+  - reservedPlaces
+  - tripLegCoverage
+  properties:
+    accommodationType:
+      $ref: '#/AccommodationType'
+    accommodationSubType:
+      $ref: '#/AccommodationSubType'
+    reservedPlaces:
+      description: |
+        Reserved places in a confirmed reservation.
+        Multiple place packs are needed to combined person and bicycle reservations
+      type: array
+      items:
+        $ref: ./offer.yml#/ReservedPlace
+      minItems: 1
+    tripLegCoverage:
+      $ref: ./trip.yml#/TripLegCoverage
+PlaceAvailability:
+  type: object
+  additionalProperties: false
+  description: |
+    Availability of places on vehicle.
+  required:
+  - vehicle
+  properties:
+    reference:
+      $ref: ./booking.yml#/PartReference
+    vehicle:
+      $ref: ./transport.yml#/Vehicle
+    preSelections:
+      description: |
+        suggested pre-selection of places
+      type: array
+      items:
+        $ref: '#/PlacePreSelection'
+PlaceAvailabilityCollectionResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    availablePlaces:
+      type: array
+      items:
+        $ref: '#/AvailablePlace'
+    _links:
+      $ref: ./_common.yml#/Links
+PlaceAvailabilityMapRequest:
+  type: object
+  additionalProperties: false
+  description: |
+    Reservation offer/bookingParts or reservation fares for which place availabilities shall be returned.
+  required:
+  - placeRestrictions
+  properties:
+    placeRestrictions:
+      type: array
+      items:
+        $ref: '#/PlaceRestriction'
+      minItems: 1
+PlaceAvailabilityMapResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    vehicle:
+      $ref: ./transport.yml#/VehicleAvailability
+PlaceAvailabilityResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    vehicleAvailability:
+      $ref: '#/PlaceAvailability'
+PlaceGroup:
+  type: object
+  additionalProperties: false
+  description: "A place group groups places by service class and optionally by accommodation sub type. A place group not necessarily\
+    \ needs to be visualized (e.g. as a rectangle). Visualization can be done using ServiceIcons and GraphicElements.\n \n\
+    Nevertheless, a place group can be useful for rendering of coach decks/places for which no place availabilities were returned,\
+    \ as further information (service class, accommodation sub type) can be displayed .\n \nIf availabilities were returned\
+    \ for a certain place, travel class and accommodation sub type values returned in the availability response must be displayed\
+    \ (they replace the static travel class / accommodation sub type defined on the place group). Reason: travel class and\
+    \ accommodation sub type values can dynamically change for each vehicle run.\n \nExample 1: Class upgrade\nA customer\
+    \ with a second class reservation ticket might be placed on a first class seat.\n \nExample 2: New/more specific AccommodationSubType\n\
+    AccommodationSubType=BUSINESS defined in static master data might be changed into AccommodationSubType=BUSINESS_COMFORT\
+    \ on certain vehicle runs.\n"
+  required:
+  - serviceClass
+  - places
+  properties:
+    serviceClass:
+      $ref: ./_common.yml#/ServiceClassType
+    accommodationType:
+      $ref: '#/AccommodationType'
+    accommodationSubType:
+      $ref: '#/AccommodationSubType'
+    places:
+      description: |
+        Seats or bicycle hooks in a coach compartment.
+      type: array
+      items:
+        $ref: '#/PlaceLayout'
+      minItems: 1
+PlaceLayout:
+  type: object
+  additionalProperties: false
+  description: |
+    A place (e.g. a seat or bicycle hook)
+  required:
+  - number
+  - rectangle
+  - orientation
+  properties:
+    number:
+      description: |
+        The place number (unique per coach deck).
+      type: string
+      nullable: false
+    rectangle:
+      $ref: '#/RectangleGeometry'
+    orientation:
+      $ref: '#/Orientation'
+    placeProperties:
+      description: |
+        Static place properties
+      type: array
+      items:
+        $ref: '#/PlaceProperty'
+PlaceParam:
+  type: object
+  additionalProperties: false
+  description: |
+    More parameters for restricting the request. Provided by OJP.
+  properties:
+    type:
+      $ref: '#/PlaceType'
+    usage:
+      $ref: '#/PlaceUsage'
+    ptModes:
+      $ref: ./_common.yml#/ModeFilter
+    serviceBrandFilter:
+      $ref: ./_common.yml#/ServiceBrandFilter
+    carrierFilter:
+      $ref: ./_common.yml#/CarrierFilter
+    pointOfInterestFilter:
+      $ref: '#/PointOfInterestFilter'
+    numberOfResults:
+      description: |
+        Maximum number of results to be returned. The service is allowed to return fewer objects if reasonable
+        or otherwise appropriate.
+      type: integer
+      format: int32
+      minimum: 1
+      nullable: true
+PlacePosition:
+  type: object
+  additionalProperties: false
+  description: |
+    description of a place
+  required:
+  - number
+  - status
+  properties:
+    number:
+      description: |
+        place number as indicated at the place in the coach
+      type: string
+      nullable: false
+    status:
+      $ref: '#/AvailabilityStatus'
+    reservationRefs:
+      description: |
+        references to the reservations for which this place can be selected. The reservation ids must be part of the list of reservation ids for which the consumer has requested the available places and the consumer must accept a list by setting singleSelectionMapsRequired to false
+      type: array
+      items:
+        type: string
+    placeProperties:
+      type: array
+      items:
+        $ref: '#/PlaceProperty'
+    selectionFee:
+      $ref: ./_common.yml#/SelectionFee
+PlacePreferenceGroup:
+  type: object
+  additionalProperties: false
+  required:
+  - preferenceGroup
+  - preferences
+  properties:
+    preferenceGroup:
+      description: |
+        Values from the [Reservation Preference Group Code List](https://osdm.io/spec/catalog-of-code-lists/#ReservationPreferenceGroup)
+      type: string
+      nullable: false
+      example: BERTH_LOCATION
+    preferences:
+      description: "Place preferences in the group. \nValues from the [Place Property Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)\n"
+      type: array
+      items:
+        type: string
+      minItems: 1
+      nullable: false
+      example: WINDOW
+PlacePreSelection:
+  type: object
+  additionalProperties: false
+  description: |
+    A preselected place
+  required:
+  - coach
+  - place
+  properties:
+    reservationId:
+      description: |
+        id of the reservation in case the places have already been selected and the customer now wants to change the selection.
+        <br><br>
+        Deprecated: Substituted by SpecificPlaceAvailability.reservationRefs (since: 3.5.0, removed with: 4.0.0)
+      type: string
+    coach:
+      description: |
+        Coach number
+      type: string
+      nullable: false
+    place:
+      description: |
+        Place number as indicated at the place in the coach
+      type: string
+      nullable: false
+PlaceProperty:
+  type: string
+  description: |
+    Values from the [Place Property Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
+  nullable: false
+  example: POWER
+PlaceRef:
+  type: object
+  additionalProperties: false
+  discriminator:
+    propertyName: objectType
+  required:
+  - objectType
+  properties:
+    objectType:
+      description: Attribute is used as discriminator for inheritance between data types.
+      type: string
+PlaceRequest:
+  type: object
+  additionalProperties: false
+  description: |
+    Initial input for the place information request. This input defines what is originally looked for.
+    Provided by OJP.
+  properties:
+    placeInput:
+      $ref: '#/InitialPlaceInput'
+    restrictions:
+      $ref: '#/PlaceParam'
+PlaceResponse:
+  type: object
+  additionalProperties: false
+  required:
+  - places
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    places:
+      type: array
+      items:
+        $ref: '#/Place'
+      minItems: 1
+PlaceRestriction:
+  type: object
+  additionalProperties: false
+  description: |
+    Reservation based place selection criteria. Each requested place selection criterion will only be considered if it is covered by the referenced reservation fare/offerPart/bookingPart. E.g. place selection criterion serviceClass=HIGH will only be considered if reservationRef references a first/high class offer.
+  required:
+  - reservationRef
+  properties:
+    reservationRef:
+      $ref: ./offer.yml#/ReservationReference
+    serviceClass:
+      $ref: ./_common.yml#/ServiceClassType
+    accommodationSubTypes:
+      description: |
+        Specifies the accommodation sub types for which place availabilities shall be returned.
+      type: array
+      items:
+        $ref: '#/AccommodationSubType'
+PlaceSelection:
+  type: object
+  additionalProperties: false
+  description: |
+    Place selection options and selected options in an offer
+    - reference place for adjacent reservation
+    - selected optional place properties
+    - selected places from a graphical place selection
+    `tripLegCoverage` is deprecated and can be retrieved by the `reservationId`
+  required:
+  - reservationId
+  - tripLegCoverage
+  properties:
+    reservationId:
+      type: string
+      nullable: false
+    referencePlace:
+      $ref: '#/SelectedReferencePlace'
+    accommodations:
+      type: array
+      items:
+        $ref: '#/SelectedAccommodation'
+    places:
+      type: array
+      items:
+        $ref: '#/SelectedPlace'
+    compartments:
+      type: array
+      items:
+        $ref: '#/SelectedCompartment'
+    tripLegCoverage:
+      $ref: ./trip.yml#/TripLegCoverage
+      deprecated: true
+PlaceSelectionFlow:
+  description: |
+    Known Values:
+    - MANUAL_PLACE_SELECTION_WITH_FEE: Manual/graphical place selection. A seat selection fee is charged for certain places. /availabilities/vehicle-place-map must be called before the /bookings call.
+    - MANUAL_PLACE_SELECTION_WITHOUT_FEE: Manual/graphical place selection. No seat selection fee is charged for certain places. /availabilities/vehicle-place-map must be called before the /bookings call.
+    - AUTOMATIC_PLACE_SELECTION: Automatic place selection based on selected accommodation (sub) types and place properties (see BookingRequest.placeSelections[].accommodations[]). It is not necessary to call /availabilities/* before the /bookings call.
+    - AUTOMATIC_PLACE_SELECTION_NEARBY: Automatic place selection nearby a given place. /availabilities/nearby must be called before the /bookings call.
+    - AUTOMATIC_PLACE_SELECTION_PREFERENCES: Automatic place selection based on available place preferences. /availabilities/preferences must be called before the /bookings call.
+  type: string
+  x-extensible-enum:
+  - MANUAL_PLACE_SELECTION_WITH_FEE
+  - MANUAL_PLACE_SELECTION_WITHOUT_FEE
+  - AUTOMATIC_PLACE_SELECTION
+  - AUTOMATIC_PLACE_SELECTION_NEARBY
+  - AUTOMATIC_PLACE_SELECTION_PREFERENCES
+PlaceType:
+  description: |
+    Provided by OJP.
+  type: string
+  enum:
+  - STOP
+  - ADDRESS
+  - POI
+  - GEO_COORDINATE
+  - TOPOGRAPHIC_PLACE
+PlaceUsage:
+  description: |
+    Provided by OJP.
+  type: string
+  enum:
+  - ORIGIN
+  - VIA
+  - DESTINATION
+PointOfInterest:
+  description: |
+    A type of place to or through which passengers may wish to navigate as part of
+    their journey and which is modelled in detail by journey planners. Provided by OJP.
+  allOf:
+  - $ref: '#/Place'
+  - type: object
+    additionalProperties: false
+    required:
+    - name
+    - code
+    properties:
+      name:
+        description: |
+          Name or description of point of interest for use in passenger information.
+        type: string
+        nullable: false
+        example: Park Rozenrust
+      nameTranslations:
+        description: Translations for the name
+        type: array
+        items:
+          $ref: ./_common.yml#/Translation
+      code:
+        description: |
+          id of the Point of Interest.
+        type: string
+        nullable: false
+PointOfInterestCategory:
+  type: object
+  additionalProperties: false
+  description: |
+    A categorization of points of interest in respect of the activities undertaken at them (defined by key-value-pairs). Provided by OJP.
+  properties:
+    osmTags:
+      description: |
+        Open Street Map tag structure (key-value)
+      type: array
+      items:
+        $ref: ./_common.yml#/OsmTag
+    pointOfInterestClassifications:
+      description: |
+        Classification of the POI (when it is not from OSM). The codification of the
+        classification Id may include de codification source (for example
+        'IGN:[classificationCode]')
+      type: array
+      items:
+        type: string
+      nullable: true
+PointOfInterestFilter:
+  type: object
+  additionalProperties: false
+  description: |
+    Filter POIs by category. Provided by OJP.
+  properties:
+    exclude:
+      description: |
+        Whether carriers are to be included or excluded from the filtering.
+      type: boolean
+      nullable: true
+      default: true
+    pointOfInterestCategory:
+      description: |
+        These POI categories can be used to filter POIs. If more than one is given the filtering
+        is by logical 'OR' (when Exclude=FALSE) and logical 'AND' (when Exclude=TRUE).
+      type: array
+      items:
+        $ref: '#/PointOfInterestCategory'
+PointOfInterestRef:
+  description: |
+    Reference to a Point of Interest. Provided by OJP.
+  allOf:
+  - $ref: '#/PlaceRef'
+  - type: object
+    additionalProperties: false
+    required:
+    - pointOfInterestRef
+    properties:
+      pointOfInterestRef:
+        type: string
+        nullable: false
+RectangleGeometry:
+  type: object
+  additionalProperties: false
+  description: |
+    Describes a two-dimensional rectangle
+  required:
+  - position
+  - dimension
+  properties:
+    position:
+      $ref: '#/GridPosition'
+    dimension:
+      $ref: '#/GridDimension'
+SelectedAccommodation:
+  type: object
+  additionalProperties: false
+  description: |
+    Place selection of places for reservation linked to passengers.
+  required:
+  - passengerRefs
+  - accommodationType
+  - accommodationSubType
+  properties:
+    passengerRefs:
+      description: |
+        Id of the passenger
+      type: array
+      items:
+        type: string
+      minItems: 1
+      nullable: false
+    accommodationType:
+      $ref: '#/AccommodationType'
+    accommodationSubType:
+      $ref: '#/AccommodationSubType'
+    placeProperties:
+      description: |
+        Properties of places as defined in 90810-10.
+        selection from the optional place properties provided in the offer
+      type: array
+      items:
+        type: string
+      nullable: true
+SelectedCompartment:
+  type: object
+  additionalProperties: false
+  description: |
+    selected compartment in case of graphical booking
+  required:
+  - coachNumber
+  - compartmentNumber
+  - passengerRefs
+  properties:
+    coachNumber:
+      type: string
+      nullable: false
+    compartmentNumber:
+      type: string
+      nullable: false
+    passengerRefs:
+      type: array
+      items:
+        type: string
+      minItems: 1
+      nullable: false
+SelectedPlace:
+  type: object
+  additionalProperties: false
+  description: |
+    selected place in case of graphical booking
+  required:
+  - coachNumber
+  - placeNumber
+  - passengerRef
+  properties:
+    coachNumber:
+      type: string
+      nullable: false
+    placeNumber:
+      type: string
+      nullable: false
+    passengerRef:
+      description: |
+        Id of the passenger
+      type: string
+      nullable: false
+SelectedReferencePlace:
+  type: object
+  additionalProperties: false
+  description: |
+    reference place for an adjacent reservation
+  required:
+  - coachNumber
+  - placeNumber
+  properties:
+    coachNumber:
+      type: string
+      nullable: false
+    placeNumber:
+      type: string
+      nullable: false
+SpecialCoachType:
+  type: string
+  description: |
+    indication of special coach
+  x-extensible-enum:
+  - RESTAURANT_COACH
+  - BICYCLE_COACH
+  - LUGGAGE_COACH
+  - TRAIN_HEAD
+SpecificPlaceAvailability:
+  type: object
+  additionalProperties: false
+  description: |
+    Availability status of a specific place.
+  required:
+  - number
+  - status
+  - reservationRefs
+  properties:
+    number:
+      description: |
+        Place number as indicated at the place in the coach.
+      type: string
+      nullable: false
+    status:
+      $ref: '#/AvailabilityStatus'
+    reservationRefs:
+      description: |
+        References requested reservation fares/offerParts/bookingParts that allow the selection of the place.
+        This allows clients to link place availabilities with the corresponding reservation fare/offerPart/bookingPart. E.g. link a bicycle hook with a bicycle reservationOfferPart.
+      type: array
+      items:
+        $ref: ./offer.yml#/ReservationReference
+      minItems: 1
+    selectionFee:
+      $ref: ./_common.yml#/SelectionFee

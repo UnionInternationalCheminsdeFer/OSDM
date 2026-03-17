@@ -1,0 +1,199 @@
+AbstractTravelAccount:
+  type: object
+  additionalProperties: false
+  discriminator:
+    propertyName: objectType
+  required:
+  - objectType
+  - issuer
+  - validFrom
+  - validUntil
+  - number
+  properties:
+    objectType:
+      description: Attribute is used as discriminator for inheritance between data types.
+      type: string
+    holder:
+      $ref: ./_common.yml#/PersonDetail
+    issuer:
+      $ref: ./_common.yml#/CompanyRef
+    validFrom:
+      type: string
+      format: date-time
+      nullable: false
+    validUntil:
+      type: string
+      format: date-time
+      nullable: false
+    number:
+      type: string
+      nullable: false
+AbstractTravelAccountUnit:
+  type: object
+  additionalProperties: false
+  discriminator:
+    propertyName: objectType
+  required:
+  - objectType
+  properties:
+    objectType:
+      description: Attribute is used as discriminator for inheritance between data types.
+      type: string
+DayTravelAccountUnit:
+  allOf:
+  - $ref: '#/AbstractTravelAccountUnit'
+  - type: object
+    additionalProperties: false
+IndicatedConsumption:
+  type: object
+  additionalProperties: false
+  required:
+  - amount
+  properties:
+    unit:
+      $ref: '#/AbstractTravelAccountUnit'
+    amount:
+      type: integer
+      format: int32
+      nullable: false
+MoneyTravelAccountUnit:
+  allOf:
+  - $ref: '#/AbstractTravelAccountUnit'
+  - type: object
+    additionalProperties: false
+    required:
+    - currency
+    properties:
+      currency:
+        $ref: ./_common.yml#/Currency
+      scale:
+        type: integer
+        format: int32
+        nullable: true
+        default: 2
+MultiRideAccount:
+  allOf:
+  - $ref: '#/AbstractTravelAccount'
+  - type: object
+    additionalProperties: false
+    required:
+    - regionalConstraintSummary
+    - balance
+    properties:
+      regionalConstraint:
+        $ref: ./product.yml#/RegionalConstraint
+      regionalConstraintSummary:
+        type: string
+        nullable: false
+      balance:
+        $ref: '#/MultiRideBalance'
+      consumptions:
+        type: array
+        items:
+          $ref: '#/TravelAccountConsumption'
+MultiRideBalance:
+  type: object
+  additionalProperties: false
+  description: |
+    The balance of the travel account.
+  required:
+  - total
+  - remaining
+  - unit
+  properties:
+    total:
+      type: integer
+      format: int32
+      nullable: false
+    remaining:
+      type: integer
+      format: int32
+      nullable: false
+    unit:
+      $ref: '#/AbstractTravelAccountUnit'
+NamedTravelAccountUnit:
+  allOf:
+  - $ref: '#/AbstractTravelAccountUnit'
+  - type: object
+    additionalProperties: false
+    required:
+    - name
+    properties:
+      name:
+        type: string
+        nullable: false
+TravelAccountConsumption:
+  type: object
+  additionalProperties: false
+  required:
+  - consumedOn
+  - bookingId
+  - unit
+  - bookingSummary
+  - consumedAmount
+  properties:
+    consumedOn:
+      type: string
+      format: date-time
+      nullable: false
+    bookingId:
+      type: string
+      nullable: false
+    unit:
+      $ref: '#/AbstractTravelAccountUnit'
+    bookingSummary:
+      type: string
+      nullable: false
+    tripSummary:
+      $ref: ./trip.yml#/TripSummary
+    consumedAmount:
+      type: integer
+      format: int32
+      nullable: false
+TravelAccountResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    travelAccount:
+      $ref: '#/AbstractTravelAccount'
+TravelAccountResponseContent:
+  type: string
+  enum:
+  - ALL
+  - CONSUMPTIONS
+  - NONE
+  default: ALL
+TravelAccountType:
+  description: |
+    Values from the [Travel Account Type Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelAccountType)
+  type: string
+  enum:
+  - LINKED_TICKET
+  - LOYALTY_CARD
+  - MULTI_RIDE
+  - REDUCTION_CARD
+  - TRAVEL_PASS
+TravelPassAccount:
+  allOf:
+  - $ref: '#/AbstractTravelAccount'
+  - type: object
+    additionalProperties: false
+    required:
+    - regionalConstraintSummary
+    properties:
+      regionalConstraintSummary:
+        type: string
+        nullable: false
+      regionalConstraint:
+        $ref: ./product.yml#/RegionalConstraint
+      consumptions:
+        type: array
+        items:
+          $ref: '#/TravelAccountConsumption'

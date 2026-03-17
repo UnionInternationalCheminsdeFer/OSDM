@@ -295,19 +295,24 @@ def rewrite_refs(obj, schema_map, current_domain, context='schema'):
     """
     Rewrite $ref paths.
     For schemas: cross-domain refs become ./<domain>.yml#/X, same-domain stay #/X
-    For paths/responses: keep as #/components/schemas/X (resolved via root hub)
+    For paths: rewrite #/components/* refs to point to the hub file ../OSDM-online-api.yml#/components/*
+    For responses: rewrite #/components/schemas/* refs to point to hub file
     """
     if isinstance(obj, dict):
         result = OrderedDict()
         for k, v in obj.items():
-            if k == '$ref' and isinstance(v, str) and v.startswith('#/components/schemas/'):
-                schema_name = v.split('/')[-1]
-                if context == 'schema':
+            if k == '$ref' and isinstance(v, str):
+                if context == 'schema' and v.startswith('#/components/schemas/'):
+                    schema_name = v.split('/')[-1]
                     target_domain = schema_map.get(schema_name, '_common')
                     if target_domain == current_domain:
                         result[k] = f'#/{schema_name}'
                     else:
                         result[k] = f'./{target_domain}.yml#/{schema_name}'
+                elif context == 'path' and v.startswith('#/components/'):
+                    result[k] = f'../OSDM-online-api.yml{v}'
+                elif context == 'response' and v.startswith('#/components/schemas/'):
+                    result[k] = f'../OSDM-online-api.yml{v}'
                 else:
                     result[k] = v
             else:
@@ -368,9 +373,12 @@ def main():
         f.write(yaml_dump(dict(all_params)))
     print(f"  components/parameters.yml ({len(all_params)} parameters)")
 
+    rewritten_responses = OrderedDict()
+    for name, defn in all_responses.items():
+        rewritten_responses[name] = rewrite_refs(defn, schema_map, None, 'response')
     outpath = os.path.join(BASE_DIR, 'components', 'responses.yml')
     with open(outpath, 'w') as f:
-        f.write(yaml_dump(dict(all_responses)))
+        f.write(yaml_dump(dict(rewritten_responses)))
     print(f"  components/responses.yml ({len(all_responses)} responses)")
 
     outpath = os.path.join(BASE_DIR, 'components', 'security-schemes.yml')
@@ -388,9 +396,12 @@ def main():
         paths_by_domain[domain][path] = operations
 
     for domain, paths in paths_by_domain.items():
+        rewritten = OrderedDict()
+        for path, ops in paths.items():
+            rewritten[path] = rewrite_refs(ops, schema_map, domain, 'path')
         outpath = os.path.join(BASE_DIR, 'paths', f'{domain}.yml')
         with open(outpath, 'w') as f:
-            f.write(yaml_dump(dict(paths)))
+            f.write(yaml_dump(dict(rewritten)))
         print(f"  paths/{domain}.yml ({len(paths)} paths)")
 
     # === Write root hub file ===
@@ -401,6 +412,10 @@ def main():
     hub['info']['version'] = '3.9.0'
     hub['servers'] = spec['servers']
     hub['tags'] = spec['tags']
+
+    # Top-level security (applies to all operations)
+    if 'security' in spec:
+        hub['security'] = spec['security']
 
     hub['paths'] = OrderedDict()
     for path in all_paths:

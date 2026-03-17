@@ -23,6 +23,9 @@ redocly lint --format=github-actions specification/**/*.yml
 
 # Lint a single spec
 redocly lint specification/v3.8/OSDM-online-api-v3.8.0.yml
+
+# Bundle v3.9 modular spec into single file
+redocly bundle specification/v3.9/OSDM-online-api.yml --output specification/v3.9/OSDM-online-api-v3.9.0.bundled.yml
 ```
 
 CI runs on push/PR to `master` via [.github/workflows/validate-openapi.yml](.github/workflows/validate-openapi.yml).
@@ -53,9 +56,29 @@ Each version lives in its own directory under `specification/`:
 **Versioning convention:** Minor/patch versions share a directory (e.g. `v3.8/` holds `v3.8.0`). Major series prior to v3 use `v1.4.0/` and `v2.0.0/` directories.
 
 **Current active versions:**
-- `v3.8/` — latest stable
-- `v3.9/` — in progress (only a `modularization.md` stub so far)
+- `v3.8/` — latest stable (monolithic single-file spec)
+- `v3.9/` — modularized multi-file structure (see below)
 - `v4.0/` — draft/future
+
+### v3.9 Modular Structure
+
+Starting with v3.9, the Online API spec is split into modular files:
+
+```
+specification/v3.9/
+  OSDM-online-api.yml          # Root hub (entrypoint, ~150 lines)
+  paths/                        # 24 files, one per API domain
+  schemas/                      # 13 files, one per schema domain
+    _common.yml                 # Shared types (Problem, Price, Links, etc.)
+    trip.yml, offer.yml, booking.yml, ...
+  components/                   # parameters, responses, security schemes
+```
+
+- The hub file assembles everything via `$ref` pointers
+- `redocly bundle` produces a single-file output for consumers
+- Schema files use relative cross-file `$ref` (e.g. `./_common.yml#/Price`)
+- Path files reference schemas via `../OSDM-online-api.yml#/components/schemas/X`
+- See `specification/v3.9/modularization.md` for full rationale and diagrams
 
 ## Domain Model Overview
 

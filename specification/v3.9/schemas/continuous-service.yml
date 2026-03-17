@@ -1,0 +1,255 @@
+ContinuousMode:
+  description: |
+    Types of modes that run at any time without a timetable. Provided by OJP.
+  type: string
+  x-extensible-enum:
+  - WALK
+  - DEMAND_RESPONSIVE
+  - REPLACEMENT_SERVICE
+ContinuousService:
+  type: object
+  additionalProperties: false
+  description: |
+    A vehicle movement on a continuous, non-timetabled service.
+    Service of this leg. May be 'walk' in most cases, but also cycling or taxi etc.
+    Provided by OJP.
+  required:
+  - operatingDayRef
+  - journeyRef
+  - mode
+  - publishedServiceName
+  - originText
+  - destinationText
+  properties:
+    continuousMode:
+      $ref: '#/ContinuousMode'
+    individualMode:
+      $ref: ./_common.yml#/IndividualMode
+    operatingDayRef:
+      $ref: ./trip.yml#/OperationDayRef
+    journeyRef:
+      $ref: ./trip.yml#/JourneyRef
+    mode:
+      type: string
+      nullable: false
+      example: Ask Stefan
+    publishedServiceName:
+      type: string
+      nullable: false
+      example: Circle Line
+    originText:
+      type: string
+      nullable: false
+    destinationText:
+      type: string
+      nullable: false
+ContinuousServiceAvailabilityScope:
+  description: search parameter so get available pick-up places for continuous on-demand services.
+  type: object
+  properties:
+    geoLocation:
+      $ref: ./_common.yml#/GeoPosition
+    vehicleType:
+      $ref: '#/ContinuousServiceVehicleType'
+ContinuousServicePickUpPlace:
+  description: |
+    Pick-up places for on-demand vehicles like taxis, bicycles or scooters
+  required:
+  - description
+  - geoPosition
+  - availableVehicles
+  properties:
+    id:
+      description: id of the pick-up place
+      type: string
+      maxLength: 32768
+    description:
+      description: description of the pick-up place
+      type: string
+      maxLength: 32768
+    name:
+      description: name of the pick-up place
+      type: string
+      maxLength: 32768
+      example: Taxi Stand Main Station East Exit
+    accessDescription:
+      description: description on how to access the on-demand vehicle
+      type: string
+      maxLength: 32768
+      example: Scooter to be unlocked by SMS code
+    geoPosition:
+      $ref: ./_common.yml#/GeoPosition
+    availableVehicles:
+      type: array
+      items:
+        $ref: '#/ContinuousServiceVehicleAvailability'
+      maxItems: 500
+    preAllocationTimeLimit:
+      description: Duration for which the vehicle can be blocked until the usage starts.
+      type: string
+      format: duration
+      example: PT30M
+    processIndication:
+      description: Machine readable indications on how the on-demand process should be handled.
+      type: array
+      items:
+        $ref: '#/ContinuousServiceProcessIndication'
+    estimatedVehicleArrivalAtPickUp:
+      description: |
+        Time until when the vehicle is expected to arrive at the pick-up place (taxi,..)
+      type: string
+      format: date-time
+    estimatedUserArrivalAtPickUp:
+      description: |
+        Time until when the user of the service is expected to arrive at the pick-up place.
+      type: string
+      format: date-time
+ContinuousServiceProcessIndication:
+  description: "Process indications for on-demand services  \n[On-Demand Vehicle Process Code List](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleProcess)\n"
+  type: string
+  x-extensible-enum:
+  - PRE_ALLOCATION_REQUIRED
+  - SHALLOW_INTEGRATION
+  - DEEP_INTEGRATION
+  - PREPAID
+  - POSTPAID
+  - AUTO_START_USAGE: usage starts automatically (e.g. by entering a key code at the vehicle)
+  - AUTO_END_USAGE: usage ends automatically (e.g. by locking the service), the end of the usage does not need to be handled
+      via OSDM
+  - BLOCKING_TRACKING: updates provided before pick-up (e.g. current location of a taxi)
+  - USAGE_TRACKING: updates provided after pick-up (e.g. price for current usage)
+  - PARKING_IMAGE_REQUIRED: parking image required at the end of the usage
+  - TIP_SUPPORTED: a driver tip is supported
+ContinuousServicesAvailabilityResponse:
+  type: object
+  additionalProperties: false
+  required:
+  - pickUpPlaces
+  properties:
+    pickUpPlaces:
+      description: |
+        list of pick-up places for on-demand vehicles. The list might include more or other pick up places than mentioned originally in the trip specification.
+      type: array
+      items:
+        $ref: '#/ContinuousServicePickUpPlace'
+      minItems: 1
+      maxItems: 500
+ContinuousServiceUsage:
+  description: Usage of a continuos service vehicle
+  type: object
+  additionalProperties: false
+  required:
+  - id
+  - status
+  - startUsageDescription
+  - endUsageDescription
+  properties:
+    id:
+      type: string
+      maxLength: 1024
+    status:
+      $ref: '#/ContinuousServiceUsageStatus'
+    geoPosition:
+      $ref: ./_common.yml#/GeoPosition
+    startUsageDescription:
+      description: start usage procedure description
+      type: string
+      maxLength: 32768
+    endUsageDescription:
+      description: end usage procedure description
+      type: string
+      maxLength: 32768
+    startUsageCredentials:
+      description: credentials to start the usage, e.g. nfc-enabled pkpass
+      $ref: ./fulfillment.yml#/FulfillmentDocument
+    startUsageTimeLimit:
+      description: time limit to start the usage
+      type: string
+      format: date-time
+    blockingFeeRef:
+      description: id of the fee taken on blocking the vehicle
+      type: string
+      maxLength: 1024
+    tipRef:
+      description: id of the tip provided to staff
+      type: string
+      maxLength: 1024
+    consumptionForPostPayment:
+      $ref: ./travel-account.yml#/IndicatedConsumption
+    remainingConsumptionFromPrePayment:
+      $ref: ./travel-account.yml#/IndicatedConsumption
+    estimatedTimeOfArrivalAtPickUpPlace:
+      type: string
+      format: date-time
+ContinuousServiceUsagePatchRequest:
+  description: Usage of a continuos service vehicle
+  type: object
+  additionalProperties: false
+  required:
+  - id
+  - status
+  properties:
+    id:
+      type: string
+      maxLength: 1024
+    status:
+      $ref: '#/ContinuousServiceUsageStatus'
+    parkingImage:
+      description: |
+        base64 encoded binary of the jpg image of the parked vehicle when ending the usage.
+      type: string
+      format: byte
+      maxLength: 4194304
+    tip:
+      $ref: ./_common.yml#/Tip
+ContinuousServiceUsageStatus:
+  description: status of the usage of a vehicle
+  type: string
+  x-extensible-enum:
+  - VEHICLE_BLOCKED: vehicle is blocked
+  - USAGE_STARTED: the traveler started to use the vehicle
+  - USAGE_ENDED: the traveler ended the to use of the vehicle
+  - BLOCKING_TIME_OUT: the traveler did not start the usage in time and the vehicle is available for other customers.
+  - USAGE_TIME_OUT: the traveler did not end the usage but the maximal length of the usage was reached.
+ContinuousServiceVehicleAvailability:
+  description: |
+    number and type of available vehicles
+  required:
+  - vehicleDescription
+  - vehicleType
+  - availableVehicles
+  properties:
+    vehicleDescription:
+      type: string
+      maxLength: 32768
+      example: Scooter up to 120 kg traveler weight
+    vehicleType:
+      $ref: '#/ContinuousServiceVehicleType'
+    availableVehicles:
+      description: number of available vehicles
+      type: integer
+      format: int32
+ContinuousServiceVehicleSelection:
+  type: object
+  additionalProperties: false
+  required:
+  - pickUpPlaceRef
+  - vehicleType
+  properties:
+    pickUpPlaceRef:
+      description: id of the selected pick-up place
+      type: string
+      maxLength: 1024
+    vehicleType:
+      $ref: '#/ContinuousServiceVehicleType'
+ContinuousServiceVehicleType:
+  description: |
+    [On-Demand Vehicle Type Code List](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleType)
+  type: string
+  x-extensible-enum:
+  - BICYCLE
+  - ELECTRIC_BICYCLE
+  - CARGO_BICYCLE
+  - SCOOTER
+  - TAXI
+  - SELF_DRIVING_CAR

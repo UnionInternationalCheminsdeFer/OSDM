@@ -1,0 +1,321 @@
+AbstractTransportableVehicleSpecification:
+  type: object
+  additionalProperties: false
+  required:
+  - weight
+  - length
+  - width
+  - height
+  - model
+  - brand
+  properties:
+    weight:
+      description: weight in kg
+      type: integer
+      format: int32
+      minimum: 0
+    length:
+      description: size in cm
+      type: integer
+      format: int32
+      minimum: 0
+    width:
+      description: size in cm
+      type: integer
+      format: int32
+      minimum: 0
+    height:
+      description: size in cm
+      type: integer
+      format: int32
+      minimum: 0
+    brand:
+      description: |
+        Free text description of the brand (e.g. BMW)
+      type: string
+    model:
+      description: |
+        Free text description of the model (e.g. X5)
+      type: string
+AttachableItemType:
+  description: |
+    Indication of items attached to the car
+  type: string
+  x-extensible-enum:
+  - ROOF_RACK
+  - BICYCLE_STAND
+Car:
+  allOf:
+  - $ref: '#/CarSpecification'
+  - type: object
+    additionalProperties: false
+    required:
+    - licensePlate
+    properties:
+      contactName:
+        description: |
+          Name of a contact person or company in case the car transport is booked stand alone.
+        type: string
+      contactDetail:
+        $ref: ./_common.yml#/ContactDetail
+      licensePlate:
+        description: |
+          The license plate is a personal data item and must not be provided in an offer request.
+          It must be patched into the offer after the customer accepted the offer for booking.
+        type: string
+CarRack:
+  description: |
+    a rack on a car
+  type: object
+  additionalProperties: false
+  properties:
+    mounting:
+      type: string
+      x-extensible-enum:
+      - REAR
+      - TOP
+    type:
+      type: string
+      x-extensible-enum:
+      - LUGGAGE_RACK
+      - ROOF_RAILING
+    additionalHeight:
+      description: additional height in cm
+      type: integer
+      format: int32
+      minimum: 0
+      nullable: false
+    additionalLength:
+      description: additional length in cm
+      type: integer
+      format: int32
+      minimum: 0
+      nullable: false
+    numberOfBicycles:
+      description: number of bicycles on the rack
+      type: integer
+      format: int32
+      minimum: 0
+      nullable: false
+CarSpecification:
+  description: |
+    car, trailer or special vehicle to be transported (car carriage trains)
+  allOf:
+  - $ref: '#/AbstractTransportableVehicleSpecification'
+  - type: object
+    additionalProperties: false
+    required:
+    - roofWidth
+    properties:
+      specialType:
+        type: string
+        nullable: true
+        x-extensible-enum:
+        - TRIKE
+        - QUAD
+        - MOTOCYCLE_WITH_SIDECAR
+      roofWidth:
+        type: integer
+        format: int32
+        minimum: 0
+        nullable: false
+      textileRoof:
+        description: indication that the car has a textile rook only
+        type: boolean
+      rack:
+        $ref: '#/CarRack'
+      attachedItems:
+        description: Indication of items attached to the car
+        type: array
+        items:
+          $ref: '#/AttachableItemType'
+DirectionChange:
+  type: object
+  additionalProperties: false
+  description: |
+    A StopPlace where the direction of a train changes
+  required:
+  - stopPlaceRef
+  - stopPlaceName
+  properties:
+    stopPlaceRef:
+      description: |
+        Reference to the station where the direction changes
+      $ref: ./trip.yml#/StopPlaceRef
+    stopPlaceName:
+      description: |
+        Name of the station where the direction changes
+      type: string
+      nullable: false
+DirectionType:
+  description: "Direction of a place, defined optional as it might be omitted in\ncase of berths in future. \nCode list according\
+    \ to UIC90918-1\nValid Values:\n- RIGHT: to right, RIGHT is the default. In case of walls it indicates a wall parallel\
+    \ with the x axis.\n- LEFT: to left\n- UP: up (from right side of a coach pointing to the middle of the aisle)\n- DOWN:\
+    \ down (from right side of the coach pointing to the middle of the aisle)\n"
+  type: string
+  enum:
+  - RIGHT
+  - LEFT
+  - UP
+  - DOWN
+MotorCycle:
+  allOf:
+  - $ref: '#/MotorcycleSpecification'
+  - type: object
+    additionalProperties: false
+    required:
+    - contactName
+    - licensePlate
+    properties:
+      contactName:
+        description: |
+          Name of a contact person or company in case the car transport is booked stand alone.
+        type: string
+      contactDetail:
+        $ref: ./_common.yml#/ContactDetail
+      licensePlate:
+        description: |
+          The license plate is a personal data item and must not be provided in an offer request.
+          It must be patched into the offer after the customer accepted the offer for booking
+        type: string
+MotorcycleSpecification:
+  allOf:
+  - $ref: '#/AbstractTransportableVehicleSpecification'
+  - type: object
+    properties:
+      isSideCarIncluded:
+        description: deprecated use car of type SPECIAL_VEHICLE instead
+        deprecated: true
+        type: boolean
+        nullable: true
+        default: false
+MountingType:
+  type: string
+  enum:
+  - UPPER_BORDER
+  - LOWER_BORDER
+  - UPPER_TO_LOWER_BORDER
+  - FREE
+Transportable:
+  type: object
+  additionalProperties: false
+  description: |
+    Transportables which are handled similar to passengers like dogs, bicycles, car transport.
+    These transportables might need a ticket or reservation.
+  required:
+  - type
+  properties:
+    type:
+      $ref: '#/TransportableType'
+    car:
+      $ref: '#/Car'
+    motorCycle:
+      $ref: '#/MotorCycle'
+    trailer:
+      $ref: '#/Car'
+TransportableSpecification:
+  type: object
+  additionalProperties: false
+  description: |
+    Transportables which are handled similar to passengers like dogs, bicycles, car transport.
+    These transportables might need a ticket or reservation. The Transportable specification does not include personal data (e.g. a license plate.)
+  required:
+  - type
+  properties:
+    type:
+      $ref: '#/TransportableType'
+    car:
+      $ref: '#/CarSpecification'
+    motorcycle:
+      $ref: '#/MotorcycleSpecification'
+    trailer:
+      $ref: '#/CarSpecification'
+TransportableType:
+  description: "Subset of the values from \nthe [Passenger Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)\n\
+    Listed values here are examples.\n"
+  type: string
+  x-extensible-enum:
+  - PET
+  - DOG
+  - ACCOMP_DOG
+  - BICYCLE
+  - LUGGAGE
+  - PRAM
+  - CAR
+  - SPECIAL_VEHICLE
+  - MOTOCYCLE
+  - TRAILER
+Vehicle:
+  type: object
+  additionalProperties: false
+  description: |
+    List of the coaches in a vehicle run ordered according to the physical
+    ordering of the vehicle.
+  properties:
+    coaches:
+      type: array
+      items:
+        $ref: ./place.yml#/Coach
+    reservationRefs:
+      description: "References to the reservations/fares for which all places in the vehicle can be selected. \nThe reservation\
+        \ ids must be part of the list of reservation ids for which the consumer has\nrequested the available places and the\
+        \ consumer must accept a list by setting \nsingleSelectionMapsRequired to false\n"
+      type: array
+      items:
+        type: string
+VehicleAvailability:
+  type: object
+  additionalProperties: false
+  description: |
+    A vehicle run for which place availabilities were requested.
+  properties:
+    coaches:
+      description: |
+        List of the coaches in a vehicle run ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
+      type: array
+      items:
+        $ref: ./place.yml#/CoachAvailability
+    directionChanges:
+      description: |
+        List of direction changes (in direction of travel).
+      type: array
+      items:
+        $ref: '#/DirectionChange'
+    preSelectedPlaces:
+      type: array
+      items:
+        $ref: ./place.yml#/PlacePreSelection
+    preSelectedCompartments:
+      type: array
+      items:
+        $ref: ./place.yml#/CompartmentPreSelection
+VehicleFilter:
+  type: object
+  additionalProperties: false
+  description: |
+    Filter for in/exclusion of vehicle based on vehicle number or line number.
+  properties:
+    exclude:
+      description: |
+        Whether vehicle in list is to include or exclude from search.
+      type: boolean
+      nullable: true
+      default: true
+    vehicleNumbers:
+      type: array
+      items:
+        $ref: '#/VehicleNumber'
+    lineNumbers:
+      type: array
+      items:
+        $ref: ./_common.yml#/LineNumber
+VehicleNumber:
+  type: string
+  description: |
+    The vehicle number(s) of the vehicle that runs this timed leg. On some legs a vehicle can
+    have multiple vehicle numbers, e.g. if it is split into two trains at a intermediate stop.
+    E.g. the vehicle numbers of 'TGV 9218', 'TH 9340' or 'ICE 15'.
+    For backwards compatibility with Hermes/Hosa the length of the string must be restricted
+    to 5 characters. If's longer, it is not possible to use the H2O converter.
+  nullable: true
+  example: 9218, 9340, 15

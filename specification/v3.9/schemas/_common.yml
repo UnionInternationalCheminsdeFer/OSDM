@@ -1,0 +1,2238 @@
+AccountingRef:
+  description: |
+    reference to accounting data in case the accounting is not provided by the API provider
+  type: object
+  required:
+  - accountingCompany
+  properties:
+    accountingCompany:
+      $ref: '#/CompanyRef'
+    accountingIds:
+      description: |
+        ids of accounting data used to link the booking part with accounting data in the billing send by the accounting company
+      type: array
+      items:
+        type: string
+Address:
+  description: |
+    A descriptive data associated with a place that can be used to describe the unique geographical context of a
+    place for the purposes of identifying it. may be refined as either a road address, a postal address or both.
+    Provided by OJP.
+  allOf:
+  - $ref: ./place.yml#/Place
+  - type: object
+    additionalProperties: false
+    properties:
+      name:
+        description: |
+          Name or description of address for use in passenger information.
+        type: string
+        nullable: true
+        example: Oude Trambaan 7, 2265CA Leidschendam, Nederland
+      nameTranslations:
+        description: Translations for the name
+        type: array
+        items:
+          $ref: '#/Translation'
+      code:
+        description: |
+          id of the address
+        type: string
+        nullable: true
+        example: NL:1916200000022621
+      countryName:
+        description: |
+          Country of the address.
+        type: string
+        nullable: true
+        example: The Netherlands
+      countryCode:
+        $ref: '#/CountryCode'
+      postCode:
+        description: |
+          Postal code of the address.
+        type: string
+        nullable: true
+        example: 2265CA
+      city:
+        description: |
+          City name
+        type: string
+        nullable: true
+        example: Leidschendam
+      topographicPlaceName:
+        description: |
+          TopographicPlace name of the address. If set it should at least contain the city name.
+        type: string
+        nullable: true
+        example: Leidschendam
+      street:
+        description: |
+          Street name of the address. Can also contain the house number.
+        type: string
+        nullable: true
+        example: Oude Trambaan
+      houseNumber:
+        description: |
+          House number of the address. House number can either be in this separate field, or can be
+          contained in the street field.
+        type: string
+        nullable: true
+        example: 7
+AddressRef:
+  description: |
+    Reference to an Address.
+  allOf:
+  - $ref: ./place.yml#/PlaceRef
+  - type: object
+    additionalProperties: false
+    required:
+    - addressRef
+    properties:
+      addressRef:
+        type: string
+        nullable: false
+ApiNextVersion:
+  type: object
+  description: |
+    Next version of the API.
+    The next version is used to indicate the next version of the API that is being used.
+    The version is in semantic versioning format, e.g. "4.0.0" and it is a version released at osdm.io.
+  properties:
+    version:
+      type: string
+      description: |
+        Version of the next API.
+      example: 4.0.0
+    availableAt:
+      type: string
+      format: url
+      example: https://api.next.example.com
+    availableFrom:
+      type: string
+      format: date-time
+      description: |
+        Date from which the next version is available.
+      example: '2025-01-01T00:00:00+01:00'
+      nullable: true
+ApiVersion:
+  type: object
+  description: |
+    Version of the API.
+    The version is used to indicate the version of the API that is being used.
+    The version is in semantic versioning format, e.g. "3.0.0" and it is a version released at osdm.io.
+  required:
+  - version
+  properties:
+    version:
+      type: string
+      description: |
+        Version of the API
+      example: 3.0.0
+    sunset:
+      type: string
+      format: date-time
+      description: |
+        Date after which the API version will no longer be available.
+      nullable: true
+      example: '2024-12-31T23:59:59+01:00'
+    nextVersion:
+      $ref: '#/ApiNextVersion'
+      nullable: true
+ApplicabilityType:
+  type: string
+  x-extensible-enum:
+  - BOOKING
+  - TRIP
+  - OFFERPART
+  - SEAT_SELECTION: (https://osdm.io/spec/processes/#SeatSelectionFees)
+BackOfficeStatus:
+  description: |
+    Status of the request sent to the back office.
+    Valid Values:
+    - 'INITIATED'
+    - 'EVALUATING'
+    - 'DECIDED'
+    - 'SETTLED'
+    - 'INFORMATION_MISSING'
+    - 'REQUEST_UPDATED': Additional information, i.e. documents have been provided which should trigger reevaluation.
+  type: string
+  enum:
+  - INITIATED
+  - EVALUATING
+  - DECIDED
+  - SETTLED
+  - INFORMATION_MISSING
+  - REQUEST_UPDATED
+BankAccountReference:
+  type: object
+  additionalProperties: false
+  description: |
+    bank account
+  properties:
+    iban:
+      description: |
+        IBAN to be used in Europe
+      type: string
+      pattern: '[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}'
+      nullable: true
+    accountId:
+      description: |
+        bank account id to be used outside of EU
+      type: string
+      nullable: true
+    bankIdCode:
+      $ref: '#/BankIdCode'
+    bankId:
+      type: string
+      nullable: true
+    ownerName:
+      type: string
+      nullable: true
+      example: John Doe
+BankIdCode:
+  type: string
+  x-extensible-enum:
+  - SWIFT
+BarCodeType:
+  description: |
+    Item according to IRS 90918-9: FCB, TLB, SSB
+    Values from the [Barcode Type Code List](https://osdm.io/spec/catalog-of-code-lists/#BarcodeType)
+    Listed values here are examples.
+  type: string
+  x-extensible-enum:
+  - FCB
+  - TLB
+  - SSB
+  - DOSIPAS
+Calendar:
+  type: object
+  additionalProperties: false
+  properties:
+    from:
+      type: string
+      format: date-time
+      nullable: true
+    until:
+      type: string
+      format: date-time
+      nullable: true
+    dates:
+      description: |
+        dates included in the calendar. In case no dates are provided the range is assumed to be valid. The date-time format is used to provide an offset to UTC per date.
+      type: array
+      items:
+        type: string
+        format: date-time
+      nullable: true
+    utcOffset:
+      description: |
+        offset to UTC in minutes (number of minutes to be added to get UTC dates)
+      type: integer
+      format: int32
+      nullable: true
+CardReference:
+  type: object
+  additionalProperties: false
+  description: |
+    Number and issuer are needed to identify a travel account, the code identifies a reduction card.
+  required:
+  - type
+  properties:
+    code:
+      description: |
+        Code of the card type according to issuer. E.g. BahnCard50.
+        Predefined values from the [Reduction Card Code List](https://osdm.io/spec/catalog-of-code-lists/#ReductionCard)
+      type: string
+      nullable: true
+    number:
+      description: |
+        Number identifying the travel account, need issuer to be unique.
+      type: string
+      nullable: true
+    issuer:
+      $ref: '#/CompanyRef'
+    type:
+      $ref: ./travel-account.yml#/TravelAccountType
+    chipCardContentFormat:
+      type: string
+      x-extensible-enum:
+      - CALYPSO-ABT
+      - CALYPSO-CBT
+    chipCardContent:
+      description: |
+        base64 encoded content of the chip card. This is in some scenarios needed to validate whether the new ticket will be compatible with the tickets already on the card.
+      type: string
+      format: byte
+      maxLength: 4194304
+      nullable: true
+CardTypeReference:
+  type: object
+  additionalProperties: false
+  required:
+  - code
+  properties:
+    issuer:
+      $ref: '#/CompanyRef'
+    code:
+      type: string
+      nullable: false
+    cardName:
+      type: string
+      nullable: true
+CarrierFilter:
+  type: object
+  additionalProperties: false
+  description: |
+    Filter for in/exclusion of carriers. Provided by OJP.
+  properties:
+    exclude:
+      description: |
+        Whether carrier in list are to include or exclude from search.
+      type: boolean
+      nullable: true
+      default: true
+    carriers:
+      description: |
+        Reference to carrier
+      type: array
+      items:
+        $ref: '#/CompanyRef'
+CompanyDetail:
+  type: object
+  additionalProperties: false
+  description: |
+    Details a company. Note that the legalAddress attribute has been deprecated and
+    is replaced by legalPostalAddress.
+  required:
+  - name
+  properties:
+    name:
+      type: string
+      nullable: false
+    registrationNumber:
+      type: string
+      nullable: false
+    legalAddress:
+      $ref: '#/Address'
+      deprecated: true
+      nullable: true
+      description: |
+        Deprecated in favor of `legalPostalAddress`
+    legalPostalAddress:
+      $ref: '#/PostalAddress'
+    contact:
+      $ref: '#/ContactDetail'
+    taxId:
+      type: string
+      nullable: false
+CompanyRef:
+  type: string
+  description: "Identifies a company. For rail, a RICS company code or compatible ERA company code are used. \nE.g.: 'urn:uic:rics:1185:000011'\n"
+  nullable: false
+Condition:
+  type: object
+  additionalProperties: false
+  description: |
+    Describes sales, usage and after sales conditions applicable to the product.  See after sales conditions for individual after sales amounts. The language of the text is controlled by the accept-language header, i.e. supporting English is a must.
+  required:
+  - type
+  - description
+  properties:
+    type:
+      $ref: '#/ConditionType'
+    description:
+      description: |
+        human readable documentation of the text.
+      type: string
+      minLength: 1
+      nullable: false
+    descriptionTranslations:
+      description: Translations of the description and shortDescription
+      type: array
+      items:
+        $ref: '#/Translation'
+    shortDescription:
+      description: |
+        short description of the condition no longer than 64 characters
+      type: string
+      nullable: true
+ConditionType:
+  type: string
+  x-extensible-enum:
+  - PRE_SALE
+  - SALE
+  - TRAVEL
+  - PLACE_CHANGE
+  - FULFILLMENT
+  - EXCHANGE
+  - REFUND
+ContactDetail:
+  type: object
+  additionalProperties: false
+  description: |
+    Contact information needed to contact a person. Either an email or a phone number needs to be provided. Note: address and postalAddress are deprecated
+  properties:
+    summary:
+      description: |
+        A human-readable description of the contact.
+      type: string
+      nullable: true
+    preferredLanguage:
+      description: |
+        ISO-639-1 language code
+      type: string
+      nullable: true
+    email:
+      type: string
+      nullable: true
+    phoneNumber:
+      description: |
+        Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g., in case of delays or interruptions.
+        Format according to E.164 The international public telecommunication numbering plan
+      type: string
+      nullable: true
+    address:
+      type: string
+      nullable: true
+      deprecated: true
+    postalAddress:
+      $ref: '#/PostalAddress'
+      nullable: true
+      deprecated: true
+ContextType:
+  type: string
+  enum:
+  - OFFER
+  - BOOKING
+CorporateCode:
+  type: object
+  additionalProperties: false
+  description: |
+    The corporate code is a token that reduces the price of an offer or enables  offers that are not available without it. Needs with a commercial agreement between parties.
+  required:
+  - code
+  - issuer
+  properties:
+    code:
+      description: |
+        The corporate code issued by the referenced company.
+      type: string
+      nullable: false
+      example: 123-232
+    beneficiary:
+      description: |
+        The name of the party that benefits from the corporate code, intended to be presented to the end user.
+      type: string
+      nullable: true
+      example: Siemens
+    issuer:
+      $ref: '#/CompanyRef'
+CountryCode:
+  type: string
+  description: |
+    ISO 3166-1 alpha-2 2 character country code
+  nullable: false
+  example: DE
+Currency:
+  type: string
+  description: |
+    ISO 4217 currency codes
+  nullable: false
+  example: CHF
+CurrencyAmount:
+  type: object
+  description: amount in a currency used when not VAT can be provided
+  additionalProperties: false
+  required:
+  - currency
+  - amount
+  properties:
+    currency:
+      $ref: '#/Currency'
+    amount:
+      description: |
+        amount in cents
+      type: integer
+      format: int32
+    scale:
+      description: |
+        scale of the amount - the number of positions after the comma
+      type: integer
+      nullable: true
+      format: int32
+      default: 2
+CurrencyConversion:
+  description: |
+    details on a currency conversion applied
+  required:
+  - originalCurrency
+  - originalAmount
+  properties:
+    description:
+      description: |
+        description of the conversion, e.g. rate, rounding rules, reference to rules
+      type: string
+    originalCurrency:
+      $ref: '#/Currency'
+    originalAmount:
+      description: |
+        amount in cents
+      type: integer
+      format: int32
+      nullable: false
+    scale:
+      description: |
+        scale of the amount - the number of positions after the comma
+      type: integer
+      format: int32
+      nullable: true
+      default: 2
+    appliedRate:
+      type: number
+    originalVats:
+      type: array
+      items:
+        $ref: '#/VAT'
+DateRange:
+  type: object
+  additionalProperties: false
+  properties:
+    startTime:
+      type: string
+      format: date-time
+      nullable: true
+    endDate:
+      type: string
+      format: date-time
+      nullable: true
+DistributionMode:
+  description: "booking parts in product mode are provided as complete products where the tickets and \nconditions are prepared\
+    \ by the OSDM provider. Booking parts in fare mode need to be assembled \ninto tickets on the OSDM client side. In fare\
+    \ mode the conditions are defined on the client \nside the restrictions on conditions and combinability laid down in the\
+    \ booking part (fare). \nBy definition admissions and ancillaries are in PRODUCT_MODE and fares are in _MODE. Reservation\
+    \ \nmight be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are\nrequested in the\
+    \ offer part type list.\n"
+  type: string
+  enum:
+  - PRODUCT_MODE
+  - FARE_MODE
+  default: PRODUCT_MODE
+Event:
+  type: object
+  additionalProperties: false
+  description: |
+    Record of an action that occurred in the life cycle of the booking.
+  required:
+  - id
+  - timestamp
+  - type
+  - details
+  properties:
+    id:
+      description: |
+        id of the event
+      type: string
+      nullable: false
+    timestamp:
+      description: |
+        timestamp of the event
+      type: string
+      format: date-time
+      nullable: false
+    type:
+      $ref: '#/EventType'
+    details:
+      $ref: '#/EventDetail'
+EventDetail:
+  type: object
+  additionalProperties: false
+  required:
+  - summary
+  - requestor
+  - change
+  - resource
+  properties:
+    summary:
+      description: |
+        human readable description of the event
+      type: string
+      nullable: false
+    requestor:
+      description: |
+        Contains detailed information about who is calling the API. It can include information such as channel, organization, sales unit or workstation id and be used to configure e.g. the fare range provided to the caller. The content of the string is part of a bilateral contract by the two parties and not standardized by OSDM. It is recommend to encrypt the information transferred.
+      type: string
+      nullable: false
+    change:
+      $ref: '#/HistoryStatus'
+    resource:
+      $ref: '#/Resource'
+EventType:
+  type: string
+  enum:
+  - BOOKING_REAL_TIME_EVENT_OCCURRED
+  - BOOKING_REACCOMMODATED
+  - BOOKING_TRIP_CHANGED
+  - BOOKING_TRIP_CONFIRMED
+  - FULFILLMENT_AVAILABLE
+  - DOCUMENT_AVAILABLE
+  - FULFILLMENT_REFUNDED
+  - FULFILLMENT_EXCHANGED
+  - FULFILLMENT_CONTROLLED
+  - ACCOMMODATION_RELEASED
+  - PURCHASER_CHANGED
+  - PASSENGER_CHANGED
+  - REFUND_INITIATED
+  - EXCHANGE_INITIATED
+ExcludedTimeRange:
+  type: object
+  additionalProperties: false
+  description: |
+    time ranges excluded from the validity (e.g. off peak fulfillments)
+  required:
+  - from
+  - until
+  - scope
+  properties:
+    from:
+      description: |
+        minutes of the day in the time zone of travel
+      type: integer
+      format: int32
+      nullable: false
+    until:
+      description: |
+        minutes of the day in the time zone of travel
+      type: integer
+      format: int32
+      nullable: false
+    scope:
+      $ref: ./product.yml#/ExclusionScope
+Fee:
+  type: object
+  additionalProperties: false
+  description: |
+    Fees are used to represent additional costs for services or products. In contrast to other offer parts in OSDM, the customer is not free whether to choose a fee or not: fees are generated and applied to other services or products by the providing system.
+  required:
+  - id
+  - price
+  properties:
+    id:
+      type: string
+      maxLength: 32768
+      nullable: false
+    summary:
+      description: |
+        A human-readable description of the fee.
+      type: string
+      nullable: true
+    price:
+      $ref: '#/Price'
+    applicability:
+      $ref: '#/ApplicabilityType'
+    transactionContext:
+      $ref: '#/TransactionContextType'
+    isProviderFee:
+      description: |
+        The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
+      type: boolean
+      default: true
+    status:
+      $ref: '#/FeeStatus'
+    distributorBookingRef:
+      description: |
+        reference to the booking in the downstream distributor system
+      type: string
+      nullable: true
+    refundable:
+      $ref: ./aftersales.yml#/RefundType
+    conditions:
+      description: |
+        Structured description of the sales or after-sales conditions.
+      type: array
+      items:
+        $ref: '#/Condition'
+    productCode:
+      description: |
+        The product code expressed in the provider system (could be a
+        mapping from an even lower-level provider).
+      type: string
+      nullable: true
+      deprecated: true
+    productRef:
+      type: string
+      description: |
+        Reference to the Product representing the Fee
+    accountingRef:
+      $ref: '#/AccountingRef'
+FeeStatus:
+  type: string
+  enum:
+  - PREBOOKED
+  - CONFIRMED
+  - REFUNDED
+Gender:
+  description: |
+    The gender of the passenger, which is important in the case of night trains.
+    Values from the [Gender Code List](https://osdm.io/spec/catalog-of-code-lists/#Gender)
+  type: string
+  nullable: true
+  enum:
+  - MALE
+  - FEMALE
+  - X
+GeneralAttribute:
+  type: object
+  additionalProperties: false
+  required:
+  - text
+  properties:
+    text:
+      type: string
+      nullable: false
+    textTranslations:
+      description: Translation of the text attribute
+      type: array
+      items:
+        $ref: '#/Translation'
+    code:
+      type: string
+      nullable: true
+    url:
+      type: string
+      nullable: true
+GeoPosition:
+  type: object
+  additionalProperties: false
+  description: |
+    WGS84 coordinates position. Provided by OJP.
+  required:
+  - longitude
+  - latitude
+  properties:
+    longitude:
+      $ref: '#/Longitude'
+    latitude:
+      $ref: '#/Latitude'
+GeoPositionRef:
+  description: |
+    Reference to a GeoPosition consisting of latitude and longitude.
+  allOf:
+  - $ref: ./place.yml#/PlaceRef
+  - type: object
+    additionalProperties: false
+    required:
+    - latitude
+    - longitude
+    properties:
+      latitude:
+        $ref: '#/Latitude'
+      longitude:
+        $ref: '#/Longitude'
+HistoryStatus:
+  type: string
+  enum:
+  - PREBOOKED
+  - ON_HOLD
+  - CONFIRMED
+  - FULFILLED
+  - CANCELLED
+  - RELEASED
+  - REFUNDED
+  - EXCHANGED
+  - EXCHANGE_ONGOING
+  - ERROR
+  - AVAILABLE
+  - CHECKED_IN
+IdentificationCard:
+  type: object
+  additionalProperties: false
+  description: |
+    Person identification information  to be exchanged for border control if legally required.
+
+    It is not allowed to send personal information not required in the offer reply.
+    It is legally not allowed to send these personal data already in the offer request.
+  required:
+  - id
+  - type
+  properties:
+    id:
+      description: |
+        Identifier on the document.
+      type: string
+      nullable: false
+    type:
+      description: |
+        Refer to code list for values
+      type: string
+      nullable: false
+    name:
+      description: |
+        ICAO transliteration identical as written in the document
+      type: string
+      nullable: true
+    nationality:
+      description: |
+        ISO 3166-1 alpha-2 2 character country code
+      type: string
+      nullable: true
+    birthCity:
+      type: string
+      nullable: true
+    issuingCity:
+      description: |
+        place where the document is issued
+      type: string
+      nullable: true
+    residenceCity:
+      type: string
+      nullable: true
+    birthCountryCode:
+      $ref: '#/CountryCode'
+    issuingCountryCode:
+      $ref: '#/CountryCode'
+    residenceCountryCode:
+      $ref: '#/CountryCode'
+    issuingDate:
+      type: string
+      format: date-time
+      nullable: true
+    gender:
+      $ref: '#/Gender'
+    expirationDate:
+      type: string
+      format: date
+      nullable: true
+IndividualMode:
+  description: |
+    Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
+  type: string
+  x-extensible-enum:
+  - WALK
+  - CYCLE
+  - TAXI
+  - SELF_DRIVE_CAR
+  - OTHERS_DRIVE_CAR
+  - MOTORCYCLE
+  - TRUCK
+  - SCOOTER
+  - RIDE_POOL_CAR
+  - CAR_SHARING
+  - CYCLE_SHARING
+  - SCOOTER_SHARING
+  - BICYCLE
+  - ELECTRIC_BICYCLE
+  - CARGO_BICYCLE
+  - SCOOTER
+Latitude:
+  type: number
+  format: double
+  description: |
+    Latitude from equator. -90 (South) to +90 (North). Decimal degrees. e.g. 56.356.
+  minimum: -90
+  maximum: 90
+  nullable: false
+  example: 47.37818
+LegacyAccountingIdentifier:
+  type: object
+  additionalProperties: false
+  description: |
+    identifier of the fare in the current 301 accounting file
+  required:
+  - serialId
+  properties:
+    serialId:
+      description: |
+        sequential number of regional validities
+      type: integer
+      format: int32
+      minimum: 0
+      maximum: 99999
+      nullable: false
+    addId:
+      description: |
+        Sequential number of regional validities (leading positions in case the series
+        is too short).
+      type: integer
+      format: int32
+      minimum: 0
+      maximum: 99
+      nullable: true
+    tariffId:
+      description: |
+        Tariff id for the old series format.
+      type: integer
+      format: int32
+      minimum: 0
+      maximum: 9999
+      nullable: true
+LegacyReservationParameter:
+  type: object
+  additionalProperties: false
+  description: |
+    reservation parameter to support the UIC 90918-1 interface for booking
+  required:
+  - travelClass
+  - serviceLevelCode
+  - serviceCode
+  properties:
+    travelClass:
+      description: |
+        90918-1 class code in reservation
+      type: string
+      nullable: false
+    serviceLevelCode:
+      description: |
+        service level code defined in UIC 90918-1
+      type: string
+      nullable: false
+    serviceCode:
+      description: |
+        service code to be used in reservation
+      type: string
+      nullable: false
+    berthType:
+      description: |
+        berth type code in UIC 90918-1 to be used in reservation
+      type: string
+      nullable: true
+    coachTypeCode:
+      description: |
+        coach type code in UIC 90918-1 to be used in reservation
+      type: string
+      nullable: true
+    compartmentTypeCode:
+      description: |
+        compartment type code in UIC 90918-1 to be used in reservation
+      type: string
+      nullable: true
+    tariffs:
+      description: |
+        tariff according to UIC 90918-1 to be used for booking
+      type: array
+      items:
+        $ref: '#/LegacyReservationTariff'
+LegacyReservationTariff:
+  type: object
+  additionalProperties: false
+  description: |
+    Legacy tariff code and number of items or persons in case UIC 90918-1 is used for booking.
+  properties:
+    number:
+      description: |
+        number of items with this tariff code
+      type: integer
+      format: int32
+      nullable: true
+    code:
+      description: |
+        legacy tariff code
+      type: integer
+      format: int32
+      nullable: true
+LegAttribute:
+  type: object
+  additionalProperties: false
+  description: |
+    Attributes that are not valid on the whole service, but only on section of a trip made on a single mode without interchange between boarding and alighting.
+  required:
+  - text
+  properties:
+    text:
+      description: |
+        Text of the attribute to be shown to the user.
+      type: string
+      nullable: false
+    code:
+      description: |
+        Internal code of the attribute. Can be used for detection of double occurrences. Refers to Service Facilities / Leg Attributes from the Catalog of Code Lists
+      type: string
+      nullable: true
+    fromStopSeqNumber:
+      description: |
+        The attribute is valid from the stop point with this sequence number within the leg. If missing it is valid from the beginning of the leg.
+      type: integer
+      format: int32
+      minimum: 0
+      nullable: true
+    toStopSeqNumber:
+      description: |
+        The attribute is valid to the stop point (inclusively) with this sequence number within the leg. If missing it is valid to the end of the leg.
+      type: integer
+      format: int32
+      minimum: 0
+      nullable: true
+Line:
+  type: object
+  additionalProperties: false
+  description: |
+    terminalStation - in case the product requires a destination within the zone (e.g. local ticket
+    to go to the main rail station).
+    entryStation - Station to enter the zone in case the product requires to enter the zone via a
+    specific station (e.g. local zone ticket to start from the main rail station).
+  required:
+  - carrier
+  properties:
+    binaryLineId:
+      description: |
+        Id to support local traffic standards (e.g. VDV,...).
+      type: string
+      format: byte
+      nullable: true
+    carrier:
+      $ref: '#/CompanyRef'
+    city:
+      type: integer
+      format: int32
+      nullable: true
+    entryStation:
+      $ref: ./trip.yml#/StopPlace
+    lineIds:
+      type: array
+      items:
+        type: string
+      nullable: true
+    terminalStation:
+      $ref: ./trip.yml#/StopPlace
+    nutsCode:
+      description: |
+        Nomenclature des units territoriales statistiques
+         COMMISSION REGULATION (EU) No 31/2011
+      type: string
+      nullable: true
+LineNumber:
+  type: string
+  description: |
+    Especially on regional traffic, a vehicle is defined by a line number.
+    E.g. the line numbers of 'S 52' or 'B 19'.
+  nullable: true
+  example: 52, 19
+Links:
+  type: array
+  description: "A collection of hypermedia links associated with this resource.\nThese links facilitate navigation and discovery\
+    \ of related resources, \nfollowing HATEOAS principles.\n"
+  items:
+    type: object
+    additionalProperties: false
+    description: |
+      The underlying system may provide links for pagination of links pointing on
+      further information (such as HTML download links, web sites or extended APIs).
+      Mechanism to add flexible extensions specific to an underlying system. Implemented
+      the JSON-HAL specification.
+    required:
+    - rel
+    - href
+    properties:
+      rel:
+        description: |
+          the 'rel' field in HATEOAS navigation.
+        type: string
+        nullable: false
+        example: self
+      href:
+        description: "Allows to provide a value to the link, for example id of the targeted \nresource or displayable representation\
+          \ for the link.\n"
+        type: string
+        maxLength: 32768
+        format: uri
+        nullable: false
+      type:
+        description: |
+          Hint to indicate the media type expected when dereferencing the target resource.
+        type: string
+        nullable: true
+        example: application/json
+      value:
+        description: "Allows to provide a value to the link, for example id of the targeted \nresource or displayable representation\
+          \ for the link.\n"
+        type: string
+        maxLength: 32768
+        nullable: true
+Longitude:
+  type: number
+  format: double
+  description: |
+    Longitude from Greenwich Meridian. -180 (West) to +180 (East). Decimal degrees. eg 2.356.
+  minimum: -180
+  maximum: 180
+  nullable: false
+  example: 8.54021
+Mode:
+  type: object
+  additionalProperties: false
+  description: |
+    A method of transportation such as bus, rail, etc. Provided by OJP.
+  required:
+  - ptMode
+  properties:
+    ptMode:
+      $ref: '#/PTMode'
+    name:
+      description: |
+        Name of the mode
+      type: string
+      nullable: true
+      example: rail
+    shortName:
+      description: |
+        Short name or acronym of the mode
+      type: string
+      nullable: true
+      example: S
+    description:
+      description: |
+        Additional text that further describes the mode
+      type: string
+      nullable: true
+ModeFilter:
+  type: object
+  additionalProperties: false
+  description: |
+    List of public transport modes to include or exclude. Provided by OJP.
+  properties:
+    exclude:
+      description: |
+        Whether modes in list are to include or exclude from search.
+      type: boolean
+      nullable: true
+      default: true
+    transportModes:
+      description: |
+        List of Transport modes to include/exclude.
+      type: array
+      items:
+        $ref: '#/Mode'
+NamedCompany:
+  type: object
+  additionalProperties: false
+  description: |
+    Provides the reference and name of a company.
+  required:
+  - ref
+  properties:
+    ref:
+      $ref: '#/CompanyRef'
+    name:
+      description: |
+        Textual representation of the carrier to be displayed unless the application is able to indicate the name by the carrier references.
+      type: string
+      nullable: true
+      example: RhB
+OfferOverviewRoute:
+  type: object
+  properties:
+    price:
+      $ref: '#/Price'
+    travelClass:
+      $ref: '#/TravelClass'
+    flexibility:
+      $ref: ./offer.yml#/Flexibility
+    startDateTime:
+      type: string
+      format: date-time
+      nullable: false
+    routeSpecification:
+      $ref: ./trip.yml#/RouteSpecification
+OfferOverviewTrip:
+  type: object
+  required:
+  - price
+  - tripIds
+  properties:
+    price:
+      $ref: '#/Price'
+    tripIds:
+      type: array
+      items:
+        type: string
+    travelClass:
+      $ref: '#/TravelClass'
+    flexibility:
+      $ref: ./offer.yml#/Flexibility
+OsmTag:
+  type: object
+  additionalProperties: false
+  description: |
+    Structure of an Open Street Map tag. Provided by OJP.
+  required:
+  - tag
+  - value
+  properties:
+    tag:
+      description: |
+        Name of Open Street Map tag (amenity, leisure, tourism, bike, ...)
+      type: string
+      nullable: false
+      example: name
+    value:
+      description: |
+        Value for Open Street Map tag (charging_station, hostel, yes, ...)
+      type: string
+      nullable: false
+      example: Rozenrust
+OverruleCode:
+  description: "Reason for and type of an after sale, code list in IRS 90918-10.\nThe PRM_SUPPORT_UNAVAILABLE overrule code\
+    \ shall only be used by the UIC PRM ABT tool.\nValues from the [Overrule Codes Code List](https://osdm.io/spec/catalog-of-code-lists/#OverruleCode)\n\
+    Listed values here are examples.   \n- 'CONNECTION_BROKEN'\n- 'DEATH'\n- 'EQUIPMENT_FAILURE'\n- 'PAYMENT_FAILURE'\n- 'PRM_SUPPORT_UNAVAILABLE'\n\
+    - 'SALES_STAFF_ERROR'\n- 'STOP_NOT_SERVED'\n- 'STRIKE'\n- 'TECHNICAL_FAILURE'\n- 'TICKET_NOT_USED'\n- 'INABILITY_TO_TRAVEL':\
+    \ Inability to travel due to accident or sickness.\n- 'EXTERNAL_COMPENSATION': Offer has been compensated outside of the\
+    \ provider system in another way.\n- 'DISRUPTION': Inability to operate due to disruption.\n- 'JOURNEY_OBSOLETE': Due\
+    \ to external factors it's senseless to start the trip, thus the travel is obsolete.\n- 'CERTIFIED_MEDICAL_CONDITION':\
+    \ A medical certificate certifies that the passenger is unable to travel.\n- 'DELAY_COMPENSATION': Allows to override\
+    \ conditions in context of passenger rights regulation (PRR).\n"
+  type: string
+  x-extensible-enum:
+  - CONNECTION_BROKEN
+  - DEATH
+  - EQUIPMENT_FAILURE
+  - PAYMENT_FAILURE
+  - PRM_SUPPORT_UNAVAILABLE
+  - SALES_STAFF_ERROR
+  - STOP_NOT_SERVED
+  - STRIKE
+  - TECHNICAL_FAILURE
+  - TICKET_NOT_USED
+  - INABILITY_TO_TRAVEL
+  - EXTERNAL_COMPENSATION
+  - DISRUPTION
+  - JOURNEY_OBSOLETE
+  - CERTIFIED_MEDICAL_CONDITION
+  - DELAY_COMPENSATION
+PaymentMethod:
+  type: object
+  additionalProperties: false
+  description: |
+    Method of payment used by the customer to the distributor. On input of voucher the remaining sum attribute and the applied voucher amount are not present.
+  required:
+  - type
+  properties:
+    type:
+      $ref: '#/PaymentType'
+    voucherInformation:
+      $ref: '#/VoucherInformation'
+    remainingVoucherAmount:
+      $ref: '#/Price'
+    appliedVoucherAmount:
+      $ref: '#/Price'
+    transactionId:
+      type: string
+      nullable: true
+PaymentType:
+  type: string
+  x-extensible-enum:
+  - CARD
+  - CASH
+  - DIRECT_DEBIT
+  - ELECTRONIC_PAYMENT
+  - INVOICE
+  - VOUCHER
+  - TRAVEL_ACCOUNT
+PersonDetail:
+  type: object
+  additionalProperties: false
+  description: "Personal information potentially needed at booking step. To support privacy by design,\nit is not permitted\
+    \ to send personal information not required to create a valid booking.\nNote that address is deprecated in favor of `postalAddress`,\
+    \ and email and phoneNumber \nare deprecated in favor of the attributes in `ContactDetail`\n"
+  required:
+  - firstName
+  - lastName
+  properties:
+    preferredLanguage:
+      description: |
+        ISO-639-1 language code
+      type: string
+      deprecated: true
+      nullable: true
+    summary:
+      description: |
+        A human-readable description of the person.
+      type: string
+      nullable: true
+    firstName:
+      type: string
+      nullable: true
+    lastName:
+      description: full last names of the person
+      type: string
+      nullable: true
+      example: Diaz Lopez
+    firstFamilyName:
+      description: first family name in case of multiple family names. The element lastName includes all family names.
+      type: string
+      nullable: false
+      example: Diaz
+    secondFamilyName:
+      description: second family name in case of multiple family names. The element lastName includes all family names.
+      type: string
+      nullable: false
+      example: Lopez
+    email:
+      type: string
+      deprecated: true
+      nullable: true
+    phoneNumber:
+      description: |
+        Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g.,
+        in case of interruptions.
+        Format according to E.164 The international public telecommunication numbering plan
+      type: string
+      deprecated: true
+      nullable: true
+    address:
+      $ref: '#/Address'
+      nullable: true
+      deprecated: true
+      description: |
+        Deprecated in favor of `postalAddress`
+    postalAddress:
+      $ref: '#/PostalAddress'
+      nullable: true
+      description: |
+        Address of the physical person for issuing an invoice or receipt
+    contact:
+      $ref: '#/ContactDetail'
+    taxId:
+      type: string
+      description: Tax identification of the physical person for issuing an invoice or receipt
+      nullable: true
+      example: CZ1234567890
+Polygon:
+  type: object
+  additionalProperties: false
+  required:
+  - edges
+  properties:
+    edges:
+      type: array
+      items:
+        $ref: '#/GeoPosition'
+      minItems: 1
+PostalAddress:
+  type: object
+  properties:
+    countryName:
+      description: |
+        Country of the address.
+      type: string
+      nullable: true
+      example: The Netherlands
+    countryCode:
+      $ref: '#/CountryCode'
+    postCode:
+      description: |
+        Postal code of the address.
+      type: string
+      nullable: true
+      example: 2265CA
+    city:
+      description: |
+        City name
+      type: string
+      nullable: true
+      example: Leidschendam
+    street:
+      description: |
+        Street name of the address. Can also contain the house number.
+      type: string
+      nullable: true
+      example: Oude Trambaan
+    houseNumber:
+      description: |
+        House number of the address. House number can either be in this separate field, or can be
+        contained in the street field.
+      type: string
+      nullable: true
+      example: 7
+Price:
+  type: object
+  additionalProperties: false
+  required:
+  - currency
+  - amount
+  properties:
+    currency:
+      $ref: '#/Currency'
+    amount:
+      description: |
+        amount in cents
+      type: integer
+      format: int32
+      nullable: false
+    scale:
+      description: |
+        scale of the amount - the number of positions after the comma
+      type: integer
+      format: int32
+      nullable: true
+      default: 2
+    vats:
+      type: array
+      items:
+        $ref: '#/VAT'
+    appliedCurrencyConversion:
+      $ref: '#/CurrencyConversion'
+Problem:
+  type: object
+  additionalProperties: false
+  description: |
+    Problem Details for HTTP APIs (RFC 9457) defines a 'problem detail' as a way
+    to carry machine-readable details of errors in a HTTP response to avoid
+    the need to define new error response formats for HTTP APIs.
+    See: https://tools.ietf.org/html/rfc9457
+  properties:
+    code:
+      description: |
+        optional in version 3.1, will be made mandatory in upcoming releases
+      type: string
+      nullable: true
+    type:
+      description: |
+        An absolute URI that identifies the problem type. When dereferenced,
+        it SHOULD provide human-readable documentation for the problem type
+        (e.g., using HTML).
+      type: string
+      format: uri
+      nullable: true
+      default: about:blank
+      example: https://example.com/probs/passenger-too-young
+    title:
+      description: |
+        A short, summary of the problem type. Written in English and readable
+        for engineers (usually not suited for non technical stakeholders and
+        not localized);
+      type: string
+      nullable: true
+      example: Service Unavailable
+    status:
+      description: |
+        The HTTP status code generated by the origin server for this occurrence
+        of the problem.
+      type: integer
+      format: int32
+      minimum: 100
+      maximum: 599
+      nullable: true
+      example: 503
+    detail:
+      description: |
+        A human readable explanation specific to this occurrence
+        of the problem.
+      type: string
+      nullable: true
+      example: Connection to database timed out
+    instance:
+      description: |
+        An absolute URI that identifies the specific occurrence of the problem.
+      type: string
+      format: uri
+      nullable: true
+    pointers:
+      type: array
+      items:
+        $ref: '#/ProblemPointer'
+        nullable: true
+      minItems: 0
+ProblemPointer:
+  type: object
+  additionalProperties: false
+  description: |
+    Problem Details for HTTP APIs (RFC 9457) defines a 'problem detail' as a way
+    to carry machine-readable details of errors in a HTTP response to avoid
+    the need to define new error response formats for HTTP APIs.
+    See: https://tools.ietf.org/html/rfc9457
+  properties:
+    code:
+      description: |
+        optional in version 3.1, will be made mandatory in upcoming releases
+      type: string
+      nullable: true
+    type:
+      description: |
+        An absolute URI that identifies the problem type. When dereferenced,
+        it SHOULD provide human-readable documentation for the problem type
+        (e.g., using HTML).
+      type: string
+      format: uri
+      nullable: true
+      default: about:blank
+      example: https://example.com/probs/passenger-too-young
+    title:
+      description: |
+        A short, summary of the problem type. Written in English and readable
+        for engineers (usually not suited for non technical stakeholders and
+        not localized);
+      type: string
+      nullable: true
+      example: Service Unavailable
+    status:
+      description: |
+        The HTTP status code generated by the origin server for this occurrence
+        of the problem.
+      type: integer
+      format: int32
+      minimum: 100
+      maximum: 599
+      nullable: true
+      example: 503
+    detail:
+      description: |
+        A human readable explanation specific to this occurrence
+        of the problem.
+      type: string
+      nullable: true
+      example: Connection to database timed out
+    instance:
+      description: |
+        An absolute URI that identifies the specific occurrence of the problem.
+      type: string
+      format: uri
+      nullable: true
+    requestPointer:
+      description: |
+        A pointer to the attribute in the request for the problem.
+      type: string
+      nullable: true
+      example: '#/offers[1]/placeSelections[1]/reservationId'
+    responsePointer:
+      description: |
+        A pointer to the attribute in the response for the problem.
+      type: string
+      nullable: true
+      example: '#/booking/bookedOffers[4]/reservations[1]/id'
+    originator:
+      description: |
+        Identifier to the origin server for this occurrence of the problem.
+      type: string
+      nullable: true
+      example: IMS1
+PromotionCode:
+  type: object
+  additionalProperties: false
+  description: |
+    The promotion code is a token that reduces the price at POST booking time OR
+    Token that reduces the price at POST trip-offer-collection time OR
+    Token to receive offers that are not available without it.
+  required:
+  - code
+  properties:
+    code:
+      description: |
+        The code issued by the issuer
+      type: string
+      nullable: false
+      example: SPRING_DISCOUNT
+    issuer:
+      description: |
+        The party that issues the promotion code, in case of a railway it's its RICS code, e.g. 'urn:uic:rics:1185:000011'
+      type: string
+      nullable: true
+    shortDescription:
+      $ref: '#/Text'
+      nullable: true
+    description:
+      $ref: '#/Text'
+      nullable: true
+PTMode:
+  description: |
+    TAP-TSI/UIC contains a sensible subset of SIRI Transport Modes.
+    Values from the [Transport Mode Code List](https://osdm.io/spec/catalog-of-code-lists/#TransportMode)
+    Listed values here are examples.
+  type: string
+  x-extensible-enum:
+  - HIGH_SPEED_TRAIN
+  - HISTORIC_TRAIN
+  - INTERCITY
+  - REGIONAL
+  - INTERREGIONAL
+  - URBAN
+  - TRAIN
+  - TRAM
+  - UNDERGROUND
+  - NIGHT_TRAIN
+  - SHARED_TAXI
+  - MOTOR_RAIL
+  - MOUNTAIN_TRAIN
+  - PLANE
+  - COACH_GROUP
+  - SHIP
+  - BUS
+  - ON_DEMAND_SERVICE
+  - BICYCLE
+  - SCOOTER
+  - TAXI
+Quantity:
+  type: object
+  additionalProperties: false
+  description: |
+    Generic entity to model a quantity.
+  required:
+  - value
+  - unit
+  properties:
+    value:
+      type: number
+      format: float
+      nullable: false
+    unit:
+      type: string
+      nullable: false
+      example: kg
+RegulatoryCondition:
+  description: |
+    General conditions applied to cover legal regulations within the area of validity. Allocators must
+    reflect these terms and conditions in the conditions of combined offers and indicate them to the customer
+    where required. Which indications are mandatory to be shown to the customer is defined in the SCICs.
+
+    Valid Values [Regulatory Condition Code List](https://osdm.io/spec/catalog-of-code-lists/#regulatory-condition-)
+  type: string
+  enum:
+  - CIV
+  - MD
+  - EU_PRR
+  - CIT_AJC
+RemarkType:
+  description: |
+    Remark concerning the place (e.g. to be used in a tool tip).
+    Code list according to UIC90918-1
+    Known Values:
+    - MIGHT_HAVE_TABLE: place might have a table
+    - MIGHT_NOT_HAVE_TABLE: table at the place might be missing
+    - MIGHT_HAVE_DIFFERENT_DIRECTION: place might have a different direction
+    - MIGHT_HAVE_TABLE_AND_DIFFERENT_DIRECTION: place might have a table and a different direction
+    - MIGHT_NOT_HAVE_TABLE_AND_MIGHT_HAVE_DIFFERENT_DIRECTION: table at the place might be missing and place might have a different direction
+    - MIGHT_BE_IN_COMPARTMENT: place might be in compartment
+    - MIGHT_BE_IN_OPEN_SPACE: place might be in open space
+  type: string
+  x-extensible-enum:
+  - MIGHT_HAVE_TABLE
+  - MIGHT_NOT_HAVE_TABLE
+  - MIGHT_HAVE_DIFFERENT_DIRECTION
+  - MIGHT_HAVE_TABLE_AND_DIFFERENT_DIRECTION
+  - MIGHT_NOT_HAVE_TABLE_AND_MIGHT_HAVE_DIFFERENT_DIRECTION
+  - MIGHT_BE_IN_COMPARTMENT
+  - MIGHT_BE_IN_OPEN_SPACE
+RequestedInformation:
+  type: string
+  maxLength: 32768
+  description: "Boolean-expression indicating the data that must be set in the data model in order to proceed to next step\
+    \ of the process. \n\nThe syntax and semantics of the expression is described in detail in the OSDM documentation.\n"
+  nullable: true
+Resource:
+  type: object
+  additionalProperties: false
+  required:
+  - title
+  - href
+  properties:
+    title:
+      type: string
+      nullable: false
+    href:
+      type: string
+      nullable: false
+ResourceType:
+  type: string
+  enum:
+  - FARE
+  - RESERVATION
+ReturnConstraint:
+  type: object
+  additionalProperties: false
+  description: |
+    a return trip with the same carrier must be sold in combination
+  required:
+  - latestReturn
+  - earliestReturn
+  properties:
+    latestReturn:
+      description: |
+        number of days after departure or start of validity of the last return
+      type: integer
+      format: int32
+      nullable: false
+    earliestReturn:
+      description: |
+        number of days after departure or start of validity of the earliest return
+      type: integer
+      format: int32
+      nullable: false
+    excludedWeekdays:
+      description: |
+        weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed
+      type: array
+      items:
+        type: integer
+        format: int32
+      nullable: true
+SelectionFee:
+  type: object
+  description: selection fee that will be applied when selecting the place in a graphical seat map. (https://osdm.io/spec/processes/#SeatSelectionFees)
+  properties:
+    price:
+      $ref: '#/Price'
+  required:
+  - price
+ServiceBrandCode:
+  type: string
+  description: |
+    Service brand codes. For public transport, a code list can be found in OSDM's code list. E.g., '163' denotes TGV Lyria and '175' denotes Glacier Express.
+  nullable: false
+  example: 163, 175
+ServiceBrandFilter:
+  type: object
+  additionalProperties: false
+  description: |
+    Filter for in/exclusion of service brands. Provided by OJP.
+  properties:
+    exclude:
+      description: |
+        Whether service brand in list are to include or exclude from search.
+      type: boolean
+      nullable: true
+      default: true
+    serviceBrands:
+      description: |
+        Reference to service brand codes
+      type: array
+      items:
+        $ref: '#/ServiceBrandCode'
+ServiceClass:
+  type: object
+  additionalProperties: false
+  description: |
+    Class of service.
+  required:
+  - type
+  - name
+  properties:
+    type:
+      $ref: '#/ServiceClassType'
+    name:
+      description: |
+        The name the carrier itself uses to designate this specific service class.
+      type: string
+      nullable: false
+ServiceClassType:
+  description: |
+    Type of quality level, finer grained than the comfort class.
+    Values from the [Service Class Code List](https://osdm.io/spec/catalog-of-code-lists/#ServiceClass)
+    Listed values here are examples.
+  type: string
+  x-extensible-enum:
+  - BEST
+  - HIGH
+  - STANDARD
+  - BASIC
+  - ANY_CLASS
+ServiceConstraint:
+  type: object
+  additionalProperties: false
+  description: |
+    Either excluded or included service brands can be set.
+  properties:
+    restrictedToServiceBrands:
+      type: array
+      items:
+        $ref: '#/ServiceBrandCode'
+    excludedServiceBrands:
+      type: array
+      items:
+        $ref: '#/ServiceBrandCode'
+    description:
+      $ref: '#/Text'
+ServiceDegradation:
+  type: string
+  description: |
+    enumeration of service degradations
+  x-extensible-enum:
+  - RESERVED_PLACES_MISSING
+  - BOOKED_ACCOMMODATION_TYPE_MISSING
+  - BOOKED_CLASS_MISSING
+  - BOOKED_MEAL_MISSING
+ServiceIcon:
+  type: object
+  additionalProperties: false
+  description: |
+    An icon representing a service.
+  required:
+  - rectangle
+  - code
+  properties:
+    rectangle:
+      $ref: ./place.yml#/RectangleGeometry
+    code:
+      $ref: '#/ServiceIconCode'
+ServiceIconCode:
+  type: string
+  description: |
+    See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
+  nullable: false
+  example: TOILET_ICON
+ServiceStatus:
+  type: object
+  additionalProperties: false
+  description: |
+    Parameters which describe the current status of a dated vehicle journey.
+    Provided by OJP.
+  properties:
+    unplanned:
+      description: |
+        Whether this trip is an additional one that has not been planned.
+      type: boolean
+      nullable: true
+      default: false
+    cancelled:
+      description: |
+        Whether this trip is cancelled and will not be run.
+      type: boolean
+      nullable: true
+      default: false
+    deviation:
+      description: |
+        Whether this trip deviates from the planned service pattern.
+      type: boolean
+      nullable: true
+      default: false
+    occupancy:
+      description: |
+        Passenger load status on vehicle. If omitted, not known.
+        Equivalent to siri:OccupancyEnumeration which describes three values:
+        'full', 'seatingAvailable' and 'standingAvailable'.
+      type: string
+      nullable: true
+ServiceTime:
+  type: object
+  additionalProperties: false
+  description: |
+    The time needs to be in Offset Time Format, i.e.  2023-12-03T10:15:30+01:00 as it is important the time zones are important  to show in the timetable.
+
+    Do not use the Coordinated Universal Time (UTC) format, i.e. 2023-12-03T10:15:30Z.
+  required:
+  - timetabledTime
+  properties:
+    timetabledTime:
+      type: string
+      format: date-time
+      nullable: false
+    estimatedTime:
+      type: string
+      format: date-time
+      nullable: true
+    observedTime:
+      type: string
+      format: date-time
+      nullable: true
+SituationFullRef:
+  type: string
+  description: |
+    Reference to situation message. Message details might be found in response
+    context or through other communication channels. Provided by OJP.
+  nullable: true
+SupportingDocument:
+  type: object
+  additionalProperties: false
+  description: |
+    The supporting document helps to supporting the claim.  Either downloadLink + downloadExpiry or content must be provided.
+  required:
+  - title
+  - downloadExpiry
+  - format
+  properties:
+    title:
+      description: |
+        title of the document
+      type: string
+      nullable: false
+      example: delay confirmation written by staff on board
+    downloadLink:
+      type: string
+      nullable: true
+    downloadExpiry:
+      type: string
+      format: date-time
+      nullable: false
+    content:
+      description: |
+        base64 encoded binary of the actual document. The length restriction of 4 MBytes applies to the encoded
+        string, so the raw document cannot exceed 3 MBytes in size.
+      type: string
+      format: byte
+      maxLength: 4194304
+      nullable: true
+    format:
+      $ref: ./fulfillment.yml#/DocumentFormat
+      nullable: false
+Symbology:
+  type: string
+  description: |
+    Symbology to use when rendering the binary data.
+  enum:
+  - AZTEC
+  - Code128A
+  - Code128B
+  - Code128C
+  - QR
+  - TEXT
+Text:
+  type: object
+  additionalProperties: false
+  description: |
+    Directly included text in case of online services. Text must be encoded in UTF-8 format.
+  required:
+  - id
+  - text
+  properties:
+    id:
+      type: string
+      nullable: false
+    translations:
+      type: array
+      items:
+        $ref: '#/Translation'
+    text:
+      type: string
+      maxLength: 32768
+      nullable: false
+    shortText:
+      type: string
+      nullable: true
+TextElement:
+  type: object
+  additionalProperties: false
+  description: |
+    Additional texts which should be displayed to the customer to further describe the product being offered.
+  required:
+  - description
+  - shortDescription
+  - textElementType
+  properties:
+    description:
+      description: |
+        Full version of the text for display when sufficient space is available.
+      type: string
+      minLength: 1
+      maxLength: 32768
+      nullable: false
+    descriptionTranslations:
+      description: Translations of description and shortDescription attributes
+      type: array
+      items:
+        $ref: '#/Translation'
+    shortDescription:
+      description: |
+        Brief version of the text for display in space restricted environments, e.g. mobile phone. No longer than 64 characters.
+      type: string
+      minLength: 1
+      nullable: false
+    textElementType:
+      $ref: '#/TextElementType'
+TextElementType:
+  description: |
+    Type of descriptive text.
+    Valid Values:
+    - INFORMATION: pure informational text (product/fulfillment).
+    - MANDATORY: must be displayed to the customer prior to purchase (product).
+    - MANDATORY_WITH_CONFIRMATION: must be confirmed, e.g. by checking a checkbox, prior to purchase (product).
+    - TICKET_VALIDITY: any text on the ticket regarding it's validity (other than information which can be retrieved from the booking)
+  type: string
+  enum:
+  - INFORMATION
+  - MANDATORY
+  - MANDATORY_WITH_CONFIRMATION
+  - TICKET_VALIDITY
+TimeUnit:
+  description: |
+    Values from the [Time Unit Code List](https://osdm.io/spec/catalog-of-code-lists/#TimeUnit)
+  type: string
+  enum:
+  - DAYS
+  - HOURS
+  - MINUTES
+Tip:
+  type: object
+  additionalProperties: false
+  description: |
+    Tips for staff can be included e.g. for taxi drivers. The tip is part of the payment in a post payment scenario.
+  required:
+  - id
+  - price
+  properties:
+    id:
+      type: string
+      maxLength: 1024
+    summary:
+      description: |
+        A human-readable description of the tip.
+      type: string
+    bookingPartRef:
+      $ref: ./booking.yml#/BookingPartReference
+    price:
+      $ref: '#/Price'
+    distributorBookingRef:
+      description: |
+        reference to the booking in the downstream distributor system
+      type: string
+      nullable: true
+    accountingRef:
+      $ref: '#/AccountingRef'
+TransactionContextType:
+  type: string
+  x-extensible-enum:
+  - SALES
+  - AFTER_SALES
+TransferMode:
+  description: |
+    Modes dedicated to perform transfers. Provided by OJP.
+  type: string
+  x-extensible-enum:
+  - WALK
+  - PARK_AND_RIDE
+  - BIKE_AND_RIDE
+  - CAR_HIRE
+  - BIKE_HIRE
+  - PROTECTED_CONNECTION
+  - GUARANTEED_CONNECTION
+  - REMAIN_IN_VEHICLE
+  - CHANGE_WITHIN_VEHICLE
+  - CHECK_IN
+  - CHECK_OUT
+Translation:
+  type: object
+  additionalProperties: false
+  required:
+  - language
+  - text
+  properties:
+    language:
+      description: |
+        ISO-639-1 language code
+      type: string
+      nullable: false
+    text:
+      type: string
+      nullable: false
+    shortText:
+      type: string
+      nullable: true
+TravelClass:
+  description: |
+    Traditional first and second class.
+  type: string
+  x-extensible-enum:
+  - FIRST
+  - SECOND
+  - ANY_CLASS
+TravelDirectionType:
+  description: "Indicated travel direction of a coach. Standard direction is left to right with ascending coordinates in the\
+    \ layout values. To get the direction of travel for a place the direction information of the coach needs to be combined\
+    \ with the direction of the seat in the coach layout.\nValues from the [Travel Direction Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelDirection)\n\
+    Listed values here are examples.\n<br><br>\nKnown Values:\n- UNSPECIFIED\n- IN_DIRECTION\n- OPPOSITE_DIRECTION\n- CHANGING\n\
+    - @Deprecated STARING_IN_DIRECTION: \n    <br><br>\n    Deprecated: Substituted by STARTING_IN_DIRECTION (since: 3.5.0,\
+    \ removed with: 4.0.0)\n- STARTING_IN_DIRECTION\n- STARTING_OPPOSITE_TO_DIRECTION\n"
+  type: string
+  x-extensible-enum:
+  - UNSPECIFIED
+  - IN_DIRECTION
+  - OPPOSITE_DIRECTION
+  - CHANGING
+  - STARTING_IN_DIRECTION
+  - STARTING_OPPOSITE_TO_DIRECTION
+TripSection:
+  type: object
+  additionalProperties: false
+  description: |
+    Part of a trip.
+  required:
+  - tripId
+  properties:
+    tripId:
+      type: string
+      maxLength: 32768
+      nullable: false
+    coveredSection:
+      $ref: ./trip.yml#/Section
+ValidityRange:
+  type: object
+  additionalProperties: false
+  required:
+  - timeUnit
+  - value
+  properties:
+    timeUnit:
+      $ref: '#/TimeUnit'
+    value:
+      type: integer
+      format: int32
+      nullable: false
+    hoursAfterMidnight:
+      description: |
+        validity extended after midnight
+      type: integer
+      format: int32
+      nullable: true
+ValidityType:
+  description: "Type of usage, either as single trip or multiple trips. Unrestricted fares might be combined into single trips\
+    \ if appropriate. Values from the [Travel Validity Type Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelValidityType)\
+    \ \nValues from the [Tavel Validity Type Code List](https://osdm.io/spec/catalog-of-code-lists/#TravelValidityType)\n\
+    Listed values here are examples.\n"
+  type: string
+  x-extensible-enum:
+  - SINGLE_TRIP
+  - MULTIPLE_TRIPS
+  - UNRESTRICTED
+VAT:
+  description: |
+    The VAT structure details a VAT amount (in case of international travel, there may be multiple VAT structures).
+    The netAmount is the amount before adding the VAT; the grossAmount is the amount including VAT, where
+    the amount is the actual VAT being described here. So the equation netAmount + amount = grossAmount holds.
+    Furthermore, the equation netAmount * percentage = amount also holds, but is susceptible to possible rounding
+    errors.
+    All the grossAmounts of the VAT structures should add up to the overall amount of the enclosing price structure.
+    The currency is inherited from the currency of the associated price.
+  type: object
+  additionalProperties: false
+  required:
+  - countryCode
+  - amount
+  properties:
+    countryCode:
+      $ref: '#/CountryCode'
+    amount:
+      description: |
+        VAT amount in cents
+      type: integer
+      format: int32
+      nullable: false
+      example: 5
+    scale:
+      description: |
+        scale of the amount - the number of positions after the comma
+      type: integer
+      format: int32
+      nullable: true
+      default: 2
+    netAmount:
+      description: |
+        amount before adding VAT
+      type: integer
+      format: int32
+      nullable: false
+      example: 5
+    netAmountScale:
+      description: |
+        scale of the netAmount - the number of positions after the comma
+      type: integer
+      format: int32
+      nullable: true
+      default: 2
+    grossAmount:
+      description: |
+        total amount after adding VAT in cents
+      type: integer
+      format: int32
+      nullable: false
+      example: 5
+    grossAmountScale:
+      description: |
+        scale of the grossAmount - the number of positions after the comma
+      type: integer
+      format: int32
+      nullable: true
+      default: 2
+    percentage:
+      type: number
+      format: float
+      nullable: true
+    taxId:
+      type: string
+      nullable: true
+    vatOnInvoice:
+      type: boolean
+      nullable: true
+      default: false
+    taxIdOnInvoice:
+      type: boolean
+      nullable: true
+      default: false
+    scope:
+      $ref: '#/VatScope'
+VatScope:
+  description: |
+    scope where the VAT applies.
+    Values from the [Tax Scope Code List](https://osdm.io/spec/catalog-of-code-lists/#VatScope)
+    Listed values here are examples.
+  type: string
+  x-extensible-enum:
+  - INTERNATIONAL
+  - NATIONAL
+  - SHORT_DISTANCE
+  - LONG_DISTANCE
+  - NOT_REGISTERED
+VoucherInformation:
+  type: object
+  additionalProperties: false
+  required:
+  - issuer
+  - code
+  properties:
+    issuer:
+      $ref: '#/CompanyRef'
+    code:
+      description: |
+        voucher code provided by the issuer
+      type: string
+      nullable: false
+Warning:
+  type: object
+  additionalProperties: false
+  deprecated: true
+  description: |
+    This element can be used to pass non-blocking information or events,
+    such as a price difference with the initially offered price at booking time.
+    It is inspired on the JSon problem structure.
+
+    This structure has been deprecated and is replaced by the Problem structure.
+  required:
+  - code
+  properties:
+    code:
+      type: string
+      nullable: false
+    type:
+      description: |
+        An absolute URI that identifies the warning type. When dereferenced,
+        it SHOULD provide human-readable documentation for the problem type
+        (e.g., using HTML).
+      type: string
+      format: uri
+      nullable: true
+      default: about:blank
+      example: https://example.com/warns/price-updated
+    detail:
+      description: |
+        A human readable explanation specific to this occurrence of the
+        warning.
+      type: string
+      nullable: true
+      example: The price of the given offer part has been updated during the booking operation
+    instance:
+      description: |
+        An absolute URI that identifies the specific occurrence of the warning.
+      type: string
+      format: uri
+      nullable: true
+      example: offers/offer1234
+WarningCollection:
+  type: object
+  additionalProperties: false
+  deprecated: true
+  description: |
+    List of warnings. This structure has been deprecated and replaced by the problems array.
+  required:
+  - warnings
+  properties:
+    warnings:
+      type: array
+      items:
+        $ref: '#/Warning'
+      minItems: 1

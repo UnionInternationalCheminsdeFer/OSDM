@@ -23,5 +23,8 @@ jobs:
       - name: Install redocly cli
         run: npm i -g @redocly/cli@latest
 
+      - name: Bundle modular v3.9 spec
+        run: redocly bundle specification/v3.9/OSDM-online-api.yml --output specification/v3.9/OSDM-online-api-v3.9.0.bundled.yml
+
       - name: Validate OpenAPI documents
         run: redocly lint --format=github-actions specification/**/*.yml
