@@ -344,7 +344,7 @@ ExchangeOfferCollectionRequest:
         maxLength: 32768
       nullable: true
     tripSearchCriteria:
-      $ref: ./trip.yml#/TripSearchCriteria
+      $ref: ./ojp/trip.yml#/TripSearchCriteria
     nonTripSearchCriteria:
       $ref: ./trip.yml#/NonTripSearchCriteria
     requestedSections:
@@ -398,7 +398,7 @@ ExchangeOfferCollectionResponse:
         Two trips are returned if  round trips are exchanged.
       type: array
       items:
-        $ref: ./trip.yml#/Trip
+        $ref: ./ojp/trip.yml#/Trip
     passengers:
       type: array
       items:
@@ -446,7 +446,7 @@ ExchangeOperation:
     trips:
       type: array
       items:
-        $ref: ./trip.yml#/Trip
+        $ref: ./ojp/trip.yml#/Trip
 ExchangeOperationPatchRequest:
   type: object
   additionalProperties: false

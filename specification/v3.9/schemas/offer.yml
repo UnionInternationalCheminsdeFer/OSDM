@@ -521,7 +521,7 @@ OfferCollectionRequest:
       items:
         $ref: ./trip.yml#/TripSpecification
     tripSearchCriteria:
-      $ref: ./trip.yml#/TripSearchCriteria
+      $ref: ./ojp/trip.yml#/TripSearchCriteria
     tripResponseParameters:
       $ref: ./trip.yml#/TripResponseParameters
     nonTripSearchCriteria:
@@ -577,7 +577,7 @@ OfferCollectionResponse:
     trips:
       type: array
       items:
-        $ref: ./trip.yml#/Trip
+        $ref: ./ojp/trip.yml#/Trip
     _links:
       $ref: ./_common.yml#/Links
 OfferCollectionResponseContent:
@@ -663,7 +663,7 @@ OfferOverviewTripRequest:
         nullable: false
       nullable: true
     tripSearchCriteria:
-      $ref: ./trip.yml#/TripSearchCriteria
+      $ref: ./ojp/trip.yml#/TripSearchCriteria
     tripResponseParameters:
       $ref: ./trip.yml#/TripResponseParameters
     passengerSpecifications:
@@ -685,7 +685,7 @@ OfferOverviewTripResponse:
     trips:
       type: array
       items:
-        $ref: ./trip.yml#/Trip
+        $ref: ./ojp/trip.yml#/Trip
     offerOverviews:
       type: array
       items:

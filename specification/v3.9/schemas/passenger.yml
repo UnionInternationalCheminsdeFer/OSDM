@@ -590,7 +590,7 @@ ReductionGranted:
       description: transport modes where the reduction is granted, any mode of the carrier in case the list is not provided.
       type: array
       items:
-        $ref: ./_common.yml#/Mode
+        $ref: ./ojp/_common.yml#/Mode
     serviceBands:
       description: ServiceBrands where the reduction is granted, any service brand of the carrier in case the list is not
         provided.

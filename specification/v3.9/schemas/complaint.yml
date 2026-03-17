@@ -34,9 +34,9 @@ ClaimedLeg:
       items:
         $ref: ./_common.yml#/ServiceDegradation
     departureStation:
-      $ref: ./place.yml#/Place
+      $ref: ./ojp/place.yml#/Place
     arrivalStation:
-      $ref: ./place.yml#/Place
+      $ref: ./ojp/place.yml#/Place
     plannedDepartureTime:
       type: string
       format: date-time
@@ -106,7 +106,7 @@ ComplaintDecision:
         Allocator or fare provider view on the delays. This might differ from the customer view.
       type: array
       items:
-        $ref: ./trip.yml#/Trip
+        $ref: ./ojp/trip.yml#/Trip
 ComplaintPatchRequest:
   type: object
   additionalProperties: false

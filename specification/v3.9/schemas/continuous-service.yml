@@ -1,54 +1,9 @@
-ContinuousMode:
-  description: |
-    Types of modes that run at any time without a timetable. Provided by OJP.
-  type: string
-  x-extensible-enum:
-  - WALK
-  - DEMAND_RESPONSIVE
-  - REPLACEMENT_SERVICE
-ContinuousService:
-  type: object
-  additionalProperties: false
-  description: |
-    A vehicle movement on a continuous, non-timetabled service.
-    Service of this leg. May be 'walk' in most cases, but also cycling or taxi etc.
-    Provided by OJP.
-  required:
-  - operatingDayRef
-  - journeyRef
-  - mode
-  - publishedServiceName
-  - originText
-  - destinationText
-  properties:
-    continuousMode:
-      $ref: '#/ContinuousMode'
-    individualMode:
-      $ref: ./_common.yml#/IndividualMode
-    operatingDayRef:
-      $ref: ./trip.yml#/OperationDayRef
-    journeyRef:
-      $ref: ./trip.yml#/JourneyRef
-    mode:
-      type: string
-      nullable: false
-      example: Ask Stefan
-    publishedServiceName:
-      type: string
-      nullable: false
-      example: Circle Line
-    originText:
-      type: string
-      nullable: false
-    destinationText:
-      type: string
-      nullable: false
 ContinuousServiceAvailabilityScope:
   description: search parameter so get available pick-up places for continuous on-demand services.
   type: object
   properties:
     geoLocation:
-      $ref: ./_common.yml#/GeoPosition
+      $ref: ./ojp/_common.yml#/GeoPosition
     vehicleType:
       $ref: '#/ContinuousServiceVehicleType'
 ContinuousServicePickUpPlace:
@@ -78,7 +33,7 @@ ContinuousServicePickUpPlace:
       maxLength: 32768
       example: Scooter to be unlocked by SMS code
     geoPosition:
-      $ref: ./_common.yml#/GeoPosition
+      $ref: ./ojp/_common.yml#/GeoPosition
     availableVehicles:
       type: array
       items:
@@ -150,7 +105,7 @@ ContinuousServiceUsage:
     status:
       $ref: '#/ContinuousServiceUsageStatus'
     geoPosition:
-      $ref: ./_common.yml#/GeoPosition
+      $ref: ./ojp/_common.yml#/GeoPosition
     startUsageDescription:
       description: start usage procedure description
       type: string
@@ -253,3 +208,4 @@ ContinuousServiceVehicleType:
   - SCOOTER
   - TAXI
   - SELF_DRIVING_CAR
+

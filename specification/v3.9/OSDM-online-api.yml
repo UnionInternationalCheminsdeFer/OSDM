@@ -330,9 +330,9 @@ components:
     AdditionalOfferCollectionResponse:
       $ref: ./schemas/offer.yml#/AdditionalOfferCollectionResponse
     Address:
-      $ref: ./schemas/_common.yml#/Address
+      $ref: ./schemas/ojp/_common.yml#/Address
     AddressRef:
-      $ref: ./schemas/_common.yml#/AddressRef
+      $ref: ./schemas/ojp/_common.yml#/AddressRef
     Admission:
       $ref: ./schemas/offer.yml#/Admission
     AdmissionOfferPart:
@@ -346,7 +346,7 @@ components:
     AfterSalesOverrideDetails:
       $ref: ./schemas/aftersales.yml#/AfterSalesOverrideDetails
     Alight:
-      $ref: ./schemas/trip.yml#/Alight
+      $ref: ./schemas/ojp/trip.yml#/Alight
     AlightSpecification:
       $ref: ./schemas/trip.yml#/AlightSpecification
     Ancillary:
@@ -390,9 +390,9 @@ components:
     BarCodeType:
       $ref: ./schemas/_common.yml#/BarCodeType
     BaseTripPolicyFilter:
-      $ref: ./schemas/trip.yml#/BaseTripPolicyFilter
+      $ref: ./schemas/ojp/trip.yml#/BaseTripPolicyFilter
     Board:
-      $ref: ./schemas/trip.yml#/Board
+      $ref: ./schemas/ojp/trip.yml#/Board
     BoardSpecification:
       $ref: ./schemas/trip.yml#/BoardSpecification
     BookedOffer:
@@ -484,7 +484,7 @@ components:
     CarrierConstraint:
       $ref: ./schemas/product.yml#/CarrierConstraint
     CarrierFilter:
-      $ref: ./schemas/_common.yml#/CarrierFilter
+      $ref: ./schemas/ojp/_common.yml#/CarrierFilter
     CarSpecification:
       $ref: ./schemas/transport.yml#/CarSpecification
     ClaimedJourneyDetails:
@@ -552,11 +552,11 @@ components:
     ContextType:
       $ref: ./schemas/_common.yml#/ContextType
     ContinuousLeg:
-      $ref: ./schemas/trip.yml#/ContinuousLeg
+      $ref: ./schemas/ojp/trip.yml#/ContinuousLeg
     ContinuousMode:
-      $ref: ./schemas/continuous-service.yml#/ContinuousMode
+      $ref: ./schemas/ojp/continuous-service.yml#/ContinuousMode
     ContinuousService:
-      $ref: ./schemas/continuous-service.yml#/ContinuousService
+      $ref: ./schemas/ojp/continuous-service.yml#/ContinuousService
     ContinuousServiceAvailabilityScope:
       $ref: ./schemas/continuous-service.yml#/ContinuousServiceAvailabilityScope
     ContinuousServiceBookingPart:
@@ -596,7 +596,7 @@ components:
     CustomerComplaint:
       $ref: ./schemas/complaint.yml#/CustomerComplaint
     DatedJourney:
-      $ref: ./schemas/trip.yml#/DatedJourney
+      $ref: ./schemas/ojp/trip.yml#/DatedJourney
     DateRange:
       $ref: ./schemas/_common.yml#/DateRange
     DayTravelAccountUnit:
@@ -722,9 +722,9 @@ components:
     GeneralAttribute:
       $ref: ./schemas/_common.yml#/GeneralAttribute
     GeoPosition:
-      $ref: ./schemas/_common.yml#/GeoPosition
+      $ref: ./schemas/ojp/_common.yml#/GeoPosition
     GeoPositionRef:
-      $ref: ./schemas/_common.yml#/GeoPositionRef
+      $ref: ./schemas/ojp/_common.yml#/GeoPositionRef
     GrantedReductionAmount:
       $ref: ./schemas/passenger.yml#/GrantedReductionAmount
     GrantedReductionAmounts:
@@ -746,15 +746,15 @@ components:
     IndicatedConsumption:
       $ref: ./schemas/travel-account.yml#/IndicatedConsumption
     IndividualMode:
-      $ref: ./schemas/_common.yml#/IndividualMode
+      $ref: ./schemas/ojp/_common.yml#/IndividualMode
     InitialPlaceInput:
-      $ref: ./schemas/place.yml#/InitialPlaceInput
+      $ref: ./schemas/ojp/place.yml#/InitialPlaceInput
     Intermediate:
-      $ref: ./schemas/trip.yml#/Intermediate
+      $ref: ./schemas/ojp/trip.yml#/Intermediate
     IntermediateSpecification:
       $ref: ./schemas/trip.yml#/IntermediateSpecification
     JourneyRef:
-      $ref: ./schemas/trip.yml#/JourneyRef
+      $ref: ./schemas/ojp/trip.yml#/JourneyRef
     Latitude:
       $ref: ./schemas/_common.yml#/Latitude
     LayoutCoordinates:
@@ -786,9 +786,9 @@ components:
     LuggageRestrictionRuleEnum:
       $ref: ./schemas/product.yml#/LuggageRestrictionRuleEnum
     Mode:
-      $ref: ./schemas/_common.yml#/Mode
+      $ref: ./schemas/ojp/_common.yml#/Mode
     ModeFilter:
-      $ref: ./schemas/_common.yml#/ModeFilter
+      $ref: ./schemas/ojp/_common.yml#/ModeFilter
     MoneyTravelAccountUnit:
       $ref: ./schemas/travel-account.yml#/MoneyTravelAccountUnit
     MotorCycle:
@@ -808,7 +808,7 @@ components:
     NonTripSearchCriteria:
       $ref: ./schemas/trip.yml#/NonTripSearchCriteria
     NotVia:
-      $ref: ./schemas/trip.yml#/NotVia
+      $ref: ./schemas/ojp/trip.yml#/NotVia
     Offer:
       $ref: ./schemas/offer.yml#/Offer
     OfferCollectionRequest:
@@ -852,13 +852,13 @@ components:
     OnHoldOfferResponse:
       $ref: ./schemas/offer.yml#/OnHoldOfferResponse
     OperatingDays:
-      $ref: ./schemas/trip.yml#/OperatingDays
+      $ref: ./schemas/ojp/trip.yml#/OperatingDays
     OperationDayRef:
-      $ref: ./schemas/trip.yml#/OperationDayRef
+      $ref: ./schemas/ojp/trip.yml#/OperationDayRef
     Orientation:
       $ref: ./schemas/place.yml#/Orientation
     OsmTag:
-      $ref: ./schemas/_common.yml#/OsmTag
+      $ref: ./schemas/ojp/_common.yml#/OsmTag
     OverruleCode:
       $ref: ./schemas/_common.yml#/OverruleCode
     PartReference:
@@ -888,7 +888,7 @@ components:
     PersonDetail:
       $ref: ./schemas/_common.yml#/PersonDetail
     Place:
-      $ref: ./schemas/place.yml#/Place
+      $ref: ./schemas/ojp/place.yml#/Place
     PlaceAllocation:
       $ref: ./schemas/place.yml#/PlaceAllocation
     PlaceAvailability:
@@ -906,7 +906,7 @@ components:
     PlaceLayout:
       $ref: ./schemas/place.yml#/PlaceLayout
     PlaceParam:
-      $ref: ./schemas/place.yml#/PlaceParam
+      $ref: ./schemas/ojp/place.yml#/PlaceParam
     PlacePosition:
       $ref: ./schemas/place.yml#/PlacePosition
     PlacePreferenceGroup:
@@ -916,9 +916,9 @@ components:
     PlaceProperty:
       $ref: ./schemas/place.yml#/PlaceProperty
     PlaceRef:
-      $ref: ./schemas/place.yml#/PlaceRef
+      $ref: ./schemas/ojp/place.yml#/PlaceRef
     PlaceRequest:
-      $ref: ./schemas/place.yml#/PlaceRequest
+      $ref: ./schemas/ojp/place.yml#/PlaceRequest
     PlaceResponse:
       $ref: ./schemas/place.yml#/PlaceResponse
     PlaceRestriction:
@@ -928,17 +928,17 @@ components:
     PlaceSelectionFlow:
       $ref: ./schemas/place.yml#/PlaceSelectionFlow
     PlaceType:
-      $ref: ./schemas/place.yml#/PlaceType
+      $ref: ./schemas/ojp/place.yml#/PlaceType
     PlaceUsage:
-      $ref: ./schemas/place.yml#/PlaceUsage
+      $ref: ./schemas/ojp/place.yml#/PlaceUsage
     PointOfInterest:
-      $ref: ./schemas/place.yml#/PointOfInterest
+      $ref: ./schemas/ojp/place.yml#/PointOfInterest
     PointOfInterestCategory:
-      $ref: ./schemas/place.yml#/PointOfInterestCategory
+      $ref: ./schemas/ojp/place.yml#/PointOfInterestCategory
     PointOfInterestFilter:
-      $ref: ./schemas/place.yml#/PointOfInterestFilter
+      $ref: ./schemas/ojp/place.yml#/PointOfInterestFilter
     PointOfInterestRef:
-      $ref: ./schemas/place.yml#/PointOfInterestRef
+      $ref: ./schemas/ojp/place.yml#/PointOfInterestRef
     Polygon:
       $ref: ./schemas/_common.yml#/Polygon
     PostalAddress:
@@ -954,9 +954,9 @@ components:
     Product:
       $ref: ./schemas/product.yml#/Product
     ProductCategory:
-      $ref: ./schemas/product.yml#/ProductCategory
+      $ref: ./schemas/ojp/product.yml#/ProductCategory
     ProductCategoryRef:
-      $ref: ./schemas/product.yml#/ProductCategoryRef
+      $ref: ./schemas/ojp/product.yml#/ProductCategoryRef
     ProductCollectionResponse:
       $ref: ./schemas/product.yml#/ProductCollectionResponse
     ProductLegAssociation:
@@ -1116,7 +1116,7 @@ components:
     ServiceBrandCode:
       $ref: ./schemas/_common.yml#/ServiceBrandCode
     ServiceBrandFilter:
-      $ref: ./schemas/_common.yml#/ServiceBrandFilter
+      $ref: ./schemas/ojp/_common.yml#/ServiceBrandFilter
     ServiceClass:
       $ref: ./schemas/_common.yml#/ServiceClass
     ServiceClassType:
@@ -1130,13 +1130,13 @@ components:
     ServiceIconCode:
       $ref: ./schemas/_common.yml#/ServiceIconCode
     ServiceStatus:
-      $ref: ./schemas/_common.yml#/ServiceStatus
+      $ref: ./schemas/ojp/_common.yml#/ServiceStatus
     ServiceTime:
       $ref: ./schemas/_common.yml#/ServiceTime
     SiSType:
       $ref: ./schemas/fulfillment.yml#/SiSType
     SituationFullRef:
-      $ref: ./schemas/_common.yml#/SituationFullRef
+      $ref: ./schemas/ojp/_common.yml#/SituationFullRef
     SpecialCoachType:
       $ref: ./schemas/place.yml#/SpecialCoachType
     SpecificPlaceAvailability:
@@ -1146,11 +1146,11 @@ components:
     StopBehavior:
       $ref: ./schemas/trip.yml#/StopBehavior
     StopCallStatus:
-      $ref: ./schemas/trip.yml#/StopCallStatus
+      $ref: ./schemas/ojp/trip.yml#/StopCallStatus
     StopPlace:
-      $ref: ./schemas/trip.yml#/StopPlace
+      $ref: ./schemas/ojp/trip.yml#/StopPlace
     StopPlaceRef:
-      $ref: ./schemas/trip.yml#/StopPlaceRef
+      $ref: ./schemas/ojp/trip.yml#/StopPlaceRef
     SupportingDocument:
       $ref: ./schemas/_common.yml#/SupportingDocument
     Symbology:
@@ -1164,7 +1164,7 @@ components:
     ThroughTicketTag:
       $ref: ./schemas/offer.yml#/ThroughTicketTag
     TimedLeg:
-      $ref: ./schemas/trip.yml#/TimedLeg
+      $ref: ./schemas/ojp/trip.yml#/TimedLeg
     TimedLegSpecification:
       $ref: ./schemas/trip.yml#/TimedLegSpecification
     TimeFrameSegmentation:
@@ -1182,9 +1182,9 @@ components:
     TransactionContextType:
       $ref: ./schemas/_common.yml#/TransactionContextType
     TransferLeg:
-      $ref: ./schemas/trip.yml#/TransferLeg
+      $ref: ./schemas/ojp/trip.yml#/TransferLeg
     TransferMode:
-      $ref: ./schemas/_common.yml#/TransferMode
+      $ref: ./schemas/ojp/_common.yml#/TransferMode
     Translation:
       $ref: ./schemas/_common.yml#/Translation
     Transportable:
@@ -1212,7 +1212,7 @@ components:
     TravelValidityRange:
       $ref: ./schemas/product.yml#/TravelValidityRange
     Trip:
-      $ref: ./schemas/trip.yml#/Trip
+      $ref: ./schemas/ojp/trip.yml#/Trip
     TripAllocationConstraint:
       $ref: ./schemas/trip.yml#/TripAllocationConstraint
     TripAllocationProcess:
@@ -1220,13 +1220,13 @@ components:
     TripAllocationUnit:
       $ref: ./schemas/trip.yml#/TripAllocationUnit
     TripChangeCriteria:
-      $ref: ./schemas/trip.yml#/TripChangeCriteria
+      $ref: ./schemas/ojp/trip.yml#/TripChangeCriteria
     TripCollectionResponse:
-      $ref: ./schemas/trip.yml#/TripCollectionResponse
+      $ref: ./schemas/ojp/trip.yml#/TripCollectionResponse
     TripCoverage:
       $ref: ./schemas/trip.yml#/TripCoverage
     TripDataFilter:
-      $ref: ./schemas/trip.yml#/TripDataFilter
+      $ref: ./schemas/ojp/trip.yml#/TripDataFilter
     TripDirectionType:
       $ref: ./schemas/trip.yml#/TripDirectionType
     TripInterruptionConstraint:
@@ -1234,15 +1234,15 @@ components:
     TripInterruptionProcess:
       $ref: ./schemas/trip.yml#/TripInterruptionProcess
     TripLeg:
-      $ref: ./schemas/trip.yml#/TripLeg
+      $ref: ./schemas/ojp/trip.yml#/TripLeg
     TripLegCoverage:
       $ref: ./schemas/trip.yml#/TripLegCoverage
     TripLegSpecification:
       $ref: ./schemas/trip.yml#/TripLegSpecification
     TripMobilityFilter:
-      $ref: ./schemas/trip.yml#/TripMobilityFilter
+      $ref: ./schemas/ojp/trip.yml#/TripMobilityFilter
     TripParameters:
-      $ref: ./schemas/trip.yml#/TripParameters
+      $ref: ./schemas/ojp/trip.yml#/TripParameters
     TripResponse:
       $ref: ./schemas/trip.yml#/TripResponse
     TripResponseContent:
@@ -1254,21 +1254,21 @@ components:
     TripsCollectionResponseContent:
       $ref: ./schemas/trip.yml#/TripsCollectionResponseContent
     TripSearchCriteria:
-      $ref: ./schemas/trip.yml#/TripSearchCriteria
+      $ref: ./schemas/ojp/trip.yml#/TripSearchCriteria
     TripSection:
       $ref: ./schemas/_common.yml#/TripSection
     TripSpecification:
       $ref: ./schemas/trip.yml#/TripSpecification
     TripSpecificationSummary:
-      $ref: ./schemas/trip.yml#/TripSpecificationSummary
+      $ref: ./schemas/ojp/trip.yml#/TripSpecificationSummary
     TripStatus:
       $ref: ./schemas/trip.yml#/TripStatus
     TripSummary:
-      $ref: ./schemas/trip.yml#/TripSummary
+      $ref: ./schemas/ojp/trip.yml#/TripSummary
     TripTravelAccountUnit:
       $ref: ./schemas/trip.yml#/TripTravelAccountUnit
     TripVia:
-      $ref: ./schemas/trip.yml#/TripVia
+      $ref: ./schemas/ojp/trip.yml#/TripVia
     ValidityRange:
       $ref: ./schemas/_common.yml#/ValidityRange
     ValidityType:

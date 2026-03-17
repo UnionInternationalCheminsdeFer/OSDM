@@ -689,22 +689,6 @@ GridPosition:
       type: integer
       format: int32
       nullable: false
-InitialPlaceInput:
-  type: object
-  additionalProperties: false
-  description: |
-    Initial input for the place information request. This input defines what is originally looked for.
-    Provided by OJP.
-  properties:
-    name:
-      description: |
-        Name of the place object which is looked after. This is usually the user's input. If not given,
-        the name of the resulting place objects is not relevant.
-      type: string
-      nullable: true
-      example: Bern Bärengraben
-    geoPosition:
-      $ref: ./_common.yml#/GeoPosition
 LayoutCoordinates:
   type: object
   additionalProperties: false
@@ -743,49 +727,6 @@ Orientation:
   default: 0
   nullable: false
   example: 90
-Place:
-  type: object
-  additionalProperties: false
-  description: |
-    A geographic place of any type which may be specified as the origin or destination of a trip. Provided by OJP.
-  discriminator:
-    propertyName: objectType
-  required:
-  - objectType
-  - id
-  properties:
-    objectType:
-      description: Attribute is used as discriminator for inheritance between data types.
-      type: string
-    id:
-      description: |
-        id  defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn '0850000'
-      type: string
-      nullable: false
-      example: urn:uic:stn:8500000
-    alternativeIds:
-      description: "For a place with ids in different reference systems, the alternative ids can be returned. \nThe reference\
-        \ system is encoded in the string. E.g.: 'urn:uic:std:80000', 'x_swe:stn:10000', 'ch:1:sloid:343434'\n"
-      type: array
-      items:
-        type: string
-      nullable: true
-    geoPosition:
-      $ref: ./_common.yml#/GeoPosition
-    modes:
-      description: |
-        List of Transport modes calling the place.
-
-        This field is added in later OJP 2.0, used here as propertary for forward compatibility.
-      type: array
-      items:
-        $ref: ./_common.yml#/Mode
-    ref:
-      description: |
-        Reference to another a place, e.g. to link address information. Provided by OJP.
-      $ref: '#/PlaceRef'
-    _links:
-      $ref: ./_common.yml#/Links
 PlaceAllocation:
   type: object
   additionalProperties: false
@@ -937,32 +878,6 @@ PlaceLayout:
       type: array
       items:
         $ref: '#/PlaceProperty'
-PlaceParam:
-  type: object
-  additionalProperties: false
-  description: |
-    More parameters for restricting the request. Provided by OJP.
-  properties:
-    type:
-      $ref: '#/PlaceType'
-    usage:
-      $ref: '#/PlaceUsage'
-    ptModes:
-      $ref: ./_common.yml#/ModeFilter
-    serviceBrandFilter:
-      $ref: ./_common.yml#/ServiceBrandFilter
-    carrierFilter:
-      $ref: ./_common.yml#/CarrierFilter
-    pointOfInterestFilter:
-      $ref: '#/PointOfInterestFilter'
-    numberOfResults:
-      description: |
-        Maximum number of results to be returned. The service is allowed to return fewer objects if reasonable
-        or otherwise appropriate.
-      type: integer
-      format: int32
-      minimum: 1
-      nullable: true
 PlacePosition:
   type: object
   additionalProperties: false
@@ -1043,28 +958,6 @@ PlaceProperty:
     Values from the [Place Property Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
   nullable: false
   example: POWER
-PlaceRef:
-  type: object
-  additionalProperties: false
-  discriminator:
-    propertyName: objectType
-  required:
-  - objectType
-  properties:
-    objectType:
-      description: Attribute is used as discriminator for inheritance between data types.
-      type: string
-PlaceRequest:
-  type: object
-  additionalProperties: false
-  description: |
-    Initial input for the place information request. This input defines what is originally looked for.
-    Provided by OJP.
-  properties:
-    placeInput:
-      $ref: '#/InitialPlaceInput'
-    restrictions:
-      $ref: '#/PlaceParam'
 PlaceResponse:
   type: object
   additionalProperties: false
@@ -1081,7 +974,7 @@ PlaceResponse:
     places:
       type: array
       items:
-        $ref: '#/Place'
+        $ref: './ojp/place.yml#/Place'
       minItems: 1
 PlaceRestriction:
   type: object
@@ -1149,105 +1042,6 @@ PlaceSelectionFlow:
   - AUTOMATIC_PLACE_SELECTION
   - AUTOMATIC_PLACE_SELECTION_NEARBY
   - AUTOMATIC_PLACE_SELECTION_PREFERENCES
-PlaceType:
-  description: |
-    Provided by OJP.
-  type: string
-  enum:
-  - STOP
-  - ADDRESS
-  - POI
-  - GEO_COORDINATE
-  - TOPOGRAPHIC_PLACE
-PlaceUsage:
-  description: |
-    Provided by OJP.
-  type: string
-  enum:
-  - ORIGIN
-  - VIA
-  - DESTINATION
-PointOfInterest:
-  description: |
-    A type of place to or through which passengers may wish to navigate as part of
-    their journey and which is modelled in detail by journey planners. Provided by OJP.
-  allOf:
-  - $ref: '#/Place'
-  - type: object
-    additionalProperties: false
-    required:
-    - name
-    - code
-    properties:
-      name:
-        description: |
-          Name or description of point of interest for use in passenger information.
-        type: string
-        nullable: false
-        example: Park Rozenrust
-      nameTranslations:
-        description: Translations for the name
-        type: array
-        items:
-          $ref: ./_common.yml#/Translation
-      code:
-        description: |
-          id of the Point of Interest.
-        type: string
-        nullable: false
-PointOfInterestCategory:
-  type: object
-  additionalProperties: false
-  description: |
-    A categorization of points of interest in respect of the activities undertaken at them (defined by key-value-pairs). Provided by OJP.
-  properties:
-    osmTags:
-      description: |
-        Open Street Map tag structure (key-value)
-      type: array
-      items:
-        $ref: ./_common.yml#/OsmTag
-    pointOfInterestClassifications:
-      description: |
-        Classification of the POI (when it is not from OSM). The codification of the
-        classification Id may include de codification source (for example
-        'IGN:[classificationCode]')
-      type: array
-      items:
-        type: string
-      nullable: true
-PointOfInterestFilter:
-  type: object
-  additionalProperties: false
-  description: |
-    Filter POIs by category. Provided by OJP.
-  properties:
-    exclude:
-      description: |
-        Whether carriers are to be included or excluded from the filtering.
-      type: boolean
-      nullable: true
-      default: true
-    pointOfInterestCategory:
-      description: |
-        These POI categories can be used to filter POIs. If more than one is given the filtering
-        is by logical 'OR' (when Exclude=FALSE) and logical 'AND' (when Exclude=TRUE).
-      type: array
-      items:
-        $ref: '#/PointOfInterestCategory'
-PointOfInterestRef:
-  description: |
-    Reference to a Point of Interest. Provided by OJP.
-  allOf:
-  - $ref: '#/PlaceRef'
-  - type: object
-    additionalProperties: false
-    required:
-    - pointOfInterestRef
-    properties:
-      pointOfInterestRef:
-        type: string
-        nullable: false
 RectangleGeometry:
   type: object
   additionalProperties: false
@@ -1385,3 +1179,4 @@ SpecificPlaceAvailability:
       minItems: 1
     selectionFee:
       $ref: ./_common.yml#/SelectionFee
+

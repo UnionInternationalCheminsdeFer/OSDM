@@ -145,7 +145,7 @@ TravelAccountConsumption:
       type: string
       nullable: false
     tripSummary:
-      $ref: ./trip.yml#/TripSummary
+      $ref: ./ojp/trip.yml#/TripSummary
     consumedAmount:
       type: integer
       format: int32

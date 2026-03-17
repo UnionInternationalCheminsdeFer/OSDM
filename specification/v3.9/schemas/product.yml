@@ -188,7 +188,7 @@ FareConnectionPoint:
 
     Providing the UIC code for the station is mandatory.
   allOf:
-  - $ref: ./place.yml#/Place
+  - $ref: ./ojp/place.yml#/Place
   - type: object
     additionalProperties: false
     required:
@@ -211,7 +211,7 @@ FareConnectionPointRef:
   description: |
     Reference to a Fare Connection Point.
   allOf:
-  - $ref: ./place.yml#/PlaceRef
+  - $ref: ./ojp/place.yml#/PlaceRef
   - type: object
     additionalProperties: false
     required:
@@ -247,7 +247,7 @@ FareReferenceStation:
     stations:
       type: array
       items:
-        $ref: ./trip.yml#/StopPlaceRef
+        $ref: ./ojp/trip.yml#/StopPlaceRef
       minItems: 1
 FareType:
   description: |
@@ -459,40 +459,6 @@ Product:
         nullable: true
     _links:
       $ref: ./_common.yml#/Links
-ProductCategory:
-  type: object
-  additionalProperties: false
-  description: |
-    Product category based on NeTEx/SIRI. A product category is a classification for vehicle journeys
-    to express some common properties of journeys for marketing and fare products. Provided by OJP.
-  required:
-  - name
-  - shortName
-  - productCategoryRef
-  properties:
-    name:
-      description: |
-        Full name of this product category, e.g. 'TGV Lyria' in Switzerland and France.
-        UIC: Long name of Service Brand
-      type: string
-      nullable: false
-      example: TGV Lyria
-    shortName:
-      description: |
-        Short name or acronym of the product category, likely to be published, e.g. 'TGV'
-        UIC: Abbreviation of Service Brand
-      type: string
-      nullable: false
-      example: TGV
-    productCategoryRef:
-      $ref: '#/ProductCategoryRef'
-ProductCategoryRef:
-  type: string
-  description: |
-    Reference to a product category. Product categories should be defined once and used
-    uniformly in all channels (e.g. NeTEx, SIRI, OJP). Provided by OJP.
-  nullable: true
-  example: urn:uic:sbc:76
 ProductCollectionResponse:
   type: object
   additionalProperties: false
@@ -791,7 +757,7 @@ StationSet:
     stations:
       type: array
       items:
-        $ref: ./trip.yml#/StopPlaceRef
+        $ref: ./ojp/trip.yml#/StopPlaceRef
       minItems: 1
 TrainValidity:
   type: object
@@ -914,9 +880,9 @@ Zone:
       items:
         $ref: ./_common.yml#/Translation
     entryStation:
-      $ref: ./trip.yml#/StopPlace
+      $ref: ./ojp/trip.yml#/StopPlace
     terminalStation:
-      $ref: ./trip.yml#/StopPlace
+      $ref: ./ojp/trip.yml#/StopPlace
     zoneIds:
       description: |
         to be used in bar codes
@@ -984,4 +950,5 @@ ZoneDefinition:
     places:
       type: array
       items:
-        $ref: ./place.yml#/PlaceRef
+        $ref: ./ojp/place.yml#/PlaceRef
+

@@ -264,7 +264,7 @@ FulfillmentActivationPatchRequest:
       format: date-time
       nullable: true
     fromPlace:
-      $ref: ./place.yml#/PlaceRef
+      $ref: ./ojp/place.yml#/PlaceRef
     stockControlNumbers:
       description: |
         The ids of the secure paper stock that identifies the blank secure paper stock used for printing.

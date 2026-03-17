@@ -194,20 +194,16 @@ graph TD
 
 ## 6. Schema Size Distribution
 
-```
-  _common.yml        ████████████████████████  ~80 schemas
-  trip.yml           █████████████            ~45 schemas
-  aftersales.yml     ████████████             ~40 schemas
-  place.yml          ████████████             ~40 schemas
-  offer.yml          ██████████               ~35 schemas
-  booking.yml        █████████                ~30 schemas
-  product.yml        █████████                ~30 schemas
-  fulfillment.yml    ███████                  ~25 schemas
-  passenger.yml      ██████                   ~20 schemas
-  transport.yml      ████                     ~15 schemas
-  complaint.yml      ███                      ~12 schemas
-  travel-account.yml ███                      ~12 schemas
-  continuous-svc.yml ███                      ~12 schemas
-                     ─────────────────────────
-                     Total: ~509 schemas across 13 files
+```mermaid
+---
+config:
+  xyChart:
+    xAxis:
+      labelFontSize: 10
+---
+xychart-beta
+    title "Schemas per domain file (494 total)"
+    x-axis ["_common", "place", "trip", "offer", "aftersales", "product", "booking", "fulfillment", "passenger", "transport", "complaint", "travel-acct", "cont-svc"]
+    y-axis "Number of schemas" 0 --> 120
+    bar [105, 66, 56, 42, 38, 38, 34, 32, 23, 17, 18, 13, 12]
 ```

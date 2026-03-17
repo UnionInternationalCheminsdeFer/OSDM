@@ -13,85 +13,6 @@ AccountingRef:
       type: array
       items:
         type: string
-Address:
-  description: |
-    A descriptive data associated with a place that can be used to describe the unique geographical context of a
-    place for the purposes of identifying it. may be refined as either a road address, a postal address or both.
-    Provided by OJP.
-  allOf:
-  - $ref: ./place.yml#/Place
-  - type: object
-    additionalProperties: false
-    properties:
-      name:
-        description: |
-          Name or description of address for use in passenger information.
-        type: string
-        nullable: true
-        example: Oude Trambaan 7, 2265CA Leidschendam, Nederland
-      nameTranslations:
-        description: Translations for the name
-        type: array
-        items:
-          $ref: '#/Translation'
-      code:
-        description: |
-          id of the address
-        type: string
-        nullable: true
-        example: NL:1916200000022621
-      countryName:
-        description: |
-          Country of the address.
-        type: string
-        nullable: true
-        example: The Netherlands
-      countryCode:
-        $ref: '#/CountryCode'
-      postCode:
-        description: |
-          Postal code of the address.
-        type: string
-        nullable: true
-        example: 2265CA
-      city:
-        description: |
-          City name
-        type: string
-        nullable: true
-        example: Leidschendam
-      topographicPlaceName:
-        description: |
-          TopographicPlace name of the address. If set it should at least contain the city name.
-        type: string
-        nullable: true
-        example: Leidschendam
-      street:
-        description: |
-          Street name of the address. Can also contain the house number.
-        type: string
-        nullable: true
-        example: Oude Trambaan
-      houseNumber:
-        description: |
-          House number of the address. House number can either be in this separate field, or can be
-          contained in the street field.
-        type: string
-        nullable: true
-        example: 7
-AddressRef:
-  description: |
-    Reference to an Address.
-  allOf:
-  - $ref: ./place.yml#/PlaceRef
-  - type: object
-    additionalProperties: false
-    required:
-    - addressRef
-    properties:
-      addressRef:
-        type: string
-        nullable: false
 ApiNextVersion:
   type: object
   description: |
@@ -280,24 +201,6 @@ CardTypeReference:
     cardName:
       type: string
       nullable: true
-CarrierFilter:
-  type: object
-  additionalProperties: false
-  description: |
-    Filter for in/exclusion of carriers. Provided by OJP.
-  properties:
-    exclude:
-      description: |
-        Whether carrier in list are to include or exclude from search.
-      type: boolean
-      nullable: true
-      default: true
-    carriers:
-      description: |
-        Reference to carrier
-      type: array
-      items:
-        $ref: '#/CompanyRef'
 CompanyDetail:
   type: object
   additionalProperties: false
@@ -314,7 +217,7 @@ CompanyDetail:
       type: string
       nullable: false
     legalAddress:
-      $ref: '#/Address'
+      $ref: './ojp/_common.yml#/Address'
       deprecated: true
       nullable: true
       description: |
@@ -701,34 +604,6 @@ GeneralAttribute:
     url:
       type: string
       nullable: true
-GeoPosition:
-  type: object
-  additionalProperties: false
-  description: |
-    WGS84 coordinates position. Provided by OJP.
-  required:
-  - longitude
-  - latitude
-  properties:
-    longitude:
-      $ref: '#/Longitude'
-    latitude:
-      $ref: '#/Latitude'
-GeoPositionRef:
-  description: |
-    Reference to a GeoPosition consisting of latitude and longitude.
-  allOf:
-  - $ref: ./place.yml#/PlaceRef
-  - type: object
-    additionalProperties: false
-    required:
-    - latitude
-    - longitude
-    properties:
-      latitude:
-        $ref: '#/Latitude'
-      longitude:
-        $ref: '#/Longitude'
 HistoryStatus:
   type: string
   enum:
@@ -803,27 +678,6 @@ IdentificationCard:
       type: string
       format: date
       nullable: true
-IndividualMode:
-  description: |
-    Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
-  type: string
-  x-extensible-enum:
-  - WALK
-  - CYCLE
-  - TAXI
-  - SELF_DRIVE_CAR
-  - OTHERS_DRIVE_CAR
-  - MOTORCYCLE
-  - TRUCK
-  - SCOOTER
-  - RIDE_POOL_CAR
-  - CAR_SHARING
-  - CYCLE_SHARING
-  - SCOOTER_SHARING
-  - BICYCLE
-  - ELECTRIC_BICYCLE
-  - CARGO_BICYCLE
-  - SCOOTER
 Latitude:
   type: number
   format: double
@@ -986,14 +840,14 @@ Line:
       format: int32
       nullable: true
     entryStation:
-      $ref: ./trip.yml#/StopPlace
+      $ref: ./ojp/trip.yml#/StopPlace
     lineIds:
       type: array
       items:
         type: string
       nullable: true
     terminalStation:
-      $ref: ./trip.yml#/StopPlace
+      $ref: ./ojp/trip.yml#/StopPlace
     nutsCode:
       description: |
         Nomenclature des units territoriales statistiques
@@ -1057,51 +911,6 @@ Longitude:
   maximum: 180
   nullable: false
   example: 8.54021
-Mode:
-  type: object
-  additionalProperties: false
-  description: |
-    A method of transportation such as bus, rail, etc. Provided by OJP.
-  required:
-  - ptMode
-  properties:
-    ptMode:
-      $ref: '#/PTMode'
-    name:
-      description: |
-        Name of the mode
-      type: string
-      nullable: true
-      example: rail
-    shortName:
-      description: |
-        Short name or acronym of the mode
-      type: string
-      nullable: true
-      example: S
-    description:
-      description: |
-        Additional text that further describes the mode
-      type: string
-      nullable: true
-ModeFilter:
-  type: object
-  additionalProperties: false
-  description: |
-    List of public transport modes to include or exclude. Provided by OJP.
-  properties:
-    exclude:
-      description: |
-        Whether modes in list are to include or exclude from search.
-      type: boolean
-      nullable: true
-      default: true
-    transportModes:
-      description: |
-        List of Transport modes to include/exclude.
-      type: array
-      items:
-        $ref: '#/Mode'
 NamedCompany:
   type: object
   additionalProperties: false
@@ -1149,27 +958,6 @@ OfferOverviewTrip:
       $ref: '#/TravelClass'
     flexibility:
       $ref: ./offer.yml#/Flexibility
-OsmTag:
-  type: object
-  additionalProperties: false
-  description: |
-    Structure of an Open Street Map tag. Provided by OJP.
-  required:
-  - tag
-  - value
-  properties:
-    tag:
-      description: |
-        Name of Open Street Map tag (amenity, leisure, tourism, bike, ...)
-      type: string
-      nullable: false
-      example: name
-    value:
-      description: |
-        Value for Open Street Map tag (charging_station, hostel, yes, ...)
-      type: string
-      nullable: false
-      example: Rozenrust
 OverruleCode:
   description: "Reason for and type of an after sale, code list in IRS 90918-10.\nThe PRM_SUPPORT_UNAVAILABLE overrule code\
     \ shall only be used by the UIC PRM ABT tool.\nValues from the [Overrule Codes Code List](https://osdm.io/spec/catalog-of-code-lists/#OverruleCode)\n\
@@ -1279,7 +1067,7 @@ PersonDetail:
       deprecated: true
       nullable: true
     address:
-      $ref: '#/Address'
+      $ref: './ojp/_common.yml#/Address'
       nullable: true
       deprecated: true
       description: |
@@ -1305,7 +1093,7 @@ Polygon:
     edges:
       type: array
       items:
-        $ref: '#/GeoPosition'
+        $ref: './ojp/_common.yml#/GeoPosition'
       minItems: 1
 PostalAddress:
   type: object
@@ -1678,24 +1466,6 @@ ServiceBrandCode:
     Service brand codes. For public transport, a code list can be found in OSDM's code list. E.g., '163' denotes TGV Lyria and '175' denotes Glacier Express.
   nullable: false
   example: 163, 175
-ServiceBrandFilter:
-  type: object
-  additionalProperties: false
-  description: |
-    Filter for in/exclusion of service brands. Provided by OJP.
-  properties:
-    exclude:
-      description: |
-        Whether service brand in list are to include or exclude from search.
-      type: boolean
-      nullable: true
-      default: true
-    serviceBrands:
-      description: |
-        Reference to service brand codes
-      type: array
-      items:
-        $ref: '#/ServiceBrandCode'
 ServiceClass:
   type: object
   additionalProperties: false
@@ -1768,38 +1538,6 @@ ServiceIconCode:
     See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
   nullable: false
   example: TOILET_ICON
-ServiceStatus:
-  type: object
-  additionalProperties: false
-  description: |
-    Parameters which describe the current status of a dated vehicle journey.
-    Provided by OJP.
-  properties:
-    unplanned:
-      description: |
-        Whether this trip is an additional one that has not been planned.
-      type: boolean
-      nullable: true
-      default: false
-    cancelled:
-      description: |
-        Whether this trip is cancelled and will not be run.
-      type: boolean
-      nullable: true
-      default: false
-    deviation:
-      description: |
-        Whether this trip deviates from the planned service pattern.
-      type: boolean
-      nullable: true
-      default: false
-    occupancy:
-      description: |
-        Passenger load status on vehicle. If omitted, not known.
-        Equivalent to siri:OccupancyEnumeration which describes three values:
-        'full', 'seatingAvailable' and 'standingAvailable'.
-      type: string
-      nullable: true
 ServiceTime:
   type: object
   additionalProperties: false
@@ -1822,12 +1560,6 @@ ServiceTime:
       type: string
       format: date-time
       nullable: true
-SituationFullRef:
-  type: string
-  description: |
-    Reference to situation message. Message details might be found in response
-    context or through other communication channels. Provided by OJP.
-  nullable: true
 SupportingDocument:
   type: object
   additionalProperties: false
@@ -1980,22 +1712,6 @@ TransactionContextType:
   x-extensible-enum:
   - SALES
   - AFTER_SALES
-TransferMode:
-  description: |
-    Modes dedicated to perform transfers. Provided by OJP.
-  type: string
-  x-extensible-enum:
-  - WALK
-  - PARK_AND_RIDE
-  - BIKE_AND_RIDE
-  - CAR_HIRE
-  - BIKE_HIRE
-  - PROTECTED_CONNECTION
-  - GUARANTEED_CONNECTION
-  - REMAIN_IN_VEHICLE
-  - CHANGE_WITHIN_VEHICLE
-  - CHECK_IN
-  - CHECK_OUT
 Translation:
   type: object
   additionalProperties: false
@@ -2236,3 +1952,4 @@ WarningCollection:
       items:
         $ref: '#/Warning'
       minItems: 1
+

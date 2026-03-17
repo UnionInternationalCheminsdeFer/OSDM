@@ -495,7 +495,7 @@ Booking:
         This trip will be included in the offer if the offer is part of the booking.
       type: array
       items:
-        $ref: ./trip.yml#/Trip
+        $ref: ./ojp/trip.yml#/Trip
     requestedInformation:
       $ref: ./_common.yml#/RequestedInformation
     confirmationTimeLimit:
@@ -777,9 +777,9 @@ BookingSearchRequest:
   additionalProperties: false
   properties:
     origin:
-      $ref: ./place.yml#/PlaceRef
+      $ref: ./ojp/place.yml#/PlaceRef
     destination:
-      $ref: ./place.yml#/PlaceRef
+      $ref: ./ojp/place.yml#/PlaceRef
     passenger:
       $ref: ./passenger.yml#/PassengerSearchRequest
     purchaser:
@@ -855,7 +855,7 @@ BookingSearchResult:
     tripSummaries:
       type: array
       items:
-        $ref: ./trip.yml#/TripSummary
+        $ref: ./ojp/trip.yml#/TripSummary
     id:
       type: string
       nullable: false

@@ -141,7 +141,7 @@ DirectionChange:
     stopPlaceRef:
       description: |
         Reference to the station where the direction changes
-      $ref: ./trip.yml#/StopPlaceRef
+      $ref: ./ojp/trip.yml#/StopPlaceRef
     stopPlaceName:
       description: |
         Name of the station where the direction changes
