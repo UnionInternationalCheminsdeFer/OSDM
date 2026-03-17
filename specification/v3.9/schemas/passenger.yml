@@ -71,7 +71,7 @@ AnonymousPassengerSpecification:
     residency:
       $ref: ./_common.yml#/CountryCode
     transportable:
-      $ref: ./transport.yml#/TransportableSpecification
+      $ref: ./transportable.yml#/TransportableSpecification
 AppliedPassengerType:
   type: object
   additionalProperties: false
@@ -213,7 +213,7 @@ Passenger:
     identificationCard:
       $ref: ./_common.yml#/IdentificationCard
     transportableDetails:
-      $ref: ./transport.yml#/Transportable
+      $ref: ./transportable.yml#/Transportable
     prmNeeds:
       description: |
         For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
@@ -379,7 +379,7 @@ PassengerSpecification:
     gender:
       $ref: ./_common.yml#/Gender
     transportableDetails:
-      $ref: ./transport.yml#/Transportable
+      $ref: ./transportable.yml#/Transportable
 PassengerType:
   description: "Passenger type according to UIC passenger, i.e. passenger type list.\nValues from the [Passenger Type Code\
     \ List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)\nListed values here are examples.   \nProposed default\

@@ -68,9 +68,14 @@ Starting with v3.9, the Online API spec is split into modular files:
 specification/v3.9/
   OSDM-online-api.yml          # Root hub (entrypoint, ~150 lines)
   paths/                        # 24 files, one per API domain
-  schemas/                      # 13 files, one per schema domain
+  schemas/                      # 15 files, one per schema domain
     _common.yml                 # Shared types (Problem, Price, Links, etc.)
+    fare.yml                    # Fare, Zone, RegionalValidity, TravelValidity, ...
+    product.yml                 # Product, ProductType, ProductTag, ...
+    transportable.yml           # Vehicle, Car, Motorcycle, ...
     trip.yml, offer.yml, booking.yml, ...
+    ojp/                        # 5 files — schemas provided by OJP
+      _common.yml, trip.yml, place.yml, product.yml, continuous-service.yml
   components/                   # parameters, responses, security schemes
 ```
 

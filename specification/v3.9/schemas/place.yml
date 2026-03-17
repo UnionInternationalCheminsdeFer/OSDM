@@ -418,9 +418,9 @@ CoachLayoutDirectedInternal:
       type: string
       nullable: false
     direction:
-      $ref: ./transport.yml#/DirectionType
+      $ref: ./transportable.yml#/DirectionType
     mounting:
-      $ref: ./transport.yml#/MountingType
+      $ref: ./transportable.yml#/MountingType
     coords:
       $ref: '#/LayoutCoordinates'
 CoachLayoutGridSize:
@@ -451,7 +451,7 @@ CoachLayoutInternal:
       type: string
       nullable: false
     mounting:
-      $ref: ./transport.yml#/MountingType
+      $ref: ./transportable.yml#/MountingType
     coords:
       $ref: '#/LayoutCoordinates'
 CoachLayoutPlace:
@@ -473,7 +473,7 @@ CoachLayoutPlace:
       type: string
       nullable: false
     direction:
-      $ref: ./transport.yml#/DirectionType
+      $ref: ./transportable.yml#/DirectionType
     remarkId:
       $ref: ./_common.yml#/RemarkType
     coords:
@@ -504,7 +504,7 @@ CoachLayoutSign:
       type: string
       nullable: false
     direction:
-      $ref: ./transport.yml#/DirectionType
+      $ref: ./transportable.yml#/DirectionType
     coords:
       $ref: '#/LayoutCoordinates'
 Compartment:
@@ -763,7 +763,7 @@ PlaceAvailability:
     reference:
       $ref: ./booking.yml#/PartReference
     vehicle:
-      $ref: ./transport.yml#/Vehicle
+      $ref: ./transportable.yml#/Vehicle
     preSelections:
       description: |
         suggested pre-selection of places
@@ -809,7 +809,7 @@ PlaceAvailabilityMapResponse:
       items:
         $ref: ./_common.yml#/Problem
     vehicle:
-      $ref: ./transport.yml#/VehicleAvailability
+      $ref: ./transportable.yml#/VehicleAvailability
 PlaceAvailabilityResponse:
   type: object
   additionalProperties: false

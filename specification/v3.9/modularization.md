@@ -93,7 +93,7 @@ graph TD
 
     CONT["continuous-service.yml<br/>ContinuousService,<br/>OnDemand, ..."]
 
-    TRANSPORT["transport.yml<br/>Vehicle, Car,<br/>Luggage, ..."]
+    TRANSPORT["transportable.yml<br/>Vehicle, Car,<br/>Luggage, ..."]
 
     COMMON --> TRIP
     COMMON --> OFFER
@@ -224,7 +224,84 @@ These were split into `fare.yml` (24 schemas) and `product.yml` (12 schemas):
 
 **Rationale:** Fare schemas are referenced by offer, booking, aftersales, fulfillment, and travel-account — they form a distinct dependency cluster. Product schemas primarily serve the product catalog API. Separating them reduces cognitive load and aligns file boundaries with domain boundaries.
 
-## 7. Schema Size Distribution
+## 7. Packages per Role
+
+The three OSDM roles — Fare Provider, Distributor, and Retailer — require different subsets of the modular packages. **"—"** means the package is architecturally outside the role's scope.
+
+### Schema packages
+
+| Package | Fare Provider | Distributor | Retailer |
+|---|:---:|:---:|:---:|
+| **Foundation** | | | |
+| `_common.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `ojp/_common.yml` | **mandatory** | **mandatory** | **mandatory** |
+| **Trip & Place** | | | |
+| `ojp/trip.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `ojp/place.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `trip.yml` | optional | **mandatory** | **mandatory** |
+| **Fare & Product** | | | |
+| `fare.yml` | **mandatory** | **mandatory** | — |
+| `product.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `ojp/product.yml` | optional | optional | optional |
+| **Offer & Booking** | | | |
+| `offer.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `booking.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `passenger.yml` | **mandatory** | **mandatory** | **mandatory** |
+| **Fulfillment** | | | |
+| `fulfillment.yml` | **mandatory** | **mandatory** | **mandatory** |
+| **After-Sales** | | | |
+| `aftersales.yml` | **mandatory** | **mandatory** | optional |
+| `complaint.yml` | — | optional | optional |
+| **Seat/Place Selection** | | | |
+| `place.yml` | optional | optional | optional |
+| **Extensions** | | | |
+| `transportable.yml` | — | optional | optional |
+| `travel-account.yml` | — | optional | optional |
+| `continuous-service.yml` | — | optional | optional |
+| `ojp/continuous-service.yml` | — | optional | optional |
+
+### Path packages
+
+| Package | Fare Provider | Distributor | Retailer |
+|---|:---:|:---:|:---:|
+| **Discovery** | | | |
+| `versions.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `places.yml` | — | **mandatory** | **mandatory** |
+| `trips.yml` | — | **mandatory** | **mandatory** |
+| `products.yml` | **mandatory** | **mandatory** | optional |
+| **Offer** | | | |
+| `offers.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `on-hold.yml` | — | optional | optional |
+| `availabilities.yml` | — | optional | optional |
+| **Booking** | | | |
+| `bookings.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `bookings-search.yml` | **mandatory** | **mandatory** | optional |
+| `bookings-split.yml` | — | optional | — |
+| `booked-offers.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `booking-parts.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `passengers.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `purchaser.yml` | **mandatory** | **mandatory** | **mandatory** |
+| **Fulfillment** | | | |
+| `fulfillments.yml` | **mandatory** | **mandatory** | **mandatory** |
+| `documents.yml` | **mandatory** | **mandatory** | **mandatory** |
+| **After-Sales** | | | |
+| `refund.yml` | **mandatory** | **mandatory** | optional |
+| `exchange.yml` | **mandatory** | **mandatory** | optional |
+| `release.yml` | **mandatory** | **mandatory** | optional |
+| `cancel-fulfillments.yml` | **mandatory** | **mandatory** | optional |
+| `complaints.yml` | — | optional | optional |
+| `reimbursements.yml` | — | optional | optional |
+| **Extensions** | | | |
+| `master-data.yml` | — | optional | optional |
+| `travel-accounts.yml` | — | optional | optional |
+
+### Rationale
+
+- **Fare Provider** must support the full booking lifecycle (offer → book → fulfill → after-sales) for its own fares when a distributor delegates operations. Complaint handling and transport details remain outside its scope.
+- **Distributor** implements the full API as a server. All core lifecycle packages are mandatory. Place selection, transport, travel accounts, and complaints are value-adds.
+- **Retailer** consumes the API as a client. The core flow (search → offer → book → fulfill) is mandatory. After-sales is optional — some retailers route refund/exchange back through the distributor's own UI. Fares are not applicable (distributor-mode concept).
+
+## 8. Schema Size Distribution
 
 ```mermaid
 ---

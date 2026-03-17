@@ -151,7 +151,7 @@ DatedJourney:
     vehicleNumbers:
       type: array
       items:
-        $ref: ../transport.yml#/VehicleNumber
+        $ref: ../transportable.yml#/VehicleNumber
       minItems: 1
     lineNumbers:
       type: array
@@ -576,7 +576,7 @@ TripDataFilter:
     serviceBrandFilter:
       $ref: ./_common.yml#/ServiceBrandFilter
     vehicleFilter:
-      $ref: ../transport.yml#/VehicleFilter
+      $ref: ../transportable.yml#/VehicleFilter
 TripLeg:
   type: object
   additionalProperties: false

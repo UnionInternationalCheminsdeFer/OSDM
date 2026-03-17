@@ -314,7 +314,7 @@ components:
     AbstractOfferPart:
       $ref: ./schemas/offer.yml#/AbstractOfferPart
     AbstractTransportableVehicleSpecification:
-      $ref: ./schemas/transport.yml#/AbstractTransportableVehicleSpecification
+      $ref: ./schemas/transportable.yml#/AbstractTransportableVehicleSpecification
     AbstractTravelAccount:
       $ref: ./schemas/travel-account.yml#/AbstractTravelAccount
     AbstractTravelAccountUnit:
@@ -372,7 +372,7 @@ components:
     AppliedPassengerType:
       $ref: ./schemas/passenger.yml#/AppliedPassengerType
     AttachableItemType:
-      $ref: ./schemas/transport.yml#/AttachableItemType
+      $ref: ./schemas/transportable.yml#/AttachableItemType
     AvailabilityScope:
       $ref: ./schemas/place.yml#/AvailabilityScope
     AvailabilityStatus:
@@ -474,19 +474,19 @@ components:
     CancelFulfillmentsStatus:
       $ref: ./schemas/aftersales.yml#/CancelFulfillmentsStatus
     Car:
-      $ref: ./schemas/transport.yml#/Car
+      $ref: ./schemas/transportable.yml#/Car
     CardReference:
       $ref: ./schemas/_common.yml#/CardReference
     CardTypeReference:
       $ref: ./schemas/_common.yml#/CardTypeReference
     CarRack:
-      $ref: ./schemas/transport.yml#/CarRack
+      $ref: ./schemas/transportable.yml#/CarRack
     CarrierConstraint:
       $ref: ./schemas/fare.yml#/CarrierConstraint
     CarrierFilter:
       $ref: ./schemas/ojp/_common.yml#/CarrierFilter
     CarSpecification:
-      $ref: ./schemas/transport.yml#/CarSpecification
+      $ref: ./schemas/transportable.yml#/CarSpecification
     ClaimedJourneyDetails:
       $ref: ./schemas/complaint.yml#/ClaimedJourneyDetails
     ClaimedLeg:
@@ -606,9 +606,9 @@ components:
     DeckAvailability:
       $ref: ./schemas/place.yml#/DeckAvailability
     DirectionChange:
-      $ref: ./schemas/transport.yml#/DirectionChange
+      $ref: ./schemas/transportable.yml#/DirectionChange
     DirectionType:
-      $ref: ./schemas/transport.yml#/DirectionType
+      $ref: ./schemas/transportable.yml#/DirectionType
     DistributionMode:
       $ref: ./schemas/_common.yml#/DistributionMode
     Document:
@@ -792,11 +792,11 @@ components:
     MoneyTravelAccountUnit:
       $ref: ./schemas/travel-account.yml#/MoneyTravelAccountUnit
     MotorCycle:
-      $ref: ./schemas/transport.yml#/MotorCycle
+      $ref: ./schemas/transportable.yml#/MotorCycle
     MotorcycleSpecification:
-      $ref: ./schemas/transport.yml#/MotorcycleSpecification
+      $ref: ./schemas/transportable.yml#/MotorcycleSpecification
     MountingType:
-      $ref: ./schemas/transport.yml#/MountingType
+      $ref: ./schemas/transportable.yml#/MountingType
     MultiRideAccount:
       $ref: ./schemas/travel-account.yml#/MultiRideAccount
     MultiRideBalance:
@@ -1188,11 +1188,11 @@ components:
     Translation:
       $ref: ./schemas/_common.yml#/Translation
     Transportable:
-      $ref: ./schemas/transport.yml#/Transportable
+      $ref: ./schemas/transportable.yml#/Transportable
     TransportableSpecification:
-      $ref: ./schemas/transport.yml#/TransportableSpecification
+      $ref: ./schemas/transportable.yml#/TransportableSpecification
     TransportableType:
-      $ref: ./schemas/transport.yml#/TransportableType
+      $ref: ./schemas/transportable.yml#/TransportableType
     TravelAccountConsumption:
       $ref: ./schemas/travel-account.yml#/TravelAccountConsumption
     TravelAccountResponse:
@@ -1278,13 +1278,13 @@ components:
     VatScope:
       $ref: ./schemas/_common.yml#/VatScope
     Vehicle:
-      $ref: ./schemas/transport.yml#/Vehicle
+      $ref: ./schemas/transportable.yml#/Vehicle
     VehicleAvailability:
-      $ref: ./schemas/transport.yml#/VehicleAvailability
+      $ref: ./schemas/transportable.yml#/VehicleAvailability
     VehicleFilter:
-      $ref: ./schemas/transport.yml#/VehicleFilter
+      $ref: ./schemas/transportable.yml#/VehicleFilter
     VehicleNumber:
-      $ref: ./schemas/transport.yml#/VehicleNumber
+      $ref: ./schemas/transportable.yml#/VehicleNumber
     VoucherInformation:
       $ref: ./schemas/_common.yml#/VoucherInformation
     Warning:
