@@ -14782,7 +14782,7 @@ components:
         issuedVoucherRefs:
           type: array
           items:
-            $ref: '#/components/schemas/VoucherRefs'
+            $ref: '#/components/schemas/VoucherRef'
         refundFee:
           $ref: '#/components/schemas/Price'
           description: |
