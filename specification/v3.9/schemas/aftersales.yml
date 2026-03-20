@@ -356,7 +356,7 @@ ExchangeOfferCollectionRequest:
     anonymousPassengerSpecifications:
       type: array
       items:
-        $ref: ./passenger.yml#/AnonymousPassengerSpecification
+        $ref: ./person.yml#/AnonymousPassengerSpecification
       minItems: 1
     corporateCodes:
       type: array
@@ -402,7 +402,7 @@ ExchangeOfferCollectionResponse:
     passengers:
       type: array
       items:
-        $ref: ./passenger.yml#/Passenger
+        $ref: ./person.yml#/Passenger
     _links:
       $ref: ./_common.yml#/Links
 ExchangeOfferCollectionResponseContent:

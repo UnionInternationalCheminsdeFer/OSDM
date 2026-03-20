@@ -140,7 +140,7 @@ AbstractBookingPart:
     appliedPassengerTypes:
       type: array
       items:
-        $ref: ./passenger.yml#/AppliedPassengerType
+        $ref: ./person.yml#/AppliedPassengerType
     appliedPromotionCodes:
       type: array
       items:
@@ -155,7 +155,7 @@ AbstractBookingPart:
     accountingRef:
       $ref: ./_common.yml#/AccountingRef
     grantedReductionAmounts:
-      $ref: ./passenger.yml#/GrantedReductionAmounts
+      $ref: ./person.yml#/GrantedReductionAmounts
 BookedOffer:
   type: object
   additionalProperties: false
@@ -338,14 +338,14 @@ BookedOfferRequest:
     passengers:
       type: array
       items:
-        $ref: ./passenger.yml#/Passenger
+        $ref: ./person.yml#/Passenger
       deprecated: true
       description: |
         Existing passengers are linked with the given booking and do not need to be referenced in the request.
     additionalPassengerSpecifications:
       type: array
       items:
-        $ref: ./passenger.yml#/PassengerSpecification
+        $ref: ./person.yml#/PassengerSpecification
     promotionCodes:
       type: array
       items:
@@ -470,10 +470,10 @@ Booking:
     passengers:
       type: array
       items:
-        $ref: ./passenger.yml#/Passenger
+        $ref: ./person.yml#/Passenger
       minItems: 1
     purchaser:
-      $ref: ./passenger.yml#/Purchaser
+      $ref: ./person.yml#/Purchaser
     provisionalPrice:
       description: |
         Price of all unconfirmed pre-booked parts in the booking. The provisional price must be provided if the booking includes unconfirmed pre-booked parts.
@@ -706,10 +706,10 @@ BookingRequest:
         If needed (cf requiredInformation) or desired, this array allows providing the required details on some or all passengers
       type: array
       items:
-        $ref: ./passenger.yml#/PassengerSpecification
+        $ref: ./person.yml#/PassengerSpecification
       minItems: 1
     purchaser:
-      $ref: ./passenger.yml#/PurchaserSpecification
+      $ref: ./person.yml#/PurchaserSpecification
     promotionCodes:
       type: array
       items:
@@ -781,9 +781,9 @@ BookingSearchRequest:
     destination:
       $ref: ./ojp/place.yml#/PlaceRef
     passenger:
-      $ref: ./passenger.yml#/PassengerSearchRequest
+      $ref: ./person.yml#/PassengerSearchRequest
     purchaser:
-      $ref: ./passenger.yml#/PurchaserSearchRequest
+      $ref: ./person.yml#/PurchaserSearchRequest
     bookingId:
       type: string
       nullable: true
@@ -846,11 +846,11 @@ BookingSearchResult:
   - bookedOfferSummaries
   properties:
     purchaser:
-      $ref: ./passenger.yml#/Purchaser
+      $ref: ./person.yml#/Purchaser
     passengers:
       type: array
       items:
-        $ref: ./passenger.yml#/Passenger
+        $ref: ./person.yml#/Passenger
       minItems: 1
     tripSummaries:
       type: array

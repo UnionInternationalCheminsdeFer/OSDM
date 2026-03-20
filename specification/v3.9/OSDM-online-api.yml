@@ -326,7 +326,7 @@ components:
     AccountingRef:
       $ref: ./schemas/_common.yml#/AccountingRef
     ActualPassengerType:
-      $ref: ./schemas/passenger.yml#/ActualPassengerType
+      $ref: ./schemas/person.yml#/ActualPassengerType
     AdditionalOfferCollectionResponse:
       $ref: ./schemas/offer.yml#/AdditionalOfferCollectionResponse
     Address:
@@ -362,7 +362,7 @@ components:
     AncillaryType:
       $ref: ./schemas/offer.yml#/AncillaryType
     AnonymousPassengerSpecification:
-      $ref: ./schemas/passenger.yml#/AnonymousPassengerSpecification
+      $ref: ./schemas/person.yml#/AnonymousPassengerSpecification
     ApiNextVersion:
       $ref: ./schemas/_common.yml#/ApiNextVersion
     ApiVersion:
@@ -370,7 +370,7 @@ components:
     ApplicabilityType:
       $ref: ./schemas/_common.yml#/ApplicabilityType
     AppliedPassengerType:
-      $ref: ./schemas/passenger.yml#/AppliedPassengerType
+      $ref: ./schemas/person.yml#/AppliedPassengerType
     AttachableItemType:
       $ref: ./schemas/transportable.yml#/AttachableItemType
     AvailabilityScope:
@@ -524,7 +524,7 @@ components:
     CombinationTag:
       $ref: ./schemas/offer.yml#/CombinationTag
     CompanyDetail:
-      $ref: ./schemas/_common.yml#/CompanyDetail
+      $ref: ./schemas/person.yml#/CompanyDetail
     CompanyRef:
       $ref: ./schemas/_common.yml#/CompanyRef
     Compartment:
@@ -718,7 +718,7 @@ components:
     FulfillmentUsage:
       $ref: ./schemas/fulfillment.yml#/FulfillmentUsage
     Gender:
-      $ref: ./schemas/_common.yml#/Gender
+      $ref: ./schemas/person.yml#/Gender
     GeneralAttribute:
       $ref: ./schemas/_common.yml#/GeneralAttribute
     GeoPosition:
@@ -726,9 +726,9 @@ components:
     GeoPositionRef:
       $ref: ./schemas/ojp/_common.yml#/GeoPositionRef
     GrantedReductionAmount:
-      $ref: ./schemas/passenger.yml#/GrantedReductionAmount
+      $ref: ./schemas/person.yml#/GrantedReductionAmount
     GrantedReductionAmounts:
-      $ref: ./schemas/passenger.yml#/GrantedReductionAmounts
+      $ref: ./schemas/person.yml#/GrantedReductionAmounts
     GraphicElement:
       $ref: ./schemas/place.yml#/GraphicElement
     GraphicElementCode:
@@ -740,7 +740,7 @@ components:
     HistoryStatus:
       $ref: ./schemas/_common.yml#/HistoryStatus
     IdentificationCard:
-      $ref: ./schemas/_common.yml#/IdentificationCard
+      $ref: ./schemas/person.yml#/IdentificationCard
     ImpactType:
       $ref: ./schemas/complaint.yml#/ImpactType
     IndicatedConsumption:
@@ -864,29 +864,29 @@ components:
     PartReference:
       $ref: ./schemas/booking.yml#/PartReference
     Passenger:
-      $ref: ./schemas/passenger.yml#/Passenger
+      $ref: ./schemas/person.yml#/Passenger
     PassengerCategory:
-      $ref: ./schemas/passenger.yml#/PassengerCategory
+      $ref: ./schemas/person.yml#/PassengerCategory
     PassengerConstraints:
-      $ref: ./schemas/passenger.yml#/PassengerConstraints
+      $ref: ./schemas/person.yml#/PassengerConstraints
     PassengerResponse:
-      $ref: ./schemas/passenger.yml#/PassengerResponse
+      $ref: ./schemas/person.yml#/PassengerResponse
     PassengersBatchUpdateRequest:
-      $ref: ./schemas/passenger.yml#/PassengersBatchUpdateRequest
+      $ref: ./schemas/person.yml#/PassengersBatchUpdateRequest
     PassengersCollectionResponse:
-      $ref: ./schemas/passenger.yml#/PassengersCollectionResponse
+      $ref: ./schemas/person.yml#/PassengersCollectionResponse
     PassengerSearchRequest:
-      $ref: ./schemas/passenger.yml#/PassengerSearchRequest
+      $ref: ./schemas/person.yml#/PassengerSearchRequest
     PassengerSpecification:
-      $ref: ./schemas/passenger.yml#/PassengerSpecification
+      $ref: ./schemas/person.yml#/PassengerSpecification
     PassengerType:
-      $ref: ./schemas/passenger.yml#/PassengerType
+      $ref: ./schemas/person.yml#/PassengerType
     PaymentMethod:
       $ref: ./schemas/_common.yml#/PaymentMethod
     PaymentType:
       $ref: ./schemas/_common.yml#/PaymentType
     PersonDetail:
-      $ref: ./schemas/_common.yml#/PersonDetail
+      $ref: ./schemas/person.yml#/PersonDetail
     Place:
       $ref: ./schemas/ojp/place.yml#/Place
     PlaceAllocation:
@@ -946,7 +946,7 @@ components:
     Price:
       $ref: ./schemas/_common.yml#/Price
     PRMNeedType:
-      $ref: ./schemas/passenger.yml#/PRMNeedType
+      $ref: ./schemas/person.yml#/PRMNeedType
     Problem:
       $ref: ./schemas/_common.yml#/Problem
     ProblemPointer:
@@ -988,25 +988,25 @@ components:
     PTMode:
       $ref: ./schemas/_common.yml#/PTMode
     Purchaser:
-      $ref: ./schemas/passenger.yml#/Purchaser
+      $ref: ./schemas/person.yml#/Purchaser
     PurchaserResponse:
-      $ref: ./schemas/passenger.yml#/PurchaserResponse
+      $ref: ./schemas/person.yml#/PurchaserResponse
     PurchaserSearchRequest:
-      $ref: ./schemas/passenger.yml#/PurchaserSearchRequest
+      $ref: ./schemas/person.yml#/PurchaserSearchRequest
     PurchaserSpecification:
-      $ref: ./schemas/passenger.yml#/PurchaserSpecification
+      $ref: ./schemas/person.yml#/PurchaserSpecification
     Quantity:
       $ref: ./schemas/_common.yml#/Quantity
     RectangleGeometry:
       $ref: ./schemas/place.yml#/RectangleGeometry
     ReductionCardAccount:
-      $ref: ./schemas/passenger.yml#/ReductionCardAccount
+      $ref: ./schemas/person.yml#/ReductionCardAccount
     ReductionCardCollectionResponse:
-      $ref: ./schemas/passenger.yml#/ReductionCardCollectionResponse
+      $ref: ./schemas/person.yml#/ReductionCardCollectionResponse
     ReductionCardType:
-      $ref: ./schemas/passenger.yml#/ReductionCardType
+      $ref: ./schemas/person.yml#/ReductionCardType
     ReductionGranted:
-      $ref: ./schemas/passenger.yml#/ReductionGranted
+      $ref: ./schemas/person.yml#/ReductionGranted
     RefundOffer:
       $ref: ./schemas/aftersales.yml#/RefundOffer
     RefundOfferBreakdownItem:

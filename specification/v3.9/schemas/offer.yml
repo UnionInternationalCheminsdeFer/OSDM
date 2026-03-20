@@ -132,7 +132,7 @@ AbstractOfferPart:
     appliedPassengerTypes:
       type: array
       items:
-        $ref: ./passenger.yml#/AppliedPassengerType
+        $ref: ./person.yml#/AppliedPassengerType
     appliedPromotionCodes:
       type: array
       items:
@@ -141,13 +141,13 @@ AbstractOfferPart:
       deprecated: true
       type: array
       items:
-        $ref: ./passenger.yml#/ReductionCardType
+        $ref: ./person.yml#/ReductionCardType
     regionalValiditySummary:
       $ref: ./fare.yml#/RegionalValiditySummary
     indicatedConsumption:
       $ref: ./travel-account.yml#/IndicatedConsumption
     grantedReductionAmounts:
-      $ref: ./passenger.yml#/GrantedReductionAmounts
+      $ref: ./person.yml#/GrantedReductionAmounts
     _links:
       $ref: ./_common.yml#/Links
 AdditionalOfferCollectionResponse:
@@ -535,7 +535,7 @@ OfferCollectionRequest:
     anonymousPassengerSpecifications:
       type: array
       items:
-        $ref: ./passenger.yml#/AnonymousPassengerSpecification
+        $ref: ./person.yml#/AnonymousPassengerSpecification
       minItems: 1
     corporateCodes:
       type: array
@@ -573,7 +573,7 @@ OfferCollectionResponse:
     anonymousPassengerSpecifications:
       type: array
       items:
-        $ref: ./passenger.yml#/AnonymousPassengerSpecification
+        $ref: ./person.yml#/AnonymousPassengerSpecification
     trips:
       type: array
       items:
@@ -612,7 +612,7 @@ OfferOverviewRouteRequest:
     passengerSpecifications:
       type: array
       items:
-        $ref: ./passenger.yml#/AnonymousPassengerSpecification
+        $ref: ./person.yml#/AnonymousPassengerSpecification
       minItems: 1
     startDateTime:
       type: string
@@ -669,7 +669,7 @@ OfferOverviewTripRequest:
     passengerSpecifications:
       type: array
       items:
-        $ref: ./passenger.yml#/AnonymousPassengerSpecification
+        $ref: ./person.yml#/AnonymousPassengerSpecification
       minItems: 1
     travelClass:
       $ref: ./_common.yml#/TravelClass

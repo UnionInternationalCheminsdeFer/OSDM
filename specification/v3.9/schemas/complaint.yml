@@ -121,11 +121,11 @@ ComplaintPatchRequest:
     compensationAmount:
       $ref: ./_common.yml#/Price
     claimManager:
-      $ref: ./_common.yml#/PersonDetail
+      $ref: ./person.yml#/PersonDetail
     affectedPassengers:
       type: array
       items:
-        $ref: ./passenger.yml#/Passenger
+        $ref: ./person.yml#/Passenger
     supportingDocuments:
       type: array
       items:
@@ -162,11 +162,11 @@ CustomerComplaint:
     journeyDetails:
       $ref: '#/ClaimedJourneyDetails'
     claimManager:
-      $ref: ./_common.yml#/PersonDetail
+      $ref: ./person.yml#/PersonDetail
     affectedPassengers:
       type: array
       items:
-        $ref: ./passenger.yml#/Passenger
+        $ref: ./person.yml#/Passenger
     supportingDocuments:
       type: array
       items:

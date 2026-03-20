@@ -108,7 +108,7 @@ Fare:
         passenger constraint to be included in bar codes
       type: array
       items:
-        $ref: ./passenger.yml#/PassengerConstraints
+        $ref: ./person.yml#/PassengerConstraints
     involvedTCOs:
       type: array
       items:
