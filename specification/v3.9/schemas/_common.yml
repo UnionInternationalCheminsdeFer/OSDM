@@ -201,34 +201,6 @@ CardTypeReference:
     cardName:
       type: string
       nullable: true
-CompanyDetail:
-  type: object
-  additionalProperties: false
-  description: |
-    Details a company. Note that the legalAddress attribute has been deprecated and
-    is replaced by legalPostalAddress.
-  required:
-  - name
-  properties:
-    name:
-      type: string
-      nullable: false
-    registrationNumber:
-      type: string
-      nullable: false
-    legalAddress:
-      $ref: './ojp/_common.yml#/Address'
-      deprecated: true
-      nullable: true
-      description: |
-        Deprecated in favor of `legalPostalAddress`
-    legalPostalAddress:
-      $ref: '#/PostalAddress'
-    contact:
-      $ref: '#/ContactDetail'
-    taxId:
-      type: string
-      nullable: false
 CompanyRef:
   type: string
   description: "Identifies a company. For rail, a RICS company code or compatible ERA company code are used. \nE.g.: 'urn:uic:rics:1185:000011'\n"
