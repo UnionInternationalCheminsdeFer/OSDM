@@ -6556,7 +6556,7 @@ components:
                 contained in the street field.
               type: string
               nullable: true
-              example: 7
+              example: "7"
 
     AddressRef:
       description: |
@@ -6776,13 +6776,13 @@ components:
             planned timetable.
           type: string
           nullable: true
-          example: 3
+          example: "3"
         estimatedStopPointName:
           description: |
             Name of the bay/quay/terminal where to board the vehicle. As to the latest realtime status.
           type: string
           nullable: true
-          example: 8
+          example: "8"
         serviceArrival:
           $ref: '#/components/schemas/ServiceTime'
         status:
@@ -7261,13 +7261,13 @@ components:
             planned timetable.
           type: string
           nullable: true
-          example: 3
+          example: "3"
         estimatedStopPointName:
           description: |
             Name of the bay/quay/terminal where to board the vehicle. As to the latest realtime status.
           type: string
           nullable: true
-          example: 8
+          example: "8"
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
         status:
@@ -11635,13 +11635,13 @@ components:
             planned timetable.
           type: string
           nullable: true
-          example: 3
+          example: "3"
         estimatedStopPointName:
           description: |
             Name of the bay/quay/terminal where to board the vehicle. As to the latest realtime status.
           type: string
           nullable: true
-          example: 8
+          example: "8"
         serviceArrival:
           $ref: '#/components/schemas/ServiceTime'
         serviceDeparture:
@@ -13654,7 +13654,7 @@ components:
             type: string
           minItems: 1
           nullable: false
-          example: 'WINDOW'
+          example: ['WINDOW']
 
     PlacePreSelection:
       type: object
@@ -13955,7 +13955,7 @@ components:
             contained in the street field.
           type: string
           nullable: true
-          example: 7
+          example: "7"
 
     Price:
       type: object
@@ -17399,7 +17399,7 @@ components:
           type: string
           format: duration
           nullable: true
-          example: 0S
+          example: PT0S
         minimalTransferTime:
           type: string
           format: duration
@@ -17992,7 +17992,7 @@ components:
           type: string
           format: uri
           nullable: true
-          example: offers/offer1234
+          example: https://example.com/offers/offer1234
 
     WarningCollection:
       type: object
