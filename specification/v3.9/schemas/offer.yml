@@ -1,0 +1,1229 @@
+AbstractOfferPart:
+  type: object
+  additionalProperties: false
+  description: |
+    Generic offer object that contains all common information about an offer.
+  discriminator:
+    propertyName: objectType
+  required:
+  - objectType
+  - id
+  - createdOn
+  - validFrom
+  - price
+  - offerMode
+  - passengerRefs
+  - refundable
+  - exchangeable
+  - products
+  - availableFulfillmentOptions
+  properties:
+    objectType:
+      description: Attribute is used as discriminator for inheritance between data types.
+      type: string
+    id:
+      type: string
+      maxLength: 32768
+      nullable: false
+    summary:
+      description: |
+        A human-readable description of the Offer.
+      type: string
+      nullable: true
+    createdOn:
+      type: string
+      format: date-time
+      nullable: false
+    validFrom:
+      description: |
+        Time from which on the offer can be used, e.g. travel.
+      type: string
+      format: date-time
+      nullable: false
+    validUntil:
+      description: |
+        Time until the offer can be used, e.g. travel.
+      type: string
+      format: date-time
+      nullable: true
+    price:
+      $ref: ./_common.yml#/Price
+    tripCoverage:
+      $ref: ./trip.yml#/TripCoverage
+    inboundTripCoverage:
+      $ref: ./trip.yml#/TripCoverage
+    priceGuaranteedUntil:
+      description: |
+        Indicates until when the price for the given offer is guaranteed.
+      type: string
+      format: date-time
+      nullable: true
+    offerMode:
+      $ref: '#/OfferMode'
+    isReusable:
+      description: |
+        Indicates whether the offerId can be used in more than one booking.
+      type: boolean
+      nullable: true
+      default: false
+    passengerRefs:
+      type: array
+      items:
+        type: string
+      minItems: 1
+      nullable: false
+    numericAvailability:
+      description: |
+        Total amount of items of this type currently available. For reservation offers, this would be the total number
+        of seats available, regardless of their properties.
+      type: integer
+      format: int32
+      nullable: true
+    refundable:
+      $ref: ./aftersales.yml#/RefundType
+    exchangeable:
+      $ref: ./aftersales.yml#/ExchangeableType
+    afterSalesConditions:
+      type: array
+      items:
+        $ref: ./aftersales.yml#/AfterSaleCondition
+    tripTags:
+      description: |
+        List of tags (and their type) that allow identifying sets of compatible offers when trying to combine multiple offers covering one single trip.
+        At least one (not all) tripTags must be in common to allow combination
+        If no tag is provided, there is no trip constraint on this specific offer.
+      type: array
+      items:
+        type: string
+      nullable: true
+    returnTags:
+      description: |
+        List of tags (and their type) that allow identifying sets of compatible offers when booking a return trip
+        involving return-specific fares. All returnTags must be present in the counterpart offer to allow combination
+        If no tag is provided, there is no return constraint on this specific offer.
+      type: array
+      items:
+        type: string
+      nullable: true
+    offerTag:
+      $ref: '#/OfferTag'
+    requestedInformation:
+      $ref: ./_common.yml#/RequestedInformation
+    summaryProductId:
+      type: string
+      description: Id of the product representing the commercial attributes of this offer part. Although not currently mandatory,
+        this attribute should in all cases be facilitate product based processing at the client
+    products:
+      description: |
+        For `FARE_RESERVATION` offer parts, no product is returned. Otherwise at least 1 product is returned.
+      type: array
+      items:
+        $ref: '#/ProductLegAssociation'
+      minItems: 0
+    availableFulfillmentOptions:
+      type: array
+      items:
+        $ref: ./fulfillment.yml#/FulfillmentOption
+      minItems: 1
+    appliedCorporateCodes:
+      type: array
+      items:
+        $ref: ./_common.yml#/CorporateCode
+    appliedPassengerTypes:
+      type: array
+      items:
+        $ref: ./person.yml#/AppliedPassengerType
+    appliedPromotionCodes:
+      type: array
+      items:
+        $ref: ./_common.yml#/PromotionCode
+    appliedReductionCardTypes:
+      deprecated: true
+      type: array
+      items:
+        $ref: ./person.yml#/ReductionCardType
+    regionalValiditySummary:
+      $ref: ./fare.yml#/RegionalValiditySummary
+    indicatedConsumption:
+      $ref: ./travel-account.yml#/IndicatedConsumption
+    grantedReductionAmounts:
+      $ref: ./person.yml#/GrantedReductionAmounts
+    _links:
+      $ref: ./_common.yml#/Links
+AdditionalOfferCollectionResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    offers:
+      type: array
+      items:
+        $ref: '#/Offer'
+    _links:
+      $ref: ./_common.yml#/Links
+Admission:
+  description: |
+    An admission represents a travel right, or the entitlement to travel onboard a train between
+    the given origin and destination, following the given route. It does not include a seat reservation.
+  allOf:
+  - $ref: ./booking.yml#/AbstractBookingPart
+  - type: object
+    additionalProperties: false
+    properties:
+      regionalValidity:
+        $ref: ./fare.yml#/RegionalValidity
+        deprecated: true
+      regionalValidities:
+        description: This contains multiple regional validities for this item and replaces the `regionalValidity` (deprecated)
+          attribute.
+        type: array
+        items:
+          $ref: ./fare.yml#/RegionalValidity
+        minItems: 1
+      isReservationRequired:
+        deprecated: true
+        type: boolean
+        nullable: true
+        default: false
+      feeRefs:
+        type: array
+        items:
+          $ref: ./booking.yml#/BookingPartReference
+      reservationRefs:
+        type: array
+        items:
+          $ref: ./booking.yml#/BookingPartReference
+      ancillaryRefs:
+        type: array
+        items:
+          $ref: ./booking.yml#/BookingPartReference
+      regulatoryConditions:
+        type: array
+        items:
+          $ref: ./_common.yml#/RegulatoryCondition
+AdmissionOfferPart:
+  description: |
+    An admission represents a travel right, or the entitlement to travel onboard a train between
+    the given origin and destination, following the given route. It does not include a seat reservation.
+  allOf:
+  - $ref: '#/AbstractOfferPart'
+  - type: object
+    additionalProperties: false
+    properties:
+      regionalValidity:
+        $ref: ./fare.yml#/RegionalValidity
+        deprecated: true
+      regionalValidities:
+        description: This contains multiple regional validities for this item and replaces the `regionalValidity` (deprecated)
+          attribute.
+        type: array
+        items:
+          $ref: ./fare.yml#/RegionalValidity
+        minItems: 1
+      isReservationRequired:
+        deprecated: true
+        type: boolean
+        nullable: true
+      reservations:
+        type: array
+        items:
+          $ref: '#/ReservationRelation'
+      ancillaries:
+        type: array
+        items:
+          $ref: '#/AncillaryRelation'
+      feeRefs:
+        type: array
+        items:
+          $ref: '#/OfferPartReference'
+      regulatoryConditions:
+        type: array
+        items:
+          $ref: ./_common.yml#/RegulatoryCondition
+      includedReservations:
+        description: |
+          List with all `ReservationOfferPart` objects that are included in this admission offer part.
+
+          DEPRECATED and superseded by `ReservationRelation.isIncluded` attribute.
+        deprecated: true
+        type: array
+        items:
+          $ref: '#/ReservationOfferPart'
+      throughTicketTags:
+        type: array
+        items:
+          $ref: '#/ThroughTicketTag'
+Ancillary:
+  allOf:
+  - $ref: ./booking.yml#/AbstractBookingPart
+  - type: object
+    additionalProperties: false
+    required:
+    - type
+    properties:
+      feeRefs:
+        type: array
+        items:
+          $ref: ./booking.yml#/BookingPartReference
+      type:
+        $ref: '#/AncillaryType'
+AncillaryGroup:
+  type: object
+  additionalProperties: false
+  required:
+  - id
+  - name
+  - ancillaryRefs
+  properties:
+    id:
+      deprecated: true
+      type: string
+      nullable: false
+    name:
+      type: string
+      nullable: false
+    ancillaryRefs:
+      type: array
+      items:
+        $ref: '#/OfferPartReference'
+      minItems: 1
+AncillaryOfferPart:
+  allOf:
+  - $ref: '#/AbstractOfferPart'
+  - type: object
+    additionalProperties: false
+    required:
+    - type
+    properties:
+      feeRefs:
+        type: array
+        items:
+          $ref: '#/OfferPartReference'
+      category:
+        description: |
+          Categorization of the ancillary such as 'Meal' or 'Gift'.
+        type: string
+        nullable: true
+      type:
+        $ref: '#/AncillaryType'
+      reservations:
+        type: array
+        items:
+          $ref: '#/ReservationRelation'
+AncillaryRelation:
+  type: object
+  additionalProperties: false
+  required:
+  - minGroupItemsToBeBooked
+  - ancillaryGroup
+  properties:
+    minGroupItemsToBeBooked:
+      type: integer
+      format: int32
+      nullable: false
+    maxGroupItemsToBeBooked:
+      type: integer
+      format: int32
+      nullable: true
+    ancillaryGroup:
+      $ref: '#/AncillaryGroup'
+AncillarySelection:
+  type: object
+  additionalProperties: false
+  description: |
+    Is some cases one out of a set of ancillary offer parts must be booked.
+  required:
+  - ancillaryId
+  - passengerRefs
+  properties:
+    ancillaryId:
+      type: string
+      maxLength: 32768
+      nullable: false
+    passengerRefs:
+      type: array
+      items:
+        type: string
+      minItems: 1
+      nullable: false
+AncillaryType:
+  description: |
+    Values from the [Ancillary Category Code List](https://osdm.io/spec/catalog-of-code-lists/#AncillaryCategory)
+    Listed values here are examples.
+  type: string
+  x-extensible-enum:
+  - PAYMENT_VOUCHER
+  - PRODUCT_ACCESS
+  - MERCHANDISE_PRODUCT
+  - LUGGAGE
+  - LUGGAGE_TRANSFER
+  - ON_BOARD_SERVICE
+  - STATION_SERVICE
+  - FOOD_ON_BOARD
+  - DRINKS_ON_BOARD
+  - WIFI
+  - PARKING
+CombinationTag:
+  type: object
+  additionalProperties: false
+  description: |
+    Tag to indicate that some products from a provider can be sold only when in conjunction
+    with product(s) from another provider using the same tag. At least one, not all,
+    combinationTags must be in common to allow combination. No combinationTags indicate
+    that there are no combination constraints on the product.
+  required:
+  - id
+  properties:
+    id:
+      type: string
+      nullable: false
+    needsToBeCombined:
+      description: |
+        If false it means that this product can be sold also when not in conjunction with
+        a product with the same tag. This is needed to propose specific products from one
+        provider that depend on public ones of another.
+      type: boolean
+      nullable: true
+      default: false
+ContinuousServiceOfferPart:
+  description: |
+    An offer part for a continuous on-demand service.
+  allOf:
+  - $ref: ./booking.yml#/AbstractBookingPart
+  - type: object
+    additionalProperties: false
+    required:
+    - pickUpPlaces
+    properties:
+      pickUpPlaces:
+        description: |
+          List of pick up places for on-demand vehicles. The list might include more or other pick up places than mentioned originally in the trip specification.
+        type: array
+        items:
+          $ref: ./continuous-service.yml#/ContinuousServicePickUpPlace
+        minItems: 1
+        maxItems: 500
+Flexibility:
+  type: string
+  x-extensible-enum:
+  - FULL_FLEXIBLE
+  - SEMI_FLEXIBLE
+  - NON_FLEXIBLE
+Offer:
+  type: object
+  additionalProperties: false
+  required:
+  - offerId
+  - createdOn
+  - preBookableUntil
+  - passengerRefs
+  properties:
+    offerId:
+      type: string
+      maxLength: 32768
+      nullable: false
+    summary:
+      description: |
+        A human-readable description of the offer.
+      type: string
+      nullable: true
+    offerSummary:
+      description: The offerSummary must be provided for product based offers. It is not needed for fares.
+      $ref: '#/OfferSummary'
+    createdOn:
+      type: string
+      format: date-time
+      nullable: false
+    preBookableUntil:
+      description: |
+        time until the offer can be pre-booked, however its availability is not guaranteed
+      type: string
+      format: date-time
+      nullable: false
+    passengerRefs:
+      type: array
+      items:
+        type: string
+      minItems: 1
+      nullable: false
+    products:
+      type: array
+      items:
+        $ref: ./product.yml#/Product
+    tripCoverage:
+      $ref: ./trip.yml#/TripCoverage
+    inboundTripCoverage:
+      $ref: ./trip.yml#/TripCoverage
+    admissionOfferParts:
+      type: array
+      items:
+        $ref: '#/AdmissionOfferPart'
+    reservationOfferParts:
+      type: array
+      items:
+        $ref: '#/ReservationOfferPart'
+    ancillaryOfferParts:
+      type: array
+      items:
+        $ref: '#/AncillaryOfferPart'
+    continuousServiceOfferParts:
+      type: array
+      items:
+        $ref: '#/ContinuousServiceOfferPart'
+    fees:
+      type: array
+      items:
+        $ref: ./_common.yml#/Fee
+    fares:
+      type: array
+      items:
+        $ref: ./fare.yml#/Fare
+    _links:
+      $ref: ./_common.yml#/Links
+OfferCollectionRequest:
+  type: object
+  additionalProperties: false
+  description: |
+    Defines the parameters needed to request an offer. Either a tripSearchCriteria, a list of trip specifications, or a list of tripIds can be passed in to request offers.
+
+    If you are searching for fares you pass in the complete trip and the use the requestedSections attribute to define which part(s) you need fares (including virtual border points).
+  required:
+  - anonymousPassengerSpecifications
+  properties:
+    tripIds:
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+      nullable: true
+      description: ID of trips representing single or outbound trips to be offered.
+    inboundTripIds:
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+      nullable: true
+      description: |
+        ID of trips representing return or inbound trips to be offered. Fill in only When
+        requesting return products or fares.
+    tripSpecifications:
+      type: array
+      items:
+        $ref: ./trip.yml#/TripSpecification
+    inboundTripSpecifications:
+      type: array
+      items:
+        $ref: ./trip.yml#/TripSpecification
+    tripSearchCriteria:
+      $ref: ./ojp/trip.yml#/TripSearchCriteria
+    tripResponseParameters:
+      $ref: ./trip.yml#/TripResponseParameters
+    nonTripSearchCriteria:
+      $ref: ./trip.yml#/NonTripSearchCriteria
+    requestedSections:
+      type: array
+      items:
+        $ref: ./trip.yml#/Section
+    offerSearchCriteria:
+      $ref: '#/OfferSearchCriteria'
+    anonymousPassengerSpecifications:
+      type: array
+      items:
+        $ref: ./person.yml#/AnonymousPassengerSpecification
+      minItems: 1
+    corporateCodes:
+      type: array
+      items:
+        $ref: ./_common.yml#/CorporateCode
+    promotionCodes:
+      type: array
+      items:
+        $ref: ./_common.yml#/PromotionCode
+    requestedFulfillmentOptions:
+      type: array
+      items:
+        $ref: ./fulfillment.yml#/FulfillmentOption
+    embed:
+      description: |
+        Influences whether referenced resources are returned in full or as references only. Proposed default ALL
+      type: array
+      items:
+        $ref: '#/OfferCollectionResponseContent'
+OfferCollectionResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    offers:
+      type: array
+      items:
+        $ref: '#/Offer'
+    anonymousPassengerSpecifications:
+      type: array
+      items:
+        $ref: ./person.yml#/AnonymousPassengerSpecification
+    trips:
+      type: array
+      items:
+        $ref: ./ojp/trip.yml#/Trip
+    _links:
+      $ref: ./_common.yml#/Links
+OfferCollectionResponseContent:
+  type: string
+  enum:
+  - ALL
+  - OFFERS
+  - TRIPS
+  - NONE
+  default: ALL
+OfferMode:
+  description: "Offer mode applied to provide offers for given criteria. \n\nIndividual offer mode means that each passenger\
+    \ is given individual admissions and reservations  to allow to refund individual passengers booked in a single booking.\n\
+    \nIf collective mode is not supported,  reverts back to the other mode and provides warning.\n\nIf individual mode is\
+    \ not supported,  reverts back to the other mode and provides warning.\n"
+  type: string
+  enum:
+  - COLLECTIVE
+  - INDIVIDUAL
+OfferOverviewRouteRequest:
+  type: object
+  description: |
+    Defines the parameters needed to request an offer overview for a route. Travel class and flexibility are optional parameters to filter the desired offers.
+  required:
+  - routeSpecification
+  - passengerSpecifications
+  - startDateTime
+  - endDateTime
+  properties:
+    routeSpecification:
+      $ref: ./trip.yml#/RouteSpecification
+    passengerSpecifications:
+      type: array
+      items:
+        $ref: ./person.yml#/AnonymousPassengerSpecification
+      minItems: 1
+    startDateTime:
+      type: string
+      format: date-time
+      nullable: false
+    endDateTime:
+      type: string
+      format: date-time
+      nullable: false
+    timeFrameSegmentation:
+      allOf:
+      - $ref: ./trip.yml#/TimeFrameSegmentation
+      default: DAY
+      description: "Defines the segmentation of the time frame for the offer overview. The default is DAY, which means that\
+        \ one price offer overview is given for \neach day of the requested time frame (provided there aren't more than one\
+        \ travel classes or flexibilities for one time segment).\n"
+    travelClass:
+      $ref: ./_common.yml#/TravelClass
+    flexibility:
+      $ref: '#/Flexibility'
+OfferOverviewRouteResponse:
+  type: object
+  properties:
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    offerOverviews:
+      type: array
+      items:
+        $ref: ./_common.yml#/OfferOverviewRoute
+OfferOverviewTripRequest:
+  type: object
+  description: |
+    Defines the parameters needed to request an offer overview for a trip. One of tripSearchCriteria, a list of trip specifications, or a list of tripIds must be passed in to request offers. Travel class and flexibility are optional parameters to filter the desired offers.
+  required:
+  - passengerSpecifications
+  properties:
+    tripSpecifications:
+      type: array
+      items:
+        $ref: ./trip.yml#/TripSpecification
+    tripIds:
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+        nullable: false
+      nullable: true
+    tripSearchCriteria:
+      $ref: ./ojp/trip.yml#/TripSearchCriteria
+    tripResponseParameters:
+      $ref: ./trip.yml#/TripResponseParameters
+    passengerSpecifications:
+      type: array
+      items:
+        $ref: ./person.yml#/AnonymousPassengerSpecification
+      minItems: 1
+    travelClass:
+      $ref: ./_common.yml#/TravelClass
+    flexibility:
+      $ref: '#/Flexibility'
+OfferOverviewTripResponse:
+  type: object
+  properties:
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    trips:
+      type: array
+      items:
+        $ref: ./ojp/trip.yml#/Trip
+    offerOverviews:
+      type: array
+      items:
+        $ref: ./_common.yml#/OfferOverviewTrip
+OfferPartReference:
+  type: object
+  additionalProperties: false
+  description: |
+    References all the offer part elements in an uniform format.
+    In its part, an OfferPartReference can refer to reservation, admission, ancillary or fee.
+  required:
+  - id
+  properties:
+    id:
+      type: string
+      maxLength: 32768
+      nullable: false
+    summary:
+      description: |
+        A human-readable description of the offer part reference.
+      type: string
+      nullable: true
+    _links:
+      $ref: ./_common.yml#/Links
+OfferPartType:
+  description: |
+    Allows to request offer-parts of a certain type.
+    To support H/H use ['RESERVATION', 'ANCILLARY'].
+    Default is to get search for offers of all types.
+  type: string
+  enum:
+  - ADMISSION
+  - RESERVATION
+  - ANCILLARY
+  - FARE_ADMISSION
+  - FARE_RESERVATION
+  - FARE_ANCILLARY
+  - CONTINUOUS_SERVICE
+  - ALL
+OfferSearchCriteria:
+  type: object
+  additionalProperties: false
+  properties:
+    requestedOfferParts:
+      type: array
+      items:
+        $ref: '#/OfferPartType'
+    productTags:
+      type: array
+      items:
+        $ref: ./product.yml#/ProductTag
+      nullable: true
+    productSelections:
+      description: |
+        preselection of products where offers are requested
+      type: array
+      items:
+        description: |
+          product selection by product code or product tag for an offer request. The number of items indicates the quantity to be required. Passengers must be referenced in case the product is intended for passengers.
+        $ref: '#/ProductRequestOfferSelection'
+    flexibilities:
+      description: |
+        Defines the flexibility levels desired of the fares returned.
+        This refers to the after sales flexibility levels as defined in IRS-90918-10
+      type: array
+      items:
+        $ref: '#/Flexibility'
+    travelClasses:
+      description: |
+        The classes returned might be different from the requested classes.
+      type: array
+      items:
+        $ref: ./_common.yml#/TravelClass
+    serviceClassTypes:
+      description: |
+        The classes returned might be different from the requested classes.
+      type: array
+      items:
+        $ref: ./_common.yml#/ServiceClassType
+      maxItems: 4
+    offerMode:
+      $ref: '#/OfferMode'
+    currency:
+      $ref: ./_common.yml#/Currency
+    inboundDate:
+      description: |
+        Needs to be provided when creating the collection of outbound travels so that the
+        provider knows when a inbound travel can be expected and propose appropriate
+        product and fares.
+      type: string
+      format: date-time
+      nullable: true
+OfferSelection:
+  type: object
+  additionalProperties: false
+  description: |
+    The Ids of the offers to be booked need to be passed in.
+  required:
+  - offerId
+  - passengerRefs
+  properties:
+    offerId:
+      description: |
+        id of the selected offer or exchangeOffer
+      type: string
+      maxLength: 32768
+      nullable: false
+    externalRef:
+      description: |
+        A stable reference to the id of the offer in the caller's system. When received in input of a request, it must be persisted and echoed back in the response.
+      type: string
+      nullable: false
+    optionalReservationSelections:
+      description: |
+        Mandatory reservations are booked when the booking is being booked.
+      type: array
+      items:
+        $ref: '#/ReservationSelection'
+    optionalAncillarySelections:
+      type: array
+      items:
+        $ref: '#/AncillarySelection'
+    placeSelections:
+      type: array
+      items:
+        $ref: ./place.yml#/PlaceSelection
+    afterSaleByRetailerOnly:
+      description: |
+        in case the distributor has proposed this offer in conjunction with an offer of another provider constrained
+        by a combinationTag, this flag must be set to true to indicate to the provider that after-sale must be done
+        on the totality of the distributor's booking. Only after-sale requests triggered by the distributor can be
+        safely processed on this offer. When the flag is not set, standard provider logic applies.
+      type: boolean
+      nullable: true
+      default: false
+    appliedRegulatoryCondition:
+      $ref: ./_common.yml#/RegulatoryCondition
+    passengerRefs:
+      type: array
+      items:
+        type: string
+      minItems: 1
+      nullable: false
+    throughTicketTags:
+      type: array
+      items:
+        $ref: '#/ThroughTicketTag'
+OfferSummary:
+  type: object
+  additionalProperties: false
+  description: |
+    The offer summary indicates the most relevant service class, level, flexibility or accommodation
+    that describe this offer, but this does not imply that these values exactly apply to all parts of
+    the offer.
+    Let's consider, as a simplified example, a trip composed of two legs, one with both 1st and
+    2nd class, and one with only 2nd.
+    On this trip, the railway is expected to propose one offer with overallServiceClass FIRST composed
+    of one admission in 1st class on the first legs and one admission in 2nd class on the second one,
+    plus a second offer with overallServiceClass SECOND composed of two second class admissions.
+    Likewise for all 'overall' attributes. The purpose of these attributes is to convey to the client
+    system the service class, level, flexibility and accommodation that best represent this offer so to
+    facilitate presentation to the final user.
+    The offerSummary must be provided for product based offers. It is not needed for fares.
+  required:
+  - minimalPrice
+  - overallServiceClass
+  - overallFlexibility
+  properties:
+    minimalPrice:
+      $ref: ./_common.yml#/Price
+    overallServiceClass:
+      $ref: ./_common.yml#/ServiceClass
+    overallTravelClass:
+      $ref: ./_common.yml#/TravelClass
+    overallAccommodationType:
+      $ref: ./place.yml#/AccommodationType
+    overallAccommodationSubType:
+      $ref: ./place.yml#/AccommodationSubType
+    overallFlexibility:
+      $ref: '#/Flexibility'
+    minimalIndicatedConsumption:
+      $ref: ./travel-account.yml#/IndicatedConsumption
+OfferTag:
+  type: object
+  additionalProperties: false
+  description: |
+    The offerTag can/must (depending on the mandatory flag) be used in some cases to restrict the
+    set of offers returned in a subsequent and related offer search to only compatible ones.
+    Note the offerTag does not need to be unique.
+  properties:
+    id:
+      type: string
+      nullable: true
+    isMandatory:
+      type: boolean
+      nullable: true
+      default: false
+OnHoldOffer:
+  type: object
+  additionalProperties: false
+  required:
+  - id
+  - summary
+  - createdOn
+  - validFrom
+  - validUntil
+  - onHoldFee
+  - deposit
+  - increasedTTL
+  properties:
+    id:
+      type: string
+      maxLength: 32768
+      nullable: false
+    summary:
+      type: string
+      nullable: false
+    createdOn:
+      type: string
+      format: date-time
+      nullable: false
+    validFrom:
+      type: string
+      format: date-time
+      nullable: false
+    validUntil:
+      type: string
+      format: date-time
+      nullable: false
+    confirmedOn:
+      type: string
+      format: date-time
+      nullable: true
+    onHoldFee:
+      $ref: ./_common.yml#/Fee
+    deposit:
+      $ref: ./_common.yml#/Price
+    increasedTTL:
+      description: |
+        Increased time-to-live.
+      type: string
+      format: date-time
+      nullable: false
+    _links:
+      $ref: ./_common.yml#/Links
+OnHoldOfferPatchRequest:
+  type: object
+  additionalProperties: false
+OnHoldOfferRequest:
+  type: object
+  additionalProperties: false
+  description: |
+    Confirming the offer puts into the 'On-hold' state.
+  required:
+  - increaseTTL
+  properties:
+    increaseTTL:
+      description: |
+        increase of time to live (in minutes)
+      type: integer
+      format: int32
+      nullable: false
+OnHoldOfferResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    onHoldOffer:
+      $ref: '#/OnHoldOffer'
+ProductLegAssociation:
+  type: object
+  additionalProperties: false
+  description: |
+    In offer mode, in almost all cases exactly one product is referenced. Only on some French
+    trips consisting of a TGV and a TER two products need to be used.
+    In fare mode, no product exists as first needs to created from the different fares.
+  required:
+  - productId
+  properties:
+    productId:
+      type: string
+      nullable: false
+    legIds:
+      description: |
+        indices of the legs in the trip given by the provider of the offer
+      type: array
+      items:
+        type: string
+      nullable: true
+ProductRequestOfferSelection:
+  type: object
+  additionalProperties: false
+  description: "product selection by product code or product tag for an offer request (exactly one of `productCode` and `productTag`\
+    \ must be provided). The number of items indicates the quantity \nto be required. Passengers must be referenced in case\
+    \ the product is intended for passengers.\n"
+  properties:
+    productCode:
+      type: string
+      example: PT00AD
+    productTag:
+      type: string
+    numberOfItems:
+      type: integer
+      nullable: true
+      format: int32
+      minimum: 1
+    externalPassengerRefs:
+      type: array
+      items:
+        type: string
+Reservation:
+  description: |
+    Reservation includes the reference to the in the initial offer.
+    The offer needs to be updated with the selected places before the confirmation
+    which creates the reservation details including the reserved places.
+  allOf:
+  - $ref: ./booking.yml#/AbstractBookingPart
+  - type: object
+    additionalProperties: false
+    properties:
+      distributionMode:
+        description: indication of a reservation to be used as a fare or as a product
+        $ref: ./_common.yml#/DistributionMode
+      placeSelection:
+        $ref: ./place.yml#/PlaceSelection
+      placeAllocation:
+        $ref: ./place.yml#/PlaceAllocation
+      feeRefs:
+        type: array
+        items:
+          $ref: ./booking.yml#/BookingPartReference
+      ancillaryRefs:
+        deprecated: true
+        description: |
+          *DEPRECATED* Formerly OSDM allowed to link ancillaries to reservation. Since 3.7.0, it is recommended to only link reservations to admissions, ancillaries, and not the other way round. Referrence will be removed in 4.0.0
+        type: array
+        items:
+          $ref: ./booking.yml#/BookingPartReference
+      availablePlacePreferences:
+        description: options for place selection in case the place selection is made after the pre-booking.
+        type: array
+        items:
+          $ref: ./place.yml#/AvailablePlacePreferences
+      graphicalReservationSupported:
+        description: more detailed information on options for place selection and possible fees are part of availablePlacePreferences
+        type: boolean
+        nullable: true
+        default: false
+        deprecated: true
+      supportedPlaceSelectionFlows:
+        description: |
+          Supported place selection flows might depend on available places.
+        type: array
+        items:
+          $ref: ./place.yml#/PlaceSelectionFlow
+ReservationGroup:
+  type: object
+  additionalProperties: false
+  required:
+  - id
+  - name
+  - reservationRefs
+  properties:
+    id:
+      deprecated: true
+      type: string
+      nullable: false
+    name:
+      deprecated: true
+      type: string
+      nullable: false
+    reservationRefs:
+      type: array
+      items:
+        $ref: '#/OfferPartReference'
+      minItems: 1
+ReservationOfferPart:
+  description: |
+    Reservation includes the reference to the in the initial offer.
+    The offer needs to be updated with the selected places before the confirmation
+    which creates the reservation details including the reserved places.
+  allOf:
+  - $ref: '#/AbstractOfferPart'
+  - type: object
+    additionalProperties: false
+    properties:
+      distributionMode:
+        description: indication of a reservation to be used as a fare or as a product
+        $ref: ./_common.yml#/DistributionMode
+      ancillaries:
+        deprecated: true
+        description: |
+          *DEPRECATED* Formerly OSDM allowed to link ancillaries to reservation. Since 3.7.0, it is recommended to only link reservations to admissions, ancillaries, and not the other way round. Referrence will be removed in 4.0.0
+        type: array
+        items:
+          $ref: '#/AncillaryRelation'
+      availablePlaces:
+        type: array
+        items:
+          $ref: ./place.yml#/AvailablePlace
+      availablePlacePreferences:
+        type: array
+        items:
+          $ref: ./place.yml#/AvailablePlacePreferences
+      feeRefs:
+        type: array
+        items:
+          $ref: '#/OfferPartReference'
+      numberOfPrivateCompartments:
+        type: integer
+        format: int32
+        nullable: true
+      supportedPlaceSelectionFlows:
+        description: |
+          Supported place selection flows might depend on available places.
+        type: array
+        items:
+          $ref: ./place.yml#/PlaceSelectionFlow
+ReservationReference:
+  type: object
+  additionalProperties: false
+  description: |
+    Reference to a reservation fare/offerPart/bookingPart
+  required:
+  - contextId
+  - contextType
+  - resourceId
+  - resourceType
+  properties:
+    contextId:
+      type: string
+      nullable: false
+    contextType:
+      $ref: ./_common.yml#/ContextType
+    resourceId:
+      type: string
+      nullable: false
+    resourceType:
+      $ref: ./_common.yml#/ResourceType
+ReservationRelation:
+  type: object
+  additionalProperties: false
+  required:
+  - minGroupItemsToBeBooked
+  - reservationGroup
+  properties:
+    isIncluded:
+      description: The reservation(s) linked via this relation are included in the parent offer part.
+      type: boolean
+      default: false
+    minGroupItemsToBeBooked:
+      type: integer
+      format: int32
+      nullable: false
+    maxGroupItemsToBeBooked:
+      type: integer
+      format: int32
+      nullable: true
+    reservationGroup:
+      $ref: '#/ReservationGroup'
+ReservationSelection:
+  type: object
+  additionalProperties: false
+  required:
+  - reservationId
+  properties:
+    reservationId:
+      type: string
+      nullable: false
+ReservedPlace:
+  type: object
+  additionalProperties: false
+  description: |
+    In distributor mode placeProperties are mandatory to be returned.
+  required:
+  - id
+  - passengerIds
+  - vehicleNumber
+  - coachNumber
+  properties:
+    id:
+      type: string
+      nullable: false
+    passengerIds:
+      description: |
+        Id of the passenger
+      type: array
+      items:
+        type: string
+      minItems: 1
+      nullable: false
+    vehicleNumber:
+      description: |
+        vehicle number (e.g. train number)
+      type: string
+      nullable: false
+    coachNumber:
+      type: string
+      nullable: false
+    compartmentNumber:
+      description: |
+        Compartment number as indicated at the compartment in the coach. A compartment number must be set if the compartment is selectable as a whole only.
+      type: string
+      nullable: true
+      example: C1
+    placeDescription:
+      description: |
+        description of the places (e.g. 11-35,51)
+      type: string
+      nullable: true
+    placeNumbers:
+      description: |
+        list of individual place numbers
+      type: array
+      items:
+        type: string
+      nullable: true
+    placeProperties:
+      description: |
+        place properties to be indicated to the customer
+      type: array
+      items:
+        $ref: ./place.yml#/PlaceProperty
+    splitSection:
+      description: "Indication of the covered part of a leg in case the reserved \nplace does not cover the whole leg. This\
+        \ element is allowed \non in case the offer was requested using the SPLIT_RESERVATION product tag\nan implementation\
+        \ is not recommended.\n"
+      $ref: ./trip.yml#/Section
+ThroughTicketTag:
+  description: |
+    Known Values:
+    - RESPLUS: Through ticket tag according to Swedish Regulation.
+  type: string
+  x-extensible-enum:
+  - RESPLUS

@@ -1,0 +1,6 @@
+apis:
+  osdm-v3.9:
+    root: specification/v3.9/OSDM-online-api.yml
+
+extends:
+  - recommended

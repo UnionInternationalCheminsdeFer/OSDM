@@ -1,0 +1,336 @@
+Product:
+  type: object
+  additionalProperties: false
+  description: |
+    Structured description of the product, its name, comfort and sales / after-sales conditions
+  required:
+  - id
+  - code
+  - owner
+  - flexibility
+  properties:
+    id:
+      description: |
+        id of the product
+      type: string
+      nullable: false
+    summary:
+      description: |
+        A human-readable description of the product.
+      type: string
+      nullable: true
+    summaryTranslations:
+      description: Translations of the summary attribute
+      type: array
+      items:
+        $ref: ./_common.yml#/Translation
+    type:
+      $ref: '#/ProductType'
+    code:
+      description: |
+        The product code expressed in the provider system (could be a
+        mapping from an even lower-level provider).
+      type: string
+      nullable: false
+      example: PT00AD
+    description:
+      description: |
+        Textual description of the product.
+      type: string
+      nullable: true
+    descriptionTranslations:
+      description: Translations of the description attribute
+      type: array
+      items:
+        $ref: ./_common.yml#/Translation
+    owner:
+      $ref: ./_common.yml#/CompanyRef
+    conditions:
+      description: |
+        Structured description of the sales or after-sales conditions.
+      type: array
+      items:
+        $ref: ./_common.yml#/Condition
+    flexibility:
+      $ref: ./offer.yml#/Flexibility
+    serviceClass:
+      $ref: ./_common.yml#/ServiceClass
+    travelClass:
+      $ref: ./_common.yml#/TravelClass
+    fulfillmentOptions:
+      type: array
+      items:
+        $ref: ./fulfillment.yml#/FulfillmentOption
+    isTrainBound:
+      type: boolean
+      nullable: true
+      default: false
+    isReturnProduct:
+      type: boolean
+      nullable: true
+      default: false
+    serviceConstraintText:
+      type: string
+      nullable: true
+    serviceConstraintTextTranslations:
+      description: Translations of the service constaint text attribute
+      type: array
+      items:
+        $ref: ./_common.yml#/Translation
+    carrierConstraintText:
+      type: string
+      nullable: true
+    carrierConstraintTextTranslations:
+      description: Translations of the carrier constaint text attribute
+      type: array
+      items:
+        $ref: ./_common.yml#/Translation
+    descriptiveTexts:
+      type: array
+      items:
+        $ref: ./_common.yml#/TextElement
+    tariff:
+      description: |
+        Mapping to Tariff 42 of IRS-90918-3 (Hermes/Hosa). Helps the H2O converter in mapping
+        offers to a requested tariff. See legacyReservationParameter.tariff in OSDM offline.
+      type: string
+      nullable: true
+    combinationTags:
+      type: array
+      items:
+        $ref: ./offer.yml#/CombinationTag
+    productTags:
+      description: product tags associated with the product that can be used to search for offers. This can be omitted outside
+        of the product master data service
+      type: array
+      items:
+        type: string
+        nullable: true
+    _links:
+      $ref: ./_common.yml#/Links
+ProductCollectionResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    products:
+      description: |
+        The list of all products available to the caller.
+      type: array
+      items:
+        $ref: '#/Product'
+    _links:
+      $ref: ./_common.yml#/Links
+ProductResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    product:
+      $ref: '#/Product'
+ProductSearchRequest:
+  type: object
+  additionalProperties: false
+  description: |
+    Search criteria to search for products
+  properties:
+    id:
+      description: |
+        id of the product
+      type: string
+      nullable: false
+    types:
+      type: array
+      items:
+        $ref: '#/ProductType'
+    codes:
+      description: |
+        The product codes to be searched.
+      type: array
+      items:
+        type: string
+    flexibilities:
+      type: array
+      items:
+        $ref: ./offer.yml#/Flexibility
+    serviceClasses:
+      type: array
+      items:
+        $ref: ./_common.yml#/ServiceClass
+    travelClasses:
+      type: array
+      items:
+        $ref: ./_common.yml#/TravelClass
+    fulfillmentOptions:
+      type: array
+      items:
+        $ref: ./fulfillment.yml#/FulfillmentOption
+    productTags:
+      description: product tags associated with the product
+      type: array
+      items:
+        type: string
+        nullable: true
+ProductSearchResponse:
+  type: object
+  additionalProperties: false
+  description: |
+    Result of a product search
+  required:
+  - products
+  properties:
+    products:
+      type: array
+      minItems: 1
+      maxItems: 500
+      items:
+        $ref: '#/Product'
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    _links:
+      $ref: ./_common.yml#/Links
+ProductSummary:
+  type: object
+  additionalProperties: false
+  description: |
+    Summary of the booking's underlining products.
+  required:
+  - id
+  - description
+  - code
+  properties:
+    id:
+      type: string
+      nullable: false
+    description:
+      type: string
+      nullable: false
+    code:
+      type: string
+      nullable: false
+ProductTag:
+  description: "Values from the [Product Tags Code List](https://osdm.io/spec/catalog-of-code-lists/#ProductTags)\nKnown values:\n\
+    - SPLIT_RESERVATION\n  Indicate for the provider that the distributor is prepared to get reservations including a split\
+    \ inside the reservation\n  Without this indication the provider is not allowed to use the SplitSection Object inside\
+    \ a reservation. \n  The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover\
+    \ a full leg \n  multiple reservations as offerParts should be created.\n- CARD_LOST\n  Tag used to request a non-trip\
+    \ offer to replace a lost card. This applies to physical cards only.\n- TICKET_LOST\n  Tag used to request a non-trip\
+    \ offer to replace a lost ticket. This applies to physical tickets only.\n- Product Types\n  All product types can be\
+    \ used as Product Tags in the search\n"
+  type: string
+  x-extensible-enum:
+  - SPLIT_RESERVATION
+  - CARD_LOST
+  - TICKET_LOST
+  - ADMISSION_MULTI_RIDE
+  - ADMISSION_POINT2POINT
+  - ADMISSION_PASS
+  - UPGRADE_PASS
+  - UPGRADE_POINT2POINT
+  - UPGRADE_MULTI_RIDE
+  - RESERVATION
+  - ANCILLARY_SERVICE
+  - ANCILLARY_ITEM
+  - REDUCTION_CARD
+ProductTagGroup:
+  description: |
+    Group of product tags with a description.
+  required:
+  - code
+  - description
+  properties:
+    code:
+      type: string
+      maxLength: 1024
+    description:
+      $ref: ./_common.yml#/Text
+    productTags:
+      type: array
+      minItems: 1
+      maxItems: 10000
+      items:
+        $ref: '#/ProductTag'
+ProductTagName:
+  description: |
+    Product tags including a description,  The short text of the description should serve as a name on a button.
+  required:
+  - tag
+  - description
+  properties:
+    tag:
+      $ref: '#/ProductTag'
+    description:
+      $ref: ./_common.yml#/Text
+ProductTagsResponse:
+  type: object
+  additionalProperties: false
+  description: |
+    Result of a product search
+  required:
+  - productTagNames
+  - productTagGroups
+  properties:
+    productTagNames:
+      type: array
+      minItems: 1
+      maxItems: 1000
+      items:
+        $ref: '#/ProductTagName'
+    productTagGroups:
+      type: array
+      minItems: 1
+      maxItems: 500
+      items:
+        $ref: '#/ProductTagGroup'
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+ProductType:
+  description: |
+    General product types harmonized across fare providers. (More to be added, use null for types not listed yet.)
+    Values from the [Product Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ProductTypes)
+    Listed values here are examples.
+  type: string
+  x-extensible-enum:
+  - ADMISSION_PASS
+  - ADMISSION_MULTI_RIDE
+  - ADMISSION_POINT2POINT
+  - UPGRADE_PASS
+  - UPGRADE_MULTI_RIDE
+  - UPGRADE_POINT2POINT
+  - RESERVATION
+  - ANCILLARY_SERVICE
+  - ANCILLARY_ITEM
+  - REDUCTION_CARD
+PromotionCodeCollectionResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    promotionCodes:
+      type: array
+      items:
+        $ref: ./_common.yml#/PromotionCode
+    _links:
+      $ref: ./_common.yml#/Links

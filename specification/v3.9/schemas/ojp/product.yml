@@ -1,0 +1,34 @@
+ProductCategory:
+  type: object
+  additionalProperties: false
+  description: |
+    Product category based on NeTEx/SIRI. A product category is a classification for vehicle journeys
+    to express some common properties of journeys for marketing and fare products. Provided by OJP.
+  required:
+  - name
+  - shortName
+  - productCategoryRef
+  properties:
+    name:
+      description: |
+        Full name of this product category, e.g. 'TGV Lyria' in Switzerland and France.
+        UIC: Long name of Service Brand
+      type: string
+      nullable: false
+      example: TGV Lyria
+    shortName:
+      description: |
+        Short name or acronym of the product category, likely to be published, e.g. 'TGV'
+        UIC: Abbreviation of Service Brand
+      type: string
+      nullable: false
+      example: TGV
+    productCategoryRef:
+      $ref: '#/ProductCategoryRef'
+ProductCategoryRef:
+  type: string
+  description: |
+    Reference to a product category. Product categories should be defined once and used
+    uniformly in all channels (e.g. NeTEx, SIRI, OJP). Provided by OJP.
+  nullable: true
+  example: urn:uic:sbc:76

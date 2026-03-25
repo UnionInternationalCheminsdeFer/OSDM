@@ -1,0 +1,207 @@
+/offers:
+  post:
+    tags:
+    - Offers
+    summary: Returns offers for trips or trip search criteria.
+    operationId: createOffers
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/OfferCollectionRequest
+    responses:
+      '200':
+        description: |
+          collection of offers found
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/OfferCollectionResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/bookings/{bookingId}/booked-offers/{bookedOfferId}/additional-offers:
+  get:
+    tags:
+    - Offers
+    summary: Get additional offers of booked offer for a given booking. A provider can decide to allow or reject additional
+      offers admissions, reservations or ancillaries on an confirmed booking.
+    operationId: getBookingBookedOffersAdditionalOffers
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - name: bookingId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: bookedOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    responses:
+      '200':
+        description: |
+          additional offers found for booked offer
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/AdditionalOfferCollectionResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/offer-overview-route:
+  post:
+    tags:
+    - Offer Overview
+    summary: Returns an overview of prices based on route
+    description: |
+      Returns an overview of prices for a given route search and criteria.
+      The overview does not contain detailed offer information, but only the
+      prices.
+    operationId: getOfferOverviewRoute
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/OfferOverviewRouteRequest
+    responses:
+      '200':
+        description: |
+          overview of prices found
+        headers:
+          Content-Language:
+            schema:
+              type: string
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/OfferOverviewRouteResponse
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+/offer-overview-trip:
+  post:
+    tags:
+    - Offer Overview
+    summary: Returns an overview of prices based on trips
+    description: |
+      Returns an overview of prices for a given trip search and criteria.
+      The overview does not contain detailed offer information, but only the
+      prices.
+    operationId: getOfferOverviewTrip
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/OfferOverviewTripRequest
+    responses:
+      '200':
+        description: |
+          overview of prices found
+        headers:
+          Content-Language:
+            schema:
+              type: string
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/OfferOverviewTripResponse
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
