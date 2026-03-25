@@ -11,68 +11,71 @@ permalink: /spec/catalog-of-code-lists/
 - [URNs for code lists ](#urns-for-code-lists-)
 - [Proprietary values ](#proprietary-values-)
   - [Known proprietary code lists ](#known-proprietary-code-lists-)
-- [Accommodation Type ](#accommodation-type-)
-- [Accommodation Sub Type, Place Property, Reservation Place Preference ](#accommodation-sub-type-place-property-reservation-place-preference-)
-- [Ancillary category ](#ancillary-category-)
-- [Ancillary Sub Types ](#ancillary-sub-types-)
-- [Attachable Item Type ](#attachable-item-type-)
-- [BarcodeType ](#barcodetype-)
-- [CardType ](#cardtype-)
-- [Company Code ](#company-code-)
-- [ControlDataExchangeType ](#controldataexchangetype-)
-- [ControlSecurityType ](#controlsecuritytype-)
-- [Currency ](#currency-)
-- [FareType ](#faretype-)
-- [Fare CoachType ](#fare-coachtype-)
-- [Fare CompartmentTypeCode ](#fare-compartmenttypecode-)
-- [FulfillmentType ](#fulfillmenttype-)
-- [FulfillmentDocumentType ](#fulfillmentdocumenttype-)
-- [FulfillmentMediaType ](#fulfillmentmediatype-)
-- [Gender ](#gender-)
-- [Graphics Items ](#graphics-items-)
-  - [Graphical Elements](#graphical-elements)
-  - [External Service Icons](#service-icons)
-- [Interface Type ](#interface-type-)
-- [Language ](#language-)
-- [Leg Attributes ](#leg-attributes-)
-- [Nationality ](#nationality-)
-- [NUTS codes ](#nuts-codes-)
-- [On-Demand Vehicle Process ](#on-demand-vehicle-process-)
-- [On-Demand Vehicle Type ](#on-demand-vehicle-type-)
-- [Overrule Code ](#overrule-code-)
-- [Passenger Type (aka. Traveler Type) ](#passenger-type-aka-traveler-type-)
-- [Passport ](#passport-)
-- [Personal data items ](#personal-data-items-)
-- [Personal data transfer types ](#personal-data-transfer-types-)
-- [Personal data change reasons ](#personal-data-change-reasons-)
-- [PRM Need Type ](#prm-need-type-)
-- [Product Tags ](#product-tags-)
-- [Product Types ](#product-types-)
-- [Public Transportation Modes (ptMode) ](#public-transportation-modes-ptmode-)
-- [Point of Interest (POI) ](#point-of-interest-poi-)
-- [Reduction cards ](#reduction-cards-)
-- [Reimbursement Reason ](#reimbursement-reason-)
-- [Regulatory Condition ](#regulatory-condition-)  
-- [Reservation Preference Group ](#reservation-preference-group-)
-- [Service Brands ](#service-brands-)
-- [Service Class ](#service-class-)
-- [Service Degradation ](#service-degradation-)
-- [Service Facilities / Leg Attributes ](#service-facilities--leg-attributes-)
-- [Special Coach Type ](#special-coach-type-)
-- [Stations ](#stations-)
-- [Supported Online Services ](#supported-online-services-)
-- [TimeReference ](#timereference-)
-- [TimeUnit ](#timeunit-)
-- [Transfer Type ](#transfer-type-)
-- [Transport Mode ](#transport-mode-)
-- [TransactionType ](#transactiontype-)
-- [Travel Account Types ](#travel-account-types-)
-- [TravelDirection ](#traveldirection-)
-- [TravelValidityType ](#travelvaliditytype-)
-- [TripAllocationProcess ](#tripallocationprocess-)
-- [TripAllocationUnit ](#tripallocationunit-)
-- [TripInterruptionProcess ](#tripinterruptionprocess-)
-- [VatScope ](#vatscope-)
+- [Code Governance ](#code-governance-)
+- [Code lists as Json File ](#code-lists-as-json-file-)
+- [Code Lists ](#accommodation-type-)
+  - [Accommodation Type ](#accommodation-type-) 
+  - [Accommodation Sub Type, Place Property, Reservation Place Preference ](#accommodation-sub-type-place-property-reservation-place-preference-)
+  - [Ancillary category ](#ancillary-category-)
+  - [Ancillary Sub Types ](#ancillary-sub-types-)
+  - [Attachable Item Type ](#attachable-item-type-)
+  - [BarcodeType ](#barcodetype-)
+  - [CardType ](#cardtype-)
+  - [Company Code ](#company-code-)
+  - [ControlDataExchangeType ](#controldataexchangetype-)
+  - [ControlSecurityType ](#controlsecuritytype-)
+  - [Currency ](#currency-)
+  - [FareType ](#faretype-)
+  - [Fare CoachType ](#fare-coachtype-)
+  - [Fare CompartmentTypeCode ](#fare-compartmenttypecode-)
+  - [FulfillmentType ](#fulfillmenttype-)
+  - [FulfillmentDocumentType ](#fulfillmentdocumenttype-)
+  - [FulfillmentMediaType ](#fulfillmentmediatype-)
+  - [Gender ](#gender-)
+  - [Graphics Items ](#graphics-items-)
+    - [Graphical Elements ](#graphical-elements-)
+    - [External Service Icons ](#external-service-icons-)
+  - [Interface Type ](#interface-type-)
+  - [Language ](#language-) 
+  - [Leg Attributes ](#leg-attributes-)
+  - [Nationality ](#nationality-)
+  - [NUTS codes ](#nuts-codes-)
+  - [On-Demand Vehicle Process ](#on-demand-vehicle-process-)
+  - [On-Demand Vehicle Type ](#on-demand-vehicle-type-)
+  - [Overrule Code ](#overrule-code-)
+  - [Passenger Type (aka. Traveler Type) ](#passenger-type-aka-traveler-type-)
+  - [Passport ](#passport-)
+  - [Personal data items ](#personal-data-items-)
+  - [Personal data transfer types ](#personal-data-transfer-types-)
+  - [Personal data change reasons ](#personal-data-change-reasons-)
+  - [PRM Need Type ](#prm-need-type-)
+  - [Product Tags ](#product-tags-)
+  - [Product Types ](#product-types-)
+  - [Public Transportation Modes (ptMode) ](#public-transportation-modes-ptmode-)
+  - [Point of Interest (POI) ](#point-of-interest-poi-)
+  - [Reduction cards ](#reduction-cards-)
+  - [Reimbursement Reason ](#reimbursement-reason-)
+  - [Regulatory Condition ](#regulatory-condition-)  
+  - [Reservation Preference Group ](#reservation-preference-group-)
+  - [Service Brands ](#service-brands-)
+  - [Service Class ](#service-class-)
+  - [Service Degradation ](#service-degradation-)
+  - [Service Facilities / Leg Attributes ](#service-facilities--leg-attributes-)
+  - [Special Coach Type ](#special-coach-type-)
+  - [Stations ](#stations-)
+  - [Supported Online Services ](#supported-online-services-)
+  - [TimeReference ](#timereference-)
+  - [TimeUnit ](#timeunit-)
+  - [Transfer Type ](#transfer-type-)
+  - [Transport Mode ](#transport-mode-)
+  - [TransactionType ](#transactiontype-) 
+  - [Travel Account Types ](#travel-account-types-)
+  - [TravelDirection ](#traveldirection-)
+  - [TravelValidityType ](#travelvaliditytype-)
+  - [TripAllocationProcess ](#tripallocationprocess-)
+  - [TripAllocationUnit ](#tripallocationunit-)
+  - [TripInterruptionProcess ](#tripinterruptionprocess-)
+  - [VatScope ](#vatscope-)
 
 The mandatory code lists on enums and extensible enums are provided within the
 schema files.
@@ -118,6 +121,80 @@ mandates it to be always lower case.
 | ------- | --------- | ------------------------ | ----------------------------------- |
 | x_eva   | stn       | urn:x_eva:stn:80000123   | HAFAS station code                  |
 | x_hafas | admin     | urn:x_hafas:admin:123456 | HAFAS administration ("Verwaltung") |
+
+
+## Code Governance <a name="CodeGovernance">
+
+| Code list                         | Governance Type:                                                                                     |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------- |
+|     |                      provider specific values allowed / no provider specific values allowed / code list managed by external organization          |
+| [Accommodation Type](#accommodation-type-) | no provider specific values allowed     | 
+| [Accommodation Sub Type, Place Property, Reservation Place Preference  ](#accommodation-sub-type-place-property-reservation-place-preference-) |   no provider specific values allowed    | 
+| [Ancillary category  ](#ancillary-category-) |  no provider specific values allowed     | 
+| [Ancillary Sub Types  ](#ancillary-sub-types-) |   no provider specific values allowed    | 
+| [Attachable Item Type  ](#attachable-item-type-) |  no provider specific values allowed     | 
+| [BarcodeType  ](#barcodetype-) |   no provider specific values allowed    | 
+| [CardType  ](#cardtype-) |   no provider specific values allowed       | 
+| [Company Code  ](#company-code-) | code list managed by external organization  ERA / UIC , ...    | 
+| [ControlDataExchangeType  ](#controldataexchangetype-) |   no provider specific values allowed    | 
+| [ControlSecurityType  ](#controlsecuritytype-) |   no provider specific values allowed     | 
+| [Currency  ](#currency-) |   code list managed by external organization  ISO   | 
+| [FareType  ](#faretype-) |   no provider specific values allowed    | 
+| [Fare CoachType  ](#fare-coachtype-) |   no provider specific values allowed    | 
+| [Fare CompartmentTypeCode  ](#fare-compartmenttypecode-) |  no provider specific values allowed     | 
+| [FulfillmentType  ](#fulfillmenttype-) |  no provider specific values allowed     | 
+| [FulfillmentDocumentType  ](#fulfillmentdocumenttype-) |   no provider specific values allowed    | 
+| [FulfillmentMediaType  ](#fulfillmentmediatype-) | no provider specific values allowed        | 
+| [Gender  ](#gender-) |   no provider specific values allowed    | 
+| [Graphics Items](#graphics-items-) |   no provider specific values allowed    | 
+| [Graphical Elements ](#graphical-elements-) |   no provider specific values allowed    | 
+| [External Service Icons](#external-service-icons-) |   no provider specific values allowed    | 
+| [Interface Type  ](#interface-type-) |   no provider specific values allowed    | 
+| [Language  ](#language-) |   code list managed by external organization  ISO   | 
+| [Leg Attributes  ](#leg-attributes-) | code list managed by external organization     | 
+| [Nationality  ](#nationality-) |  code list managed by external organization  ISO     | 
+| [NUTS codes  ](#nuts-codes-) |  code list managed by external organization  EU    | 
+| [On-Demand Vehicle Process  ](#on-demand-vehicle-process-) |   no provider specific values allowed      | 
+| [On-Demand Vehicle Type  ](#on-demand-vehicle-type-) |  no provider specific values allowed       | 
+| [Overrule Code  ](#overrule-code-) |   no provider specific values allowed      | 
+| [Passenger Type (aka. Traveler Type) ](#passenger-type-aka-traveler-type-) | no provider specific values allowed        | 
+| [Passport  ](#passport-) |  no provider specific values allowed       | 
+| [Personal data items  ](#personal-data-items-) |  no provider specific values allowed       | 
+| [Personal data transfer types  ](#personal-data-transfer-types-) |  no provider specific values allowed       | 
+| [Personal data change reasons  ](#personal-data-change-reasons-) |  no provider specific values allowed       | 
+| [PRM Need Type  ](#prm-need-type-) |  no provider specific values allowed       | 
+| [Product Tags  ](#product-tags-) |   provider specific values allowed    | 
+| [Product Types  ](#product-types-) |   provider specific values allowed    | 
+| [Public Transportation Modes (ptMode) ](#public-transportation-modes-ptmode-) | code list managed by external organization     | 
+| [Point of Interest (POI) ](#point-of-interest-poi-) |  provider specific values allowed       | 
+| [Reduction cards  ](#reduction-cards-) | provider specific values allowed       | 
+| [Reimbursement Reason  ](#reimbursement-reason-) | no provider specific values allowed        | 
+| [Regulatory Condition ](#regulatory-condition-) | no provider specific values allowed        |   
+| [Reservation Preference Group  ](#reservation-preference-group-) |      | 
+| [Service Brands  ](#service-brands-) |  code list managed by external organization UIC    | 
+| [Service Class  ](#service-class-) |  no provider specific values allowed       | 
+| [Service Degradation  ](#service-degradation-) |  no provider specific values allowed       | 
+| [Service Facilities / Leg Attributes  ](#service-facilities--leg-attributes-) | no provider specific values allowed        | 
+| [Special Coach Type  ](#special-coach-type-) |  no provider specific values allowed       | 
+| [Stations  ](#stations-) |  code list managed by external organizations     | 
+| [Supported Online Services  ](#supported-online-services-) |  no provider specific values allowed       | 
+| [TimeReference  ](#timereference-) |  no provider specific values allowed       | 
+| [TimeUnit  ](#timeunit-) |  no provider specific values allowed       | 
+| [Transfer Type  ](#transfer-type-) |  no provider specific values allowed       | 
+| [Transport Mode  ](#transport-mode-) |  code list managed by external organization    | 
+| [TransactionType  ](#transactiontype-) | no provider specific values allowed        | 
+| [Travel Account Types  ](#travel-account-types-) |  no provider specific values allowed       | 
+| [TravelDirection  ](#traveldirection-) | no provider specific values allowed        | 
+| [TravelValidityType  ](#travelvaliditytype-) |  no provider specific values allowed       | 
+| [TripAllocationProcess  ](#tripallocationprocess-) |  no provider specific values allowed       | 
+| [TripAllocationUnit  ](#tripallocationunit-) |   no provider specific values allowed      | 
+| [TripInterruptionProcess  ](#tripinterruptionprocess-) |   no provider specific values allowed      | 
+| [VatScope  ](#vatscope-) |  no provider specific values allowed       | 
+
+
+## Code lists as Json File <a name="CodelistsasJsonFile">
+
+[TODO](https://../codeList.json) 
 
 ## Accommodation Type <a name="AccomodationType">
 
@@ -617,7 +694,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
 ## Graphics Items <a name="GraphicsItems">
 
-### Graphical Elements
+### Graphical Elements <a name="GraphicalElements">
 
 Note: "Icon code" and "Mounting Used" are supported until version 3.6 included. Starting from version 3.7 and 4.0, the human‑readable "Code of Graphical Element" must be used, and "Mounting Used" is deprecated.
 
@@ -732,7 +809,7 @@ Note: "Icon code" and "Mounting Used" are supported until version 3.6 included. 
 | ![](../../images/catalog-of-code-lists/graphics-icons/TABLE_RESTAURANT.png)         | Restaurant Table                                                      | -         | `TABLE_RESTAURANT`            | -                |
 | ![](../../images/catalog-of-code-lists/graphics-icons/MULTI_FUNCTION_AREA.png)      | Multi Function Area                                                   | -         | `MULTI_FUNCTION_AREA`         | -                |
 
-### External Service Icons
+### External Service Icons <a name="ExternalServiceIcons">
 
 Note: External service icons are decommissioned starting with version 4.0 included.
 
