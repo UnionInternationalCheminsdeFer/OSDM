@@ -92,7 +92,7 @@ The following services/features are mandatory/optional to implement:
 | PATCH  /bookings/{bookingId}/purchaser  | Allows updating a purchaser's information at booking step.               | **Mandatory**      |                                      |           
 | POST  /bookings/{bookingId}/purchaser   | Allows creating a purchaser for a booking already existing.              |  _Optional_        |                                      |           
 | **Passenger Resource**            | manipulate passengers                                                          |                    |                                      |                                                     
-| GET  /bookings/{bookingId}/passengers/{passengerId} | Returns the passenger's information at booking step.         | **Mandatory**      |                                      |                   
+| GET  /bookings/{bookingId}/passengers/{passengerId} | Returns the passenger's information at booking step.         | **Optional**      |                                      |                   
 | PATCH  /bookings/{bookingId}/passengers/{passengerId} | Allows updating a passenger's information at booking step. | **Mandatory**      |                                      |                   
 | GET  /bookings/{bookingId}/passengers | Returns all the passenger's in the booking.                                | **Mandatory**      |                                      |                   
 | PATCH  /bookings/{bookingId}/passengers | Allows updating a set of passengers in a batch at booking step.          | **Mandatory**      |                                      |                   
