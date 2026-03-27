@@ -8753,13 +8753,7 @@ components:
         status:
           $ref: '#/components/schemas/ContinuousServiceUsageStatus'
         parkingImage:
-          description: |
-            base64 encoded binary of the jpg image of the parked vehicle when ending the usage.
-          type:
-            - 'string'
-            - 'null'
-          format: byte
-          maxLength: 4194304
+          $ref: '#/components/schemas/Image'
         tip:
           $ref: '#/components/schemas/Tip'
 
@@ -11120,6 +11114,40 @@ components:
         - 'JOURNEY_NOT_STARTED'
         - 'SERVICE_DEGRADED'
 
+    Image:
+      description: |
+         image eigther provided as image data and mime type or as image link.
+      type: object
+      additionalProperties: false
+      properties:
+        imageData:
+          description: |
+             base64 encoded binary of the image of the person or transportable. Used to upload an image. The use of webp is recommended.
+          type:
+            - 'string'
+            - 'null'
+          format: byte
+          maxLength: 4194304
+        mediatype:
+          $ref: '#/components/schemas/ImageMediaType'   
+        imageLink:
+          description: |
+            link to the image resource where the image is stored on provider side
+          type:
+            - 'string'
+            - 'null'
+          format: uri
+          examples:
+            - https://example.com/probs/image-of-john-doe.webp   
+
+    ImageMediaType:
+      description: media type of the image data as defined by IANA
+      type: string
+      x-extensible-enum:
+        - image/png
+        - image/jpeg
+        - image/webp     
+
     IndicatedUsage:
       type: object
       additionalProperties: false
@@ -11338,7 +11366,8 @@ components:
             description: |
               the 'rel' field in HATEOAS navigation.
             type: string
-            example: self
+            examples: 
+             - self
           href:
             description: |
               Allows to provide a value to the link, for example id of the targeted 
@@ -11352,7 +11381,8 @@ components:
             type:
               - 'string'
               - 'null'
-            example: application/json
+            examples: 
+              - application/json
           value:
             description: |
               Allows to provide a value to the link, for example id of the targeted 
@@ -12613,6 +12643,8 @@ components:
               $ref: '#/components/schemas/PersonDetail'
             transportableDetails:
               $ref: '#/components/schemas/Transportable'
+            image:
+              $ref: '#/components/schemas/Image'
 
     PassengerType:
       description: |
