@@ -94,7 +94,7 @@ The following services/features are mandatory/optional to implement:
 | **Passenger Resource**            | manipulate passengers                                                          |                    |                                      |                                                     
 | GET  /bookings/{bookingId}/passengers/{passengerId} | Returns the passenger's information at booking step.         | **Optional**      |                                      |                   
 | PATCH  /bookings/{bookingId}/passengers/{passengerId} | Allows updating a passenger's information at booking step. | **Mandatory**      |                                      |                   
-| GET  /bookings/{bookingId}/passengers | Returns all the passenger's in the booking.                                | **Mandatory**      |                                      |                   
+| GET  /bookings/{bookingId}/passengers | Returns all the passenger's in the booking.                                | **Optional**      |                                      |                   
 | PATCH  /bookings/{bookingId}/passengers | Allows updating a set of passengers in a batch at booking step.          | **Mandatory**      |                                      |                   
 | **Fulfillment Resource**             | manipulate fulfillments                                                     |                    |                                      |                
 | PATCH  /fulfillments/{fulfillmentId} | Activates a fulfillment, i.e. changes the status from AVAILABLE to FULFILLED. |  **Conditional**  |  Mandatory if dynamic fulfillments are used (e.g. multi journey ticket packages) |
