@@ -6881,10 +6881,10 @@ components:
             $ref: '#/components/schemas/FulfillmentRefs'
         fulfillmentStatus:
           $ref: '#/components/schemas/FulfillmentSummaryStatus'
-        issuedVouchers:
+        issuedVoucherRefs:
           type: array
           items:
-            $ref: '#/components/schemas/VoucherInformation'
+            $ref: '#/components/schemas/VoucherRef'
         documents:
           type: array
           items:
@@ -8340,10 +8340,10 @@ components:
           type: array
           items:
             type: string
-        issuedVouchers:
+        issuedVoucherRefs:
           type: array
           items:
-            $ref: '#/components/schemas/VoucherInformation'
+            $ref: '#/components/schemas/VoucherRef'
         refundFeeRefs:
           description: |
             reference to Applied Fees covering the refund fee. Providing the reference
@@ -9624,10 +9624,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentRefs'
-        issuedVouchers:
+        issuedVoucherRefs:
           type: array
           items:
-            $ref: '#/components/schemas/VoucherInformation'
+            $ref: '#/components/schemas/VoucherRef'
         trips:
           type: array
           items:
@@ -10339,12 +10339,14 @@ components:
           $ref: '#/components/schemas/FulfillmentUsage'
         issuer:
           $ref: '#/components/schemas/CompanyRef'
-        fulfillmentDocuments:
+        fulfillmentDocumentRefs:
           description: |
-            Final document created for fulfillment.
+            References to the fulfillment documents.
           type: array
           items:
-            $ref: '#/components/schemas/FulfillmentDocument'
+            type: string
+            description: |
+              Fulfillment document ID
         issuingLanguage:
           type: string
           description: the issuing language (ISO-639-1 language code).
@@ -10382,10 +10384,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fulfillment'
-        issuedVouchers:
+        fulfillmentDocuments:
           type: array
           items:
-            $ref: '#/components/schemas/VoucherInformation'
+            $ref: '#/components/schemas/FulfillmentDocument'            
+        issuedVoucherRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherRef'
+        _links:
+          $ref: '#/components/schemas/Links'            
 
     FulfillmentConstraint:
       type: object
@@ -10429,10 +10437,15 @@ components:
         Document created for fulfillment. Either downloadLink + downloadExpiry or content must
         be provided.
       required:
+        - id
         - medium
         - type
         - format
       properties:
+        id:
+          type: string
+          description: |
+            Technical reference. Required for referencing from fulfilment.fulfillmentDocumentRefs        
         medium:
           $ref: '#/components/schemas/FulfillmentMediaType'
         type:
@@ -10720,6 +10733,12 @@ components:
             $ref: '#/components/schemas/Problem'
         fulfillment:
           $ref: '#/components/schemas/Fulfillment'
+        fulfillmentDocuments:
+          description: |
+            Final document created for fulfillment.
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentDocument'          
 
     FulfillmentsPatchRequest:
       type: object
@@ -14757,6 +14776,17 @@ components:
           items:
             $ref: '#/components/schemas/RefundedFulfillmentSpecification'
           minItems: 1
+        issuedFulfillmentRefs:
+          description:
+            new fulfillments issued with this offer (only available after
+            confirmation)
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentRef'
+        issuedVoucherRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherRef'
         refundFee:
           $ref: '#/components/schemas/Price'
           description: |
@@ -18073,6 +18103,7 @@ components:
 
     VoucherInformation:
       type: object
+      description: identifier of a voucher
       additionalProperties: false
       required:
         - issuer
@@ -18084,6 +18115,26 @@ components:
           description: |
             voucher code provided by the issuer
           type: string
+
+    VoucherRef:
+      type: object
+      description: | 
+         reference to a voucher issued during the sales process
+      additionalProperties: false
+      required:
+        - issuer
+        - code
+      properties:
+        issuer:
+          $ref: '#/components/schemas/CompanyRef'
+        code:
+          description: |
+            voucher code provided by the issuer
+          type: string
+        fulfillmentRef:
+          description: |
+            reference to the fulfillment of the voucher.
+          $ref: '#/components/schemas/FulfillmentRefs'          
 
     Zone:
       type: object
@@ -18220,4 +18271,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceRef'
-
