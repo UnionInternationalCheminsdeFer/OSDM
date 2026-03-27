@@ -59,7 +59,7 @@ The following services/features are mandatory/optional to implement:
 | `POST /trips                          | Returns a new trip for given search parameters based on an existing trip    | _Optional_         |                                      |
 | `GET  /trips/{tripId}                 | Returns a trp based on the tripid                                           | _Optional_         |                                      |
 | **Offer Resources**                   | resources to get bookable offers                                            |                    |                                      |
-| POST  /offers                         | Returns offers for trips or trip search criteria.                           | **Mandatory**      |  trip specifications and trip search criteria must be supported in the request |
+| POST  /offers                         | Returns offers for search criteria.                           | **Mandatory**      |  Search criteria must be supported in the request |
 | GET  /bookings/{bookingId}/booked-offers/{bookedOfferId}/additional-offers  |   Get additional offers of booked offer for a given booking. |   _Optional_  |                                      |
 | **Offer Overview**                   | resources to get an overview of prices without detailed offer information   |                    |                                      |
 | POST  /offer-overview-route           | Returns an overview of prices based on route                                |  _Optional_        |                                     |
