@@ -88,7 +88,7 @@ The following services/features are mandatory/optional to implement:
 | DELETE  /bookings/{bookingId}/booked-offers/{bookedOfferId}  |  Delete a bookedOffer from a booking.               | Recommended        |                                      |
 | DELETE  /bookings/{bookingId}/booked-offers/{offerId}/passengers/{passengerId}  |  Delete a passenger from bookedOffer of a booking.  |  _Optional_   |        |
 | **Purchaser Resource**            | manipulate purchaser                                                           |                    |                                      |                   
-| GET  /bookings/{bookingId}/purchaser    | Returns the purchaser's information at booking step.                     | **Mandatory**      |                                      |           
+| GET  /bookings/{bookingId}/purchaser    | Returns the purchaser's information at booking step.                     | **Optional**      |                                      |           
 | PATCH  /bookings/{bookingId}/purchaser  | Allows updating a purchaser's information at booking step.               | **Mandatory**      |                                      |           
 | POST  /bookings/{bookingId}/purchaser   | Allows creating a purchaser for a booking already existing.              |  _Optional_        |                                      |           
 | **Passenger Resource**            | manipulate passengers                                                          |                    |                                      |                                                     
