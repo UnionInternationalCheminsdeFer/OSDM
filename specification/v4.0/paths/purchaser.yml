@@ -1,0 +1,168 @@
+/bookings/{bookingId}/purchaser:
+  get:
+    tags:
+    - Purchaser
+    summary: Returns the purchaser's information at booking step.
+    operationId: getBookingPurchaser
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking the purchaser is in.
+      required: true
+      schema:
+        type: string
+    responses:
+      '200':
+        description: |
+          purchaser found
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/PurchaserResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+  patch:
+    tags:
+    - Purchaser
+    summary: Allows updating a purchaser's information at booking step.
+    operationId: patchBookingPurchaser
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking the purchaser is in.
+      required: true
+      schema:
+        type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/Purchaser
+    responses:
+      '200':
+        description: |
+          purchaser patched
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/PurchaserResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '409':
+        $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+  post:
+    tags:
+    - Purchaser
+    summary: Allows creating a purchaser for a booking already existing.
+    operationId: postBookingPurchaser
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking the purchaser is in.
+      required: true
+      schema:
+        type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/Purchaser
+    responses:
+      '200':
+        description: |
+          purchaser posted
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/PurchaserResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '409':
+        $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse

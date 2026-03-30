@@ -1,0 +1,63 @@
+acceptLanguage:
+  name: Accept-Language
+  in: header
+  description: |
+    Describes the set of natural languages that are preferred for localized text in the response
+    to the request (see RFC9110). Supporting English (en) is a must.
+  schema:
+    type: string
+idempotencyKey:
+  name: Idempotency-Key
+  in: header
+  description: "The HTTP Idempotency request header field can be used to carry idempotency key in order to make\nnon-idempotent\
+    \ HTTP methods such as POST or PATCH fault-tolerant. Servers should keep the idempotency\nkey for as long as the result\
+    \ of the underlying operation is valid. Idempotency keys should be \nglobally unique.\n"
+  schema:
+    type: string
+    format: uuid
+ifNoneMatch:
+  name: If-None-Match
+  in: header
+  description: |
+    The HTTP If-None-Match is used to check whether the providing system has a newer version of the requested data.
+  schema:
+    type: string
+requestor:
+  name: Requestor
+  in: header
+  description: |
+    The requestor header contains detailed information about who is calling the API. It can include information such as channel, organization, sales unit or workstation id and be used to configure e.g. the fare range provided to the caller. The content of the string is part of a bilateral contract by the two parties and not standardized by OSDM. It is recommend to encrypt the information transferred.
+  schema:
+    type: string
+  required: false
+traceParent:
+  name: traceparent
+  in: header
+  description: |
+    The traceparent header describes the position of the incoming request in its trace graph in a portable,
+    fixed-length format. Its design focuses on fast parsing. Every tracing tool MUST properly set
+    traceparent even when it only relies on vendor-specific information in tracestate (see W3C Trace Context).
+  schema:
+    type: string
+traceState:
+  name: tracestate
+  in: header
+  description: |
+    The tracestate extends traceparent with vendor-specific data represented by a set of name/value pairs.
+    Storing information in tracestate is optional (see W3C Trace Context).
+  schema:
+    type: string
+acceptNamespace:
+  name: x-accept-namespace
+  in: header
+  description: The x-accept-namespace HTTP header indicates the URN namespace that the client prefers. The provider uses content-negotiation
+    to apply the corresponding namespace(s) where applicable.
+  example: x_swe, uic, iata
+  schema:
+    type: string
+page:
+  name: page
+  in: query
+  description: can be used for pagination
+  schema:
+    type: string

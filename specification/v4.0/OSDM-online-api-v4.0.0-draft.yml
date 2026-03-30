@@ -2251,7 +2251,7 @@ paths:
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
 
-  /fullfillments:
+  /fulfillments:
     get:
       tags:
         - Fulfillments
@@ -2426,7 +2426,7 @@ paths:
       summary:
         Check step (step 1 in a two phase commit process) to run before the
         effective fulfillment endpoint. Provider do all checks to "guarantee"
-        that fullfillment will work.
+        that fulfillment will work.
       description: |
         Step 1 in a two phase commit process. An aggregator can use this to secure that all underlaying provider systems are up and running and the provider booking is ready to be fulfilled.
       operationId: getCheckFulfillments

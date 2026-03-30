@@ -1,0 +1,64 @@
+/travel-accounts:
+  get:
+    tags:
+    - Travel Account
+    summary: Returns a travel account.
+    operationId: getTravelAccounts
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - name: issuer
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: travelAccount
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: embed
+      in: query
+      description: |
+        Default value: ALL
+      schema:
+        type: array
+        items:
+          $ref: ../OSDM-online-api.yml#/components/schemas/TravelAccountResponseContent
+    responses:
+      '200':
+        description: |
+          travel account found
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/TravelAccountResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse

@@ -1,0 +1,435 @@
+/bookings/{bookingId}/booked-offers/{bookedOfferId}/offer-parts:
+  post:
+    tags:
+    - BookingPart
+    summary: |
+      Adds a reservation or ancillary not previously added from offer to a booking.
+    description: |
+      Adds a reservation or an ancillary to a booking. A provider can decide to allow or reject additional admissions, reservations or ancillaries on an
+      confirmed booking.
+    operationId: createBookingBookedOffersParts
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/idempotencyKey
+    - name: bookingId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: bookedOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/BookedOfferPartRequest
+    responses:
+      '200':
+        description: |
+          reservation or ancillary added to booked offer
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/BookedOfferPartResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+  delete:
+    tags:
+    - BookingPart
+    summary: Removes reservations or ancillaries from a booking in case the parts were not yet confirmed. On confirmed reservations
+      use the refund.
+    operationId: deleteBookingBookedOffersParts
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - name: bookingId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: bookedOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/BookedOfferPartDeleteRequest
+    responses:
+      '204':
+        description: |
+          In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '409':
+        $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations:
+  post:
+    tags:
+    - BookingPart
+    summary: |
+      Adds a reservation not previously added from offer to a booking.
+    description: |
+      *DEPRECATED* in favour to unified endpoint handling both ancillaries and reservations.
+
+      Adds a reservation to a booking. A provider can decide to allow or
+      reject additional admissions, reservations or ancillaries on an
+      confirmed booking.
+    operationId: createBookingBookedOffersReservations
+    deprecated: true
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/idempotencyKey
+    - name: bookingId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: bookedOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/BookedOfferReservationRequest
+    responses:
+      '200':
+        description: |
+          reservation added to booked offer
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/BookedOfferReservationResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/bookings/{bookingId}/booked-offers/{bookedOfferId}/reservations/{reservationId}:
+  delete:
+    tags:
+    - BookingPart
+    summary: Removes a reservation from a booking in case the reservation was not yet confirmed. On confirmed reservations
+      use the refund.
+    operationId: deleteBookingBookedOffersReservations
+    deprecated: true
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      description: deprecated
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - name: bookingId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: bookedOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    - name: reservationId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    responses:
+      '204':
+        description: |
+          In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '409':
+        $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries:
+  post:
+    tags:
+    - BookingPart
+    summary: Adds an ancillary not previously added from offer to a booking.
+    description: |
+      *DEPRECATED* in favour to unified endpoint handling both ancillaries and reservations.
+
+      Adds an ancillary to a booking. A provider can decide to allow or reject
+      additional admissions, reservations or ancillaries on an confirmed
+      booking.
+    operationId: createBookingBookedOffersAncillaries
+    deprecated: true
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/idempotencyKey
+    - name: bookingId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: bookedOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/BookedOfferAncillaryRequest
+    responses:
+      '200':
+        description: |
+          ancillary added to booked offer
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/BookedOfferAncillaryResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/bookings/{bookingId}/booked-offers/{bookedOfferId}/ancillaries/{ancillaryId}:
+  delete:
+    tags:
+    - BookingPart
+    summary: Removes an ancillary from a booking in case the ancillary is not jet confirmed. On confirmed ancillaries use
+      the refund.
+    operationId: deleteBookingBookedOffersAncillary
+    deprecated: true
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      description: deprecated
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - name: bookingId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: bookedOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    - name: ancillaryId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    responses:
+      '204':
+        description: |
+          In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '409':
+        $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/bookings/{bookingId}/booked-offers/{bookedOfferId}/admissions/{admissionId}:
+  delete:
+    tags:
+    - BookingPart
+    summary: Removes an admission from a booking. In case the admission is not confirmed. On a confirmed admission use the
+      refund.
+    description: |
+      Removes an admission from pre-booked booking.It is up to the provider
+      to change or remove dependent bookedOfferParts or to reject the request.
+      A repricing might occur.
+    operationId: deleteBookingBookedOffersAdmission
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      description: deprecated
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - name: bookingId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: bookedOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    - name: admissionId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    responses:
+      '204':
+        description: |
+          In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '409':
+        $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse

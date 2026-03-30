@@ -1,0 +1,411 @@
+/availabilities/vehicle-place-map:
+  post:
+    tags:
+    - Availabilities
+    summary: Get a place map for a requested vehicle including availabilities.
+    description: |
+      Get a vehicle map including availabilities.
+    operationId: getAvailabilitiesVehiclePlaceMap
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/PlaceAvailabilityMapRequest
+    responses:
+      '200':
+        description: |
+          place availabilities for the requested fares and offer parts
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/PlaceAvailabilityMapResponse
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/availabilities/place-map:
+  get:
+    tags:
+    - Availabilities
+    summary: Get place map including availabilities.
+    description: |
+      Get place map including availabilities.
+      <br><br>
+      Deprecated: Substituted by getAvailabilitiesVehiclePlaceMap (since: 3.5.0, removed with: 4.0.0)
+    operationId: getAvailabilitiesPlaceMap
+    deprecated: true
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - name: contextId
+      in: query
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    - name: contextType
+      in: query
+      required: true
+      schema:
+        $ref: ../OSDM-online-api.yml#/components/schemas/ContextType
+    - name: resourceId
+      in: query
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    - name: resourceType
+      in: query
+      required: true
+      schema:
+        $ref: ../OSDM-online-api.yml#/components/schemas/ResourceType
+    responses:
+      '200':
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/PlaceAvailabilityResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+  post:
+    tags:
+    - Availabilities
+    summary: Get multiple place maps including availabilities.
+    description: |
+      Get multiple place maps including availabilities.
+      <br><br>
+      Deprecated: Substituted by getAvailabilitiesVehiclePlaceMap (since: 3.5.0, removed with: 4.0.0)
+    operationId: getAvailabilitiesPlaceMaps
+    deprecated: true
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/AvailabilityScope
+    responses:
+      '200':
+        description: |
+          place availabilities for the requested fares and offer parts
+        content:
+          application/json:
+            schema:
+              type: array
+              maxItems: 50
+              items:
+                $ref: ../OSDM-online-api.yml#/components/schemas/PlaceAvailability
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/availabilities/nearby:
+  get:
+    tags:
+    - Availabilities
+    summary: Get availabilities nearby a given place.
+    description: |
+      Get availabilities nearby a given place.
+    operationId: getAvailabilitiesNearby
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      description: deprecated
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/page
+    - name: contextId
+      in: query
+      description: |
+        denotes the offerId when contextType is OFFER, bookingId when contextType is BOOKING
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    - name: contextType
+      in: query
+      required: true
+      schema:
+        $ref: ../OSDM-online-api.yml#/components/schemas/ContextType
+    - name: resourceId
+      in: query
+      description: |
+        denotes the reservationId wen resourceType is RESERVATION, fareId when resourceType is FARE
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    - name: resourceType
+      in: query
+      required: true
+      schema:
+        $ref: ../OSDM-online-api.yml#/components/schemas/ResourceType
+    - name: coachNumber
+      in: query
+      description: |
+        coach number of the referenced place
+      required: true
+      schema:
+        type: string
+    - name: placeNumber
+      in: query
+      description: |
+        place number of the referenced place
+      required: true
+      schema:
+        type: string
+    responses:
+      '200':
+        description: |
+          place availabilities found
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/PlaceAvailabilityCollectionResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/availabilities/preferences:
+  get:
+    tags:
+    - Availabilities
+    summary: Get availabilities for a set of preferences.
+    description: |
+      Get availabilities for a set of preferences.
+    operationId: getAvailabilitiesPreferences
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      description: deprecated
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/page
+    - name: contextId
+      in: query
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    - name: contextType
+      in: query
+      required: true
+      schema:
+        $ref: ../OSDM-online-api.yml#/components/schemas/ContextType
+    - name: resourceId
+      in: query
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    - name: resourceType
+      in: query
+      required: true
+      schema:
+        $ref: ../OSDM-online-api.yml#/components/schemas/ResourceType
+    responses:
+      '200':
+        description: |
+          place availabilities found
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/PlaceAvailabilityCollectionResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/availabilities/on-demand-services:
+  post:
+    tags:
+    - Availabilities
+    - On-Demand Services
+    summary: Get availabilities of an on-demand service.
+    description: |
+      Get availabilities of an on-demand services.
+    operationId: getAvailabilitiesContinuousServices
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - name: contextId
+      in: query
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    - name: contextType
+      in: query
+      required: true
+      schema:
+        $ref: ../OSDM-online-api.yml#/components/schemas/ContextType
+    - name: resourceId
+      in: query
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    - name: resourceType
+      in: query
+      required: true
+      schema:
+        $ref: ../OSDM-online-api.yml#/components/schemas/ResourceType
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/ContinuousServiceAvailabilityScope
+    responses:
+      '200':
+        description: |
+          pick up places
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/ContinuousServicesAvailabilityResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
