@@ -23,7 +23,7 @@
     - name: Online API v3.9.0 (draft version) - Swagger
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.9/OSDM-online-api-v3.9.0.bundled.yml
     - name: Online API v4.0.0 (draft version) - Swagger
-      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-api-v4.0.0-draft.yml
+      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-api-v4.0.0-bundled.yml
 
 - name: APIs (Redoc)
   dropdown:
@@ -66,7 +66,7 @@
     - name: Online API v3.9.0 (draft version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v3.9/OSDM-online-api-v3.9.0.bundled.yml&nocors
     - name: Online API v4.0.0 (draft version) - Redoc
-      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-api-v4.0.0-draft.yml&nocors
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/master/specification/v4.0/OSDM-online-api-v4.0.0-bundled.yml&nocors
 
 - name: Specification
   link: spec/
