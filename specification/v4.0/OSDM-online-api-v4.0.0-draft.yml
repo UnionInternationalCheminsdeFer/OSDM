@@ -6709,31 +6709,27 @@ components:
       additionalProperties: false
       required:
         - offerId
-        - passengerRefs
       properties:
         offerId:
           type: string
           maxLength: 32768
-        ancillaryOfferIds:
+        ancillarySelections:
           type: array
-          minItems: 1
           items:
-            type: string
-            maxLength: 32768
-        placeSelections:
+            $ref: '#/components/schemas/AncillarySelection'
+        reservationSelections:
           type: array
-          minItems: 1
           items:
             $ref: '#/components/schemas/PlaceSelection'
         passengerRefs:
-          type: array
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.
+          type:
+            - 'array'
+            - 'null'
           items:
             type: string
           minItems: 1
-        tripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
-        inboundTripCoverage:
-          $ref: '#/components/schemas/TripCoverage'
 
     BookedOfferPartResponse:
       type: object
