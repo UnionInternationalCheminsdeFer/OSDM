@@ -8,10 +8,10 @@ AlightSpecification:
   - serviceArrival
   properties:
     stopPlaceRef:
-      $ref: './ojp/trip.yml#/StopPlaceRef'
+      $ref: ./ojp/trip.yml#/StopPlaceRef
     replacedPlaceRef:
       description: reference to the original place in case of a replacement (e.g. bus stop of a replacement bus for a train)
-      $ref: './ojp/trip.yml#/StopPlaceRef'
+      $ref: ./ojp/trip.yml#/StopPlaceRef
     serviceArrival:
       $ref: ./_common.yml#/ServiceTime
 BoardSpecification:
@@ -24,10 +24,10 @@ BoardSpecification:
   - serviceDeparture
   properties:
     stopPlaceRef:
-      $ref: './ojp/trip.yml#/StopPlaceRef'
+      $ref: ./ojp/trip.yml#/StopPlaceRef
     replacedPlaceRef:
       description: reference to the original place in case of a replacement (e.g. bus stop of a replacement bus for a train)
-      $ref: './ojp/trip.yml#/StopPlaceRef'
+      $ref: ./ojp/trip.yml#/StopPlaceRef
     serviceDeparture:
       $ref: ./_common.yml#/ServiceTime
 IntermediateSpecification:
@@ -41,11 +41,41 @@ IntermediateSpecification:
   - serviceDeparture
   properties:
     stopPlaceRef:
-      $ref: './ojp/trip.yml#/StopPlaceRef'
+      $ref: ./ojp/trip.yml#/StopPlaceRef
     serviceArrival:
       $ref: ./_common.yml#/ServiceTime
     serviceDeparture:
       $ref: ./_common.yml#/ServiceTime
+LegTrack:
+  type: object
+  additionalProperties: false
+  description: |
+    geographic view of the leg
+  properties:
+    sections:
+      type: array
+      items:
+        $ref: '#/LegTrackSection'
+LegTrackSection:
+  type: object
+  additionalProperties: false
+  description: |
+    geographic view of the leg
+  properties:
+    start:
+      $ref: ./ojp/place.yml#/PlaceRef
+    positions:
+      type: array
+      items:
+        $ref: ./ojp/_common.yml#/GeoPosition
+    end:
+      $ref: ./ojp/place.yml#/PlaceRef
+    duration:
+      type: string
+      format: duration
+    distance:
+      $ref: ./_common.yml#/Distance
+      minimum: 0
 NonTripSearchCriteria:
   type: object
   additionalProperties: false
@@ -56,16 +86,18 @@ NonTripSearchCriteria:
     \ zones with the ids 50, 2501 and 3001 would cover the same area as the list of stations above).\n"
   properties:
     validFrom:
-      type: string
+      type:
+      - integer
+      - 'null'
       format: date-time
-      nullable: true
     nutsCodes:
       description: |
         Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: string
-      nullable: true
     zones:
       type: array
       items:
@@ -79,60 +111,46 @@ ReturnSearchParameters:
   additionalProperties: false
   description: |
     This property can be used in case a return trip is being requested.
-    This will allow to benefit from return-specific fares or product.
-
-    Only one of `outboundTripIds` or `outwardOfferIds` should be provided.
-
-    `inwardReturnDate` and `outwardOfferTag` should not be used as they are deprecated in 3.7.0 and will be removed in 4.0.0.
+    This will allow to benefit from return-specific fares or product
   properties:
-    inwardReturnDate:
+    outboundOfferIds:
       description: |
-        Needs to be provided when creating the collection of outbound travels so that the
-        provider knows when a inbound travel can be expected and propose appropriate
-        product and fares.
-
-        Superseded by `OfferSearchCriteria.inboundDate`.
-      type: string
-      format: date-time
-      nullable: true
-      deprecated: true
+        Needs to be provided when creating the collection of inbound travels so that the provider
+        can relate the inbound travels to the outbound travels context.
+      type:
+      - array
+      - 'null'
+      items:
+        type: string
+        maxLength: 32768
     outboundTripIds:
       description: |
         Needs to be provided when creating collection of offers covering both
         outbound and inbound (return) journey.
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: string
         maxLength: 32768
-      nullable: true
-    outwardOfferIds:
-      description: |
-        Needs to be provided when creating the collection of inbound travels so that the provider
-        can relate the inbound travels to the outbound travels context.
-      type: array
-      items:
-        type: string
-        maxLength: 32768
-      nullable: true
-    outwardOfferTag:
-      description: |
-        Needs to be provided when creating the collection of inbound travels so that the provider
-        knows what the outbound offer is and and propose compatible offers only if desired or mandatory.
-      type: string
-      nullable: true
-      deprecated: true
     departureTime:
       description: |
         Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     arrivalTime:
       description: |
-        Needs to in be local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
-      type: string
+        Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
+    origin:
+      $ref: ./ojp/place.yml#/PlaceRef
+    destination:
+      $ref: ./ojp/place.yml#/PlaceRef
     vias:
       description: "Ordered series of points where the journey must pass through. If more\nthan one via point is given all\
         \ of them must be obeyed - in the correct\norder. The server is allowed to replace a via stop by equivalent stops.\n\
@@ -140,20 +158,38 @@ ReturnSearchParameters:
         \ (between the origin and the first via), use the TripDataFilter within the\nTripParameters structure.\n"
       type: array
       items:
-        $ref: './ojp/trip.yml#/TripVia'
+        $ref: ./ojp/trip.yml#/TripVia
     parameters:
-      $ref: './ojp/trip.yml#/TripParameters'
+      $ref: ./ojp/trip.yml#/TripParameters
 Route:
   type: object
   additionalProperties: false
   description: |
     Route description including the first and last real stopPoint
   properties:
-    routeSummary:
-      description: Printable representation of the allowed routing ("Wegetext")
-      type: string
-      nullable: true
+    viaSummary:
+      description: |
+        Printable representation of the allowed routing ("Wegetext") excluding the start and end point (via-description).
+      type:
+      - string
+      - 'null'
       maxLength: 140
+    routeStartName:
+      description: name of the route start, either a station or a tariff border. When concatenated with another fare only
+        one of the end and start points remains.
+      type:
+      - string
+      - 'null'
+      maxLength: 40
+    routeEndName:
+      description: name of the route end, either a station or a tariff border. When concatenated with another fare only one
+        of the end and start points remains.
+      type:
+      - string
+      - 'null'
+      maxLength: 40
+      examples:
+      - Salzburg Hbf (GR)
     routeItem:
       $ref: '#/RouteItem'
     routeItemList:
@@ -171,11 +207,12 @@ RouteItem:
     alternativeRouteItemIndices:
       description: |
         list of alternative route parts to be used on this travel path referenced by the index in the provided list of route items
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: integer
         format: int32
-      nullable: true
     carrierConstraint:
       $ref: ./fare.yml#/CarrierConstraint
     routeItemIndices:
@@ -183,13 +220,14 @@ RouteItem:
         sequence of route items along the travel path referenced by the index in the provided list of route items
       type: array
       items:
-        type: integer
+        type:
+        - integer
+        - 'null'
         format: int32
-      nullable: true
     serviceConstraint:
       $ref: ./_common.yml#/ServiceConstraint
     station:
-      $ref: './ojp/trip.yml#/StopPlace'
+      $ref: ./ojp/trip.yml#/StopPlace
     fareReferenceStation:
       $ref: ./fare.yml#/FareReferenceStation
 RouteSpecification:
@@ -209,18 +247,21 @@ Section:
     startPlace:
       $ref: ./ojp/place.yml#/PlaceRef
     startLegId:
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     endPlace:
       $ref: ./ojp/place.yml#/PlaceRef
     endLegId:
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     externalTripRef:
       description: reference to a trip in case multiple trips are provided
-      type: string
+      type:
+      - string
+      - 'null'
       maxLength: 32768
-      nullable: true
 StopBehavior:
   type: string
   enum:
@@ -248,7 +289,7 @@ TimedLegSpecification:
     end:
       $ref: '#/AlightSpecification'
     service:
-      $ref: './ojp/trip.yml#/DatedJourney'
+      $ref: ./ojp/trip.yml#/DatedJourney
 TimeFrameSegmentation:
   type: string
   enum:
@@ -265,25 +306,39 @@ TrainLink:
   - serviceBrandAbbreviation
   properties:
     fromStation:
-      $ref: './ojp/trip.yml#/StopPlaceRef'
+      $ref: ./ojp/trip.yml#/StopPlaceRef
     toStation:
-      $ref: './ojp/trip.yml#/StopPlaceRef'
+      $ref: ./ojp/trip.yml#/StopPlaceRef
     train:
       type: string
-      nullable: false
     travelDate:
       description: |
         date and time of the departure where the train link starts
       type: string
       format: date-time
-      nullable: false
     serviceBrandCode:
       $ref: ./_common.yml#/ServiceBrandCode
     serviceBrandAbbreviation:
       description: |
         Abbreviation of the service brand, e.g. 'IC', 'TGV'. See the OSDM code list. Needs to match the service brand code.
       type: string
-      nullable: false
+TransferType:
+  description: |
+    Modes dedicated to perform transfers. Provided by OJP.
+  type: string
+  x-extensible-enum:
+  - WALK
+  - SHUTTLE
+  - REMAIN_IN_VEHICLE
+  - CHANGE_WITHIN_VEHICLE
+  - CHECK_IN
+  - CHECK_OUT
+  - PARK_AND_RIDE
+  - BIKE_AND_RIDE
+  - CAR_HIRE
+  - BIKE_HIRE
+  - PROTECTED_CONNECTION
+  - GUARANTEED_CONNECTION
 TripAllocationConstraint:
   type: object
   additionalProperties: false
@@ -298,16 +353,19 @@ TripAllocationConstraint:
     maxUnits:
       description: |
         maximum number of allowed units to be allocated
-      type: integer
+      type:
+      - integer
+      - 'null'
       format: int32
-      nullable: true
     durationUnit:
       description: |
         multiples of this duration can be allocated
-      type: string
+      type:
+      - string
+      - 'null'
       format: duration
-      nullable: true
-      example: PT30M
+      examples:
+      - PT30M
     requiredProcesses:
       description: |
         one of the listed processes is required for the allocation of a single trip
@@ -341,6 +399,82 @@ TripAllocationUnit:
   - TRIP
   - DAY
   - DURATION
+TripChangeParameter:
+  type: object
+  additionalProperties: false
+  description: parameters to change a trip at a leg
+  properties:
+    changeLegRef:
+      type: string
+    additionaWaitingTime:
+      type: string
+      format: duration
+    tripParameter:
+      $ref: ./ojp/trip.yml#/TripParameters
+TripCollectionRequest:
+  type: object
+  additionalProperties: false
+  description: |
+    You must define only one of tripSearchCriteria or tripSearchCriteriaMultiOd, they are mutually exclusive.
+  properties:
+    tripSearchCriteria:
+      $ref: ./ojp/trip.yml#/TripSearchCriteria
+    tripSearchCriteriaMultiOd:
+      $ref: '#/TripSearchCriteriaMultiOD'
+TripContentFilter:
+  description: |
+    Options to control the response contents.
+    Provided by OJP.
+  type: object
+  additionalProperties: false
+  properties:
+    filters:
+      type: array
+      items:
+        $ref: '#/TripContentFilterItem'
+    tripSummaryOnly:
+      type: boolean
+      default: false
+TripContentFilterItem:
+  description: "- INCLUDE_TRACK_SECTIONS        \n- INCLUDE_LEG_PROJECTION       geographical description of a leg \n- INCLUDE_TURN_DESCRIPTIONS\
+    \    \n- INCLUDE_ACCESS_FEATURES\n- INCLUDE_ACCESS_FEATURES_STATUS\n- INCLUDE_ACCESSABILITY_FEATURES_VISUAL_IMPAIRED \
+    \  \n- INCLUDE_ACCESSABILITY_FEATURES_AUDITORY_IMPAIRED   \n- INCLUDE_ACCESSABILITY_FEATURES_MOBILITY_IMPAIRED    \n-\
+    \ INCLUDE_ACCESSABILITY_FEATURES_BIKE\n- INCLUDE_ACCESSABILITY_FEATURES_GENERAL        \n- INCLUDE_PLACES_CONTEXT \n-\
+    \ INCLUDE_SITUATIONS_CONTEXT    \n- INCLUDE_INTERMEDIATE_STOPS  intermediate stops within a leg    \n- INCLUDE_OPERATING_DAYS\
+    \ include operating day information\n"
+  type: string
+  x-extensible-enum:
+  - INCLUDE_TRACK_SECTIONS
+  - INCLUDE_LEG_PROJECTION
+  - INCLUDE_TURN_DESCRIPTIONS
+  - INCLUDE_ACCESS_FEATURES
+  - INCLUDE_ACCESS_FEATURES_STATUS
+  - INCLUDE_ACCESSABILITY_FEATURES_VISUAL_IMPAIRED
+  - INCLUDE_ACCESSABILITY_FEATURES_AUDITORY_IMPAIRED
+  - INCLUDE_ACCESSABILITY_FEATURES_MOBILITY_IMPAIRED
+  - INCLUDE_ACCESSABILITY_FEATURES_BIKE
+  - INCLUDE_ACCESSABILITY_FEATURES_GENERAL
+  - INCLUDE_PLACES_CONTEXT
+  - INCLUDE_SITUATIONS_CONTEXT
+  - INCLUDE_INTERMEDIATE_STOPS
+  - INCLUDE_OPERATING_DAYS
+TripContext:
+  type: object
+  additionalProperties: false
+  description: context to trips
+  properties:
+    operators:
+      type: array
+      items:
+        $ref: ./_common.yml#/Operator
+    places:
+      type: array
+      items:
+        $ref: ./ojp/place.yml#/Place
+    situations:
+      type: array
+      items:
+        $ref: ./ojp/_common.yml#/Situation
 TripCoverage:
   type: object
   additionalProperties: false
@@ -358,23 +492,24 @@ TripCoverage:
     coveredTripId:
       type: string
       maxLength: 32768
-      nullable: false
     sectionIndex:
       description: |
         Describes which part of the trip (in order) is covered by the OfferPart/BookingPart which contains this TripCoverage structure.
 
         This needs to be filled if either coveredLegIds or coveredSections is present.
-      type: integer
+      type:
+      - integer
+      - 'null'
       format: int32
       minimum: 1
-      nullable: true
     coveredLegIds:
       description: |
         Indicate which legs are covered by the specific offer. Not used for fares.
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: string
-      nullable: true
     coveredSections:
       type: array
       items:
@@ -385,6 +520,17 @@ TripDirectionType:
   - OUT_BOUND
   - IN_BOUND
   default: OUT_BOUND
+TripFeasibility:
+  description: |
+    feasibility of a trip related to the required access features
+    in case of SEE_SITUATIONS situations must be provided
+  type: string
+  x-extensible-enum:
+  - ALL_ACCESS_FEATURES_AVAILABLE
+  - ACCESS_FEATURES_NOT_AVAILABLE
+  - ACCESS_FEATURES_PARTIALLY_AVAILABLE
+  - ACCESS_FEATURES_WITH_UNKNOWN_AVAILABILITY
+  - SEE_SITUATIONS
 TripInterruptionConstraint:
   type: object
   additionalProperties: false
@@ -400,21 +546,24 @@ TripInterruptionConstraint:
         maximum number of allowed interruptions
       type: integer
       format: int32
-      nullable: false
     maxDuration:
       description: |
         maximum duration of one interruption
-      type: string
+      type:
+      - string
+      - 'null'
       format: duration
-      nullable: true
-      example: PT30M
+      examples:
+      - PT30M
     totalMaxDuration:
       description: |
         maximum duration of all interruptions on the route
-      type: string
+      type:
+      - string
+      - 'null'
       format: duration
-      nullable: true
-      example: PT30M
+      examples:
+      - PT30M
     requiredProcesses:
       description: |
         one of the listed processes is required for the interruption of the trip
@@ -444,10 +593,8 @@ TripLegCoverage:
     tripId:
       type: string
       maxLength: 32768
-      nullable: false
     legId:
       type: string
-      nullable: false
 TripLegSpecification:
   type: object
   additionalProperties: false
@@ -457,27 +604,97 @@ TripLegSpecification:
     externalRef:
       description: |
         External reference of this trip leg. Unique within trip result.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     timedLeg:
       $ref: '#/TimedLegSpecification'
     transferLeg:
-      $ref: './ojp/trip.yml#/TransferLeg'
+      $ref: ./ojp/trip.yml#/TransferLeg
+TripMobilityFilterItem:
+  description: |
+    restrictions of the traveler  (List of booleans in OJP BaseTripMobilityFilter)
+    NO_SIGHT  - traveler is not able to see
+    NO_SINGLE_STEP  - traveler can not pass a single step
+    NO_STAIRS  - traveler can not use stairs
+    NO_ESCALATOR  - traveler can not use an escalator
+    NO_ELEVATOR  - traveler can not use an elevator
+    NO_RAMP  - traveler can not use a ramp
+    NO_TRAVELATOR - traveler can not use a travelator
+    LEVEL_ENTRANCE - traveller needs a level entrance
+    LEVEL_ENTRANCE_OR_BOARDING_AID - traveller needs a level entrance or boarding aid
+  type: string
+  x-extensible-enum:
+  - NO_SIGHT
+  - NO_SINGLE_STEP
+  - NO_STARS
+  - NO_ESCALATOR
+  - NO_ELEVATOR
+  - NO_RAMP
+  - NO_TRAVELATOR
+  - LEVEL_ENTRANCE
+  - LEVEL_ENTRANCE_OR_BOARDING_AID
+TripMobilityFilterItems:
+  description: |
+    restrictions that control the trip search behavior for both public and individual transport.
+    Provided by OJP.
+  type: array
+  items:
+    $ref: '#/TripMobilityFilterItem'
+  minItems: 1
+TripPolicyFilter:
+  description: |
+    Options to control the search behavior and response contents.
+    number of results > either number of results or number of results before and after are used.
+    Provided by OJP.
+    numberOfResults is intentionally omitted to avoid inconsistent request parameters. numberOfResults is equal to numberOfResultsBefore = 0 and numberOfResultsAfter = numberOfResults
+  type: object
+  additionalProperties: false
+  properties:
+    numberOfResultsBefore:
+      type: integer
+      format: int32
+      default: 0
+    numberOfResultsAfter:
+      type: integer
+      format: int32
+      default: 5
+    useRealtimeData:
+      $ref: '#/TripRealTimeDataUsage'
+      default: FULL
+    transferLimit:
+      description: |
+        The maximum number of interchanges the user will accept per trip.
+      type:
+      - integer
+      - 'null'
+      format: int32
+      minimum: 0
+    optimisationMethod:
+      $ref: '#/TripSearchOptimisationMethod'
+    itModesToCover:
+      $ref: ./person.yml#/PersonalMode
+TripRealTimeDataUsage:
+  description: use of real time data in a trip
+  type: string
+  x-extensible-enum:
+  - FULL
+  - EXPLANATORY
+  - NONE
 TripResponse:
   type: object
   additionalProperties: false
   required:
   - trip
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
         $ref: ./_common.yml#/Problem
     trip:
-      $ref: './ojp/trip.yml#/Trip'
+      $ref: ./ojp/trip.yml#/Trip
+    tripContext:
+      $ref: '#/TripContext'
 TripResponseContent:
   type: string
   enum:
@@ -500,15 +717,112 @@ TripResult:
     The trip result to be changed.
   properties:
     TripSummary:
-      $ref: './ojp/trip.yml#/TripSpecificationSummary'
+      $ref: ./ojp/trip.yml#/TripSpecificationSummary
 TripsCollectionResponseContent:
   type: string
   enum:
   - ALL
   - TRIPS
   - TRIPSUMMARIES
+  - TRIP_CONTEXT
   - NONE
   default: ALL
+TripSearchCriteriaMultiOD:
+  type: object
+  additionalProperties: false
+  description: |
+    Trip request structure. Provides trips from one of the origin places to one of the destination places. Provided by OJP.
+  required:
+  - origins
+  - destinations
+  properties:
+    departureTime:
+      description: |
+        Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
+      type:
+      - string
+      - 'null'
+      format: date-time
+    arrivalTime:
+      description: |
+        Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
+      type:
+      - string
+      - 'null'
+      format: date-time
+    origins:
+      type: array
+      items:
+        $ref: ./ojp/place.yml#/PlaceRef
+    destinations:
+      type: array
+      items:
+        $ref: ./ojp/place.yml#/PlaceRef
+    vias:
+      description: "Ordered series of points where the journey must pass through. If more\nthan one via point is given all\
+        \ of them must be obeyed - in the correct\norder. The server is allowed to replace a via stop by equivalent stops.\n\
+        \nTripDataFilters given at a via apply to the section after that via. To apply a TripDataFilter for \nthe first section\
+        \ (between the origin and the first via), use the TripDataFilter within the\nTripParameters structure.\n"
+      type: array
+      items:
+        $ref: ./ojp/trip.yml#/TripVia
+    notVias:
+      type: array
+      items:
+        $ref: ./ojp/place.yml#/PlaceRef
+    noChangeAt:
+      type: array
+      items:
+        $ref: ./ojp/place.yml#/PlaceRef
+    parameters:
+      $ref: ./ojp/trip.yml#/TripParameters
+    multipleODSearchType:
+      $ref: '#/TripSearchTypeMultipleOD'
+    embed:
+      description: |
+        Influences whether referenced resources are returned in full or as references only. Proposed default ALL
+      type: array
+      items:
+        $ref: '#/TripsCollectionResponseContent'
+    returnSearchParameters:
+      $ref: '#/ReturnSearchParameters'
+TripSearchOptimisationMethod:
+  description: |
+    The optimization method to be used for the search
+  type: string
+  x-extensible-enum:
+  - FASTEST
+  - MIN_CHANGES
+  - LEAST_WALKING
+  - LEAST_DISTANCE
+  - EARLIEST_ARRIVAL
+  - LATEST_DEPARTURE
+  - EARLIEST_ARRIVAL_AND_LATEST_DEPARTURE
+  - MIN_NON_LEVEL_ENTRANCES
+  - MIN_STAIRSE
+  - BEST_FOR_VISUALLY_IMPAIRED
+  - BEST_FOR_AUDITORY_IMPAIRED
+  - ENVIROMENTAL_SAFETY
+  - EXTRA_SAFE
+  - EXTRA_RELIABLE
+  - SCENIC
+  - QUIET_TRAVEL
+TripSearchTypeMultipleOD:
+  description: |
+    expected search behaviour
+    'ANY' # Returning results for a single origin and destination
+    'EACH_ORIGIN' # At least a distinct solution for each of the origin must be delivered.
+    'EACH_DESTINATION' # At least a distinct solution for each of the origin must be delivered.
+    'EACH_ORIGIN_DESTINATION' #  At least a distinct solution for each of the origin-destination pair must be delivered.origin-destination pair must be delivered.
+    'SOME' # some origin-destination pairs should be returned.
+  type: string
+  x-extensible-enum:
+  - ANY
+  - EACH_ORIGIN
+  - EACH_DESTINATION
+  - EACH_ORIGIN_DESTINATION
+  - SOME
+  default: ANY
 TripSpecification:
   type: object
   additionalProperties: false
@@ -520,16 +834,18 @@ TripSpecification:
     externalRef:
       description: |
         External reference of this trip for referencing purposes. Unique within a trip specification.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     legs:
       type: array
       items:
         $ref: '#/TripLegSpecification'
       minItems: 1
     isPartOfInternationalTrip:
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     returnSearchParameters:
       $ref: '#/ReturnSearchParameters'
@@ -541,34 +857,24 @@ TripStatus:
       description: |
         Whether this trip is an additional one that has not been planned.
       type: boolean
-      nullable: true
       default: false
     cancelled:
       description: |
         Whether this trip is cancelled and will not be run.
       type: boolean
-      nullable: true
       default: false
     deviation:
       description: |
         Whether this trip deviates from the planned service pattern.
       type: boolean
-      nullable: true
       default: false
     delayed:
       description: |
         Whether this trip is delayed.
       type: boolean
-      nullable: true
       default: false
     infeasible:
       description: |
         Whether this trip cannot be used, due to operational delays and impossible transfers.
       type: boolean
-      nullable: true
       default: false
-TripTravelAccountUnit:
-  allOf:
-  - $ref: ./travel-account.yml#/AbstractTravelAccountUnit
-  - type: object
-    additionalProperties: false

@@ -21,15 +21,15 @@
     requestBody:
       required: true
       content:
-        application/json:
+        application/vnd.uic.osdm+json:
           schema:
             $ref: ../OSDM-online-api.yml#/components/schemas/ReleaseOfferRequest
     responses:
       '200':
         description: |
-          Release offer created
+          release offer created
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/ReleaseOfferCollectionResponse
         headers:
@@ -38,13 +38,6 @@
               type: string
               description: |
                 The language of translatable strings in the response (see RFC2616-sec14.12).
-      '202':
-        description: |
-          Release offer created asynchronously. Retrieve release offer or booking for the offer and state.
-        content:
-          application/json:
-            schema:
-              $ref: ../OSDM-online-api.yml#/components/schemas/ReleaseOfferRequestAsyncResponse
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
       '401':
@@ -53,8 +46,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
@@ -97,12 +88,9 @@
         description: |
           release offer found
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/ReleaseOfferResponse
-      '202':
-        description: |
-          Release offer is initiated but not yet successfully created. Once finished a 200 OK must be returned.
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
       '401':
@@ -111,8 +99,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
@@ -154,7 +140,7 @@
     requestBody:
       required: true
       content:
-        application/json:
+        application/vnd.uic.osdm+json:
           schema:
             $ref: ../OSDM-online-api.yml#/components/schemas/ReleaseOfferPatchRequest
     responses:
@@ -162,7 +148,7 @@
         description: |
           release offer confirmed
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/ReleaseOfferResponse
         headers:
@@ -179,8 +165,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':
@@ -230,8 +214,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':

@@ -21,7 +21,7 @@
         description: |
           purchaser found
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/PurchaserResponse
         headers:
@@ -38,8 +38,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
@@ -70,15 +68,15 @@
     requestBody:
       required: true
       content:
-        application/json:
+        application/vnd.uic.osdm+json:
           schema:
-            $ref: ../OSDM-online-api.yml#/components/schemas/Purchaser
+            $ref: ../OSDM-online-api.yml#/components/schemas/PurchaserSpecification
     responses:
       '200':
         description: |
           purchaser patched
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/PurchaserResponse
         headers:
@@ -95,8 +93,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':
@@ -129,15 +125,15 @@
     requestBody:
       required: true
       content:
-        application/json:
+        application/vnd.uic.osdm+json:
           schema:
-            $ref: ../OSDM-online-api.yml#/components/schemas/Purchaser
+            $ref: ../OSDM-online-api.yml#/components/schemas/PurchaserSpecification
     responses:
       '200':
         description: |
           purchaser posted
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/PurchaserResponse
         headers:

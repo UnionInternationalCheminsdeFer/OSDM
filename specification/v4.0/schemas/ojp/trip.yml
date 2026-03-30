@@ -13,44 +13,31 @@ Alight:
       $ref: '#/StopPlaceRef'
     stopPlaceName:
       type: string
-      nullable: false
-      example: Luzern
+      examples:
+      - Luzern
     plannedStopPointName:
       description: |
         Name of the bay/quay/terminal where to board/alight from the vehicle. According to
         planned timetable.
-      type: string
-      nullable: true
-      example: 3
+      type:
+      - string
+      - 'null'
+      examples:
+      - '3'
     estimatedStopPointName:
       description: |
         Name of the bay/quay/terminal where to board the vehicle. As to the latest realtime status.
-      type: string
-      nullable: true
-      example: 8
+      type:
+      - string
+      - 'null'
+      examples:
+      - '8'
     serviceArrival:
       $ref: ../_common.yml#/ServiceTime
+    serviceArrivalFormation:
+      $ref: ../transportable.yml#/ServiceFormation
     status:
       $ref: '#/StopCallStatus'
-BaseTripPolicyFilter:
-  type: object
-  additionalProperties: false
-  description: |
-    Policies that control the trip search behavior for both public and individual transport.
-    Provided by OJP.
-  properties:
-    noSingleStep:
-      description: |
-        The user is not able to climb one step, i.e. wheel chair.
-      type: boolean
-      nullable: true
-      default: false
-    noSight:
-      description: |
-        The user is not able to see.
-      type: boolean
-      nullable: true
-      default: false
 Board:
   type: object
   additionalProperties: false
@@ -66,23 +53,29 @@ Board:
       $ref: '#/StopPlaceRef'
     stopPlaceName:
       type: string
-      nullable: false
-      example: Luzern
+      examples:
+      - Luzern
     plannedStopPointName:
       description: |
         Name of the bay/quay/terminal where to board/alight from the vehicle. According to
         planned timetable.
-      type: string
-      nullable: true
-      example: 3
+      type:
+      - string
+      - 'null'
+      examples:
+      - '3'
     estimatedStopPointName:
       description: |
         Name of the bay/quay/terminal where to board the vehicle. As to the latest realtime status.
-      type: string
-      nullable: true
-      example: 8
+      type:
+      - string
+      - 'null'
+      examples:
+      - '8'
     serviceDeparture:
       $ref: ../_common.yml#/ServiceTime
+    serviceDepartureFormation:
+      $ref: ../transportable.yml#/ServiceFormation
     status:
       $ref: '#/StopCallStatus'
 ContinuousLeg:
@@ -101,29 +94,37 @@ ContinuousLeg:
       $ref: ./place.yml#/Place
     service:
       $ref: ./continuous-service.yml#/ContinuousService
+    description:
+      description: human readable description of the leg
+      type: string
     timeWindowStart:
       description: |
         Time at which window begins.
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     timeWindowEnd:
-      description: |
-        Time at which window ends.
-      type: string
+      description: Time at which window ends.
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     duration:
       description: |
         Duration of this leg according to user preferences like walk speed.
-      type: string
+      type:
+      - string
+      - 'null'
       format: duration
-      nullable: true
-      example: PT10M
+      examples:
+      - PT10M
+    pathGuidance:
+      $ref: ../place.yml#/PathGuidance
     situationFullRefs:
       type: array
       items:
-        $ref: ./_common.yml#/SituationFullRef
+        $ref: ./_common.yml#/SituationRef
     co2Emission:
       $ref: ../_common.yml#/Quantity
 DatedJourney:
@@ -143,11 +144,14 @@ DatedJourney:
       $ref: ./product.yml#/ProductCategory
     publishedServiceName:
       description: |
-        Line name or service description as known to the public, f.e. '512', 'S8'
-        or 'Circle Line' or 'ICE 488'.
-      type: string
-      nullable: true
-      example: S1
+        Line name or service description as known to the public
+      type:
+      - string
+      - 'null'
+      examples:
+      - S1
+      - Circle Line
+      - ICE 488
     vehicleNumbers:
       type: array
       items:
@@ -162,12 +166,13 @@ DatedJourney:
     situationFullRefs:
       type: array
       items:
-        $ref: ./_common.yml#/SituationFullRef
+        $ref: ./_common.yml#/SituationRef
     carriers:
+      description: "the carrier might not be provided be in case the dated journey is used in a request as part of trip specification.\
+        \ \nIn case the trip specification is therefore ambiguous the provider might reply with an error.\n"
       type: array
       items:
         $ref: ../_common.yml#/NamedCompany
-      minItems: 1
     attributes:
       type: array
       items:
@@ -188,43 +193,35 @@ Intermediate:
       $ref: '#/StopPlaceRef'
     stopPlaceName:
       type: string
-      nullable: false
-      example: Luzern
+      examples:
+      - Luzern
     plannedStopPointName:
       description: |
         Name of the bay/quay/terminal where to board/alight from the vehicle. According to
         planned timetable.
-      type: string
-      nullable: true
-      example: 3
+      type:
+      - string
+      - 'null'
+      examples:
+      - '3'
     estimatedStopPointName:
       description: |
         Name of the bay/quay/terminal where to board the vehicle. As to the latest realtime status.
-      type: string
-      nullable: true
-      example: 8
+      type:
+      - string
+      - 'null'
+      examples:
+      - '8'
     serviceArrival:
       $ref: ../_common.yml#/ServiceTime
+    serviceArrivalFormation:
+      $ref: ../transportable.yml#/ServiceFormation
     serviceDeparture:
       $ref: ../_common.yml#/ServiceTime
+    serviceDepartureFormation:
+      $ref: ../transportable.yml#/ServiceFormation
     status:
       $ref: '#/StopCallStatus'
-JourneyRef:
-  type: string
-  description: |
-    Reference to a journey. Provided by OJP.
-  nullable: true
-  example: ServiceJourney:1
-NotVia:
-  type: object
-  additionalProperties: false
-  description: |
-    Not-via restrictions for a trip, i.e. scheduled stop points or stop places that the trip is not allowed to pass through.  Provided by OJP.
-  properties:
-    notViaPlace:
-      type: array
-      items:
-        $ref: ./place.yml#/PlaceRef
 OperatingDays:
   type: object
   additionalProperties: false
@@ -241,13 +238,11 @@ OperatingDays:
         Start date of period
       type: string
       format: date-time
-      nullable: false
     until:
       description: |
         End date of period
       type: string
       format: date-time
-      nullable: false
     pattern:
       description: |
         Bit pattern for operating days between start date and end date.
@@ -255,13 +250,14 @@ OperatingDays:
         start date to end date. A bit value of '1' indicates that an event
         actually happens on the day that is represented by the bit position.
       type: string
-      nullable: false
 OperationDayRef:
-  type: string
+  type:
+  - string
+  - 'null'
   description: |
     Reference to an operating day. Provided by OJP.
-  nullable: true
-  example: OperatingDay:12345
+  examples:
+  - OperatingDay:12345
 StopCallStatus:
   type: object
   additionalProperties: false
@@ -271,46 +267,57 @@ StopCallStatus:
     order:
       description: |
         Sequence number of this stop in the service pattern of the journey.
-      type: integer
+      type:
+      - integer
+      - 'null'
       format: int32
       minimum: 0
-      nullable: true
     requestStop:
       description: |
-        The vehicle journey calls at this stop only on demand.
-      type: boolean
-      nullable: true
+        The vehicle journey calls at this stop only on-demand.
+      type:
+      - boolean
+      - 'null'
       default: false
     unplannedStop:
       description: |
         This stop has not been planned by the planning department.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     notServicedStop:
       description: |
         The vehicle will not call at this stop despite earlier planning.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     noBoardingAtStop:
       description: |
         Boarding will not be allowed at this stop of this journey.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     noAlightingAtStop:
       description: |
         Alighting will not be allowed at this stop of this journey.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     isBorderPoint:
       description: |
         Indicates whether the stop is recognized by the system as a border point between two or more countries.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
+    attributes:
+      type: array
+      items:
+        $ref: ../_common.yml#/GeneralAttribute
 StopPlace:
   description: |
     A place extended by accessibility limitation properties and some attributes of the associated equipment,
@@ -318,22 +325,6 @@ StopPlace:
     or prepare their trip, and which will usually have one or more wellknown names. Provided by OJP.
   allOf:
   - $ref: ./place.yml#/Place
-  - type: object
-    additionalProperties: false
-    required:
-    - name
-    properties:
-      name:
-        description: |
-          Name of this stop place for use in passenger information.
-        type: string
-        nullable: false
-        example: Zürich HB
-      nameTranslations:
-        description: Translations for the name
-        type: array
-        items:
-          $ref: ../_common.yml#/Translation
 StopPlaceRef:
   description: |
     Reference to a Stop Place using URNs to define code.
@@ -347,8 +338,8 @@ StopPlaceRef:
     properties:
       stopPlaceRef:
         type: string
-        nullable: false
-        example: urn:uic:stn:8503000
+        examples:
+        - urn:uic:stn:8503000
 TimedLeg:
   type: object
   additionalProperties: false
@@ -374,18 +365,26 @@ TimedLeg:
     operatingDaysDescription:
       description: |
         Textual description of the operation days, e.g. 'Monday to Friday' or 'not on holidays'.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     duration:
-      type: string
+      type:
+      - string
+      - 'null'
       format: duration
-      nullable: true
+    legTrack:
+      $ref: ../trip.yml#/LegTrack
+    parallelServices:
+      type: array
+      items:
+        $ref: ../transportable.yml#/ParallelService
     co2Emission:
       $ref: ../_common.yml#/Quantity
     attributes:
       type: array
       items:
-        $ref: ../_common.yml#/LegAttribute
+        $ref: ../_common.yml#/GeneralAttribute
 TransferLeg:
   type: object
   additionalProperties: false
@@ -396,37 +395,50 @@ TransferLeg:
   - start
   - end
   properties:
-    continuousMode:
-      $ref: ./continuous-service.yml#/ContinuousMode
-    transferMode:
-      $ref: ./_common.yml#/TransferMode
+    type:
+      $ref: ../trip.yml#/TransferType
     start:
       $ref: ./place.yml#/PlaceRef
     end:
       $ref: ./place.yml#/PlaceRef
+    description:
+      description: human readable description of the leg
+      type: string
     timeWindowStart:
       description: |
         Time at which window begins.
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     timeWindowEnd:
       description: |
         Time at which window ends.
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     duration:
       description: |
         Overall duration of this interchange.
-      type: string
+      type:
+      - string
+      - 'null'
       format: duration
-      nullable: true
-      example: PT20M
-    situationFullRefs:
+      examples:
+      - PT20M
+    feasibility:
+      $ref: ../trip.yml#/TripFeasibility
+    attributes:
       type: array
       items:
-        $ref: ./_common.yml#/SituationFullRef
+        $ref: ../_common.yml#/GeneralAttribute
+    pathGuidance:
+      $ref: ../place.yml#/PathGuidance
+    situationRefs:
+      type: array
+      items:
+        $ref: ./_common.yml#/SituationRef
     co2Emission:
       $ref: ../_common.yml#/Quantity
 Trip:
@@ -437,6 +449,7 @@ Trip:
   required:
   - id
   - duration
+  - direction
   - startTime
   - endTime
   - transfers
@@ -447,64 +460,61 @@ Trip:
         Id of this trip for referencing purposes. Unique within a trip list.
       type: string
       maxLength: 32768
-      nullable: false
     externalRef:
       description: |
         External reference of this trip for referencing purposes.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     summary:
       description: |
         A human-readable description of the trip.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     duration:
       description: |
         Overall duration of the trip
       type: string
       format: duration
-      nullable: false
-      example: PT20M
+      examples:
+      - PT20M
     direction:
-      $ref: '../trip.yml#/TripDirectionType'
+      $ref: ../trip.yml#/TripDirectionType
     origin:
       $ref: ./place.yml#/PlaceRef
     originName:
       description: Name of the origin place
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     destination:
       $ref: ./place.yml#/PlaceRef
     destinationName:
       description: Name of the destination place
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     startTime:
       description: |
         Departure time at origin.
       type: string
       format: date-time
-      nullable: false
     endTime:
       description: |
         Arrival time at destination
       type: string
       format: date-time
-      nullable: false
     transfers:
       description: |
         Number of interchanges
       type: integer
       format: int32
       minimum: 0
-      nullable: false
     distance:
       description: |
         Distance in meters over the the complete trip, i.e., including transfer legs.
-      type: integer
-      format: int32
-      minimum: 0
-      nullable: true
+      $ref: ../_common.yml#/Distance
     legs:
       description: |
         Legs ot the trip
@@ -517,14 +527,21 @@ Trip:
     operatingDaysDescription:
       description: |
         Textual description of the operation days, e.g. 'Monday to Friday' or 'Not on holidays'.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
+    feasibility:
+      $ref: ../trip.yml#/TripFeasibility
     situationFullRefs:
       type: array
       items:
-        $ref: ./_common.yml#/SituationFullRef
+        $ref: ./_common.yml#/SituationRef
     tripStatus:
-      $ref: '../trip.yml#/TripStatus'
+      $ref: ../trip.yml#/TripStatus
+    isAlternativeTrip:
+      description: |
+        indication that this trip was found due to the request parameter to search for alternatives
+      type: boolean
     _links:
       $ref: ../_common.yml#/Links
 TripChangeCriteria:
@@ -532,9 +549,15 @@ TripChangeCriteria:
   additionalProperties: false
   description: |
     Trip change request structure. Provided by OJP.
+  required:
+  - tripResult
   properties:
-    TripResult:
-      $ref: '../trip.yml#/TripResult'
+    tripChangeParameter:
+      $ref: ../trip.yml#/TripChangeParameter
+    tripResult:
+      $ref: ../trip.yml#/TripResult
+    tripContext:
+      $ref: ../trip.yml#/TripContext
 TripCollectionResponse:
   type: object
   additionalProperties: false
@@ -543,16 +566,12 @@ TripCollectionResponse:
   required:
   - id
   properties:
-    warning:
-      deprecated: true
-      $ref: ../_common.yml#/WarningCollection
     problems:
       type: array
       items:
         $ref: ../_common.yml#/Problem
     id:
       type: string
-      nullable: false
     trips:
       type: array
       items:
@@ -561,6 +580,8 @@ TripCollectionResponse:
       type: array
       items:
         $ref: '#/TripSummary'
+    tripContext:
+      $ref: ../trip.yml#/TripContext
     _links:
       $ref: ../_common.yml#/Links
 TripDataFilter:
@@ -580,9 +601,11 @@ TripDataFilter:
 TripLeg:
   type: object
   additionalProperties: false
-  description: |
-    A single stage of a trip that is made without change of MODE or service (ie:
-    between each interchange). Provided by OJP.
+  description: "A single stage of a trip that is made without change of service by the traveller (ie:\nbetween each interchange).\
+    \ \nNote: The OJP Leg follows a slightly different semantic and allows legs to be split due to technical reasons like\
+    \ a change of service formation. This is not allowed in OSDM. The Leg in OSDM is the Leg in the traveler perspective on\
+    \ which he dooes not need to change to a different physical service. The servide itself might change its name, attributes\
+    \ or formation within the leg.\n"
   required:
   - id
   properties:
@@ -590,18 +613,21 @@ TripLeg:
       description: |
         Id of this trip leg. Unique within trip result. A seqId is a leg id.
       type: string
-      nullable: false
     externalRef:
       description: |
-        External reference of this tripLeg for referencing purposes.
-      type: string
-      nullable: true
+        External reference of this leg for referencing purposes.
+      type:
+      - string
+      - 'null'
     timedLeg:
       $ref: '#/TimedLeg'
     transferLeg:
       $ref: '#/TransferLeg'
     continuousLeg:
       $ref: '#/ContinuousLeg'
+    changed:
+      description: indicates that the leg was changed via a trip change request
+      type: boolean
 TripMobilityFilter:
   type: object
   additionalProperties: false
@@ -609,76 +635,52 @@ TripMobilityFilter:
     Base mobility options to be applied for both public and individual transport.
     Provided by OJP.
   properties:
+    baseMobilityFilter:
+      description: mobility filters to be applied for public and individual transport
+      $ref: ../trip.yml#/TripMobilityFilterItems
     bikeTransport:
       description: |
         The user wants to carry a bike on public transport.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     walkSpeed:
       description: |
         Deviation from average walk speed in percent. 100% percent is average speed.
       type: integer
       format: int32
-      nullable: true
       default: 100
     additionalTransferTime:
       description: |
         Additional time added to all transfers (also to transfers between individual to
         public transport).
-      type: string
+      type:
+      - string
+      - 'null'
       format: duration
-      nullable: true
-      example: 0S
+      examples:
+      - PT0S
     minimalTransferTime:
-      type: string
+      type:
+      - string
+      - 'null'
       format: duration
-      nullable: true
 TripParameters:
   type: object
   additionalProperties: false
   description: |
     Options to control the search behavior and response contents.
-    number of results > either number of results or number of results before and after are used.
     Provided by OJP.
   properties:
     dataFilter:
       $ref: '#/TripDataFilter'
     policyFilter:
-      $ref: '#/BaseTripPolicyFilter'
+      $ref: ../trip.yml#/TripPolicyFilter
     mobilityFilter:
       $ref: '#/TripMobilityFilter'
-    numberOfResults:
-      type: integer
-      format: int32
-      nullable: true
-      default: 5
-      deprecated: true
-      description: |
-        Deprecated in 3.7.0 as it is getting removed in OJP to avoid inconsistency.
-    numberOfResultsBefore:
-      type: integer
-      format: int32
-      nullable: true
-      default: 0
-    numberOfResultsAfter:
-      type: integer
-      format: int32
-      nullable: true
-      default: 5
-    ignoreRealtimeData:
-      type: boolean
-      nullable: true
-      default: false
-    transferLimit:
-      description: |
-        The maximum number of interchanges the user will accept per trip.
-      type: integer
-      format: int32
-      minimum: 0
-      nullable: true
-    itModesToCover:
-      $ref: ./_common.yml#/IndividualMode
+    contentFilter:
+      $ref: ../trip.yml#/TripContentFilter
 TripSearchCriteria:
   type: object
   additionalProperties: false
@@ -691,15 +693,17 @@ TripSearchCriteria:
     departureTime:
       description: |
         Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     arrivalTime:
       description: |
-        Needs to in be local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
-      type: string
+        Needs to be in local date time format of the stop. Exactly one of `departureTime` or `arrivalTime` must be provided.
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     origin:
       $ref: ./place.yml#/PlaceRef
     destination:
@@ -712,6 +716,14 @@ TripSearchCriteria:
       type: array
       items:
         $ref: '#/TripVia'
+    notVias:
+      type: array
+      items:
+        $ref: ./place.yml#/PlaceRef
+    noChangeAt:
+      type: array
+      items:
+        $ref: ./place.yml#/PlaceRef
     parameters:
       $ref: '#/TripParameters'
     embed:
@@ -719,13 +731,9 @@ TripSearchCriteria:
         Influences whether referenced resources are returned in full or as references only. Proposed default ALL
       type: array
       items:
-        $ref: '../trip.yml#/TripsCollectionResponseContent'
+        $ref: ../trip.yml#/TripsCollectionResponseContent
     returnSearchParameters:
-      $ref: '../trip.yml#/ReturnSearchParameters'
-    notVias:
-      type: array
-      items:
-        $ref: '#/NotVia'
+      $ref: ../trip.yml#/ReturnSearchParameters
 TripSpecificationSummary:
   type: object
   additionalProperties: false
@@ -735,11 +743,9 @@ TripSpecificationSummary:
   - id
   properties:
     id:
-      description: |
-        The id of an already existing trip to change.
+      description: The id of an already existing trip to change.
       type: string
       maxLength: 32768
-      nullable: false
     origin:
       $ref: ./place.yml#/PlaceRef
     destination:
@@ -757,51 +763,56 @@ TripSummary:
         Id of this trip for referencing purposes. Unique within trip response.
       type: string
       maxLength: 32768
-      nullable: false
     summary:
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     externalRef:
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     startTime:
       description: |
         Departure time at origin.
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     endTime:
       description: |
         Arrival time at destination.
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     duration:
       description: |
         Overall duration of the trip.
-      type: string
+      type:
+      - string
+      - 'null'
       format: duration
-      nullable: true
     origin:
       $ref: ./place.yml#/PlaceRef
     originName:
-      type: string
-      nullable: true
-      description: Name of the origin place
+      type:
+      - string
+      - 'null'
+      description: Name of the origin place.
     destination:
       $ref: ./place.yml#/PlaceRef
     destinationName:
-      type: string
-      nullable: true
-      description: Name of the destination place
+      type:
+      - string
+      - 'null'
+      description: Name of the destination place.
     transfers:
-      type: integer
+      type:
+      - integer
+      - 'null'
       format: int32
-      nullable: true
     distance:
-      type: integer
-      format: int32
-      nullable: true
+      $ref: ../_common.yml#/Distance
 TripVia:
   type: object
   additionalProperties: false
@@ -816,10 +827,11 @@ TripVia:
     dwellTime:
       description: |
         desired dwell time at the via place
-      type: string
+      type:
+      - string
+      - 'null'
       format: duration
-      nullable: true
-      example: PT30M
+      examples:
+      - PT30M
     dataFilter:
       $ref: '#/TripDataFilter'
-

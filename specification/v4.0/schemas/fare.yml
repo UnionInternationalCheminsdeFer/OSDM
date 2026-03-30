@@ -5,134 +5,87 @@ CarrierConstraint:
     Either excluded or included carriers can be set.
   properties:
     includedCarriers:
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: string
-      nullable: true
     excludedCarriers:
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: string
-      nullable: true
 ExclusionScope:
   type: string
   enum:
   - START_OF_TRAVEL
   - COMPLETE_RANGE
-Fare:
+FareBookingPart:
   type: object
   additionalProperties: false
   description: "The online representation of a fare.\nIn case the final product requires the indication of carriers it is\
     \ obligatory to provide a \ncarrierConstraint in the fare directly that includes the list of all carriers in the \nincludedCarrier\
-    \ list. Whether the carrier must be indicated needs to be derived from the requested\ntotal route and the location of\
+    \ list. Whether the carrier must be indicated needs to be derived from the requetsted\ntotal route and the location of\
     \ the sales points for international sales. \nWhether the indication of carriers is obligatory is defined\nin the Convention\
     \ concerning International Carriage by Rail (COTIF).\n"
-  required:
-  - id
-  - type
-  - prices
-  - regionalConstraint
-  - travelClass
-  - afterSalesCondition
-  - combinationConstraint
-  - travelValidityConstraint
-  properties:
-    id:
-      description: |
-        id of the fare item to be included in accounting
-      type: string
-      nullable: false
-    type:
-      $ref: '#/FareType'
-    name:
-      $ref: ./_common.yml#/Text
-    description:
-      $ref: ./_common.yml#/Text
-    status:
-      $ref: ./booking.yml#/BookingPartStatus
-    prices:
-      description: |
-        allows specifying a price in multiple currencies
-      type: array
-      items:
-        $ref: ./_common.yml#/Price
-      minItems: 1
-    regionalConstraint:
-      $ref: '#/RegionalConstraint'
-    serviceConstraint:
-      $ref: ./_common.yml#/ServiceConstraint
-    carrierConstraint:
-      $ref: '#/CarrierConstraint'
-    regulatoryConditions:
-      type: array
-      items:
-        $ref: ./_common.yml#/RegulatoryCondition
-    serviceClass:
-      $ref: ./_common.yml#/ServiceClass
-    travelClass:
-      $ref: ./_common.yml#/TravelClass
-    afterSalesCondition:
-      $ref: ./aftersales.yml#/AfterSalesConditionsLink
-    combinationConstraint:
-      type: array
-      items:
-        $ref: '#/FareCombinationModel'
-      minItems: 1
-    fulfillmentConstraint:
-      $ref: ./fulfillment.yml#/FulfillmentConstraint
-    travelValidityConstraint:
-      $ref: '#/TravelValidity'
-    availablePlaces:
-      deprecated: true
-      type: array
-      items:
-        $ref: ./place.yml#/AvailablePlace
-    placeSelection:
-      deprecated: true
-      $ref: ./place.yml#/PlaceSelection
-    placeAllocation:
-      deprecated: true
-      type: array
-      items:
-        $ref: ./place.yml#/PlaceAllocation
-    coveredSection:
-      $ref: ./trip.yml#/Section
-    passengerRefs:
-      type: array
-      items:
+  allOf:
+  - $ref: ./booking.yml#/AbstractBookingPart
+  - type: object
+    additionalProperties: false
+    required:
+    - type
+    - regionalConstraint
+    - travelClass
+    - afterSalesRules
+    - combinationConstraint
+    - travelValidityConstraint
+    properties:
+      type:
+        $ref: '#/FareType'
+      regionalConstraint:
+        $ref: '#/RegionalConstraint'
+      serviceConstraint:
+        $ref: ./_common.yml#/ServiceConstraint
+      carrierConstraint:
+        $ref: '#/CarrierConstraint'
+      regulatoryConditions:
+        type: array
+        items:
+          $ref: ./_common.yml#/RegulatoryCondition
+      serviceClass:
+        $ref: ./_common.yml#/ServiceClass
+      travelClass:
+        $ref: ./_common.yml#/TravelClass
+      afterSalesRules:
+        $ref: ./aftersales.yml#/FareAfterSalesRules
+      combinationConstraint:
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/FareCombinationModel'
+      fulfillmentConstraint:
+        $ref: ./fulfillment.yml#/FulfillmentConstraint
+      travelValidityConstraint:
+        $ref: '#/TravelValidity'
+      coveredSection:
+        $ref: ./trip.yml#/Section
+      passengerConstraints:
+        description: |
+          passenger constraint to be included in bar codes
+        type: array
+        items:
+          $ref: ./person.yml#/PassengerConstraints
+      involvedTCOs:
+        type: array
+        items:
+          $ref: ./_common.yml#/CompanyRef
+      luggageConstraint:
+        $ref: '#/LuggageConstraint'
+      reservationRef:
+        description: "reference of the reservatioon offer that manages the places on a train. The referenced reservation is\
+          \ \nfollowing the comercial rules of a fare, it needs to be integrated in a fulfillment of the API consumer.\n"
         type: string
-      minItems: 1
-      nullable: false
-    passengerConstraints:
-      description: |
-        passenger constraint to be included in bar codes
-      type: array
-      items:
-        $ref: ./person.yml#/PassengerConstraints
-    involvedTCOs:
-      type: array
-      items:
-        $ref: ./_common.yml#/CompanyRef
-    accountingRef:
-      $ref: ./_common.yml#/AccountingRef
-    legacyAccountingIdentifier:
-      $ref: ./_common.yml#/LegacyAccountingIdentifier
-    legacyReservationParameter:
-      $ref: ./_common.yml#/LegacyReservationParameter
-    requiredCards:
-      description: |
-        One of the listed cards is required to be valid at the time of travel.
-      type: array
-      items:
-        $ref: ./_common.yml#/CardReference
-      minItems: 1
-    luggageConstraint:
-      $ref: '#/LuggageConstraint'
-    availablePreferences:
-      deprecated: true
-      type: array
-      items:
-        $ref: ./place.yml#/AvailablePlacePreferences
 FareCombinationModel:
   type: object
   additionalProperties: false
@@ -145,7 +98,6 @@ FareCombinationModel:
       description: |
         A distributor needs to support the following models:  SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING.
       type: string
-      nullable: false
     combinableCarriers:
       description: |
         List of all carriers where the model can be applied, in case the list is empty
@@ -156,21 +108,23 @@ FareCombinationModel:
     isValidOnlyWhenCombined:
       description: |
         This combination model applies only in case the fare is combined with another carrier
-      type: boolean
-      nullable: true
-      default: false
+      type:
+      - boolean
+      - 'null'
     referenceCluster:
       description: |
         In case of CLUSTERING model: the cluster to which the fare belongs
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     allowedClusters:
       description: |
         In case of CLUSTERING model: the other clusters that allow a combination
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: string
-      nullable: true
     allowedCommonContracts:
       description: |
         List of carriers where a common contract with separate fulfillments are allowed.
@@ -194,14 +148,6 @@ FareConnectionPoint:
     required:
     - stationSets
     properties:
-      name:
-        type: string
-        nullable: true
-      nameTranslations:
-        description: Translations for the name
-        type: array
-        items:
-          $ref: ./_common.yml#/Translation
       stationSets:
         type: array
         items:
@@ -213,15 +159,15 @@ FareConnectionPointRef:
   allOf:
   - $ref: ./ojp/place.yml#/PlaceRef
   - type: object
-    additionalProperties: false
     required:
     - fareConnectionPoint
     properties:
       fareConnectionPoint:
         $ref: '#/FareConnectionPoint'
       name:
-        type: string
-        nullable: true
+        type:
+        - string
+        - 'null'
 FareReferenceStation:
   type: object
   additionalProperties: false
@@ -238,10 +184,8 @@ FareReferenceStation:
   properties:
     name:
       type: string
-      nullable: false
     code:
       type: string
-      nullable: false
     carrier:
       $ref: ./_common.yml#/CompanyRef
     stations:
@@ -268,15 +212,17 @@ LuggageConstraint:
     maxHandLuggage:
       description: |
         standard hand luggage pieces
-      type: integer
+      type:
+      - integer
+      - 'null'
       format: int32
-      nullable: true
     maxLargeLuggage:
       description: |
         standard non-hand luggage pieces
-      type: integer
+      type:
+      - integer
+      - 'null'
       format: int32
-      nullable: true
     restrictions:
       type: array
       items:
@@ -298,11 +244,9 @@ LuggageDimension:
       description: |
         Value of the dimension: weight in kg, length in cm, volume in liter.
       type: string
-      nullable: false
 LuggageDimensionEnum:
   description: |
     Type of the dimension. Combined sizes are the sum of the sizes.
-
     Explanation:  WIDTH_HEIGHT_LENGTH = sum of width, hight and length in cm (= linear equivalent).
   type: string
   enum:
@@ -332,18 +276,17 @@ LuggageRestriction:
         Number of luggage items allowed with this restriction.
       type: integer
       format: int32
-      nullable: false
     registrationIds:
       description: |
         The registrationIds to be included in a bar code on the fulfillment (UIC IRS 90918-4) (e.g. on a luggage tag).
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: string
-      nullable: true
 LuggageRestrictionRuleEnum:
   description: |
     Named luggage restriction rule.
-
     Valid Values:
     - CAN_CARRY: Weight is ok if you can carry it yourself.
   type: string
@@ -367,12 +310,7 @@ RegionalConstraint:
         $ref: '#/RegionalValidity'
       minItems: 1
     distance:
-      description: |
-        Distance in km for statistics
-      type: integer
-      format: int32
-      minimum: 0
-      nullable: true
+      $ref: ./_common.yml#/Distance
 RegionalValidity:
   type: object
   additionalProperties: false
@@ -382,9 +320,10 @@ RegionalValidity:
     seqNb:
       description: |
         order number of the list item
-      type: integer
+      type:
+      - integer
+      - 'null'
       format: int32
-      nullable: true
     zone:
       $ref: '#/Zone'
     route:
@@ -407,11 +346,11 @@ RegionalValiditySummary:
     description:
       type: string
       minLength: 1
-      nullable: false
     shortDescription:
-      type: string
+      type:
+      - string
+      - 'null'
       minLength: 1
-      nullable: true
 StationSet:
   type: object
   additionalProperties: false
@@ -440,11 +379,9 @@ TrainValidity:
     from:
       type: string
       format: date-time
-      nullable: false
     until:
       type: string
       format: date-time
-      nullable: false
     carriers:
       type: array
       items:
@@ -486,9 +423,10 @@ TravelValidity:
     numberOfTravelDays:
       description: |
         number of allowed travel days (e.g. 3 travel days within 2 weeks)
-      type: integer
+      type:
+      - integer
+      - 'null'
       format: int32
-      nullable: true
     returnConstraint:
       $ref: ./_common.yml#/ReturnConstraint
     trainValidity:
@@ -512,16 +450,14 @@ TravelValidityRange:
     from:
       type: string
       format: date
-      nullable: false
     until:
       type: string
       format: date
-      nullable: false
 Zone:
   type: object
   additionalProperties: false
   description: |
-    carrier - carrier responsible for the transport.
+    carrier - carrier or PTA responsible for the transport.
     entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station
     (e.g. local zone ticket to start from the main rail station).
     terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket
@@ -530,19 +466,16 @@ Zone:
     binaryZoneId:
       description: |
         Id to support local traffic standards (e.g. VDV,...)
-      type: string
+      type:
+      - string
+      - 'null'
       format: byte
-      nullable: true
     carrier:
       $ref: ./_common.yml#/CompanyRef
     name:
-      type: string
-      nullable: true
-    nameTranslations:
-      description: Translations for the zone name
-      type: array
-      items:
-        $ref: ./_common.yml#/Translation
+      type:
+      - string
+      - 'null'
     entryStation:
       $ref: ./ojp/trip.yml#/StopPlace
     terminalStation:
@@ -552,29 +485,30 @@ Zone:
         to be used in bar codes
       type: array
       items:
-        type: integer
+        type:
+        - integer
+        - 'null'
         format: int32
-      nullable: true
     nutsCode:
       description: |
         Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     validFrom:
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     validUntil:
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
 ZoneCollectionResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -582,7 +516,7 @@ ZoneCollectionResponse:
     zones:
       type: array
       items:
-        $ref: '#/ZoneDefinition'
+        $ref: '#/ZoneSpecification'
     _links:
       $ref: ./_common.yml#/Links
 ZoneDefinition:
@@ -598,19 +532,55 @@ ZoneDefinition:
   properties:
     id:
       type: string
-      nullable: false
     name:
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     carrier:
       $ref: ./_common.yml#/CompanyRef
     polygon:
       $ref: ./_common.yml#/Polygon
     nutsCodes:
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: string
-      nullable: true
+    places:
+      type: array
+      items:
+        $ref: ./ojp/place.yml#/PlaceRef
+ZoneSpecification:
+  type: object
+  additionalProperties: false
+  description: |
+    Definition of a zone used to define regional validity. The area of the zone can be defined via a
+    geo-polygon, a complete list of all contained stations or area codes from the NUTS code list.
+    The carrier is either the carrier or transport authority responsible for the definition.
+  required:
+  - id
+  - carrier
+  properties:
+    id:
+      type: string
+    validity:
+      description: |
+        Validity of the zone definition for travel. The date range is related to the possible start of a travel.
+      $ref: ./product.yml#/MasterDataValidity
+    name:
+      type:
+      - string
+      - 'null'
+    carrier:
+      $ref: ./_common.yml#/CompanyRef
+    polygon:
+      $ref: ./_common.yml#/Polygon
+    nutsCodes:
+      type:
+      - array
+      - 'null'
+      items:
+        type: string
     places:
       type: array
       items:

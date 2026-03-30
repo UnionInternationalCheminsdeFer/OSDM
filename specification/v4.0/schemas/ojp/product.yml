@@ -14,21 +14,23 @@ ProductCategory:
         Full name of this product category, e.g. 'TGV Lyria' in Switzerland and France.
         UIC: Long name of Service Brand
       type: string
-      nullable: false
-      example: TGV Lyria
+      examples:
+      - TGV Lyria
     shortName:
       description: |
         Short name or acronym of the product category, likely to be published, e.g. 'TGV'
         UIC: Abbreviation of Service Brand
       type: string
-      nullable: false
-      example: TGV
+      examples:
+      - TGV
     productCategoryRef:
       $ref: '#/ProductCategoryRef'
 ProductCategoryRef:
-  type: string
+  type:
+  - string
+  - 'null'
   description: |
     Reference to a product category. Product categories should be defined once and used
     uniformly in all channels (e.g. NeTEx, SIRI, OJP). Provided by OJP.
-  nullable: true
-  example: urn:uic:sbc:76
+  examples:
+  - urn:uic:sbc:76

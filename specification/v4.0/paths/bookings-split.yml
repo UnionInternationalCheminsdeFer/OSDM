@@ -8,8 +8,6 @@
     operationId: splitBookings
     parameters:
     - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
-      description: deprecated
     - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
     - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
     - $ref: ../OSDM-online-api.yml#/components/parameters/idempotencyKey
@@ -23,7 +21,7 @@
     requestBody:
       required: true
       content:
-        application/json:
+        application/vnd.uic.osdm+json:
           schema:
             $ref: ../OSDM-online-api.yml#/components/schemas/BookingSplitRequest
     responses:
@@ -31,7 +29,7 @@
         description: |
           booking split
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/BookingSplitResponse
       '400':
@@ -42,8 +40,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':

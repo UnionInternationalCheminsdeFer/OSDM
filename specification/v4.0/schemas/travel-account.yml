@@ -20,14 +20,11 @@ AbstractTravelAccount:
     validFrom:
       type: string
       format: date-time
-      nullable: false
     validUntil:
       type: string
       format: date-time
-      nullable: false
     number:
       type: string
-      nullable: false
 AbstractTravelAccountUnit:
   type: object
   additionalProperties: false
@@ -44,18 +41,6 @@ DayTravelAccountUnit:
   - $ref: '#/AbstractTravelAccountUnit'
   - type: object
     additionalProperties: false
-IndicatedConsumption:
-  type: object
-  additionalProperties: false
-  required:
-  - amount
-  properties:
-    unit:
-      $ref: '#/AbstractTravelAccountUnit'
-    amount:
-      type: integer
-      format: int32
-      nullable: false
 MoneyTravelAccountUnit:
   allOf:
   - $ref: '#/AbstractTravelAccountUnit'
@@ -67,9 +52,10 @@ MoneyTravelAccountUnit:
       currency:
         $ref: ./_common.yml#/Currency
       scale:
-        type: integer
+        type:
+        - integer
+        - 'null'
         format: int32
-        nullable: true
         default: 2
 MultiRideAccount:
   allOf:
@@ -84,13 +70,12 @@ MultiRideAccount:
         $ref: ./fare.yml#/RegionalConstraint
       regionalConstraintSummary:
         type: string
-        nullable: false
       balance:
         $ref: '#/MultiRideBalance'
-      consumptions:
+      usage:
         type: array
         items:
-          $ref: '#/TravelAccountConsumption'
+          $ref: '#/TravelAccountUsage'
 MultiRideBalance:
   type: object
   additionalProperties: false
@@ -104,11 +89,9 @@ MultiRideBalance:
     total:
       type: integer
       format: int32
-      nullable: false
     remaining:
       type: integer
       format: int32
-      nullable: false
     unit:
       $ref: '#/AbstractTravelAccountUnit'
 NamedTravelAccountUnit:
@@ -121,42 +104,10 @@ NamedTravelAccountUnit:
     properties:
       name:
         type: string
-        nullable: false
-TravelAccountConsumption:
-  type: object
-  additionalProperties: false
-  required:
-  - consumedOn
-  - bookingId
-  - unit
-  - bookingSummary
-  - consumedAmount
-  properties:
-    consumedOn:
-      type: string
-      format: date-time
-      nullable: false
-    bookingId:
-      type: string
-      nullable: false
-    unit:
-      $ref: '#/AbstractTravelAccountUnit'
-    bookingSummary:
-      type: string
-      nullable: false
-    tripSummary:
-      $ref: ./ojp/trip.yml#/TripSummary
-    consumedAmount:
-      type: integer
-      format: int32
-      nullable: false
 TravelAccountResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -167,7 +118,7 @@ TravelAccountResponseContent:
   type: string
   enum:
   - ALL
-  - CONSUMPTIONS
+  - USAGE
   - NONE
   default: ALL
 TravelAccountType:
@@ -180,6 +131,30 @@ TravelAccountType:
   - MULTI_RIDE
   - REDUCTION_CARD
   - TRAVEL_PASS
+TravelAccountUsage:
+  type: object
+  additionalProperties: false
+  required:
+  - usedOn
+  - bookingId
+  - unit
+  - bookingSummary
+  - usedAmount
+  properties:
+    usedOn:
+      type: string
+      format: date-time
+    bookingId:
+      type: string
+    unit:
+      $ref: '#/AbstractTravelAccountUnit'
+    bookingSummary:
+      type: string
+    tripSummary:
+      $ref: ./ojp/trip.yml#/TripSummary
+    usedAmount:
+      type: integer
+      format: int32
 TravelPassAccount:
   allOf:
   - $ref: '#/AbstractTravelAccount'
@@ -190,10 +165,14 @@ TravelPassAccount:
     properties:
       regionalConstraintSummary:
         type: string
-        nullable: false
       regionalConstraint:
         $ref: ./fare.yml#/RegionalConstraint
-      consumptions:
+      usage:
         type: array
         items:
-          $ref: '#/TravelAccountConsumption'
+          $ref: '#/TravelAccountUsage'
+TripTravelAccountUnit:
+  allOf:
+  - $ref: '#/AbstractTravelAccountUnit'
+  - type: object
+    additionalProperties: false

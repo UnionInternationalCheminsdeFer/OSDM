@@ -7,13 +7,15 @@ AfterSaleCondition:
     condition:
       $ref: '#/AfterSaleConditionType'
     validFrom:
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     validUntil:
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     afterSaleFee:
       $ref: ./_common.yml#/Price
     reimbursementMethod:
@@ -24,30 +26,6 @@ AfterSaleConditionType:
   - PLACE_CHANGE
   - EXCHANGE
   - REFUND
-AfterSalesConditionsLink:
-  type: object
-  additionalProperties: false
-  required:
-  - conditions
-  properties:
-    conditions:
-      description: |
-        Structured description of the after-sales conditions.
-      type: array
-      items:
-        $ref: '#/AfterSaleCondition'
-      minItems: 1
-    isSupportingIndividualContracts:
-      description: |
-        Indicates that the after sales of this fare can be treated independently per person.
-      type: boolean
-      nullable: true
-      default: false
-    isProviderFee:
-      description: |
-        The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
-      type: boolean
-      default: true
 AfterSalesOverrideDetails:
   description: |
     If initial after sales conditions have been overwritten this object provides details on the original
@@ -58,22 +36,19 @@ AfterSalesOverrideDetails:
       type: array
       items:
         $ref: '#/AfterSaleCondition'
-      deprecated: true
-    initialAfterSalesConditions:
-      type: array
-      items:
-        $ref: '#/AfterSaleCondition'
     overrideDescription:
       description: Description for the change of conditions for the customer.
       type: string
     validFrom:
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     validUntil:
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     initialExchangeableType:
       $ref: '#/ExchangeableType'
     initialRefundType:
@@ -94,30 +69,28 @@ CancelFulfillmentsOffer:
         id of the cancel fulfillments offer
       type: string
       maxLength: 32768
-      nullable: false
     summary:
       description: |
         A human-readable description of the refund offer.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     createdOn:
       type: string
       format: date-time
-      nullable: false
     validFrom:
       type: string
       format: date-time
-      nullable: false
     validUntil:
       description: |
         time until the offer can be used
       type: string
       format: date-time
-      nullable: false
     confirmedOn:
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     status:
       $ref: '#/CancelFulfillmentsStatus'
     fulfillments:
@@ -131,9 +104,6 @@ CancelFulfillmentsOfferCollectionResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -164,9 +134,6 @@ CancelFulfillmentsOfferResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -178,6 +145,141 @@ CancelFulfillmentsStatus:
   enum:
   - PROPOSED
   - CONFIRMED
+ConditionSpecification:
+  type: object
+  additionalProperties: false
+  description: |
+    Describes sales, usage and after sales conditions applicable to the product.  See after sales conditions for individual after sales amounts. The language of the text is controlled by the accept-language header, i.e. supporting English is a must.
+  required:
+  - type
+  - description
+  properties:
+    type:
+      $ref: ./_common.yml#/ConditionType
+    description:
+      description: |
+        human readable documentation of the text.
+      $ref: ./_common.yml#/Text
+    shortDescription:
+      description: |
+        short description of the condition no longer than 64 characters
+      $ref: ./_common.yml#/Text
+ConfirmedRefund:
+  type: object
+  additionalProperties: false
+  required:
+  - id
+  - createdOn
+  - confirmedOn
+  - refundedFulfillments
+  - refundedAmount
+  properties:
+    id:
+      description: |
+        id of the confirmed refund
+      type: string
+      maxLength: 32768
+    summary:
+      description: |
+        A human-readable description of the refund.
+      type:
+      - string
+      - 'null'
+      examples:
+      - Refund for Paris-Barcelona Andre Dupont 2022-07-23
+    createdOn:
+      type: string
+      format: date-time
+    confirmedOn:
+      type: string
+      format: date-time
+    reimbursementStatus:
+      $ref: ./complaint.yml#/ReimbursementStatus
+    reimbursementDateTime:
+      type:
+      - string
+      - 'null'
+      format: date-time
+    reimbursementMethod:
+      $ref: ./complaint.yml#/ReimbursementMethod
+    appliedOverruleCode:
+      $ref: ./_common.yml#/OverruleCode
+    refundedFulfillments:
+      description: |
+        fulfillments to be refunded or replaced. This might differ from the requested refund specification in case the original request did not include all related fulfillments or booking parts. It must also incude the references to booking parts and passenger ids which can be omitted in teh request in case all part or passengers related to a fulfillment are refunded.
+      type: array
+      items:
+        $ref: '#/RefundedFulfillmentSpecification'
+      minItems: 1
+    issuedFulfillmentIds:
+      description: |
+        IDs of the new fulfillments issued with this refund
+      type: array
+      items:
+        type: string
+    issuedVouchers:
+      type: array
+      items:
+        $ref: ./_common.yml#/VoucherInformation
+    refundFeeRefs:
+      description: |
+        reference to Applied Fees covering the refund fee. Providing the reference
+        is mandatory when the refund was confirmed and a fee has been applied
+      type: array
+      items:
+        type: string
+        maxLength: 1024
+    refundedAmount:
+      $ref: ./_common.yml#/Price
+      description: |
+        Amount refunded to the purchaser
+    refundBreakdown:
+      description: |
+        breakdown of the refund
+      type: array
+      items:
+        $ref: '#/RefundBreakdownItem'
+    _links:
+      $ref: ./_common.yml#/Links
+ConfirmedRelease:
+  type: object
+  additionalProperties: false
+  required:
+  - id
+  - createdOn
+  - confirmedOn
+  - releasedFulfillments
+  properties:
+    id:
+      description: |
+        id of the release
+      type: string
+      maxLength: 32768
+    summary:
+      description: |
+        A human-readable description of the release.
+      type:
+      - string
+      - 'null'
+      examples:
+      - 'Released: Paris-Barcelona Andre Dupont 2022-07-23'
+    createdOn:
+      type: string
+      format: date-time
+    confirmedOn:
+      type: string
+      format: date-time
+    appliedOverruleCode:
+      $ref: ./_common.yml#/OverruleCode
+    releasedFulfillments:
+      description: |
+        fulfillments to be refunded or replaced. This might differ from the requested refund specification in case the original request did not include all related fulfillments or booking parts. It must also incude the references to booking parts and passenger ids which can be omitted in teh request in case all part or passengers related to a fulfillment are refunded.
+      type: array
+      items:
+        $ref: '#/RefundedFulfillmentSpecification'
+      minItems: 1
+    _links:
+      $ref: ./_common.yml#/Links
 ExchangeableType:
   description: "If set to YES the offerpart is exchangeable without a fee before the day of departure. \nNO when not exchangeable\
     \ or exchangeable with 100% fee, WITH_CONDITIONS in all other cases.\n"
@@ -217,11 +319,11 @@ ExchangeOffer:
   required:
   - exchangeFee
   - exchangePrice
-  - fulfillments
+  - refundableAmount
+  - fulfillmentRefs
   - offerId
   - createdOn
   - preBookableUntil
-  - passengerRefs
   - admissionOfferParts
   properties:
     exchangeFee:
@@ -244,47 +346,47 @@ ExchangeOffer:
       $ref: ./_common.yml#/Price
     appliedOverruleCode:
       $ref: ./_common.yml#/OverruleCode
-    fulfillments:
+    fulfillmentRefs:
       type: array
       items:
-        $ref: ./fulfillment.yml#/Fulfillment
+        $ref: ./fulfillment.yml#/FulfillmentRefs
       minItems: 1
     offerId:
       type: string
       maxLength: 32768
-      nullable: false
     summary:
       description: |
         A human-readable description of the offer.
       type: string
-      nullable: true
     offerSummary:
       description: The offerSummary must be provided for product based offers. It is not needed for fares.
       $ref: ./offer.yml#/OfferSummary
     createdOn:
       type: string
       format: date-time
-      nullable: false
     preBookableUntil:
       description: |
         time until the offer can be pre-booked, however its availability is not guaranteed
       type: string
       format: date-time
-      nullable: false
     passengerRefs:
+      description: |
+        providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.
       type: array
       items:
         type: string
       minItems: 1
-      nullable: false
     products:
+      description: |
+        products must be provided in case they are referenced. Some offer parts (e.g. fares)
+        do not have products assigned.
       type: array
       items:
         $ref: ./product.yml#/Product
     tripCoverage:
-      $ref: ./trip.yml#/TripCoverage
-    inboundTripCoverage:
-      $ref: ./trip.yml#/TripCoverage
+      type: array
+      items:
+        $ref: ./trip.yml#/TripCoverage
     exchangeOfferBreakdown:
       description: |
         Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
@@ -310,81 +412,13 @@ ExchangeOffer:
     fares:
       type: array
       items:
-        $ref: ./fare.yml#/Fare
+        $ref: ./offer.yml#/FareOfferPart
     _links:
       $ref: ./_common.yml#/Links
-ExchangeOfferCollectionRequest:
-  type: object
-  additionalProperties: false
-  description: |
-    Defines the parameters needed to request an exchange offer, either based on either an
-    existing trip (that is then passed in) plus a set of offer search
-    criteria, or based on trip-search and offer search criteria. At least one
-    of the trip or tripSearchCriteria must be set.
-  required:
-  - fulfillmentIds
-  - anonymousPassengerSpecifications
-  properties:
-    fulfillmentIds:
-      type: array
-      items:
-        type: string
-      minItems: 1
-      nullable: false
-    overruleCode:
-      $ref: ./_common.yml#/OverruleCode
-    tripSpecifications:
-      type: array
-      items:
-        $ref: ./trip.yml#/TripSpecification
-    tripIds:
-      type: array
-      items:
-        type: string
-        maxLength: 32768
-      nullable: true
-    tripSearchCriteria:
-      $ref: ./ojp/trip.yml#/TripSearchCriteria
-    nonTripSearchCriteria:
-      $ref: ./trip.yml#/NonTripSearchCriteria
-    requestedSections:
-      type: array
-      items:
-        $ref: ./trip.yml#/Section
-    offerSearchCriteria:
-      $ref: ./offer.yml#/OfferSearchCriteria
-    anonymousPassengerSpecifications:
-      type: array
-      items:
-        $ref: ./person.yml#/AnonymousPassengerSpecification
-      minItems: 1
-    corporateCodes:
-      type: array
-      items:
-        $ref: ./_common.yml#/CorporateCode
-    promotionCodes:
-      type: array
-      items:
-        $ref: ./_common.yml#/PromotionCode
-    requestedFulfillmentOptions:
-      type: array
-      items:
-        $ref: ./fulfillment.yml#/FulfillmentOption
-    exchangeFee:
-      description: |
-        In some business models the distributor has the right to define the exchange fee amount for a fare provided by the fare provider. This need to be indicated in the fare after sales rules to be applied. In this case the distributor submits the amount to the fare provider in exchange fee amount and the fare provider uses this amount to create the fees including the VAT split.
-      $ref: ./_common.yml#/CurrencyAmount
-    embed:
-      type: array
-      items:
-        $ref: ./offer.yml#/OfferCollectionResponseContent
 ExchangeOfferCollectionResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -399,6 +433,8 @@ ExchangeOfferCollectionResponse:
       type: array
       items:
         $ref: ./ojp/trip.yml#/Trip
+    tripContext:
+      $ref: ./trip.yml#/TripContext
     passengers:
       type: array
       items:
@@ -414,6 +450,63 @@ ExchangeOfferCollectionResponseContent:
   - PASSENGERS
   - NONE
   default: ALL
+ExchangeOfferRequest:
+  description: |
+    Request exchange offers
+  type: object
+  additionalProperties: false
+  required:
+  - exchangeParts
+  - exchangeParams
+  properties:
+    exchangeParts:
+      description: |
+        the fulfillments or booking parts that should be exchanged.
+        The listed parts are an indication. It might be necessary to exchange more parts as there are dependencies to other pats via fulfillments. It is up to the provider to evaluate these dependencies.
+      type: array
+      maxItems: 1024
+      items:
+        $ref: '#/ExchangeParts'
+    exchangeParams:
+      $ref: '#/ExchangeOfferRequestParameter'
+    exchangePassengers:
+      $ref: '#/ExchangePassengersOfferRequestSpecification'
+    exchangeService:
+      $ref: '#/ExchangeServiceOfferRequestSpecification'
+    exchangeTrip:
+      $ref: '#/ExchangeTripOfferRequestSpecification'
+ExchangeOfferRequestParameter:
+  type: object
+  additionalProperties: false
+  description: |
+    Basic request parameters for all exchange offer requests.
+  properties:
+    overruleCode:
+      $ref: ./_common.yml#/OverruleCode
+    corporateCodes:
+      type: array
+      items:
+        $ref: ./_common.yml#/CorporateCode
+    promotionCodes:
+      type: array
+      items:
+        $ref: ./_common.yml#/PromotionCode
+    offerMode:
+      $ref: ./offer.yml#/OfferMode
+    currency:
+      $ref: ./_common.yml#/Currency
+    requestedFulfillmentOptions:
+      type: array
+      items:
+        $ref: ./fulfillment.yml#/FulfillmentOption
+    exchangeFee:
+      description: |
+        In some business models the distributor has the right to define the exchange fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditributor submits the amount to the fare provider in exchange fee amount and the fare provider uses this amount to create the fees including the VAT split.
+      $ref: ./_common.yml#/CurrencyAmount
+    embed:
+      type: array
+      items:
+        $ref: ./offer.yml#/OfferCollectionResponseContent
 ExchangeOperation:
   type: object
   additionalProperties: false
@@ -422,23 +515,31 @@ ExchangeOperation:
   properties:
     id:
       type: string
-      nullable: false
     status:
       $ref: '#/ExchangeStatus'
     exchangeOffers:
       type: array
       items:
         $ref: '#/ExchangeOffer'
-    ticketTimeLimit:
-      type: string
-      format: date-time
-      nullable: true
-    fulfillmentType:
-      $ref: ./fulfillment.yml#/FulfillmentType
-    fulfillments:
+    appliedFeesRefs:
+      description: |
+        references to the fees applied with this exchange operation. It is mandatory to
+        provide the refs when the fees have been applied.
       type: array
       items:
-        $ref: ./fulfillment.yml#/Fulfillment
+        type: string
+        maxLength: 1024
+    ticketTimeLimit:
+      type:
+      - string
+      - 'null'
+      format: date-time
+    fulfillmentRefs:
+      description: |
+        references to the fulfillments affeted by the exchange operation.
+      type: array
+      items:
+        $ref: ./fulfillment.yml#/FulfillmentRefs
     issuedVouchers:
       type: array
       items:
@@ -461,6 +562,10 @@ ExchangeOperationPatchRequest:
       $ref: ./fulfillment.yml#/FulfillmentType
     preferredFulfillmentMedia:
       $ref: ./fulfillment.yml#/FulfillmentMediaType
+    usedPaymentMethods:
+      type: array
+      items:
+        $ref: ./_common.yml#/PaymentMethod
     embed:
       description: |
         Influences whether referenced resources are returned in full or as references only.
@@ -478,19 +583,27 @@ ExchangeOperationRequest:
       items:
         $ref: ./offer.yml#/OfferSelection
       minItems: 1
+    promotionCodes:
+      type: array
+      items:
+        $ref: ./_common.yml#/PromotionCode
 ExchangeOperationResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
         $ref: ./_common.yml#/Problem
     exchangeOperation:
       $ref: '#/ExchangeOperation'
+    appliedFees:
+      description: "applied fees referenced in the exchange operation. Providing the applied fees is \nmandatory in case the\
+        \ an exchange operation is returned. The applied fees are stored in the booking and are returned here additionally\
+        \ for convenience.\n"
+      type: array
+      items:
+        $ref: ./_common.yml#/AppliedFee
 ExchangeOperationResponseContent:
   description: |
     Influences whether referenced resources are returned in full or as references only.
@@ -501,6 +614,69 @@ ExchangeOperationResponseContent:
   - EXCHANGEOPERATION_EXCHANGEOFFERS
   - EXCHANGEOPERATION_FULFILLMENTS
   default: ALL
+ExchangeParts:
+  description: specification of parts to be exchanged
+  type: object
+  properties:
+    fulfillmentId:
+      description: |
+        ids of the fulfillments where some part(s) should be exchanged
+      type: string
+      maxLength: 32768
+    bookingPartIds:
+      description: |
+        Ids of booking parts to be exchanged. The new offers will not contain these parts.
+        In case no booking parts are provided all booking parts will be exchanged.
+      type: array
+      maxItems: 1024
+      items:
+        type: string
+        maxLength: 32768
+ExchangePassengersOfferRequestSpecification:
+  description: |
+    specification to remove, add and exchange passengers
+  type: object
+  additionalProperties: false
+  properties:
+    addedPassengerSpecifications:
+      description: specifications of new passengers to be added
+      type: array
+      items:
+        $ref: ./person.yml#/AnonymousPassengerSpecification
+    removedPassengerIds:
+      type: array
+      description: |
+        Ids of passengers to be exchanged. The new offers will not contain these passengers.
+        In case no passengers refs are provided all passengers on the fulfillment will be exchanged.
+      maxItems: 1024
+      items:
+        type: string
+ExchangeServiceOfferRequestSpecification:
+  description: |
+    specification to exchange the service level or travel class
+  type: object
+  additionalProperties: false
+  properties:
+    flexibilities:
+      description: |
+        Defines the flexibility levels desired of the fares returned.
+        This refers to the after sales flexibility levels as defined in IRS-90918-10
+      type: array
+      items:
+        $ref: ./offer.yml#/Flexibility
+    travelClasses:
+      description: |
+        The classes returned might be different from the requested classes.
+      type: array
+      items:
+        $ref: ./_common.yml#/TravelClass
+    serviceClassTypes:
+      description: |
+        The classes returned might be different from the requested classes.
+      type: array
+      items:
+        $ref: ./_common.yml#/ServiceClassType
+      maxItems: 4
 ExchangeStatus:
   type: string
   enum:
@@ -508,6 +684,90 @@ ExchangeStatus:
   - CONFIRMED
   - FULFILLED
   - ERROR
+ExchangeTripOfferRequestSpecification:
+  description: |
+    specification to exchange a trip
+  type: object
+  additionalProperties: false
+  properties:
+    tripSpecifications:
+      type:
+      - array
+      - 'null'
+      items:
+        $ref: ./trip.yml#/TripSpecification
+    inboundTripSpecifications:
+      type:
+      - array
+      - 'null'
+      items:
+        $ref: ./trip.yml#/TripSpecification
+    tripSearchCriteria:
+      $ref: ./ojp/trip.yml#/TripSearchCriteria
+    nonTripSearchCriteria:
+      $ref: ./trip.yml#/NonTripSearchCriteria
+    requestedSections:
+      type: array
+      items:
+        $ref: ./trip.yml#/Section
+FareAfterSalesRules:
+  type: object
+  additionalProperties: false
+  properties:
+    isSupportingIndividualContracts:
+      description: |
+        Indicates that the after sales of this fare can be treated independently per person.
+      type:
+      - boolean
+      - 'null'
+      default: false
+    isProviderFee:
+      description: |
+        The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
+      type: boolean
+      default: true
+RefundBreakdownItem:
+  type: object
+  required:
+  - refundFee
+  - refundAmount
+  - bookingParts
+  properties:
+    refundFee:
+      description: Amount kept by the carrier and/or the distributor
+      $ref: ./_common.yml#/Price
+    refundAmount:
+      description: Amount to be returned to the purchaser
+      $ref: ./_common.yml#/Price
+    bookingParts:
+      type: array
+      items:
+        $ref: ./booking.yml#/BookingPartReference
+RefundedFulfillmentSpecification:
+  type: object
+  description: |
+    description of fulfillments, booking parts and passenger ids included in a refund.
+  required:
+  - fulfillmentId
+  properties:
+    fulfillmentId:
+      description: |
+        id of the fulfillment where some part(s) should be removed
+      type: string
+    fulfillmentSummary:
+      description: A human-readable description of the fulfillment.
+      type: string
+    bookingPartIds:
+      description: ids of booking parts to be removed from the fulfillment
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+    passengerIds:
+      type: array
+      description: ids of passengers to be removed from the fulfillment
+      items:
+        type: string
 RefundOffer:
   type: object
   additionalProperties: false
@@ -517,7 +777,7 @@ RefundOffer:
   - validFrom
   - validUntil
   - status
-  - fulfillments
+  - refundedFulfillments
   - refundFee
   - refundableAmount
   properties:
@@ -526,69 +786,42 @@ RefundOffer:
         id of the refund offer
       type: string
       maxLength: 32768
-      nullable: false
     summary:
       description: |
         A human-readable description of the refund offer.
-      type: string
-      nullable: true
-      example: Refund Offer for Paris-Barcelona Andre Dupont 2022-07-23
-    summaryTranslations:
-      description: Translations for the summary
-      type: array
-      items:
-        $ref: ./_common.yml#/Translation
+      type:
+      - string
+      - 'null'
+      examples:
+      - Refund Offer for Paris-Barcelona Andre Dupont 2022-07-23
     createdOn:
       type: string
       format: date-time
-      nullable: false
     validFrom:
       type: string
       format: date-time
-      nullable: false
     validUntil:
       description: |
         time until the offer can be used
       type: string
       format: date-time
-      nullable: false
-    confirmedOn:
-      type: string
-      format: date-time
-      nullable: true
     status:
       $ref: '#/RefundStatus'
     reimbursementStatus:
       $ref: ./complaint.yml#/ReimbursementStatus
-    reimbursementDateTime:
-      type: string
-      format: date-time
-      nullable: true
     appliedOverruleCode:
       $ref: ./_common.yml#/OverruleCode
-    fulfillments:
-      description: fulfillments to be refunded or replaced
+    refundedFulfillments:
+      description: |
+        fulfillments to be refunded or replaced. This might differ from the requested refund specification in case the original request did not include all related fulfillments or booking parts. It must also incude the references to booking parts and passenger ids which can be omitted in teh request in case all part or passengers related to a fulfillment are refunded.
       type: array
       items:
-        $ref: ./fulfillment.yml#/Fulfillment
+        $ref: '#/RefundedFulfillmentSpecification'
       minItems: 1
-    issuedFulfillments:
-      description: new fulfillments issued with this offer (only available after confirmation)
-      type: array
-      items:
-        $ref: ./fulfillment.yml#/Fulfillment
-    issuedVouchers:
-      type: array
-      items:
-        $ref: ./_common.yml#/VoucherInformation
     refundFee:
       $ref: ./_common.yml#/Price
       description: |
-        Amount kept by the carrier and/or distributor
-    accountingRef:
-      description: |
-        Accounting information for the refund fee
-      $ref: ./_common.yml#/AccountingRef
+        Total Amount kept by the carrier and/or distributor
     refundableAmount:
       $ref: ./_common.yml#/Price
       description: |
@@ -598,35 +831,15 @@ RefundOffer:
         breakdown of the refund offer
       type: array
       items:
-        $ref: '#/RefundOfferBreakdownItem'
+        $ref: '#/RefundBreakdownItem'
     reimbursementMethod:
       $ref: ./complaint.yml#/ReimbursementMethod
     _links:
       $ref: ./_common.yml#/Links
-RefundOfferBreakdownItem:
-  type: object
-  required:
-  - refundFee
-  - refundableAmount
-  - bookingParts
-  properties:
-    refundFee:
-      description: Amount kept by the carrier and/or the distributor
-      $ref: ./_common.yml#/Price
-    refundableAmount:
-      description: Amount to be returned to the purchaser
-      $ref: ./_common.yml#/Price
-    bookingParts:
-      type: array
-      items:
-        $ref: ./booking.yml#/BookingPartReference
 RefundOfferCollectionResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -654,44 +867,42 @@ RefundOfferRequest:
     Request for a refund offer.
     Fulfillments can be provided in case the booking contains multiple individual fulfillments.
   required:
-  - fulfillmentIds
+  - refundSpecifications
   properties:
-    fulfillmentIds:
-      description: |
-        ids of the fulfillments to refund
-      type: array
-      items:
-        type: string
-      minItems: 1
-      nullable: false
     refundSpecifications:
       description: |
-        To do a partial refund repeat the fulfillmentIds affected and point out what to refund
+        Specification of Fulfillment IDs to refund.
+        To do a partial refund, include booking part IDs to refund from the fulfillment.
       type: array
       items:
         $ref: '#/RefundSpecification'
+      minItems: 1
     overruleCode:
       $ref: ./_common.yml#/OverruleCode
     refundDate:
       description: |
         Indicates for passes the date taken as reference to compute possible partial refund. It is also the date taken
         as reference to invalidate the pass partially refunded.
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
 RefundOfferResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
         $ref: ./_common.yml#/Problem
     refundOffer:
       $ref: '#/RefundOffer'
+    appliedFees:
+      description: "applied fees referenced in the refund offer. Providing the applied fees is \nmandatory in case the refund\
+        \ offer is confirmed. The applied fees are stored in the booking and are returned here additionally for convenience.\n"
+      type: array
+      items:
+        $ref: ./_common.yml#/AppliedFee
 RefundSpecification:
   type: object
   required:
@@ -714,7 +925,7 @@ RefundSpecification:
         type: string
     refundFee:
       description: |
-        In some business models the distributor has the right to define the refund fee amount for a fare provided by the fare provider. This need to be indicated in the fare after sales rules to be applied. In this case the distributor submits the amount to the fare provider in refund fee amount and the fare provider uses this amount to create the fees including the VAT split.
+        In some business models the distributor has the right to define the refund fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditsributor submits the amount to the fare provider in refund fee amount and the fare provider uses this amount to create the fees including the VAT split.
       $ref: ./_common.yml#/CurrencyAmount
 RefundStatus:
   type: string
@@ -735,44 +946,36 @@ ReleaseOffer:
   - createdOn
   - validFrom
   - validUntil
-  - status
-  - fulfillments
+  - releasedFulfillments
   properties:
     id:
       description: |
         id of the release offer
       type: string
       maxLength: 32768
-      nullable: false
     summary:
       description: |
-        A human-readable description of the refund offer.
-      type: string
-      nullable: true
+        A human-readable description of the release offer.
+      type:
+      - string
+      - 'null'
     createdOn:
       type: string
       format: date-time
-      nullable: false
     validFrom:
       type: string
       format: date-time
-      nullable: false
     validUntil:
       description: |
         time until the offer can be used
       type: string
       format: date-time
-      nullable: false
-    confirmedOn:
-      type: string
-      format: date-time
-      nullable: true
-    status:
-      $ref: '#/ReleaseStatus'
-    fulfillments:
+    releasedFulfillments:
+      description: |
+        fulfillments to be refunded or replaced. This might differ from the requested refund specification in case the original request did not include all related fulfillments or booking parts. It must also incude the references to booking parts and passenger ids which can be omitted in teh request in case all part or passengers related to a fulfillment are refunded.
       type: array
       items:
-        $ref: ./fulfillment.yml#/Fulfillment
+        $ref: '#/RefundedFulfillmentSpecification'
       minItems: 1
     appliedOverruleCode:
       $ref: ./_common.yml#/OverruleCode
@@ -782,9 +985,6 @@ ReleaseOfferCollectionResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -807,48 +1007,44 @@ ReleaseOfferRequest:
   type: object
   additionalProperties: false
   properties:
-    fulfillmentIds:
-      type: array
-      items:
-        $ref: ./fulfillment.yml#/FulfillmentId
     releaseSpecifications:
       description: |
-        To do a partial release repeat the fulfillmentIds affected and point out what to release
+        To do a partial release provide the fulfillmentIds affected and point out what to release
       type: array
       items:
-        $ref: '#/RefundSpecification'
+        $ref: '#/ReleaseSpecification'
     overruleCode:
       $ref: ./_common.yml#/OverruleCode
-ReleaseOfferRequestAsyncResponse:
-  type: object
-  additionalProperties: false
-  properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
-    problems:
-      type: array
-      items:
-        $ref: ./_common.yml#/Problem
-    releaseOfferIds:
-      description: |
-        Ids of the release offers created asynchronously. Retrieve GET release-offers/{releaseOfferId} to poll the status
-      type: array
-      items:
-        type: string
 ReleaseOfferResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
         $ref: ./_common.yml#/Problem
     releaseOffer:
       $ref: '#/ReleaseOffer'
+ReleaseSpecification:
+  type: object
+  required:
+  - fulfillmentId
+  properties:
+    fulfillmentId:
+      description: |
+        id of the fulfillment where some part(s) should be removed
+      type: string
+    bookingPartIds:
+      description: ids of booking parts to be removed from the fulfillment
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+    passengerIds:
+      type: array
+      description: ids of passengers to be removed from the fulfillment
+      items:
+        type: string
 ReleaseStatus:
   type: string
   enum:
