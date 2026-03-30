@@ -8,62 +8,61 @@ Address:
   - type: object
     additionalProperties: false
     properties:
-      name:
-        description: |
-          Name or description of address for use in passenger information.
-        type: string
-        nullable: true
-        example: Oude Trambaan 7, 2265CA Leidschendam, Nederland
-      nameTranslations:
-        description: Translations for the name
-        type: array
-        items:
-          $ref: '../_common.yml#/Translation'
-      code:
-        description: |
-          id of the address
-        type: string
-        nullable: true
-        example: NL:1916200000022621
       countryName:
         description: |
           Country of the address.
-        type: string
-        nullable: true
-        example: The Netherlands
+        type:
+        - string
+        - 'null'
+        examples:
+        - The Netherlands
       countryCode:
-        $ref: '../_common.yml#/CountryCode'
+        $ref: ../_common.yml#/CountryCode
       postCode:
         description: |
           Postal code of the address.
-        type: string
-        nullable: true
-        example: 2265CA
+        type:
+        - string
+        - 'null'
+        examples:
+        - 2265CA
       city:
         description: |
           City name
-        type: string
-        nullable: true
-        example: Leidschendam
+        type:
+        - string
+        - 'null'
+        examples:
+        - Leidschendam
       topographicPlaceName:
         description: |
           TopographicPlace name of the address. If set it should at least contain the city name.
-        type: string
-        nullable: true
-        example: Leidschendam
+        type:
+        - string
+        - 'null'
+        examples:
+        - Leidschendam
       street:
         description: |
           Street name of the address. Can also contain the house number.
-        type: string
-        nullable: true
-        example: Oude Trambaan
+        type:
+        - string
+        - 'null'
+        examples:
+        - Oude Trambaan
       houseNumber:
         description: |
           House number of the address. House number can either be in this separate field, or can be
           contained in the street field.
+        type:
+        - string
+        - 'null'
+        examples:
+        - '7'
+      crossroad:
         type: string
-        nullable: true
-        example: 7
+        examples:
+        - Oude Trambaan corner Newe Trambahn
 AddressRef:
   description: |
     Reference to an Address.
@@ -76,7 +75,6 @@ AddressRef:
     properties:
       addressRef:
         type: string
-        nullable: false
 CarrierFilter:
   type: object
   additionalProperties: false
@@ -86,15 +84,16 @@ CarrierFilter:
     exclude:
       description: |
         Whether carrier in list are to include or exclude from search.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: true
     carriers:
       description: |
         Reference to carrier
       type: array
       items:
-        $ref: '../_common.yml#/CompanyRef'
+        $ref: ../_common.yml#/CompanyRef
 GeoPosition:
   type: object
   additionalProperties: false
@@ -105,9 +104,9 @@ GeoPosition:
   - latitude
   properties:
     longitude:
-      $ref: '../_common.yml#/Longitude'
+      $ref: ../_common.yml#/Longitude
     latitude:
-      $ref: '../_common.yml#/Latitude'
+      $ref: ../_common.yml#/Latitude
 GeoPositionRef:
   description: |
     Reference to a GeoPosition consisting of latitude and longitude.
@@ -120,30 +119,9 @@ GeoPositionRef:
     - longitude
     properties:
       latitude:
-        $ref: '../_common.yml#/Latitude'
+        $ref: ../_common.yml#/Latitude
       longitude:
-        $ref: '../_common.yml#/Longitude'
-IndividualMode:
-  description: |
-    Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
-  type: string
-  x-extensible-enum:
-  - WALK
-  - CYCLE
-  - TAXI
-  - SELF_DRIVE_CAR
-  - OTHERS_DRIVE_CAR
-  - MOTORCYCLE
-  - TRUCK
-  - SCOOTER
-  - RIDE_POOL_CAR
-  - CAR_SHARING
-  - CYCLE_SHARING
-  - SCOOTER_SHARING
-  - BICYCLE
-  - ELECTRIC_BICYCLE
-  - CARGO_BICYCLE
-  - SCOOTER
+        $ref: ../_common.yml#/Longitude
 Mode:
   type: object
   additionalProperties: false
@@ -153,24 +131,29 @@ Mode:
   - ptMode
   properties:
     ptMode:
-      $ref: '../_common.yml#/PTMode'
+      $ref: ../_common.yml#/PTMode
     name:
       description: |
         Name of the mode
-      type: string
-      nullable: true
-      example: rail
+      type:
+      - string
+      - 'null'
+      examples:
+      - rail
     shortName:
       description: |
         Short name or acronym of the mode
-      type: string
-      nullable: true
-      example: S
+      type:
+      - string
+      - 'null'
+      examples:
+      - S
     description:
       description: |
         Additional text that further describes the mode
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
 ModeFilter:
   type: object
   additionalProperties: false
@@ -180,8 +163,9 @@ ModeFilter:
     exclude:
       description: |
         Whether modes in list are to include or exclude from search.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: true
     transportModes:
       description: |
@@ -202,14 +186,14 @@ OsmTag:
       description: |
         Name of Open Street Map tag (amenity, leisure, tourism, bike, ...)
       type: string
-      nullable: false
-      example: name
+      examples:
+      - amenity
     value:
       description: |
         Value for Open Street Map tag (charging_station, hostel, yes, ...)
       type: string
-      nullable: false
-      example: Rozenrust
+      examples:
+      - Rozenrust
 ServiceBrandFilter:
   type: object
   additionalProperties: false
@@ -219,15 +203,16 @@ ServiceBrandFilter:
     exclude:
       description: |
         Whether service brand in list are to include or exclude from search.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: true
     serviceBrands:
       description: |
         Reference to service brand codes
       type: array
       items:
-        $ref: '../_common.yml#/ServiceBrandCode'
+        $ref: ../_common.yml#/ServiceBrandCode
 ServiceStatus:
   type: object
   additionalProperties: false
@@ -238,47 +223,63 @@ ServiceStatus:
     unplanned:
       description: |
         Whether this trip is an additional one that has not been planned.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     cancelled:
       description: |
         Whether this trip is cancelled and will not be run.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     deviation:
       description: |
         Whether this trip deviates from the planned service pattern.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     occupancy:
       description: |
         Passenger load status on vehicle. If omitted, not known.
         Equivalent to siri:OccupancyEnumeration which describes three values:
         'full', 'seatingAvailable' and 'standingAvailable'.
+      type:
+      - string
+      - 'null'
+Situation:
+  description: traffic situation
+  type: object
+  additionalProperties: false
+  required:
+  - id
+  - description
+  properties:
+    id:
+      $ref: '#/SituationRef'
+    description:
+      $ref: '#/SituationDescription'
+SituationDescription:
+  type: object
+  additionalProperties: false
+  description: situation description
+  properties:
+    summary:
       type: string
-      nullable: true
-SituationFullRef:
-  type: string
+    description:
+      type: string
+    details:
+      type: string
+    advice:
+      type: string
+    _links:
+      $ref: ../_common.yml#/Links
+SituationRef:
+  type:
+  - string
+  - 'null'
   description: |
     Reference to situation message. Message details might be found in response
     context or through other communication channels. Provided by OJP.
-  nullable: true
-TransferMode:
-  description: |
-    Modes dedicated to perform transfers. Provided by OJP.
-  type: string
-  x-extensible-enum:
-  - WALK
-  - PARK_AND_RIDE
-  - BIKE_AND_RIDE
-  - CAR_HIRE
-  - BIKE_HIRE
-  - PROTECTED_CONNECTION
-  - GUARANTEED_CONNECTION
-  - REMAIN_IN_VEHICLE
-  - CHANGE_WITHIN_VEHICLE
-  - CHECK_IN
-  - CHECK_OUT

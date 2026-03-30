@@ -12,7 +12,6 @@
     - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
     - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
     - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
-    - $ref: ../OSDM-online-api.yml#/components/parameters/page
     - name: stopBehavior
       in: query
       schema:
@@ -23,15 +22,15 @@
       description: |
         request for trips
       content:
-        application/json:
+        application/vnd.uic.osdm+json:
           schema:
-            $ref: ../OSDM-online-api.yml#/components/schemas/TripSearchCriteria
+            $ref: ../OSDM-online-api.yml#/components/schemas/TripCollectionRequest
     responses:
       '200':
         description: |
           trips found
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/TripCollectionResponse
       '400':
@@ -42,8 +41,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
@@ -97,7 +94,7 @@
         description: |
           trips found
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/TripCollectionResponse
         headers:
@@ -114,8 +111,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
@@ -148,7 +143,7 @@
       description: |
         request for trips
       content:
-        application/json:
+        application/vnd.uic.osdm+json:
           schema:
             $ref: ../OSDM-online-api.yml#/components/schemas/TripChangeCriteria
     responses:
@@ -156,7 +151,7 @@
         description: |
           trips changed
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/TripResponse
       '400':
@@ -167,8 +162,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
@@ -222,7 +215,7 @@
         description: |
           trip found
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/TripResponse
         headers:
@@ -240,8 +233,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':

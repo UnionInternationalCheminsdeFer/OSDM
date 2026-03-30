@@ -33,7 +33,7 @@
         description: |
           travel account found
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/TravelAccountResponse
         headers:
@@ -50,8 +50,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':

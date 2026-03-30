@@ -24,7 +24,7 @@
     requestBody:
       required: true
       content:
-        application/json:
+        application/vnd.uic.osdm+json:
           schema:
             $ref: ../OSDM-online-api.yml#/components/schemas/RefundOfferRequest
     responses:
@@ -32,7 +32,7 @@
         description: |
           refund offer created
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/RefundOfferCollectionResponse
       '400':
@@ -43,8 +43,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
@@ -59,11 +57,11 @@
   get:
     tags:
     - Refund
-    summary: Validation step (step 1 in a two phase commit process) to run before the effective patch endpoint. Provider do
-      all checks to "guarantee" that refund will work.
+    summary: Verification step (step 1 in a two phase commit process) to run before the effective patch endpoint. Provider
+      do all checks to "guarantee" that refund will work.
     description: |
-      Step 1 in a two phase commit process. An aggregator can use this to secure that all underlying provider systems are up and running and the provider booking is ready to be refunded.
-    operationId: postPrepareRefundOffers
+      Step 1 in a two phase commit process. An aggregator can use this to secure that all underlaying provider systems are up and running and the provider booking is ready to be refunded.
+    operationId: getCheckRefundOffers
     parameters:
     - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
     - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
@@ -88,7 +86,7 @@
         maxLength: 32768
     responses:
       '204':
-        description: Success, verified OK
+        description: Succes. OK to refund
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
       '401':
@@ -97,8 +95,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':
@@ -115,7 +111,7 @@
   get:
     tags:
     - Refund
-    summary: Returns the refund offer for the ids provided.
+    summary: Returns the refund offer for the ids provided. Does not return confirmed refunds.
     operationId: getRefundOffers
     parameters:
     - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
@@ -143,7 +139,7 @@
         description: |
           refund offer found
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/RefundOfferResponse
         headers:
@@ -160,8 +156,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
@@ -202,7 +196,7 @@
     requestBody:
       required: true
       content:
-        application/json:
+        application/vnd.uic.osdm+json:
           schema:
             $ref: ../OSDM-online-api.yml#/components/schemas/RefundOfferPatchRequest
     responses:
@@ -210,7 +204,7 @@
         description: |
           refund offer confirmed
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/RefundOfferResponse
         headers:
@@ -227,8 +221,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':
@@ -251,8 +243,6 @@
     operationId: deleteRefundOffers
     parameters:
     - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
-      description: deprecated
     - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
     - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
     - name: bookingId
@@ -281,8 +271,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':

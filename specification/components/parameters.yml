@@ -50,11 +50,14 @@ traceState:
 acceptNamespace:
   name: x-accept-namespace
   in: header
-  description: The x-accept-namespace HTTP header indicates the URN namespace that the client prefers. The provider uses content-negotiation
-    to apply the corresponding namespace(s) where applicable.
-  example: x_swe, uic, iata
+  description: |
+    The x-accept-namespace HTTP header indicates the URN namespace that the client prefers. The provider uses content-negotiation to apply the corresponding namespace(s) where applicable.
   schema:
     type: string
+    examples:
+    - x_swe
+    - uic
+    - iata
 page:
   name: page
   in: query

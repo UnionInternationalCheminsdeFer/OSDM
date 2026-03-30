@@ -23,36 +23,30 @@ Document:
   properties:
     id:
       type: string
-      nullable: false
     summary:
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     passengerRef:
       description: |
         Reference to a passenger, to be specified when the document related to an individual passenger.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     downloadLink:
-      type: string
+      type:
+      - string
+      - 'null'
       format: uri
-      nullable: true
     downloadExpiry:
       description: |
         Expiration time of the download link, the document will not be available at the given URI  after this time.
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
-    content:
-      description: |
-        base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
-        string, so the raw document cannot exceed 3 MBytes in size.
-      type: string
-      format: byte
-      maxLength: 4194304
-      nullable: true
-    format:
-      $ref: '#/DocumentFormat'
-      nullable: true
+    documentContent:
+      $ref: '#/DocumentContent'
     type:
       $ref: '#/DocumentType'
     scope:
@@ -63,9 +57,6 @@ DocumentCollectionResponse:
   required:
   - documents
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -75,8 +66,23 @@ DocumentCollectionResponse:
       items:
         $ref: '#/Document'
       minItems: 1
-    _links:
-      $ref: ./_common.yml#/Links
+DocumentContent:
+  type: object
+  required:
+  - content
+  - format
+  properties:
+    content:
+      description: |
+        base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
+        string, so the raw document cannot exceed 3 MBytes in size.
+      type:
+      - string
+      - 'null'
+      format: byte
+      maxLength: 4194304
+    format:
+      $ref: '#/DocumentFormat'
 DocumentFormat:
   description: |
     Physical format of the document provided in the content field in Mime-Type format, e.g.
@@ -102,9 +108,6 @@ DocumentResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -128,19 +131,20 @@ DocumentSpecification:
     passengerRef:
       description: |
         Reference to a passenger, to be specified when the document related to an individual passenger.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     content:
       description: |
         base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
         string, so the raw document cannot exceed 3 MBytes in size.
-      type: string
+      type:
+      - string
+      - 'null'
       format: byte
       maxLength: 4194304
-      nullable: true
     format:
       $ref: '#/DocumentFormat'
-      nullable: true
     scope:
       $ref: '#/DocumentScope'
     type:
@@ -169,31 +173,28 @@ Fulfillment:
   properties:
     id:
       type: string
-      nullable: false
     status:
       $ref: '#/FulfillmentStatus'
     bookingRef:
       description: |
         the id of the booking the fulfillment is part of
       type: string
-      nullable: false
     summary:
       description: |
         A human-readable description of the fulfillment.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     createdOn:
       type: string
       format: date-time
-      nullable: false
     controlNumber:
       description: |
-        Ticket Control Number.
-      type: string
-      nullable: true
+        Ticket Control Number. Used for secure paper stock of referencing tickets in fulfillment applications.
+      type:
+      - string
+      - 'null'
     bookingParts:
-      description: reference to all booking parts that contributed to this fulfillment. If the fulfillment is made based on
-        booking parts these references must be provided.
       type: array
       items:
         $ref: ./booking.yml#/BookingPartReference
@@ -204,18 +205,9 @@ Fulfillment:
     fulfillmentDocuments:
       description: |
         Final document created for fulfillment.
-      deprecated: true
       type: array
       items:
         $ref: '#/FulfillmentDocument'
-    fulfillmentDocumentRefs:
-      description: |
-        References to the fulfillment documents.
-      type: array
-      items:
-        type: string
-        description: |
-          Fulfillment document ID
     issuingLanguage:
       type: string
       description: the issuing language (ISO-639-1 language code).
@@ -226,65 +218,24 @@ Fulfillment:
       items:
         $ref: '#/FulfillmentPart'
     contentComplete:
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
       description: |
         Indicates whether the fulfillment has all documents or parts generated (if any needed) or they are still pending generation.
     tripCoverage:
-      $ref: ./trip.yml#/TripCoverage
-    inboundTripCoverage:
-      $ref: ./trip.yml#/TripCoverage
+      type: array
+      items:
+        $ref: ./trip.yml#/TripCoverage
     continuousServiceUsage:
       $ref: ./continuous-service.yml#/ContinuousServiceUsage
     _links:
       $ref: ./_common.yml#/Links
-FulfillmentActivationPatchRequest:
-  type: object
-  additionalProperties: false
-  description: |
-    Changes the fulfillment to status AVAILABLE. In the case of multi-journey  product, one of the fulfillment is
-    now 'activated' and can be used to travel. Selects on-demand vehicles. Selects pick-up place and vehicle type for continuous services.
-  required:
-  - startOfUsage
-  properties:
-    selectedZoneIds:
-      type: array
-      items:
-        type: string
-      nullable: true
-    travelDates:
-      type: array
-      items:
-        type: string
-        format: date
-      nullable: true
-    startOfUsage:
-      type: string
-      format: date-time
-      nullable: true
-    fromPlace:
-      $ref: ./ojp/place.yml#/PlaceRef
-    stockControlNumbers:
-      description: |
-        The ids of the secure paper stock that identifies the blank secure paper stock used for printing.
-
-        The stock control number is only used for secure paper stock and triggers a printing of the stock control number in the ticket layout. This establishes a link between paper stock and ticket that is used to control the usage of blank secure paper stock at offices as secure paper has otherwise no intrinsic protection against internal fraud.
-      type: array
-      items:
-        type: string
-      nullable: true
-    continuousServiceVehicleSelection:
-      description: |
-        selection of a pick-up place and vehicle type for continuous services.
-      $ref: ./continuous-service.yml#/ContinuousServiceVehicleSelection
 FulfillmentCollectionResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -293,16 +244,10 @@ FulfillmentCollectionResponse:
       type: array
       items:
         $ref: '#/Fulfillment'
-    fulfillmentDocuments:
-      type: array
-      items:
-        $ref: '#/FulfillmentDocument'
     issuedVouchers:
       type: array
       items:
         $ref: ./_common.yml#/VoucherInformation
-    _links:
-      $ref: ./_common.yml#/Links
 FulfillmentConstraint:
   type: object
   additionalProperties: false
@@ -333,8 +278,9 @@ FulfillmentConstraint:
     isIndividualTicketingForbidden:
       description: |
         a separate fulfillment per passenger is forbidden
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
 FulfillmentDocument:
   type: object
@@ -347,49 +293,42 @@ FulfillmentDocument:
   - type
   - format
   properties:
-    id:
-      type: string
-      description: |
-        Technical reference. Required if referencing from fulfilment.fulfillmentDocumentRefs
     medium:
       $ref: '#/FulfillmentMediaType'
     type:
       $ref: '#/FulfillmentDocumentType'
     downloadLink:
-      type: string
+      type:
+      - string
+      - 'null'
       format: uri
-      nullable: true
     downloadExpiry:
       description: |
         Expiration time of the download link, the document will not be available at the given URI
         after this time.
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     content:
       description: |
         base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
         string, so the raw document cannot exceed 3 MBytes in size.
-      type: string
+      type:
+      - string
+      - 'null'
       format: byte
       maxLength: 4194304
-      nullable: true
     format:
       $ref: '#/DocumentFormat'
-      nullable: false
     applicationProvider:
       $ref: ./_common.yml#/CompanyRef
-    controlNumber:
-      description: |
-        Ticket Control Number. Used for secure paper stock of referencing tickets in fulfillment applications.
-      type: string
-      nullable: true
 FulfillmentDocumentType:
   description: |
     The type of fulfillment document.
     Values from the [Fulfillment Document Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentDocumentType)
   type: string
-  x-extensible-enum:
+  enum:
   - BOARDING_PASS
   - BOOKING_RECEIPT
   - INFORMATION
@@ -397,7 +336,6 @@ FulfillmentDocumentType:
   - VOUCHER
 FulfillmentId:
   type: string
-  nullable: false
 FulfillmentItemSecurityFeature:
   type: object
   additionalProperties: false
@@ -408,10 +346,11 @@ FulfillmentItemSecurityFeature:
       description: |
         base64 encoded data. The length restriction of 4 MBytes applies to the encoded
         string, so the raw data cannot exceed 3 MBytes in size.
-      type: string
+      type:
+      - string
+      - 'null'
       format: byte
       maxLength: 4194304
-      nullable: true
 FulfillmentItemSecurityFeatureLinks:
   type: object
   additionalProperties: false
@@ -421,26 +360,20 @@ FulfillmentItemSecurityFeatureLinks:
     uri:
       description: |
         link to download the security feature
-      type: string
+      type:
+      - string
+      - 'null'
       format: uri
-      nullable: true
 FulfillmentMediaType:
   description: |
     Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
-    Notice:`ALLOCATOR_APP` is deprecated and should not be used anymore. The `ALLOCATOR_APP` type is replaced by the `RETAILER_APP` type. `DISTRIBUTOR_APP` was introduced to distinguish between the different types of apps that can be used to fulfill a booking.
     Values from the [Fulfillment Media Type Code List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentMediaType)
     Listed values here are examples.
   type: string
   x-extensible-enum:
-  - ALLOCATOR_APP
-  - DISTRIBUTOR_APP
-  - RETAILER_APP
-  - FULFILLMENT_PARTS
   - PDF_A4
-  - PKPASS
   - RCCST
   - RCT2
-  - UIC_PDF
   - TICKETLESS
   - APPLICATION
   - WALLET
@@ -459,19 +392,20 @@ FulfillmentOption:
     media:
       $ref: '#/FulfillmentMediaType'
     applications:
-      description: "list of applications that can \nhandle the fulfillment. This is required in case of media `APPLICATION`.\n\
-        The applications might be modules on a vending machine to handle chop cards or smartphone apps handling NFC communication.\n"
+      description: "list of applications that can \nhandle the fulfillment. This is required in case of media APPLICATION.\n\
+        The applications might be modules on a vending machine to handle chop cards or smartphone apps handling NFC communication..\n"
       type: array
       items:
         type: string
       minItems: 1
     specification:
-      description: accepted fulfillment specifications in case the fulfillment via `APPLICATION` or `CHIP_CARD` is not not
-        limited to a specific application.
+      description: accepted fulfillment specifications in case the fulfillment via APPLICATION or CHIP_CARD is not not limited
+        to a specific application.
       type: array
       items:
         type: string
-        example: CALYPSO
+        examples:
+        - CALYPSO
       minItems: 1
 FulfillmentPart:
   type: object
@@ -489,11 +423,13 @@ FulfillmentPart:
     passengerRef:
       description: |
         reference to a passenger
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     controlId:
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     securityFeatures:
       description: |
         'visual elements, bar codes'
@@ -511,25 +447,60 @@ FulfillmentPart:
     isMandatory:
       description: |
         The use of the provided features is mandatory.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     securePaperOnly:
       description: |
         The security feature must be used on secure paper.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
 FulfillmentPatchRequest:
   type: object
   additionalProperties: false
   description: |
-    Changes the fulfillment to status FULFILLED.
+    Changes the fulfillment to status AVAILABLE. In the case of multi-journey  product, one of the fulfillment is
+    now 'activated' and can be used to travel. Selects on-demand vehicles. Selects pick-up place and vehicle type for continuous services.
+  required:
+  - startOfUsage
   properties:
-    fulfillmentUpdates:
-      type: array
+    selectedZoneIds:
+      type:
+      - array
+      - 'null'
       items:
-        $ref: '#/FulfillmentId'
+        type: string
+    travelDates:
+      type:
+      - array
+      - 'null'
+      items:
+        type: string
+        format: date
+    startOfUsage:
+      type:
+      - string
+      - 'null'
+      format: date-time
+    fromPlace:
+      $ref: ./ojp/place.yml#/PlaceRef
+    stockControlNumbers:
+      description: |
+        The ids of the secure paper stock that identifies the blank secure paper stock used for printing.
+
+        The stock control number is only used for secure paper stock and triggers a printing of the stock control number in the ticket layout. This establishes a link between paper stock and ticket that is used to control the usage of blank secure paper stock at offices as secure paper has otherwise no intrinsic protection against internal fraud.
+      type:
+      - array
+      - 'null'
+      items:
+        type: string
+    continuousServiceVehicleSelection:
+      description: |
+        selection of a pick-up place and vehicle type for continuous services.
+      $ref: ./continuous-service.yml#/ContinuousServiceVehicleSelection
 FulfillmentPostRequest:
   type: object
   additionalProperties: false
@@ -540,25 +511,79 @@ FulfillmentPostRequest:
       type: string
       description: the desired issuing language (ISO-639-1 language code). If not provided or not available, will default
         to (one of) the language(s) of the issuing country
+FulfillmentRef:
+  description: |
+    reference to a fulfillment including the status and related bookingPart references
+  required:
+  - id
+  - status
+  - summary
+  - bookingParts
+  - fulfillmentType
+  properties:
+    id:
+      type: string
+    status:
+      $ref: '#/FulfillmentStatus'
+    summary:
+      description: |
+        A human-readable description of the fulfillment.
+      type:
+      - string
+      - 'null'
+    bookingParts:
+      type: array
+      items:
+        $ref: ./booking.yml#/BookingPartReference
+      minItems: 1
+    fulfillmentType:
+      $ref: '#/FulfillmentType'
+    createdOn:
+      type: string
+      format: date-time
+FulfillmentRefs:
+  description: |
+    references to fulfillments including the status and related bookingPart references
+  required:
+  - fulfillmentRefs
+  properties:
+    fulfillmentRefs:
+      type: array
+      items:
+        $ref: '#/FulfillmentRef'
+      minItems: 1
 FulfillmentResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
         $ref: ./_common.yml#/Problem
     fulfillment:
       $ref: '#/Fulfillment'
-    fulfillmentDocuments:
-      description: |
-        Final document created for fulfillment.
+FulfillmentsPatchRequest:
+  type: object
+  additionalProperties: false
+  description: |
+    Changes the fulfillment to status FULFILLED.
+  properties:
+    fulfillmentUpdates:
       type: array
       items:
-        $ref: '#/FulfillmentDocument'
+        $ref: '#/FulfillmentId'
+FulfillmentsResponse:
+  type: object
+  additionalProperties: false
+  properties:
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+    fulfillments:
+      type: array
+      items:
+        $ref: '#/Fulfillment'
 FulfillmentStatus:
   description: |
     Individual fulfillments of a multi journey booking need an separate patch to create the usable fulfillment in status FULFILLED before they are in an intermediate state AVAILABLE where they don't provide a document for travel. Fulfillments can be ON_HOLD in case they are booked but not yet available (e.g. a booking providing two journeys per week) or passed in case the fulfillment was not patched for usage within the required time.
@@ -592,6 +617,7 @@ FulfillmentType:
   - CIT_PAPER
   - PASS_CHIP
   - PASS_REFERENCE
+  - NO_FULFILLMENT
 FulfillmentUsage:
   type: object
   additionalProperties: false
@@ -599,17 +625,19 @@ FulfillmentUsage:
     In case of multi-journey products describe parameters to be used to change the a fulfillment in status AVAILABLE to FULFILLED so it can be used by the passenger.
   properties:
     fromPlaceRequired:
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     travelDates:
       description: |
         Travel dates that can be selected. Note: date only is used to cover properly the case of passes including
         multiple time zones.
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: string
-      nullable: true
     travelValidityRanges:
       type: array
       items:
@@ -617,9 +645,10 @@ FulfillmentUsage:
     maxAvailableZones:
       description: |
         upper limit to the number of selected zones
-      type: integer
+      type:
+      - integer
+      - 'null'
       format: int32
-      nullable: true
     availableZones:
       type: array
       items:
@@ -650,12 +679,11 @@ SecurityFeatureType:
     symbology:
       $ref: ./_common.yml#/Symbology
 SiSType:
-  type: string
   description: |
     Type of the exchange of control data for security in system implementations.
     Values from the [Control Data Exchange Type Code List](https://osdm.io/spec/catalog-of-code-lists/#ControlDataExchangeType)
     Listed values here are examples.
+  type: string
   x-extensible-enum:
   - REGISTRY
-  - PEER_TO_PEER
   - PEER2PEER

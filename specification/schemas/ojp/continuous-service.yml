@@ -1,11 +1,3 @@
-ContinuousMode:
-  description: |
-    Types of modes that run at any time without a timetable. Provided by OJP.
-  type: string
-  x-extensible-enum:
-  - WALK
-  - DEMAND_RESPONSIVE
-  - REPLACEMENT_SERVICE
 ContinuousService:
   type: object
   additionalProperties: false
@@ -14,32 +6,28 @@ ContinuousService:
     Service of this leg. May be 'walk' in most cases, but also cycling or taxi etc.
     Provided by OJP.
   required:
-  - operatingDayRef
-  - journeyRef
-  - mode
   - publishedServiceName
   - originText
   - destinationText
   properties:
-    continuousMode:
-      $ref: '#/ContinuousMode'
-    individualMode:
-      $ref: ./_common.yml#/IndividualMode
+    operationMode:
+      $ref: ../transportable.yml#/ContinousOperationMode
+    personalMode:
+      $ref: ../person.yml#/PersonalMode
     operatingDayRef:
       $ref: ./trip.yml#/OperationDayRef
-    journeyRef:
-      $ref: ./trip.yml#/JourneyRef
-    mode:
-      type: string
-      nullable: false
-      example: Ask Stefan
     publishedServiceName:
       type: string
-      nullable: false
-      example: Circle Line
+      examples:
+      - Circle Line
     originText:
       type: string
-      nullable: false
     destinationText:
       type: string
-      nullable: false
+    bookingArrangements:
+      description: |
+        booking arrangements in case the service can not be booked via OSDM.
+        Provided by OJP.
+      type: array
+      items:
+        $ref: ../booking.yml#/BookingArrangement

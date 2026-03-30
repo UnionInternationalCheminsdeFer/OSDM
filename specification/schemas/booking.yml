@@ -5,66 +5,42 @@ AbstractBookingPart:
     propertyName: objectType
   required:
   - objectType
+  - partType
   - id
   - createdOn
-  - validFrom
   - price
   - status
-  - passengerIds
   - refundable
   - exchangeable
   properties:
     objectType:
       description: Attribute is used as discriminator for inheritance between data types.
       type: string
+    partType:
+      $ref: ./offer.yml#/PartType
     id:
       type: string
       maxLength: 32768
-      nullable: false
     summary:
       type: string
-      nullable: true
     createdOn:
       description: |
         Validity of offer towards passenger
       type: string
       format: date-time
-      nullable: false
-    confirmableUntil:
-      deprecated: true
-      description: |
-        confirmationTimeLimit in booking should be used.
-        Date until the booking part needs to be confirmed. Must be provided for a booking part in PREBOOKED stated.
-        For later states, the value is ignored and can be null.
-      type: string
-      format: date-time
-      nullable: false
-    validFrom:
-      type: string
-      format: date-time
-      nullable: false
-    validUntil:
-      description: |
-        Validity of offer towards passenger
-      type: string
-      format: date-time
-      nullable: true
     confirmedOn:
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
     confirmedFulfillmentOptions:
       $ref: ./fulfillment.yml#/FulfillmentOption
     price:
       $ref: ./_common.yml#/Price
-    refundAmount:
-      $ref: ./_common.yml#/Price
-      description: Amount refunded or to be refunded to the purchaser depending on the product conditions and status of the
-        booking Part
     tripCoverage:
-      $ref: ./trip.yml#/TripCoverage
-    inboundTripCoverage:
-      $ref: ./trip.yml#/TripCoverage
+      type: array
+      items:
+        $ref: ./trip.yml#/TripCoverage
     summaryProductId:
       type: string
       description: |
@@ -76,11 +52,9 @@ AbstractBookingPart:
         In offer mode, in almost all cases exactly one product is referenced. Only on some French
         trips consisting of a TGV and a TER two products need to be used.
         In fare mode, no product exists as first needs to created from the different fares.
-        No product is also returned in case of `FARE_RESERVATION` part.
       type: array
       items:
         $ref: ./offer.yml#/ProductLegAssociation
-      minItems: 0
     status:
       $ref: '#/BookingPartStatus'
     pricingStatus:
@@ -88,35 +62,23 @@ AbstractBookingPart:
       type: string
       default: PRICING_FINAL
       x-extensible-enum:
-      - PRICING_UPCOMING: post payment scenario, no costs yet
-      - PRICING_ONGOING: post payment scenario, costs are collected
-      - PRICING_FINAL: pricing is final
+      - PRICING_UPCOMING
+      - PRICING_ONGOING
+      - PRICING_FINAL
     offerMode:
       $ref: ./offer.yml#/OfferMode
     bookingPartCode:
       type: string
       description: |
         The unique booking code for the part in the provider system.
-    distributorBookingRef:
-      description: |
-        reference to the booking in the downstream distributor system
-      type: string
-      nullable: true
-      deprecated: true
-    retailerBookingRef:
-      description: |
-        reference to the booking in the downstream distributor system
-      type: string
-      nullable: true
-      deprecated: true
     passengerIds:
       description: |
-        Id of the passenger
+        Ids of the passengers
+        Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.
       type: array
       items:
         type: string
       minItems: 1
-      nullable: false
     availableFulfillmentOptions:
       type: array
       items:
@@ -137,25 +99,30 @@ AbstractBookingPart:
       type: array
       items:
         $ref: ./_common.yml#/CorporateCode
-    appliedPassengerTypes:
-      type: array
-      items:
-        $ref: ./person.yml#/AppliedPassengerType
     appliedPromotionCodes:
       type: array
       items:
         $ref: ./_common.yml#/PromotionCode
     appliedReductions:
+      description: |
+        applied reductions.
       type: array
-      deprecated: true
       items:
-        $ref: ./_common.yml#/CardReference
-    indicatedConsumption:
-      $ref: ./travel-account.yml#/IndicatedConsumption
+        $ref: ./_common.yml#/AppliedReductions
+    indicatedUsage:
+      $ref: '#/IndicatedUsage'
     accountingRef:
       $ref: ./_common.yml#/AccountingRef
-    grantedReductionAmounts:
-      $ref: ./person.yml#/GrantedReductionAmounts
+BackOfficeChangeType:
+  type: string
+  description: The type of change that has occurred.
+  enum:
+  - INITIATED
+  - EVALUATING
+  - DECIDED
+  - SETTLED
+  - INFORMATION_MISSING
+  default: INITIATED
 BookedOffer:
   type: object
   additionalProperties: false
@@ -168,18 +135,17 @@ BookedOffer:
     offerId:
       type: string
       maxLength: 32768
-      nullable: false
       description: Note that the offerId returned does not necessarily match the offerId given in the Booking Request.
     externalRef:
       description: |
         A stable reference to the id of the booked offer in the caller's system. When received in input of a request, it must be persisted and echoed back in the response.
       type: string
-      nullable: false
     summary:
       description: |
         A human-readable description of the booked offer.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     admissions:
       type: array
       items:
@@ -195,89 +161,31 @@ BookedOffer:
     continuousServices:
       type: array
       items:
-        $ref: '#/ContinuousServiceBookingPart'
+        $ref: ./continuous-service.yml#/ContinuousServiceBookingPart
     fees:
       type: array
       items:
-        $ref: ./_common.yml#/Fee
+        $ref: ./_common.yml#/AppliedFee
     fares:
       type: array
       items:
-        $ref: ./fare.yml#/Fare
+        $ref: ./fare.yml#/FareBookingPart
     tripCoverage:
-      $ref: ./trip.yml#/TripCoverage
-    inboundTripCoverage:
-      $ref: ./trip.yml#/TripCoverage
+      type: array
+      items:
+        $ref: ./trip.yml#/TripCoverage
     appliedThroughTicketTags:
       type: array
       items:
         $ref: ./offer.yml#/ThroughTicketTag
     products:
+      description: |
+        products must be provided in case they are referenced in booking or offer parts. Some offer parts (e.g. fares)
+        do not have products assigned.
       type: array
       items:
         $ref: ./product.yml#/Product
-BookedOfferAncillaryRequest:
-  type: object
-  additionalProperties: false
-  required:
-  - offerId
-  - ancillaryOfferId
-  - passengerRefs
-  properties:
-    offerId:
-      type: string
-      maxLength: 32768
-      nullable: false
-    ancillaryOfferId:
-      type: string
-      maxLength: 32768
-      nullable: false
-    passengerRefs:
-      type: array
-      items:
-        type: string
       minItems: 1
-      nullable: false
-    tripCoverage:
-      $ref: ./trip.yml#/TripCoverage
-    inboundTripCoverage:
-      $ref: ./trip.yml#/TripCoverage
-BookedOfferAncillaryResponse:
-  type: object
-  additionalProperties: false
-  properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
-    problems:
-      type: array
-      items:
-        $ref: ./_common.yml#/Problem
-    bookedOffers:
-      type: array
-      items:
-        $ref: '#/BookedOffer'
-BookedOfferPartDeleteRequest:
-  description: |
-    Request with ancillary or reservation booked offer parts
-    to be removed from the booked offer.
-  type: object
-  additionalProperties: false
-  properties:
-    ancillaryIds:
-      type: array
-      minItems: 1
-      description: Ancillary IDs in the booked offer
-      items:
-        type: string
-        maxLength: 32768
-    reservationIds:
-      type: array
-      minItems: 1
-      description: Reservation IDs in the booked offer
-      items:
-        type: string
-        maxLength: 32768
 BookedOfferPartRequest:
   type: object
   additionalProperties: false
@@ -288,7 +196,6 @@ BookedOfferPartRequest:
     offerId:
       type: string
       maxLength: 32768
-      nullable: false
     ancillaryOfferIds:
       type: array
       minItems: 1
@@ -305,7 +212,6 @@ BookedOfferPartRequest:
       items:
         type: string
       minItems: 1
-      nullable: false
     tripCoverage:
       $ref: ./trip.yml#/TripCoverage
     inboundTripCoverage:
@@ -335,13 +241,6 @@ BookedOfferRequest:
       items:
         $ref: ./offer.yml#/OfferSelection
       minItems: 1
-    passengers:
-      type: array
-      items:
-        $ref: ./person.yml#/Passenger
-      deprecated: true
-      description: |
-        Existing passengers are linked with the given booking and do not need to be referenced in the request.
     additionalPassengerSpecifications:
       type: array
       items:
@@ -350,67 +249,14 @@ BookedOfferRequest:
       type: array
       items:
         $ref: ./_common.yml#/PromotionCode
-BookedOfferReservationRequest:
-  type: object
-  additionalProperties: false
-  required:
-  - offerId
-  - reservationOfferId
-  - passengerRefs
-  - placeSelections
-  properties:
-    offerId:
-      type: string
-      maxLength: 32768
-      nullable: false
-    reservationOfferId:
-      type: string
-      maxLength: 32768
-      nullable: false
-    passengerRefs:
-      type: array
-      items:
-        type: string
-      minItems: 1
-      nullable: false
-    placeSelections:
-      type: array
-      items:
-        $ref: ./place.yml#/PlaceSelection
-      minItems: 1
-    tripCoverage:
-      $ref: ./trip.yml#/TripCoverage
-    inboundTripCoverage:
-      $ref: ./trip.yml#/TripCoverage
-BookedOfferReservationResponse:
-  type: object
-  additionalProperties: false
-  properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
-    problems:
-      type: array
-      items:
-        $ref: ./_common.yml#/Problem
-    bookedOffers:
-      type: array
-      items:
-        $ref: '#/BookedOffer'
 BookedOfferResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
         $ref: ./_common.yml#/Problem
-    bookedOffer:
-      $ref: '#/BookedOffer'
-      deprecated: true
     bookedOfferIds:
       type: array
       items:
@@ -429,10 +275,8 @@ BookedOfferSummary:
     offerId:
       type: string
       maxLength: 32768
-      nullable: false
     summary:
       type: string
-      nullable: false
     bookingPartSummaries:
       type: array
       items:
@@ -448,25 +292,26 @@ Booking:
   properties:
     id:
       type: string
-      nullable: false
     bookingCode:
       type: string
       description: The unique booking code in the provider system. Usually refers to an order number or PNR.
     externalRef:
       description: |
         The unique booking reference in the provider system. Usually refers to an order number or PNR.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     summary:
       description: |
         A human-readable description of the booking.
-      type: string
-      nullable: true
-      example: Booking 2345 for Clemens Gantert
+      type:
+      - string
+      - 'null'
+      examples:
+      - Booking 2345 for Clemens Gantert
     createdOn:
       type: string
       format: date-time
-      nullable: false
     passengers:
       type: array
       items:
@@ -476,15 +321,11 @@ Booking:
       $ref: ./person.yml#/Purchaser
     provisionalPrice:
       description: |
-        Price of all unconfirmed pre-booked parts in the booking. The provisional price must be provided if the booking includes unconfirmed pre-booked parts.
-      $ref: ./_common.yml#/Price
-    provisionalRefundAmount:
-      description: |
-        Sum of the refund amounts of all unconfirmed pre-booked refunds and exchanges. The provisional refund amount must be provided if the booking includes unconfirmed pre-booked refunds or exchange operations.
+        Price of all unconfirmed pre-booked parts in the booking
       $ref: ./_common.yml#/Price
     confirmedPrice:
       description: |
-        Sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts. The confirmed price must be provided if the booking includes confirmed parts.
+        Sum of all prices of confirmed parts in the booking minus the sum of all confirmed refund amounts.
       $ref: ./_common.yml#/Price
     bookedOffers:
       type: array
@@ -496,24 +337,21 @@ Booking:
       type: array
       items:
         $ref: ./ojp/trip.yml#/Trip
+    tripContext:
+      $ref: ./trip.yml#/TripContext
     requestedInformation:
       $ref: ./_common.yml#/RequestedInformation
     confirmationTimeLimit:
       description: |
         Time until the booking needs to be confirmed or put on hold. After that, the booking is no longer valid.
-      type: string
+      type:
+      - string
+      - 'null'
       format: date-time
-      nullable: true
-    fulfillmentType:
-      $ref: ./fulfillment.yml#/FulfillmentType
-    fulfillments:
+    fulfillmentRefs:
       type: array
       items:
-        $ref: ./fulfillment.yml#/Fulfillment
-    fulfillmentDocuments:
-      type: array
-      items:
-        $ref: ./fulfillment.yml#/FulfillmentDocument
+        $ref: ./fulfillment.yml#/FulfillmentRefs
     fulfillmentStatus:
       $ref: ./fulfillment.yml#/FulfillmentSummaryStatus
     issuedVouchers:
@@ -529,17 +367,26 @@ Booking:
       items:
         $ref: ./_common.yml#/PaymentMethod
     refundOffers:
-      description: |
-        Refund offers are created with the details of the to-be-confirmed refund operation.
-        One refund offer can then be confirmed, which turns it into a refund.
-        Refund offers in state PROPOSED might not be available in the Booking but only via the get endpoint. Confirmed refund offers must be listed here.
+      description: "Refund offers are created with the details of the to-be-confirmed refund operation.\nOne refund offer\
+        \ can then be confirmed, which turns it into a confirmedRefund. \nRefund offers in state PROPOSED might not be available\
+        \ in the Booking but only \nvia the get endpoint.\n"
       type: array
       items:
         $ref: ./aftersales.yml#/RefundOffer
+    confirmedRefunds:
+      description: |
+        Confirmed refund offers must be listed here.
+      type: array
+      items:
+        $ref: ./aftersales.yml#/ConfirmedRefund
     releaseOffers:
       type: array
       items:
         $ref: ./aftersales.yml#/ReleaseOffer
+    confirmedReleases:
+      type: array
+      items:
+        $ref: ./aftersales.yml#/ConfirmedRelease
     cancelFulfillmentsOffers:
       type: array
       items:
@@ -553,41 +400,140 @@ Booking:
     relatedBookingIds:
       description: |
         If this booking has been split, this attribute references the newly created bookingIds.
+      type:
+      - array
+      - 'null'
+      items:
+        type: string
+    _links:
+      $ref: ./_common.yml#/Links
+BookingAccess:
+  description: |
+    used to indicate booking options not provided via the OSDM app.
+    Provided by OJP.
+  type: string
+  x-extensible-enum:
+  - PUBLIC
+  - AUTHORIZED_PUBLIC
+  - STAFF
+BookingAccessTiming:
+  description: |
+    used to indicate booking options not provided via the OSDM app.
+    Provided by OJP.
+  type: string
+  x-extensible-enum:
+  - ADVANCE_ONLY
+  - UNTIL_PREVIOUS_DAY
+  - DAY_OF_TRAVEL_ONLY
+  - ADVANCE_AND_DAY_OF_TRAVEL
+  - TIME_OF_TRAVEL_ONLY
+  - SUBSCRIPTION_CHARGE_MOMENT
+BookingArrangement:
+  type: object
+  additionalProperties: false
+  description: |
+    a booking arrangement description in a Leg- To be used if the leg can not be booked via the OSDM api.
+    Provided by OJP.
+  properties:
+    bookingContact:
+      $ref: ./_common.yml#/ContactDetail
+    bookingMethod:
+      $ref: '#/BookingMethod'
+    bookingAccess:
+      $ref: '#/BookingAccess'
+    bookingAccessTime:
+      $ref: '#/BookingAccessTiming'
+    bookingPurchaseMoment:
+      $ref: '#/BookingPurchaseMoment'
+    lastBookingTime:
+      type: string
+      format: date-time
+    minimumBookingPeriod:
+      type: string
+      format: duration
+    maximumBookingPeriod:
+      type: string
+      format: duration
+    _links:
+      $ref: ./_common.yml#/Links
+    bookingNotes:
+      description: human readable description on booking arrangement
       type: array
       items:
         type: string
-      nullable: true
-    _links:
-      $ref: ./_common.yml#/Links
+BookingChangeType:
+  type: string
+  description: The type of change that has occurred on the booking.
+  enum:
+  - BOOKING_REAL_TIME_EVENT_OCCURRED
+  - BOOKING_REACCOMMODATED
+  - BOOKING_TRIP_CHANGED
+  - BOOKING_TRIP_CONFIRMED
+  - BOOKING_ON_HOLD
+  - DOCUMENT_AVAILABLE
+  - FULFILLMENT_AVAILABLE
+  - FULFILLMENT_REFUNDED
+  - FULFILLMENT_EXCHANGED
+  - FULFILLMENT_CANCELLED
+  - FULFILLMENT_RELEASED
+  - FULFILLMENT_CONTROLLED
+  - ACCOMMODATION_RELEASED
+  - PURCHASER_CHANGED
+  - PASSENGER_CHANGED
+  - REFUND_INITIATED
+  - EXCHANGE_INITIATED
+  - RELEASE_INITIATED
+  - CANCEL_INITIATED
+  - ON_HOLD_INITIATED
+  - AFTERSALES_OVERRIDEN
+  - CONTINUOUS_SERVICE_UPDATE
+  - CONTINUOUS_SERVICE_USAGE_BLOCKED
+  - CONTINUOUS_SERVICE_USAGE_UNBLOCKED
+  - CONTINUOUS_SERVICE_USAGE_STARTED
+  - CONTINUOUS_SERVICE_USAGE_EDED
+  - CONTINUOUS_SERVICE_USAGE_UPDATE
+  - POST_PAYMENT_PRICING_UPDATE
+  - PRE_PAYMENT_PRICING_UPDATE
+  examples:
+  - FULFILLMENT_REFUNDED
 BookingCleanupRequest:
   type: object
   additionalProperties: false
   description: |
     Request to cleanup a complete booking.
     Unconfirmed items will be deleted, any confirmed items will be refunded. There is no confirmation required.
-    Attention point: refundDate and overruleCode are deprecated request attributes and will be ignored
-  properties:
-    overruleCode:
-      deprecated: true
-      $ref: ./_common.yml#/OverruleCode
-      description: --Deprecated --
-    refundDate:
-      deprecated: true
-      description: |
-        --Deprecated -- Indicates for passes the date taken as reference to compute possible partial refund. It is also the date taken
-        as reference to invalidate the pass partially refunded.
-      type: string
-      format: date-time
-      nullable: true
+BookingEvent:
+  type: object
+  description: An event that has occurred on a booking.
+  allOf:
+  - $ref: ./complaint.yml#/NotificationEvent
+  - type: object
+    additionalProperties: false
+    required:
+    - type
+    - bookingId
+    properties:
+      type:
+        $ref: '#/BookingChangeType'
+      bookingId:
+        type: string
+        description: The ID of the booking that has changed.
+      affectedBookingPartIds:
+        description: list of ids of affected booking parts
+        type: array
+        items:
+          type: string
+      affectedFulfillmentIds:
+        description: list of ids of affected fulillments
+        type: array
+        items:
+          type: string
 BookingHistoryResponse:
   type: object
   additionalProperties: false
   required:
   - events
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -597,6 +543,20 @@ BookingHistoryResponse:
       items:
         $ref: ./_common.yml#/Event
       minItems: 1
+BookingMethod:
+  description: |
+    used to indicate booking options not provided via the OSDM app.
+    Provided by OJP.
+  type: string
+  x-extensible-enum:
+  - CALL_DRIVER
+  - CALL_OFFICE
+  - ONLINE
+  - OTHER
+  - PHONE_AT_STOP
+  - TEXT
+  - MOBILE_APP
+  - AT_OFFICE
 BookingPartReference:
   type: object
   additionalProperties: false
@@ -609,12 +569,12 @@ BookingPartReference:
     id:
       type: string
       maxLength: 32768
-      nullable: false
     summary:
       description: |
         A human-readable description of the booking part reference.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     _links:
       $ref: ./_common.yml#/Links
 BookingPartStatus:
@@ -643,10 +603,8 @@ BookingPartSummary:
     id:
       type: string
       maxLength: 32768
-      nullable: false
     summary:
       type: string
-      nullable: false
     productSummaries:
       type: array
       items:
@@ -672,9 +630,10 @@ BookingPatchRequest:
     The latter is optional and relevant in some cases only.
   properties:
     externalRef:
-      type: string
+      type:
+      - string
+      - 'null'
       description: The unique booking reference in the distributor/retailer system. Usually refers to an order number or PNR.
-      nullable: true
     placeSelections:
       type: array
       items:
@@ -687,6 +646,28 @@ BookingPatchRequest:
       type: array
       items:
         $ref: ./_common.yml#/PaymentMethod
+BookingPurchaseMoment:
+  description: "used to indicate booking options not provided via the OSDM app.\nProvided by OJP.\n- 'ON_RESERVATION'\ndescription:\
+    \ must be made on reservation in advance of travel\n- 'IN_ADVANCE'\ndescription: can be made in advance of travel\n- 'IN_ADVANCE_ONLY'\n\
+    description: can only be made in advance of travel \n- 'BEFORE_BOARDING'\ndescription: can be made before boarding transport\
+    \ vehicle\n- 'BEFORE_BOARDING_ONLY'\ndescription: must be made before boarding transport vehicle\n- 'ON_BOARDING'\ndescription:\
+    \ be made when boarding the transport vehicle\n- 'ON_BOARDING_ONLY'\ndescription: can only be made when boarding the transport\
+    \ vehicle\n- 'AFTER_BOARDING'\ndescription: can be made after boarding transport vehicle\n- 'ON_CHECKIN'\ndescription:\
+    \ can be made on entering transport system\n- 'ON_CHECKOUT'\ndescription: can be made on leaving transport system\n- 'SUBSCRIPTION_ONLY'\n\
+    description: can only be made on subscription\n"
+  type: string
+  x-extensible-enum:
+  - ON_RESERVATION
+  - IN_ADVANCE
+  - IN_ADVANCE_ONLY
+  - BEFORE_BOARDING
+  - BEFORE_BOARDING_ONLY
+  - ON_BOARDING
+  - ON_BOARDING_ONLY
+  - AFTER_BOARDING
+  - ON_CHECKIN
+  - ON_CHECKOUT
+  - SUBSCRIPTION_ONLY
 BookingRequest:
   type: object
   additionalProperties: false
@@ -725,15 +706,13 @@ BookingRequest:
       items:
         $ref: '#/BookingResponseContent'
     externalRef:
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
 BookingResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -764,9 +743,10 @@ BookingSearchParameters:
   additionalProperties: false
   properties:
     numberOfResults:
-      type: integer
+      type:
+      - integer
+      - 'null'
       format: int32
-      nullable: true
       default: 10
     status:
       type: array
@@ -781,37 +761,32 @@ BookingSearchRequest:
     destination:
       $ref: ./ojp/place.yml#/PlaceRef
     passenger:
-      $ref: ./person.yml#/PassengerSearchRequest
+      $ref: ./person.yml#/PersonSearchRequest
     purchaser:
       $ref: ./person.yml#/PurchaserSearchRequest
     bookingId:
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     bookingCode:
       description: |
         reference to the booking in the downstream distributor system
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     externalRef:
       description: reference to the booking in the retailer system
-      type: string
-      nullable: true
-    distributorBookingRef:
-      description: |
-        reference to the booking in the downstream distributor system
-      type: string
-      nullable: true
-      deprecated: true
-    retailerBookingRef:
-      type: string
-      nullable: true
-      deprecated: true
+      type:
+      - string
+      - 'null'
     fulfillmentId:
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     fulfillmentControlNumber:
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     travelDateRange:
       $ref: ./_common.yml#/DateRange
     purchaseDateRange:
@@ -822,9 +797,6 @@ BookingSearchResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -858,22 +830,18 @@ BookingSearchResult:
         $ref: ./ojp/trip.yml#/TripSummary
     id:
       type: string
-      nullable: false
     bookingCode:
       type: string
       description: The unique booking code in the provider system. Usually refers to an order number or PNR.
     externalRef:
       description: |
         The unique booking reference in the provider system. Usually refers to an order number or PNR.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     provisionalPrice:
       description: |
         price of all unconfirmed pre-booked parts in the booking
-      $ref: ./_common.yml#/Price
-    provisionalRefundAmount:
-      description: |
-        sum of the refund amounts of all unconfirmed pre-booked refunds and exchanges
       $ref: ./_common.yml#/Price
     confirmedPrice:
       description: |
@@ -891,17 +859,17 @@ BookingSplit:
     Contains the newly created booking
   required:
   - bookingId
-  - passengerIds
   properties:
     bookingId:
       type: string
-      nullable: false
     passengerIds:
+      description: |
+        Ids of the passengers
+        Providing the passengerIds is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerIds.
       type: array
       items:
         type: string
       minItems: 1
-      nullable: false
 BookingSplitGroup:
   type: object
   additionalProperties: false
@@ -915,7 +883,6 @@ BookingSplitGroup:
       items:
         type: string
       minItems: 1
-      nullable: false
 BookingSplitRequest:
   type: object
   additionalProperties: false
@@ -931,9 +898,6 @@ BookingSplitResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -951,44 +915,20 @@ BookingSplitResult:
       items:
         $ref: '#/BookingSplit'
       minItems: 1
-ContinuousServiceBookingPart:
-  description: |
-    A booking part for a continuous on-demand service.
-  allOf:
-  - $ref: '#/AbstractBookingPart'
-  - type: object
-    additionalProperties: false
-    required:
-    - pickUpPlaces
-    properties:
-      pickUpPlaces:
-        description: |
-          List of pick-up places for on-demand vehicles.
-          The list might include more or other pick up places than mentioned originally in the trip specification.
-        type: array
-        items:
-          $ref: ./continuous-service.yml#/ContinuousServicePickUpPlace
-        minItems: 1
-      tipRef:
-        description: id of the tip for staff (e.g. taxi)
-        type: string
-        maxLength: 1024
-PartReference:
+IndicatedUsage:
   type: object
-  description: reference to a fare or offerPart
+  additionalProperties: false
   required:
-  - contextId
-  - contextType
-  - resourceId
-  - resourceType
+  - amount
   properties:
-    contextId:
-      type: string
-      maxLength: 32768
-    contextType:
-      $ref: ./_common.yml#/ContextType
-    resourceId:
-      type: string
-      maxLength: 32768
-    resourceType:
-      $ref: ./_common.yml#/ResourceType
+    unit:
+      $ref: ./travel-account.yml#/AbstractTravelAccountUnit
+    amount:
+      type: integer
+      format: int32
+    scale:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      default: 2

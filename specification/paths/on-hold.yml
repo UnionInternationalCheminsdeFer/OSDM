@@ -20,7 +20,7 @@
     requestBody:
       required: true
       content:
-        application/json:
+        application/vnd.uic.osdm+json:
           schema:
             $ref: ../OSDM-online-api.yml#/components/schemas/OnHoldOfferRequest
     responses:
@@ -28,7 +28,7 @@
         description: |
           on-hold offer created
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/OnHoldOfferResponse
       '400':
@@ -39,8 +39,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
@@ -77,7 +75,7 @@
     requestBody:
       required: true
       content:
-        application/json:
+        application/vnd.uic.osdm+json:
           schema:
             $ref: ../OSDM-online-api.yml#/components/schemas/OnHoldOfferPatchRequest
     responses:
@@ -85,7 +83,7 @@
         description: |
           on-hold offer confirmed
         content:
-          application/json:
+          application/vnd.uic.osdm+json:
             schema:
               $ref: ../OSDM-online-api.yml#/components/schemas/OnHoldOfferResponse
       '400':
@@ -96,8 +94,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':
@@ -143,8 +139,6 @@
         $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '406':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':

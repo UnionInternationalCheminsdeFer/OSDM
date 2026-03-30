@@ -9,9 +9,11 @@ InitialPlaceInput:
       description: |
         Name of the place object which is looked after. This is usually the user's input. If not given,
         the name of the resulting place objects is not relevant.
-      type: string
-      nullable: true
-      example: Bern Bärengraben
+      type:
+      - string
+      - 'null'
+      examples:
+      - Bern Bärengraben
     geoPosition:
       $ref: ./_common.yml#/GeoPosition
 Place:
@@ -24,30 +26,41 @@ Place:
   required:
   - objectType
   - id
+  - name
   properties:
     objectType:
       description: Attribute is used as discriminator for inheritance between data types.
       type: string
+    name:
+      description: |
+        Name of this stop place for use in passenger information.
+      type: string
+      examples:
+      - Zürich HB
     id:
       description: |
         id  defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn '0850000'
       type: string
-      nullable: false
-      example: urn:uic:stn:8500000
+      examples:
+      - urn:uic:stn:8500000
+      - NL:1916200000022621
     alternativeIds:
       description: "For a place with ids in different reference systems, the alternative ids can be returned. \nThe reference\
         \ system is encoded in the string. E.g.: 'urn:uic:std:80000', 'x_swe:stn:10000', 'ch:1:sloid:343434'\n"
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: string
-      nullable: true
     geoPosition:
       $ref: ./_common.yml#/GeoPosition
+    validity:
+      description: |
+        The date range where the place is usable for travel.
+      $ref: ../product.yml#/MasterDataValidity
     modes:
       description: |
         List of Transport modes calling the place.
-
-        This field is added in later OJP 2.0, used here as propertary for forward compatibility.
       type: array
       items:
         $ref: ./_common.yml#/Mode
@@ -55,6 +68,13 @@ Place:
       description: |
         Reference to another a place, e.g. to link address information. Provided by OJP.
       $ref: '#/PlaceRef'
+    attributes:
+      type: array
+      items:
+        $ref: ../_common.yml#/GeneralAttribute
+    area:
+      description: area of the place described as a polygon of geo-coordinates
+      $ref: ../_common.yml#/Polygon
     _links:
       $ref: ../_common.yml#/Links
 PlaceParam:
@@ -79,10 +99,11 @@ PlaceParam:
       description: |
         Maximum number of results to be returned. The service is allowed to return fewer objects if reasonable
         or otherwise appropriate.
-      type: integer
+      type:
+      - integer
+      - 'null'
       format: int32
       minimum: 1
-      nullable: true
 PlaceRef:
   type: object
   additionalProperties: false
@@ -132,25 +153,14 @@ PointOfInterest:
   - type: object
     additionalProperties: false
     required:
-    - name
     - code
     properties:
-      name:
-        description: |
-          Name or description of point of interest for use in passenger information.
-        type: string
-        nullable: false
-        example: Park Rozenrust
-      nameTranslations:
-        description: Translations for the name
-        type: array
-        items:
-          $ref: ../_common.yml#/Translation
       code:
         description: |
           id of the Point of Interest.
         type: string
-        nullable: false
+      ref:
+        $ref: '#/PointOfInterestRef'
 PointOfInterestCategory:
   type: object
   additionalProperties: false
@@ -168,10 +178,11 @@ PointOfInterestCategory:
         Classification of the POI (when it is not from OSM). The codification of the
         classification Id may include de codification source (for example
         'IGN:[classificationCode]')
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: string
-      nullable: true
 PointOfInterestFilter:
   type: object
   additionalProperties: false
@@ -181,8 +192,9 @@ PointOfInterestFilter:
     exclude:
       description: |
         Whether carriers are to be included or excluded from the filtering.
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: true
     pointOfInterestCategory:
       description: |
@@ -203,4 +215,3 @@ PointOfInterestRef:
     properties:
       pointOfInterestRef:
         type: string
-        nullable: false

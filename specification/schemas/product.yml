@@ -1,3 +1,198 @@
+FacilityEnum:
+  description: |
+    all kinds of Facilities
+    COVERED - offers protection from weather
+    LIGHTING - is lit
+    WHEELCHAIR_ACCESSIBLE - accessible by a wheel chair
+  type: string
+  x-extendible-enum:
+  - GENERIC
+  - LIFT
+  - ESCALATOR
+  - TRAVELATOR
+  - RAMP
+  - STAIRS
+  - SHUTTLE
+  - NARROW_ENTRANCE
+  - BARRIER
+  - PALLET_ACCESS_LOWFLOOR
+  - VALIDATOR
+  - POLICE
+  - FIRST_AID
+  - SOS_POINT
+  - SPECIFIC_ASSISTANCE
+  - UNACCOMPANIED_MINOR_ASSISTANCE
+  - BOARDING_ASSISTANCE
+  - CAR_HIRE
+  - MOTORCYCLE_HIRE
+  - CYCLE_HIRE
+  - TAXI
+  - RECREATION_DEVICE_HIRE
+  - BIKE_CARRIAGE
+  - BAGGAGE_STORAGE
+  - LEFT_LUGGAGE
+  - PORTERAGE
+  - BAGGAGE_TROLLEYS
+  - SUITABLE_FOR_WHEELCHAIRS
+  - LOWFLOOR
+  - STEP_FREE_ACCESS
+  - TACTILE_PLATFORM_EDGES
+  - ONBOARD_ASSISTANCE
+  - AUDIO_INFORMATION
+  - VISUAL_INFORMATION
+  - DISPLAYS_FOR_VISUALLY_IMPAIRED
+  - AUDIO_FOR_HEARING_IMPAIRED
+  - SMOKING
+  - NO_SMOKING
+  - MOBILEPHONE_USE_ZONE
+  - MOBILEPHONE_FREE_ZONE
+  - CAR_PARK
+  - PARK_AND_RIDE_PARK
+  - MOTOR_CYCLE_PARK
+  - CYCLE_PARK
+  - RENTAL_CAR_PARK
+  - COACH_PARK
+  - NEXT_STOP_INDICATOR
+  - STOP_ANNOUNCEMENTS
+  - PASSENGER_INFORMATION_DISPLAY
+  - TACTILE_INFORMATION
+  - WALKING_GUIDANCE
+  - JOURNEY_PLANNING
+  - LOST_FOUND
+  - INFORMATION_DESK
+  - INTERACTIVE_KIOSK_DISPLAY
+  - PRINTED_PUBLIC_NOTICE
+  - PASSENGER_WIFI
+  - TELEPHONE
+  - AUDIO_SERVICES
+  - VIDEO_SERVICES
+  - BUSINESS_SERVICES
+  - INTERNET
+  - POST_OFFICE
+  - LETTER_BOX
+  - RESTAURANT_SERVICE
+  - SNACKS_SERVICE
+  - TROLLEY
+  - BAR
+  - FOOD_NOT_AVAILABLE
+  - BEVERAGES_NOT_AVAILABLE
+  - BISTRO
+  - FOOD_VENDING_MACHINE
+  - BEVERAGE_VENDING_MACHINE
+  - LOUNGE
+  - HALL
+  - MEETING_POINT
+  - GROUP_POINT
+  - RECEPTION
+  - SHELTER
+  - SEATS
+  - FOOD_RETAILER
+  - NEWSPAPER_TOBACCO_RETAILER
+  - RECREATION_TRAVEL_RETAILER
+  - HYGIENE_HEALTH_BEAUTY_RETAILER
+  - FASHION_ACCESSORIES_RETAILER
+  - BANK_FINANCE_INSURANCE
+  - CASH_MACHINE
+  - CURRENCY_EXCHANGE
+  - TOURISM_SERVICE
+  - PHOTO_BOOTH
+  - TOILET
+  - NO_TOILET
+  - SHOWER
+  - WHEELCHAIR_ACCCESS_TOILET
+  - BABY_CHANGE
+  - TICKET_MACHINES
+  - TICKET_OFFICE
+  - TICKET_ONDEMAND_MACHINES
+  - TICKET_SALES
+  - MOBILE_TICKETING
+  - TICKET_COLLECTION
+  - CENTRAL_RESERVATIONS
+  - LOCAL_TICKETS
+  - NATIONAL_TICKETS
+  - INTERNATIONAL_TICKETS
+  - COVERED
+  - LIGHTING
+  - WHEELCHAIR_ACCESSIBLE
+FacilityGroupEnum:
+  description: grouping of facilities (provided by OJP)
+  type: string
+  x-extendible-enum:
+  - ACCESS_FACILITY
+  - ACCOMMODATION_FACILITY
+  - ASSISTANCE_FACILITY
+  - HIRE_FACILITY
+  - LUGGAGE_FACILITY
+  - MOBILITY_FACILITY
+  - NUISANCE_FACILITY
+  - PARKING_FACILITY
+  - PASSENGER_COMMS_FACILITY
+  - PASSENGER_INFORMATION_FACILITY
+  - REFRESHMENT_FACILITY
+  - RESERVED_SPACE_FACILITY
+  - RETAIL_FACILITY
+  - SANITARY_FACILITY
+  - TICKETING_FACILITY
+  - STOP_POINT_FACILITY
+GeneralAttributeMasterData:
+  type: object
+  additionalProperties: false
+  required:
+  - text
+  - code
+  properties:
+    text:
+      description: text to be displayed to the user
+      $ref: ./_common.yml#/Text
+    code:
+      type:
+      - string
+      - 'null'
+    key:
+      type:
+      - string
+      - 'null'
+    value:
+      type:
+      - string
+      - 'null'
+    facilities:
+      type: array
+      items:
+        $ref: ./offer.yml#/GroupedFacilityItem
+    mandatory:
+      description: true = mandatory to be displayed to the user
+      type: boolean
+    importance:
+      description: importance as percentage
+      $ref: ./_common.yml#/Percentage
+    _links:
+      $ref: ./_common.yml#/Links
+MasterDataValidity:
+  type: object
+  description: "Validity of masterdata. The dates might relate to the sales date or the travel date. It indicates the validity\
+    \ of masterdata \nnot the validity of offers, bookings or fulfiullments related to the master data. \nWhen related to\
+    \ the sales process on historic data it is related to the createdOn timestamp of the booking part.\nWhen related to the\
+    \ travel it indicates the validity of masterdata related to the travel (e.g. product definitions, zone definition). \n\
+    The dates related to the trael date must be provided in the offset format.\n"
+  required:
+  - validFrom
+  - validUntil
+  properties:
+    validFrom:
+      description: |
+        start of the validity (inclusive)
+      type: string
+      format: date-time
+      examples:
+      - '2024-12-31T00:00:00+01:00'
+    validUntil:
+      description: |
+        end of the validity (exclusive)
+      type: string
+      format: date-time
+      examples:
+      - '2025-12-31T00:00:00+01:00'
 Product:
   type: object
   additionalProperties: false
@@ -13,17 +208,12 @@ Product:
       description: |
         id of the product
       type: string
-      nullable: false
     summary:
       description: |
         A human-readable description of the product.
-      type: string
-      nullable: true
-    summaryTranslations:
-      description: Translations of the summary attribute
-      type: array
-      items:
-        $ref: ./_common.yml#/Translation
+      type:
+      - string
+      - 'null'
     type:
       $ref: '#/ProductType'
     code:
@@ -31,18 +221,14 @@ Product:
         The product code expressed in the provider system (could be a
         mapping from an even lower-level provider).
       type: string
-      nullable: false
-      example: PT00AD
+      examples:
+      - PT00AD
     description:
       description: |
         Textual description of the product.
-      type: string
-      nullable: true
-    descriptionTranslations:
-      description: Translations of the description attribute
-      type: array
-      items:
-        $ref: ./_common.yml#/Translation
+      type:
+      - string
+      - 'null'
     owner:
       $ref: ./_common.yml#/CompanyRef
     conditions:
@@ -62,29 +248,23 @@ Product:
       items:
         $ref: ./fulfillment.yml#/FulfillmentOption
     isTrainBound:
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     isReturnProduct:
-      type: boolean
-      nullable: true
+      type:
+      - boolean
+      - 'null'
       default: false
     serviceConstraintText:
-      type: string
-      nullable: true
-    serviceConstraintTextTranslations:
-      description: Translations of the service constaint text attribute
-      type: array
-      items:
-        $ref: ./_common.yml#/Translation
+      type:
+      - string
+      - 'null'
     carrierConstraintText:
-      type: string
-      nullable: true
-    carrierConstraintTextTranslations:
-      description: Translations of the carrier constaint text attribute
-      type: array
-      items:
-        $ref: ./_common.yml#/Translation
+      type:
+      - string
+      - 'null'
     descriptiveTexts:
       type: array
       items:
@@ -93,8 +273,9 @@ Product:
       description: |
         Mapping to Tariff 42 of IRS-90918-3 (Hermes/Hosa). Helps the H2O converter in mapping
         offers to a requested tariff. See legacyReservationParameter.tariff in OSDM offline.
-      type: string
-      nullable: true
+      type:
+      - string
+      - 'null'
     combinationTags:
       type: array
       items:
@@ -102,19 +283,17 @@ Product:
     productTags:
       description: product tags associated with the product that can be used to search for offers. This can be omitted outside
         of the product master data service
-      type: array
+      type:
+      - array
+      - 'null'
       items:
         type: string
-        nullable: true
     _links:
       $ref: ./_common.yml#/Links
 ProductCollectionResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -131,9 +310,6 @@ ProductResponse:
   type: object
   additionalProperties: false
   properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
     problems:
       type: array
       items:
@@ -149,15 +325,16 @@ ProductSearchRequest:
     id:
       description: |
         id of the product
-      type: string
-      nullable: false
+      type:
+      - string
+      - 'null'
     types:
       type: array
       items:
         $ref: '#/ProductType'
     codes:
       description: |
-        The product codes to be searched.
+        The product codees to be searched.
       type: array
       items:
         type: string
@@ -181,8 +358,9 @@ ProductSearchRequest:
       description: product tags associated with the product
       type: array
       items:
-        type: string
-        nullable: true
+        type:
+        - string
+        - 'null'
 ProductSearchResponse:
   type: object
   additionalProperties: false
@@ -215,13 +393,10 @@ ProductSummary:
   properties:
     id:
       type: string
-      nullable: false
     description:
       type: string
-      nullable: false
     code:
       type: string
-      nullable: false
 ProductTag:
   description: "Values from the [Product Tags Code List](https://osdm.io/spec/catalog-of-code-lists/#ProductTags)\nKnown values:\n\
     - SPLIT_RESERVATION\n  Indicate for the provider that the distributor is prepared to get reservations including a split\
@@ -229,8 +404,8 @@ ProductTag:
     \ a reservation. \n  The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover\
     \ a full leg \n  multiple reservations as offerParts should be created.\n- CARD_LOST\n  Tag used to request a non-trip\
     \ offer to replace a lost card. This applies to physical cards only.\n- TICKET_LOST\n  Tag used to request a non-trip\
-    \ offer to replace a lost ticket. This applies to physical tickets only.\n- Product Types\n  All product types can be\
-    \ used as Product Tags in the search\n"
+    \ offer to replace a lost ticket. This applies to physical tickts only.\n- Product Types\n  All product types can be used\
+    \ as Product Tags in the search\n"
   type: string
   x-extensible-enum:
   - SPLIT_RESERVATION
@@ -317,20 +492,3 @@ ProductType:
   - ANCILLARY_SERVICE
   - ANCILLARY_ITEM
   - REDUCTION_CARD
-PromotionCodeCollectionResponse:
-  type: object
-  additionalProperties: false
-  properties:
-    warnings:
-      deprecated: true
-      $ref: ./_common.yml#/WarningCollection
-    problems:
-      type: array
-      items:
-        $ref: ./_common.yml#/Problem
-    promotionCodes:
-      type: array
-      items:
-        $ref: ./_common.yml#/PromotionCode
-    _links:
-      $ref: ./_common.yml#/Links
