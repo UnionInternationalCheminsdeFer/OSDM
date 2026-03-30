@@ -1,0 +1,479 @@
+AbstractTransportableVehicleSpecification:
+  type: object
+  additionalProperties: false
+  required:
+  - weight
+  - length
+  - width
+  - height
+  - model
+  - brand
+  properties:
+    weight:
+      description: weight in kg
+      type: integer
+      format: int32
+      minimum: 0
+    length:
+      description: size in cm
+      type: integer
+      format: int32
+      minimum: 0
+    width:
+      description: size in cm
+      type: integer
+      format: int32
+      minimum: 0
+    height:
+      description: size in cm
+      type: integer
+      format: int32
+      minimum: 0
+    brand:
+      description: |
+        Free text description of the brand (e.g. BMW)
+      type: string
+    model:
+      description: |
+        Free text description of the model (e.g. X5)
+      type: string
+AttachableItemType:
+  description: |
+    Indication of items attached to the car
+  type: string
+  x-extensible-enum:
+  - ROOF_RACK
+  - BICYCLE_STAND
+Car:
+  allOf:
+  - $ref: '#/CarSpecification'
+  - type: object
+    additionalProperties: false
+    required:
+    - licensePlate
+    properties:
+      contactName:
+        description: |
+          Name of a contact person or company in case the car transport is booked stand alone.
+        type:
+        - string
+        - 'null'
+      contactDetail:
+        $ref: ./_common.yml#/ContactDetail
+      licensePlate:
+        description: |
+          The license plate is a personal data item and must not be provided in an offer request.
+          It must be patched into the offer after the customer accepted the offer for booking.
+        type:
+        - string
+        - 'null'
+CarRack:
+  description: |
+    a rack on a car
+  type: object
+  additionalProperties: false
+  required:
+  - mounting
+  properties:
+    mounting:
+      type: string
+      x-extensible-enum:
+      - REAR
+      - TOP
+    type:
+      type: string
+      x-extensible-enum:
+      - LUGGAGE_RACK
+      - ROOF_RAILING
+    additionalHeight:
+      description: additional heigth in cm
+      type: integer
+      format: int32
+      minimum: 0
+    additionalLength:
+      description: additional length in cm
+      type: integer
+      format: int32
+      minimum: 0
+    numberOfBicycles:
+      description: numberof bicycles on the rack
+      type: integer
+      format: int32
+      minimum: 0
+CarSpecification:
+  allOf:
+  - $ref: '#/AbstractTransportableVehicleSpecification'
+  - type: object
+    additionalProperties: false
+    required:
+    - roofWidth
+    properties:
+      specialType:
+        type:
+        - string
+        - 'null'
+        x-extensible-enum:
+        - TRIKE
+        - QUAD
+        - MOTOCYCLE_WITH_SIDECAR
+      roofWidth:
+        type: integer
+        format: int32
+        minimum: 0
+      textileRoof:
+        description: indication that the car has a textile rook only
+        type: boolean
+      rack:
+        $ref: '#/CarRack'
+      attachedItems:
+        description: |
+          Indication of items attached to the car
+        type: array
+        items:
+          $ref: '#/AttachableItemType'
+ContinousOperationMode:
+  description: |
+    Types of modes that run at any time without a timetable. Provided by OJP.
+    CHAUFFEURED
+    description: operated with a paid driver
+    DEMAND_RESPONSIVE
+    description: no scheduled stop points
+    FLEXIBLE_AREA
+    description: demand responsive for AREA related offers
+    COMPANY_SHUTTLE
+    description: a company related shuttle
+    HOTEL_SHUTTLE
+    description: a hotel related shuttle
+    HIRE
+    description: Using a hired VEHICLE
+  type: string
+  x-extensible-enum:
+  - CHAUFFEURED
+  - DEMAND_RESPONSIVE
+  - FLEXIBLE_AREA
+  - COMPANY_SHUTTLE
+  - HOTEL_SHUTTLE
+  - HIRE
+DirectionChange:
+  type: object
+  additionalProperties: false
+  description: |
+    A StopPlace where the direction of a train changes
+  required:
+  - stopPlaceRef
+  - stopPlaceName
+  properties:
+    stopPlaceRef:
+      description: |
+        Reference to the station where the direction changes
+      $ref: ./ojp/trip.yml#/StopPlaceRef
+    stopPlaceName:
+      description: |
+        Name of the station where the direction changes
+      type:
+      - string
+      - 'null'
+MotorCycle:
+  allOf:
+  - $ref: '#/MotorcycleSpecification'
+  - type: object
+    additionalProperties: false
+    required:
+    - contactName
+    - licensePlate
+    properties:
+      contactName:
+        description: |
+          Name of a contact person or company in case the car transport is booked stand alone.
+        type: string
+      contactDetail:
+        $ref: ./_common.yml#/ContactDetail
+      licensePlate:
+        description: |
+          The license plate is a personal data item and must not be provided in an offer request.
+          It must be patched into the offer after the customer accepted the offer for booking
+        type: string
+MotorcycleSpecification:
+  allOf:
+  - $ref: '#/AbstractTransportableVehicleSpecification'
+ParallelService:
+  type: object
+  additionalProperties: false
+  description: "service description of services running in parallel to the defined main service (OJP 2.0)\n- different service\
+    \ numbers for train parts \n- different service produc categories / service brands along a leg\n"
+  required:
+  - service
+  properties:
+    service:
+      $ref: ./ojp/trip.yml#/DatedJourney
+    section:
+      $ref: ./trip.yml#/Section
+    replacesMainService:
+      description: the parallel service description replaces the main service (not in OJP)
+      type: boolean
+      default: false
+ServiceFormation:
+  description: |
+    a train composition at a platform. Differs from OJP 2.0 due to model limitations in OJP
+  additionalProperties: false
+  required:
+  - assignments
+  properties:
+    components:
+      type: array
+      items:
+        $ref: '#/ServiceFormationPart'
+      minItems: 1
+    sizeType:
+      description: indication of the size of the service
+      type: string
+      x-extensible-enum:
+      - NORMAL
+      - SHORT
+      - LONG
+      - EXTRA_LONG
+    entireRoute:
+      description: |
+        entier route of the service independent from the route of the leg. Used to provide indications on the end station displayed at the platform.
+      $ref: '#/ServiceFormationRoute'
+    assignments:
+      type: array
+      items:
+        $ref: '#/ServiceFormationPartAssignment'
+    _links:
+      $ref: ./_common.yml#/Links
+ServiceFormationPart:
+  type: object
+  additionalProperties: false
+  description: |
+    formation of a service at a stop on arrival or departure
+  required:
+  - id
+  - publishedName
+  properties:
+    id:
+      description: id of the part references in assignments. unique within the context of a Leg
+      type: string
+    publishedName:
+      type: string
+      examples:
+      - ICE 4711
+      - '12'
+    detailedDescription:
+      type: string
+    containedPartRefs:
+      description: ordered references to contained formation parts
+      type: array
+      items:
+        type: string
+    serviceClasses:
+      type: array
+      items:
+        $ref: ./_common.yml#/ServiceClass
+    partType:
+      type: array
+      items:
+        $ref: '#/ServiceFormationPartType'
+    entireRoute:
+      description: |
+        entier route of the service independent from the route of the leg. Used to provide indications on the end station displayed at the platform.
+      $ref: '#/ServiceFormationRoute'
+    statusInformation:
+      $ref: '#/ServiceFormationPartStatus'
+    entireLeg:
+      description: |
+        indicates if a formation part serves the whole leg. Service parts that do not service the whole leg are included to provide complete information on the parts at a platform.
+      type: boolean
+      default: true
+    facilities:
+      type: array
+      items:
+        $ref: ./product.yml#/FacilityEnum
+ServiceFormationPartAssignment:
+  type: object
+  additionalProperties: false
+  description: |
+    formation of a service at a stop on arrival or departure
+  required:
+  - formationPartRef
+  properties:
+    formationPartRef:
+      type: string
+    boadingPositionAssignment:
+      $ref: ./place.yml#/BoardingPositionAssignment
+    flexibleStopAreaAssignment:
+      $ref: ./place.yml#/FlexibleStopAreaAssignment
+ServiceFormationPartStatus:
+  type: object
+  additionalProperties: false
+  description: |
+    formation of a service at a stop on arrival or departure
+  properties:
+    status:
+      type: string
+      x-extensible-enum:
+      - UNKNOWN
+      - AVAILABLE
+      - NOT_AVAILABLE
+      - PARTIALLY_AVAILABLE
+      - ADDED
+      - REMOVED
+      - DEFECTIVE
+      - CLOSED
+      - FULLY_BOOKED
+      - NO_RESTAURANT_SERVICE
+      - OPEN
+    mobilityImpairedAccess:
+      type: boolean
+    travelerInformations:
+      description: human readable information on features of the coach (e.g. family compartment, dining car)
+      type: array
+      items:
+        type: string
+ServiceFormationPartType:
+  type: string
+  x-extensible-enum:
+  - TRAIN
+  - TRAIN_PART
+  - COACH_GROUP
+  - COACH
+  - RESTAURANT_COACH
+  - BUFFET_COACH
+  - ENGINE
+  - CAR_CARRIAGE_COACH
+  - LUGGAGE_COACH
+ServiceFormationRoute:
+  type: object
+  additionalProperties: false
+  description: |
+    entire route of a service or service part (in case of through coaches or split trains)
+  required:
+  - originRef
+  - originName
+  - destinationRef
+  - destinationName
+  properties:
+    originRef:
+      $ref: ./ojp/place.yml#/PlaceRef
+    originName:
+      type: string
+    destinationRef:
+      $ref: ./ojp/place.yml#/PlaceRef
+    destinationName:
+      type: string
+    displayedDestinationName:
+      type: string
+    originDisplayAtDestination:
+      type: string
+    vias:
+      type: array
+      items:
+        $ref: ./place.yml#/NamedPlaceRef
+Transportable:
+  type: object
+  additionalProperties: false
+  description: |
+    Transportables which are handled similar to passengers like dogs, bicycles, car transport.
+    These transportables might need a ticket or reservation.
+  required:
+  - type
+  properties:
+    type:
+      $ref: '#/TransportableType'
+    car:
+      $ref: '#/Car'
+    motorCycle:
+      $ref: '#/MotorCycle'
+    trailer:
+      $ref: '#/Car'
+TransportableSpecification:
+  type: object
+  additionalProperties: false
+  description: |
+    Transportables which are handled similar to passengers like dogs, bicycles, car transport.
+    These transportables might need a ticket or reservation. The Transportable specification does not include personal data (e.g. a license plate.)
+  required:
+  - type
+  properties:
+    type:
+      $ref: '#/TransportableType'
+    car:
+      $ref: '#/CarSpecification'
+    trailer:
+      $ref: '#/CarSpecification'
+TransportableType:
+  description: "Subset of the values from \nthe [Passenger Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)\n\
+    Listed values here are examples.\n"
+  type: string
+  x-extensible-enum:
+  - PET
+  - DOG
+  - ACCOMP_DOG
+  - BICYCLE
+  - LUGGAGE
+  - PRAM
+  - CAR
+  - SPECIAL_VEHICLE
+  - MOTOCYCLE
+  - TRAILER
+VehicleAvailability:
+  type: object
+  additionalProperties: false
+  description: |
+    A vehicle run for which place availabilities were requested.
+  properties:
+    coaches:
+      description: |
+        List of the coaches in a vehicle run ordered according to the physical ordering of the vehicle. Empty if train composition data is missing or specific place selection is not supported.
+      type: array
+      items:
+        $ref: ./place.yml#/CoachAvailability
+    directionChanges:
+      description: |
+        List of direction changes (in direction of travel).
+      type: array
+      items:
+        $ref: '#/DirectionChange'
+    preSelectedPlaces:
+      type: array
+      items:
+        $ref: ./place.yml#/PlacePreSelection
+    preSelectedCompartments:
+      type: array
+      items:
+        $ref: ./place.yml#/CompartmentPreSelection
+VehicleFilter:
+  type: object
+  additionalProperties: false
+  description: |
+    Filter for in/exclusion of vehicle based on vehicle number or line number.
+  properties:
+    exclude:
+      description: |
+        Whether vehicle in list is to include or exclude from search.
+      type:
+      - boolean
+      - 'null'
+      default: true
+    vehicleNumbers:
+      type: array
+      items:
+        $ref: '#/VehicleNumber'
+    lineNumbers:
+      type: array
+      items:
+        $ref: ./_common.yml#/LineNumber
+VehicleNumber:
+  type:
+  - string
+  - 'null'
+  description: |
+    The vehicle number(s) of the vehicle that runs this timed leg. On some legs a vehicle can
+    have multiple vehicle numbers, e.g. if it is split into two trains at a intermediate stop.
+    E.g. the vehicle numbers of 'TGV 9218', 'TH 9340' or 'ICE 15'.
+    For backwards compatibility with Hermes/Hosa the length of the string must be restricted
+    to 5 characters. If's longer, it is not possible to use the H2O converter.
+  examples:
+  - '9218'
+  - '9340'
+  - '15'

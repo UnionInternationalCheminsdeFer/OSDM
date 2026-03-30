@@ -1,0 +1,285 @@
+Address:
+  description: |
+    A descriptive data associated with a place that can be used to describe the unique geographical context of a
+    place for the purposes of identifying it. may be refined as either a road address, a postal address or both.
+    Provided by OJP.
+  allOf:
+  - $ref: ./place.yml#/Place
+  - type: object
+    additionalProperties: false
+    properties:
+      countryName:
+        description: |
+          Country of the address.
+        type:
+        - string
+        - 'null'
+        examples:
+        - The Netherlands
+      countryCode:
+        $ref: ../_common.yml#/CountryCode
+      postCode:
+        description: |
+          Postal code of the address.
+        type:
+        - string
+        - 'null'
+        examples:
+        - 2265CA
+      city:
+        description: |
+          City name
+        type:
+        - string
+        - 'null'
+        examples:
+        - Leidschendam
+      topographicPlaceName:
+        description: |
+          TopographicPlace name of the address. If set it should at least contain the city name.
+        type:
+        - string
+        - 'null'
+        examples:
+        - Leidschendam
+      street:
+        description: |
+          Street name of the address. Can also contain the house number.
+        type:
+        - string
+        - 'null'
+        examples:
+        - Oude Trambaan
+      houseNumber:
+        description: |
+          House number of the address. House number can either be in this separate field, or can be
+          contained in the street field.
+        type:
+        - string
+        - 'null'
+        examples:
+        - '7'
+      crossroad:
+        type: string
+        examples:
+        - Oude Trambaan corner Newe Trambahn
+AddressRef:
+  description: |
+    Reference to an Address.
+  allOf:
+  - $ref: ./place.yml#/PlaceRef
+  - type: object
+    additionalProperties: false
+    required:
+    - addressRef
+    properties:
+      addressRef:
+        type: string
+CarrierFilter:
+  type: object
+  additionalProperties: false
+  description: |
+    Filter for in/exclusion of carriers. Provided by OJP.
+  properties:
+    exclude:
+      description: |
+        Whether carrier in list are to include or exclude from search.
+      type:
+      - boolean
+      - 'null'
+      default: true
+    carriers:
+      description: |
+        Reference to carrier
+      type: array
+      items:
+        $ref: ../_common.yml#/CompanyRef
+GeoPosition:
+  type: object
+  additionalProperties: false
+  description: |
+    WGS84 coordinates position. Provided by OJP.
+  required:
+  - longitude
+  - latitude
+  properties:
+    longitude:
+      $ref: ../_common.yml#/Longitude
+    latitude:
+      $ref: ../_common.yml#/Latitude
+GeoPositionRef:
+  description: |
+    Reference to a GeoPosition consisting of latitude and longitude.
+  allOf:
+  - $ref: ./place.yml#/PlaceRef
+  - type: object
+    additionalProperties: false
+    required:
+    - latitude
+    - longitude
+    properties:
+      latitude:
+        $ref: ../_common.yml#/Latitude
+      longitude:
+        $ref: ../_common.yml#/Longitude
+Mode:
+  type: object
+  additionalProperties: false
+  description: |
+    A method of transportation such as bus, rail, etc. Provided by OJP.
+  required:
+  - ptMode
+  properties:
+    ptMode:
+      $ref: ../_common.yml#/PTMode
+    name:
+      description: |
+        Name of the mode
+      type:
+      - string
+      - 'null'
+      examples:
+      - rail
+    shortName:
+      description: |
+        Short name or acronym of the mode
+      type:
+      - string
+      - 'null'
+      examples:
+      - S
+    description:
+      description: |
+        Additional text that further describes the mode
+      type:
+      - string
+      - 'null'
+ModeFilter:
+  type: object
+  additionalProperties: false
+  description: |
+    List of public transport modes to include or exclude. Provided by OJP.
+  properties:
+    exclude:
+      description: |
+        Whether modes in list are to include or exclude from search.
+      type:
+      - boolean
+      - 'null'
+      default: true
+    transportModes:
+      description: |
+        List of Transport modes to include/exclude.
+      type: array
+      items:
+        $ref: '#/Mode'
+OsmTag:
+  type: object
+  additionalProperties: false
+  description: |
+    Structure of an Open Street Map tag. Provided by OJP.
+  required:
+  - tag
+  - value
+  properties:
+    tag:
+      description: |
+        Name of Open Street Map tag (amenity, leisure, tourism, bike, ...)
+      type: string
+      examples:
+      - amenity
+    value:
+      description: |
+        Value for Open Street Map tag (charging_station, hostel, yes, ...)
+      type: string
+      examples:
+      - Rozenrust
+ServiceBrandFilter:
+  type: object
+  additionalProperties: false
+  description: |
+    Filter for in/exclusion of service brands. Provided by OJP.
+  properties:
+    exclude:
+      description: |
+        Whether service brand in list are to include or exclude from search.
+      type:
+      - boolean
+      - 'null'
+      default: true
+    serviceBrands:
+      description: |
+        Reference to service brand codes
+      type: array
+      items:
+        $ref: ../_common.yml#/ServiceBrandCode
+ServiceStatus:
+  type: object
+  additionalProperties: false
+  description: |
+    Parameters which describe the current status of a dated vehicle journey.
+    Provided by OJP.
+  properties:
+    unplanned:
+      description: |
+        Whether this trip is an additional one that has not been planned.
+      type:
+      - boolean
+      - 'null'
+      default: false
+    cancelled:
+      description: |
+        Whether this trip is cancelled and will not be run.
+      type:
+      - boolean
+      - 'null'
+      default: false
+    deviation:
+      description: |
+        Whether this trip deviates from the planned service pattern.
+      type:
+      - boolean
+      - 'null'
+      default: false
+    occupancy:
+      description: |
+        Passenger load status on vehicle. If omitted, not known.
+        Equivalent to siri:OccupancyEnumeration which describes three values:
+        'full', 'seatingAvailable' and 'standingAvailable'.
+      type:
+      - string
+      - 'null'
+Situation:
+  description: traffic situation
+  type: object
+  additionalProperties: false
+  required:
+  - id
+  - description
+  properties:
+    id:
+      $ref: '#/SituationRef'
+    description:
+      $ref: '#/SituationDescription'
+SituationDescription:
+  type: object
+  additionalProperties: false
+  description: situation description
+  properties:
+    summary:
+      type: string
+    description:
+      type: string
+    details:
+      type: string
+    advice:
+      type: string
+    _links:
+      $ref: ../_common.yml#/Links
+SituationRef:
+  type:
+  - string
+  - 'null'
+  description: |
+    Reference to situation message. Message details might be found in response
+    context or through other communication channels. Provided by OJP.
