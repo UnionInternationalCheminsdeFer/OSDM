@@ -27,4 +27,4 @@ jobs:
         run: redocly bundle specification/OSDM-online-api.yml --output specification/OSDM-online-api.bundled.yml
 
       - name: Validate OpenAPI documents
-        run: redocly lint --format=github-actions specification/**/*.yml
+        run: redocly lint --format=github-actions specification/*.yml
