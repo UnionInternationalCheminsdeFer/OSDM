@@ -1,0 +1,415 @@
+/bookings/{bookingId}/fulfillments:
+  post:
+    tags:
+    - Fulfillments
+    summary: Confirms the booking a triggers the fulfillment of the booking synchronously or asynchronously.
+    description: |
+      Confirms the booking and triggers the fulfillment of the booking.
+
+      If the fulfillments are created synchronously the service directly returns the fulfillments. The fulfillments are then in state FULFILLED.
+
+      If the fulfillments are created asynchronously the service starts the creation of the fulfillments. The fulfillmentIds may or may not returned. The fulfillments are in stage CONFIRMED. The booking needs to be retrieved later to obtain the fulfillments.
+    operationId: postFulfillments
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/idempotencyKey
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking to be patched
+      required: true
+      schema:
+        type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/FulfillmentPostRequest
+    responses:
+      '200':
+        description: |
+          Fulfillment successfully completed
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/FulfillmentCollectionResponse
+      '202':
+        description: |
+          Fulfillment successfully completed
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/FulfillmentCollectionResponse
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+  patch:
+    tags:
+    - Fulfillments
+    summary: Optionally finalizes the fulfillments in asynchronous mode.
+    description: |
+      Optionally finalizes the fulfillment in case of an asynchronous fulfillment mode when the provider doesn't complete the asynchronous fulfillment automatically.
+
+      This step may be used as an indication of the `proof of delivery` to allow the cancellation of booking.
+    operationId: finalizeFulfillments
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/idempotencyKey
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking to be patched
+      required: true
+      schema:
+        type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/FulfillmentPatchRequest
+    responses:
+      '200':
+        description: |
+          Fulfillment successfully completed
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/FulfillmentCollectionResponse
+      '202':
+        $ref: ../OSDM-online-api.yml#/components/responses/FulfillmentRequestAcceptedResponse
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '409':
+        $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/bookings/{bookingId}/fulfillment-check:
+  get:
+    tags:
+    - Fulfillments
+    summary: Verification step (step 1 in a two phase commit process) to run before the effective fulfillment endpoint. Provider
+      do all checks to "guarantee" that fulfillment will work.
+    description: |
+      Step 1 in a two phase commit process. An aggregator can use this to secure that all underlying provider systems are up and running and the provider booking is ready to be fulfilled.
+    operationId: getCheckFulfillments
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/idempotencyKey
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking to be patched
+      required: true
+      schema:
+        type: string
+    responses:
+      '204':
+        description: Success, verified OK
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/fulfillments/{fulfillmentId}:
+  get:
+    tags:
+    - Fulfillments
+    summary: Returns the fulfillment, aka. ticket for the provided id.
+    operationId: getFulfillmentId
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - name: fulfillmentId
+      in: path
+      description: |
+        id of the fulfillment to get.
+      required: true
+      schema:
+        type: string
+    responses:
+      '200':
+        description: |
+          fulfillment found
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/FulfillmentResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+  patch:
+    tags:
+    - Fulfillments
+    summary: Activates a fulfillment, i.e. changes the status from AVAILABLE to FULFILLED.
+    description: "Changes the fulfillment from status AVAILABLE to FULFILLED. In the case of multi-trip product\nwith usage\
+      \ quota, the fulfillment must be referenced in booking of a trip to produce Fulfillment \nrelated to that trip that\
+      \ uses quota of the multi-journey product.\n"
+    operationId: patchFulfillmentId
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/idempotencyKey
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - name: fulfillmentId
+      in: path
+      required: true
+      schema:
+        type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/FulfillmentActivationPatchRequest
+    responses:
+      '200':
+        description: |
+          fulfillment patched
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/FulfillmentResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '409':
+        $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/fulfillments/{fulfillmentId}/continuous-service-usage/{continuousServiceUsageId}:
+  get:
+    tags:
+    - Fulfillments
+    - On-Demand Services
+    summary: return the continuous service usage including latest updates
+    operationId: getContinuousServiceUsageId
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - name: fulfillmentId
+      in: path
+      description: |
+        id of the fulfillment to get.
+      required: true
+      schema:
+        type: string
+    - name: continuousServiceUsageId
+      in: path
+      description: |
+        id of the continuous service usage to get.
+      required: true
+      schema:
+        type: string
+    responses:
+      '200':
+        description: |
+          continuous service usage found
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/ContinuousServiceUsage
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+  patch:
+    tags:
+    - Fulfillments
+    - On-Demand Services
+    summary: start or end the usage of a continuous service of an demand vehicle
+    description: |
+      start or end the usage of a continuous service of an demand vehicle
+    operationId: patchContinuousServiceUsageId
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/idempotencyKey
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - name: fulfillmentId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: continuousServiceUsageId
+      in: path
+      description: |
+        id of the continuous service usage to get.
+      required: true
+      schema:
+        type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/ContinuousServiceUsagePatchRequest
+    responses:
+      '200':
+        description: |
+          fulfillment patched
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/ContinuousServiceUsage
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '409':
+        $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse

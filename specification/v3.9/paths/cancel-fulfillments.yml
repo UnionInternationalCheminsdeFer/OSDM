@@ -1,0 +1,241 @@
+/bookings/{bookingId}/cancel-fulfillments-offers:
+  post:
+    tags:
+    - Cancel Fulfillments
+    summary: Initiates a cancel fulfillments process
+    description: |
+      Initiates a cancel fulfillments process by creating a
+      cancelFulfillmentsOffers resource.
+    operationId: postCancelFulfillmentsOffers
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/idempotencyKey
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking.
+      required: true
+      schema:
+        type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/CancelFulfillmentsOfferRequest
+    responses:
+      '200':
+        description: |
+          Refund offer created
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/CancelFulfillmentsOfferCollectionResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+/bookings/{bookingId}/cancel-fulfillments-offers/{cancelFulfillmentsOfferId}:
+  get:
+    tags:
+    - Cancel Fulfillments
+    summary: Returns the cancel fulfillments offer for the ids provided.
+    operationId: getCancelFulfillmentOffers
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking
+      required: true
+      schema:
+        type: string
+    - name: cancelFulfillmentsOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    responses:
+      '200':
+        description: |
+          RefundOffer found
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/CancelFulfillmentsOfferResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+  patch:
+    tags:
+    - Cancel Fulfillments
+    summary: Allows to accept and confirm a cancel fulfillments offer.
+    operationId: patchCancelFulfillmentsOffers
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - $ref: ../OSDM-online-api.yml#/components/parameters/idempotencyKey
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking
+      required: true
+      schema:
+        type: string
+    - name: cancelFulfillmentsOfferId
+      in: path
+      description: |
+        id of the cancel fulfillment offer
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../OSDM-online-api.yml#/components/schemas/CancelFulfillmentsOfferPatchRequest
+    responses:
+      '200':
+        description: |
+          RefundOffer confirmed
+        content:
+          application/json:
+            schema:
+              $ref: ../OSDM-online-api.yml#/components/schemas/CancelFulfillmentsOfferResponse
+        headers:
+          Content-Language:
+            schema:
+              type: string
+              description: |
+                The language of translatable strings in the response (see RFC2616-sec14.12).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '409':
+        $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+  delete:
+    tags:
+    - Cancel Fulfillments
+    summary: Deletes a cancel fulfillments offer without waiting for expiry.
+    operationId: deleteCancelFulfillmentOffers
+    parameters:
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      description: deprecated
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking
+      required: true
+      schema:
+        type: string
+    - name: cancelFulfillmentsOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    responses:
+      '204':
+        description: |
+          In case that a request was successful only status code 204 will be returned but no response content will be provided (aka as return type 'void' in many programming languages).
+      '400':
+        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
+      '401':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
+      '403':
+        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
+      '404':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
+      '406':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '409':
+        $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
+      '415':
+        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '500':
+        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+      '501':
+        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+      '503':
+        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+      default:
+        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
