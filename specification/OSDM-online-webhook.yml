@@ -6,7 +6,8 @@ info:
   title: UIC 90918-10 - OSDM webhooks
   version: 3.8.0
   description: |
-    Specifications for the OSDM API standard. The OSDM webhook specification allows an allocator to inform a distributor about changes to a booking or a complaint.
+    Specifications for the OSDM API standard. The OSDM webhook specification allows an 
+    allocator to inform a distributor about changes to a booking or a complaint.
   contact:
     name: OSDM Working Group
     url: "https://osdm.io"
@@ -102,11 +103,30 @@ components:
         objectType:
           type: string
           description: Discriminator field identifying the concrete event type.
+        id:
+          type: string
+          description: ID of the event
+        resourceId:
+          type: string
+          description: ID of the resource
+        timeStamp:
+          type: string
+          format: date-time
+        requestor:
+          type: string
+        messageVersion:
+          type: string
+          default: "1.0.0"
+          description: version of the event message
+        reason:
+          type: string
+          description: reason why the resource was edited
+          examples:
+            - "Tunderstorm"
+            - "Strike"
         summary:
           type: string
           description: Human readable description of what has changed.
-        revision:
-          $ref: "#/components/schemas/Revision"
         resources:
           description: Resources to be called by receiver to update the object.
           type: array
@@ -127,16 +147,8 @@ components:
               enum:
                 - BookingEvent
               default: BookingEvent
-            summary:
-              type: string
-              description: >-
-                Human readable description of what has changed on the booking. e.g.
-                "Train ICE 34 at 2021-12-22 13:30 has been cancelled".
             type:
               $ref: "#/components/schemas/BookingChangeType"
-            bookingId:
-              type: string
-              description: The ID of the booking that has changed.
             affectedBookingPartIds:
               description: list of ids of affected booking parts 
               type: array
@@ -198,16 +210,8 @@ components:
               enum:
                 - ComplaintEvent
               default: ComplaintEvent
-            summary:
-              type: string
-              description: >-
-                Human readable description of what has changed on the complaint.
-                E.g. "Complaint 123456 has been settled".
             type:
               $ref: "#/components/schemas/BackOfficeChangeType"
-            complaintId:
-              type: string
-              description: The ID of the complaint.
 
     ReimbursementEvent:
       description: An event that has occurred on a reimbursement.
@@ -223,16 +227,8 @@ components:
               enum:
                 - ReimbursementEvent
               default: ReimbursementEvent
-            summary:
-              type: string
-              description: >-
-                Human readable description of what has changed on the reimbursement.
-                E.g. "Reimbursement 456-xyz has been settled".
             type:
               $ref: "#/components/schemas/BackOfficeChangeType"
-            reimbursementId:
-              type: string
-              description: The ID of the reimbursement.
 
     BackOfficeChangeType:
       type: string
@@ -247,20 +243,6 @@ components:
         - INITIATED
 
     ##
-
-    Revision:
-      type: object
-      description: The revision of the event.
-      required:
-        - name
-        - timestamp
-      properties:
-        name:
-          type: string
-          example: 1
-        timestamp:
-          type: string
-          format: date-time
 
     Resource:
       type: object
