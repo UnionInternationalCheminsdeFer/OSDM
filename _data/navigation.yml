@@ -133,6 +133,8 @@
       link: spec/language/
     - name: Authentication
       link: spec/authentication/
+    - name: Dates and Times
+      link: spec/dates-and-times/
     - name: Pagination
       link: spec/pagination/
     - name: Two phase commit
