@@ -308,6 +308,8 @@ components:
       $ref: ./components/responses.yml#/UnauthorizedResponse
     UnsupportedMediaTypeResponse:
       $ref: ./components/responses.yml#/UnsupportedMediaTypeResponse
+    AlternativeSystemProposalResponse:
+      $ref: ./components/responses.yml#/AlternativeSystemProposalResponse
   schemas:
     AbstractBookingPart:
       $ref: ./schemas/booking.yml#/AbstractBookingPart
@@ -349,6 +351,8 @@ components:
       $ref: ./schemas/ojp/trip.yml#/Alight
     AlightSpecification:
       $ref: ./schemas/trip.yml#/AlightSpecification
+    AlternativeSystemProposal:
+      $ref: ./schemas/offer.yml#/AlternativeSystemProposal
     Ancillary:
       $ref: ./schemas/offer.yml#/Ancillary
     AncillaryGroup:

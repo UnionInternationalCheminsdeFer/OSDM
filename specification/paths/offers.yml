@@ -41,6 +41,8 @@
         $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '421':
+        $ref: ../OSDM-online-api.yml#/components/responses/AlternativeSystemProposalResponse
       '500':
         $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
       '501':
@@ -99,6 +101,8 @@
         $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+      '421':
+        $ref: ../OSDM-online-api.yml#/components/responses/AlternativeSystemProposalResponse
       '500':
         $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
       '501':
