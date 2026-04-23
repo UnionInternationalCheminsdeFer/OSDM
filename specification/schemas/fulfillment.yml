@@ -134,6 +134,7 @@ DocumentSpecification:
       description: |
         base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
         string, so the raw document cannot exceed 3 MBytes in size.
+        Preferred encoding is UTF-8.
       type: string
       format: byte
       maxLength: 4194304
@@ -370,6 +371,7 @@ FulfillmentDocument:
       description: |
         base64 encoded binary of the actual fulfillment document. The length restriction of 4 MBytes applies to the encoded
         string, so the raw document cannot exceed 3 MBytes in size.
+        Preferred encoding is UTF-8.
       type: string
       format: byte
       maxLength: 4194304
