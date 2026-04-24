@@ -8,6 +8,7 @@ AccommodationSubType:
   - ANY_SEAT
   - BISTRO
   - BICYCLE
+  - BICYCLE_AND_SEAT
   - BICYCLE_LOW
   - BICYCLE_MIDDLE
   - BICYCLE_HIGH
