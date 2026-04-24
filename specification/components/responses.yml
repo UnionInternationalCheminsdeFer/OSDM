@@ -112,4 +112,4 @@ AlternativeSystemProposalResponse:
   content:
     application/problem+json:
       schema:
-        $ref: ../OSDM-online-api.yml#/components/schemas/AlternativeSystemProposal
+        $ref: ../OSDM-online-api.yml#/components/schemas/Problem

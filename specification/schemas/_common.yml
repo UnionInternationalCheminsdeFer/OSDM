@@ -13,6 +13,42 @@ AccountingRef:
       type: array
       items:
         type: string
+AlternativeSystemProposal:
+  description: |
+    The OSDM API returns an alternative system proposal when the current system 
+    cannot provide an offer for the requested trip, but identifies another 
+    OSDM/90918.1-capable system that may be able to fulfill the request.
+    The proposal could be used two different ways:
+    * If the requested trip could not be priced in the current system, the offer
+      API should return HTTP error 421 containing this structure as problem details
+    * If only some part(s) of the trip/products are affected:
+      * The available offers should be returned to the caller
+      * The AlternativeSystemProposal could be returned as part of 
+        OfferCollectionResponse's problems structure
+      * The requestPointer structure could be used, to identify the affected TripLeg  
+  type: object
+  anyOf:
+    - required: [reservationSystemId]
+    - required: [osdmApiBaseUrl]
+    - required: [companyCode]
+  properties:
+    reservationSystemId:
+      description: |
+        The 90918.1 code of the alternative reservation system.
+      type: integer
+      example: 80
+    osdmApiBaseUrl:
+      description: |
+        The base URL of the alternative OSDM system. 
+        The URL should not contain any API-specific parts.
+      type: string
+      format: uri
+      example: https://osdm-5.platform.bileto.zone/api
+    systemOperatorCode:
+      description: |
+        The company code (e.g. RICS code) of the alternative reservation system's operator.
+      $ref: '#/CompanyRef'
+      example: 'urn:uic:rics:1185'
 ApiNextVersion:
   type: object
   description: |
@@ -1053,6 +1089,11 @@ Problem:
       items:
         $ref: '#/ProblemPointer'
         nullable: true
+      minItems: 0
+    alternativeSystemProposals:
+      type: array
+      items:
+        $ref: '#/AlternativeSystemProposal'
       minItems: 0
 ProblemPointer:
   type: object
