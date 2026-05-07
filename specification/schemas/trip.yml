@@ -611,6 +611,8 @@ TripLegSpecification:
       $ref: '#/TimedLegSpecification'
     transferLeg:
       $ref: ./ojp/trip.yml#/TransferLeg
+    continuousLeg:
+      $ref: './ojp/trip.yml#/ContinuousLeg'      
 TripMobilityFilterItem:
   description: |
     restrictions of the traveler  (List of booleans in OJP BaseTripMobilityFilter)
