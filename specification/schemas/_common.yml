@@ -49,6 +49,33 @@ AlternativeSystemProposal:
         The company code (e.g. RICS code) of the alternative reservation system's operator.
       $ref: '#/CompanyRef'
       example: 'urn:uic:rics:1185'
+    scope:
+      type: array
+      items:
+        $ref: '#/AlternativeSystemProposalScope'
+      minItems: 0
+AlternativeSystemProposalScope:
+  description: |
+    Defines the scope for alternative system proposals. This object specifies the routing 
+    logic for:
+     * Trips or trains hosted across multiple OSDM/UIC 918.1 reservation systems, 
+       identifying which system to connect to for specific cases.
+     * Offers for trips containing multiple legs
+  type: object
+  required:
+  - vehicleNumber
+  properties:
+    vehicleNumber:
+      description: |
+        Vehicle number (e.g. train number), for which the alternative system proposal is valid.
+      type: string
+      nullable: false
+    travelClass:
+      $ref: '#/TravelClass'
+    accommodationType:
+      $ref: './place.yml#/AccommodationType'
+    accommodationSubType:
+      $ref: './place.yml#/AccommodationSubType'    
 ApiNextVersion:
   type: object
   description: |
@@ -1827,4 +1854,3 @@ WarningCollection:
       items:
         $ref: '#/Warning'
       minItems: 1
-
