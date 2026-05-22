@@ -308,8 +308,6 @@ components:
       $ref: ./components/responses.yml#/UnauthorizedResponse
     UnsupportedMediaTypeResponse:
       $ref: ./components/responses.yml#/UnsupportedMediaTypeResponse
-    AlternativeSystemProposalResponse:
-      $ref: ./components/responses.yml#/AlternativeSystemProposalResponse
   schemas:
     AbstractBookingPart:
       $ref: ./schemas/booking.yml#/AbstractBookingPart

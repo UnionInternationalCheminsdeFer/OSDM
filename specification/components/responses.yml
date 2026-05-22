@@ -106,10 +106,3 @@ UnsupportedMediaTypeResponse:
     application/problem+json:
       schema:
         $ref: ../OSDM-online-api.yml#/components/schemas/Problem
-AlternativeSystemProposalResponse:
-  description: |
-    Misdirected Request - Alternative system proposal (421)
-  content:
-    application/problem+json:
-      schema:
-        $ref: ../OSDM-online-api.yml#/components/schemas/Problem
