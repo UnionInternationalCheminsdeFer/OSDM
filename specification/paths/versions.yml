@@ -1,20 +1,21 @@
-/versions:
-  get:
-    summary: Returns all available versions of the OSDM API.
-    tags:
+get:
+  summary: Returns all available versions of the OSDM API.
+  tags:
     - Versions
-    operationId: getVersions
-    responses:
-      '200':
-        description: |
-          versions available
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: ../OSDM-online-api.yml#/components/schemas/ApiVersion
-      '401':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
-      '501':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
+  operationId: getVersions
+  responses:
+    '200':
+      description: |
+        versions available
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/ApiVersion.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

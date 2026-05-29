@@ -1,151 +1,104 @@
-/places:
-  get:
-    tags:
+get:
+  tags:
     - Master Data
-    summary: Returns static data for all places.
-    operationId: getPlaces
-    parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - $ref: ../OSDM-online-api.yml#/components/parameters/ifNoneMatch
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
-    - $ref: ../OSDM-online-api.yml#/components/parameters/page
-    responses:
-      '200':
-        description: |
-          places found
-        content:
-          application/vnd.uic.osdm+json:
-            schema:
-              $ref: ../OSDM-online-api.yml#/components/schemas/PlaceResponse
-        headers:
-          Cache-Control:
-            schema:
-              type: string
-              default: public, max-age=10000
-            description: |
-              Resource is fairly persistent and has a medium time to live to allow short-term caching.
-          ETag:
-            schema:
-              type: string
-            description: version tag
-      '303':
-        $ref: ../OSDM-online-api.yml#/components/responses/SeeOtherResponse
-      '304':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotModifiedResponse
-      '400':
-        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
-      '401':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
-      '403':
-        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
-      '404':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
-      '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
-      '501':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
-      '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
-      default:
-        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
-  post:
-    tags:
-    - Places
-    summary: returns static place information for a given place request
-    description: |
-      Returns places for a given place request based on the OJP specification.
-    operationId: postPlaces
-    parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
-    requestBody:
-      required: true
+  summary: Returns static data for all places.
+  operationId: getPlaces
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/ifNoneMatch.yml
+    - $ref: ../components/parameters/acceptNamespace.yml
+    - $ref: ../components/parameters/page.yml
+  responses:
+    '200':
       description: |
-        request for place
+        places found
       content:
         application/vnd.uic.osdm+json:
           schema:
-            $ref: ../OSDM-online-api.yml#/components/schemas/PlaceRequest
-    responses:
-      '200':
-        description: |
-          places found
-        content:
-          application/vnd.uic.osdm+json:
-            schema:
-              $ref: ../OSDM-online-api.yml#/components/schemas/PlacesMasterDataResponse
-      '400':
-        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
-      '401':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
-      '403':
-        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
-      '404':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
-      '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
-      '501':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
-      '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
-      default:
-        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
-/places/{placeId}:
-  get:
-    tags:
+            $ref: ../components/schemas/PlaceResponse.yml
+      headers:
+        Cache-Control:
+          schema:
+            type: string
+            default: public, max-age=10000
+          description: >
+            Resource is fairly persistent and has a medium time to live to allow
+            short-term caching.
+        ETag:
+          schema:
+            type: string
+          description: version tag
+    '303':
+      $ref: ../components/responses/SeeOtherResponse.yml
+    '304':
+      $ref: ../components/responses/NotModifiedResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []
+post:
+  tags:
     - Places
-    summary: returns static data for a place
-    operationId: getPlacesId
-    parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
-    - name: placeId
-      in: path
+  summary: returns static place information for a given place request
+  description: |
+    Returns places for a given place request based on the OJP specification.
+  operationId: postPlaces
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/acceptNamespace.yml
+  requestBody:
+    required: true
+    description: |
+      request for place
+    content:
+      application/vnd.uic.osdm+json:
+        schema:
+          $ref: ../components/schemas/PlaceRequest.yml
+  responses:
+    '200':
       description: |
-        id of the place to get.
-      required: true
-      schema:
-        type: string
-    responses:
-      '200':
-        description: |
-          place found
-        content:
-          application/vnd.uic.osdm+json:
-            schema:
-              $ref: ../OSDM-online-api.yml#/components/schemas/PlacesMasterDataResponse
-        headers:
-          Cache-Control:
-            schema:
-              type: string
-              default: public, max-age=10000
-              description: |
-                Resource is fairly persistent and has a medium time to live to allow short-term caching.
-      '400':
-        $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
-      '401':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnauthorizedResponse
-      '403':
-        $ref: ../OSDM-online-api.yml#/components/responses/ForbiddenResponse
-      '404':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
-      '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
-      '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
-      '501':
-        $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
-      '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
-      default:
-        $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
+        places found
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/PlacesMasterDataResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

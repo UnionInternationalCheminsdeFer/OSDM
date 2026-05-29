@@ -1,21 +1,21 @@
 /bookings/{bookingId}/purchaser:
   get:
     tags:
-    - Purchaser
+      - Purchaser
     summary: Returns the purchaser's information at booking step.
     operationId: getBookingPurchaser
     parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - name: bookingId
-      in: path
-      description: |
-        id of the booking the purchaser is in.
-      required: true
-      schema:
-        type: string
+      - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+      - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+      - name: bookingId
+        in: path
+        description: |
+          id of the booking the purchaser is in.
+        required: true
+        schema:
+          type: string
     responses:
       '200':
         description: |
@@ -28,8 +28,9 @@
           Content-Language:
             schema:
               type: string
-              description: |
-                The language of translatable strings in the response (see RFC2616-sec14.12).
+              description: >
+                The language of translatable strings in the response (see
+                RFC2616-sec14.12).
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
       '401':
@@ -39,32 +40,35 @@
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
       '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
       '501':
         $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
       '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
       default:
         $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
   patch:
     tags:
-    - Purchaser
+      - Purchaser
     summary: Allows updating a purchaser's information at booking step.
     operationId: patchBookingPurchaser
     parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - name: bookingId
-      in: path
-      description: |
-        id of the booking the purchaser is in.
-      required: true
-      schema:
-        type: string
+      - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+      - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+      - name: bookingId
+        in: path
+        description: |
+          id of the booking the purchaser is in.
+        required: true
+        schema:
+          type: string
     requestBody:
       required: true
       content:
@@ -83,8 +87,9 @@
           Content-Language:
             schema:
               type: string
-              description: |
-                The language of translatable strings in the response (see RFC2616-sec14.12).
+              description: >
+                The language of translatable strings in the response (see
+                RFC2616-sec14.12).
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
       '401':
@@ -96,32 +101,35 @@
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
       '501':
         $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
       '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
       default:
         $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
   post:
     tags:
-    - Purchaser
+      - Purchaser
     summary: Allows creating a purchaser for a booking already existing.
     operationId: postBookingPurchaser
     parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - name: bookingId
-      in: path
-      description: |
-        id of the booking the purchaser is in.
-      required: true
-      schema:
-        type: string
+      - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+      - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+      - name: bookingId
+        in: path
+        description: |
+          id of the booking the purchaser is in.
+        required: true
+        schema:
+          type: string
     requestBody:
       required: true
       content:
@@ -140,8 +148,9 @@
           Content-Language:
             schema:
               type: string
-              description: |
-                The language of translatable strings in the response (see RFC2616-sec14.12).
+              description: >
+                The language of translatable strings in the response (see
+                RFC2616-sec14.12).
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
       '401':
@@ -153,12 +162,15 @@
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
       '501':
         $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
       '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
       default:
         $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse

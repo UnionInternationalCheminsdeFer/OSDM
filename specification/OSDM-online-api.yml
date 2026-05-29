@@ -2,8 +2,12 @@ openapi: 3.1.0
 info:
   title: UIC 90918-10 - OSDM
   version: 4.0.0-draft
-  description: |
-    Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
+  description: >
+    Specifications for the OSDM API standard. The OSDM specification supports
+    two modes of operation: Retailer Mode and Distributor Mode. The API works
+    identically in both modes, except that in distributor mode the API also
+    returns fare information.
+
 
     The following resources are key to get started:
 
@@ -18,1340 +22,314 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 servers:
-- url: https://s3p-osdm.cloud.sqills.com
-  description: |
-    Sqills Sandbox
-- url: https://osdm-5.platform.bileto.zone/api
-  description: |
-    Bileto Sandbox (osdm.cz)
-- url: https://benerail-stg-apim.azure-api.net
-  description: |
-    benerail Sandbox
-- url: https://api.sandbox.turnit.tech/retailer
-  description: |
-    Turnit Sandbox
+  - url: https://s3p-osdm.cloud.sqills.com
+    description: |
+      Sqills Sandbox
+  - url: https://osdm-5.platform.bileto.zone/api
+    description: |
+      Bileto Sandbox (osdm.cz)
+  - url: https://benerail-stg-apim.azure-api.net
+    description: |
+      benerail Sandbox
+  - url: https://api.sandbox.turnit.tech/retailer
+    description: |
+      Turnit Sandbox
 tags:
-- name: Versions
-  description: |
-    information about the available versions of the OSDM API
-- name: Places
-  description: |
-    resources to search for places
-- name: Trips
-  description: |
-    resources to search for trips
-- name: Offers
-  description: |
-    resources to get bookable offers
-- name: Offer Overview
-  description: |
-    resources to get an overview of prices without detailed offer information
-- name: Availabilities
-  description: |
-    resources to query availabilities before or after pre-booking
-- name: BookingPart
-  description: |
-    resources to add and remove offer parts to a pre-booked booking
-- name: Bookings
-  description: |
-    resources to manipulate bookings
-- name: BookedOffers
-  description: |
-    resources to manipulate bookings
-- name: Bookings Search
-  description: |
-    resources to search for bookings
-- name: Bookings Split
-  description: |
-    resources to split a booking
-- name: Purchaser
-  description: |
-    resources to manipulate a purchaser's information at every stage of the flow
-- name: Passengers
-  description: |
-    resources to manipulate a passenger's information at every stage of the flow
-- name: Passenger Categories
-  description: |
-    optional objects to simplify the entry of passenger specifications
-- name: Fulfillments
-  description: |
-    resources to retrieve fulfillments, e.g. tickets
-- name: Refund
-  description: |
-    resources to get and accept a refund offer
-- name: Exchange
-  description: |
-    resources to get exchange offers and book it
-- name: On Hold
-  description: |
-    resources to put a pre-booking on hold for a given time limit
-- name: Release
-  description: |
-    resources to release a fulfillment (two-step refund where the first step is to mark the release date, release allocated seats, invalidate the ticket. Refund of money is performed in the second step.)
-- name: Complaint Management
-  description: |
-    resources to manage complaints
-- name: Cancel Fulfillments
-  description: |
-    resources to cancel fulfillments
-- name: Booking Documents
-  description: |
-    resources to get documents
-- name: Reimbursement Management
-  description: |
-    resources to manage reimbursements
-- name: Travel Account
-  description: |
-    resource to get a travel account
-- name: On-Demand Services
-  description: |
-    resources to handle contiuous on n-demand servces (e.g. scooter)
-- name: Search
-  description: |
-    search resources
-- name: Master Data
-  description: |
-    resources to get master data
-- name: Product
-  description: |
-    resources to get product and product related master data
-security:
-- oAuth2ClientCredentials: []
+  - name: Versions
+    description: |
+      information about the available versions of the OSDM API
+    x-displayName: Versions
+  - name: Places
+    description: |
+      resources to search for places
+    x-displayName: Places
+  - name: Trips
+    description: |
+      resources to search for trips
+    x-displayName: Trips
+  - name: Offers
+    description: |
+      resources to get bookable offers
+    x-displayName: Offers
+  - name: Offer Overview
+    description: |
+      resources to get an overview of prices without detailed offer information
+    x-displayName: Offer Overview
+  - name: Availabilities
+    description: |
+      resources to query availabilities before or after pre-booking
+    x-displayName: Availabilities
+  - name: BookingPart
+    description: |
+      resources to add and remove offer parts to a pre-booked booking
+    x-displayName: BookingPart
+  - name: Bookings
+    description: |
+      resources to manipulate bookings
+    x-displayName: Bookings
+  - name: BookedOffers
+    description: |
+      resources to manipulate bookings
+    x-displayName: BookedOffers
+  - name: Bookings Search
+    description: |
+      resources to search for bookings
+    x-displayName: Bookings Search
+  - name: Bookings Split
+    description: |
+      resources to split a booking
+    x-displayName: Bookings Split
+  - name: Purchaser
+    description: >
+      resources to manipulate a purchaser's information at every stage of the
+      flow
+    x-displayName: Purchaser
+  - name: Passengers
+    description: >
+      resources to manipulate a passenger's information at every stage of the
+      flow
+    x-displayName: Passengers
+  - name: Passenger Categories
+    description: |
+      optional objects to simplify the entry of passenger specifications
+    x-displayName: Passenger Categories
+  - name: Fulfillments
+    description: |
+      resources to retrieve fulfillments, e.g. tickets
+    x-displayName: Fulfillments
+  - name: Refund
+    description: |
+      resources to get and accept a refund offer
+    x-displayName: Refund
+  - name: Exchange
+    description: |
+      resources to get exchange offers and book it
+    x-displayName: Exchange
+  - name: On Hold
+    description: |
+      resources to put a pre-booking on hold for a given time limit
+    x-displayName: On Hold
+  - name: Release
+    description: >
+      resources to release a fulfillment (two-step refund where the first step
+      is to mark the release date, release allocated seats, invalidate the
+      ticket. Refund of money is performed in the second step.)
+    x-displayName: Release
+  - name: Complaint Management
+    description: |
+      resources to manage complaints
+    x-displayName: Complaint Management
+  - name: Cancel Fulfillments
+    description: |
+      resources to cancel fulfillments
+    x-displayName: Cancel Fulfillments
+  - name: Booking Documents
+    description: |
+      resources to get documents
+    x-displayName: Booking Documents
+  - name: Reimbursement Management
+    description: |
+      resources to manage reimbursements
+    x-displayName: Reimbursement Management
+  - name: Travel Account
+    description: |
+      resource to get a travel account
+    x-displayName: Travel Account
+  - name: On-Demand Services
+    description: |
+      resources to handle contiuous on n-demand servces (e.g. scooter)
+    x-displayName: On-Demand Services
+  - name: Search
+    description: |
+      search resources
+    x-displayName: Search
+  - name: Master Data
+    description: |
+      resources to get master data
+    x-displayName: Master Data
+  - name: Product
+    description: |
+      resources to get product and product related master data
+    x-displayName: Product
+  - name: Events
+    description: Webhook event notifications from allocator to distributor.
+    x-displayName: Events
 paths:
   /versions:
-    $ref: ./paths/versions.yml#/~1versions
+    $ref: paths/versions.yml
   /places:
-    $ref: ./paths/places.yml#/~1places
+    $ref: paths/places.yml
   /places/{placeId}:
-    $ref: ./paths/places.yml#/~1places~1{placeId}
+    $ref: paths/places_{placeId}.yml
   /trips-collection:
-    $ref: ./paths/trips.yml#/~1trips-collection
+    $ref: paths/trips-collection.yml
   /trips-collections/{tripsCollectionId}:
-    $ref: ./paths/trips.yml#/~1trips-collections~1{tripsCollectionId}
+    $ref: paths/trips-collections_{tripsCollectionId}.yml
   /trips:
-    $ref: ./paths/trips.yml#/~1trips
+    $ref: paths/trips.yml
   /trips/{tripId}:
-    $ref: ./paths/trips.yml#/~1trips~1{tripId}
+    $ref: paths/trips_{tripId}.yml
   /offers:
-    $ref: ./paths/offers.yml#/~1offers
+    $ref: paths/offers.yml
   /bookings/{bookingId}/booked-offers/{bookedOfferId}/additional-offers:
-    $ref: ./paths/offers.yml#/~1bookings~1{bookingId}~1booked-offers~1{bookedOfferId}~1additional-offers
+    $ref: >-
+      paths/bookings_{bookingId}_booked-offers_{bookedOfferId}_additional-offers.yml
   /bookings/{bookingId}/on-hold-offer:
-    $ref: ./paths/on-hold.yml#/~1bookings~1{bookingId}~1on-hold-offer
+    $ref: paths/bookings_{bookingId}_on-hold-offer.yml
   /offer-overview-route:
-    $ref: ./paths/offers.yml#/~1offer-overview-route
+    $ref: paths/offer-overview-route.yml
   /offer-overview-trip:
-    $ref: ./paths/offers.yml#/~1offer-overview-trip
+    $ref: paths/offer-overview-trip.yml
   /bookings/{bookingId}/on-hold-offer/{onHoldOfferId}:
-    $ref: ./paths/on-hold.yml#/~1bookings~1{bookingId}~1on-hold-offer~1{onHoldOfferId}
+    $ref: paths/bookings_{bookingId}_on-hold-offer_{onHoldOfferId}.yml
   /bookings/{bookingId}/passengers/{passengerId}:
-    $ref: ./paths/passengers.yml#/~1bookings~1{bookingId}~1passengers~1{passengerId}
+    $ref: paths/bookings_{bookingId}_passengers_{passengerId}.yml
   /bookings/{bookingId}/passengers:
-    $ref: ./paths/passengers.yml#/~1bookings~1{bookingId}~1passengers
+    $ref: paths/bookings_{bookingId}_passengers.yml
   /bookings/{bookingId}/purchaser:
-    $ref: ./paths/purchaser.yml#/~1bookings~1{bookingId}~1purchaser
+    $ref: paths/bookings_{bookingId}_purchaser.yml
   /bookings/{bookingId}/booked-offers:
-    $ref: ./paths/booked-offers.yml#/~1bookings~1{bookingId}~1booked-offers
+    $ref: paths/bookings_{bookingId}_booked-offers.yml
   /bookings/{bookingId}/booked-offers/{bookedOfferId}:
-    $ref: ./paths/booked-offers.yml#/~1bookings~1{bookingId}~1booked-offers~1{bookedOfferId}
+    $ref: paths/bookings_{bookingId}_booked-offers_{bookedOfferId}.yml
   /bookings/{bookingId}/booked-offers/{bookedOfferId}/passengers/{passengerId}:
-    $ref: ./paths/booked-offers.yml#/~1bookings~1{bookingId}~1booked-offers~1{bookedOfferId}~1passengers~1{passengerId}
+    $ref: >-
+      paths/bookings_{bookingId}_booked-offers_{bookedOfferId}_passengers_{passengerId}.yml
   /bookings/{bookingId}/booked-offers/{bookedOfferId}/admissions/{admissionId}:
-    $ref: ./paths/booking-parts.yml#/~1bookings~1{bookingId}~1booked-offers~1{bookedOfferId}~1admissions~1{admissionId}
+    $ref: >-
+      paths/bookings_{bookingId}_booked-offers_{bookedOfferId}_admissions_{admissionId}.yml
   /bookings/{bookingId}/booked-offers/{bookedOfferId}/offer-parts:
-    $ref: ./paths/booking-parts.yml#/~1bookings~1{bookingId}~1booked-offers~1{bookedOfferId}~1offer-parts
+    $ref: paths/bookings_{bookingId}_booked-offers_{bookedOfferId}_offer-parts.yml
   /bookings:
-    $ref: ./paths/bookings.yml#/~1bookings
+    $ref: paths/bookings.yml
   /bookings/{bookingId}:
-    $ref: ./paths/bookings.yml#/~1bookings~1{bookingId}
+    $ref: paths/bookings_{bookingId}.yml
   /bookings/{bookingId}/cleanup:
-    $ref: ./paths/bookings.yml#/~1bookings~1{bookingId}~1cleanup
+    $ref: paths/bookings_{bookingId}_cleanup.yml
   /bookings/{bookingId}/history:
-    $ref: ./paths/bookings.yml#/~1bookings~1{bookingId}~1history
+    $ref: paths/bookings_{bookingId}_history.yml
   /bookings-search:
-    $ref: ./paths/bookings-search.yml#/~1bookings-search
+    $ref: paths/bookings-search.yml
   /bookings/{bookingId}/split:
-    $ref: ./paths/bookings-split.yml#/~1bookings~1{bookingId}~1split
+    $ref: paths/bookings_{bookingId}_split.yml
   /bookings/{bookingId}/fulfillments:
-    $ref: ./paths/fulfillments.yml#/~1bookings~1{bookingId}~1fulfillments
+    $ref: paths/bookings_{bookingId}_fulfillments.yml
   /fulfillments:
-    $ref: ./paths/fulfillments.yml#/~1fulfillments
+    $ref: paths/fulfillments.yml
   /fulfillments/{fulfillmentId}:
-    $ref: ./paths/fulfillments.yml#/~1fulfillments~1{fulfillmentId}
+    $ref: paths/fulfillments_{fulfillmentId}.yml
   /bookings/{bookingId}/fulfillment-check:
-    $ref: ./paths/fulfillments.yml#/~1bookings~1{bookingId}~1fulfillment-check
+    $ref: paths/bookings_{bookingId}_fulfillment-check.yml
   /fulfillments/{fulfillmentId}/continuous-service-usage/{continuousServiceUsageId}:
-    $ref: ./paths/fulfillments.yml#/~1fulfillments~1{fulfillmentId}~1continuous-service-usage~1{continuousServiceUsageId}
+    $ref: >-
+      paths/fulfillments_{fulfillmentId}_continuous-service-usage_{continuousServiceUsageId}.yml
   /bookings/{bookingId}/refund-offers:
-    $ref: ./paths/refund.yml#/~1bookings~1{bookingId}~1refund-offers
+    $ref: paths/bookings_{bookingId}_refund-offers.yml
   /bookings/{bookingId}/refund-offers/{refundOfferId}/confirmation-check:
-    $ref: ./paths/refund.yml#/~1bookings~1{bookingId}~1refund-offers~1{refundOfferId}~1confirmation-check
+    $ref: >-
+      paths/bookings_{bookingId}_refund-offers_{refundOfferId}_confirmation-check.yml
   /bookings/{bookingId}/refund-offers/{refundOfferId}:
-    $ref: ./paths/refund.yml#/~1bookings~1{bookingId}~1refund-offers~1{refundOfferId}
+    $ref: paths/bookings_{bookingId}_refund-offers_{refundOfferId}.yml
   /bookings/{bookingId}/release-offers:
-    $ref: ./paths/release.yml#/~1bookings~1{bookingId}~1release-offers
+    $ref: paths/bookings_{bookingId}_release-offers.yml
   /bookings/{bookingId}/release-offers/{releaseOfferId}:
-    $ref: ./paths/release.yml#/~1bookings~1{bookingId}~1release-offers~1{releaseOfferId}
+    $ref: paths/bookings_{bookingId}_release-offers_{releaseOfferId}.yml
   /bookings/{bookingId}/cancel-fulfillments-offers:
-    $ref: ./paths/cancel-fulfillments.yml#/~1bookings~1{bookingId}~1cancel-fulfillments-offers
+    $ref: paths/bookings_{bookingId}_cancel-fulfillments-offers.yml
   /bookings/{bookingId}/cancel-fulfillments-offers/{cancelFulfillmentsOfferId}:
-    $ref: ./paths/cancel-fulfillments.yml#/~1bookings~1{bookingId}~1cancel-fulfillments-offers~1{cancelFulfillmentsOfferId}
+    $ref: >-
+      paths/bookings_{bookingId}_cancel-fulfillments-offers_{cancelFulfillmentsOfferId}.yml
   /bookings/{bookingId}/exchange-offers:
-    $ref: ./paths/exchange.yml#/~1bookings~1{bookingId}~1exchange-offers
+    $ref: paths/bookings_{bookingId}_exchange-offers.yml
   /bookings/{bookingId}/exchange-operations:
-    $ref: ./paths/exchange.yml#/~1bookings~1{bookingId}~1exchange-operations
+    $ref: paths/bookings_{bookingId}_exchange-operations.yml
   /bookings/{bookingId}/exchange-operations/{exchangeOperationId}:
-    $ref: ./paths/exchange.yml#/~1bookings~1{bookingId}~1exchange-operations~1{exchangeOperationId}
+    $ref: paths/bookings_{bookingId}_exchange-operations_{exchangeOperationId}.yml
   /complaints:
-    $ref: ./paths/complaints.yml#/~1complaints
+    $ref: paths/complaints.yml
   /complaints/{complaintId}:
-    $ref: ./paths/complaints.yml#/~1complaints~1{complaintId}
+    $ref: paths/complaints_{complaintId}.yml
   /coach-deck-layouts:
-    $ref: ./paths/master-data.yml#/~1coach-deck-layouts
+    $ref: paths/coach-deck-layouts.yml
   /coach-deck-layouts/{layoutId}:
-    $ref: ./paths/master-data.yml#/~1coach-deck-layouts~1{layoutId}
+    $ref: paths/coach-deck-layouts_{layoutId}.yml
   /passenger-categories:
-    $ref: ./paths/master-data.yml#/~1passenger-categories
+    $ref: paths/passenger-categories.yml
   /reduction-card-types:
-    $ref: ./paths/master-data.yml#/~1reduction-card-types
+    $ref: paths/reduction-card-types.yml
   /zones:
-    $ref: ./paths/master-data.yml#/~1zones
+    $ref: paths/zones.yml
   /bookings/{bookingId}/documents:
-    $ref: ./paths/documents.yml#/~1bookings~1{bookingId}~1documents
+    $ref: paths/bookings_{bookingId}_documents.yml
   /bookings/{bookingId}/documents/{documentId}:
-    $ref: ./paths/documents.yml#/~1bookings~1{bookingId}~1documents~1{documentId}
+    $ref: paths/bookings_{bookingId}_documents_{documentId}.yml
   /bookings/{bookingId}/reimbursements:
-    $ref: ./paths/reimbursements.yml#/~1bookings~1{bookingId}~1reimbursements
+    $ref: paths/bookings_{bookingId}_reimbursements.yml
   /bookings/{bookingId}/reimbursements/{reimbursementId}:
-    $ref: ./paths/reimbursements.yml#/~1bookings~1{bookingId}~1reimbursements~1{reimbursementId}
+    $ref: paths/bookings_{bookingId}_reimbursements_{reimbursementId}.yml
   /travel-accounts:
-    $ref: ./paths/travel-accounts.yml#/~1travel-accounts
+    $ref: paths/travel-accounts.yml
   /availabilities/vehicle-place-map:
-    $ref: ./paths/availabilities.yml#/~1availabilities~1vehicle-place-map
+    $ref: paths/availabilities_vehicle-place-map.yml
   /availabilities/nearby:
-    $ref: ./paths/availabilities.yml#/~1availabilities~1nearby
+    $ref: paths/availabilities_nearby.yml
   /availabilities/preferences:
-    $ref: ./paths/availabilities.yml#/~1availabilities~1preferences
+    $ref: paths/availabilities_preferences.yml
   /availabilities/on-demand-services:
-    $ref: ./paths/availabilities.yml#/~1availabilities~1on-demand-services
+    $ref: paths/availabilities_on-demand-services.yml
   /products:
-    $ref: ./paths/products.yml#/~1products
+    $ref: paths/products.yml
   /products/{productId}:
-    $ref: ./paths/products.yml#/~1products~1{productId}
+    $ref: paths/products_{productId}.yml
   /product-tags:
-    $ref: ./paths/products.yml#/~1product-tags
+    $ref: paths/product-tags.yml
   /products-search:
-    $ref: ./paths/products.yml#/~1products-search
+    $ref: paths/products-search.yml
+webhooks:
+  events:
+    $ref: ./webhooks/events.yml
 components:
   securitySchemes:
     oAuth2ClientCredentials:
-      $ref: ./components/security-schemes.yml#/oAuth2ClientCredentials
-  parameters:
-    acceptLanguage:
-      $ref: ./components/parameters.yml#/acceptLanguage
-    idempotencyKey:
-      $ref: ./components/parameters.yml#/idempotencyKey
-    ifNoneMatch:
-      $ref: ./components/parameters.yml#/ifNoneMatch
-    requestor:
-      $ref: ./components/parameters.yml#/requestor
-    traceParent:
-      $ref: ./components/parameters.yml#/traceParent
-    traceState:
-      $ref: ./components/parameters.yml#/traceState
-    acceptNamespace:
-      $ref: ./components/parameters.yml#/acceptNamespace
-    page:
-      $ref: ./components/parameters.yml#/page
-  responses:
-    SeeOtherResponse:
-      $ref: ./components/responses.yml#/SeeOtherResponse
-    NotModifiedResponse:
-      $ref: ./components/responses.yml#/NotModifiedResponse
-    BadRequestResponse:
-      $ref: ./components/responses.yml#/BadRequestResponse
-    CleanupRequestAcceptedResponse:
-      $ref: ./components/responses.yml#/CleanupRequestAcceptedResponse
-    ConflictResponse:
-      $ref: ./components/responses.yml#/ConflictResponse
-    DefaultErrorResponse:
-      $ref: ./components/responses.yml#/DefaultErrorResponse
-    ForbiddenResponse:
-      $ref: ./components/responses.yml#/ForbiddenResponse
-    FulfillmentRequestAcceptedResponse:
-      $ref: ./components/responses.yml#/FulfillmentRequestAcceptedResponse
-    InternalServerErrorResponse:
-      $ref: ./components/responses.yml#/InternalServerErrorResponse
-    NotFoundResponse:
-      $ref: ./components/responses.yml#/NotFoundResponse
-    NotImplementedResponse:
-      $ref: ./components/responses.yml#/NotImplementedResponse
-    ServiceUnavailableResponse:
-      $ref: ./components/responses.yml#/ServiceUnavailableResponse
-    UnauthorizedResponse:
-      $ref: ./components/responses.yml#/UnauthorizedResponse
-    UnsupportedMediaTypeResponse:
-      $ref: ./components/responses.yml#/UnsupportedMediaTypeResponse
-  schemas:
-    AbstractBookingPart:
-      $ref: ./schemas/booking.yml#/AbstractBookingPart
-    AbstractOfferPart:
-      $ref: ./schemas/offer.yml#/AbstractOfferPart
-    AbstractPassenger:
-      $ref: ./schemas/person.yml#/AbstractPassenger
-    AbstractTransportableVehicleSpecification:
-      $ref: ./schemas/transportable.yml#/AbstractTransportableVehicleSpecification
-    AbstractTravelAccount:
-      $ref: ./schemas/travel-account.yml#/AbstractTravelAccount
-    AbstractTravelAccountUnit:
-      $ref: ./schemas/travel-account.yml#/AbstractTravelAccountUnit
-    AccessFeature:
-      $ref: ./schemas/place.yml#/AccessFeature
-    AccessFeatureStatus:
-      $ref: ./schemas/place.yml#/AccessFeatureStatus
-    AccessibilityFeature:
-      $ref: ./schemas/place.yml#/AccessibilityFeature
-    AccommodationSubType:
-      $ref: ./schemas/place.yml#/AccommodationSubType
-    AccommodationType:
-      $ref: ./schemas/place.yml#/AccommodationType
-    AccountingRef:
-      $ref: ./schemas/_common.yml#/AccountingRef
-    ActualPassengerType:
-      $ref: ./schemas/person.yml#/ActualPassengerType
-    AdditionalOfferCollectionResponse:
-      $ref: ./schemas/offer.yml#/AdditionalOfferCollectionResponse
-    Address:
-      $ref: ./schemas/ojp/_common.yml#/Address
-    AddressRef:
-      $ref: ./schemas/ojp/_common.yml#/AddressRef
-    Admission:
-      $ref: ./schemas/offer.yml#/Admission
-    AdmissionOfferPart:
-      $ref: ./schemas/offer.yml#/AdmissionOfferPart
-    AfterSaleCondition:
-      $ref: ./schemas/aftersales.yml#/AfterSaleCondition
-    AfterSaleConditionType:
-      $ref: ./schemas/aftersales.yml#/AfterSaleConditionType
-    AfterSalesOverrideDetails:
-      $ref: ./schemas/aftersales.yml#/AfterSalesOverrideDetails
-    Alight:
-      $ref: ./schemas/ojp/trip.yml#/Alight
-    AlightSpecification:
-      $ref: ./schemas/trip.yml#/AlightSpecification
-    Ancillary:
-      $ref: ./schemas/offer.yml#/Ancillary
-    AncillaryGroup:
-      $ref: ./schemas/offer.yml#/AncillaryGroup
-    AncillaryOfferPart:
-      $ref: ./schemas/offer.yml#/AncillaryOfferPart
-    AncillaryRelation:
-      $ref: ./schemas/offer.yml#/AncillaryRelation
-    AncillarySelection:
-      $ref: ./schemas/offer.yml#/AncillarySelection
-    AncillarySubType:
-      $ref: ./schemas/offer.yml#/AncillarySubType
-    AncillaryType:
-      $ref: ./schemas/offer.yml#/AncillaryType
-    AnonymousPassengerSpecification:
-      $ref: ./schemas/person.yml#/AnonymousPassengerSpecification
-    ApiNextVersion:
-      $ref: ./schemas/_common.yml#/ApiNextVersion
-    ApiVersion:
-      $ref: ./schemas/_common.yml#/ApiVersion
-    ApplicabilityType:
-      $ref: ./schemas/_common.yml#/ApplicabilityType
-    AppliedFee:
-      $ref: ./schemas/_common.yml#/AppliedFee
-    AppliedReductions:
-      $ref: ./schemas/_common.yml#/AppliedReductions
-    AttachableItemType:
-      $ref: ./schemas/transportable.yml#/AttachableItemType
-    AvailabilityStatus:
-      $ref: ./schemas/place.yml#/AvailabilityStatus
-    AvailablePlace:
-      $ref: ./schemas/place.yml#/AvailablePlace
-    AvailablePlacePreferences:
-      $ref: ./schemas/place.yml#/AvailablePlacePreferences
-    BackOfficeChangeType:
-      $ref: ./schemas/booking.yml#/BackOfficeChangeType
-    BackOfficeStatus:
-      $ref: ./schemas/_common.yml#/BackOfficeStatus
-    BankAccountReference:
-      $ref: ./schemas/_common.yml#/BankAccountReference
-    BankIdCode:
-      $ref: ./schemas/_common.yml#/BankIdCode
-    BarCodeType:
-      $ref: ./schemas/_common.yml#/BarCodeType
-    Board:
-      $ref: ./schemas/ojp/trip.yml#/Board
-    BoardingPositionAssignment:
-      $ref: ./schemas/place.yml#/BoardingPositionAssignment
-    BoardSpecification:
-      $ref: ./schemas/trip.yml#/BoardSpecification
-    BookedOffer:
-      $ref: ./schemas/booking.yml#/BookedOffer
-    BookedOfferPartRequest:
-      $ref: ./schemas/booking.yml#/BookedOfferPartRequest
-    BookedOfferPartResponse:
-      $ref: ./schemas/booking.yml#/BookedOfferPartResponse
-    BookedOfferRequest:
-      $ref: ./schemas/booking.yml#/BookedOfferRequest
-    BookedOfferResponse:
-      $ref: ./schemas/booking.yml#/BookedOfferResponse
-    BookedOfferSummary:
-      $ref: ./schemas/booking.yml#/BookedOfferSummary
-    Booking:
-      $ref: ./schemas/booking.yml#/Booking
-    BookingAccess:
-      $ref: ./schemas/booking.yml#/BookingAccess
-    BookingAccessTiming:
-      $ref: ./schemas/booking.yml#/BookingAccessTiming
-    BookingArrangement:
-      $ref: ./schemas/booking.yml#/BookingArrangement
-    BookingChangeType:
-      $ref: ./schemas/booking.yml#/BookingChangeType
-    BookingCleanupRequest:
-      $ref: ./schemas/booking.yml#/BookingCleanupRequest
-    BookingEvent:
-      $ref: ./schemas/booking.yml#/BookingEvent
-    BookingHistoryResponse:
-      $ref: ./schemas/booking.yml#/BookingHistoryResponse
-    BookingMethod:
-      $ref: ./schemas/booking.yml#/BookingMethod
-    BookingPartReference:
-      $ref: ./schemas/booking.yml#/BookingPartReference
-    BookingPartStatus:
-      $ref: ./schemas/booking.yml#/BookingPartStatus
-    BookingPartSummary:
-      $ref: ./schemas/booking.yml#/BookingPartSummary
-    BookingPartType:
-      $ref: ./schemas/booking.yml#/BookingPartType
-    BookingPatchRequest:
-      $ref: ./schemas/booking.yml#/BookingPatchRequest
-    BookingPurchaseMoment:
-      $ref: ./schemas/booking.yml#/BookingPurchaseMoment
-    BookingRequest:
-      $ref: ./schemas/booking.yml#/BookingRequest
-    BookingResponse:
-      $ref: ./schemas/booking.yml#/BookingResponse
-    BookingResponseContent:
-      $ref: ./schemas/booking.yml#/BookingResponseContent
-    BookingSearchParameters:
-      $ref: ./schemas/booking.yml#/BookingSearchParameters
-    BookingSearchRequest:
-      $ref: ./schemas/booking.yml#/BookingSearchRequest
-    BookingSearchResponse:
-      $ref: ./schemas/booking.yml#/BookingSearchResponse
-    BookingSearchResult:
-      $ref: ./schemas/booking.yml#/BookingSearchResult
-    BookingSplit:
-      $ref: ./schemas/booking.yml#/BookingSplit
-    BookingSplitGroup:
-      $ref: ./schemas/booking.yml#/BookingSplitGroup
-    BookingSplitRequest:
-      $ref: ./schemas/booking.yml#/BookingSplitRequest
-    BookingSplitResponse:
-      $ref: ./schemas/booking.yml#/BookingSplitResponse
-    BookingSplitResult:
-      $ref: ./schemas/booking.yml#/BookingSplitResult
-    BorderRadius:
-      $ref: ./schemas/place.yml#/BorderRadius
-    Calendar:
-      $ref: ./schemas/_common.yml#/Calendar
-    CancelFulfillmentsOffer:
-      $ref: ./schemas/aftersales.yml#/CancelFulfillmentsOffer
-    CancelFulfillmentsOfferCollectionResponse:
-      $ref: ./schemas/aftersales.yml#/CancelFulfillmentsOfferCollectionResponse
-    CancelFulfillmentsOfferPatchRequest:
-      $ref: ./schemas/aftersales.yml#/CancelFulfillmentsOfferPatchRequest
-    CancelFulfillmentsOfferRequest:
-      $ref: ./schemas/aftersales.yml#/CancelFulfillmentsOfferRequest
-    CancelFulfillmentsOfferResponse:
-      $ref: ./schemas/aftersales.yml#/CancelFulfillmentsOfferResponse
-    CancelFulfillmentsStatus:
-      $ref: ./schemas/aftersales.yml#/CancelFulfillmentsStatus
-    Car:
-      $ref: ./schemas/transportable.yml#/Car
-    CardReference:
-      $ref: ./schemas/_common.yml#/CardReference
-    CardTypeReference:
-      $ref: ./schemas/_common.yml#/CardTypeReference
-    CarRack:
-      $ref: ./schemas/transportable.yml#/CarRack
-    CarrierConstraint:
-      $ref: ./schemas/fare.yml#/CarrierConstraint
-    CarrierFilter:
-      $ref: ./schemas/ojp/_common.yml#/CarrierFilter
-    CarSpecification:
-      $ref: ./schemas/transportable.yml#/CarSpecification
-    ClaimedJourneyDetails:
-      $ref: ./schemas/complaint.yml#/ClaimedJourneyDetails
-    ClaimedLeg:
-      $ref: ./schemas/complaint.yml#/ClaimedLeg
-    CoachAvailability:
-      $ref: ./schemas/place.yml#/CoachAvailability
-    CoachDeckLayout:
-      $ref: ./schemas/place.yml#/CoachDeckLayout
-    CoachDeckLayoutCollectionResponse:
-      $ref: ./schemas/place.yml#/CoachDeckLayoutCollectionResponse
-    CoachDeckLayoutResponse:
-      $ref: ./schemas/place.yml#/CoachDeckLayoutResponse
-    CoachDeckLevel:
-      $ref: ./schemas/place.yml#/CoachDeckLevel
-    CombinationTag:
-      $ref: ./schemas/offer.yml#/CombinationTag
-    CompanyDetail:
-      $ref: ./schemas/person.yml#/CompanyDetail
-    CompanyRef:
-      $ref: ./schemas/_common.yml#/CompanyRef
-    CompartmentAvailability:
-      $ref: ./schemas/place.yml#/CompartmentAvailability
-    CompartmentPreSelection:
-      $ref: ./schemas/place.yml#/CompartmentPreSelection
-    Complaint:
-      $ref: ./schemas/complaint.yml#/Complaint
-    ComplaintChangeReason:
-      $ref: ./schemas/complaint.yml#/ComplaintChangeReason
-    ComplaintDecision:
-      $ref: ./schemas/complaint.yml#/ComplaintDecision
-    ComplaintEvent:
-      $ref: ./schemas/complaint.yml#/ComplaintEvent
-    ComplaintPatchRequest:
-      $ref: ./schemas/complaint.yml#/ComplaintPatchRequest
-    ComplaintRequest:
-      $ref: ./schemas/complaint.yml#/ComplaintRequest
-    ComplaintResponse:
-      $ref: ./schemas/complaint.yml#/ComplaintResponse
-    Condition:
-      $ref: ./schemas/_common.yml#/Condition
-    ConditionSpecification:
-      $ref: ./schemas/aftersales.yml#/ConditionSpecification
-    ConditionType:
-      $ref: ./schemas/_common.yml#/ConditionType
-    ConfirmedRefund:
-      $ref: ./schemas/aftersales.yml#/ConfirmedRefund
-    ConfirmedRelease:
-      $ref: ./schemas/aftersales.yml#/ConfirmedRelease
-    ContactDetail:
-      $ref: ./schemas/_common.yml#/ContactDetail
-    ContextType:
-      $ref: ./schemas/_common.yml#/ContextType
-    ContinousOperationMode:
-      $ref: ./schemas/transportable.yml#/ContinousOperationMode
-    ContinuousLeg:
-      $ref: ./schemas/ojp/trip.yml#/ContinuousLeg
-    ContinuousService:
-      $ref: ./schemas/ojp/continuous-service.yml#/ContinuousService
-    ContinuousServiceAvailabilityScope:
-      $ref: ./schemas/continuous-service.yml#/ContinuousServiceAvailabilityScope
-    ContinuousServiceBookingPart:
-      $ref: ./schemas/continuous-service.yml#/ContinuousServiceBookingPart
-    ContinuousServiceOfferPart:
-      $ref: ./schemas/offer.yml#/ContinuousServiceOfferPart
-    ContinuousServicePickUpPlace:
-      $ref: ./schemas/continuous-service.yml#/ContinuousServicePickUpPlace
-    ContinuousServiceProcessIndication:
-      $ref: ./schemas/continuous-service.yml#/ContinuousServiceProcessIndication
-    ContinuousServicesAvailabilityResponse:
-      $ref: ./schemas/continuous-service.yml#/ContinuousServicesAvailabilityResponse
-    ContinuousServiceUsage:
-      $ref: ./schemas/continuous-service.yml#/ContinuousServiceUsage
-    ContinuousServiceUsagePatchRequest:
-      $ref: ./schemas/continuous-service.yml#/ContinuousServiceUsagePatchRequest
-    ContinuousServiceUsageStatus:
-      $ref: ./schemas/continuous-service.yml#/ContinuousServiceUsageStatus
-    ContinuousServiceVehicleAvailability:
-      $ref: ./schemas/continuous-service.yml#/ContinuousServiceVehicleAvailability
-    ContinuousServiceVehicleSelection:
-      $ref: ./schemas/continuous-service.yml#/ContinuousServiceVehicleSelection
-    ContinuousServiceVehicleType:
-      $ref: ./schemas/continuous-service.yml#/ContinuousServiceVehicleType
-    ControlSecurityType:
-      $ref: ./schemas/fulfillment.yml#/ControlSecurityType
-    CorporateCode:
-      $ref: ./schemas/_common.yml#/CorporateCode
-    CountryCode:
-      $ref: ./schemas/_common.yml#/CountryCode
-    Currency:
-      $ref: ./schemas/_common.yml#/Currency
-    CurrencyAmount:
-      $ref: ./schemas/_common.yml#/CurrencyAmount
-    CurrencyConversion:
-      $ref: ./schemas/_common.yml#/CurrencyConversion
-    CustomerComplaint:
-      $ref: ./schemas/complaint.yml#/CustomerComplaint
-    DatedJourney:
-      $ref: ./schemas/ojp/trip.yml#/DatedJourney
-    DateRange:
-      $ref: ./schemas/_common.yml#/DateRange
-    DayTravelAccountUnit:
-      $ref: ./schemas/travel-account.yml#/DayTravelAccountUnit
-    DecisionType:
-      $ref: ./schemas/complaint.yml#/DecisionType
-    DeckAvailability:
-      $ref: ./schemas/place.yml#/DeckAvailability
-    DirectionChange:
-      $ref: ./schemas/transportable.yml#/DirectionChange
-    Distance:
-      $ref: ./schemas/_common.yml#/Distance
-    DistributionMode:
-      $ref: ./schemas/_common.yml#/DistributionMode
-    Document:
-      $ref: ./schemas/fulfillment.yml#/Document
-    DocumentCollectionResponse:
-      $ref: ./schemas/fulfillment.yml#/DocumentCollectionResponse
-    DocumentContent:
-      $ref: ./schemas/fulfillment.yml#/DocumentContent
-    DocumentFormat:
-      $ref: ./schemas/fulfillment.yml#/DocumentFormat
-    DocumentRequest:
-      $ref: ./schemas/fulfillment.yml#/DocumentRequest
-    DocumentResponse:
-      $ref: ./schemas/fulfillment.yml#/DocumentResponse
-    DocumentScope:
-      $ref: ./schemas/fulfillment.yml#/DocumentScope
-    DocumentSpecification:
-      $ref: ./schemas/fulfillment.yml#/DocumentSpecification
-    DocumentType:
-      $ref: ./schemas/fulfillment.yml#/DocumentType
-    Event:
-      $ref: ./schemas/_common.yml#/Event
-    EventDetail:
-      $ref: ./schemas/_common.yml#/EventDetail
-    EventType:
-      $ref: ./schemas/_common.yml#/EventType
-    ExchangeableType:
-      $ref: ./schemas/aftersales.yml#/ExchangeableType
-    ExchangeBreakdownItem:
-      $ref: ./schemas/aftersales.yml#/ExchangeBreakdownItem
-    ExchangeOffer:
-      $ref: ./schemas/aftersales.yml#/ExchangeOffer
-    ExchangeOfferCollectionResponse:
-      $ref: ./schemas/aftersales.yml#/ExchangeOfferCollectionResponse
-    ExchangeOfferCollectionResponseContent:
-      $ref: ./schemas/aftersales.yml#/ExchangeOfferCollectionResponseContent
-    ExchangeOfferRequest:
-      $ref: ./schemas/aftersales.yml#/ExchangeOfferRequest
-    ExchangeOfferRequestParameter:
-      $ref: ./schemas/aftersales.yml#/ExchangeOfferRequestParameter
-    ExchangeOperation:
-      $ref: ./schemas/aftersales.yml#/ExchangeOperation
-    ExchangeOperationPatchRequest:
-      $ref: ./schemas/aftersales.yml#/ExchangeOperationPatchRequest
-    ExchangeOperationRequest:
-      $ref: ./schemas/aftersales.yml#/ExchangeOperationRequest
-    ExchangeOperationResponse:
-      $ref: ./schemas/aftersales.yml#/ExchangeOperationResponse
-    ExchangeOperationResponseContent:
-      $ref: ./schemas/aftersales.yml#/ExchangeOperationResponseContent
-    ExchangeParts:
-      $ref: ./schemas/aftersales.yml#/ExchangeParts
-    ExchangePassengersOfferRequestSpecification:
-      $ref: ./schemas/aftersales.yml#/ExchangePassengersOfferRequestSpecification
-    ExchangeServiceOfferRequestSpecification:
-      $ref: ./schemas/aftersales.yml#/ExchangeServiceOfferRequestSpecification
-    ExchangeStatus:
-      $ref: ./schemas/aftersales.yml#/ExchangeStatus
-    ExchangeTripOfferRequestSpecification:
-      $ref: ./schemas/aftersales.yml#/ExchangeTripOfferRequestSpecification
-    ExcludedTimeRange:
-      $ref: ./schemas/_common.yml#/ExcludedTimeRange
-    ExclusionScope:
-      $ref: ./schemas/fare.yml#/ExclusionScope
-    FacilityEnum:
-      $ref: ./schemas/product.yml#/FacilityEnum
-    FacilityGroupEnum:
-      $ref: ./schemas/product.yml#/FacilityGroupEnum
-    FareAfterSalesRules:
-      $ref: ./schemas/aftersales.yml#/FareAfterSalesRules
-    FareBookingPart:
-      $ref: ./schemas/fare.yml#/FareBookingPart
-    FareCombinationModel:
-      $ref: ./schemas/fare.yml#/FareCombinationModel
-    FareConnectionPoint:
-      $ref: ./schemas/fare.yml#/FareConnectionPoint
-    FareConnectionPointRef:
-      $ref: ./schemas/fare.yml#/FareConnectionPointRef
-    FareOfferPart:
-      $ref: ./schemas/offer.yml#/FareOfferPart
-    FareReferenceStation:
-      $ref: ./schemas/fare.yml#/FareReferenceStation
-    FareType:
-      $ref: ./schemas/fare.yml#/FareType
-    Fee:
-      $ref: ./schemas/_common.yml#/Fee
-    Flexibility:
-      $ref: ./schemas/offer.yml#/Flexibility
-    FlexibleStopAreaAssignment:
-      $ref: ./schemas/place.yml#/FlexibleStopAreaAssignment
-    Fulfillment:
-      $ref: ./schemas/fulfillment.yml#/Fulfillment
-    FulfillmentCollectionResponse:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentCollectionResponse
-    FulfillmentConstraint:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentConstraint
-    FulfillmentDocument:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentDocument
-    FulfillmentDocumentType:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentDocumentType
-    FulfillmentId:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentId
-    FulfillmentItemSecurityFeature:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentItemSecurityFeature
-    FulfillmentItemSecurityFeatureLinks:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentItemSecurityFeatureLinks
-    FulfillmentMediaType:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentMediaType
-    FulfillmentOption:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentOption
-    FulfillmentPart:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentPart
-    FulfillmentPatchRequest:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentPatchRequest
-    FulfillmentPostRequest:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentPostRequest
-    FulfillmentRef:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentRef
-    FulfillmentRefs:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentRefs
-    FulfillmentResponse:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentResponse
-    FulfillmentsPatchRequest:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentsPatchRequest
-    FulfillmentsResponse:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentsResponse
-    FulfillmentStatus:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentStatus
-    FulfillmentSummaryStatus:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentSummaryStatus
-    FulfillmentType:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentType
-    FulfillmentUsage:
-      $ref: ./schemas/fulfillment.yml#/FulfillmentUsage
-    Gender:
-      $ref: ./schemas/person.yml#/Gender
-    GeneralAttribute:
-      $ref: ./schemas/_common.yml#/GeneralAttribute
-    GeneralAttributeMasterData:
-      $ref: ./schemas/product.yml#/GeneralAttributeMasterData
-    GeoPosition:
-      $ref: ./schemas/ojp/_common.yml#/GeoPosition
-    GeoPositionRef:
-      $ref: ./schemas/ojp/_common.yml#/GeoPositionRef
-    GraphicElement:
-      $ref: ./schemas/place.yml#/GraphicElement
-    GraphicElementCode:
-      $ref: ./schemas/place.yml#/GraphicElementCode
-    GridDimension:
-      $ref: ./schemas/place.yml#/GridDimension
-    GridPosition:
-      $ref: ./schemas/place.yml#/GridPosition
-    GroupedFacilityItem:
-      $ref: ./schemas/offer.yml#/GroupedFacilityItem
-    HistoryStatus:
-      $ref: ./schemas/_common.yml#/HistoryStatus
-    IdentificationCard:
-      $ref: ./schemas/person.yml#/IdentificationCard
-    ImpactType:
-      $ref: ./schemas/complaint.yml#/ImpactType
-    IndicatedUsage:
-      $ref: ./schemas/booking.yml#/IndicatedUsage
-    InitialPlaceInput:
-      $ref: ./schemas/ojp/place.yml#/InitialPlaceInput
-    Intermediate:
-      $ref: ./schemas/ojp/trip.yml#/Intermediate
-    IntermediateSpecification:
-      $ref: ./schemas/trip.yml#/IntermediateSpecification
-    Latitude:
-      $ref: ./schemas/_common.yml#/Latitude
-    LegTrack:
-      $ref: ./schemas/trip.yml#/LegTrack
-    LegTrackSection:
-      $ref: ./schemas/trip.yml#/LegTrackSection
-    Line:
-      $ref: ./schemas/_common.yml#/Line
-    LineNumber:
-      $ref: ./schemas/_common.yml#/LineNumber
-    Links:
-      $ref: ./schemas/_common.yml#/Links
-    Longitude:
-      $ref: ./schemas/_common.yml#/Longitude
-    LuggageConstraint:
-      $ref: ./schemas/fare.yml#/LuggageConstraint
-    LuggageDimension:
-      $ref: ./schemas/fare.yml#/LuggageDimension
-    LuggageDimensionEnum:
-      $ref: ./schemas/fare.yml#/LuggageDimensionEnum
-    LuggageRestriction:
-      $ref: ./schemas/fare.yml#/LuggageRestriction
-    LuggageRestrictionRuleEnum:
-      $ref: ./schemas/fare.yml#/LuggageRestrictionRuleEnum
-    MasterDataValidity:
-      $ref: ./schemas/product.yml#/MasterDataValidity
-    Mode:
-      $ref: ./schemas/ojp/_common.yml#/Mode
-    ModeFilter:
-      $ref: ./schemas/ojp/_common.yml#/ModeFilter
-    MoneyTravelAccountUnit:
-      $ref: ./schemas/travel-account.yml#/MoneyTravelAccountUnit
-    MotorCycle:
-      $ref: ./schemas/transportable.yml#/MotorCycle
-    MotorcycleSpecification:
-      $ref: ./schemas/transportable.yml#/MotorcycleSpecification
-    MultiRideAccount:
-      $ref: ./schemas/travel-account.yml#/MultiRideAccount
-    MultiRideBalance:
-      $ref: ./schemas/travel-account.yml#/MultiRideBalance
-    NamedCompany:
-      $ref: ./schemas/_common.yml#/NamedCompany
-    NamedPlaceRef:
-      $ref: ./schemas/place.yml#/NamedPlaceRef
-    NamedTravelAccountUnit:
-      $ref: ./schemas/travel-account.yml#/NamedTravelAccountUnit
-    NonTripSearchCriteria:
-      $ref: ./schemas/trip.yml#/NonTripSearchCriteria
-    NotificationEvent:
-      $ref: ./schemas/complaint.yml#/NotificationEvent
-    Offer:
-      $ref: ./schemas/offer.yml#/Offer
-    OfferCollectionRequest:
-      $ref: ./schemas/offer.yml#/OfferCollectionRequest
-    OfferCollectionResponse:
-      $ref: ./schemas/offer.yml#/OfferCollectionResponse
-    OfferCollectionResponseContent:
-      $ref: ./schemas/offer.yml#/OfferCollectionResponseContent
-    OfferMode:
-      $ref: ./schemas/offer.yml#/OfferMode
-    OfferOverviewRoute:
-      $ref: ./schemas/_common.yml#/OfferOverviewRoute
-    OfferOverviewRouteRequest:
-      $ref: ./schemas/offer.yml#/OfferOverviewRouteRequest
-    OfferOverviewRouteResponse:
-      $ref: ./schemas/offer.yml#/OfferOverviewRouteResponse
-    OfferOverviewTrip:
-      $ref: ./schemas/_common.yml#/OfferOverviewTrip
-    OfferOverviewTripRequest:
-      $ref: ./schemas/offer.yml#/OfferOverviewTripRequest
-    OfferOverviewTripResponse:
-      $ref: ./schemas/offer.yml#/OfferOverviewTripResponse
-    OfferPartReference:
-      $ref: ./schemas/offer.yml#/OfferPartReference
-    OfferSearchCriteria:
-      $ref: ./schemas/offer.yml#/OfferSearchCriteria
-    OfferSelection:
-      $ref: ./schemas/offer.yml#/OfferSelection
-    OfferSummary:
-      $ref: ./schemas/offer.yml#/OfferSummary
-    OfferTag:
-      $ref: ./schemas/offer.yml#/OfferTag
-    OnHoldOffer:
-      $ref: ./schemas/offer.yml#/OnHoldOffer
-    OnHoldOfferPatchRequest:
-      $ref: ./schemas/offer.yml#/OnHoldOfferPatchRequest
-    OnHoldOfferRequest:
-      $ref: ./schemas/offer.yml#/OnHoldOfferRequest
-    OnHoldOfferResponse:
-      $ref: ./schemas/offer.yml#/OnHoldOfferResponse
-    OperatingDays:
-      $ref: ./schemas/ojp/trip.yml#/OperatingDays
-    OperationDayRef:
-      $ref: ./schemas/ojp/trip.yml#/OperationDayRef
-    Operator:
-      $ref: ./schemas/_common.yml#/Operator
-    Orientation:
-      $ref: ./schemas/place.yml#/Orientation
-    OsmTag:
-      $ref: ./schemas/ojp/_common.yml#/OsmTag
-    OverruleCode:
-      $ref: ./schemas/_common.yml#/OverruleCode
-    ParallelService:
-      $ref: ./schemas/transportable.yml#/ParallelService
-    PartType:
-      $ref: ./schemas/offer.yml#/PartType
-    Passenger:
-      $ref: ./schemas/person.yml#/Passenger
-    PassengerCategory:
-      $ref: ./schemas/person.yml#/PassengerCategory
-    PassengerConstraints:
-      $ref: ./schemas/person.yml#/PassengerConstraints
-    PassengerResponse:
-      $ref: ./schemas/person.yml#/PassengerResponse
-    PassengersBatchUpdateRequest:
-      $ref: ./schemas/person.yml#/PassengersBatchUpdateRequest
-    PassengersCollectionResponse:
-      $ref: ./schemas/person.yml#/PassengersCollectionResponse
-    PassengerSpecification:
-      $ref: ./schemas/person.yml#/PassengerSpecification
-    PassengerType:
-      $ref: ./schemas/person.yml#/PassengerType
-    PathGuidance:
-      $ref: ./schemas/place.yml#/PathGuidance
-    PathGuidanceAdvice:
-      $ref: ./schemas/place.yml#/PathGuidanceAdvice
-    PathGuidanceFollow:
-      $ref: ./schemas/place.yml#/PathGuidanceFollow
-    PathGuidancePathLink:
-      $ref: ./schemas/place.yml#/PathGuidancePathLink
-    PathGuidancePathLinkEnd:
-      $ref: ./schemas/place.yml#/PathGuidancePathLinkEnd
-    PathGuidanceSection:
-      $ref: ./schemas/place.yml#/PathGuidanceSection
-    PathGuidanceTransition:
-      $ref: ./schemas/place.yml#/PathGuidanceTransition
-    PathGuidanceTurnAction:
-      $ref: ./schemas/place.yml#/PathGuidanceTurnAction
-    PaymentMethod:
-      $ref: ./schemas/_common.yml#/PaymentMethod
-    PaymentType:
-      $ref: ./schemas/_common.yml#/PaymentType
-    Percentage:
-      $ref: ./schemas/_common.yml#/Percentage
-    PersonalMode:
-      $ref: ./schemas/person.yml#/PersonalMode
-    PersonDetail:
-      $ref: ./schemas/person.yml#/PersonDetail
-    PersonSearchRequest:
-      $ref: ./schemas/person.yml#/PersonSearchRequest
-    PhoneNumber:
-      $ref: ./schemas/person.yml#/PhoneNumber
-    Place:
-      $ref: ./schemas/ojp/place.yml#/Place
-    PlaceAllocation:
-      $ref: ./schemas/place.yml#/PlaceAllocation
-    PlaceAvailabilityCollectionResponse:
-      $ref: ./schemas/place.yml#/PlaceAvailabilityCollectionResponse
-    PlaceAvailabilityMapRequest:
-      $ref: ./schemas/place.yml#/PlaceAvailabilityMapRequest
-    PlaceAvailabilityMapResponse:
-      $ref: ./schemas/place.yml#/PlaceAvailabilityMapResponse
-    PlaceGroup:
-      $ref: ./schemas/place.yml#/PlaceGroup
-    PlaceLayout:
-      $ref: ./schemas/place.yml#/PlaceLayout
-    PlaceMasterData:
-      $ref: ./schemas/place.yml#/PlaceMasterData
-    PlaceParam:
-      $ref: ./schemas/ojp/place.yml#/PlaceParam
-    PlacePreferenceGroup:
-      $ref: ./schemas/place.yml#/PlacePreferenceGroup
-    PlacePreSelection:
-      $ref: ./schemas/place.yml#/PlacePreSelection
-    PlaceProperty:
-      $ref: ./schemas/place.yml#/PlaceProperty
-    PlaceRef:
-      $ref: ./schemas/ojp/place.yml#/PlaceRef
-    PlaceRequest:
-      $ref: ./schemas/ojp/place.yml#/PlaceRequest
-    PlaceResponse:
-      $ref: ./schemas/place.yml#/PlaceResponse
-    PlaceRestriction:
-      $ref: ./schemas/place.yml#/PlaceRestriction
-    PlaceSelection:
-      $ref: ./schemas/place.yml#/PlaceSelection
-    PlacesMasterDataResponse:
-      $ref: ./schemas/place.yml#/PlacesMasterDataResponse
-    PlaceType:
-      $ref: ./schemas/ojp/place.yml#/PlaceType
-    PlaceUsage:
-      $ref: ./schemas/ojp/place.yml#/PlaceUsage
-    PointOfInterest:
-      $ref: ./schemas/ojp/place.yml#/PointOfInterest
-    PointOfInterestCategory:
-      $ref: ./schemas/ojp/place.yml#/PointOfInterestCategory
-    PointOfInterestFilter:
-      $ref: ./schemas/ojp/place.yml#/PointOfInterestFilter
-    PointOfInterestRef:
-      $ref: ./schemas/ojp/place.yml#/PointOfInterestRef
-    Polygon:
-      $ref: ./schemas/_common.yml#/Polygon
-    PostalAddress:
-      $ref: ./schemas/_common.yml#/PostalAddress
-    Price:
-      $ref: ./schemas/_common.yml#/Price
-    PRMNeedType:
-      $ref: ./schemas/person.yml#/PRMNeedType
-    Problem:
-      $ref: ./schemas/_common.yml#/Problem
-    ProblemCollection:
-      $ref: ./schemas/_common.yml#/ProblemCollection
-    ProblemPointer:
-      $ref: ./schemas/_common.yml#/ProblemPointer
-    Product:
-      $ref: ./schemas/product.yml#/Product
-    ProductCategory:
-      $ref: ./schemas/ojp/product.yml#/ProductCategory
-    ProductCategoryRef:
-      $ref: ./schemas/ojp/product.yml#/ProductCategoryRef
-    ProductCollectionResponse:
-      $ref: ./schemas/product.yml#/ProductCollectionResponse
-    ProductLegAssociation:
-      $ref: ./schemas/offer.yml#/ProductLegAssociation
-    ProductRequestOfferSelection:
-      $ref: ./schemas/offer.yml#/ProductRequestOfferSelection
-    ProductResponse:
-      $ref: ./schemas/product.yml#/ProductResponse
-    ProductSearchRequest:
-      $ref: ./schemas/product.yml#/ProductSearchRequest
-    ProductSearchResponse:
-      $ref: ./schemas/product.yml#/ProductSearchResponse
-    ProductSpecification:
-      $ref: ./schemas/person.yml#/ProductSpecification
-    ProductSummary:
-      $ref: ./schemas/product.yml#/ProductSummary
-    ProductTag:
-      $ref: ./schemas/product.yml#/ProductTag
-    ProductTagGroup:
-      $ref: ./schemas/product.yml#/ProductTagGroup
-    ProductTagName:
-      $ref: ./schemas/product.yml#/ProductTagName
-    ProductTagsResponse:
-      $ref: ./schemas/product.yml#/ProductTagsResponse
-    ProductType:
-      $ref: ./schemas/product.yml#/ProductType
-    PromotionCode:
-      $ref: ./schemas/_common.yml#/PromotionCode
-    PTMode:
-      $ref: ./schemas/_common.yml#/PTMode
-    Purchaser:
-      $ref: ./schemas/person.yml#/Purchaser
-    PurchaserResponse:
-      $ref: ./schemas/person.yml#/PurchaserResponse
-    PurchaserSearchRequest:
-      $ref: ./schemas/person.yml#/PurchaserSearchRequest
-    PurchaserSpecification:
-      $ref: ./schemas/person.yml#/PurchaserSpecification
-    Quantity:
-      $ref: ./schemas/_common.yml#/Quantity
-    RectangleGeometry:
-      $ref: ./schemas/place.yml#/RectangleGeometry
-    ReductionCardAccount:
-      $ref: ./schemas/person.yml#/ReductionCardAccount
-    ReductionCardType:
-      $ref: ./schemas/person.yml#/ReductionCardType
-    ReductionCardTypeCollectionResponse:
-      $ref: ./schemas/person.yml#/ReductionCardTypeCollectionResponse
-    ReductionGranted:
-      $ref: ./schemas/person.yml#/ReductionGranted
-    RefundBreakdownItem:
-      $ref: ./schemas/aftersales.yml#/RefundBreakdownItem
-    RefundedFulfillmentSpecification:
-      $ref: ./schemas/aftersales.yml#/RefundedFulfillmentSpecification
-    RefundOffer:
-      $ref: ./schemas/aftersales.yml#/RefundOffer
-    RefundOfferCollectionResponse:
-      $ref: ./schemas/aftersales.yml#/RefundOfferCollectionResponse
-    RefundOfferPatchRequest:
-      $ref: ./schemas/aftersales.yml#/RefundOfferPatchRequest
-    RefundOfferRequest:
-      $ref: ./schemas/aftersales.yml#/RefundOfferRequest
-    RefundOfferResponse:
-      $ref: ./schemas/aftersales.yml#/RefundOfferResponse
-    RefundSpecification:
-      $ref: ./schemas/aftersales.yml#/RefundSpecification
-    RefundStatus:
-      $ref: ./schemas/aftersales.yml#/RefundStatus
-    RefundType:
-      $ref: ./schemas/aftersales.yml#/RefundType
-    RegionalConstraint:
-      $ref: ./schemas/fare.yml#/RegionalConstraint
-    RegionalValidity:
-      $ref: ./schemas/fare.yml#/RegionalValidity
-    RegionalValiditySummary:
-      $ref: ./schemas/fare.yml#/RegionalValiditySummary
-    RegulatoryCondition:
-      $ref: ./schemas/_common.yml#/RegulatoryCondition
-    Reimbursement:
-      $ref: ./schemas/complaint.yml#/Reimbursement
-    ReimbursementDecision:
-      $ref: ./schemas/complaint.yml#/ReimbursementDecision
-    ReimbursementEvent:
-      $ref: ./schemas/complaint.yml#/ReimbursementEvent
-    ReimbursementMethod:
-      $ref: ./schemas/complaint.yml#/ReimbursementMethod
-    ReimbursementPatchRequest:
-      $ref: ./schemas/complaint.yml#/ReimbursementPatchRequest
-    ReimbursementReason:
-      $ref: ./schemas/complaint.yml#/ReimbursementReason
-    ReimbursementRequest:
-      $ref: ./schemas/complaint.yml#/ReimbursementRequest
-    ReimbursementResponse:
-      $ref: ./schemas/complaint.yml#/ReimbursementResponse
-    ReimbursementStatus:
-      $ref: ./schemas/complaint.yml#/ReimbursementStatus
-    ReleaseOffer:
-      $ref: ./schemas/aftersales.yml#/ReleaseOffer
-    ReleaseOfferCollectionResponse:
-      $ref: ./schemas/aftersales.yml#/ReleaseOfferCollectionResponse
-    ReleaseOfferPatchRequest:
-      $ref: ./schemas/aftersales.yml#/ReleaseOfferPatchRequest
-    ReleaseOfferRequest:
-      $ref: ./schemas/aftersales.yml#/ReleaseOfferRequest
-    ReleaseOfferResponse:
-      $ref: ./schemas/aftersales.yml#/ReleaseOfferResponse
-    ReleaseSpecification:
-      $ref: ./schemas/aftersales.yml#/ReleaseSpecification
-    ReleaseStatus:
-      $ref: ./schemas/aftersales.yml#/ReleaseStatus
-    RequestedInformation:
-      $ref: ./schemas/_common.yml#/RequestedInformation
-    Reservation:
-      $ref: ./schemas/offer.yml#/Reservation
-    ReservationGroup:
-      $ref: ./schemas/offer.yml#/ReservationGroup
-    ReservationOfferPart:
-      $ref: ./schemas/offer.yml#/ReservationOfferPart
-    ReservationRelation:
-      $ref: ./schemas/offer.yml#/ReservationRelation
-    ReservedPlace:
-      $ref: ./schemas/offer.yml#/ReservedPlace
-    Resource:
-      $ref: ./schemas/_common.yml#/Resource
-    ReturnConstraint:
-      $ref: ./schemas/_common.yml#/ReturnConstraint
-    ReturnSearchParameters:
-      $ref: ./schemas/trip.yml#/ReturnSearchParameters
-    Revision:
-      $ref: ./schemas/_common.yml#/Revision
-    Route:
-      $ref: ./schemas/trip.yml#/Route
-    RouteItem:
-      $ref: ./schemas/trip.yml#/RouteItem
-    RouteSpecification:
-      $ref: ./schemas/trip.yml#/RouteSpecification
-    Section:
-      $ref: ./schemas/trip.yml#/Section
-    SecurityElementFormat:
-      $ref: ./schemas/fulfillment.yml#/SecurityElementFormat
-    SecurityElementType:
-      $ref: ./schemas/fulfillment.yml#/SecurityElementType
-    SecurityFeatureType:
-      $ref: ./schemas/fulfillment.yml#/SecurityFeatureType
-    SelectedAccommodation:
-      $ref: ./schemas/place.yml#/SelectedAccommodation
-    SelectedPlace:
-      $ref: ./schemas/place.yml#/SelectedPlace
-    SelectedReferencePlace:
-      $ref: ./schemas/place.yml#/SelectedReferencePlace
-    SelectionFee:
-      $ref: ./schemas/_common.yml#/SelectionFee
-    ServiceBrandCode:
-      $ref: ./schemas/_common.yml#/ServiceBrandCode
-    ServiceBrandFilter:
-      $ref: ./schemas/ojp/_common.yml#/ServiceBrandFilter
-    ServiceClass:
-      $ref: ./schemas/_common.yml#/ServiceClass
-    ServiceClassType:
-      $ref: ./schemas/_common.yml#/ServiceClassType
-    ServiceConstraint:
-      $ref: ./schemas/_common.yml#/ServiceConstraint
-    ServiceDegradation:
-      $ref: ./schemas/_common.yml#/ServiceDegradation
-    ServiceFormation:
-      $ref: ./schemas/transportable.yml#/ServiceFormation
-    ServiceFormationPart:
-      $ref: ./schemas/transportable.yml#/ServiceFormationPart
-    ServiceFormationPartAssignment:
-      $ref: ./schemas/transportable.yml#/ServiceFormationPartAssignment
-    ServiceFormationPartStatus:
-      $ref: ./schemas/transportable.yml#/ServiceFormationPartStatus
-    ServiceFormationPartType:
-      $ref: ./schemas/transportable.yml#/ServiceFormationPartType
-    ServiceFormationRoute:
-      $ref: ./schemas/transportable.yml#/ServiceFormationRoute
-    ServiceIcon:
-      $ref: ./schemas/_common.yml#/ServiceIcon
-    ServiceIconCode:
-      $ref: ./schemas/_common.yml#/ServiceIconCode
-    ServiceStatus:
-      $ref: ./schemas/ojp/_common.yml#/ServiceStatus
-    ServiceTime:
-      $ref: ./schemas/_common.yml#/ServiceTime
-    SiSType:
-      $ref: ./schemas/fulfillment.yml#/SiSType
-    Situation:
-      $ref: ./schemas/ojp/_common.yml#/Situation
-    SituationDescription:
-      $ref: ./schemas/ojp/_common.yml#/SituationDescription
-    SituationRef:
-      $ref: ./schemas/ojp/_common.yml#/SituationRef
-    SpecificPlaceAvailability:
-      $ref: ./schemas/place.yml#/SpecificPlaceAvailability
-    StationSet:
-      $ref: ./schemas/fare.yml#/StationSet
-    StopBehavior:
-      $ref: ./schemas/trip.yml#/StopBehavior
-    StopCallStatus:
-      $ref: ./schemas/ojp/trip.yml#/StopCallStatus
-    StopPlace:
-      $ref: ./schemas/ojp/trip.yml#/StopPlace
-    StopPlaceRef:
-      $ref: ./schemas/ojp/trip.yml#/StopPlaceRef
-    SupportingDocument:
-      $ref: ./schemas/_common.yml#/SupportingDocument
-    Symbology:
-      $ref: ./schemas/_common.yml#/Symbology
-    Text:
-      $ref: ./schemas/_common.yml#/Text
-    TextElement:
-      $ref: ./schemas/_common.yml#/TextElement
-    TextElementType:
-      $ref: ./schemas/_common.yml#/TextElementType
-    ThroughTicketTag:
-      $ref: ./schemas/offer.yml#/ThroughTicketTag
-    TimedLeg:
-      $ref: ./schemas/ojp/trip.yml#/TimedLeg
-    TimedLegSpecification:
-      $ref: ./schemas/trip.yml#/TimedLegSpecification
-    TimeFrameSegmentation:
-      $ref: ./schemas/trip.yml#/TimeFrameSegmentation
-    TimeUnit:
-      $ref: ./schemas/_common.yml#/TimeUnit
-    Tip:
-      $ref: ./schemas/_common.yml#/Tip
-    TrainLink:
-      $ref: ./schemas/trip.yml#/TrainLink
-    TrainValidity:
-      $ref: ./schemas/fare.yml#/TrainValidity
-    TrainValidityScope:
-      $ref: ./schemas/fare.yml#/TrainValidityScope
-    TransactionContextType:
-      $ref: ./schemas/_common.yml#/TransactionContextType
-    TransferLeg:
-      $ref: ./schemas/ojp/trip.yml#/TransferLeg
-    TransferType:
-      $ref: ./schemas/trip.yml#/TransferType
-    Translation:
-      $ref: ./schemas/_common.yml#/Translation
-    Transportable:
-      $ref: ./schemas/transportable.yml#/Transportable
-    TransportableSpecification:
-      $ref: ./schemas/transportable.yml#/TransportableSpecification
-    TransportableType:
-      $ref: ./schemas/transportable.yml#/TransportableType
-    TravelAccountResponse:
-      $ref: ./schemas/travel-account.yml#/TravelAccountResponse
-    TravelAccountResponseContent:
-      $ref: ./schemas/travel-account.yml#/TravelAccountResponseContent
-    TravelAccountType:
-      $ref: ./schemas/travel-account.yml#/TravelAccountType
-    TravelAccountUsage:
-      $ref: ./schemas/travel-account.yml#/TravelAccountUsage
-    TravelClass:
-      $ref: ./schemas/_common.yml#/TravelClass
-    TravelDirectionType:
-      $ref: ./schemas/_common.yml#/TravelDirectionType
-    TravelPassAccount:
-      $ref: ./schemas/travel-account.yml#/TravelPassAccount
-    TravelValidity:
-      $ref: ./schemas/fare.yml#/TravelValidity
-    TravelValidityRange:
-      $ref: ./schemas/fare.yml#/TravelValidityRange
-    Trip:
-      $ref: ./schemas/ojp/trip.yml#/Trip
-    TripAllocationConstraint:
-      $ref: ./schemas/trip.yml#/TripAllocationConstraint
-    TripAllocationProcess:
-      $ref: ./schemas/trip.yml#/TripAllocationProcess
-    TripAllocationUnit:
-      $ref: ./schemas/trip.yml#/TripAllocationUnit
-    TripChangeCriteria:
-      $ref: ./schemas/ojp/trip.yml#/TripChangeCriteria
-    TripChangeParameter:
-      $ref: ./schemas/trip.yml#/TripChangeParameter
-    TripCollectionRequest:
-      $ref: ./schemas/trip.yml#/TripCollectionRequest
-    TripCollectionResponse:
-      $ref: ./schemas/ojp/trip.yml#/TripCollectionResponse
-    TripContentFilter:
-      $ref: ./schemas/trip.yml#/TripContentFilter
-    TripContentFilterItem:
-      $ref: ./schemas/trip.yml#/TripContentFilterItem
-    TripContext:
-      $ref: ./schemas/trip.yml#/TripContext
-    TripCoverage:
-      $ref: ./schemas/trip.yml#/TripCoverage
-    TripDataFilter:
-      $ref: ./schemas/ojp/trip.yml#/TripDataFilter
-    TripDirectionType:
-      $ref: ./schemas/trip.yml#/TripDirectionType
-    TripFeasibility:
-      $ref: ./schemas/trip.yml#/TripFeasibility
-    TripInterruptionConstraint:
-      $ref: ./schemas/trip.yml#/TripInterruptionConstraint
-    TripInterruptionProcess:
-      $ref: ./schemas/trip.yml#/TripInterruptionProcess
-    TripLeg:
-      $ref: ./schemas/ojp/trip.yml#/TripLeg
-    TripLegCoverage:
-      $ref: ./schemas/trip.yml#/TripLegCoverage
-    TripLegSpecification:
-      $ref: ./schemas/trip.yml#/TripLegSpecification
-    TripMobilityFilter:
-      $ref: ./schemas/ojp/trip.yml#/TripMobilityFilter
-    TripMobilityFilterItem:
-      $ref: ./schemas/trip.yml#/TripMobilityFilterItem
-    TripMobilityFilterItems:
-      $ref: ./schemas/trip.yml#/TripMobilityFilterItems
-    TripParameters:
-      $ref: ./schemas/ojp/trip.yml#/TripParameters
-    TripPolicyFilter:
-      $ref: ./schemas/trip.yml#/TripPolicyFilter
-    TripRealTimeDataUsage:
-      $ref: ./schemas/trip.yml#/TripRealTimeDataUsage
-    TripResponse:
-      $ref: ./schemas/trip.yml#/TripResponse
-    TripResponseContent:
-      $ref: ./schemas/trip.yml#/TripResponseContent
-    TripResponseParameters:
-      $ref: ./schemas/trip.yml#/TripResponseParameters
-    TripResult:
-      $ref: ./schemas/trip.yml#/TripResult
-    TripsCollectionResponseContent:
-      $ref: ./schemas/trip.yml#/TripsCollectionResponseContent
-    TripSearchCriteria:
-      $ref: ./schemas/ojp/trip.yml#/TripSearchCriteria
-    TripSearchCriteriaMultiOD:
-      $ref: ./schemas/trip.yml#/TripSearchCriteriaMultiOD
-    TripSearchOptimisationMethod:
-      $ref: ./schemas/trip.yml#/TripSearchOptimisationMethod
-    TripSearchTypeMultipleOD:
-      $ref: ./schemas/trip.yml#/TripSearchTypeMultipleOD
-    TripSection:
-      $ref: ./schemas/_common.yml#/TripSection
-    TripSpecification:
-      $ref: ./schemas/trip.yml#/TripSpecification
-    TripSpecificationSummary:
-      $ref: ./schemas/ojp/trip.yml#/TripSpecificationSummary
-    TripStatus:
-      $ref: ./schemas/trip.yml#/TripStatus
-    TripSummary:
-      $ref: ./schemas/ojp/trip.yml#/TripSummary
-    TripTravelAccountUnit:
-      $ref: ./schemas/travel-account.yml#/TripTravelAccountUnit
-    TripVia:
-      $ref: ./schemas/ojp/trip.yml#/TripVia
-    ValidityRange:
-      $ref: ./schemas/_common.yml#/ValidityRange
-    ValidityType:
-      $ref: ./schemas/_common.yml#/ValidityType
-    VAT:
-      $ref: ./schemas/_common.yml#/VAT
-    VatScope:
-      $ref: ./schemas/_common.yml#/VatScope
-    VehicleAvailability:
-      $ref: ./schemas/transportable.yml#/VehicleAvailability
-    VehicleFilter:
-      $ref: ./schemas/transportable.yml#/VehicleFilter
-    VehicleNumber:
-      $ref: ./schemas/transportable.yml#/VehicleNumber
-    VoucherInformation:
-      $ref: ./schemas/_common.yml#/VoucherInformation
-    Zone:
-      $ref: ./schemas/fare.yml#/Zone
-    ZoneCollectionResponse:
-      $ref: ./schemas/fare.yml#/ZoneCollectionResponse
-    ZoneDefinition:
-      $ref: ./schemas/fare.yml#/ZoneDefinition
-    ZoneSpecification:
-      $ref: ./schemas/fare.yml#/ZoneSpecification
+      type: oauth2
+      description: |
+        See https://swagger.io/docs/specification/authentication/oauth2/
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.microsoftonline.com/tbd
+          refreshUrl: https://refresh.url/tbd
+          scopes: {}
+x-tagGroups:
+  - name: UIC 90918-10 - OSDM
+    tags:
+      - Versions
+      - Places
+      - Trips
+      - Offers
+      - Offer Overview
+      - Availabilities
+      - BookingPart
+      - Bookings
+      - BookedOffers
+      - Bookings Search
+      - Bookings Split
+      - Purchaser
+      - Passengers
+      - Passenger Categories
+      - Fulfillments
+      - Refund
+      - Exchange
+      - On Hold
+      - Release
+      - Complaint Management
+      - Cancel Fulfillments
+      - Booking Documents
+      - Reimbursement Management
+      - Travel Account
+      - On-Demand Services
+      - Search
+      - Master Data
+      - Product
+  - name: UIC 90918-10 - OSDM webhooks
+    tags:
+      - Events

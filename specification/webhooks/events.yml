@@ -1,0 +1,34 @@
+post:
+  summary: Event occured
+  description: An event has occurred
+  tags:
+    - Events
+  operationId: postEvent
+  security:
+    - oAuth2ClientCredentials: []
+  requestBody:
+    description: Information about the event
+    content:
+      application/json:
+        schema:
+          oneOf:
+            - $ref: ../schemas/booking.yml#/BookingEvent
+            - $ref: ../schemas/complaint.yml#/ComplaintEvent
+            - $ref: ../schemas/complaint.yml#/ReimbursementEvent
+  responses:
+    "200":
+      description: OK
+    "400":
+      description: bad input parameter
+    "401":
+      description: unauthorized
+    "403":
+      description: forbidden
+    "404":
+      description: no place information found
+    "500":
+      description: internal server error
+    "501":
+      description: not implemented
+    "503":
+      description: service unavailable

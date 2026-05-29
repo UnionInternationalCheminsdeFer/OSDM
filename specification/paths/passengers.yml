@@ -1,28 +1,28 @@
 /bookings/{bookingId}/passengers/{passengerId}:
   get:
     tags:
-    - Passengers
+      - Passengers
     summary: Returns the passenger's information at booking step.
     operationId: getBookingPassengersId
     parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - name: bookingId
-      in: path
-      description: |
-        id of the booking
-      required: true
-      schema:
-        type: string
-    - name: passengerId
-      in: path
-      description: |
-        id of the passenger
-      required: true
-      schema:
-        type: string
+      - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+      - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+      - name: bookingId
+        in: path
+        description: |
+          id of the booking
+        required: true
+        schema:
+          type: string
+      - name: passengerId
+        in: path
+        description: |
+          id of the passenger
+        required: true
+        schema:
+          type: string
     responses:
       '200':
         description: |
@@ -35,8 +35,9 @@
           Content-Language:
             schema:
               type: string
-              description: |
-                The language of translatable strings in the response (see RFC2616-sec14.12).
+              description: >
+                The language of translatable strings in the response (see
+                RFC2616-sec14.12).
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
       '401':
@@ -46,39 +47,42 @@
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
       '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
       '501':
         $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
       '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
       default:
         $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
   patch:
     tags:
-    - Passengers
+      - Passengers
     summary: Allows updating a passenger's information at booking step.
     operationId: patchBookingPassenger
     parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - name: bookingId
-      in: path
-      description: |
-        id of the booking the passenger is in.
-      required: true
-      schema:
-        type: string
-    - name: passengerId
-      in: path
-      description: |
-        id of the passenger
-      required: true
-      schema:
-        type: string
+      - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+      - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+      - name: bookingId
+        in: path
+        description: |
+          id of the booking the passenger is in.
+        required: true
+        schema:
+          type: string
+      - name: passengerId
+        in: path
+        description: |
+          id of the passenger
+        required: true
+        schema:
+          type: string
     requestBody:
       required: true
       content:
@@ -97,8 +101,9 @@
           Content-Language:
             schema:
               type: string
-              description: |
-                The language of translatable strings in the response (see RFC2616-sec14.12).
+              description: >
+                The language of translatable strings in the response (see
+                RFC2616-sec14.12).
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
       '401':
@@ -110,33 +115,36 @@
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
       '501':
         $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
       '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
       default:
         $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
 /bookings/{bookingId}/passengers:
   get:
     tags:
-    - Passengers
+      - Passengers
     summary: Returns all the passenger's in the booking.
     operationId: getBookingPassengers
     parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - name: bookingId
-      in: path
-      description: |
-        id of the booking
-      required: true
-      schema:
-        type: string
+      - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+      - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+      - name: bookingId
+        in: path
+        description: |
+          id of the booking
+        required: true
+        schema:
+          type: string
     responses:
       '200':
         description: |
@@ -144,13 +152,15 @@
         content:
           application/json:
             schema:
-              $ref: ../OSDM-online-api.yml#/components/schemas/PassengersCollectionResponse
+              $ref: >-
+                ../OSDM-online-api.yml#/components/schemas/PassengersCollectionResponse
         headers:
           Content-Language:
             schema:
               type: string
-              description: |
-                The language of translatable strings in the response (see RFC2616-sec14.12).
+              description: >
+                The language of translatable strings in the response (see
+                RFC2616-sec14.12).
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
       '401':
@@ -160,38 +170,42 @@
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
       '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
       '501':
         $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
       '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
       default:
         $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
   patch:
     tags:
-    - Passengers
+      - Passengers
     summary: Allows updating a set of passengers in a batch at booking step.
     operationId: patchBookingPassengers
     parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - name: bookingId
-      in: path
-      description: |
-        id of the booking the passenger is in.
-      required: true
-      schema:
-        type: string
+      - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+      - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+      - name: bookingId
+        in: path
+        description: |
+          id of the booking the passenger is in.
+        required: true
+        schema:
+          type: string
     requestBody:
       required: true
       content:
         application/json:
           schema:
-            $ref: ../OSDM-online-api.yml#/components/schemas/PassengersBatchUpdateRequest
+            $ref: >-
+              ../OSDM-online-api.yml#/components/schemas/PassengersBatchUpdateRequest
     responses:
       '200':
         description: |
@@ -199,22 +213,32 @@
         content:
           application/json:
             schema:
-              $ref: ../OSDM-online-api.yml#/components/schemas/PassengersCollectionResponse
+              $ref: >-
+                ../OSDM-online-api.yml#/components/schemas/PassengersCollectionResponse
         headers:
           Content-Language:
             schema:
               type: string
-              description: |
-                The language of translatable strings in the response (see RFC2616-sec14.12).
+              description: >
+                The language of translatable strings in the response (see
+                RFC2616-sec14.12).
       '207':
-        description: |
-          Partial success – some updates failed. updatedPassengers contains successfully updates. Failed updates are listed in the problems with at least following attributes:
-          * problem.status indicates the http code of the encountered error for the specific request item, f ex "404" if the given passenger Id is not found
-          * requestPointer indicates the specific request item the error relates to, f ex: #/passengerBatchUpdateRequest/passengers[2]/id
+        description: >
+          Partial success – some updates failed. updatedPassengers contains
+          successfully updates. Failed updates are listed in the problems with
+          at least following attributes:
+
+          * problem.status indicates the http code of the encountered error for
+          the specific request item, f ex "404" if the given passenger Id is not
+          found
+
+          * requestPointer indicates the specific request item the error relates
+          to, f ex: #/passengerBatchUpdateRequest/passengers[2]/id
         content:
           application/json:
             schema:
-              $ref: ../OSDM-online-api.yml#/components/schemas/PassengersCollectionResponse
+              $ref: >-
+                ../OSDM-online-api.yml#/components/schemas/PassengersCollectionResponse
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
       '401':
@@ -226,12 +250,15 @@
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
       '501':
         $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
       '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
       default:
         $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse

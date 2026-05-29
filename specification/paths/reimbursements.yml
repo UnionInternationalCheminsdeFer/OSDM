@@ -1,21 +1,21 @@
 /bookings/{bookingId}/reimbursements:
   post:
     tags:
-    - Reimbursement Management
+      - Reimbursement Management
     summary: Create reimbursement for a booking.
     description: |
       Create a reimbursement request for part of a booking.
     operationId: createReimbursement
     parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - name: bookingId
-      in: path
-      required: true
-      schema:
-        type: string
+      - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+      - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+      - name: bookingId
+        in: path
+        required: true
+        schema:
+          type: string
     requestBody:
       required: true
       content:
@@ -34,8 +34,9 @@
           Content-Language:
             schema:
               type: string
-              description: |
-                The language of translatable strings in the response (see RFC2616-sec14.12).
+              description: >
+                The language of translatable strings in the response (see
+                RFC2616-sec14.12).
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
       '401':
@@ -45,38 +46,41 @@
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
       '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
       '501':
         $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
       '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
       default:
         $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
 /bookings/{bookingId}/reimbursements/{reimbursementId}:
   get:
     tags:
-    - Reimbursement Management
+      - Reimbursement Management
     summary: Get reimbursement of a booking.
     description: |
       Get reimbursement including its current state.
     operationId: getReimbursement
     parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - name: bookingId
-      in: path
-      required: true
-      schema:
-        type: string
-    - name: reimbursementId
-      in: path
-      required: true
-      schema:
-        type: string
+      - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+      - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+      - name: bookingId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: reimbursementId
+        in: path
+        required: true
+        schema:
+          type: string
     responses:
       '200':
         description: |
@@ -89,8 +93,9 @@
           Content-Language:
             schema:
               type: string
-              description: |
-                The language of translatable strings in the response (see RFC2616-sec14.12).
+              description: >
+                The language of translatable strings in the response (see
+                RFC2616-sec14.12).
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
       '401':
@@ -100,43 +105,47 @@
       '404':
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
       '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
       '501':
         $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
       '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
       default:
         $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
   patch:
     tags:
-    - Reimbursement Management
+      - Reimbursement Management
     summary: Update reimbursement of a booking.
     description: |
       Update a reimbursement request, i.e add missing documents or change state.
     operationId: updateReimbursement
     parameters:
-    - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
-    - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
-    - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
-    - name: bookingId
-      in: path
-      required: true
-      schema:
-        type: string
-    - name: reimbursementId
-      in: path
-      required: true
-      schema:
-        type: string
+      - $ref: ../OSDM-online-api.yml#/components/parameters/requestor
+      - $ref: ../OSDM-online-api.yml#/components/parameters/acceptLanguage
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
+      - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
+      - name: bookingId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: reimbursementId
+        in: path
+        required: true
+        schema:
+          type: string
     requestBody:
       required: true
       content:
         application/vnd.uic.osdm+json:
           schema:
-            $ref: ../OSDM-online-api.yml#/components/schemas/ReimbursementPatchRequest
+            $ref: >-
+              ../OSDM-online-api.yml#/components/schemas/ReimbursementPatchRequest
     responses:
       '200':
         description: |
@@ -149,8 +158,9 @@
           Content-Language:
             schema:
               type: string
-              description: |
-                The language of translatable strings in the response (see RFC2616-sec14.12).
+              description: >
+                The language of translatable strings in the response (see
+                RFC2616-sec14.12).
       '400':
         $ref: ../OSDM-online-api.yml#/components/responses/BadRequestResponse
       '401':
@@ -162,12 +172,15 @@
       '409':
         $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse
       '415':
-        $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
-        $ref: ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/InternalServerErrorResponse
       '501':
         $ref: ../OSDM-online-api.yml#/components/responses/NotImplementedResponse
       '503':
-        $ref: ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
+        $ref: >-
+          ../OSDM-online-api.yml#/components/responses/ServiceUnavailableResponse
       default:
         $ref: ../OSDM-online-api.yml#/components/responses/DefaultErrorResponse
