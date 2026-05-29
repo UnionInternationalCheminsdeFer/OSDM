@@ -1696,6 +1696,7 @@ VatScope:
   - NOT_REGISTERED
 VoucherInformation:
   type: object
+  description: identifier of a voucher
   additionalProperties: false
   required:
   - issuer
