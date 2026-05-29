@@ -1,0 +1,24 @@
+description: >
+  expected search behaviour
+
+  'ANY' # Returning results for a single origin and destination
+
+  'EACH_ORIGIN' # At least a distinct solution for each of the origin must be
+  delivered.
+
+  'EACH_DESTINATION' # At least a distinct solution for each of the origin must
+  be delivered.
+
+  'EACH_ORIGIN_DESTINATION' #  At least a distinct solution for each of the
+  origin-destination pair must be delivered.origin-destination pair must be
+  delivered.
+
+  'SOME' # some origin-destination pairs should be returned.
+type: string
+x-extensible-enum:
+  - ANY
+  - EACH_ORIGIN
+  - EACH_DESTINATION
+  - EACH_ORIGIN_DESTINATION
+  - SOME
+default: ANY

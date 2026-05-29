@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+required:
+  - pickUpPlaceRef
+  - vehicleType
+properties:
+  pickUpPlaceRef:
+    description: id of the selected pick-up place
+    type: string
+    maxLength: 1024
+  vehicleType:
+    $ref: ./ContinuousServiceVehicleType.yml

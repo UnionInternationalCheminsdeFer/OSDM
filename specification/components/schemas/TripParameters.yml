@@ -1,0 +1,14 @@
+type: object
+additionalProperties: false
+description: |
+  Options to control the search behavior and response contents.
+  Provided by OJP.
+properties:
+  dataFilter:
+    $ref: ./TripDataFilter.yml
+  policyFilter:
+    $ref: ./TripPolicyFilter.yml
+  mobilityFilter:
+    $ref: ./TripMobilityFilter.yml
+  contentFilter:
+    $ref: ./TripContentFilter.yml

@@ -1,0 +1,8 @@
+description: |
+  enumeration of service degradations
+type: string
+x-extensible-enum:
+  - RESERVED_PLACES_MISSING
+  - BOOKED_ACCOMMODATION_TYPE_MISSING
+  - BOOKED_CLASS_MISSING
+  - BOOKED_MEAL_MISSING

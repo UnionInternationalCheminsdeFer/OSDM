@@ -1,0 +1,13 @@
+description: >
+  Item according to IRS 90918-9: FCB, TLB, SSB
+
+  Values from the [Barcode Type Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#BarcodeType)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - FCB
+  - TLB
+  - SSB
+  - DOSIPAS

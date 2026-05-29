@@ -1,0 +1,30 @@
+allOf:
+  - $ref: ./AbstractTransportableVehicleSpecification.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - roofWidth
+    properties:
+      specialType:
+        type:
+          - string
+          - 'null'
+        x-extensible-enum:
+          - TRIKE
+          - QUAD
+          - MOTOCYCLE_WITH_SIDECAR
+      roofWidth:
+        type: integer
+        format: int32
+        minimum: 0
+      textileRoof:
+        description: indication that the car has a textile rook only
+        type: boolean
+      rack:
+        $ref: ./CarRack.yml
+      attachedItems:
+        description: |
+          Indication of items attached to the car
+        type: array
+        items:
+          $ref: ./AttachableItemType.yml

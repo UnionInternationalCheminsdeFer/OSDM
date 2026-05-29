@@ -1,0 +1,9 @@
+description: |
+  Purchaser information.
+allOf:
+  - $ref: ./PurchaserSpecification.yml
+  - type: object
+    additionalProperties: false
+    properties:
+      _links:
+        $ref: ./Links.yml

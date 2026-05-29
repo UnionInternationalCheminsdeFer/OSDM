@@ -1,0 +1,18 @@
+type: object
+additionalProperties: false
+required:
+  - timeUnit
+  - value
+properties:
+  timeUnit:
+    $ref: ./TimeUnit.yml
+  value:
+    type: integer
+    format: int32
+  hoursAfterMidnight:
+    description: |
+      validity extended after midnight
+    type:
+      - integer
+      - 'null'
+    format: int32

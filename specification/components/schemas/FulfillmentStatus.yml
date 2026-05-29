@@ -1,0 +1,19 @@
+description: >
+  Individual fulfillments of a multi journey booking need an separate patch to
+  create the usable fulfillment in status FULFILLED before they are in an
+  intermediate state AVAILABLE where they don't provide a document for travel.
+  Fulfillments can be ON_HOLD in case they are booked but not yet available
+  (e.g. a booking providing two journeys per week) or passed in case the
+  fulfillment was not patched for usage within the required time.
+type: string
+enum:
+  - AVAILABLE
+  - ON_HOLD
+  - CONFIRMED
+  - FULFILLED
+  - CHECKEDIN
+  - CANCELLED
+  - RELEASED
+  - REFUNDED
+  - EXCHANGED
+  - EXPIRED

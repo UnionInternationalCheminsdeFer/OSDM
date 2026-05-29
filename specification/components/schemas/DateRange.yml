@@ -1,0 +1,13 @@
+type: object
+additionalProperties: false
+properties:
+  startTime:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  endDate:
+    type:
+      - string
+      - 'null'
+    format: date-time

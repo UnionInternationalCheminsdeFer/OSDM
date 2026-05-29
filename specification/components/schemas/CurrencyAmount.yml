@@ -1,0 +1,22 @@
+type: object
+description: amount in a currency used when not VAT can be provided
+additionalProperties: false
+required:
+  - currency
+  - amount
+properties:
+  currency:
+    $ref: ./Currency.yml
+  amount:
+    description: |
+      amount in cents
+    type: integer
+    format: int32
+  scale:
+    description: |
+      scale of the amount - the number of positions after the comma
+    type:
+      - integer
+      - 'null'
+    format: int32
+    default: 2

@@ -1,0 +1,7 @@
+type: integer
+format: int32
+description: |
+  Orientation angle in degrees
+default: 0
+examples:
+  - 90

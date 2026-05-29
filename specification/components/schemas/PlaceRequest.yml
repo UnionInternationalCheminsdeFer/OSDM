@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+description: >
+  Initial input for the place information request. This input defines what is
+  originally looked for.
+
+  Provided by OJP.
+properties:
+  placeInput:
+    $ref: ./InitialPlaceInput.yml
+  restrictions:
+    $ref: ./PlaceParam.yml

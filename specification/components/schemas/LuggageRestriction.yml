@@ -1,0 +1,27 @@
+type: object
+additionalProperties: false
+required:
+  - dimensionRestrictions
+  - numberOfItems
+properties:
+  dimensionRestrictions:
+    description: |
+      The dimension apply to the luggage items as upper limits.
+    type: array
+    items:
+      $ref: ./LuggageDimension.yml
+    minItems: 1
+  numberOfItems:
+    description: |
+      Number of luggage items allowed with this restriction.
+    type: integer
+    format: int32
+  registrationIds:
+    description: >
+      The registrationIds to be included in a bar code on the fulfillment (UIC
+      IRS 90918-4) (e.g. on a luggage tag).
+    type:
+      - array
+      - 'null'
+    items:
+      type: string

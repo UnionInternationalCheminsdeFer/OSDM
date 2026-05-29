@@ -1,0 +1,10 @@
+description: >
+  Influences whether referenced resources are returned in full or as references
+  only.
+type: string
+enum:
+  - ALL
+  - EXCHANGEOPERATION
+  - EXCHANGEOPERATION_EXCHANGEOFFERS
+  - EXCHANGEOPERATION_FULFILLMENTS
+default: ALL

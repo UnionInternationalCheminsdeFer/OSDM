@@ -1,0 +1,7 @@
+type: string
+description: >
+  Service brand codes. For public transport, a code list can be found in OSDM's
+  code list. E.g., '163' denotes TGV Lyria and '175' denotes Glacier Express.
+examples:
+  - '163'
+  - '175'

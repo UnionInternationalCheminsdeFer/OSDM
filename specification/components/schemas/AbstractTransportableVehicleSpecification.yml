@@ -1,0 +1,38 @@
+type: object
+additionalProperties: false
+required:
+  - weight
+  - length
+  - width
+  - height
+  - model
+  - brand
+properties:
+  weight:
+    description: weight in kg
+    type: integer
+    format: int32
+    minimum: 0
+  length:
+    description: size in cm
+    type: integer
+    format: int32
+    minimum: 0
+  width:
+    description: size in cm
+    type: integer
+    format: int32
+    minimum: 0
+  height:
+    description: size in cm
+    type: integer
+    format: int32
+    minimum: 0
+  brand:
+    description: |
+      Free text description of the brand (e.g. BMW)
+    type: string
+  model:
+    description: |
+      Free text description of the model (e.g. X5)
+    type: string

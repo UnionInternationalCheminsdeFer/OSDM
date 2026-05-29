@@ -1,0 +1,20 @@
+description: >
+  General product types harmonized across fare providers. (More to be added, use
+  null for types not listed yet.)
+
+  Values from the [Product Type Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#ProductTypes)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - ADMISSION_PASS
+  - ADMISSION_MULTI_RIDE
+  - ADMISSION_POINT2POINT
+  - UPGRADE_PASS
+  - UPGRADE_MULTI_RIDE
+  - UPGRADE_POINT2POINT
+  - RESERVATION
+  - ANCILLARY_SERVICE
+  - ANCILLARY_ITEM
+  - REDUCTION_CARD

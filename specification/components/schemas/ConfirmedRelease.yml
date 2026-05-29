@@ -1,0 +1,43 @@
+type: object
+additionalProperties: false
+required:
+  - id
+  - createdOn
+  - confirmedOn
+  - releasedFulfillments
+properties:
+  id:
+    description: |
+      id of the release
+    type: string
+    maxLength: 32768
+  summary:
+    description: |
+      A human-readable description of the release.
+    type:
+      - string
+      - 'null'
+    examples:
+      - 'Released: Paris-Barcelona Andre Dupont 2022-07-23'
+  createdOn:
+    type: string
+    format: date-time
+  confirmedOn:
+    type: string
+    format: date-time
+  appliedOverruleCode:
+    $ref: ./OverruleCode.yml
+  releasedFulfillments:
+    description: >
+      fulfillments to be refunded or replaced. This might differ from the
+      requested refund specification in case the original request did not
+      include all related fulfillments or booking parts. It must also incude the
+      references to booking parts and passenger ids which can be omitted in teh
+      request in case all part or passengers related to a fulfillment are
+      refunded.
+    type: array
+    items:
+      $ref: ./RefundedFulfillmentSpecification.yml
+    minItems: 1
+  _links:
+    $ref: ./Links.yml

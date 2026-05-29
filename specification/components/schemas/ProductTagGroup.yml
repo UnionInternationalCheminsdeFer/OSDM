@@ -1,0 +1,17 @@
+description: |
+  Group of product tags with a description.
+required:
+  - code
+  - description
+properties:
+  code:
+    type: string
+    maxLength: 1024
+  description:
+    $ref: ./Text.yml
+  productTags:
+    type: array
+    minItems: 1
+    maxItems: 10000
+    items:
+      $ref: ./ProductTag.yml

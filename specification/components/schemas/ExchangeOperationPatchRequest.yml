@@ -1,0 +1,24 @@
+type: object
+additionalProperties: false
+description: |
+  Allows modifying a general setting for the booking:
+   * setting the required fulfillment type, e.g. value paper
+     or e-ticket and preferred fulfillment media.
+     The latter is optional and relevant in some cases only.
+   * Provisionally exchanging some of the fulfillments in the booking
+properties:
+  requestedFulfillmentType:
+    $ref: ./FulfillmentType.yml
+  preferredFulfillmentMedia:
+    $ref: ./FulfillmentMediaType.yml
+  usedPaymentMethods:
+    type: array
+    items:
+      $ref: ./PaymentMethod.yml
+  embed:
+    description: >
+      Influences whether referenced resources are returned in full or as
+      references only.
+    type: array
+    items:
+      $ref: ./ExchangeOperationResponseContent.yml

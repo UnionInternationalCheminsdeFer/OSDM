@@ -1,0 +1,22 @@
+type: object
+additionalProperties: false
+description: |
+  Place selection options and selected options in an offer
+  - reference place for adjacent reservation
+  - selected optional place properties
+  - selected places from a graphical place selection
+required:
+  - reservationId
+properties:
+  reservationId:
+    type: string
+  referencePlace:
+    $ref: ./SelectedReferencePlace.yml
+  accommodations:
+    type: array
+    items:
+      $ref: ./SelectedAccommodation.yml
+  places:
+    type: array
+    items:
+      $ref: ./SelectedPlace.yml

@@ -1,0 +1,25 @@
+type: object
+description: >
+  description of fulfillments, booking parts and passenger ids included in a
+  refund.
+required:
+  - fulfillmentId
+properties:
+  fulfillmentId:
+    description: |
+      id of the fulfillment where some part(s) should be removed
+    type: string
+  fulfillmentSummary:
+    description: A human-readable description of the fulfillment.
+    type: string
+  bookingPartIds:
+    description: ids of booking parts to be removed from the fulfillment
+    type: array
+    items:
+      type: string
+      maxLength: 32768
+  passengerIds:
+    type: array
+    description: ids of passengers to be removed from the fulfillment
+    items:
+      type: string

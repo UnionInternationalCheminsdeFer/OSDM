@@ -1,0 +1,40 @@
+type: object
+additionalProperties: false
+description: |
+  A deck of a coach.
+required:
+  - name
+  - dimension
+  - id
+  - deckLevel
+properties:
+  name:
+    type: string
+    maxLength: 255
+  dimension:
+    $ref: ./GridDimension.yml
+  lowFloorEntry:
+    description: |
+      Typically set on the lowest deck. Empty if unknown.
+    type:
+      - boolean
+      - 'null'
+  id:
+    type: string
+  deckLevel:
+    $ref: ./CoachDeckLevel.yml
+  placeGroups:
+    description: >
+      Groups places. No place groups might exist for special coach types (e.g.
+      traction units without seats).
+    type: array
+    items:
+      $ref: ./PlaceGroup.yml
+  graphicElements:
+    type: array
+    items:
+      $ref: ./GraphicElement.yml
+  serviceIcons:
+    type: array
+    items:
+      $ref: ./ServiceIcon.yml

@@ -1,0 +1,42 @@
+type: object
+additionalProperties: false
+required:
+  - id
+properties:
+  id:
+    type: string
+  status:
+    $ref: ./ExchangeStatus.yml
+  exchangeOffers:
+    type: array
+    items:
+      $ref: ./ExchangeOffer.yml
+  appliedFeesRefs:
+    description: >
+      references to the fees applied with this exchange operation. It is
+      mandatory to
+
+      provide the refs when the fees have been applied.
+    type: array
+    items:
+      type: string
+      maxLength: 1024
+  ticketTimeLimit:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  fulfillmentRefs:
+    description: |
+      references to the fulfillments affeted by the exchange operation.
+    type: array
+    items:
+      $ref: ./FulfillmentRefs.yml
+  issuedVoucherRefs:
+    type: array
+    items:
+      $ref: ./VoucherRef.yml
+  trips:
+    type: array
+    items:
+      $ref: ./Trip.yml

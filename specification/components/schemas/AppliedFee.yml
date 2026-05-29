@@ -1,0 +1,20 @@
+description: >
+  Fees are used to represent additional costs for services or products. In
+  contrast to other offer parts in OSDM, the customer is not free whether to
+  choose a fee or not: fees are generated and applied to other services or
+  products by the providing system.
+allOf:
+  - $ref: ./AbstractBookingPart.yml
+  - type: object
+    additionalProperties: false
+    properties:
+      applicability:
+        $ref: ./ApplicabilityType.yml
+      transactionContext:
+        $ref: ./TransactionContextType.yml
+      isProviderFee:
+        description: >
+          The fees are attributed to the provider. In some business models used
+          with fares the fees are attributed to the distributor.
+        type: boolean
+        default: true

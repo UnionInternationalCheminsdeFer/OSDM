@@ -1,0 +1,22 @@
+type: object
+additionalProperties: false
+required:
+  - minGroupItemsToBeBooked
+  - reservationGroup
+properties:
+  isIncluded:
+    description: >-
+      The reservation(s) linked via this relation are included in the parent
+      offer part.
+    type: boolean
+    default: false
+  minGroupItemsToBeBooked:
+    type: integer
+    format: int32
+  maxGroupItemsToBeBooked:
+    type:
+      - integer
+      - 'null'
+    format: int32
+  reservationGroup:
+    $ref: ./ReservationGroup.yml

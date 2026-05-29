@@ -1,0 +1,8 @@
+type: string
+enum:
+  - ALL
+  - TRIPS
+  - TRIPSUMMARIES
+  - TRIP_CONTEXT
+  - NONE
+default: ALL

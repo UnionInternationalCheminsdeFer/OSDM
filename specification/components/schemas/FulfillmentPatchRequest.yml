@@ -1,0 +1,51 @@
+type: object
+additionalProperties: false
+description: >
+  Changes the fulfillment to status AVAILABLE. In the case of multi-journey 
+  product, one of the fulfillment is
+
+  now 'activated' and can be used to travel. Selects on-demand vehicles. Selects
+  pick-up place and vehicle type for continuous services.
+required:
+  - startOfUsage
+properties:
+  selectedZoneIds:
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  travelDates:
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+      format: date
+  startOfUsage:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  fromPlace:
+    $ref: ./PlaceRef.yml
+  stockControlNumbers:
+    description: >
+      The ids of the secure paper stock that identifies the blank secure paper
+      stock used for printing.
+
+
+      The stock control number is only used for secure paper stock and triggers
+      a printing of the stock control number in the ticket layout. This
+      establishes a link between paper stock and ticket that is used to control
+      the usage of blank secure paper stock at offices as secure paper has
+      otherwise no intrinsic protection against internal fraud.
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  continuousServiceVehicleSelection:
+    description: |
+      selection of a pick-up place and vehicle type for continuous services.
+    $ref: ./ContinuousServiceVehicleSelection.yml

@@ -1,0 +1,30 @@
+type: object
+additionalProperties: false
+discriminator:
+  propertyName: objectType
+  mapping:
+    MultiRideAccount: ./MultiRideAccount.yml
+    ReductionCardAccount: ./ReductionCardAccount.yml
+    TravelPassAccount: ./TravelPassAccount.yml
+required:
+  - objectType
+  - issuer
+  - validFrom
+  - validUntil
+  - number
+properties:
+  objectType:
+    description: Attribute is used as discriminator for inheritance between data types.
+    type: string
+  holder:
+    $ref: ./PersonDetail.yml
+  issuer:
+    $ref: ./CompanyRef.yml
+  validFrom:
+    type: string
+    format: date-time
+  validUntil:
+    type: string
+    format: date-time
+  number:
+    type: string

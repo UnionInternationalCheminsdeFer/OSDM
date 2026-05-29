@@ -1,0 +1,101 @@
+type: object
+additionalProperties: false
+description: >
+  Structured description of the product, its name, comfort and sales /
+  after-sales conditions
+required:
+  - id
+  - code
+  - owner
+  - flexibility
+properties:
+  id:
+    description: |
+      id of the product
+    type: string
+  summary:
+    description: |
+      A human-readable description of the product.
+    type:
+      - string
+      - 'null'
+  type:
+    $ref: ./ProductType.yml
+  code:
+    description: |
+      The product code expressed in the provider system (could be a
+      mapping from an even lower-level provider).
+    type: string
+    examples:
+      - PT00AD
+  description:
+    description: |
+      Textual description of the product.
+    type:
+      - string
+      - 'null'
+  owner:
+    $ref: ./CompanyRef.yml
+  conditions:
+    description: |
+      Structured description of the sales or after-sales conditions.
+    type: array
+    items:
+      $ref: ./Condition.yml
+  flexibility:
+    $ref: ./Flexibility.yml
+  serviceClass:
+    $ref: ./ServiceClass.yml
+  travelClass:
+    $ref: ./TravelClass.yml
+  fulfillmentOptions:
+    type: array
+    items:
+      $ref: ./FulfillmentOption.yml
+  isTrainBound:
+    type:
+      - boolean
+      - 'null'
+    default: false
+  isReturnProduct:
+    type:
+      - boolean
+      - 'null'
+    default: false
+  serviceConstraintText:
+    type:
+      - string
+      - 'null'
+  carrierConstraintText:
+    type:
+      - string
+      - 'null'
+  descriptiveTexts:
+    type: array
+    items:
+      $ref: ./TextElement.yml
+  tariff:
+    description: >
+      Mapping to Tariff 42 of IRS-90918-3 (Hermes/Hosa). Helps the H2O converter
+      in mapping
+
+      offers to a requested tariff. See legacyReservationParameter.tariff in
+      OSDM offline.
+    type:
+      - string
+      - 'null'
+  combinationTags:
+    type: array
+    items:
+      $ref: ./CombinationTag.yml
+  productTags:
+    description: >-
+      product tags associated with the product that can be used to search for
+      offers. This can be omitted outside of the product master data service
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  _links:
+    $ref: ./Links.yml

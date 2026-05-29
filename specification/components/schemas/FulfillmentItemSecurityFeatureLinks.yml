@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+properties:
+  type:
+    $ref: ./SecurityFeatureType.yml
+  uri:
+    description: |
+      link to download the security feature
+    type:
+      - string
+      - 'null'
+    format: uri

@@ -1,0 +1,18 @@
+description: >
+  A type of place to or through which passengers may wish to navigate as part of
+
+  their journey and which is modelled in detail by journey planners. Provided by
+  OJP.
+allOf:
+  - $ref: ./Place.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - code
+    properties:
+      code:
+        description: |
+          id of the Point of Interest.
+        type: string
+      ref:
+        $ref: ./PointOfInterestRef.yml

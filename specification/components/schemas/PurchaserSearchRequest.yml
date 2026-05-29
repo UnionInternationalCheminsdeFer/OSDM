@@ -1,0 +1,28 @@
+type: object
+additionalProperties: false
+properties:
+  companyName:
+    type:
+      - string
+      - 'null'
+  companyRef:
+    $ref: ./CompanyRef.yml
+  firstName:
+    type:
+      - string
+      - 'null'
+  lastName:
+    type:
+      - string
+      - 'null'
+  dateOfBirth:
+    type:
+      - string
+      - 'null'
+    format: date
+  email:
+    type:
+      - string
+      - 'null'
+  phoneNumber:
+    $ref: ./PhoneNumber.yml

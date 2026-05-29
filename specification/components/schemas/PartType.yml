@@ -1,0 +1,16 @@
+description: >
+  Allows to request offer-parts of a certain type and indicates the type of the
+  received booking part. For H/H converters use ['FARE_RESERVATION'].
+
+  Default is to get search for offers of all types.
+type: string
+x-extensible-enum:
+  - ADMISSION
+  - RESERVATION
+  - ANCILLARY
+  - FARE_ADMISSION
+  - FARE_RESERVATION
+  - FARE_ANCILLARY
+  - CONTINUOUS_SERVICE
+  - FEE
+  - ALL

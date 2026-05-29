@@ -1,0 +1,25 @@
+description: >
+  Status of the request sent to the back office.
+
+  Valid Values:
+
+  - 'INITIATED'
+
+  - 'EVALUATING'
+
+  - 'DECIDED'
+
+  - 'SETTLED'
+
+  - 'INFORMATION_MISSING'
+
+  - 'REQUEST_UPDATED' # Additional information, i.e. documents have been
+  provided which should trigger reevaluation.
+type: string
+enum:
+  - INITIATED
+  - EVALUATING
+  - DECIDED
+  - SETTLED
+  - INFORMATION_MISSING
+  - REQUEST_UPDATED

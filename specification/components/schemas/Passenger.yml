@@ -1,0 +1,30 @@
+type: object
+additionalProperties: false
+description: >
+  Information about a passenger.
+
+  Either the date of birth or the age at the time of travel needs to be set. We
+  recommend to use date of birth as it is more stable than age.
+
+  The externalRef of the passenger must be provided
+allOf:
+  - $ref: ./PassengerSpecification.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - id
+    properties:
+      id:
+        type: string
+      summary:
+        description: |
+          A human-readable description of the passenger.
+        type:
+          - string
+          - 'null'
+      identificationCard:
+        $ref: ./IdentificationCard.yml
+      transportableDetails:
+        $ref: ./Transportable.yml
+      _links:
+        $ref: ./Links.yml

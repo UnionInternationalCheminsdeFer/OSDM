@@ -1,0 +1,13 @@
+name: traceparent
+in: header
+description: >
+  The traceparent header describes the position of the incoming request in its
+  trace graph in a portable,
+
+  fixed-length format. Its design focuses on fast parsing. Every tracing tool
+  MUST properly set
+
+  traceparent even when it only relies on vendor-specific information in
+  tracestate (see W3C Trace Context).
+schema:
+  type: string

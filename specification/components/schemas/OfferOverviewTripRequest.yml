@@ -1,0 +1,31 @@
+type: object
+description: >
+  Defines the parameters needed to request an offer overview for a trip. One of
+  tripSearchCriteria, a list of trip specifications, or a list of tripIds must
+  be passed in to request offers. Travel class and flexibility are optional
+  parameters to filter the desired offers.
+required:
+  - passengerSpecifications
+properties:
+  tripSpecifications:
+    type: array
+    items:
+      $ref: ./TripSpecification.yml
+  tripIds:
+    type: array
+    items:
+      type: string
+      maxLength: 32768
+  tripSearchCriteria:
+    $ref: ./TripSearchCriteria.yml
+  tripResponseParameters:
+    $ref: ./TripResponseParameters.yml
+  passengerSpecifications:
+    type: array
+    items:
+      $ref: ./AnonymousPassengerSpecification.yml
+    minItems: 1
+  travelClass:
+    $ref: ./TravelClass.yml
+  flexibility:
+    $ref: ./Flexibility.yml

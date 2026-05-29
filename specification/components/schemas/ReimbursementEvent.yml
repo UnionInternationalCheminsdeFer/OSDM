@@ -1,0 +1,15 @@
+type: object
+description: An event that has occurred on a reimbursement.
+allOf:
+  - $ref: ./NotificationEvent.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - type
+      - reimbursementId
+    properties:
+      type:
+        $ref: ./BackOfficeChangeType.yml
+      reimbursementId:
+        type: string
+        description: The ID of the reimbursement.

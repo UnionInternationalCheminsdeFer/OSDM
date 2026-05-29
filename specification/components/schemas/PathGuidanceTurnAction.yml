@@ -1,0 +1,14 @@
+description: types of a turn, provided by OJP 2.0
+type: string
+x-extensible-enum:
+  - STRAIGHT-ON
+  - HALF_RIGHT
+  - RIGHT
+  - SHARP_RIGHT
+  - UTURN
+  - SHARP_LEFT
+  - LEFT
+  - HALF_LEFT
+  - UP
+  - DOWN
+  - GENERIC_TURN_ACTION

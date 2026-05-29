@@ -1,0 +1,7 @@
+description: status values of guidance path access features, provided by OJP 2.0
+type: string
+x-extensible-enum:
+  - UNKNOWN
+  - AVAILABLE
+  - PARTIALLY_AVAILABLE
+  - NOT_AVAILABLE

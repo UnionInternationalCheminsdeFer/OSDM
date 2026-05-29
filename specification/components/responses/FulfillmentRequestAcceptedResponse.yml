@@ -1,0 +1,7 @@
+description: >
+  Fulfillment successfully initiated, retrieve booking to retrieve the
+  fulfillment documents
+content:
+  application/vnd.uic.osdm+json:
+    schema:
+      $ref: ../schemas/ProblemCollection.yml

@@ -1,0 +1,25 @@
+type: object
+additionalProperties: false
+required:
+  - id
+  - status
+properties:
+  id:
+    type: string
+  status:
+    $ref: ./BackOfficeStatus.yml
+  customerComplaint:
+    $ref: ./CustomerComplaint.yml
+  missingInformation:
+    description: |
+      indication of missing customer information
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+      maxLength: 32768
+  decision:
+    $ref: ./ComplaintDecision.yml
+  _links:
+    $ref: ./Links.yml

@@ -1,0 +1,6 @@
+type: string
+enum:
+  - ALL
+  - PLACES
+  - NONE
+default: ALL

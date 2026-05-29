@@ -1,0 +1,7 @@
+type: object
+additionalProperties: false
+properties:
+  fulfillmentIds:
+    type: array
+    items:
+      $ref: ./FulfillmentId.yml

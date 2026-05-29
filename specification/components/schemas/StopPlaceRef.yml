@@ -1,0 +1,14 @@
+description: |
+  Reference to a Stop Place using URNs to define code.
+  For UIC see UIC MERITS/TAP-TSI station codes. Provided by OJP.
+allOf:
+  - $ref: ./PlaceRef.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - stopPlaceRef
+    properties:
+      stopPlaceRef:
+        type: string
+        examples:
+          - urn:uic:stn:8503000

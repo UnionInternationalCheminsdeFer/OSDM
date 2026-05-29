@@ -1,0 +1,18 @@
+description: >
+  Values from the [Trip Interruption Process Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#TripInterruptionProcess)
+
+  Known Values:
+
+  - NONE
+
+  - MANUAL: passenger needs manual confirmation of train or station staff to
+  interrupt the trip.
+
+  - ACTIVATION: Passenger needs to deactivate the ticket during the interruption
+  (via an app).
+type: string
+x-extensible-enum:
+  - NONE
+  - MANUAL
+  - ACTIVATION

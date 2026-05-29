@@ -1,0 +1,5 @@
+type: string
+x-extensible-enum:
+  - FULL_FLEXIBLE
+  - SEMI_FLEXIBLE
+  - NON_FLEXIBLE

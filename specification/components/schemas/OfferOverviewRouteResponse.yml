@@ -1,0 +1,10 @@
+type: object
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  offerOverviews:
+    type: array
+    items:
+      $ref: ./OfferOverviewRoute.yml

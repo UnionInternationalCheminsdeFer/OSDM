@@ -1,0 +1,6 @@
+type: string
+enum:
+  - BOOKING_RECEIPT
+  - CO2_REPORT
+  - INFORMATION
+  - COMPLAINT_EXPLANATION

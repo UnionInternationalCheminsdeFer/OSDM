@@ -1,0 +1,18 @@
+allOf:
+  - $ref: ./AbstractTravelAccount.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - regionalConstraintSummary
+      - balance
+    properties:
+      regionalConstraint:
+        $ref: ./RegionalConstraint.yml
+      regionalConstraintSummary:
+        type: string
+      balance:
+        $ref: ./MultiRideBalance.yml
+      usage:
+        type: array
+        items:
+          $ref: ./TravelAccountUsage.yml

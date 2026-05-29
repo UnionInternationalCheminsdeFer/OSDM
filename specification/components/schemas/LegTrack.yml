@@ -1,0 +1,9 @@
+type: object
+additionalProperties: false
+description: |
+  geographic view of the leg
+properties:
+  sections:
+    type: array
+    items:
+      $ref: ./LegTrackSection.yml

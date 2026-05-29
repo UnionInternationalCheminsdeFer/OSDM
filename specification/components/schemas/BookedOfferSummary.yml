@@ -1,0 +1,17 @@
+type: object
+additionalProperties: false
+required:
+  - offerId
+  - summary
+  - bookingPartSummaries
+properties:
+  offerId:
+    type: string
+    maxLength: 32768
+  summary:
+    type: string
+  bookingPartSummaries:
+    type: array
+    items:
+      $ref: ./BookingPartSummary.yml
+    minItems: 1

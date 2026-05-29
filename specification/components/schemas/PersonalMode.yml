@@ -1,0 +1,21 @@
+description: >
+  Modes which an individual powers themselves (such as walk, cycle). Provided by
+  OJP.
+type: string
+x-extensible-enum:
+  - WALK
+  - CYCLE
+  - TAXI
+  - SELF_DRIVE_CAR
+  - OTHERS_DRIVE_CAR
+  - MOTORCYCLE
+  - TRUCK
+  - SCOOTER
+  - RIDE_POOL_CAR
+  - CAR_SHARING
+  - CYCLE_SHARING
+  - SCOOTER_SHARING
+  - BICYCLE
+  - ELECTRIC_BICYCLE
+  - CARGO_BICYCLE
+  - SCOOTER

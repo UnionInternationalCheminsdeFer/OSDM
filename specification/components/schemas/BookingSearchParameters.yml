@@ -1,0 +1,13 @@
+type: object
+additionalProperties: false
+properties:
+  numberOfResults:
+    type:
+      - integer
+      - 'null'
+    format: int32
+    default: 10
+  status:
+    type: array
+    items:
+      $ref: ./BookingPartStatus.yml

@@ -1,0 +1,31 @@
+type: object
+additionalProperties: false
+description: |
+  A method of transportation such as bus, rail, etc. Provided by OJP.
+required:
+  - ptMode
+properties:
+  ptMode:
+    $ref: ./PTMode.yml
+  name:
+    description: |
+      Name of the mode
+    type:
+      - string
+      - 'null'
+    examples:
+      - rail
+  shortName:
+    description: |
+      Short name or acronym of the mode
+    type:
+      - string
+      - 'null'
+    examples:
+      - S
+  description:
+    description: |
+      Additional text that further describes the mode
+    type:
+      - string
+      - 'null'

@@ -1,0 +1,14 @@
+type: object
+additionalProperties: false
+required:
+  - documents
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  documents:
+    type: array
+    items:
+      $ref: ./Document.yml
+    minItems: 1

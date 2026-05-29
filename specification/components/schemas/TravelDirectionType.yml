@@ -1,0 +1,17 @@
+description: >
+  indication of the direction of travel standard direction is left
+
+  to right with ascending coordinates in the layout values.
+
+  Values from the [Travel Direction Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#TravelDirection)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - UNSPECIFIED
+  - IN_DIRECTION
+  - OPPOSITE_DIRECTION
+  - CHANGING
+  - STARTING_IN_DIRECTION
+  - STARTING_OPPOSITE_TO_DIRECTION

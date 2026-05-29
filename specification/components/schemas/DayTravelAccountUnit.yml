@@ -1,0 +1,4 @@
+allOf:
+  - $ref: ./AbstractTravelAccountUnit.yml
+  - type: object
+    additionalProperties: false

@@ -1,0 +1,10 @@
+type: object
+additionalProperties: false
+required:
+  - stations
+properties:
+  stations:
+    type: array
+    items:
+      $ref: ./StopPlaceRef.yml
+    minItems: 1

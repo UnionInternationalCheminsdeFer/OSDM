@@ -1,0 +1,33 @@
+type: object
+description: >
+  Validity of masterdata. The dates might relate to the sales date or the travel
+  date. It indicates the validity of masterdata 
+
+  not the validity of offers, bookings or fulfiullments related to the master
+  data. 
+
+  When related to the sales process on historic data it is related to the
+  createdOn timestamp of the booking part.
+
+  When related to the travel it indicates the validity of masterdata related to
+  the travel (e.g. product definitions, zone definition). 
+
+  The dates related to the trael date must be provided in the offset format.
+required:
+  - validFrom
+  - validUntil
+properties:
+  validFrom:
+    description: |
+      start of the validity (inclusive)
+    type: string
+    format: date-time
+    examples:
+      - '2024-12-31T00:00:00+01:00'
+  validUntil:
+    description: |
+      end of the validity (exclusive)
+    type: string
+    format: date-time
+    examples:
+      - '2025-12-31T00:00:00+01:00'

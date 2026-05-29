@@ -1,0 +1,16 @@
+description: |
+  Modes dedicated to perform transfers. Provided by OJP.
+type: string
+x-extensible-enum:
+  - WALK
+  - SHUTTLE
+  - REMAIN_IN_VEHICLE
+  - CHANGE_WITHIN_VEHICLE
+  - CHECK_IN
+  - CHECK_OUT
+  - PARK_AND_RIDE
+  - BIKE_AND_RIDE
+  - CAR_HIRE
+  - BIKE_HIRE
+  - PROTECTED_CONNECTION
+  - GUARANTEED_CONNECTION

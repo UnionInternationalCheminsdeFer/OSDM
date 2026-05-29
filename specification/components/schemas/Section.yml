@@ -1,0 +1,24 @@
+type: object
+additionalProperties: false
+description: |
+  Allows to indicate the sub-part of the trip. LegIds are only relevant if
+  a trip can be referenced. When absent, the totality of the trip is priced.
+properties:
+  startPlace:
+    $ref: ./PlaceRef.yml
+  startLegId:
+    type:
+      - string
+      - 'null'
+  endPlace:
+    $ref: ./PlaceRef.yml
+  endLegId:
+    type:
+      - string
+      - 'null'
+  externalTripRef:
+    description: reference to a trip in case multiple trips are provided
+    type:
+      - string
+      - 'null'
+    maxLength: 32768

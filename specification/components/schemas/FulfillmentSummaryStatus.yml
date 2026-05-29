@@ -1,0 +1,7 @@
+description: |
+  status of a fulfillment
+type: string
+x-extensible-enum:
+  - PENDING
+  - CREATED
+  - COMPLETE

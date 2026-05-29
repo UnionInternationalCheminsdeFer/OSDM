@@ -1,0 +1,32 @@
+description: |
+  a rack on a car
+type: object
+additionalProperties: false
+required:
+  - mounting
+properties:
+  mounting:
+    type: string
+    x-extensible-enum:
+      - REAR
+      - TOP
+  type:
+    type: string
+    x-extensible-enum:
+      - LUGGAGE_RACK
+      - ROOF_RAILING
+  additionalHeight:
+    description: additional heigth in cm
+    type: integer
+    format: int32
+    minimum: 0
+  additionalLength:
+    description: additional length in cm
+    type: integer
+    format: int32
+    minimum: 0
+  numberOfBicycles:
+    description: numberof bicycles on the rack
+    type: integer
+    format: int32
+    minimum: 0

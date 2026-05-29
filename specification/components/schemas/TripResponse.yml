@@ -1,0 +1,13 @@
+type: object
+additionalProperties: false
+required:
+  - trip
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  trip:
+    $ref: ./Trip.yml
+  tripContext:
+    $ref: ./TripContext.yml

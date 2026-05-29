@@ -1,0 +1,37 @@
+type: object
+description: >
+  Defines the parameters needed to request an offer overview for a route. Travel
+  class and flexibility are optional parameters to filter the desired offers.
+required:
+  - routeSpecification
+  - passengerSpecifications
+  - startDateTime
+  - endDateTime
+properties:
+  routeSpecification:
+    $ref: ./RouteSpecification.yml
+  passengerSpecifications:
+    type: array
+    items:
+      $ref: ./AnonymousPassengerSpecification.yml
+    minItems: 1
+  startDateTime:
+    type: string
+    format: date-time
+  endDateTime:
+    type: string
+    format: date-time
+  timeFrameSegmentation:
+    allOf:
+      - $ref: ./TimeFrameSegmentation.yml
+    default: DAY
+    description: >
+      Defines the segmentation of the time frame for the offer overview. The
+      default is DAY, which means that one price offer overview is given for 
+
+      each day of the requested time frame (provided there aren't more than one
+      travel classes or flexibilities for one time segment).
+  travelClass:
+    $ref: ./TravelClass.yml
+  flexibility:
+    $ref: ./Flexibility.yml

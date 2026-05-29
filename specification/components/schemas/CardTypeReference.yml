@@ -1,0 +1,13 @@
+type: object
+additionalProperties: false
+required:
+  - code
+properties:
+  issuer:
+    $ref: ./CompanyRef.yml
+  code:
+    type: string
+  cardName:
+    type:
+      - string
+      - 'null'

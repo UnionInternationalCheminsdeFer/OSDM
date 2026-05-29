@@ -1,0 +1,64 @@
+description: >
+  Reason for and type of an after sale, code list in IRS 90918-10.
+
+  The PRM_SUPPORT_UNAVAILABLE overrule code shall only be used by the UIC PRM
+  ABT tool.
+
+  Values from the [Overrule Codes Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#OverruleCode)
+
+  Listed values here are examples.   
+
+  - 'CONNECTION_BROKEN'
+
+  - 'DEATH'
+
+  - 'EQUIPMENT_FAILURE'
+
+  - 'PAYMENT_FAILURE'
+
+  - 'PRM_SUPPORT_UNAVAILABLE'
+
+  - 'SALES_STAFF_ERROR'
+
+  - 'STOP_NOT_SERVED'
+
+  - 'STRIKE'
+
+  - 'TECHNICAL_FAILURE'
+
+  - 'TICKET_NOT_USED'
+
+  - 'INABILITY_TO_TRAVEL': Inability to travel due to accident or sickness.
+
+  - 'EXTERNAL_COMPENSATION': Offer has been compensated outside of the provider
+  system in another way.
+
+  - 'DISRUPTION': Inability to operate due to disruption.
+
+  - 'JOURNEY_OBSOLETE': Due to external factors it's senseless to start the
+  trip, thus the travel is obsolete.
+
+  - 'CERTIFIED_MEDICAL_CONDITION': A medical certificate certifies that the
+  passenger is unable to travel.
+
+  - 'DELAY_COMPENSATION': Allows to override conditions in context of passenger
+  rights regulation (PRR).
+type: string
+x-extensible-enum:
+  - CONNECTION_BROKEN
+  - DEATH
+  - EQUIPMENT_FAILURE
+  - PAYMENT_FAILURE
+  - PRM_SUPPORT_UNAVAILABLE
+  - SALES_STAFF_ERROR
+  - STOP_NOT_SERVED
+  - STRIKE
+  - TECHNICAL_FAILURE
+  - TICKET_NOT_USED
+  - INABILITY_TO_TRAVEL
+  - EXTERNAL_COMPENSATION
+  - DISRUPTION
+  - JOURNEY_OBSOLETE
+  - CERTIFIED_MEDICAL_CONDITION
+  - DELAY_COMPENSATION

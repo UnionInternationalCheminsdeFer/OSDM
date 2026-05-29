@@ -1,0 +1,9 @@
+type: number
+format: double
+description: >
+  Latitude from equator. -90 (South) to +90 (North). Decimal degrees. e.g.
+  56.356.
+minimum: -90
+maximum: 90
+examples:
+  - 47.37818

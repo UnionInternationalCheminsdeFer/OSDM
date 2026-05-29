@@ -1,0 +1,17 @@
+type: object
+additionalProperties: false
+description: |
+  A minimal trip leg specification.
+properties:
+  externalRef:
+    description: |
+      External reference of this trip leg. Unique within trip result.
+    type:
+      - string
+      - 'null'
+  timedLeg:
+    $ref: ./TimedLegSpecification.yml
+  transferLeg:
+    $ref: ./TransferLeg.yml
+  continuousLeg:
+    $ref: ./ContinuousLeg.yml

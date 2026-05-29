@@ -1,0 +1,84 @@
+type: object
+additionalProperties: false
+description: >
+  A fulfillment is a document (or part of a document in distributor mode) that
+
+  - allows the passenger to prove its travel right
+
+  - provides easier access to trains and stations
+
+  - allows an exchange for other services (voucher)
+
+  A fulfillment refers to services of one or multiple offer parts or a fare
+  (distributor mode).
+required:
+  - id
+  - status
+  - bookingRef
+  - createdOn
+properties:
+  id:
+    type: string
+  status:
+    $ref: ./FulfillmentStatus.yml
+  bookingRef:
+    description: |
+      the id of the booking the fulfillment is part of
+    type: string
+  summary:
+    description: |
+      A human-readable description of the fulfillment.
+    type:
+      - string
+      - 'null'
+  createdOn:
+    type: string
+    format: date-time
+  controlNumber:
+    description: >
+      Ticket Control Number. Used for secure paper stock of referencing tickets
+      in fulfillment applications.
+    type:
+      - string
+      - 'null'
+  bookingParts:
+    type: array
+    items:
+      $ref: ./BookingPartReference.yml
+  availableUsage:
+    $ref: ./FulfillmentUsage.yml
+  issuer:
+    $ref: ./CompanyRef.yml
+  fulfillmentDocumentRefs:
+    description: |
+      References to the fulfillment documents.
+    type: array
+    items:
+      type: string
+      description: |
+        Fulfillment document ID
+  issuingLanguage:
+    type: string
+    description: the issuing language (ISO-639-1 language code).
+  fulfillmentParts:
+    description: |
+      Fulfillment items to be integrated into tickets (distributor mode).
+    type: array
+    items:
+      $ref: ./FulfillmentPart.yml
+  contentComplete:
+    type:
+      - boolean
+      - 'null'
+    default: false
+    description: >
+      Indicates whether the fulfillment has all documents or parts generated (if
+      any needed) or they are still pending generation.
+  tripCoverage:
+    type: array
+    items:
+      $ref: ./TripCoverage.yml
+  continuousServiceUsage:
+    $ref: ./ContinuousServiceUsage.yml
+  _links:
+    $ref: ./Links.yml

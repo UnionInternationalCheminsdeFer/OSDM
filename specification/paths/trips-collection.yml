@@ -1,0 +1,54 @@
+post:
+  tags:
+    - Trips
+  summary: returns a collection of trips for a given OJP trip request
+  description: |
+    Returns trips for a given trip request based on the OJP specification.
+  operationId: postTrips
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/acceptNamespace.yml
+    - name: stopBehavior
+      in: query
+      schema:
+        $ref: ../components/schemas/StopBehavior.yml
+      required: false
+  requestBody:
+    required: true
+    description: |
+      request for trips
+    content:
+      application/vnd.uic.osdm+json:
+        schema:
+          $ref: ../components/schemas/TripCollectionRequest.yml
+  responses:
+    '200':
+      description: |
+        trips found
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/TripCollectionResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

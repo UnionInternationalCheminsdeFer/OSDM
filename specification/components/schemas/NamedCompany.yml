@@ -1,0 +1,18 @@
+type: object
+additionalProperties: false
+description: |
+  Provides the reference and name of a company.
+required:
+  - ref
+properties:
+  ref:
+    $ref: ./CompanyRef.yml
+  name:
+    description: >
+      Textual representation of the carrier to be displayed unless the
+      application is able to indicate the name by the carrier references.
+    type:
+      - string
+      - 'null'
+    examples:
+      - RhB

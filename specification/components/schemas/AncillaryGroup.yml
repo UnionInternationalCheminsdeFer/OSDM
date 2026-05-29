@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+required:
+  - ancillaryRefs
+properties:
+  name:
+    type: string
+  ancillaryRefs:
+    type: array
+    items:
+      $ref: ./OfferPartReference.yml
+    minItems: 1

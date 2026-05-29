@@ -1,0 +1,17 @@
+type: object
+additionalProperties: false
+properties:
+  isSupportingIndividualContracts:
+    description: >
+      Indicates that the after sales of this fare can be treated independently
+      per person.
+    type:
+      - boolean
+      - 'null'
+    default: false
+  isProviderFee:
+    description: >
+      The after sales fees are attributed to the provider. In some business
+      models used with fares the fees are attributed to the distributor.
+    type: boolean
+    default: true

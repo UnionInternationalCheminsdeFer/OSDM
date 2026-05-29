@@ -1,0 +1,33 @@
+type: object
+additionalProperties: false
+description: >
+  Non travel document created. Either downloadLink + downloadExpiry or content
+  must be provided.
+required:
+  - scope
+  - type
+properties:
+  passengerRef:
+    description: >
+      Reference to a passenger, to be specified when the document related to an
+      individual passenger.
+    type:
+      - string
+      - 'null'
+  content:
+    description: >
+      base64 encoded binary of the actual fulfillment document. The length
+      restriction of 4 MBytes applies to the encoded
+
+      string, so the raw document cannot exceed 3 MBytes in size.
+    type:
+      - string
+      - 'null'
+    format: byte
+    maxLength: 4194304
+  format:
+    $ref: ./DocumentFormat.yml
+  scope:
+    $ref: ./DocumentScope.yml
+  type:
+    $ref: ./DocumentType.yml

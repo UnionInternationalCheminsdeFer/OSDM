@@ -1,0 +1,7 @@
+type: object
+additionalProperties: false
+required:
+  - customerComplaint
+properties:
+  customerComplaint:
+    $ref: ./CustomerComplaint.yml

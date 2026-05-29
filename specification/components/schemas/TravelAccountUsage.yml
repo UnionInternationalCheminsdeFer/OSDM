@@ -1,0 +1,23 @@
+type: object
+additionalProperties: false
+required:
+  - usedOn
+  - bookingId
+  - unit
+  - bookingSummary
+  - usedAmount
+properties:
+  usedOn:
+    type: string
+    format: date-time
+  bookingId:
+    type: string
+  unit:
+    $ref: ./AbstractTravelAccountUnit.yml
+  bookingSummary:
+    type: string
+  tripSummary:
+    $ref: ./TripSummary.yml
+  usedAmount:
+    type: integer
+    format: int32

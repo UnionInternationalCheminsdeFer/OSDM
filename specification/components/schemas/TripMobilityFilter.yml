@@ -1,0 +1,40 @@
+type: object
+additionalProperties: false
+description: |
+  Base mobility options to be applied for both public and individual transport.
+  Provided by OJP.
+properties:
+  baseMobilityFilter:
+    description: mobility filters to be applied for public and individual transport
+    $ref: ./TripMobilityFilterItems.yml
+  bikeTransport:
+    description: |
+      The user wants to carry a bike on public transport.
+    type:
+      - boolean
+      - 'null'
+    default: false
+  walkSpeed:
+    description: >
+      Deviation from average walk speed in percent. 100% percent is average
+      speed.
+    type: integer
+    format: int32
+    default: 100
+  additionalTransferTime:
+    description: >
+      Additional time added to all transfers (also to transfers between
+      individual to
+
+      public transport).
+    type:
+      - string
+      - 'null'
+    format: duration
+    examples:
+      - PT0S
+  minimalTransferTime:
+    type:
+      - string
+      - 'null'
+    format: duration

@@ -1,0 +1,7 @@
+description: |
+  Provided by OJP.
+type: string
+enum:
+  - ORIGIN
+  - VIA
+  - DESTINATION

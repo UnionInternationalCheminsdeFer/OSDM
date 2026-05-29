@@ -1,0 +1,15 @@
+type: object
+additionalProperties: false
+description: |
+  Either excluded or included service brands can be set.
+properties:
+  restrictedToServiceBrands:
+    type: array
+    items:
+      $ref: ./ServiceBrandCode.yml
+  excludedServiceBrands:
+    type: array
+    items:
+      $ref: ./ServiceBrandCode.yml
+  description:
+    $ref: ./Text.yml

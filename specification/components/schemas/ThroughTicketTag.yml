@@ -1,0 +1,6 @@
+description: |
+  Known Values:
+  - RESPLUS: Through ticket tag according to Swedish Regulation.
+type: string
+x-extensible-enum:
+  - RESPLUS

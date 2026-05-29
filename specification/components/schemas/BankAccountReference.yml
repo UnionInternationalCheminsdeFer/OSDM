@@ -1,0 +1,30 @@
+type: object
+additionalProperties: false
+description: |
+  bank account
+properties:
+  iban:
+    description: |
+      IBAN to be used in Europe
+    type:
+      - string
+      - 'null'
+    pattern: '[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}'
+  accountId:
+    description: |
+      bank account id to be used outside of EU
+    type:
+      - string
+      - 'null'
+  bankIdCode:
+    $ref: ./BankIdCode.yml
+  bankId:
+    type:
+      - string
+      - 'null'
+  ownerName:
+    type:
+      - string
+      - 'null'
+    examples:
+      - John Doe

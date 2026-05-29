@@ -1,0 +1,30 @@
+type: object
+additionalProperties: false
+description: >
+  Tips for staff can be included e.g. for taxi drivers. The Tip will be part of
+  the payment in case ofpost payment scenarios.
+required:
+  - id
+  - price
+properties:
+  id:
+    type: string
+    maxLength: 1024
+  summary:
+    description: |
+      A human-readable description of the tip.
+    type:
+      - string
+      - 'null'
+  bookingPartRef:
+    $ref: ./BookingPartReference.yml
+  price:
+    $ref: ./Price.yml
+  distributorBookingRef:
+    description: |
+      reference to the booking in the downstream distributor system
+    type:
+      - string
+      - 'null'
+  accountingRef:
+    $ref: ./AccountingRef.yml

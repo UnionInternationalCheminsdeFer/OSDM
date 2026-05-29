@@ -1,0 +1,12 @@
+description: |
+  path guidance follow advice, provided by OJP 2.0
+additionalProperties: false
+properties:
+  followSignName:
+    type: string
+  followRoadName:
+    type: string
+  followDirectionName:
+    type: string
+  followExit:
+    type: string

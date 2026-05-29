@@ -1,0 +1,52 @@
+type: array
+description: |
+  A collection of hypermedia links associated with this resource.
+  These links facilitate navigation and discovery of related resources, 
+  following HATEOAS principles.
+items:
+  type: object
+  additionalProperties: false
+  description: >
+    The underlying system may provide links for pagination of links pointing on
+
+    further information (such as HTML download links, web sites or extended
+    APIs).
+
+    Mechanism to add flexible extensions specific to an underlying system.
+    Implemented
+
+    the JSON-HAL specification.
+  required:
+    - rel
+    - href
+  properties:
+    rel:
+      description: |
+        the 'rel' field in HATEOAS navigation.
+      type: string
+      examples:
+        - self
+    href:
+      description: |
+        Allows to provide a value to the link, for example id of the targeted 
+        resource or displayable representation for the link.
+      type: string
+      maxLength: 32768
+      format: uri
+    type:
+      description: >
+        Hint to indicate the media type expected when dereferencing the target
+        resource.
+      type:
+        - string
+        - 'null'
+      examples:
+        - application/json
+    value:
+      description: |
+        Allows to provide a value to the link, for example id of the targeted 
+        resource or displayable representation for the link.
+      type:
+        - string
+        - 'null'
+      maxLength: 32768

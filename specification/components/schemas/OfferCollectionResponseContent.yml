@@ -1,0 +1,7 @@
+type: string
+enum:
+  - ALL
+  - OFFERS
+  - TRIPS
+  - NONE
+default: ALL

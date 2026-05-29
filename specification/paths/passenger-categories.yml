@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Master Data
+    - Passenger Categories
+  summary: Returns all defined passenger categories.
+  description: >
+    Provider may *optionally* define passenger categories. These are usually
+    intended for frontend (UI) usage instead of full passenger specification
+    entry when provider works with unified list of passenger categories. For 
+
+    precise entry, or when PassengerCategory is not defined, the full passenger
+    specification must always be supported by the provider.
+  operationId: getPassengerCategories
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+  responses:
+    '200':
+      description: OK
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/PassengerCategory.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

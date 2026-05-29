@@ -1,0 +1,10 @@
+type: object
+additionalProperties: false
+description: >
+  Changes the refund offer to status CONFIRMED. De-confirmation by setting
+  PROPOSED status is not supported by API.
+required:
+  - status
+properties:
+  status:
+    $ref: ./RefundStatus.yml

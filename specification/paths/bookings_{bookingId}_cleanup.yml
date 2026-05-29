@@ -1,0 +1,49 @@
+post:
+  tags:
+    - Bookings
+  summary: Performs a complete cleanup of a booking in a single step
+  description: >
+    The booking is cleaned up completely: confirmed items are refunded, and
+    unconfirmed items are deleted.
+  operationId: postBookingCleanup
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/idempotencyKey.yml
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking.
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/vnd.uic.osdm+json:
+        schema:
+          $ref: ../components/schemas/BookingCleanupRequest.yml
+  responses:
+    '202':
+      $ref: ../components/responses/CleanupRequestAcceptedResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

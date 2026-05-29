@@ -1,0 +1,44 @@
+type: object
+additionalProperties: false
+description: >
+  The reimbursement process is used to support refunds which are not covered by
+  the online refund/exchange processes, e.g.: Partial refund of a trip (Trip was
+  Hamburg - Munich, but only Hamburg - Kassel was used), Refund outside of rules
+  due to good will. This is a manual back office process within the provider's
+  organization which is triggered by this request. State changes can be signaled
+  by web hook events.
+required:
+  - reimbursementReason
+  - fulfillmentIds
+properties:
+  reimbursementReason:
+    $ref: ./ReimbursementReason.yml
+  reimbursementDate:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  reimbursedPassengerIds:
+    description: >
+      Ids of the passengers
+
+      Providing the passengerIds is required for passenger transport. There are
+      uses cases (e.g. sale of merchandising articles) where no passenger is
+      involved. Only in these cases it is allowed to omit the passengerIds.
+    type: array
+    items:
+      type: string
+    minItems: 1
+  tripSections:
+    type: array
+    items:
+      $ref: ./TripSection.yml
+  fulfillmentIds:
+    type: array
+    items:
+      type: string
+    minItems: 1
+  supportingDocuments:
+    type: array
+    items:
+      $ref: ./SupportingDocument.yml

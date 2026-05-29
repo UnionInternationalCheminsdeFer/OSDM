@@ -1,0 +1,45 @@
+description: >
+  An admission represents a travel right, or the entitlement to travel onboard a
+  train between
+
+  the given origin and destination, following the given route. It does not
+  include a seat reservation.
+allOf:
+  - $ref: ./AbstractBookingPart.yml
+  - type: object
+    additionalProperties: false
+    properties:
+      validFrom:
+        description: |
+          Validity of Booking Part for travel
+        type: string
+        format: date-time
+      validUntil:
+        description: |
+          Validity of Booking Part for travel
+        type:
+          - string
+          - 'null'
+        format: date-time
+      regionalValidities:
+        description: This contains multiple regional validities for this item
+        type: array
+        items:
+          $ref: ./RegionalValidity.yml
+        minItems: 1
+      feeRefs:
+        type: array
+        items:
+          $ref: ./BookingPartReference.yml
+      reservationRefs:
+        type: array
+        items:
+          $ref: ./BookingPartReference.yml
+      ancillaryRefs:
+        type: array
+        items:
+          $ref: ./BookingPartReference.yml
+      regulatoryConditions:
+        type: array
+        items:
+          $ref: ./RegulatoryCondition.yml

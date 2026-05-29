@@ -1,0 +1,71 @@
+type: object
+additionalProperties: false
+required:
+  - code
+  - issuer
+  - name
+properties:
+  code:
+    type: string
+  shortCode:
+    description: >
+      reduction card code to be used in bar codes. The code is defined within
+
+      the context of the issuer and is required to be very short (usually 1-4
+      positions).
+
+      The code is used in ticket bar codes to indicate required checks of this
+      reduction card during travel.
+    type:
+      - string
+      - 'null'
+  issuer:
+    $ref: ./CompanyRef.yml
+  validityForSale:
+    description: >
+      indication when a card type is usable within a sales process to obtain
+      reductions.
+    $ref: ./MasterDataValidity.yml
+  validityForTravel:
+    description: >
+      indication when a card type is usable for  a travel to obtain reductions.
+      The date range is related to the possible start of a travel.
+    $ref: ./MasterDataValidity.yml
+  name:
+    $ref: ./Text.yml
+  cardIdRequired:
+    description: |
+      the card id must be delivered in online sales
+    type:
+      - boolean
+      - 'null'
+    default: false
+  includedCardTypes:
+    description: |
+      This card includes the listed cards
+    type: array
+    items:
+      $ref: ./CardTypeReference.yml
+  serviceClassTypes:
+    description: |
+      list of service classes where this card applies
+    type: array
+    items:
+      $ref: ./ServiceClassType.yml
+    maxItems: 4
+  travelClassTypes:
+    description: |
+      list of travel classes where this card applies
+    type: array
+    items:
+      $ref: ./TravelClass.yml
+    maxItems: 2
+  reductionsGranted:
+    description: reductions that will be granted by this reduction card type
+    type: array
+    items:
+      $ref: ./ReductionGranted.yml
+    minItems: 1
+    maxItems: 500
+  _links:
+    $ref: ./Links.yml

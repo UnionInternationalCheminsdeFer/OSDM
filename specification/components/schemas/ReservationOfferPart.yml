@@ -1,0 +1,26 @@
+description: |
+  Reservation includes the reference to the in the initial offer.
+  The offer needs to be updated with the selected places before the confirmation
+  which creates the reservation details including the reserved places.
+allOf:
+  - $ref: ./AbstractOfferPart.yml
+  - type: object
+    additionalProperties: false
+    properties:
+      availablePlaces:
+        type: array
+        items:
+          $ref: ./AvailablePlace.yml
+      availablePlacePreferences:
+        type: array
+        items:
+          $ref: ./AvailablePlacePreferences.yml
+      feeRefs:
+        type: array
+        items:
+          $ref: ./OfferPartReference.yml
+      numberOfPrivateCompartments:
+        type:
+          - integer
+          - 'null'
+        format: int32

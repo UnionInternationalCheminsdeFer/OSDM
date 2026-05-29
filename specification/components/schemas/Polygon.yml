@@ -1,0 +1,10 @@
+type: object
+additionalProperties: false
+required:
+  - edges
+properties:
+  edges:
+    type: array
+    items:
+      $ref: ./GeoPosition.yml
+    minItems: 1

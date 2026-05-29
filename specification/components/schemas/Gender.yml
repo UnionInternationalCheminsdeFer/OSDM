@@ -1,0 +1,12 @@
+description: >
+  The gender of the passenger, which is important in the case of night trains.
+
+  Values from the [Gender Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#Gender)
+type:
+  - string
+  - 'null'
+enum:
+  - MALE
+  - FEMALE
+  - X

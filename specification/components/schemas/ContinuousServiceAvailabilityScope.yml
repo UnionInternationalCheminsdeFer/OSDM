@@ -1,0 +1,9 @@
+description: >-
+  search parameter so get available pick-up places for continuous on-demand
+  services.
+type: object
+properties:
+  geoLocation:
+    $ref: ./GeoPosition.yml
+  vehicleType:
+    $ref: ./ContinuousServiceVehicleType.yml

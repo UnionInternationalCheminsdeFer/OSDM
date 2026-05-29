@@ -1,0 +1,8 @@
+description: types of a guidance path transition, provided by OJP 2.0
+type: string
+x-extensible-enum:
+  - UP
+  - DOWN
+  - LEVEL
+  - UP_AND_DOWN
+  - DOWN_AND_UP

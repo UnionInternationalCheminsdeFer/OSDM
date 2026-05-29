@@ -1,0 +1,6 @@
+description: |
+  Indication of items attached to the car
+type: string
+x-extensible-enum:
+  - ROOF_RACK
+  - BICYCLE_STAND

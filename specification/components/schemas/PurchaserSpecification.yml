@@ -1,0 +1,23 @@
+type: object
+additionalProperties: false
+description: >
+  Minimal specification of a purchaser to request booking of an offer. Exactly
+  one of `detail` or `companyDetails` must be provided.
+
+  Business rules for mandatory and non patchable items must be checked on the
+  backend.
+
+  Forward business rules for mandatory items using a requestedInformation field.
+properties:
+  externalRef:
+    description: >
+      A stable reference to a purchaser from other elements, or from caller
+      system. When received in input of a request, it must be echoed back in the
+      response.
+    type:
+      - string
+      - 'null'
+  detail:
+    $ref: ./PersonDetail.yml
+  companyDetails:
+    $ref: ./CompanyDetail.yml

@@ -1,0 +1,15 @@
+type: object
+additionalProperties: false
+required:
+  - coach
+  - place
+properties:
+  reservationId:
+    description: >
+      id of the reservation in case the places have already been selected and
+      the customer now wants to change the selection.
+    type: string
+  coach:
+    type: string
+  place:
+    type: string

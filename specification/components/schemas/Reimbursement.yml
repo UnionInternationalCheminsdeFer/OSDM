@@ -1,0 +1,29 @@
+type: object
+additionalProperties: false
+description: >
+  Customers who have bought a ticket which allows reimbursement and which have
+  not traveled or traveled partially only can claim to be reimbursed. The
+  customer must prove that he has not or only partially used the ticket. A
+  partial use might be a only a part of the trip was traveled or only some of
+  the travelers were traveling or a combination of both.
+required:
+  - id
+  - request
+  - status
+properties:
+  id:
+    type: string
+  request:
+    $ref: ./ReimbursementRequest.yml
+  status:
+    $ref: ./BackOfficeStatus.yml
+  missingInformation:
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  decision:
+    $ref: ./ReimbursementDecision.yml
+  _links:
+    $ref: ./Links.yml

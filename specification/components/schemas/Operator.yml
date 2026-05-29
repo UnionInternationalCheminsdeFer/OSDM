@@ -1,0 +1,14 @@
+type: object
+additionalProperties: false
+description: operator of a service
+required:
+  - id
+  - name
+  - shortName
+properties:
+  id:
+    $ref: ./CompanyRef.yml
+  name:
+    type: string
+  shortName:
+    type: string

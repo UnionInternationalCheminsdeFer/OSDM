@@ -1,0 +1,7 @@
+description: importance as percentage
+type:
+  - number
+  - 'null'
+format: float
+minimum: 0
+maximum: 100

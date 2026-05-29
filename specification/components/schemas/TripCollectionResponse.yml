@@ -1,0 +1,25 @@
+type: object
+additionalProperties: false
+description: |
+  Trip response structure. Provided by OJP.
+required:
+  - id
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  id:
+    type: string
+  trips:
+    type: array
+    items:
+      $ref: ./Trip.yml
+  tripSummaries:
+    type: array
+    items:
+      $ref: ./TripSummary.yml
+  tripContext:
+    $ref: ./TripContext.yml
+  _links:
+    $ref: ./Links.yml

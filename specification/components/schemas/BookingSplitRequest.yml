@@ -1,0 +1,10 @@
+type: object
+additionalProperties: false
+required:
+  - groups
+properties:
+  groups:
+    type: array
+    items:
+      $ref: ./BookingSplitGroup.yml
+    minItems: 1

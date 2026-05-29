@@ -1,0 +1,44 @@
+type: object
+additionalProperties: false
+description: >
+  Describes the situation at a stop or station at which the passenger alights
+  from a Leg
+
+  of a trip including time-related information. Provided by OJP.
+required:
+  - stopPlaceRef
+  - stopPlaceName
+  - serviceArrival
+properties:
+  stopPlaceRef:
+    $ref: ./StopPlaceRef.yml
+  stopPlaceName:
+    type: string
+    examples:
+      - Luzern
+  plannedStopPointName:
+    description: >
+      Name of the bay/quay/terminal where to board/alight from the vehicle.
+      According to
+
+      planned timetable.
+    type:
+      - string
+      - 'null'
+    examples:
+      - '3'
+  estimatedStopPointName:
+    description: >
+      Name of the bay/quay/terminal where to board the vehicle. As to the latest
+      realtime status.
+    type:
+      - string
+      - 'null'
+    examples:
+      - '8'
+  serviceArrival:
+    $ref: ./ServiceTime.yml
+  serviceArrivalFormation:
+    $ref: ./ServiceFormation.yml
+  status:
+    $ref: ./StopCallStatus.yml

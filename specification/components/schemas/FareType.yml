@@ -1,0 +1,12 @@
+description: >
+  Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
+
+  Values from the [Fare Type Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#FareType)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - ADMISSION
+  - RESERVATION
+  - ANCILLARY

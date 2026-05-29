@@ -1,0 +1,23 @@
+type: object
+additionalProperties: false
+description: >
+  In offer mode, in almost all cases exactly one product is referenced. Only on
+  some French
+
+  trips consisting of a TGV and a TER two products need to be used.
+
+  In fare mode, no product exists as first needs to created from the different
+  fares.
+required:
+  - productId
+properties:
+  productId:
+    type: string
+  legIds:
+    description: |
+      indices of the legs in the trip given by the provider of the offer
+    type:
+      - array
+      - 'null'
+    items:
+      type: string

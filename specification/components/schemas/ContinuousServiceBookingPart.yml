@@ -1,0 +1,23 @@
+description: |
+  A booking part for a continuous on-demand service.
+allOf:
+  - $ref: ./AbstractBookingPart.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - pickUpPlaces
+    properties:
+      pickUpPlaces:
+        description: >
+          List of pick-up places for on-demand vehicles.
+
+          The list might include more or other pick up places than mentioned
+          originally in the trip specification.
+        type: array
+        items:
+          $ref: ./ContinuousServicePickUpPlace.yml
+        minItems: 1
+      tipRef:
+        description: id of the tip for staff (e.g. taxi)
+        type: string
+        maxLength: 1024

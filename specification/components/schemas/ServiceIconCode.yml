@@ -1,0 +1,5 @@
+type: string
+description: |
+  See https://osdm.io/spec/catalog-of-code-lists/#GraphicsItems
+examples:
+  - TOILET_ICON

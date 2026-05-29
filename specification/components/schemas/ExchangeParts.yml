@@ -1,0 +1,19 @@
+description: specification of parts to be exchanged
+type: object
+properties:
+  fulfillmentId:
+    description: |
+      ids of the fulfillments where some part(s) should be exchanged
+    type: string
+    maxLength: 32768
+  bookingPartIds:
+    description: >
+      Ids of booking parts to be exchanged. The new offers will not contain
+      these parts.
+
+      In case no booking parts are provided all booking parts will be exchanged.
+    type: array
+    maxItems: 1024
+    items:
+      type: string
+      maxLength: 32768

@@ -1,0 +1,25 @@
+type: object
+additionalProperties: false
+description: >
+  A categorization of points of interest in respect of the activities undertaken
+  at them (defined by key-value-pairs). Provided by OJP.
+properties:
+  osmTags:
+    description: |
+      Open Street Map tag structure (key-value)
+    type: array
+    items:
+      $ref: ./OsmTag.yml
+  pointOfInterestClassifications:
+    description: >
+      Classification of the POI (when it is not from OSM). The codification of
+      the
+
+      classification Id may include de codification source (for example
+
+      'IGN:[classificationCode]')
+    type:
+      - array
+      - 'null'
+    items:
+      type: string

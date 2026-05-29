@@ -1,0 +1,18 @@
+type: object
+additionalProperties: false
+description: |
+  List of public transport modes to include or exclude. Provided by OJP.
+properties:
+  exclude:
+    description: |
+      Whether modes in list are to include or exclude from search.
+    type:
+      - boolean
+      - 'null'
+    default: true
+  transportModes:
+    description: |
+      List of Transport modes to include/exclude.
+    type: array
+    items:
+      $ref: ./Mode.yml

@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+description: |
+  reference place for an adjacent reservation
+required:
+  - coachNumber
+  - placeNumber
+properties:
+  coachNumber:
+    type: string
+  placeNumber:
+    type: string

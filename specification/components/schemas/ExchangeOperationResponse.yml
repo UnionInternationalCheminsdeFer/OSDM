@@ -1,0 +1,20 @@
+type: object
+additionalProperties: false
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  exchangeOperation:
+    $ref: ./ExchangeOperation.yml
+  appliedFees:
+    description: >
+      applied fees referenced in the exchange operation. Providing the applied
+      fees is 
+
+      mandatory in case the an exchange operation is returned. The applied fees
+      are stored in the booking and are returned here additionally for
+      convenience.
+    type: array
+    items:
+      $ref: ./AppliedFee.yml

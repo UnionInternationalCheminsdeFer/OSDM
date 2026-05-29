@@ -1,0 +1,42 @@
+type: object
+additionalProperties: false
+required:
+  - id
+  - summary
+  - createdOn
+  - validFrom
+  - validUntil
+  - onHoldFee
+  - deposit
+  - increasedTTL
+properties:
+  id:
+    type: string
+    maxLength: 32768
+  summary:
+    type: string
+  createdOn:
+    type: string
+    format: date-time
+  validFrom:
+    type: string
+    format: date-time
+  validUntil:
+    type: string
+    format: date-time
+  confirmedOn:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  onHoldFee:
+    $ref: ./Fee.yml
+  deposit:
+    $ref: ./Price.yml
+  increasedTTL:
+    description: |
+      Increased time-to-live.
+    type: string
+    format: date-time
+  _links:
+    $ref: ./Links.yml

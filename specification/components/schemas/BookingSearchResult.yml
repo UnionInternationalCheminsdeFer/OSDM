@@ -1,0 +1,49 @@
+type: object
+additionalProperties: false
+description: >
+  Summary of the booking found by the booking search. For more information, get
+  the booking.
+required:
+  - passengers
+  - id
+  - bookedOfferSummaries
+properties:
+  purchaser:
+    $ref: ./Purchaser.yml
+  passengers:
+    type: array
+    items:
+      $ref: ./Passenger.yml
+    minItems: 1
+  tripSummaries:
+    type: array
+    items:
+      $ref: ./TripSummary.yml
+  id:
+    type: string
+  bookingCode:
+    type: string
+    description: >-
+      The unique booking code in the provider system. Usually refers to an order
+      number or PNR.
+  externalRef:
+    description: >
+      The unique booking reference in the provider system. Usually refers to an
+      order number or PNR.
+    type:
+      - string
+      - 'null'
+  provisionalPrice:
+    description: |
+      price of all unconfirmed pre-booked parts in the booking
+    $ref: ./Price.yml
+  confirmedPrice:
+    description: >
+      sum of all prices of confirmed parts in the booking minus the sum of all
+      confirmed refund amounts.
+    $ref: ./Price.yml
+  bookedOfferSummaries:
+    type: array
+    items:
+      $ref: ./BookedOfferSummary.yml
+    minItems: 1

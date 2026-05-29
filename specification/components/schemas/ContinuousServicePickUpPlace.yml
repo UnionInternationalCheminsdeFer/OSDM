@@ -1,0 +1,59 @@
+description: |
+  Pick-up places for on-demand vehicles like taxis, bicycles or scooters
+required:
+  - description
+  - geoPosition
+  - availableVehicles
+properties:
+  id:
+    description: id of the pick-up place
+    type: string
+    maxLength: 32768
+  description:
+    description: description of the pick-up place
+    type: string
+    maxLength: 32768
+  name:
+    description: name of the pick-up place
+    type: string
+    maxLength: 32768
+    examples:
+      - Taxi Stand Main Station East Exit
+  accessDescription:
+    description: description on how to access the on-demand vehicle
+    type: string
+    maxLength: 32768
+    examples:
+      - Scooter to be unlocked by SMS code
+  geoPosition:
+    $ref: ./GeoPosition.yml
+  availableVehicles:
+    type: array
+    items:
+      $ref: ./ContinuousServiceVehicleAvailability.yml
+    maxItems: 500
+  preAllocationTimeLimit:
+    description: Duration for which the vehicle can be blocked until the usage starts.
+    type: string
+    format: duration
+    examples:
+      - PT30M
+  processIndication:
+    description: >-
+      Machine readable indications on how the on-demand process should be
+      handled.
+    type: array
+    items:
+      $ref: ./ContinuousServiceProcessIndication.yml
+  estimatedVehicleArrivalAtPickUp:
+    description: >
+      Time until when the vehicle is expected to arrive at the pick-up place
+      (taxi,..)
+    type: string
+    format: date-time
+  estimatedUserArrivalAtPickUp:
+    description: >
+      Time until when the user of the service is expected to arrive at the
+      pick-up place.
+    type: string
+    format: date-time

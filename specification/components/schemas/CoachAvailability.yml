@@ -1,0 +1,27 @@
+type: object
+additionalProperties: false
+required:
+  - number
+  - travelDirection
+properties:
+  number:
+    description: |
+      Coach number
+    type: string
+  travelDirection:
+    $ref: ./TravelDirectionType.yml
+  noPassageToNextCoach:
+    description: |
+      Indicates that there is no passage to the next coach.
+    type:
+      - boolean
+      - 'null'
+    default: false
+  decks:
+    description: >
+      The decks of a coach ordered in ascending order from the lowest to the
+      highest deck. Optional as for some coaches (especially special/not
+      reservable coach types) no coach layout might exist.
+    type: array
+    items:
+      $ref: ./DeckAvailability.yml

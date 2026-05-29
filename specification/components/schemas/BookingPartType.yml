@@ -1,0 +1,6 @@
+type: string
+enum:
+  - ADMISSION
+  - RESERVATION
+  - ANCILLARY
+  - CONTINUOUS_SERVICE

@@ -1,0 +1,62 @@
+get:
+  tags:
+    - Master Data
+  summary: Returns all coach deck layouts.
+  description: >
+    Retrieve the coach layout description needed for graphical reservation. The
+    coach
+
+    layouts can either be retrieved as a complete list or specificity for a
+    train identified via offerId and reservationId or fareId
+  operationId: getCoachDeckLayouts
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/ifNoneMatch.yml
+    - $ref: ../components/parameters/acceptNamespace.yml
+    - $ref: ../components/parameters/page.yml
+  responses:
+    '200':
+      description: |
+        coach layouts
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/CoachDeckLayoutCollectionResponse.yml
+      headers:
+        Cache-Control:
+          schema:
+            type: string
+            default: public, max-age=10000
+          description: >
+            Resource is fairly persistent and has a medium time to live to allow
+            short-term caching.
+        ETag:
+          schema:
+            type: string
+          description: version tag
+    '303':
+      $ref: ../components/responses/SeeOtherResponse.yml
+    '304':
+      $ref: ../components/responses/NotModifiedResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

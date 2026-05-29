@@ -1,0 +1,17 @@
+type: object
+additionalProperties: false
+description: >
+  Transportables which are handled similar to passengers like dogs, bicycles,
+  car transport.
+
+  These transportables might need a ticket or reservation. The Transportable
+  specification does not include personal data (e.g. a license plate.)
+required:
+  - type
+properties:
+  type:
+    $ref: ./TransportableType.yml
+  car:
+    $ref: ./CarSpecification.yml
+  trailer:
+    $ref: ./CarSpecification.yml

@@ -1,0 +1,19 @@
+description: >
+  General conditions applied to cover legal regulations within the area of
+  validity. Allocators must
+
+  reflect these terms and conditions in the conditions of combined offers and
+  indicate them to the customer
+
+  where required. Which indications are mandatory to be shown to the customer is
+  defined in the SCICs.
+
+
+  Valid Values [Regulatory Condition Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#regulatory-condition-)
+type: string
+x-extensible-enum:
+  - CIV
+  - MD
+  - EU_PRR
+  - CIT_AJC

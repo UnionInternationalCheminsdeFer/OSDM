@@ -1,0 +1,11 @@
+description: |
+  used to indicate booking options not provided via the OSDM app.
+  Provided by OJP.
+type: string
+x-extensible-enum:
+  - ADVANCE_ONLY
+  - UNTIL_PREVIOUS_DAY
+  - DAY_OF_TRAVEL_ONLY
+  - ADVANCE_AND_DAY_OF_TRAVEL
+  - TIME_OF_TRAVEL_ONLY
+  - SUBSCRIPTION_CHARGE_MOMENT

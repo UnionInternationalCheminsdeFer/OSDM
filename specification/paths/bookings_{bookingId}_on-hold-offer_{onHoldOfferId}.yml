@@ -1,0 +1,107 @@
+patch:
+  tags:
+    - On Hold
+  summary: Confirms the on hold offer.
+  operationId: confirmOnHoldOffer
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/idempotencyKey.yml
+    - name: bookingId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: onHoldOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+  requestBody:
+    required: true
+    content:
+      application/vnd.uic.osdm+json:
+        schema:
+          $ref: ../components/schemas/OnHoldOfferPatchRequest.yml
+  responses:
+    '200':
+      description: |
+        on-hold offer confirmed
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/OnHoldOfferResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '409':
+      $ref: ../components/responses/ConflictResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []
+delete:
+  tags:
+    - On Hold
+  summary: Deletes the on hold offer
+  operationId: deleteOnHoldOffer
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - name: bookingId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: onHoldOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+  responses:
+    '204':
+      description: >
+        In case that a request was successful only status code 204 will be
+        returned but no response content will be provided (aka as return type
+        'void' in many programming languages).
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '409':
+      $ref: ../components/responses/ConflictResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

@@ -1,0 +1,18 @@
+description: |
+  number and type of available vehicles
+required:
+  - vehicleDescription
+  - vehicleType
+  - availableVehicles
+properties:
+  vehicleDescription:
+    type: string
+    maxLength: 32768
+    examples:
+      - Scooter up to 120 kg traveler weight
+  vehicleType:
+    $ref: ./ContinuousServiceVehicleType.yml
+  availableVehicles:
+    description: number of available vehicles
+    type: integer
+    format: int32

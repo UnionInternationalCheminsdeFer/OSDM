@@ -1,0 +1,48 @@
+post:
+  tags:
+    - Offer Overview
+  summary: Returns an overview of prices based on trips
+  description: |
+    Returns an overview of prices for a given trip search and criteria.
+    The overview does not contain detailed offer information, but only the
+    prices.
+  operationId: getOfferOverviewTrip
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+  requestBody:
+    required: true
+    content:
+      application/vnd.uic.osdm+json:
+        schema:
+          $ref: ../components/schemas/OfferOverviewTripRequest.yml
+  responses:
+    '200':
+      description: |
+        overview of prices found
+      headers:
+        Content-Language:
+          schema:
+            type: string
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/OfferOverviewTripResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

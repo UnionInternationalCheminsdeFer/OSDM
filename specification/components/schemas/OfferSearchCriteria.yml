@@ -1,0 +1,66 @@
+type: object
+additionalProperties: false
+properties:
+  requestedOfferParts:
+    description: |
+      Allows to request offer-parts of a certain type.
+      To support H/H use ['RESERVATION', 'ANCILLARY'].
+      Default is to get search for offers of all types.
+    type: array
+    items:
+      $ref: ./PartType.yml
+  productTags:
+    type:
+      - array
+      - 'null'
+    items:
+      $ref: ./ProductTag.yml
+  productSelections:
+    description: |
+      preselection of products where offers are requested
+    type: array
+    items:
+      description: >
+        product selection by product code or product tag for an offer request.
+        The number of items indicates the quantity to be required. Passengers
+        must be referenced in case the product is intended for passengers.
+      $ref: ./ProductRequestOfferSelection.yml
+  flexibilities:
+    description: >
+      Defines the flexibility levels desired of the fares returned.
+
+      This refers to the after sales flexibility levels as defined in
+      IRS-90918-10
+    type: array
+    items:
+      $ref: ./Flexibility.yml
+  travelClasses:
+    description: |
+      The classes returned might be different from the requested classes.
+    type: array
+    items:
+      $ref: ./TravelClass.yml
+  serviceClassTypes:
+    description: |
+      The classes returned might be different from the requested classes.
+    type: array
+    items:
+      $ref: ./ServiceClassType.yml
+    maxItems: 4
+  offerMode:
+    $ref: ./OfferMode.yml
+  currency:
+    $ref: ./Currency.yml
+  inboundDate:
+    description: >
+      Needs to be provided when creating the collection of outbound travels so
+      that the
+
+      provider knows when a inbound travel can be expected and propose
+      appropriate
+
+      product and fares.
+    type:
+      - string
+      - 'null'
+    format: date-time

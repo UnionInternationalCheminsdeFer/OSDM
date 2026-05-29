@@ -1,0 +1,19 @@
+type: object
+additionalProperties: false
+description: |
+  Result of a product search
+required:
+  - products
+properties:
+  products:
+    type: array
+    minItems: 1
+    maxItems: 500
+    items:
+      $ref: ./Product.yml
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  _links:
+    $ref: ./Links.yml

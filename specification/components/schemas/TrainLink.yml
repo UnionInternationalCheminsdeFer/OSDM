@@ -1,0 +1,27 @@
+type: object
+additionalProperties: false
+required:
+  - fromStation
+  - toStation
+  - train
+  - travelDate
+  - serviceBrandAbbreviation
+properties:
+  fromStation:
+    $ref: ./StopPlaceRef.yml
+  toStation:
+    $ref: ./StopPlaceRef.yml
+  train:
+    type: string
+  travelDate:
+    description: |
+      date and time of the departure where the train link starts
+    type: string
+    format: date-time
+  serviceBrandCode:
+    $ref: ./ServiceBrandCode.yml
+  serviceBrandAbbreviation:
+    description: >
+      Abbreviation of the service brand, e.g. 'IC', 'TGV'. See the OSDM code
+      list. Needs to match the service brand code.
+    type: string

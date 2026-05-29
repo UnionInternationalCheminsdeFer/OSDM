@@ -1,0 +1,29 @@
+type: object
+additionalProperties: false
+description: >
+  Day of public transport operation of which the characteristics are defined in
+  a specific
+
+  service calendar and which may last more than 24 hours. Provided by OJP.
+required:
+  - from
+  - until
+  - pattern
+properties:
+  from:
+    description: |
+      Start date of period
+    type: string
+    format: date-time
+  until:
+    description: |
+      End date of period
+    type: string
+    format: date-time
+  pattern:
+    description: |
+      Bit pattern for operating days between start date and end date.
+      The length of the pattern is equal to the number of days from
+      start date to end date. A bit value of '1' indicates that an event
+      actually happens on the day that is represented by the bit position.
+    type: string

@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+description: |
+  formation of a service at a stop on arrival or departure
+required:
+  - placeRef
+  - name
+properties:
+  placeRef:
+    $ref: ./PlaceRef.yml
+  name:
+    type: string

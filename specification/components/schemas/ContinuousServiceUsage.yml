@@ -1,0 +1,46 @@
+description: Usage of a continuos service vehicle
+type: object
+additionalProperties: false
+required:
+  - id
+  - status
+  - startUsageDescription
+  - endUsageDescription
+properties:
+  id:
+    type: string
+    maxLength: 1024
+  status:
+    $ref: ./ContinuousServiceUsageStatus.yml
+  geoPosition:
+    $ref: ./GeoPosition.yml
+  startUsageDescription:
+    description: start usage procedure description
+    type: string
+    maxLength: 32768
+  endUsageDescription:
+    description: end usage procedure description
+    type: string
+    maxLength: 32768
+  startUsageCredentials:
+    description: credentials to start the usage, e.g. nfc-enabled pkpass
+    $ref: ./FulfillmentDocument.yml
+  startUsageTimeLimit:
+    description: time limit to start the usage
+    type: string
+    format: date-time
+  blockingFeeRef:
+    description: id of the fee taken on blocking the vehicle
+    type: string
+    maxLength: 1024
+  tipRef:
+    description: id of the tip provided to staff
+    type: string
+    maxLength: 1024
+  usageForPostPayment:
+    $ref: ./IndicatedUsage.yml
+  remainingUsageFromPrePayment:
+    $ref: ./IndicatedUsage.yml
+  estimatedTimeOfArrivalAtPickUpPlace:
+    type: string
+    format: date-time

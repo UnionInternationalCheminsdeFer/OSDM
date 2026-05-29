@@ -1,0 +1,11 @@
+description: >
+  references to fulfillments including the status and related bookingPart
+  references
+required:
+  - fulfillmentRefs
+properties:
+  fulfillmentRefs:
+    type: array
+    items:
+      $ref: ./FulfillmentRef.yml
+    minItems: 1

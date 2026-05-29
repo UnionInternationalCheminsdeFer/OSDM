@@ -1,0 +1,28 @@
+description: >
+  If initial after sales conditions have been overwritten this object provides
+  details on the original
+
+  conditions and an explanation text for the customer
+type: object
+properties:
+  initialAftersalesConditions:
+    type: array
+    items:
+      $ref: ./AfterSaleCondition.yml
+  overrideDescription:
+    description: Description for the change of conditions for the customer.
+    type: string
+  validFrom:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  validUntil:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  initialExchangeableType:
+    $ref: ./ExchangeableType.yml
+  initialRefundType:
+    $ref: ./RefundType.yml

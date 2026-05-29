@@ -1,0 +1,11 @@
+description: >
+  Product tags including a description,  The short text of the description
+  should serve as a name on a button.
+required:
+  - tag
+  - description
+properties:
+  tag:
+    $ref: ./ProductTag.yml
+  description:
+    $ref: ./Text.yml

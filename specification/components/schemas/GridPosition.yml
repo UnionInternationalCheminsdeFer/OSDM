@@ -1,0 +1,21 @@
+type: object
+additionalProperties: false
+description: >
+  Describes the position in a 3D grid on which the element must be placed. The
+  grid origin (x=0, y=0) is on the top left, the x coordinate increases to the
+  right, the y coordinate increases downwards and the z coordinate increases
+  towards the foreground.
+required:
+  - x
+  - 'y'
+  - z
+properties:
+  x:
+    type: integer
+    format: int32
+  'y':
+    type: integer
+    format: int32
+  z:
+    type: integer
+    format: int32

@@ -1,0 +1,16 @@
+type: object
+additionalProperties: false
+description: >
+  Decision whether or not the reimbursement is granted. Contains information on
+  the amount reimbursed.
+properties:
+  amount:
+    $ref: ./Price.yml
+  voucher:
+    $ref: ./FulfillmentDocument.yml
+  explanation:
+    $ref: ./SupportingDocument.yml
+  shortExplanation:
+    type:
+      - string
+      - 'null'

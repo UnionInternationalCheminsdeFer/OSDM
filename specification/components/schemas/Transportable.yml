@@ -1,0 +1,18 @@
+type: object
+additionalProperties: false
+description: >
+  Transportables which are handled similar to passengers like dogs, bicycles,
+  car transport.
+
+  These transportables might need a ticket or reservation.
+required:
+  - type
+properties:
+  type:
+    $ref: ./TransportableType.yml
+  car:
+    $ref: ./Car.yml
+  motorCycle:
+    $ref: ./MotorCycle.yml
+  trailer:
+    $ref: ./Car.yml

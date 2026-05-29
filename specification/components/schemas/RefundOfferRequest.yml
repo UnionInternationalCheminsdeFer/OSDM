@@ -1,0 +1,32 @@
+type: object
+additionalProperties: false
+description: >
+  Request for a refund offer.
+
+  Fulfillments can be provided in case the booking contains multiple individual
+  fulfillments.
+required:
+  - refundSpecifications
+properties:
+  refundSpecifications:
+    description: >
+      Specification of Fulfillment IDs to refund.
+
+      To do a partial refund, include booking part IDs to refund from the
+      fulfillment.
+    type: array
+    items:
+      $ref: ./RefundSpecification.yml
+    minItems: 1
+  overruleCode:
+    $ref: ./OverruleCode.yml
+  refundDate:
+    description: >
+      Indicates for passes the date taken as reference to compute possible
+      partial refund. It is also the date taken
+
+      as reference to invalidate the pass partially refunded.
+    type:
+      - string
+      - 'null'
+    format: date-time

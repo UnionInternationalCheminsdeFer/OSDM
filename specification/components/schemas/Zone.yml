@@ -1,0 +1,58 @@
+type: object
+additionalProperties: false
+description: >
+  carrier - carrier or PTA responsible for the transport.
+
+  entryStation - Station to enter the zone in case the product requires to enter
+  the zone via a specific station
+
+  (e.g. local zone ticket to start from the main rail station).
+
+  terminalStation - Terminal station in case the product requires a destination
+  within the zone (e.g. local ticket
+
+  to go to the main rail station).
+properties:
+  binaryZoneId:
+    description: |
+      Id to support local traffic standards (e.g. VDV,...)
+    type:
+      - string
+      - 'null'
+    format: byte
+  carrier:
+    $ref: ./CompanyRef.yml
+  name:
+    type:
+      - string
+      - 'null'
+  entryStation:
+    $ref: ./StopPlace.yml
+  terminalStation:
+    $ref: ./StopPlace.yml
+  zoneIds:
+    description: |
+      to be used in bar codes
+    type: array
+    items:
+      type:
+        - integer
+        - 'null'
+      format: int32
+  nutsCode:
+    description: >
+      Nomenclature des units territoriales statistiques COMMISSION REGULATION
+      (EU) No 31/2011
+    type:
+      - string
+      - 'null'
+  validFrom:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  validUntil:
+    type:
+      - string
+      - 'null'
+    format: date-time

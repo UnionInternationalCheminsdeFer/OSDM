@@ -1,0 +1,23 @@
+type: object
+additionalProperties: false
+required:
+  - id
+  - summary
+  - productSummaries
+  - status
+  - type
+properties:
+  id:
+    type: string
+    maxLength: 32768
+  summary:
+    type: string
+  productSummaries:
+    type: array
+    items:
+      $ref: ./ProductSummary.yml
+    minItems: 1
+  status:
+    $ref: ./BookingPartStatus.yml
+  type:
+    $ref: ./BookingPartType.yml

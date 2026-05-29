@@ -1,0 +1,47 @@
+type: object
+additionalProperties: false
+description: |
+  Describes the situation at a stop or station that lies between the Board and
+  Alight stop or station including time-related information. Provided by OJP.
+required:
+  - stopPlaceRef
+  - stopPlaceName
+  - serviceArrival
+  - serviceDeparture
+properties:
+  stopPlaceRef:
+    $ref: ./StopPlaceRef.yml
+  stopPlaceName:
+    type: string
+    examples:
+      - Luzern
+  plannedStopPointName:
+    description: >
+      Name of the bay/quay/terminal where to board/alight from the vehicle.
+      According to
+
+      planned timetable.
+    type:
+      - string
+      - 'null'
+    examples:
+      - '3'
+  estimatedStopPointName:
+    description: >
+      Name of the bay/quay/terminal where to board the vehicle. As to the latest
+      realtime status.
+    type:
+      - string
+      - 'null'
+    examples:
+      - '8'
+  serviceArrival:
+    $ref: ./ServiceTime.yml
+  serviceArrivalFormation:
+    $ref: ./ServiceFormation.yml
+  serviceDeparture:
+    $ref: ./ServiceTime.yml
+  serviceDepartureFormation:
+    $ref: ./ServiceFormation.yml
+  status:
+    $ref: ./StopCallStatus.yml

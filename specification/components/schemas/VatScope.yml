@@ -1,0 +1,14 @@
+description: >
+  scope where the VAT applies.
+
+  Values from the [Tax Scope Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#VatScope)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - INTERNATIONAL
+  - NATIONAL
+  - SHORT_DISTANCE
+  - LONG_DISTANCE
+  - NOT_REGISTERED

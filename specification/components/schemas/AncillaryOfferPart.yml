@@ -1,0 +1,46 @@
+description: >
+  An ancillary is an additional service which may be linked to admissions in a
+  single or a separate offer and enhance their value for the customer. Examples
+  of Ancillary Services include on-board meals, special assistance, Wi-Fi, bike
+  space.
+allOf:
+  - $ref: ./AbstractOfferPart.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - type
+    properties:
+      validFrom:
+        description: |
+          Validity of Booking Part for travel
+        type: string
+        format: date-time
+      validUntil:
+        description: |
+          Validity of Booking Part for travel
+        type:
+          - string
+          - 'null'
+        format: date-time
+      regionalValiditySummary:
+        $ref: ./RegionalValiditySummary.yml
+      regionalValidity:
+        $ref: ./RegionalValidity.yml
+      reservations:
+        type: array
+        items:
+          $ref: ./ReservationRelation.yml
+      feeRefs:
+        type: array
+        items:
+          $ref: ./OfferPartReference.yml
+      category:
+        description: |
+          Categorization of the ancillary such as 'Meal' or 'Gift'.
+        type:
+          - string
+          - 'null'
+      type:
+        $ref: ./AncillaryType.yml
+      subType:
+        $ref: ./AncillarySubType.yml

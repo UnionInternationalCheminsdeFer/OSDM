@@ -1,0 +1,26 @@
+allOf:
+  - $ref: ./CarSpecification.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - licensePlate
+    properties:
+      contactName:
+        description: >
+          Name of a contact person or company in case the car transport is
+          booked stand alone.
+        type:
+          - string
+          - 'null'
+      contactDetail:
+        $ref: ./ContactDetail.yml
+      licensePlate:
+        description: >
+          The license plate is a personal data item and must not be provided in
+          an offer request.
+
+          It must be patched into the offer after the customer accepted the
+          offer for booking.
+        type:
+          - string
+          - 'null'

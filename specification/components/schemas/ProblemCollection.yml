@@ -1,0 +1,8 @@
+type: object
+required:
+  - problems
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml

@@ -1,0 +1,25 @@
+type: object
+additionalProperties: false
+description: |
+  Rounds the corners of an element's border edge.
+properties:
+  topLeft:
+    type:
+      - integer
+      - 'null'
+    format: int32
+  topRight:
+    type:
+      - integer
+      - 'null'
+    format: int32
+  bottomRight:
+    type:
+      - integer
+      - 'null'
+    format: int32
+  bottomLeft:
+    type:
+      - integer
+      - 'null'
+    format: int32

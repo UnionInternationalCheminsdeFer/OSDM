@@ -1,0 +1,31 @@
+description: >
+  a train composition at a platform. Differs from OJP 2.0 due to model
+  limitations in OJP
+additionalProperties: false
+required:
+  - assignments
+properties:
+  components:
+    type: array
+    items:
+      $ref: ./ServiceFormationPart.yml
+    minItems: 1
+  sizeType:
+    description: indication of the size of the service
+    type: string
+    x-extensible-enum:
+      - NORMAL
+      - SHORT
+      - LONG
+      - EXTRA_LONG
+  entireRoute:
+    description: >
+      entier route of the service independent from the route of the leg. Used to
+      provide indications on the end station displayed at the platform.
+    $ref: ./ServiceFormationRoute.yml
+  assignments:
+    type: array
+    items:
+      $ref: ./ServiceFormationPartAssignment.yml
+  _links:
+    $ref: ./Links.yml

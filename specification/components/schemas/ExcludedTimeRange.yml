@@ -1,0 +1,21 @@
+type: object
+additionalProperties: false
+description: |
+  time ranges excluded from the validity (e.g. off peak fulfillments)
+required:
+  - from
+  - until
+  - scope
+properties:
+  from:
+    description: |
+      minutes of the day in the time zone of travel
+    type: integer
+    format: int32
+  until:
+    description: |
+      minutes of the day in the time zone of travel
+    type: integer
+    format: int32
+  scope:
+    $ref: ./ExclusionScope.yml

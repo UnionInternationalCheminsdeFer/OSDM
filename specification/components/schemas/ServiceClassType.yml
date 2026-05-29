@@ -1,0 +1,14 @@
+description: >
+  Type of quality level, finer grained than the comfort class.
+
+  Values from the [Service Class Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#ServiceClass)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - BEST
+  - HIGH
+  - STANDARD
+  - BASIC
+  - ANY_CLASS

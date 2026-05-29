@@ -1,0 +1,18 @@
+type: object
+description: |
+  reference to a voucher issued during the sales process
+additionalProperties: false
+required:
+  - issuer
+  - code
+properties:
+  issuer:
+    $ref: ./CompanyRef.yml
+  code:
+    description: |
+      voucher code provided by the issuer
+    type: string
+  fulfillmentRef:
+    description: |
+      reference to the fulfillment of the voucher.
+    $ref: ./FulfillmentRefs.yml

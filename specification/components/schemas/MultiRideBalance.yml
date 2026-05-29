@@ -1,0 +1,17 @@
+type: object
+additionalProperties: false
+description: |
+  The balance of the travel account.
+required:
+  - total
+  - remaining
+  - unit
+properties:
+  total:
+    type: integer
+    format: int32
+  remaining:
+    type: integer
+    format: int32
+  unit:
+    $ref: ./AbstractTravelAccountUnit.yml

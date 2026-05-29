@@ -1,0 +1,17 @@
+type: object
+additionalProperties: false
+description: |
+  selected place in case of graphical booking
+required:
+  - coachNumber
+  - placeNumber
+  - passengerRef
+properties:
+  coachNumber:
+    type: string
+  placeNumber:
+    type: string
+  passengerRef:
+    description: |
+      Id of the passenger
+    type: string

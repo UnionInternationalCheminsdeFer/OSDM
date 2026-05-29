@@ -1,0 +1,48 @@
+type: object
+additionalProperties: false
+description: |
+  A leg of a journey that is not bound to a timetable. Provided by OJP.
+required:
+  - start
+  - end
+  - service
+properties:
+  start:
+    $ref: ./Place.yml
+  end:
+    $ref: ./Place.yml
+  service:
+    $ref: ./ContinuousService.yml
+  description:
+    description: human readable description of the leg
+    type: string
+  timeWindowStart:
+    description: |
+      Time at which window begins.
+    type:
+      - string
+      - 'null'
+    format: date-time
+  timeWindowEnd:
+    description: Time at which window ends.
+    type:
+      - string
+      - 'null'
+    format: date-time
+  duration:
+    description: |
+      Duration of this leg according to user preferences like walk speed.
+    type:
+      - string
+      - 'null'
+    format: duration
+    examples:
+      - PT10M
+  pathGuidance:
+    $ref: ./PathGuidance.yml
+  situationFullRefs:
+    type: array
+    items:
+      $ref: ./SituationRef.yml
+  co2Emission:
+    $ref: ./Quantity.yml

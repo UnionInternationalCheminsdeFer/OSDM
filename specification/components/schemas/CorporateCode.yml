@@ -1,0 +1,27 @@
+type: object
+additionalProperties: false
+description: >
+  The corporate code is a token that reduces the price of an offer or enables 
+  offers that are not available without it. Needs with a commercial agreement
+  between parties.
+required:
+  - code
+  - issuer
+properties:
+  code:
+    description: |
+      The corporate code issued by the referenced company.
+    type: string
+    examples:
+      - 123-232
+  beneficiary:
+    description: >
+      The name of the party that benefits from the corporate code, intended to
+      be presented to the end user.
+    type:
+      - string
+      - 'null'
+    examples:
+      - TheDummyCompany
+  issuer:
+    $ref: ./CompanyRef.yml

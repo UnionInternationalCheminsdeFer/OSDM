@@ -1,0 +1,21 @@
+description: |
+  specification to remove, add and exchange passengers
+type: object
+additionalProperties: false
+properties:
+  addedPassengerSpecifications:
+    description: specifications of new passengers to be added
+    type: array
+    items:
+      $ref: ./AnonymousPassengerSpecification.yml
+  removedPassengerIds:
+    type: array
+    description: >
+      Ids of passengers to be exchanged. The new offers will not contain these
+      passengers.
+
+      In case no passengers refs are provided all passengers on the fulfillment
+      will be exchanged.
+    maxItems: 1024
+    items:
+      type: string

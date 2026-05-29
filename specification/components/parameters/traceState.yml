@@ -1,0 +1,9 @@
+name: tracestate
+in: header
+description: >
+  The tracestate extends traceparent with vendor-specific data represented by a
+  set of name/value pairs.
+
+  Storing information in tracestate is optional (see W3C Trace Context).
+schema:
+  type: string

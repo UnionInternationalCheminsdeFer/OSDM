@@ -1,0 +1,14 @@
+type: object
+additionalProperties: false
+required:
+  - events
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  events:
+    type: array
+    items:
+      $ref: ./Event.yml
+    minItems: 1

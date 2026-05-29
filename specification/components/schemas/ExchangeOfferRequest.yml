@@ -1,0 +1,27 @@
+description: |
+  Request exchange offers
+type: object
+additionalProperties: false
+required:
+  - exchangeParts
+  - exchangeParams
+properties:
+  exchangeParts:
+    description: >
+      the fulfillments or booking parts that should be exchanged.
+
+      The listed parts are an indication. It might be necessary to exchange more
+      parts as there are dependencies to other pats via fulfillments. It is up
+      to the provider to evaluate these dependencies.
+    type: array
+    maxItems: 1024
+    items:
+      $ref: ./ExchangeParts.yml
+  exchangeParams:
+    $ref: ./ExchangeOfferRequestParameter.yml
+  exchangePassengers:
+    $ref: ./ExchangePassengersOfferRequestSpecification.yml
+  exchangeService:
+    $ref: ./ExchangeServiceOfferRequestSpecification.yml
+  exchangeTrip:
+    $ref: ./ExchangeTripOfferRequestSpecification.yml

@@ -1,0 +1,23 @@
+type: object
+additionalProperties: false
+description: |
+  A place (e.g. a seat or bicycle hook)
+required:
+  - number
+  - rectangle
+  - orientation
+properties:
+  number:
+    description: |
+      The place number (unique per coach deck).
+    type: string
+  rectangle:
+    $ref: ./RectangleGeometry.yml
+  orientation:
+    $ref: ./Orientation.yml
+  placeProperties:
+    description: |
+      Static place properties
+    type: array
+    items:
+      $ref: ./PlaceProperty.yml

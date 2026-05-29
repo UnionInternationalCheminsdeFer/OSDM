@@ -1,0 +1,20 @@
+type: object
+additionalProperties: false
+description: >
+  Method of payment used by the customer to the distributor. On input of voucher
+  the remaining sum attribute and the applied voucher amount are not present.
+required:
+  - type
+properties:
+  type:
+    $ref: ./PaymentType.yml
+  voucherInformation:
+    $ref: ./VoucherInformation.yml
+  remainingVoucherAmount:
+    $ref: ./Price.yml
+  appliedVoucherAmount:
+    $ref: ./Price.yml
+  transactionId:
+    type:
+      - string
+      - 'null'

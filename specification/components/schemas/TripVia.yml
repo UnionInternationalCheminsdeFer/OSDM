@@ -1,0 +1,21 @@
+type: object
+additionalProperties: false
+description: |
+  Via restrictions for a trip. Provided by OJP.
+  A TripDataFilter given applies to the section after this via.
+required:
+  - viaPlace
+properties:
+  viaPlace:
+    $ref: ./PlaceRef.yml
+  dwellTime:
+    description: |
+      desired dwell time at the via place
+    type:
+      - string
+      - 'null'
+    format: duration
+    examples:
+      - PT30M
+  dataFilter:
+    $ref: ./TripDataFilter.yml

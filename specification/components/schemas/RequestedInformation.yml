@@ -1,0 +1,11 @@
+type:
+  - string
+  - 'null'
+maxLength: 32768
+description: >
+  Boolean-expression indicating the data that must be set in the data model in
+  order to proceed to next step of the process. 
+
+
+  The syntax and semantics of the expression is described in detail in the OSDM
+  documentation.

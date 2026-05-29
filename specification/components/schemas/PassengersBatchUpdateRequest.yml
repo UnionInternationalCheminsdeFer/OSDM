@@ -1,0 +1,7 @@
+type: object
+additionalProperties: false
+properties:
+  passengers:
+    type: array
+    items:
+      $ref: ./Passenger.yml

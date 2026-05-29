@@ -1,0 +1,9 @@
+type: string
+x-extensible-enum:
+  - PRE_SALE
+  - SALE
+  - TRAVEL
+  - PLACE_CHANGE
+  - FULFILLMENT
+  - EXCHANGE
+  - REFUND

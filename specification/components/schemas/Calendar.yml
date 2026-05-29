@@ -1,0 +1,30 @@
+type: object
+additionalProperties: false
+properties:
+  from:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  until:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  dates:
+    description: >
+      dates included in the calendar. In case no dates are provided the range is
+      assumed to be valid
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+      format: date
+  utcOffset:
+    description: |
+      offset to UTC in minutes (number of minutes to be added to get UTC dates)
+    type:
+      - integer
+      - 'null'
+    format: int32

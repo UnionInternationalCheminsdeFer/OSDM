@@ -1,0 +1,20 @@
+type: object
+additionalProperties: false
+description: |
+  Structure of an Open Street Map tag. Provided by OJP.
+required:
+  - tag
+  - value
+properties:
+  tag:
+    description: |
+      Name of Open Street Map tag (amenity, leisure, tourism, bike, ...)
+    type: string
+    examples:
+      - amenity
+  value:
+    description: |
+      Value for Open Street Map tag (charging_station, hostel, yes, ...)
+    type: string
+    examples:
+      - Rozenrust

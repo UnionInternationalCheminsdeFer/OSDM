@@ -1,0 +1,10 @@
+description: >
+  Values from the [Travel Account Type Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#TravelAccountType)
+type: string
+enum:
+  - LINKED_TICKET
+  - LOYALTY_CARD
+  - MULTI_RIDE
+  - REDUCTION_CARD
+  - TRAVEL_PASS

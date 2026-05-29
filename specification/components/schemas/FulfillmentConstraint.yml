@@ -1,0 +1,33 @@
+type: object
+additionalProperties: false
+required:
+  - acceptedControlSecurityTypes
+properties:
+  acceptedControlSecurityTypes:
+    type: array
+    items:
+      $ref: ./ControlSecurityType.yml
+    minItems: 1
+  acceptedBarCodes:
+    description: |
+      for SiD fulfillment one of the listed bar codes is required
+    type: array
+    items:
+      $ref: ./BarCodeType.yml
+  requiredBarCodes:
+    description: |
+      One of the listed bar codes must be provided.
+    type: array
+    items:
+      $ref: ./BarCodeType.yml
+  requiredSiS:
+    type: array
+    items:
+      $ref: ./SiSType.yml
+  isIndividualTicketingForbidden:
+    description: |
+      a separate fulfillment per passenger is forbidden
+    type:
+      - boolean
+      - 'null'
+    default: false

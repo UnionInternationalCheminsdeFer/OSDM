@@ -1,0 +1,15 @@
+type: object
+required:
+  - price
+  - tripIds
+properties:
+  price:
+    $ref: ./Price.yml
+  tripIds:
+    type: array
+    items:
+      type: string
+  travelClass:
+    $ref: ./TravelClass.yml
+  flexibility:
+    $ref: ./Flexibility.yml

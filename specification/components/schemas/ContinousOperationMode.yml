@@ -1,0 +1,22 @@
+description: |
+  Types of modes that run at any time without a timetable. Provided by OJP.
+  CHAUFFEURED
+  description: operated with a paid driver
+  DEMAND_RESPONSIVE
+  description: no scheduled stop points
+  FLEXIBLE_AREA
+  description: demand responsive for AREA related offers
+  COMPANY_SHUTTLE
+  description: a company related shuttle
+  HOTEL_SHUTTLE
+  description: a hotel related shuttle
+  HIRE
+  description: Using a hired VEHICLE
+type: string
+x-extensible-enum:
+  - CHAUFFEURED
+  - DEMAND_RESPONSIVE
+  - FLEXIBLE_AREA
+  - COMPANY_SHUTTLE
+  - HOTEL_SHUTTLE
+  - HIRE

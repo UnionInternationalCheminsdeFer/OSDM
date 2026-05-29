@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+description: |
+  Confirming the offer puts into the 'On-hold' state.
+required:
+  - increaseTTL
+properties:
+  increaseTTL:
+    description: |
+      increase of time to live (in minutes)
+    type: integer
+    format: int32

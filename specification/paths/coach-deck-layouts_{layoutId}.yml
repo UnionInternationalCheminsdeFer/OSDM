@@ -1,0 +1,48 @@
+get:
+  tags:
+    - Master Data
+  summary: Returns a coach deck layout for a provided id.
+  description: >
+    Retrieve a coach layout description needed for graphical reservation for a
+    given layout id.
+  operationId: getCoachDeckLayout
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/acceptNamespace.yml
+    - name: layoutId
+      in: path
+      description: |
+        id of the layout
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: |
+        coach layouts
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/CoachDeckLayoutResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

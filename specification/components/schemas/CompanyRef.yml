@@ -1,0 +1,7 @@
+type: string
+description: >
+  Identifies a company. For rail, a RICS company code or compatible ERA company
+  code are used. 
+
+  examples:
+      - 'urn:uic:rics:1185:000011'

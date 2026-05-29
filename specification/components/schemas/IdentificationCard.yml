@@ -1,0 +1,68 @@
+type: object
+additionalProperties: false
+description: >
+  Person identification information  to be exchanged for border control if
+  legally required.
+
+
+  It is not allowed to send personal information not required in the offer
+  reply.
+
+  It is legally not allowed to send these personal data already in the offer
+  request.
+required:
+  - id
+  - type
+properties:
+  id:
+    description: |
+      Identifier on the document.
+    type: string
+  type:
+    description: |
+      Refer to code list for values
+    type: string
+  name:
+    description: |
+      ICAO transliteration identical as written in the document
+    type:
+      - string
+      - 'null'
+  nationality:
+    description: |
+      ISO 3166-1 alpha-2 2 character country code
+    type:
+      - string
+      - 'null'
+  birthCity:
+    type:
+      - string
+      - 'null'
+  issuingCity:
+    description: |
+      place where the document is issued
+    type:
+      - string
+      - 'null'
+  residenceCity:
+    type:
+      - string
+      - 'null'
+  birthCountryCode:
+    $ref: ./CountryCode.yml
+  issuingCountryCode:
+    $ref: ./CountryCode.yml
+  residenceCountryCode:
+    $ref: ./CountryCode.yml
+  issuingDate:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  gender:
+    $ref: ./Gender.yml
+  expirationDate:
+    type:
+      - string
+      - 'null'
+    format: date

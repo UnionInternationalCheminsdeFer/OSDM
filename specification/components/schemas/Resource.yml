@@ -1,0 +1,17 @@
+type: object
+description: >-
+  The resource to be called by receiver to update a booking, a complaint or a
+  reimbursement.
+required:
+  - href
+properties:
+  title:
+    type: string
+    description: >-
+      Intended for labelling the link with a human-readable identifier (as
+      defined  by [RFC5988]).
+  href:
+    type: string
+    format: url
+    examples:
+      - https://db.de/osdm/bookings/2345/fulfillments/ASBV

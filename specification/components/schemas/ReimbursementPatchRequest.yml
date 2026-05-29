@@ -1,0 +1,13 @@
+type: object
+additionalProperties: false
+required:
+  - additionalDocuments
+  - updatedStatus
+properties:
+  additionalDocuments:
+    type: array
+    items:
+      $ref: ./SupportingDocument.yml
+    minItems: 1
+  updatedStatus:
+    $ref: ./BackOfficeStatus.yml

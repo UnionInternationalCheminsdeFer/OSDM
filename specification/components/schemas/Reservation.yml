@@ -1,0 +1,26 @@
+description: |
+  Reservation includes the reference to the in the initial offer.
+  The offer needs to be updated with the selected places before the confirmation
+  which creates the reservation details including the reserved places.
+allOf:
+  - $ref: ./AbstractBookingPart.yml
+  - type: object
+    additionalProperties: false
+    properties:
+      placeSelection:
+        $ref: ./PlaceSelection.yml
+      placeAllocation:
+        $ref: ./PlaceAllocation.yml
+      feeRefs:
+        type: array
+        items:
+          $ref: ./BookingPartReference.yml
+      availablePlacePreferences:
+        description: >-
+          options for place selection in case the place selection is made after
+          the pre-booking.
+        type: array
+        items:
+          $ref: ./AvailablePlacePreferences.yml
+      distributionMode:
+        $ref: ./DistributionMode.yml

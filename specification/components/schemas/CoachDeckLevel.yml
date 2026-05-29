@@ -1,0 +1,6 @@
+type: string
+x-extensible-enum:
+  - SINGLE_DECK
+  - LOWER_DECK
+  - MIDDLE_DECK
+  - UPPER_DECK

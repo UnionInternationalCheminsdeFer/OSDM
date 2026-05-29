@@ -1,0 +1,46 @@
+type: object
+additionalProperties: false
+description: |
+  Applied reductions per passenger, per offer part and per part of the trip.
+required:
+  - description
+properties:
+  passengerRef:
+    description: >
+      id of the passenger.  
+
+      In the offer flow the id refers to the externalRef as the passenger id is
+      created at booking time only.
+    type: string
+  description:
+    description: >
+      Clear text representation of the actual passenger type, suitable to be
+      presented to a client.
+    type: string
+  passengerType:
+    description: >
+      reduction applied due to passenger type. passenger types that do not grant
+      a reduction must not be provided due to GDPR.
+    $ref: ./ActualPassengerType.yml
+  tripCoverage:
+    type: array
+    items:
+      $ref: ./TripCoverage.yml
+  appliedCards:
+    type: array
+    items:
+      $ref: ./CardReference.yml
+  appliedCorporateCodes:
+    description: |
+      applied corporate codes in case they provided a reduction
+    type: array
+    items:
+      $ref: ./CorporateCode.yml
+  appliedPromotionCodes:
+    description: |
+      applied promotional codes in case they provided a reduction
+    type: array
+    items:
+      $ref: ./PromotionCode.yml
+  reductionAmount:
+    $ref: ./Price.yml

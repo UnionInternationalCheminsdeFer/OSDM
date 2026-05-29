@@ -1,0 +1,18 @@
+description: >
+  Values from the [Ancillary Category Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#AncillaryCategory)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - PAYMENT_VOUCHER
+  - PRODUCT_ACCESS
+  - MERCHANDISE_PRODUCT
+  - LUGGAGE
+  - LUGGAGE_TRANSFER
+  - ON_BOARD_SERVICE
+  - STATION_SERVICE
+  - FOOD_ON_BOARD
+  - DRINKS_ON_BOARD
+  - WIFI
+  - PARKING

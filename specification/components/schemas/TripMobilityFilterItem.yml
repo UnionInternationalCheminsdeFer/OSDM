@@ -1,0 +1,32 @@
+description: >
+  restrictions of the traveler  (List of booleans in OJP BaseTripMobilityFilter)
+
+  NO_SIGHT  - traveler is not able to see
+
+  NO_SINGLE_STEP  - traveler can not pass a single step
+
+  NO_STAIRS  - traveler can not use stairs
+
+  NO_ESCALATOR  - traveler can not use an escalator
+
+  NO_ELEVATOR  - traveler can not use an elevator
+
+  NO_RAMP  - traveler can not use a ramp
+
+  NO_TRAVELATOR - traveler can not use a travelator
+
+  LEVEL_ENTRANCE - traveller needs a level entrance
+
+  LEVEL_ENTRANCE_OR_BOARDING_AID - traveller needs a level entrance or boarding
+  aid
+type: string
+x-extensible-enum:
+  - NO_SIGHT
+  - NO_SINGLE_STEP
+  - NO_STARS
+  - NO_ESCALATOR
+  - NO_ELEVATOR
+  - NO_RAMP
+  - NO_TRAVELATOR
+  - LEVEL_ENTRANCE
+  - LEVEL_ENTRANCE_OR_BOARDING_AID

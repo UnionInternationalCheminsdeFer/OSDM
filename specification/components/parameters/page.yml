@@ -1,0 +1,5 @@
+name: page
+in: query
+description: can be used for pagination
+schema:
+  type: string

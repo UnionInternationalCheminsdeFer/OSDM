@@ -1,0 +1,15 @@
+type: string
+description: >
+  Accommodation type definition out of the 
+
+  [Accommodation Type Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#AccomodationType)
+
+  Listed values here are examples.
+default: SEAT
+x-extensible-enum:
+  - SEAT
+  - COUCHETTE
+  - BERTH
+  - VEHICLE
+  - STORAGE

@@ -1,0 +1,20 @@
+type: object
+additionalProperties: false
+description: >
+  The offerTag can/must (depending on the mandatory flag) be used in some cases
+  to restrict the
+
+  set of offers returned in a subsequent and related offer search to only
+  compatible ones.
+
+  Note the offerTag does not need to be unique.
+properties:
+  id:
+    type:
+      - string
+      - 'null'
+  isMandatory:
+    type:
+      - boolean
+      - 'null'
+    default: false

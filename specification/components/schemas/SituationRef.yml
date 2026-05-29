@@ -1,0 +1,6 @@
+type:
+  - string
+  - 'null'
+description: |
+  Reference to situation message. Message details might be found in response
+  context or through other communication channels. Provided by OJP.

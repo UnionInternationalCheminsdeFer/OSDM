@@ -1,0 +1,8 @@
+description: |
+  used to indicate booking options not provided via the OSDM app.
+  Provided by OJP.
+type: string
+x-extensible-enum:
+  - PUBLIC
+  - AUTHORIZED_PUBLIC
+  - STAFF

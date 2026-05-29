@@ -1,0 +1,6 @@
+description: |
+  Bad Request (400)
+content:
+  application/problem+json:
+    schema:
+      $ref: ../schemas/Problem.yml

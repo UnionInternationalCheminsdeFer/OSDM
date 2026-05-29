@@ -1,0 +1,59 @@
+type: object
+additionalProperties: false
+description: >
+  Personal information potentially needed at booking step. To support privacy by
+  design,
+
+  it is not permitted to send personal information not required to create a
+  valid booking.
+properties:
+  summary:
+    description: |
+      A human-readable description of the person.
+    type:
+      - string
+      - 'null'
+  firstName:
+    type:
+      - string
+      - 'null'
+  lastName:
+    description: full last names of the person
+    type:
+      - string
+      - 'null'
+    examples:
+      - Diaz Lopez
+  firstFamilyName:
+    description: >-
+      first family name in case of multiple family names. The element lastName
+      includes all family names.
+    type:
+      - string
+      - 'null'
+    examples:
+      - Diaz
+  secondFamilyName:
+    description: >-
+      second family name in case of multiple family names. The element lastName
+      includes all family names.
+    type:
+      - string
+      - 'null'
+    examples:
+      - Lopez
+  postalAddress:
+    $ref: ./PostalAddress.yml
+    description: |
+      Address of the physical person for issuing an invoice or receipt
+  contact:
+    $ref: ./ContactDetail.yml
+  taxId:
+    type:
+      - string
+      - 'null'
+    description: >-
+      Tax identification of the physical person for issuing an invoice or
+      receipt
+    examples:
+      - CZ1234567890

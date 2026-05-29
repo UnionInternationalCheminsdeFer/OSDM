@@ -1,0 +1,16 @@
+type: object
+additionalProperties: false
+description: |
+  Describes the dimension of a grid element.
+required:
+  - width
+  - height
+properties:
+  width:
+    type: integer
+    format: int32
+  height:
+    type: integer
+    format: int32
+  borderRadius:
+    $ref: ./BorderRadius.yml

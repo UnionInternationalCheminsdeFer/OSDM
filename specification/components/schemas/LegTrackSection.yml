@@ -1,0 +1,19 @@
+type: object
+additionalProperties: false
+description: |
+  geographic view of the leg
+properties:
+  start:
+    $ref: ./PlaceRef.yml
+  positions:
+    type: array
+    items:
+      $ref: ./GeoPosition.yml
+  end:
+    $ref: ./PlaceRef.yml
+  duration:
+    type: string
+    format: duration
+  distance:
+    $ref: ./Distance.yml
+    minimum: 0

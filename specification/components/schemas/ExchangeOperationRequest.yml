@@ -1,0 +1,14 @@
+type: object
+additionalProperties: false
+required:
+  - exchangeOffers
+properties:
+  exchangeOffers:
+    type: array
+    items:
+      $ref: ./OfferSelection.yml
+    minItems: 1
+  promotionCodes:
+    type: array
+    items:
+      $ref: ./PromotionCode.yml

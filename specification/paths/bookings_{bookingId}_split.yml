@@ -1,0 +1,55 @@
+post:
+  tags:
+    - Bookings Split
+  summary: Split a booking into multiple bookings.
+  description: >
+    Splits a booking into a set of bookings according to the defined groups of a
+    passenger(s). Only possible if allowed by the underlying tariff, if the
+    bookedOffers are sufficiently partitioned and no pricing is needed.
+  operationId: splitBookings
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/idempotencyKey.yml
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking to be split
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/vnd.uic.osdm+json:
+        schema:
+          $ref: ../components/schemas/BookingSplitRequest.yml
+  responses:
+    '200':
+      description: |
+        booking split
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/BookingSplitResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

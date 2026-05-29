@@ -1,0 +1,24 @@
+type: object
+additionalProperties: false
+description: |
+  Reference to a list of stations jointly valid in a fare. The fare
+  reference station defines a set of station that are equivalent from
+  a tariff point of view. The code is issued by the carrier. Needed to
+  generate bar codes as well as fulfillments.
+required:
+  - name
+  - code
+  - carrier
+  - stations
+properties:
+  name:
+    type: string
+  code:
+    type: string
+  carrier:
+    $ref: ./CompanyRef.yml
+  stations:
+    type: array
+    items:
+      $ref: ./StopPlaceRef.yml
+    minItems: 1

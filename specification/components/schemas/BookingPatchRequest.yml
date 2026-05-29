@@ -1,0 +1,26 @@
+type: object
+additionalProperties: false
+description: |
+  Allows setting the required fulfillment type, e.g. value paper
+  or e-ticket and preferred fulfillment media.
+  The latter is optional and relevant in some cases only.
+properties:
+  externalRef:
+    type:
+      - string
+      - 'null'
+    description: >-
+      The unique booking reference in the distributor/retailer system. Usually
+      refers to an order number or PNR.
+  placeSelections:
+    type: array
+    items:
+      $ref: ./PlaceSelection.yml
+  requestedFulfillmentType:
+    $ref: ./FulfillmentType.yml
+  preferredFulfillmentMedia:
+    $ref: ./FulfillmentMediaType.yml
+  usedPaymentMethods:
+    type: array
+    items:
+      $ref: ./PaymentMethod.yml

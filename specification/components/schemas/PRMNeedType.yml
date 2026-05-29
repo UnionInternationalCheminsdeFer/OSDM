@@ -1,0 +1,7 @@
+type: string
+x-extensible-enum:
+  - NEED_PRM_SUPPORT
+  - WHEELCHAIR
+  - ACCOMPANYING_DOG
+  - COMPANION_SEAT
+  - COMPANION

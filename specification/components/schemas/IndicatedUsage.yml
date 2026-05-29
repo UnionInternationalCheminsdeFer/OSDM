@@ -1,0 +1,16 @@
+type: object
+additionalProperties: false
+required:
+  - amount
+properties:
+  unit:
+    $ref: ./AbstractTravelAccountUnit.yml
+  amount:
+    type: integer
+    format: int32
+  scale:
+    type:
+      - integer
+      - 'null'
+    format: int32
+    default: 2

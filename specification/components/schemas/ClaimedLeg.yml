@@ -1,0 +1,36 @@
+type: object
+additionalProperties: false
+properties:
+  trainNumber:
+    type:
+      - string
+      - 'null'
+  connectionMissed:
+    description: |
+      connection missed due to a delay on the previous leg
+    type:
+      - boolean
+      - 'null'
+  serviceDegradation:
+    type: array
+    items:
+      $ref: ./ServiceDegradation.yml
+  departureStation:
+    $ref: ./Place.yml
+  arrivalStation:
+    $ref: ./Place.yml
+  plannedDepartureTime:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  timetabledArrivalTime:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  observedArrivalTime:
+    type:
+      - string
+      - 'null'
+    format: date-time

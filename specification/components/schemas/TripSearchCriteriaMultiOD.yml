@@ -1,0 +1,73 @@
+type: object
+additionalProperties: false
+description: >
+  Trip request structure. Provides trips from one of the origin places to one of
+  the destination places. Provided by OJP.
+required:
+  - origins
+  - destinations
+properties:
+  departureTime:
+    description: >
+      Needs to be in local date time format of the stop. Exactly one of
+      `departureTime` or `arrivalTime` must be provided.
+    type:
+      - string
+      - 'null'
+    format: date-time
+  arrivalTime:
+    description: >
+      Needs to be in local date time format of the stop. Exactly one of
+      `departureTime` or `arrivalTime` must be provided.
+    type:
+      - string
+      - 'null'
+    format: date-time
+  origins:
+    type: array
+    items:
+      $ref: ./PlaceRef.yml
+  destinations:
+    type: array
+    items:
+      $ref: ./PlaceRef.yml
+  vias:
+    description: >
+      Ordered series of points where the journey must pass through. If more
+
+      than one via point is given all of them must be obeyed - in the correct
+
+      order. The server is allowed to replace a via stop by equivalent stops.
+
+
+      TripDataFilters given at a via apply to the section after that via. To
+      apply a TripDataFilter for 
+
+      the first section (between the origin and the first via), use the
+      TripDataFilter within the
+
+      TripParameters structure.
+    type: array
+    items:
+      $ref: ./TripVia.yml
+  notVias:
+    type: array
+    items:
+      $ref: ./PlaceRef.yml
+  noChangeAt:
+    type: array
+    items:
+      $ref: ./PlaceRef.yml
+  parameters:
+    $ref: ./TripParameters.yml
+  multipleODSearchType:
+    $ref: ./TripSearchTypeMultipleOD.yml
+  embed:
+    description: >
+      Influences whether referenced resources are returned in full or as
+      references only. Proposed default ALL
+    type: array
+    items:
+      $ref: ./TripsCollectionResponseContent.yml
+  returnSearchParameters:
+    $ref: ./ReturnSearchParameters.yml

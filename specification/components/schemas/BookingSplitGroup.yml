@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+description: |
+  Group of passenger(s) that is to be split into a separate booking.
+required:
+  - passengerIds
+properties:
+  passengerIds:
+    type: array
+    items:
+      type: string
+    minItems: 1

@@ -1,0 +1,24 @@
+type: object
+additionalProperties: false
+description: >
+  Contact information needed to contact a person. Either an email or a phone
+  number needs to be provided.
+properties:
+  summary:
+    description: |
+      A human-readable description of the contact.
+    type:
+      - string
+      - 'null'
+  preferredLanguage:
+    description: |
+      ISO-639-1 language code
+    type:
+      - string
+      - 'null'
+  email:
+    type:
+      - string
+      - 'null'
+  phoneNumber:
+    $ref: ./PhoneNumber.yml

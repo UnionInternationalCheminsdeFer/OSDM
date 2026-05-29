@@ -1,0 +1,15 @@
+type: object
+additionalProperties: false
+description: |
+  Summary of the booking's underlining products.
+required:
+  - id
+  - description
+  - code
+properties:
+  id:
+    type: string
+  description:
+    type: string
+  code:
+    type: string

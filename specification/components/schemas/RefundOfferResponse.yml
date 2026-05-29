@@ -1,0 +1,19 @@
+type: object
+additionalProperties: false
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  refundOffer:
+    $ref: ./RefundOffer.yml
+  appliedFees:
+    description: >
+      applied fees referenced in the refund offer. Providing the applied fees
+      is 
+
+      mandatory in case the refund offer is confirmed. The applied fees are
+      stored in the booking and are returned here additionally for convenience.
+    type: array
+    items:
+      $ref: ./AppliedFee.yml

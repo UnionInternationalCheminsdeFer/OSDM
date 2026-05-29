@@ -1,0 +1,9 @@
+type: object
+description: >-
+  selection fee that will be applied when selecting the place in a graphical
+  seat map. (https://osdm.io/spec/processes/#SeatSelectionFees)
+properties:
+  price:
+    $ref: ./Price.yml
+required:
+  - price

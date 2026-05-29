@@ -1,0 +1,15 @@
+description: master data on places
+type: object
+additionalProperties: false
+required:
+  - places
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  places:
+    type: array
+    items:
+      $ref: ./PlaceMasterData.yml
+    minItems: 1

@@ -1,0 +1,11 @@
+description: >
+  If set to YES the offerpart is exchangeable without a fee before the day of
+  departure. 
+
+  NO when not exchangeable or exchangeable with 100% fee, WITH_CONDITIONS in all
+  other cases.
+type: string
+enum:
+  - 'YES'
+  - 'NO'
+  - WITH_CONDITION

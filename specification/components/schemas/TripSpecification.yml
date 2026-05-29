@@ -1,0 +1,26 @@
+type: object
+additionalProperties: false
+description: |
+  A minimal trip specification from origin to destination.
+required:
+  - legs
+properties:
+  externalRef:
+    description: >
+      External reference of this trip for referencing purposes. Unique within a
+      trip specification.
+    type:
+      - string
+      - 'null'
+  legs:
+    type: array
+    items:
+      $ref: ./TripLegSpecification.yml
+    minItems: 1
+  isPartOfInternationalTrip:
+    type:
+      - boolean
+      - 'null'
+    default: false
+  returnSearchParameters:
+    $ref: ./ReturnSearchParameters.yml

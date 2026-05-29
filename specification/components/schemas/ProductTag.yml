@@ -1,0 +1,32 @@
+description: >
+  Values from the [Product Tags Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#ProductTags)
+
+  Known values:
+
+  - SPLIT_RESERVATION
+    Indicate for the provider that the distributor is prepared to get reservations including a split inside the reservation
+    Without this indication the provider is not allowed to use the SplitSection Object inside a reservation. 
+    The implementation of SPLIT_RESERVATION is not recommended. To provide reservations that do not cover a full leg 
+    multiple reservations as offerParts should be created.
+  - CARD_LOST
+    Tag used to request a non-trip offer to replace a lost card. This applies to physical cards only.
+  - TICKET_LOST
+    Tag used to request a non-trip offer to replace a lost ticket. This applies to physical tickts only.
+  - Product Types
+    All product types can be used as Product Tags in the search
+type: string
+x-extensible-enum:
+  - SPLIT_RESERVATION
+  - CARD_LOST
+  - TICKET_LOST
+  - ADMISSION_MULTI_RIDE
+  - ADMISSION_POINT2POINT
+  - ADMISSION_PASS
+  - UPGRADE_PASS
+  - UPGRADE_POINT2POINT
+  - UPGRADE_MULTI_RIDE
+  - RESERVATION
+  - ANCILLARY_SERVICE
+  - ANCILLARY_ITEM
+  - REDUCTION_CARD

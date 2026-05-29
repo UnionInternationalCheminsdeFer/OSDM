@@ -1,0 +1,28 @@
+type: object
+additionalProperties: false
+description: |
+  a return trip with the same carrier must be sold in combination
+required:
+  - latestReturn
+  - earliestReturn
+properties:
+  latestReturn:
+    description: |
+      number of days after departure or start of validity of the last return
+    type: integer
+    format: int32
+  earliestReturn:
+    description: |
+      number of days after departure or start of validity of the earliest return
+    type: integer
+    format: int32
+  excludedWeekdays:
+    description: >
+      weekdays (ISO day of the week, 1 = Monday) between travel and return where
+      travel is not allowed
+    type: array
+    items:
+      type:
+        - integer
+        - 'null'
+      format: int32

@@ -1,0 +1,7 @@
+type: object
+additionalProperties: false
+required:
+  - status
+properties:
+  status:
+    $ref: ./ReleaseStatus.yml

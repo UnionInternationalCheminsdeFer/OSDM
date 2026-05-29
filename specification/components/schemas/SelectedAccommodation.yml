@@ -1,0 +1,29 @@
+type: object
+additionalProperties: false
+description: |
+  Place selection of places for reservation linked to passengers.
+required:
+  - passengerRefs
+  - accommodationType
+  - accommodationSubType
+properties:
+  passengerRefs:
+    description: |
+      Id of the passenger
+    type: array
+    items:
+      type: string
+    minItems: 1
+  accommodationType:
+    $ref: ./AccommodationType.yml
+  accommodationSubType:
+    $ref: ./AccommodationSubType.yml
+  placeProperties:
+    description: |
+      Properties of places as defined in 90810-10.
+      selection from the optional place properties provided in the offer
+    type:
+      - array
+      - 'null'
+    items:
+      $ref: ./PlaceProperty.yml

@@ -1,0 +1,62 @@
+type: object
+additionalProperties: false
+description: |
+  The Ids of the offers to be booked need to be passed in.
+required:
+  - offerId
+properties:
+  offerId:
+    description: |
+      id of the selected offer or exchangeOffer
+    type: string
+    maxLength: 32768
+  externalRef:
+    description: >
+      A stable reference to the id of the offer in the caller's system. When
+      received in input of a request, it must be persisted and echoed back in
+      the response.
+    type: string
+  ancillarySelections:
+    type: array
+    items:
+      $ref: ./AncillarySelection.yml
+  reservationSelections:
+    description: |
+      Selected reservations for booking.
+    type: array
+    items:
+      $ref: ./PlaceSelection.yml
+  afterSaleByRetailerOnly:
+    description: >
+      in case the distributor has proposed this offer in conjunction with an
+      offer of another provider constrained
+
+      by a combinationTag, this flag must be set to true to indicate to the
+      provider that after-sale must be done
+
+      on the totality of the distributor's booking. Only after-sale requests
+      triggered by the distributor can be
+
+      safely processed on this offer. When the flag is not set, standard
+      provider logic applies.
+    type:
+      - boolean
+      - 'null'
+    default: false
+  appliedRegulatoryCondition:
+    $ref: ./RegulatoryCondition.yml
+  passengerRefs:
+    description: >
+      providing the passengerRefs is required for passenger transport. There are
+      uses cases (e.g. sale of merchandising articles) where no passenger is
+      involved. Only in these cases it is allowed to omit the passengerRefs.
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+    minItems: 1
+  throughTicketTags:
+    type: array
+    items:
+      $ref: ./ThroughTicketTag.yml

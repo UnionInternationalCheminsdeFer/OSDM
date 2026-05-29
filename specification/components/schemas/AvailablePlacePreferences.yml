@@ -1,0 +1,21 @@
+type: object
+additionalProperties: false
+properties:
+  preferenceGroups:
+    description: >
+      possible preferences to be requested in reservation without changing the
+      fare
+    type: array
+    items:
+      $ref: ./PlacePreferenceGroup.yml
+  graphicalReservation:
+    description: >
+      graphical reservation is supported, interface type 'WITH_FEE', 'NO',
+      (https://osdm.io/spec/processes/#SeatSelectionFees)
+    type:
+      - string
+      - 'null'
+    x-extensible-enum:
+      - WITHOUT_FEE
+      - WITH_FEE
+      - 'NO'

@@ -1,0 +1,42 @@
+type: object
+additionalProperties: false
+description: >
+  Non travel document created. Either downloadLink + downloadExpiry or content
+  must be provided.
+required:
+  - id
+  - type
+  - scope
+properties:
+  id:
+    type: string
+  summary:
+    type:
+      - string
+      - 'null'
+  passengerRef:
+    description: >
+      Reference to a passenger, to be specified when the document related to an
+      individual passenger.
+    type:
+      - string
+      - 'null'
+  downloadLink:
+    type:
+      - string
+      - 'null'
+    format: uri
+  downloadExpiry:
+    description: >
+      Expiration time of the download link, the document will not be available
+      at the given URI  after this time.
+    type:
+      - string
+      - 'null'
+    format: date-time
+  documentContent:
+    $ref: ./DocumentContent.yml
+  type:
+    $ref: ./DocumentType.yml
+  scope:
+    $ref: ./DocumentScope.yml

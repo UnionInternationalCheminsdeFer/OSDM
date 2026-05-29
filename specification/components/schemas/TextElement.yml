@@ -1,0 +1,24 @@
+type: object
+additionalProperties: false
+description: >
+  Additional texts which should be displayed to the customer to further describe
+  the product being offered.
+required:
+  - description
+  - shortDescription
+  - textElementType
+properties:
+  description:
+    description: |
+      Full version of the text for display when sufficient space is available.
+    type: string
+    minLength: 1
+    maxLength: 32768
+  shortDescription:
+    description: >
+      Brief version of the text for display in space restricted environments,
+      e.g. mobile phone. No longer than 64 characters.
+    type: string
+    minLength: 1
+  textElementType:
+    $ref: ./TextElementType.yml

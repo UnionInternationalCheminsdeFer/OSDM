@@ -1,0 +1,13 @@
+type: object
+additionalProperties: false
+description: |
+  Response to a reimbursement request, containing a state and a decision.
+required:
+  - reimbursement
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  reimbursement:
+    $ref: ./Reimbursement.yml

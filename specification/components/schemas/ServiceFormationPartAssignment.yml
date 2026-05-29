@@ -1,0 +1,13 @@
+type: object
+additionalProperties: false
+description: |
+  formation of a service at a stop on arrival or departure
+required:
+  - formationPartRef
+properties:
+  formationPartRef:
+    type: string
+  boadingPositionAssignment:
+    $ref: ./BoardingPositionAssignment.yml
+  flexibleStopAreaAssignment:
+    $ref: ./FlexibleStopAreaAssignment.yml

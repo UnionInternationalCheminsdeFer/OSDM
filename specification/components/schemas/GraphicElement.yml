@@ -1,0 +1,15 @@
+type: object
+additionalProperties: false
+description: |
+  An element in the coach deck layout (e.g. table, stair, toilet etc.).
+required:
+  - rectangle
+  - orientation
+  - code
+properties:
+  rectangle:
+    $ref: ./RectangleGeometry.yml
+  orientation:
+    $ref: ./Orientation.yml
+  code:
+    $ref: ./GraphicElementCode.yml

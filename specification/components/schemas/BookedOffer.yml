@@ -1,0 +1,71 @@
+type: object
+additionalProperties: false
+description: >
+  The attribute 'offerSummary' is meaningful at trip-offer-collection response
+  time only.
+
+  The offerSummary must be provided for product based offers. It is not needed
+  for fares.
+required:
+  - offerId
+properties:
+  offerId:
+    type: string
+    maxLength: 32768
+    description: >-
+      Note that the offerId returned does not necessarily match the offerId
+      given in the Booking Request.
+  externalRef:
+    description: >
+      A stable reference to the id of the booked offer in the caller's system.
+      When received in input of a request, it must be persisted and echoed back
+      in the response.
+    type: string
+  summary:
+    description: |
+      A human-readable description of the booked offer.
+    type:
+      - string
+      - 'null'
+  admissions:
+    type: array
+    items:
+      $ref: ./Admission.yml
+  reservations:
+    type: array
+    items:
+      $ref: ./Reservation.yml
+  ancillaries:
+    type: array
+    items:
+      $ref: ./Ancillary.yml
+  continuousServices:
+    type: array
+    items:
+      $ref: ./ContinuousServiceBookingPart.yml
+  fees:
+    type: array
+    items:
+      $ref: ./AppliedFee.yml
+  fares:
+    type: array
+    items:
+      $ref: ./FareBookingPart.yml
+  tripCoverage:
+    type: array
+    items:
+      $ref: ./TripCoverage.yml
+  appliedThroughTicketTags:
+    type: array
+    items:
+      $ref: ./ThroughTicketTag.yml
+  products:
+    description: >
+      products must be provided in case they are referenced in booking or offer
+      parts. Some offer parts (e.g. fares)
+
+      do not have products assigned.
+    type: array
+    items:
+      $ref: ./Product.yml
+    minItems: 1

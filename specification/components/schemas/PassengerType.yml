@@ -1,0 +1,32 @@
+description: >
+  Passenger type according to UIC passenger, i.e. passenger type list.
+
+  Values from the [Passenger Type Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)
+
+  Listed values here are examples.   
+
+  Proposed default PERSON
+type: string
+x-extensible-enum:
+  - YOUNG_CHILD
+  - CHILD
+  - YOUTH
+  - ADULT
+  - SENIOR
+  - FAMILY_CHILD
+  - ACCOMP_PRM
+  - PRM_CHILD
+  - WHEELCHAIR
+  - PERSON
+  - PRM
+  - DOG
+  - PET
+  - LUGGAGE
+  - BICYCLE
+  - PRAM
+  - ACCOMP_DOG
+  - CAR
+  - MOTOCYCLE
+  - TRAILER
+default: PERSON

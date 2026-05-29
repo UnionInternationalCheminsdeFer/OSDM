@@ -1,0 +1,14 @@
+type: object
+additionalProperties: false
+description: |
+  Class of service.
+required:
+  - type
+  - name
+properties:
+  type:
+    $ref: ./ServiceClassType.yml
+  name:
+    description: |
+      The name the carrier itself uses to designate this specific service class.
+    type: string

@@ -1,0 +1,27 @@
+type: object
+additionalProperties: false
+description: |
+  Constraint on the luggage allowed by a passenger to on board.
+properties:
+  maxHandLuggage:
+    description: |
+      standard hand luggage pieces
+    type:
+      - integer
+      - 'null'
+    format: int32
+  maxLargeLuggage:
+    description: |
+      standard non-hand luggage pieces
+    type:
+      - integer
+      - 'null'
+    format: int32
+  restrictions:
+    type: array
+    items:
+      $ref: ./LuggageRestriction.yml
+  restrictionRules:
+    type: array
+    items:
+      $ref: ./LuggageRestrictionRuleEnum.yml

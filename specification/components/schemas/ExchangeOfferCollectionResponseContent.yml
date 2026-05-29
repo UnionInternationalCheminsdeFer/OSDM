@@ -1,0 +1,8 @@
+type: string
+enum:
+  - ALL
+  - EXCHANGEOFFERS
+  - TRIP
+  - PASSENGERS
+  - NONE
+default: ALL

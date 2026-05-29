@@ -1,0 +1,15 @@
+allOf:
+  - $ref: ./AbstractTravelAccountUnit.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - currency
+    properties:
+      currency:
+        $ref: ./Currency.yml
+      scale:
+        type:
+          - integer
+          - 'null'
+        format: int32
+        default: 2

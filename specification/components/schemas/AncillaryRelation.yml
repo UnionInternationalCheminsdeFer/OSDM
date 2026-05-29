@@ -1,0 +1,14 @@
+type: object
+additionalProperties: false
+required:
+  - minGroupItemsToBeBooked
+  - ancillaryGroup
+properties:
+  minGroupItemsToBeBooked:
+    type: integer
+    format: int32
+  maxGroupItemsToBeBooked:
+    type: integer
+    format: int32
+  ancillaryGroup:
+    $ref: ./AncillaryGroup.yml

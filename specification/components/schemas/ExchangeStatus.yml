@@ -1,0 +1,6 @@
+type: string
+enum:
+  - PREBOOKED
+  - CONFIRMED
+  - FULFILLED
+  - ERROR

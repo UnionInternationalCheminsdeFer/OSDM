@@ -1,0 +1,27 @@
+type: object
+additionalProperties: false
+description: |
+  A vehicle run for which place availabilities were requested.
+properties:
+  coaches:
+    description: >
+      List of the coaches in a vehicle run ordered according to the physical
+      ordering of the vehicle. Empty if train composition data is missing or
+      specific place selection is not supported.
+    type: array
+    items:
+      $ref: ./CoachAvailability.yml
+  directionChanges:
+    description: |
+      List of direction changes (in direction of travel).
+    type: array
+    items:
+      $ref: ./DirectionChange.yml
+  preSelectedPlaces:
+    type: array
+    items:
+      $ref: ./PlacePreSelection.yml
+  preSelectedCompartments:
+    type: array
+    items:
+      $ref: ./CompartmentPreSelection.yml

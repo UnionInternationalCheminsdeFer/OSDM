@@ -1,0 +1,10 @@
+type: object
+additionalProperties: false
+required:
+  - bookingSplit
+properties:
+  bookingSplit:
+    type: array
+    items:
+      $ref: ./BookingSplit.yml
+    minItems: 1

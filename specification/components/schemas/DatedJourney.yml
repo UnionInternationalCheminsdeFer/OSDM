@@ -1,0 +1,53 @@
+type: object
+additionalProperties: false
+description: |
+  Vehicle journey that runs at a specific date. Provided by OJP.
+required:
+  - vehicleNumbers
+  - carriers
+properties:
+  operatingDayRef:
+    $ref: ./OperationDayRef.yml
+  mode:
+    $ref: ./Mode.yml
+  productCategory:
+    $ref: ./ProductCategory.yml
+  publishedServiceName:
+    description: |
+      Line name or service description as known to the public
+    type:
+      - string
+      - 'null'
+    examples:
+      - S1
+      - Circle Line
+      - ICE 488
+  vehicleNumbers:
+    type: array
+    items:
+      $ref: ./VehicleNumber.yml
+    minItems: 1
+  lineNumbers:
+    type: array
+    items:
+      $ref: ./LineNumber.yml
+  serviceStatus:
+    $ref: ./ServiceStatus.yml
+  situationFullRefs:
+    type: array
+    items:
+      $ref: ./SituationRef.yml
+  carriers:
+    description: >
+      the carrier might not be provided be in case the dated journey is used in
+      a request as part of trip specification. 
+
+      In case the trip specification is therefore ambiguous the provider might
+      reply with an error.
+    type: array
+    items:
+      $ref: ./NamedCompany.yml
+  attributes:
+    type: array
+    items:
+      $ref: ./GeneralAttribute.yml

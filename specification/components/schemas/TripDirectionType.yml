@@ -1,0 +1,5 @@
+type: string
+enum:
+  - OUT_BOUND
+  - IN_BOUND
+default: OUT_BOUND

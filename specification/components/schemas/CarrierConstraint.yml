@@ -1,0 +1,17 @@
+type: object
+additionalProperties: false
+description: |
+  Either excluded or included carriers can be set.
+properties:
+  includedCarriers:
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  excludedCarriers:
+    type:
+      - array
+      - 'null'
+    items:
+      type: string

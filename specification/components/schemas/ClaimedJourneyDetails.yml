@@ -1,0 +1,21 @@
+type: object
+additionalProperties: false
+properties:
+  impact:
+    $ref: ./ImpactType.yml
+  finalDelay:
+    type:
+      - string
+      - 'null'
+    format: duration
+    examples:
+      - PT30M
+  onReturn:
+    type:
+      - boolean
+      - 'null'
+    default: false
+  delayedJourney:
+    type: array
+    items:
+      $ref: ./ClaimedLeg.yml

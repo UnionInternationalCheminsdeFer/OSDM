@@ -1,0 +1,13 @@
+type: object
+additionalProperties: false
+description: >
+  Reservation offer/bookingParts or reservation fares for which place
+  availabilities shall be returned.
+required:
+  - placeRestrictions
+properties:
+  placeRestrictions:
+    type: array
+    items:
+      $ref: ./PlaceRestriction.yml
+    minItems: 1

@@ -1,0 +1,79 @@
+type: object
+additionalProperties: false
+description: >
+  Defines the parameters needed to request an offer. Either a
+  tripSearchCriteria, a list of trip specifications, or a list of tripIds can be
+  passed in to request offers.
+
+
+  If you are searching for fares you pass in the complete trip and the use the
+  requestedSections attribute to define which part(s) you need fares (including
+  virtual border points).
+properties:
+  tripIds:
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+      maxLength: 32768
+  inboundTripIds:
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+      maxLength: 32768
+  tripSpecifications:
+    type:
+      - array
+      - 'null'
+    items:
+      $ref: ./TripSpecification.yml
+  inboundTripSpecifications:
+    type:
+      - array
+      - 'null'
+    items:
+      $ref: ./TripSpecification.yml
+  tripSearchCriteria:
+    $ref: ./TripSearchCriteria.yml
+  tripResponseParameters:
+    $ref: ./TripResponseParameters.yml
+  nonTripSearchCriteria:
+    $ref: ./NonTripSearchCriteria.yml
+  requestedSections:
+    type: array
+    items:
+      $ref: ./Section.yml
+  offerSearchCriteria:
+    $ref: ./OfferSearchCriteria.yml
+  anonymousPassengerSpecifications:
+    description: >
+      providing the anonymous passenger specification is required for passenger
+      transport. There are uses cases (e.g. sale of merchandising articles)
+      where no passenger is involved. Only in these cases it is allowed to omitt
+      the anounymousPassengerSpecification.
+    type: array
+    items:
+      $ref: ./AnonymousPassengerSpecification.yml
+    minItems: 1
+  corporateCodes:
+    type: array
+    items:
+      $ref: ./CorporateCode.yml
+  promotionCodes:
+    type: array
+    items:
+      $ref: ./PromotionCode.yml
+  requestedFulfillmentOptions:
+    type: array
+    items:
+      $ref: ./FulfillmentOption.yml
+  embed:
+    description: >
+      Influences whether referenced resources are returned in full or as
+      references only. Proposed default ALL
+    type: array
+    items:
+      $ref: ./OfferCollectionResponseContent.yml

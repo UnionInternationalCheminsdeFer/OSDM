@@ -1,0 +1,18 @@
+type: object
+additionalProperties: false
+description: >
+  Trip specification summary. Provided by OJP. 
+
+  It requires the id of an already existing trip to change and specifies the
+  parameters which must be used to generate the new trip.
+required:
+  - id
+properties:
+  id:
+    description: The id of an already existing trip to change.
+    type: string
+    maxLength: 32768
+  origin:
+    $ref: ./PlaceRef.yml
+  destination:
+    $ref: ./PlaceRef.yml

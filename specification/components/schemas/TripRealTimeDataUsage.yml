@@ -1,0 +1,6 @@
+description: use of real time data in a trip
+type: string
+x-extensible-enum:
+  - FULL
+  - EXPLANATORY
+  - NONE

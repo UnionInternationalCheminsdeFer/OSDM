@@ -1,0 +1,15 @@
+type: object
+additionalProperties: false
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  products:
+    description: |
+      The list of all products available to the caller.
+    type: array
+    items:
+      $ref: ./Product.yml
+  _links:
+    $ref: ./Links.yml

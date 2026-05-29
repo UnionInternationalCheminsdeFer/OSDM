@@ -1,0 +1,13 @@
+description: |
+  used to indicate booking options not provided via the OSDM app.
+  Provided by OJP.
+type: string
+x-extensible-enum:
+  - CALL_DRIVER
+  - CALL_OFFICE
+  - ONLINE
+  - OTHER
+  - PHONE_AT_STOP
+  - TEXT
+  - MOBILE_APP
+  - AT_OFFICE

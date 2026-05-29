@@ -1,0 +1,11 @@
+description: |
+  Reference to an Address.
+allOf:
+  - $ref: ./PlaceRef.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - addressRef
+    properties:
+      addressRef:
+        type: string

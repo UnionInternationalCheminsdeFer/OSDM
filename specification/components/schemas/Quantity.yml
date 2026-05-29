@@ -1,0 +1,15 @@
+type: object
+additionalProperties: false
+description: |
+  Generic entity to model a quantity.
+required:
+  - value
+  - unit
+properties:
+  value:
+    type: number
+    format: float
+  unit:
+    type: string
+    examples:
+      - kg

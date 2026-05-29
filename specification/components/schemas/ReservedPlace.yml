@@ -1,0 +1,63 @@
+type: object
+additionalProperties: false
+description: |
+  In distributor mode placeProperties are mandatory to be returned.
+required:
+  - id
+  - passengerIds
+  - vehicleNumber
+  - coachNumber
+properties:
+  id:
+    type: string
+  passengerIds:
+    description: |
+      Id of the passenger
+    type: array
+    items:
+      type: string
+    minItems: 1
+  vehicleNumber:
+    description: |
+      vehicle number (e.g. train number)
+    type: string
+  coachNumber:
+    type: string
+  compartmentNumber:
+    description: >
+      Compartment number as indicated at the compartment in the coach. A
+      compartment number must be set if the compartment is selectable as a whole
+      only.
+    type:
+      - string
+      - 'null'
+    examples:
+      - C1
+      - '6'
+      - 61-66
+  placeDescription:
+    description: >
+      description of the places (e.g. used to provide a short description of all
+      places of large groups in compressed form: "11-35,51")
+    type: string
+  placeNumbers:
+    description: |
+      list of individual place numbers
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  placeProperties:
+    description: |
+      place properties to be indicated to the customer
+    type: array
+    items:
+      $ref: ./PlaceProperty.yml
+  splitSection:
+    description: |
+      Indication of the covered part of a leg in case the reserved 
+      place does not cover the whole leg. This element is allowed 
+      on in case the offer was requested using the SPLIT_RESERVATION product tag
+      an implementation is not recommended.
+    $ref: ./Section.yml

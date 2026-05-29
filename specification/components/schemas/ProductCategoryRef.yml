@@ -1,0 +1,10 @@
+type:
+  - string
+  - 'null'
+description: >
+  Reference to a product category. Product categories should be defined once and
+  used
+
+  uniformly in all channels (e.g. NeTEx, SIRI, OJP). Provided by OJP.
+examples:
+  - urn:uic:sbc:76

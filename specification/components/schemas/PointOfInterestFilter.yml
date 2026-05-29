@@ -1,0 +1,22 @@
+type: object
+additionalProperties: false
+description: |
+  Filter POIs by category. Provided by OJP.
+properties:
+  exclude:
+    description: |
+      Whether carriers are to be included or excluded from the filtering.
+    type:
+      - boolean
+      - 'null'
+    default: true
+  pointOfInterestCategory:
+    description: >
+      These POI categories can be used to filter POIs. If more than one is given
+      the filtering
+
+      is by logical 'OR' (when Exclude=FALSE) and logical 'AND' (when
+      Exclude=TRUE).
+    type: array
+    items:
+      $ref: ./PointOfInterestCategory.yml

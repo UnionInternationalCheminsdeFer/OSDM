@@ -1,0 +1,23 @@
+type: object
+additionalProperties: false
+description: |
+  position where a service part stops
+properties:
+  aimedQuayName:
+    description: >
+      last communicated quai, used to indicate platform changes if different
+      from estimated quay
+    type: string
+  estimatedQuaiName:
+    type: string
+  actualQuaiName:
+    type: string
+  aimedQuaySectionName:
+    description: >-
+      last communicated quai section, used to indicate platform changes if
+      different from estimated quai
+    type: string
+  estimatedQuaiSectionName:
+    type: string
+  actualQuaiSectionName:
+    type: string

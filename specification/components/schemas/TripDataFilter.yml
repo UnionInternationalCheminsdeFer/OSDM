@@ -1,0 +1,14 @@
+type: object
+additionalProperties: false
+description: >
+  Data to be included/excluded from search, f.e. modes, carriers. Provided by
+  OJP.
+properties:
+  ptModeFilter:
+    $ref: ./ModeFilter.yml
+  carrierFilter:
+    $ref: ./CarrierFilter.yml
+  serviceBrandFilter:
+    $ref: ./ServiceBrandFilter.yml
+  vehicleFilter:
+    $ref: ./VehicleFilter.yml

@@ -1,0 +1,7 @@
+type: object
+additionalProperties: false
+description: |
+  Options to control response contents on Trip objects.
+properties:
+  stopBehavior:
+    $ref: ./StopBehavior.yml

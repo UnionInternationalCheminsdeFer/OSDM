@@ -1,0 +1,9 @@
+type: string
+enum:
+  - ORIGIN_DESTINATION_ONLY
+  - REAL_BOARDING_ALIGHTING
+default: ORIGIN_DESTINATION_ONLY
+description: >
+  Influences what stops are to be returned in response (ORIGIN_DESTINATION_ONLY
+  returns no intermediate stops; REAL_BOARDING_ALIGHTING returns all stops
+  except virtual stops). Default value: ORIGIN_DESTINATION_ONLY

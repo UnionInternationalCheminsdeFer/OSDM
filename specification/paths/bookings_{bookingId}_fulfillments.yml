@@ -1,0 +1,139 @@
+post:
+  tags:
+    - Bookings
+  summary: |
+    Confirms the booking a triggers the fulfillment of the booking
+    synchronously or asynchronously.
+  description: >
+    Confirms the booking and triggers the fulfillment of the booking.
+
+
+    If the fulfillments are created synchronously the service directly returns
+    the fulfillments. The fulfillments are then in state FULFILLED.
+
+
+    If the fulfillments are created asynchronously the service starts the
+    creation of the fulfillments. The fulfillmentIds may or may not returned.
+    The fulfillments are in stage CONFIRMED. The booking needs to be retrieved
+    later to obtain the fulfillments.
+  operationId: postFulfillments
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/idempotencyKey.yml
+    - $ref: ../components/parameters/acceptNamespace.yml
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking to be patched
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/vnd.uic.osdm+json:
+        schema:
+          $ref: ../components/schemas/FulfillmentPostRequest.yml
+  responses:
+    '200':
+      description: |
+        Fulfillment successfully completed
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/FulfillmentCollectionResponse.yml
+    '202':
+      description: |
+        Fulfillment successfully completed
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/FulfillmentCollectionResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []
+patch:
+  tags:
+    - Bookings
+  summary: Optionally finalizes the fulfillments in asynchronous mode.
+  description: >
+    Optionally finalizes the fulfillment in case of an asynchronous fulfillment
+    mode when the provider doesn't complete the asynchronous fulfillment
+    automatically.
+
+
+    This step may be used as an indication of the `proof of delivery` to
+    disallow the cancellation of booking.
+  operationId: finalizeFulfillments
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/idempotencyKey.yml
+    - $ref: ../components/parameters/acceptNamespace.yml
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking to be patched
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/vnd.uic.osdm+json:
+        schema:
+          $ref: ../components/schemas/FulfillmentsPatchRequest.yml
+  responses:
+    '200':
+      description: |
+        Fulfillment successfully completed
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/FulfillmentCollectionResponse.yml
+    '202':
+      $ref: ../components/responses/FulfillmentRequestAcceptedResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '409':
+      $ref: ../components/responses/ConflictResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

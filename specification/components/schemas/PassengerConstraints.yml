@@ -1,0 +1,20 @@
+type: object
+additionalProperties: false
+properties:
+  number:
+    description: |
+      number of passengers with this constraint
+    type:
+      - integer
+      - 'null'
+    format: int32
+  upperAgeLimit:
+    type:
+      - integer
+      - 'null'
+    format: int32
+  lowerAgeLimit:
+    type:
+      - integer
+      - 'null'
+    format: int32

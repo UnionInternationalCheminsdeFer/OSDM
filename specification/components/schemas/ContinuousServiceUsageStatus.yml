@@ -1,0 +1,8 @@
+description: status of the usage of a vehicle
+type: string
+x-extensible-enum:
+  - VEHICLE_BLOCKED
+  - USAGE_STARTED
+  - USAGE_ENDED
+  - BLOCKING_TIME_OUT
+  - USAGE_TIME_OUT

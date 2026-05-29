@@ -1,0 +1,15 @@
+allOf:
+  - $ref: ./AbstractTravelAccount.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - regionalConstraintSummary
+    properties:
+      regionalConstraintSummary:
+        type: string
+      regionalConstraint:
+        $ref: ./RegionalConstraint.yml
+      usage:
+        type: array
+        items:
+          $ref: ./TravelAccountUsage.yml

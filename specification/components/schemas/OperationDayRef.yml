@@ -1,0 +1,7 @@
+type:
+  - string
+  - 'null'
+description: |
+  Reference to an operating day. Provided by OJP.
+examples:
+  - OperatingDay:12345

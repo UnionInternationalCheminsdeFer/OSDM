@@ -1,0 +1,13 @@
+description: |
+  See Other (303)
+headers:
+  Location:
+    schema:
+      type: string
+    description: |
+      Location (URN) of the response data
+  ETag:
+    schema:
+      type: string
+    description: |
+      Version tag

@@ -1,0 +1,16 @@
+type: object
+additionalProperties: false
+description: context to trips
+properties:
+  operators:
+    type: array
+    items:
+      $ref: ./Operator.yml
+  places:
+    type: array
+    items:
+      $ref: ./Place.yml
+  situations:
+    type: array
+    items:
+      $ref: ./Situation.yml

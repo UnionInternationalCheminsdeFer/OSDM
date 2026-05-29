@@ -1,0 +1,9 @@
+allOf:
+  - $ref: ./AbstractTravelAccount.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - type
+    properties:
+      type:
+        $ref: ./ReductionCardType.yml

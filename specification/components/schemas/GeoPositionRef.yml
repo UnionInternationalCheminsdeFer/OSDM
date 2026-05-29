@@ -1,0 +1,14 @@
+description: |
+  Reference to a GeoPosition consisting of latitude and longitude.
+allOf:
+  - $ref: ./PlaceRef.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - latitude
+      - longitude
+    properties:
+      latitude:
+        $ref: ./Latitude.yml
+      longitude:
+        $ref: ./Longitude.yml

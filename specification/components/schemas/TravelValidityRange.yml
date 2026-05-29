@@ -1,0 +1,17 @@
+type: object
+additionalProperties: false
+description: >
+  Range for the start of validity to be used in a patch for available
+  fulfillments (e.g. a 1 hour ticket not
+
+  available during  peak hours in the morning and afternoon).
+required:
+  - from
+  - until
+properties:
+  from:
+    type: string
+    format: date
+  until:
+    type: string
+    format: date

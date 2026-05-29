@@ -1,0 +1,12 @@
+description: |
+  Known Values:
+  - DELAY: delayed arrival
+  - JOURNEY_ABANDONED: trip way abandoned during the travel
+  - JOURNEY_NOT_STARTED: trip was not started due to the delay
+  - SERVICE_DEGRADED: e.g. service class not provided
+type: string
+x-extensible-enum:
+  - DELAY
+  - JOURNEY_ABANDONED
+  - JOURNEY_NOT_STARTED
+  - SERVICE_DEGRADED

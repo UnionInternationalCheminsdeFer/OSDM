@@ -1,0 +1,34 @@
+type: object
+additionalProperties: false
+description: |
+  CIT paper implies printing on value paper which is stock controlled.
+required:
+  - type
+  - media
+properties:
+  type:
+    $ref: ./FulfillmentType.yml
+  media:
+    $ref: ./FulfillmentMediaType.yml
+  applications:
+    description: >
+      list of applications that can 
+
+      handle the fulfillment. This is required in case of media APPLICATION.
+
+      The applications might be modules on a vending machine to handle chop
+      cards or smartphone apps handling NFC communication..
+    type: array
+    items:
+      type: string
+    minItems: 1
+  specification:
+    description: >-
+      accepted fulfillment specifications in case the fulfillment via
+      APPLICATION or CHIP_CARD is not not limited to a specific application.
+    type: array
+    items:
+      type: string
+      examples:
+        - CALYPSO
+    minItems: 1

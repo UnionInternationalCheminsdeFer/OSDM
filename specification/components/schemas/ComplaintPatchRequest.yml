@@ -1,0 +1,29 @@
+type: object
+additionalProperties: false
+description: >
+  Changes to a claim already made.
+
+  This covers upload of additional supporting documents, changes to  the
+  passenger and claim manager data.
+
+  The patch of the compensation amount requires an agreement between the
+  involved parties and is used in
+
+  case the legal time line for deciding the claim is passed.
+properties:
+  reason:
+    $ref: ./ComplaintChangeReason.yml
+  compensationAmount:
+    $ref: ./Price.yml
+  claimManager:
+    $ref: ./PersonDetail.yml
+  affectedPassengers:
+    type: array
+    items:
+      $ref: ./Passenger.yml
+  supportingDocuments:
+    type: array
+    items:
+      $ref: ./SupportingDocument.yml
+  bankAccount:
+    $ref: ./BankAccountReference.yml

@@ -1,0 +1,4 @@
+type: string
+enum:
+  - VISUAL_ELEMENT
+  - BAR_CODE

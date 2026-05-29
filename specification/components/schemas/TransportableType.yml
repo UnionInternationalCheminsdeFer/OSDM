@@ -1,0 +1,19 @@
+description: >
+  Subset of the values from 
+
+  the [Passenger Type Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - PET
+  - DOG
+  - ACCOMP_DOG
+  - BICYCLE
+  - LUGGAGE
+  - PRAM
+  - CAR
+  - SPECIAL_VEHICLE
+  - MOTOCYCLE
+  - TRAILER

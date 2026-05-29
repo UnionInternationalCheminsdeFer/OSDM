@@ -1,0 +1,43 @@
+type: object
+additionalProperties: false
+required:
+  - offers
+  - passengerSpecifications
+properties:
+  offers:
+    description: >
+      The list of offers that need to be provisionally booked, with possibly the
+      reservations and ancillaries associated that should be booked as well.
+    type: array
+    items:
+      $ref: ./OfferSelection.yml
+    minItems: 1
+  passengerSpecifications:
+    description: >
+      If needed (cf requiredInformation) or desired, this array allows providing
+      the required details on some or all passengers
+    type: array
+    items:
+      $ref: ./PassengerSpecification.yml
+    minItems: 1
+  purchaser:
+    $ref: ./PurchaserSpecification.yml
+  promotionCodes:
+    type: array
+    items:
+      $ref: ./PromotionCode.yml
+  requestedFulfillmentType:
+    $ref: ./FulfillmentType.yml
+  preferredFulfillmentMedia:
+    $ref: ./FulfillmentMediaType.yml
+  embed:
+    description: >
+      Influences whether referenced resources are returned in full or as
+      references only.
+    type: array
+    items:
+      $ref: ./BookingResponseContent.yml
+  externalRef:
+    type:
+      - string
+      - 'null'

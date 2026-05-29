@@ -1,0 +1,20 @@
+type:
+  - string
+  - 'null'
+description: >
+  The vehicle number(s) of the vehicle that runs this timed leg. On some legs a
+  vehicle can
+
+  have multiple vehicle numbers, e.g. if it is split into two trains at a
+  intermediate stop.
+
+  E.g. the vehicle numbers of 'TGV 9218', 'TH 9340' or 'ICE 15'.
+
+  For backwards compatibility with Hermes/Hosa the length of the string must be
+  restricted
+
+  to 5 characters. If's longer, it is not possible to use the H2O converter.
+examples:
+  - '9218'
+  - '9340'
+  - '15'

@@ -1,0 +1,28 @@
+type: object
+additionalProperties: false
+description: |
+  More parameters for restricting the request. Provided by OJP.
+properties:
+  type:
+    $ref: ./PlaceType.yml
+  usage:
+    $ref: ./PlaceUsage.yml
+  ptModes:
+    $ref: ./ModeFilter.yml
+  serviceBrandFilter:
+    $ref: ./ServiceBrandFilter.yml
+  carrierFilter:
+    $ref: ./CarrierFilter.yml
+  pointOfInterestFilter:
+    $ref: ./PointOfInterestFilter.yml
+  numberOfResults:
+    description: >
+      Maximum number of results to be returned. The service is allowed to return
+      fewer objects if reasonable
+
+      or otherwise appropriate.
+    type:
+      - integer
+      - 'null'
+    format: int32
+    minimum: 1

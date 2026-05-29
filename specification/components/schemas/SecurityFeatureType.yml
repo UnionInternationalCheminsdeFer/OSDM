@@ -1,0 +1,11 @@
+type: object
+additionalProperties: false
+description: |
+  Defines type and format of the security feature.
+properties:
+  type:
+    $ref: ./SecurityElementType.yml
+  format:
+    $ref: ./SecurityElementFormat.yml
+  symbology:
+    $ref: ./Symbology.yml

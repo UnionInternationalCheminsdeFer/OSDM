@@ -1,0 +1,15 @@
+type: object
+additionalProperties: false
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  bookedOfferIds:
+    type: array
+    items:
+      type: string
+      maxLength: 32768
+    description: >
+      IDs of offers booked by the request. Will be always provided, single of
+      the booked offer may not be provided in bookedOffer attribute.

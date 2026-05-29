@@ -1,0 +1,25 @@
+description: |
+  specification to exchange a trip
+type: object
+additionalProperties: false
+properties:
+  tripSpecifications:
+    type:
+      - array
+      - 'null'
+    items:
+      $ref: ./TripSpecification.yml
+  inboundTripSpecifications:
+    type:
+      - array
+      - 'null'
+    items:
+      $ref: ./TripSpecification.yml
+  tripSearchCriteria:
+    $ref: ./TripSearchCriteria.yml
+  nonTripSearchCriteria:
+    $ref: ./NonTripSearchCriteria.yml
+  requestedSections:
+    type: array
+    items:
+      $ref: ./Section.yml

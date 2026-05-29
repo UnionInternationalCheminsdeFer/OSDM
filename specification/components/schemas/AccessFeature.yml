@@ -1,0 +1,14 @@
+description: types of features for a guidance path transition, provided by OJP 2.0
+type: string
+x-extensible-enum:
+  - ELEVATOR
+  - SERIES_OF_STAIRS
+  - SINGLE_STEP
+  - SERIES_OF_SINGLE_STEPS
+  - ESCALATOR
+  - TRAVELATOR
+  - RAMP
+  - FOOT_PATH
+  - SHUTTLE
+  - OTHER
+  - UNKNOWN

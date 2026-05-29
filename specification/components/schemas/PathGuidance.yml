@@ -1,0 +1,12 @@
+type: object
+description: |
+  Guidance on a path, provided by OJP 2.0
+additionalProperties: false
+required:
+  - sections
+properties:
+  sections:
+    type: array
+    items:
+      $ref: ./PathGuidanceSection.yml
+    minItems: 1

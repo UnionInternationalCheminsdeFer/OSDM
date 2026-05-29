@@ -1,0 +1,75 @@
+type: object
+additionalProperties: false
+required:
+  - offerId
+  - createdOn
+  - preBookableUntil
+properties:
+  offerId:
+    type: string
+    maxLength: 32768
+  summary:
+    description: |
+      A human-readable description of the offer.
+    type:
+      - integer
+      - 'null'
+  offerSummary:
+    $ref: ./OfferSummary.yml
+  createdOn:
+    type: string
+    format: date-time
+  preBookableUntil:
+    description: >
+      time until the offer can be pre-booked, however its availability is not
+      guaranteed
+    type: string
+    format: date-time
+  passengerRefs:
+    description: >
+      providing the passengerRefs is required for passenger transport. There are
+      uses cases (e.g. sale of merchandising articles) where no passenger is
+      involved. Only in these cases it is allowed to omit the passengerRefs.
+    type: array
+    items:
+      type: string
+    minItems: 1
+  products:
+    description: >
+      products must be provided in case they are referenced. Some offer parts
+      (e.g. fares)
+
+      do not have products assigned.
+    type: array
+    items:
+      $ref: ./Product.yml
+  tripCoverage:
+    type: array
+    items:
+      $ref: ./TripCoverage.yml
+  admissionOfferParts:
+    type: array
+    items:
+      $ref: ./AdmissionOfferPart.yml
+  reservationOfferParts:
+    type: array
+    items:
+      $ref: ./ReservationOfferPart.yml
+  ancillaryOfferParts:
+    type: array
+    items:
+      $ref: ./AncillaryOfferPart.yml
+  continuousServiceOfferParts:
+    type: array
+    items:
+      $ref: ./ContinuousServiceOfferPart.yml
+  fees:
+    type: array
+    items:
+      $ref: ./Fee.yml
+  fares:
+    type: array
+    items:
+      $ref: ./FareOfferPart.yml
+  _links:
+    $ref: ./Links.yml

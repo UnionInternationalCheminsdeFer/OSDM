@@ -1,0 +1,13 @@
+type: object
+properties:
+  price:
+    $ref: ./Price.yml
+  travelClass:
+    $ref: ./TravelClass.yml
+  flexibility:
+    $ref: ./Flexibility.yml
+  startDateTime:
+    type: string
+    format: date-time
+  routeSpecification:
+    $ref: ./RouteSpecification.yml

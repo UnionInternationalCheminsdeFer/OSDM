@@ -1,0 +1,28 @@
+type: object
+required:
+  - fulfillmentId
+properties:
+  fulfillmentId:
+    description: |
+      id of the fulfillment where some part(s) should be removed
+    type: string
+  bookingPartIds:
+    description: ids of booking parts to be removed from the fulfillment
+    type: array
+    items:
+      type: string
+      maxLength: 32768
+  passengerIds:
+    type: array
+    description: ids of passengers to be removed from the fulfillment
+    items:
+      type: string
+  refundFee:
+    description: >
+      In some business models the distributor has the right to define the refund
+      fee amount for a fare provided by the fare prvider. This need to be
+      indicated in the fare after sales rules to be applied. In this case the
+      ditsributor submits the amount to the fare provider in refund fee amount
+      and the fare provider uses this amount to create the fees including the
+      VAT split.
+    $ref: ./CurrencyAmount.yml

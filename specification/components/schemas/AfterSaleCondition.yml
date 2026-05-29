@@ -1,0 +1,21 @@
+type: object
+additionalProperties: false
+description: |
+  After sale amounts for a given offer.
+properties:
+  condition:
+    $ref: ./AfterSaleConditionType.yml
+  validFrom:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  validUntil:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  afterSaleFee:
+    $ref: ./Price.yml
+  reimbursementMethod:
+    $ref: ./ReimbursementMethod.yml

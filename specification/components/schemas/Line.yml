@@ -1,0 +1,46 @@
+type: object
+additionalProperties: false
+description: >
+  terminalStation - in case the product requires a destination within the zone
+  (e.g. local ticket
+
+  to go to the main rail station).
+
+  entryStation - Station to enter the zone in case the product requires to enter
+  the zone via a
+
+  specific station (e.g. local zone ticket to start from the main rail station).
+required:
+  - carrier
+properties:
+  binaryLineId:
+    description: |
+      Id to support local traffic standards (e.g. VDV,...).
+    type:
+      - string
+      - 'null'
+    format: byte
+  carrier:
+    $ref: ./CompanyRef.yml
+  city:
+    type:
+      - integer
+      - 'null'
+    format: int32
+  entryStation:
+    $ref: ./StopPlace.yml
+  lineIds:
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  terminalStation:
+    $ref: ./StopPlace.yml
+  nutsCode:
+    description: |
+      Nomenclature des units territoriales statistiques
+       COMMISSION REGULATION (EU) No 31/2011
+    type:
+      - string
+      - 'null'

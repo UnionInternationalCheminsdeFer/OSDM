@@ -1,0 +1,7 @@
+description: |
+  Named luggage restriction rule.
+  Valid Values:
+  - CAN_CARRY: Weight is ok if you can carry it yourself.
+type: string
+enum:
+  - CAN_CARRY

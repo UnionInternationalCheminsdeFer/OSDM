@@ -1,0 +1,9 @@
+description: >
+  restrictions that control the trip search behavior for both public and
+  individual transport.
+
+  Provided by OJP.
+type: array
+items:
+  $ref: ./TripMobilityFilterItem.yml
+minItems: 1

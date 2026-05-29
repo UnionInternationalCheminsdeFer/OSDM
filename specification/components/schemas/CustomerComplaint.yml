@@ -1,0 +1,51 @@
+type: object
+additionalProperties: false
+required:
+  - applicationTime
+  - journeyDetails
+  - affectedPassengers
+description: |
+  complaint details provided by the passengers
+properties:
+  applicationTime:
+    description: >
+      date and time when the claim was made. This starts the legal time line to
+      process the claim
+    type:
+      - string
+      - 'null'
+    format: date-time
+  journeyDetails:
+    $ref: ./ClaimedJourneyDetails.yml
+  claimManager:
+    $ref: ./PersonDetail.yml
+  affectedPassengers:
+    type: array
+    items:
+      $ref: ./Passenger.yml
+    minItems: 1
+  supportingDocuments:
+    type: array
+    items:
+      $ref: ./SupportingDocument.yml
+  bookingIds:
+    description: |
+      list of booking Ids
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  ticketControlNumber:
+    description: >
+      list of ticket control number (visible ticket identification for the
+      customer)
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  requestedPaymentType:
+    $ref: ./PaymentType.yml
+  bankAccount:
+    $ref: ./BankAccountReference.yml

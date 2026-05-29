@@ -1,0 +1,15 @@
+type: object
+description: An event that has occurred on a complaint.
+allOf:
+  - $ref: ./NotificationEvent.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - type
+      - complaintId
+    properties:
+      type:
+        $ref: ./BackOfficeChangeType.yml
+      complaintId:
+        type: string
+        description: The ID of the complaint.

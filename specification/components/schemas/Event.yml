@@ -1,0 +1,25 @@
+type: object
+additionalProperties: false
+description: |
+  Record of an action that occurred in the life cycle of the booking.
+required:
+  - id
+  - timestamp
+  - type
+  - details
+properties:
+  id:
+    description: |
+      id of the event
+    type: string
+  timestamp:
+    description: |
+      timestamp of the event
+    type:
+      - string
+      - 'null'
+    format: date-time
+  type:
+    $ref: ./EventType.yml
+  details:
+    $ref: ./EventDetail.yml

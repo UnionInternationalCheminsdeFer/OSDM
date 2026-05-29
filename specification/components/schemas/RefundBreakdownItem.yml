@@ -1,0 +1,16 @@
+type: object
+required:
+  - refundFee
+  - refundAmount
+  - bookingParts
+properties:
+  refundFee:
+    description: Amount kept by the carrier and/or the distributor
+    $ref: ./Price.yml
+  refundAmount:
+    description: Amount to be returned to the purchaser
+    $ref: ./Price.yml
+  bookingParts:
+    type: array
+    items:
+      $ref: ./BookingPartReference.yml

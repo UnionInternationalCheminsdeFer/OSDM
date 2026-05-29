@@ -1,0 +1,9 @@
+type: string
+description: The type of change that has occurred.
+enum:
+  - INITIATED
+  - EVALUATING
+  - DECIDED
+  - SETTLED
+  - INFORMATION_MISSING
+default: INITIATED

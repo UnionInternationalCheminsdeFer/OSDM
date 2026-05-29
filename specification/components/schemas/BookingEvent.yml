@@ -1,0 +1,25 @@
+type: object
+description: An event that has occurred on a booking.
+allOf:
+  - $ref: ./NotificationEvent.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - type
+      - bookingId
+    properties:
+      type:
+        $ref: ./BookingChangeType.yml
+      bookingId:
+        type: string
+        description: The ID of the booking that has changed.
+      affectedBookingPartIds:
+        description: list of ids of affected booking parts
+        type: array
+        items:
+          type: string
+      affectedFulfillmentIds:
+        description: list of ids of affected fulillments
+        type: array
+        items:
+          type: string

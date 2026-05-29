@@ -1,0 +1,13 @@
+type: object
+description: The revision of the event.
+required:
+  - name
+  - timestamp
+properties:
+  name:
+    type: string
+    examples:
+      - '1'
+  timestamp:
+    type: string
+    format: date-time

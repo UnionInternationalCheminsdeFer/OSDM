@@ -1,0 +1,80 @@
+type: object
+additionalProperties: false
+description: >
+  The online representation of a fare.
+
+  In case the final product requires the indication of carriers it is obligatory
+  to provide a 
+
+  carrierConstraint in the fare directly that includes the list of all carriers
+  in the 
+
+  includedCarrier list. Whether the carrier must be indicated needs to be
+  derived from the requetsted
+
+  total route and the location of the sales points for international sales. 
+
+  Whether the indication of carriers is obligatory is defined
+
+  in the Convention concerning International Carriage by Rail (COTIF).
+allOf:
+  - $ref: ./AbstractBookingPart.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - type
+      - regionalConstraint
+      - travelClass
+      - afterSalesRules
+      - combinationConstraint
+      - travelValidityConstraint
+    properties:
+      type:
+        $ref: ./FareType.yml
+      regionalConstraint:
+        $ref: ./RegionalConstraint.yml
+      serviceConstraint:
+        $ref: ./ServiceConstraint.yml
+      carrierConstraint:
+        $ref: ./CarrierConstraint.yml
+      regulatoryConditions:
+        type: array
+        items:
+          $ref: ./RegulatoryCondition.yml
+      serviceClass:
+        $ref: ./ServiceClass.yml
+      travelClass:
+        $ref: ./TravelClass.yml
+      afterSalesRules:
+        $ref: ./FareAfterSalesRules.yml
+      combinationConstraint:
+        type: array
+        minItems: 1
+        items:
+          $ref: ./FareCombinationModel.yml
+      fulfillmentConstraint:
+        $ref: ./FulfillmentConstraint.yml
+      travelValidityConstraint:
+        $ref: ./TravelValidity.yml
+      coveredSection:
+        $ref: ./Section.yml
+      passengerConstraints:
+        description: |
+          passenger constraint to be included in bar codes
+        type: array
+        items:
+          $ref: ./PassengerConstraints.yml
+      involvedTCOs:
+        type: array
+        items:
+          $ref: ./CompanyRef.yml
+      luggageConstraint:
+        $ref: ./LuggageConstraint.yml
+      reservationRef:
+        description: >
+          reference of the reservatioon offer that manages the places on a
+          train. The referenced reservation is 
+
+          following the comercial rules of a fare, it needs to be integrated in
+          a fulfillment of the API consumer.
+        type: string

@@ -1,0 +1,11 @@
+description: >
+  A place extended by accessibility limitation properties and some attributes of
+  the associated equipment,
+
+  comprising one or more places where vehicles may stop and where passengers may
+  board or leave vehicles
+
+  or prepare their trip, and which will usually have one or more wellknown
+  names. Provided by OJP.
+allOf:
+  - $ref: ./Place.yml

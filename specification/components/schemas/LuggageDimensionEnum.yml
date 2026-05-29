@@ -1,0 +1,14 @@
+description: >
+  Type of the dimension. Combined sizes are the sum of the sizes.
+
+  Explanation:  WIDTH_HEIGHT_LENGTH = sum of width, hight and length in cm (=
+  linear equivalent).
+type: string
+enum:
+  - HEIGHT
+  - LENGTH
+  - WEIGHT
+  - WIDTH
+  - WIDTH_HEIGHT
+  - WIDTH_HEIGHT_LENGTH
+  - VOLUME

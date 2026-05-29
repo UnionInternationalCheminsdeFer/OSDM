@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+description: |
+  Describes a two-dimensional rectangle
+required:
+  - position
+  - dimension
+properties:
+  position:
+    $ref: ./GridPosition.yml
+  dimension:
+    $ref: ./GridDimension.yml

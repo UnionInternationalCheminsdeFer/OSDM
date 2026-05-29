@@ -1,0 +1,28 @@
+type: object
+additionalProperties: false
+description: |
+  Availability status of a specific place.
+required:
+  - number
+  - reservationRefs
+properties:
+  number:
+    description: |
+      Place number as indicated at the place in the coach.
+    type: string
+  status:
+    $ref: ./AvailabilityStatus.yml
+  reservationRefs:
+    description: >
+      References requested reservation offerParts/bookingParts that allow the
+      selection of the place.
+
+      This allows clients to link place availabilities with the corresponding
+      reservation fare/offerPart/bookingPart. E.g. link a bicycle hook with a
+      bicycle reservationOfferPart.
+    type: array
+    items:
+      type: string
+    minItems: 1
+  selectionFee:
+    $ref: ./SelectionFee.yml

@@ -1,0 +1,21 @@
+type: object
+additionalProperties: false
+description: >
+  References all the booking part elements in an uniform format.
+
+  In its part, a BookingPartReference can refer to reservation, admission,
+  ancillary or fee.
+required:
+  - id
+properties:
+  id:
+    type: string
+    maxLength: 32768
+  summary:
+    description: |
+      A human-readable description of the booking part reference.
+    type:
+      - string
+      - 'null'
+  _links:
+    $ref: ./Links.yml

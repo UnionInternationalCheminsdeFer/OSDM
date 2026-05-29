@@ -1,0 +1,24 @@
+type: object
+additionalProperties: false
+description: >
+  Describes sales, usage and after sales conditions applicable to the product. 
+  See after sales conditions for individual after sales amounts. The language of
+  the text is controlled by the accept-language header, i.e. supporting English
+  is a must.
+required:
+  - type
+  - description
+properties:
+  type:
+    $ref: ./ConditionType.yml
+  description:
+    description: |
+      human readable documentation of the text.
+    type: string
+    minLength: 1
+  shortDescription:
+    description: |
+      short description of the condition no longer than 64 characters
+    type:
+      - string
+      - 'null'

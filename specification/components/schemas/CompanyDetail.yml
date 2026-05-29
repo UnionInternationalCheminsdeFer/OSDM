@@ -1,0 +1,13 @@
+type: object
+additionalProperties: false
+properties:
+  name:
+    type: string
+  registrationNumber:
+    type: string
+  legalPostalAddress:
+    $ref: ./PostalAddress.yml
+  contact:
+    $ref: ./ContactDetail.yml
+  taxId:
+    type: string

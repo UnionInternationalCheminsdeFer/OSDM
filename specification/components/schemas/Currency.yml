@@ -1,0 +1,5 @@
+type: string
+description: |
+  ISO 4217 currency codes
+examples:
+  - CHF

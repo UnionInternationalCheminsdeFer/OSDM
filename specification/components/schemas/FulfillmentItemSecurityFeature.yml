@@ -1,0 +1,16 @@
+type: object
+additionalProperties: false
+properties:
+  type:
+    $ref: ./SecurityFeatureType.yml
+  data:
+    description: >
+      base64 encoded data. The length restriction of 4 MBytes applies to the
+      encoded
+
+      string, so the raw data cannot exceed 3 MBytes in size.
+    type:
+      - string
+      - 'null'
+    format: byte
+    maxLength: 4194304

@@ -1,0 +1,27 @@
+type: object
+additionalProperties: false
+description: >
+  entire route of a service or service part (in case of through coaches or split
+  trains)
+required:
+  - originRef
+  - originName
+  - destinationRef
+  - destinationName
+properties:
+  originRef:
+    $ref: ./PlaceRef.yml
+  originName:
+    type: string
+  destinationRef:
+    $ref: ./PlaceRef.yml
+  destinationName:
+    type: string
+  displayedDestinationName:
+    type: string
+  originDisplayAtDestination:
+    type: string
+  vias:
+    type: array
+    items:
+      $ref: ./NamedPlaceRef.yml

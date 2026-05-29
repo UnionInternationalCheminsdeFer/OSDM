@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+properties:
+  releaseSpecifications:
+    description: >
+      To do a partial release provide the fulfillmentIds affected and point out
+      what to release
+    type: array
+    items:
+      $ref: ./ReleaseSpecification.yml
+  overruleCode:
+    $ref: ./OverruleCode.yml

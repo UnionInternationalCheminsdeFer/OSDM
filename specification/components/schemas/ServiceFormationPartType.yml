@@ -1,0 +1,11 @@
+type: string
+x-extensible-enum:
+  - TRAIN
+  - TRAIN_PART
+  - COACH_GROUP
+  - COACH
+  - RESTAURANT_COACH
+  - BUFFET_COACH
+  - ENGINE
+  - CAR_CARRIAGE_COACH
+  - LUGGAGE_COACH

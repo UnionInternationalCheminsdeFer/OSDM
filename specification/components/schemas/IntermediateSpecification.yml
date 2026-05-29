@@ -1,0 +1,15 @@
+type: object
+additionalProperties: false
+description: |
+  Minimal intermediate specification.
+required:
+  - stopPlaceRef
+  - serviceArrival
+  - serviceDeparture
+properties:
+  stopPlaceRef:
+    $ref: ./StopPlaceRef.yml
+  serviceArrival:
+    $ref: ./ServiceTime.yml
+  serviceDeparture:
+    $ref: ./ServiceTime.yml

@@ -1,0 +1,44 @@
+type: object
+additionalProperties: false
+description: |
+  Search criteria to search for products
+properties:
+  id:
+    description: |
+      id of the product
+    type:
+      - string
+      - 'null'
+  types:
+    type: array
+    items:
+      $ref: ./ProductType.yml
+  codes:
+    description: |
+      The product codees to be searched.
+    type: array
+    items:
+      type: string
+  flexibilities:
+    type: array
+    items:
+      $ref: ./Flexibility.yml
+  serviceClasses:
+    type: array
+    items:
+      $ref: ./ServiceClass.yml
+  travelClasses:
+    type: array
+    items:
+      $ref: ./TravelClass.yml
+  fulfillmentOptions:
+    type: array
+    items:
+      $ref: ./FulfillmentOption.yml
+  productTags:
+    description: product tags associated with the product
+    type: array
+    items:
+      type:
+        - string
+        - 'null'

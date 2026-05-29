@@ -1,0 +1,139 @@
+type: object
+additionalProperties: false
+required:
+  - id
+  - createdOn
+  - passengers
+properties:
+  id:
+    type: string
+  bookingCode:
+    type: string
+    description: >-
+      The unique booking code in the provider system. Usually refers to an order
+      number or PNR.
+  externalRef:
+    description: >
+      The unique booking reference in the provider system. Usually refers to an
+      order number or PNR.
+    type:
+      - string
+      - 'null'
+  summary:
+    description: |
+      A human-readable description of the booking.
+    type:
+      - string
+      - 'null'
+    examples:
+      - Booking 2345 for Clemens Gantert
+  createdOn:
+    type: string
+    format: date-time
+  passengers:
+    type: array
+    items:
+      $ref: ./Passenger.yml
+    minItems: 1
+  purchaser:
+    $ref: ./Purchaser.yml
+  provisionalPrice:
+    description: |
+      Price of all unconfirmed pre-booked parts in the booking
+    $ref: ./Price.yml
+  confirmedPrice:
+    description: >
+      Sum of all prices of confirmed parts in the booking minus the sum of all
+      confirmed refund amounts.
+    $ref: ./Price.yml
+  bookedOffers:
+    type: array
+    items:
+      $ref: ./BookedOffer.yml
+  trips:
+    description: >
+      This trip will be included in the offer if the offer is part of the
+      booking.
+    type: array
+    items:
+      $ref: ./Trip.yml
+  tripContext:
+    $ref: ./TripContext.yml
+  requestedInformation:
+    $ref: ./RequestedInformation.yml
+  confirmationTimeLimit:
+    description: >
+      Time until the booking needs to be confirmed or put on hold. After that,
+      the booking is no longer valid.
+    type:
+      - string
+      - 'null'
+    format: date-time
+  fulfillmentRefs:
+    type: array
+    items:
+      $ref: ./FulfillmentRefs.yml
+  fulfillmentStatus:
+    $ref: ./FulfillmentSummaryStatus.yml
+  issuedVouchers:
+    type: array
+    items:
+      $ref: ./VoucherInformation.yml
+  documents:
+    type: array
+    items:
+      $ref: ./Document.yml
+  paymentMethods:
+    type: array
+    items:
+      $ref: ./PaymentMethod.yml
+  refundOffers:
+    description: >
+      Refund offers are created with the details of the to-be-confirmed refund
+      operation.
+
+      One refund offer can then be confirmed, which turns it into a
+      confirmedRefund. 
+
+      Refund offers in state PROPOSED might not be available in the Booking but
+      only 
+
+      via the get endpoint.
+    type: array
+    items:
+      $ref: ./RefundOffer.yml
+  confirmedRefunds:
+    description: |
+      Confirmed refund offers must be listed here.
+    type: array
+    items:
+      $ref: ./ConfirmedRefund.yml
+  releaseOffers:
+    type: array
+    items:
+      $ref: ./ReleaseOffer.yml
+  confirmedReleases:
+    type: array
+    items:
+      $ref: ./ConfirmedRelease.yml
+  cancelFulfillmentsOffers:
+    type: array
+    items:
+      $ref: ./CancelFulfillmentsOffer.yml
+  exchangeOperations:
+    type: array
+    items:
+      $ref: ./ExchangeOperation.yml
+  onHoldOffer:
+    $ref: ./OnHoldOffer.yml
+  relatedBookingIds:
+    description: >
+      If this booking has been split, this attribute references the newly
+      created bookingIds.
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  _links:
+    $ref: ./Links.yml

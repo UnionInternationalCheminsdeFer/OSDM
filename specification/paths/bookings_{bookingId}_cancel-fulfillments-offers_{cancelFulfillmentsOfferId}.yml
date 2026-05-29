@@ -1,0 +1,179 @@
+get:
+  tags:
+    - Cancel Fulfillments
+  summary: Returns the cancel fulfillments offer for the ids provided.
+  operationId: getCancelFulfillmentOffers
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/acceptNamespace.yml
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking
+      required: true
+      schema:
+        type: string
+    - name: cancelFulfillmentsOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+  responses:
+    '200':
+      description: |
+        RefundOffer found
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/CancelFulfillmentsOfferResponse.yml
+      headers:
+        Content-Language:
+          schema:
+            type: string
+            description: >
+              The language of translatable strings in the response (see
+              RFC2616-sec14.12).
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []
+patch:
+  tags:
+    - Cancel Fulfillments
+  summary: Allows to accept and confirm a cancel fulfillments offer.
+  operationId: patchCancelFulfillmentsOffers
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/idempotencyKey.yml
+    - $ref: ../components/parameters/acceptNamespace.yml
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking
+      required: true
+      schema:
+        type: string
+    - name: cancelFulfillmentsOfferId
+      in: path
+      description: |
+        id of the cancel fulfillment offer
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+  requestBody:
+    required: true
+    content:
+      application/vnd.uic.osdm+json:
+        schema:
+          $ref: ../components/schemas/CancelFulfillmentsOfferPatchRequest.yml
+  responses:
+    '200':
+      description: |
+        RefundOffer confirmed
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/CancelFulfillmentsOfferResponse.yml
+      headers:
+        Content-Language:
+          schema:
+            type: string
+            description: >
+              The language of translatable strings in the response (see
+              RFC2616-sec14.12).
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '409':
+      $ref: ../components/responses/ConflictResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []
+delete:
+  tags:
+    - Cancel Fulfillments
+  summary: Deletes a cancel fulfillments offer without waiting for expiry.
+  operationId: deleteCancelFulfillmentOffers
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking
+      required: true
+      schema:
+        type: string
+    - name: cancelFulfillmentsOfferId
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+  responses:
+    '204':
+      description: >
+        In case that a request was successful only status code 204 will be
+        returned but no response content will be provided (aka as return type
+        'void' in many programming languages).
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '409':
+      $ref: ../components/responses/ConflictResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

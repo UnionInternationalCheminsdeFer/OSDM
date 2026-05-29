@@ -1,0 +1,4 @@
+type: string
+x-extensible-enum:
+  - SALES
+  - AFTER_SALES

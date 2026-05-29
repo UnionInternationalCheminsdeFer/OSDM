@@ -1,0 +1,13 @@
+type: object
+additionalProperties: false
+description: |
+  Trip change request structure. Provided by OJP.
+required:
+  - tripResult
+properties:
+  tripChangeParameter:
+    $ref: ./TripChangeParameter.yml
+  tripResult:
+    $ref: ./TripResult.yml
+  tripContext:
+    $ref: ./TripContext.yml

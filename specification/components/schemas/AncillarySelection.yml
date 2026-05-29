@@ -1,0 +1,19 @@
+type: object
+additionalProperties: false
+description: |
+  Is some cases one out of a set of ancillary offerparts must be booked.
+required:
+  - ancillaryId
+properties:
+  ancillaryId:
+    type: string
+    maxLength: 32768
+  passengerRefs:
+    description: >
+      providing the passengerRefs is required for passenger transport. There are
+      uses cases (e.g. sale of merchandising articles) where no passenger is
+      involved. Only in these cases it is allowed to omit the passengerRefs.
+    type: array
+    items:
+      type: string
+    minItems: 1

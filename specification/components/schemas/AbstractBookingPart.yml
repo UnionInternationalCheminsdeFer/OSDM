@@ -1,0 +1,133 @@
+type: object
+additionalProperties: false
+discriminator:
+  propertyName: objectType
+  mapping:
+    Admission: ./Admission.yml
+    Ancillary: ./Ancillary.yml
+    AppliedFee: ./AppliedFee.yml
+    ContinuousServiceBookingPart: ./ContinuousServiceBookingPart.yml
+    ContinuousServiceOfferPart: ./ContinuousServiceOfferPart.yml
+    FareBookingPart: ./FareBookingPart.yml
+    Reservation: ./Reservation.yml
+required:
+  - objectType
+  - partType
+  - id
+  - createdOn
+  - price
+  - status
+  - refundable
+  - exchangeable
+properties:
+  objectType:
+    description: Attribute is used as discriminator for inheritance between data types.
+    type: string
+  partType:
+    $ref: ./PartType.yml
+  id:
+    type: string
+    maxLength: 32768
+  summary:
+    type: string
+  createdOn:
+    description: |
+      Validity of offer towards passenger
+    type: string
+    format: date-time
+  confirmedOn:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  confirmedFulfillmentOptions:
+    $ref: ./FulfillmentOption.yml
+  price:
+    $ref: ./Price.yml
+  tripCoverage:
+    type: array
+    items:
+      $ref: ./TripCoverage.yml
+  summaryProductId:
+    type: string
+    description: >
+      Id of the product representing the commercial attributes of this booking
+      part. Although not currently
+
+      mandatory, this attribute should in all cases be filled in order to allow
+      matching a booking response
+
+      to the data in the booking request
+  products:
+    description: >
+      In offer mode, in almost all cases exactly one product is referenced. Only
+      on some French
+
+      trips consisting of a TGV and a TER two products need to be used.
+
+      In fare mode, no product exists as first needs to created from the
+      different fares.
+    type: array
+    items:
+      $ref: ./ProductLegAssociation.yml
+  status:
+    $ref: ./BookingPartStatus.yml
+  pricingStatus:
+    description: payment status in post-payment scenarios
+    type: string
+    default: PRICING_FINAL
+    x-extensible-enum:
+      - PRICING_UPCOMING
+      - PRICING_ONGOING
+      - PRICING_FINAL
+  offerMode:
+    $ref: ./OfferMode.yml
+  bookingPartCode:
+    type: string
+    description: |
+      The unique booking code for the part in the provider system.
+  passengerIds:
+    description: >
+      Ids of the passengers
+
+      Providing the passengerIds is required for passenger transport. There are
+      uses cases (e.g. sale of merchandising articles) where no passenger is
+      involved. Only in these cases it is allowed to omit the passengerIds.
+    type: array
+    items:
+      type: string
+    minItems: 1
+  availableFulfillmentOptions:
+    type: array
+    items:
+      $ref: ./FulfillmentOption.yml
+  refundable:
+    $ref: ./RefundType.yml
+  exchangeable:
+    $ref: ./ExchangeableType.yml
+  afterSaleConditions:
+    description: |
+      Fine grained specification of the after sale condition of the booking.
+    type: array
+    items:
+      $ref: ./AfterSaleCondition.yml
+  afterSalesOverrideDetails:
+    $ref: ./AfterSalesOverrideDetails.yml
+  appliedCorporateCodes:
+    type: array
+    items:
+      $ref: ./CorporateCode.yml
+  appliedPromotionCodes:
+    type: array
+    items:
+      $ref: ./PromotionCode.yml
+  appliedReductions:
+    description: |
+      applied reductions.
+    type: array
+    items:
+      $ref: ./AppliedReductions.yml
+  indicatedUsage:
+    $ref: ./IndicatedUsage.yml
+  accountingRef:
+    $ref: ./AccountingRef.yml

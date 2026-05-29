@@ -1,0 +1,7 @@
+name: If-None-Match
+in: header
+description: >
+  The HTTP If-None-Match is used to check whether the providing system has a
+  newer version of the requested data.
+schema:
+  type: string

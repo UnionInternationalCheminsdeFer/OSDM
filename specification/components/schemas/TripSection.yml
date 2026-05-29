@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+description: |
+  Part of a trip.
+required:
+  - tripId
+properties:
+  tripId:
+    type: string
+    maxLength: 32768
+  coveredSection:
+    $ref: ./Section.yml

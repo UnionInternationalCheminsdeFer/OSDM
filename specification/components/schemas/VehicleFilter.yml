@@ -1,0 +1,20 @@
+type: object
+additionalProperties: false
+description: |
+  Filter for in/exclusion of vehicle based on vehicle number or line number.
+properties:
+  exclude:
+    description: |
+      Whether vehicle in list is to include or exclude from search.
+    type:
+      - boolean
+      - 'null'
+    default: true
+  vehicleNumbers:
+    type: array
+    items:
+      $ref: ./VehicleNumber.yml
+  lineNumbers:
+    type: array
+    items:
+      $ref: ./LineNumber.yml

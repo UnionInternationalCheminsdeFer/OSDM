@@ -1,0 +1,15 @@
+type: object
+additionalProperties: false
+discriminator:
+  propertyName: objectType
+  mapping:
+    DayTravelAccountUnit: ./DayTravelAccountUnit.yml
+    MoneyTravelAccountUnit: ./MoneyTravelAccountUnit.yml
+    NamedTravelAccountUnit: ./NamedTravelAccountUnit.yml
+    TripTravelAccountUnit: ./TripTravelAccountUnit.yml
+required:
+  - objectType
+properties:
+  objectType:
+    description: Attribute is used as discriminator for inheritance between data types.
+    type: string

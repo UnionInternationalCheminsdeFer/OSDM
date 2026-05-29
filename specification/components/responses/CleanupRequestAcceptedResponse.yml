@@ -1,0 +1,6 @@
+description: |
+  Cleanup successfully initiated
+content:
+  application/vnd.uic.osdm+json:
+    schema:
+      $ref: ../schemas/ProblemCollection.yml

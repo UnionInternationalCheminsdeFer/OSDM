@@ -1,0 +1,10 @@
+description: facility item and associated facility group
+type: object
+additionalProperties: false
+required:
+  - facility
+properties:
+  facility:
+    $ref: ./FacilityEnum.yml
+  group:
+    $ref: ./FacilityGroupEnum.yml

@@ -1,0 +1,7 @@
+type: object
+additionalProperties: false
+required:
+  - document
+properties:
+  document:
+    $ref: ./DocumentSpecification.yml

@@ -1,0 +1,62 @@
+type: object
+additionalProperties: false
+description: |
+  Trip summary. Provided by OJP.
+required:
+  - id
+properties:
+  id:
+    description: |
+      Id of this trip for referencing purposes. Unique within trip response.
+    type: string
+    maxLength: 32768
+  summary:
+    type:
+      - string
+      - 'null'
+  externalRef:
+    type:
+      - string
+      - 'null'
+  startTime:
+    description: |
+      Departure time at origin.
+    type:
+      - string
+      - 'null'
+    format: date-time
+  endTime:
+    description: |
+      Arrival time at destination.
+    type:
+      - string
+      - 'null'
+    format: date-time
+  duration:
+    description: |
+      Overall duration of the trip.
+    type:
+      - string
+      - 'null'
+    format: duration
+  origin:
+    $ref: ./PlaceRef.yml
+  originName:
+    type:
+      - string
+      - 'null'
+    description: Name of the origin place.
+  destination:
+    $ref: ./PlaceRef.yml
+  destinationName:
+    type:
+      - string
+      - 'null'
+    description: Name of the destination place.
+  transfers:
+    type:
+      - integer
+      - 'null'
+    format: int32
+  distance:
+    $ref: ./Distance.yml

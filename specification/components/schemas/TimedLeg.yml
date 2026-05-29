@@ -1,0 +1,46 @@
+type: object
+additionalProperties: false
+description: >
+  A leg which is bound to a timetabled schedule. Corresponds to a ride. Provided
+  by OJP.
+required:
+  - start
+  - end
+  - service
+properties:
+  start:
+    $ref: ./Board.yml
+  intermediates:
+    type: array
+    items:
+      $ref: ./Intermediate.yml
+  end:
+    $ref: ./Alight.yml
+  service:
+    $ref: ./DatedJourney.yml
+  operatingDays:
+    $ref: ./OperatingDays.yml
+  operatingDaysDescription:
+    description: >
+      Textual description of the operation days, e.g. 'Monday to Friday' or 'not
+      on holidays'.
+    type:
+      - string
+      - 'null'
+  duration:
+    type:
+      - string
+      - 'null'
+    format: duration
+  legTrack:
+    $ref: ./LegTrack.yml
+  parallelServices:
+    type: array
+    items:
+      $ref: ./ParallelService.yml
+  co2Emission:
+    $ref: ./Quantity.yml
+  attributes:
+    type: array
+    items:
+      $ref: ./GeneralAttribute.yml

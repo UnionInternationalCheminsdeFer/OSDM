@@ -1,0 +1,60 @@
+type: object
+additionalProperties: false
+description: |
+  Status properties for the vehicle call at this stop. Provided by OJP.
+properties:
+  order:
+    description: |
+      Sequence number of this stop in the service pattern of the journey.
+    type:
+      - integer
+      - 'null'
+    format: int32
+    minimum: 0
+  requestStop:
+    description: |
+      The vehicle journey calls at this stop only on-demand.
+    type:
+      - boolean
+      - 'null'
+    default: false
+  unplannedStop:
+    description: |
+      This stop has not been planned by the planning department.
+    type:
+      - boolean
+      - 'null'
+    default: false
+  notServicedStop:
+    description: |
+      The vehicle will not call at this stop despite earlier planning.
+    type:
+      - boolean
+      - 'null'
+    default: false
+  noBoardingAtStop:
+    description: |
+      Boarding will not be allowed at this stop of this journey.
+    type:
+      - boolean
+      - 'null'
+    default: false
+  noAlightingAtStop:
+    description: |
+      Alighting will not be allowed at this stop of this journey.
+    type:
+      - boolean
+      - 'null'
+    default: false
+  isBorderPoint:
+    description: >
+      Indicates whether the stop is recognized by the system as a border point
+      between two or more countries.
+    type:
+      - boolean
+      - 'null'
+    default: false
+  attributes:
+    type: array
+    items:
+      $ref: ./GeneralAttribute.yml

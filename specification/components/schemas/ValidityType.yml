@@ -1,0 +1,15 @@
+description: >
+  Type of usage, either as single trip or multiple trips. Unrestricted fares
+  might be combined into single trips if appropriate. Values from the [Travel
+  Validity Type Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#TravelValidityType) 
+
+  Values from the [Tavel Validity Type Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#TravelValidityType)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - SINGLE_TRIP
+  - MULTIPLE_TRIPS
+  - UNRESTRICTED

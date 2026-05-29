@@ -1,0 +1,158 @@
+type: object
+additionalProperties: false
+description: |
+  Generic offer object that contains all common information about an offer.
+discriminator:
+  propertyName: objectType
+  mapping:
+    AdmissionOfferPart: ./AdmissionOfferPart.yml
+    AncillaryOfferPart: ./AncillaryOfferPart.yml
+    FareOfferPart: ./FareOfferPart.yml
+    Fee: ./Fee.yml
+    ReservationOfferPart: ./ReservationOfferPart.yml
+required:
+  - objectType
+  - partType
+  - id
+  - createdOn
+  - price
+  - offerMode
+  - refundable
+  - exchangeable
+  - availableFulfillmentOptions
+properties:
+  objectType:
+    description: Attribute is used as discriminator for inheritance between data types.
+    type: string
+  partType:
+    $ref: ./PartType.yml
+  id:
+    type: string
+    maxLength: 32768
+  summary:
+    description: |
+      A human-readable description of the Offer.
+    type: string
+  createdOn:
+    type: string
+    format: date-time
+  price:
+    $ref: ./Price.yml
+  tripCoverage:
+    type: array
+    items:
+      $ref: ./TripCoverage.yml
+  priceGuaranteedUntil:
+    description: |
+      Indicates until when the price for the given offer is guaranteed.
+    type:
+      - string
+      - 'null'
+    format: date-time
+  offerMode:
+    $ref: ./OfferMode.yml
+  isReusable:
+    description: |
+      Indicates whether the offerId can be used in more than one booking.
+    type:
+      - boolean
+      - 'null'
+    default: false
+  passengerRefs:
+    description: >
+      providing the passengerRefs is required for passenger transport. There are
+      uses cases (e.g. sale of merchandising articles) where no passenger is
+      involved. Only in these cases it is allowed to omit the passengerRefs.
+    type: array
+    items:
+      type: string
+    minItems: 1
+  numericAvailability:
+    description: >
+      Total amount of items of this type currently available. For reservation
+      offers, this would be the total number
+
+      of seats available, regardless of their properties.
+    type:
+      - integer
+      - 'null'
+    format: int32
+  refundable:
+    $ref: ./RefundType.yml
+  exchangeable:
+    $ref: ./ExchangeableType.yml
+  afterSalesConditions:
+    type: array
+    items:
+      $ref: ./AfterSaleCondition.yml
+  tripTags:
+    description: >
+      List of tags (and their type) that allow identifying sets of compatible
+      offers when trying to combine multiple offers covering one single trip.
+
+      At least one (not all) tripTags must be in common to allow combination
+
+      If no tag is provided, there is no trip constraint on this specific offer.
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  returnTags:
+    description: >
+      List of tags (and their type) that allow identifying sets of compatible
+      offers when booking a return trip
+
+      involving return-specific fares. All returnTags must be present in the
+      counterpart offer to allow combination
+
+      If no tag is provided, there is no return constraint on this specific
+      offer.
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  offerTag:
+    $ref: ./OfferTag.yml
+  requestedInformation:
+    $ref: ./RequestedInformation.yml
+  summaryProductId:
+    type: string
+    description: >-
+      Id of the product representing the commercial attributes of this offer
+      part. Although not currently mandatory, this attribute should in all cases
+      be facilitate product based processing at the client
+  products:
+    description: >
+      products must be provided in case they are referenced. Some offer parts
+      (e.g. fares)
+
+      do not have products assigned.
+    type: array
+    items:
+      $ref: ./ProductLegAssociation.yml
+    minItems: 1
+  availableFulfillmentOptions:
+    type: array
+    items:
+      $ref: ./FulfillmentOption.yml
+    minItems: 1
+  appliedCorporateCodes:
+    type: array
+    items:
+      $ref: ./CorporateCode.yml
+  appliedPromotionCodes:
+    type: array
+    items:
+      $ref: ./PromotionCode.yml
+  appliedReductions:
+    type: array
+    items:
+      $ref: ./AppliedReductions.yml
+  regionalValiditySummary:
+    $ref: ./RegionalValiditySummary.yml
+  indicatedUsage:
+    $ref: ./IndicatedUsage.yml
+  _links:
+    $ref: ./Links.yml

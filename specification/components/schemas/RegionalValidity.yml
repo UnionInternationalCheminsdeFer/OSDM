@@ -1,0 +1,25 @@
+type: object
+additionalProperties: false
+description: >
+  One of the elements Zone, ViaStation, TrainLink, Line, or Polygon defining the
+  regional validity
+properties:
+  seqNb:
+    description: |
+      order number of the list item
+    type:
+      - integer
+      - 'null'
+    format: int32
+  zone:
+    $ref: ./Zone.yml
+  route:
+    $ref: ./Route.yml
+  trainLink:
+    $ref: ./TrainLink.yml
+  line:
+    $ref: ./Line.yml
+  polygon:
+    $ref: ./Polygon.yml
+  serviceConstraint:
+    $ref: ./ServiceConstraint.yml

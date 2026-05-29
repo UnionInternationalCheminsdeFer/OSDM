@@ -1,0 +1,11 @@
+description: traffic situation
+type: object
+additionalProperties: false
+required:
+  - id
+  - description
+properties:
+  id:
+    $ref: ./SituationRef.yml
+  description:
+    $ref: ./SituationDescription.yml

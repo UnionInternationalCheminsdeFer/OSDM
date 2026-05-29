@@ -1,0 +1,18 @@
+description: >
+  Process indications for on-demand services  
+
+  [On-Demand Vehicle
+  Process](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleProcesses)
+type: string
+x-extensible-enum:
+  - PRE_ALLOCATION_REQUIRED
+  - SHALLOW_INTEGRATION
+  - DEEP_INTEGRATION
+  - PREPAID
+  - POSTPAID
+  - AUTO_START_USAGE
+  - AUTO_END_USAGE
+  - BLOCKING_TRACKING
+  - USAGE_TRACKING
+  - PARKING_IMAGE_REQUIRED
+  - TIP_SUPPORTED

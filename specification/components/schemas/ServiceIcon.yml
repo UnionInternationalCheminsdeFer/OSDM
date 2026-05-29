@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+description: |
+  An icon representing a service.
+required:
+  - rectangle
+  - code
+properties:
+  rectangle:
+    $ref: ./RectangleGeometry.yml
+  code:
+    $ref: ./ServiceIconCode.yml

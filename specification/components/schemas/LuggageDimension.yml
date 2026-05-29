@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+required:
+  - dimension
+  - value
+properties:
+  dimension:
+    $ref: ./LuggageDimensionEnum.yml
+  value:
+    description: |
+      Value of the dimension: weight in kg, length in cm, volume in liter.
+    type: string

@@ -1,0 +1,12 @@
+type: string
+enum:
+  - PREBOOKED
+  - ON_HOLD
+  - CONFIRMED
+  - FULFILLED
+  - CANCELLED
+  - RELEASED
+  - REFUNDED
+  - EXCHANGE_ONGOING
+  - EXCHANGED
+  - ERROR

@@ -1,0 +1,37 @@
+description: >
+  Options to control the search behavior and response contents.
+
+  number of results > either number of results or number of results before and
+  after are used.
+
+  Provided by OJP.
+
+  numberOfResults is intentionally omitted to avoid inconsistent request
+  parameters. numberOfResults is equal to numberOfResultsBefore = 0 and
+  numberOfResultsAfter = numberOfResults
+type: object
+additionalProperties: false
+properties:
+  numberOfResultsBefore:
+    type: integer
+    format: int32
+    default: 0
+  numberOfResultsAfter:
+    type: integer
+    format: int32
+    default: 5
+  useRealtimeData:
+    $ref: ./TripRealTimeDataUsage.yml
+    default: FULL
+  transferLimit:
+    description: |
+      The maximum number of interchanges the user will accept per trip.
+    type:
+      - integer
+      - 'null'
+    format: int32
+    minimum: 0
+  optimisationMethod:
+    $ref: ./TripSearchOptimisationMethod.yml
+  itModesToCover:
+    $ref: ./PersonalMode.yml

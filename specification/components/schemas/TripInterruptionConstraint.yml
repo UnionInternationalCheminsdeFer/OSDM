@@ -1,0 +1,39 @@
+type: object
+additionalProperties: false
+description: |
+  rules on allowed trip interruptions. Interruptions due to a train change
+  indicated by a trip search must not be included here.
+required:
+  - maxInterruptions
+  - requiredProcesses
+properties:
+  maxInterruptions:
+    description: |
+      maximum number of allowed interruptions
+    type: integer
+    format: int32
+  maxDuration:
+    description: |
+      maximum duration of one interruption
+    type:
+      - string
+      - 'null'
+    format: duration
+    examples:
+      - PT30M
+  totalMaxDuration:
+    description: |
+      maximum duration of all interruptions on the route
+    type:
+      - string
+      - 'null'
+    format: duration
+    examples:
+      - PT30M
+  requiredProcesses:
+    description: |
+      one of the listed processes is required for the interruption of the trip
+    type: array
+    items:
+      $ref: ./TripInterruptionProcess.yml
+    minItems: 1

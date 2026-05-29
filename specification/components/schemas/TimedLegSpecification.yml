@@ -1,0 +1,19 @@
+type: object
+additionalProperties: false
+description: |
+  A minimal timed leg specification.
+required:
+  - start
+  - end
+  - service
+properties:
+  start:
+    $ref: ./BoardSpecification.yml
+  intermediates:
+    type: array
+    items:
+      $ref: ./IntermediateSpecification.yml
+  end:
+    $ref: ./AlightSpecification.yml
+  service:
+    $ref: ./DatedJourney.yml

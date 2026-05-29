@@ -1,0 +1,50 @@
+get:
+  tags:
+    - Bookings
+  summary: >-
+    Check step (step 1 in a two phase commit process) to run before the
+    effective fulfillment endpoint. Provider do all checks to "guarantee" that
+    fulfillment will work.
+  description: >
+    Step 1 in a two phase commit process. An aggregator can use this to secure
+    that all underlaying provider systems are up and running and the provider
+    booking is ready to be fulfilled.
+  operationId: getCheckFulfillments
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/idempotencyKey.yml
+    - $ref: ../components/parameters/acceptNamespace.yml
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking to be patched
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      description: |
+        Booking is verified OK for fulfillment
+    '400':
+      $ref: ../components/responses/DefaultErrorResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

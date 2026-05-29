@@ -1,0 +1,105 @@
+type: object
+additionalProperties: false
+description: |
+  A complete trip from origin to destination. Provided by OJP.
+required:
+  - id
+  - duration
+  - direction
+  - startTime
+  - endTime
+  - transfers
+  - legs
+properties:
+  id:
+    description: |
+      Id of this trip for referencing purposes. Unique within a trip list.
+    type: string
+    maxLength: 32768
+  externalRef:
+    description: |
+      External reference of this trip for referencing purposes.
+    type:
+      - string
+      - 'null'
+  summary:
+    description: |
+      A human-readable description of the trip.
+    type:
+      - string
+      - 'null'
+  duration:
+    description: |
+      Overall duration of the trip
+    type: string
+    format: duration
+    examples:
+      - PT20M
+  direction:
+    $ref: ./TripDirectionType.yml
+  origin:
+    $ref: ./PlaceRef.yml
+  originName:
+    description: Name of the origin place
+    type:
+      - string
+      - 'null'
+  destination:
+    $ref: ./PlaceRef.yml
+  destinationName:
+    description: Name of the destination place
+    type:
+      - string
+      - 'null'
+  startTime:
+    description: |
+      Departure time at origin.
+    type: string
+    format: date-time
+  endTime:
+    description: |
+      Arrival time at destination
+    type: string
+    format: date-time
+  transfers:
+    description: |
+      Number of interchanges
+    type: integer
+    format: int32
+    minimum: 0
+  distance:
+    description: >
+      Distance in meters over the the complete trip, i.e., including transfer
+      legs.
+    $ref: ./Distance.yml
+  legs:
+    description: |
+      Legs ot the trip
+    type: array
+    items:
+      $ref: ./TripLeg.yml
+    minItems: 1
+  operatingDays:
+    $ref: ./OperatingDays.yml
+  operatingDaysDescription:
+    description: >
+      Textual description of the operation days, e.g. 'Monday to Friday' or 'Not
+      on holidays'.
+    type:
+      - string
+      - 'null'
+  feasibility:
+    $ref: ./TripFeasibility.yml
+  situationFullRefs:
+    type: array
+    items:
+      $ref: ./SituationRef.yml
+  tripStatus:
+    $ref: ./TripStatus.yml
+  isAlternativeTrip:
+    description: >
+      indication that this trip was found due to the request parameter to search
+      for alternatives
+    type: boolean
+  _links:
+    $ref: ./Links.yml

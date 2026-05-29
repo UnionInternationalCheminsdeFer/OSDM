@@ -1,0 +1,22 @@
+type: object
+additionalProperties: false
+properties:
+  firstName:
+    type:
+      - string
+      - 'null'
+  lastName:
+    type:
+      - string
+      - 'null'
+  dateOfBirth:
+    type:
+      - string
+      - 'null'
+    format: date
+  phoneNumber:
+    $ref: ./PhoneNumber.yml
+  email:
+    type:
+      - string
+      - 'null'

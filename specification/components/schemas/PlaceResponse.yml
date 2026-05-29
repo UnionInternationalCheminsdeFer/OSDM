@@ -1,0 +1,16 @@
+type: object
+additionalProperties: false
+required:
+  - places
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  places:
+    type: array
+    items:
+      $ref: ./Place.yml
+    minItems: 1
+  _links:
+    $ref: ./Links.yml

@@ -1,0 +1,75 @@
+get:
+  tags:
+    - Trips
+  summary: Returns a trip element representing a travel trip.
+  description: |
+    A trip consists of one or more legs for a given tripId. Depending on the
+    embed either references or full location definitions is returned.
+  operationId: getTripsId
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/acceptNamespace.yml
+    - name: tripId
+      in: path
+      description: |
+        id of the trip to get.
+      required: true
+      schema:
+        type: string
+        maxLength: 32768
+    - name: stopBehavior
+      in: query
+      schema:
+        $ref: ../components/schemas/StopBehavior.yml
+      required: false
+    - name: embed
+      in: query
+      description: >
+        Influences whether referenced resources are returned in full or as
+        references only.
+
+        Default value: ALL
+      schema:
+        type: array
+        maxItems: 1
+        items:
+          $ref: ../components/schemas/TripResponseContent.yml
+  responses:
+    '200':
+      description: |
+        trip found
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/TripResponse.yml
+      headers:
+        Cache-Control:
+          schema:
+            type: string
+            default: public, max-age=10000
+            description: >
+              Resource is fairly persistent and has a medium time to live to
+              allow short-term caching.
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

@@ -1,0 +1,9 @@
+type: object
+additionalProperties: false
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  document:
+    $ref: ./Document.yml

@@ -1,0 +1,95 @@
+type: object
+description: >
+  The VAT structure details a VAT amount (in case of international travel, there
+  may be multiple VAT structures).
+
+  The netAmount is the amount before adding the VAT; the grossAmount is the
+  amount including VAT, where
+
+  the amount is the actual VAT being described here. So the equation netAmount +
+  amount = grossAmount holds.
+
+  Furthermore, the equation netAmount * percentage = amount also holds, but is
+  susceptible to possible rounding
+
+  errors.
+
+  All the grossAmounts of the VAT structures should add up to the overall amount
+  of the enclosing price structure.      
+
+  The currency is inherited from the currency of the associated price.
+additionalProperties: false
+required:
+  - countryCode
+  - amount
+properties:
+  countryCode:
+    $ref: ./CountryCode.yml
+  amount:
+    description: >
+      VAT amount in cents (in case of EUR). For calculation the legal
+      requiremets from local counties and the EU need to be applied.
+    type: integer
+    format: int32
+    examples:
+      - 5
+  scale:
+    description: |
+      scale of the amount - the number of positions after the comma
+    type:
+      - integer
+      - 'null'
+    format: int32
+    default: 2
+  netAmount:
+    description: |
+      amount before adding VAT
+    type:
+      - integer
+      - 'null'
+    format: int32
+    examples:
+      - 5
+  netAmountScale:
+    description: |
+      scale of the netAmount - the number of positions after the comma
+    type:
+      - integer
+      - 'null'
+    format: int32
+    default: 2
+  grossAmount:
+    description: |
+      total amount after adding VAT in cents
+    type:
+      - integer
+      - 'null'
+    format: int32
+    examples:
+      - 5
+  grossAmountScale:
+    description: |
+      scale of the grossAmount - the number of positions after the comma
+    type:
+      - integer
+      - 'null'
+    format: int32
+    default: 2
+  percentage:
+    $ref: ./Percentage.yml
+  taxId:
+    type:
+      - string
+      - 'null'
+  vatOnInvoice:
+    type:
+      - boolean
+      - 'null'
+    default: false
+  taxIdOnInvoice:
+    type:
+      - boolean
+      - 'null'
+    default: false
+  scope:
+    $ref: ./VatScope.yml

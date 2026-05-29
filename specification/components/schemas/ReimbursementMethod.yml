@@ -1,0 +1,11 @@
+description: |
+  reimbursement methods to inform on restrictions of the payment method
+type: object
+properties:
+  paymentMethod:
+    description: |
+      payment method to be used for the reimbursement
+    type: string
+    x-extensible-enum:
+      - VOUCHER
+      - ORIGINAL_ACCOUNT

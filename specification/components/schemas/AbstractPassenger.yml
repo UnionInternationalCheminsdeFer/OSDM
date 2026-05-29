@@ -1,0 +1,48 @@
+type: object
+additionalProperties: false
+description: |
+  Minimal common specification of a passenger used for inheritance.
+required:
+  - externalRef
+properties:
+  externalRef:
+    description: >
+      A stable reference to a passenger from other elements, or from caller
+      system. When received in input of a request, it must be echoed back in the
+      response.
+    type: string
+    examples:
+      - TK-id-12345
+  dateOfBirth:
+    description: >
+      Date of birth of the passenger. Only needed for passengers of type
+      persons, family child, PRM
+
+      and wheelchair.
+    type:
+      - string
+      - 'null'
+    format: date
+  age:
+    type:
+      - integer
+      - 'null'
+    format: int32
+    minimum: 0
+  cards:
+    description: |
+      reduction or loyalty cards owned by the passenger
+    type: array
+    items:
+      $ref: ./CardReference.yml
+  prmNeeds:
+    description: >
+      For the persons with reduced mobility (PRMs) its specific needs for
+      support are expressed.
+    type: array
+    items:
+      $ref: ./PRMNeedType.yml
+  type:
+    $ref: ./PassengerType.yml
+  gender:
+    $ref: ./Gender.yml

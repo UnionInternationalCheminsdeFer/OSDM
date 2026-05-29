@@ -1,0 +1,28 @@
+type: object
+additionalProperties: false
+description: |
+  formation of a service at a stop on arrival or departure
+properties:
+  status:
+    type: string
+    x-extensible-enum:
+      - UNKNOWN
+      - AVAILABLE
+      - NOT_AVAILABLE
+      - PARTIALLY_AVAILABLE
+      - ADDED
+      - REMOVED
+      - DEFECTIVE
+      - CLOSED
+      - FULLY_BOOKED
+      - NO_RESTAURANT_SERVICE
+      - OPEN
+  mobilityImpairedAccess:
+    type: boolean
+  travelerInformations:
+    description: >-
+      human readable information on features of the coach (e.g. family
+      compartment, dining car)
+    type: array
+    items:
+      type: string

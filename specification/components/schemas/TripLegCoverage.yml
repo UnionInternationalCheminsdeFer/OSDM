@@ -1,0 +1,11 @@
+type: object
+additionalProperties: false
+required:
+  - tripId
+  - legId
+properties:
+  tripId:
+    type: string
+    maxLength: 32768
+  legId:
+    type: string

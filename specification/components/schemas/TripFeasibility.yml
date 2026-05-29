@@ -1,0 +1,10 @@
+description: |
+  feasibility of a trip related to the required access features
+  in case of SEE_SITUATIONS situations must be provided
+type: string
+x-extensible-enum:
+  - ALL_ACCESS_FEATURES_AVAILABLE
+  - ACCESS_FEATURES_NOT_AVAILABLE
+  - ACCESS_FEATURES_PARTIALLY_AVAILABLE
+  - ACCESS_FEATURES_WITH_UNKNOWN_AVAILABILITY
+  - SEE_SITUATIONS

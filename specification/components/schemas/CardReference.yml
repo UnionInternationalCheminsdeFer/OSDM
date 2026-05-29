@@ -1,0 +1,42 @@
+type: object
+additionalProperties: false
+description: >
+  Number and issuer are needed to identify a travel account, the code identifies
+  a reduction card.
+required:
+  - type
+properties:
+  code:
+    description: >
+      Code of the card type according to issuer. E.g. BahnCard50.
+
+      Predefined values from the [Reduction Card Code
+      List](https://osdm.io/spec/catalog-of-code-lists/#ReductionCard)
+    type:
+      - string
+      - 'null'
+  number:
+    description: |
+      Number identifying the travel account, need issuer to be unique.
+    type:
+      - string
+      - 'null'
+  issuer:
+    $ref: ./CompanyRef.yml
+  type:
+    $ref: ./TravelAccountType.yml
+  chipCardContentFormat:
+    type: string
+    x-extensible-enum:
+      - CALYPSO-ABT
+      - CALYPSO-CBT
+  chipCardContent:
+    description: >
+      base64 encoded content of the chip card. This is in some scenarios needed
+      to validate whether the new ticket will be compatible with the tickets
+      already on the card.
+    type:
+      - string
+      - 'null'
+    format: byte
+    maxLength: 4194304

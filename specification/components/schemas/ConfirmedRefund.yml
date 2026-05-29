@@ -1,0 +1,82 @@
+type: object
+additionalProperties: false
+required:
+  - id
+  - createdOn
+  - confirmedOn
+  - refundedFulfillments
+  - refundedAmount
+properties:
+  id:
+    description: |
+      id of the confirmed refund
+    type: string
+    maxLength: 32768
+  summary:
+    description: |
+      A human-readable description of the refund.
+    type:
+      - string
+      - 'null'
+    examples:
+      - Refund for Paris-Barcelona Andre Dupont 2022-07-23
+  createdOn:
+    type: string
+    format: date-time
+  confirmedOn:
+    type: string
+    format: date-time
+  reimbursementStatus:
+    $ref: ./ReimbursementStatus.yml
+  reimbursementDateTime:
+    type:
+      - string
+      - 'null'
+    format: date-time
+  reimbursementMethod:
+    $ref: ./ReimbursementMethod.yml
+  appliedOverruleCode:
+    $ref: ./OverruleCode.yml
+  refundedFulfillments:
+    description: >
+      fulfillments to be refunded or replaced. This might differ from the
+      requested refund specification in case the original request did not
+      include all related fulfillments or booking parts. It must also incude the
+      references to booking parts and passenger ids which can be omitted in teh
+      request in case all part or passengers related to a fulfillment are
+      refunded.
+    type: array
+    items:
+      $ref: ./RefundedFulfillmentSpecification.yml
+    minItems: 1
+  issuedFulfillmentRefs:
+    description: >
+      new fulfillments issued with this refund (only available after
+      confirmation)
+    type: array
+    items:
+      $ref: ./FulfillmentRef.yml
+  issuedVoucherRefs:
+    type: array
+    items:
+      $ref: ./VoucherRef.yml
+  refundFeeRefs:
+    description: |
+      reference to Applied Fees covering the refund fee. Providing the reference
+      is mandatory when the refund was confirmed and a fee has been applied
+    type: array
+    items:
+      type: string
+      maxLength: 1024
+  refundedAmount:
+    $ref: ./Price.yml
+    description: |
+      Amount refunded to the purchaser
+  refundBreakdown:
+    description: |
+      breakdown of the refund
+    type: array
+    items:
+      $ref: ./RefundBreakdownItem.yml
+  _links:
+    $ref: ./Links.yml

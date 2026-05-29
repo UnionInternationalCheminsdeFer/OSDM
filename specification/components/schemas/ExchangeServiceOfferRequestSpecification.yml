@@ -1,0 +1,27 @@
+description: |
+  specification to exchange the service level or travel class
+type: object
+additionalProperties: false
+properties:
+  flexibilities:
+    description: >
+      Defines the flexibility levels desired of the fares returned.
+
+      This refers to the after sales flexibility levels as defined in
+      IRS-90918-10
+    type: array
+    items:
+      $ref: ./Flexibility.yml
+  travelClasses:
+    description: |
+      The classes returned might be different from the requested classes.
+    type: array
+    items:
+      $ref: ./TravelClass.yml
+  serviceClassTypes:
+    description: |
+      The classes returned might be different from the requested classes.
+    type: array
+    items:
+      $ref: ./ServiceClassType.yml
+    maxItems: 4

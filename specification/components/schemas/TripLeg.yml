@@ -1,0 +1,35 @@
+type: object
+additionalProperties: false
+description: >
+  A single stage of a trip that is made without change of service by the
+  traveller (ie:
+
+  between each interchange). 
+
+  Note: The OJP Leg follows a slightly different semantic and allows legs to be
+  split due to technical reasons like a change of service formation. This is not
+  allowed in OSDM. The Leg in OSDM is the Leg in the traveler perspective on
+  which he dooes not need to change to a different physical service. The servide
+  itself might change its name, attributes or formation within the leg.
+required:
+  - id
+properties:
+  id:
+    description: |
+      Id of this trip leg. Unique within trip result. A seqId is a leg id.
+    type: string
+  externalRef:
+    description: |
+      External reference of this leg for referencing purposes.
+    type:
+      - string
+      - 'null'
+  timedLeg:
+    $ref: ./TimedLeg.yml
+  transferLeg:
+    $ref: ./TransferLeg.yml
+  continuousLeg:
+    $ref: ./ContinuousLeg.yml
+  changed:
+    description: indicates that the leg was changed via a trip change request
+    type: boolean

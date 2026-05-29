@@ -1,0 +1,9 @@
+type: string
+x-extensible-enum:
+  - CARD
+  - CASH
+  - DIRECT_DEBIT
+  - ELECTRONIC_PAYMENT
+  - INVOICE
+  - VOUCHER
+  - TRAVEL_ACCOUNT

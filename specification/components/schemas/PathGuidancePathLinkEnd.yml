@@ -1,0 +1,10 @@
+description: end or start of a guidance path link, provided by OJP 2.0
+additionalProperties: false
+properties:
+  id:
+    $ref: ./PlaceRef.yml
+  name:
+    type: string
+  code:
+    description: public code in case one is provided
+    type: string

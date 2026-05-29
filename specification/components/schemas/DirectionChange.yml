@@ -1,0 +1,18 @@
+type: object
+additionalProperties: false
+description: |
+  A StopPlace where the direction of a train changes
+required:
+  - stopPlaceRef
+  - stopPlaceName
+properties:
+  stopPlaceRef:
+    description: |
+      Reference to the station where the direction changes
+    $ref: ./StopPlaceRef.yml
+  stopPlaceName:
+    description: |
+      Name of the station where the direction changes
+    type:
+      - string
+      - 'null'

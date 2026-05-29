@@ -1,0 +1,19 @@
+type: object
+additionalProperties: false
+description: >
+  Regional constraint of the fare- offline bulk data use the id of connection
+  points whereas  in an online environment the connection point is included
+required:
+  - regionalValidities
+properties:
+  entryConnectionPoint:
+    $ref: ./FareConnectionPoint.yml
+  exitConnectionPoint:
+    $ref: ./FareConnectionPoint.yml
+  regionalValidities:
+    type: array
+    items:
+      $ref: ./RegionalValidity.yml
+    minItems: 1
+  distance:
+    $ref: ./Distance.yml

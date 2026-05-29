@@ -1,0 +1,25 @@
+description: >
+  Values from the [Trip Allocation Unit Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#TripAllocationUnit)
+
+  Unit to allocate trips in a multi-trip fare. Trips can be allocated per day
+  (e.g. Eurail) or per
+
+  duration (e.g. multiples of a duration unit to cover the trip) or as single
+  trips (e.g. carnet))
+
+  Known Values:
+
+  - NONE: Individual trips don't need to be allocated. 
+
+  - TRIP: allocation per individual trip.
+
+  - DAY: The allocation is per travel day.
+
+  - DURATION: the allocation is per duration.
+type: string
+x-extensible-enum:
+  - NONE
+  - TRIP
+  - DAY
+  - DURATION

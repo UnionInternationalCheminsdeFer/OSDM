@@ -1,0 +1,30 @@
+description: >
+  TAP-TSI/UIC contains a sensible subset of SIRI Transport Modes.
+
+  Values from the [Transport Mode Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#TransportMode)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - HIGH_SPEED_TRAIN
+  - HISTORIC_TRAIN
+  - INTERCITY
+  - REGIONAL
+  - INTERREGIONAL
+  - URBAN
+  - TRAIN
+  - TRAM
+  - UNDERGROUND
+  - NIGHT_TRAIN
+  - SHARED_TAXI
+  - MOTOR_RAIL
+  - MOUNTAIN_TRAIN
+  - PLANE
+  - COACH_GROUP
+  - SHIP
+  - BUS
+  - ON_DEMAND_SERVICE
+  - BICYCLE
+  - SCOOTER
+  - TAXI

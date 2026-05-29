@@ -1,0 +1,50 @@
+type: object
+additionalProperties: false
+description: |
+  Fulfillment items to be integrated in to tickets,
+  e.g. visual security elements, additional bar codes, control keys.
+properties:
+  fulfillmentMedia:
+    description: |
+      list of fulfillment media where this item applies
+    type: array
+    items:
+      $ref: ./FulfillmentMediaType.yml
+  passengerRef:
+    description: |
+      reference to a passenger
+    type:
+      - string
+      - 'null'
+  controlId:
+    type:
+      - string
+      - 'null'
+  securityFeatures:
+    description: |
+      'visual elements, bar codes'
+    type: array
+    items:
+      $ref: ./FulfillmentItemSecurityFeature.yml
+  securityFeatureLinks:
+    type: array
+    items:
+      $ref: ./FulfillmentItemSecurityFeatureLinks.yml
+  fulfillmentInformationTexts:
+    type: array
+    items:
+      $ref: ./TextElement.yml
+  isMandatory:
+    description: |
+      The use of the provided features is mandatory.
+    type:
+      - boolean
+      - 'null'
+    default: false
+  securePaperOnly:
+    description: |
+      The security feature must be used on secure paper.
+    type:
+      - boolean
+      - 'null'
+    default: false

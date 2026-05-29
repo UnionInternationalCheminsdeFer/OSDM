@@ -1,0 +1,14 @@
+type: object
+additionalProperties: false
+required:
+  - description
+  - shortDescription
+properties:
+  description:
+    type: string
+    minLength: 1
+  shortDescription:
+    type:
+      - string
+      - 'null'
+    minLength: 1

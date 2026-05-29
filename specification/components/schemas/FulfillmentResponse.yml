@@ -1,0 +1,15 @@
+type: object
+additionalProperties: false
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  fulfillment:
+    $ref: ./Fulfillment.yml
+  fulfillmentDocuments:
+    description: |
+      Final document created for fulfillment.
+    type: array
+    items:
+      $ref: ./FulfillmentDocument.yml

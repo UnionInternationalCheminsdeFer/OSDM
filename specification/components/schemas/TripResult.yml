@@ -1,0 +1,7 @@
+type: object
+additionalProperties: false
+description: |
+  The trip result to be changed.
+properties:
+  TripSummary:
+    $ref: ./TripSpecificationSummary.yml

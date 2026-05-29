@@ -1,0 +1,26 @@
+description: |
+  guidance path link decribing change of level, provided by OJP 2.0
+additionalProperties: false
+properties:
+  transition:
+    $ref: ./PathGuidanceTransition.yml
+  accessFeature:
+    $ref: ./AccessFeature.yml
+  accessFeatureCount:
+    type: integer
+    format: int32
+    minimum: 0
+  accessFeatureStatus:
+    $ref: ./AccessFeatureStatus.yml
+  accessibilityFeatures:
+    type: array
+    items:
+      $ref: ./AccessibilityFeature.yml
+  situationRefs:
+    type: array
+    items:
+      $ref: ./SituationRef.yml
+  from:
+    $ref: ./PathGuidancePathLinkEnd.yml
+  to:
+    $ref: ./PathGuidancePathLinkEnd.yml

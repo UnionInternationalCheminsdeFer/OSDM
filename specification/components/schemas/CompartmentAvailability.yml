@@ -1,0 +1,50 @@
+type: object
+additionalProperties: false
+description: |
+  Area within a coach deck that holds places.
+required:
+  - serviceClass
+  - accommodationType
+  - accommodationSubType
+  - places
+  - isSelectable
+properties:
+  serviceClass:
+    $ref: ./ServiceClassType.yml
+  accommodationType:
+    $ref: ./AccommodationType.yml
+  accommodationSubType:
+    $ref: ./AccommodationSubType.yml
+  places:
+    description: >
+      Seats or bicycle hooks in a coach compartment that are covered by a
+      requested reservation fare/offerPart/bookingPart. No place availabilities
+      must be returned for places that are NOT covered by a requested offer.
+    type: array
+    items:
+      $ref: ./SpecificPlaceAvailability.yml
+    minItems: 1
+  isSelectable:
+    description: |
+      Indicates whether the compartment is selectable as a whole only.
+    type: boolean
+    default: false
+  number:
+    description: >
+      Compartment number as indicated at the compartment in the coach. A
+      compartment number must be set if the compartment is selectable as a whole
+      only.
+    type:
+      - string
+      - 'null'
+  status:
+    $ref: ./AvailabilityStatus.yml
+  reservationRefs:
+    description: >
+      reservationRefs must be set if the compartment is selectable as a whole
+      only
+    type: array
+    items:
+      type: string
+  selectionFee:
+    $ref: ./SelectionFee.yml

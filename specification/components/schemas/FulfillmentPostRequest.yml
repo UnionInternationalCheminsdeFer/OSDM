@@ -1,0 +1,11 @@
+type: object
+additionalProperties: false
+description: |
+  Creates the fulfillment in the requested language
+properties:
+  issuingLanguage:
+    type: string
+    description: >-
+      the desired issuing language (ISO-639-1 language code). If not provided or
+      not available, will default to (one of) the language(s) of the issuing
+      country

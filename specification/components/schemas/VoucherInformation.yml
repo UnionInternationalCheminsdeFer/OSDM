@@ -1,0 +1,13 @@
+type: object
+description: identifier of a voucher
+additionalProperties: false
+required:
+  - issuer
+  - code
+properties:
+  issuer:
+    $ref: ./CompanyRef.yml
+  code:
+    description: |
+      voucher code provided by the issuer
+    type: string

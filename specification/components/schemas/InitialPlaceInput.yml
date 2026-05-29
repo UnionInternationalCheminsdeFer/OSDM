@@ -1,0 +1,21 @@
+type: object
+additionalProperties: false
+description: >
+  Initial input for the place information request. This input defines what is
+  originally looked for.
+
+  Provided by OJP.
+properties:
+  name:
+    description: >
+      Name of the place object which is looked after. This is usually the user's
+      input. If not given,
+
+      the name of the resulting place objects is not relevant.
+    type:
+      - string
+      - 'null'
+    examples:
+      - Bern Bärengraben
+  geoPosition:
+    $ref: ./GeoPosition.yml

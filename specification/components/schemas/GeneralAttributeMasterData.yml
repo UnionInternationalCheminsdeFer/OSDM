@@ -1,0 +1,33 @@
+type: object
+additionalProperties: false
+required:
+  - text
+  - code
+properties:
+  text:
+    description: text to be displayed to the user
+    $ref: ./Text.yml
+  code:
+    type:
+      - string
+      - 'null'
+  key:
+    type:
+      - string
+      - 'null'
+  value:
+    type:
+      - string
+      - 'null'
+  facilities:
+    type: array
+    items:
+      $ref: ./GroupedFacilityItem.yml
+  mandatory:
+    description: true = mandatory to be displayed to the user
+    type: boolean
+  importance:
+    description: importance as percentage
+    $ref: ./Percentage.yml
+  _links:
+    $ref: ./Links.yml

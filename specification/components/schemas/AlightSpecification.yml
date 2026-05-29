@@ -1,0 +1,17 @@
+type: object
+additionalProperties: false
+description: |
+  Minimal alight specification
+required:
+  - stopPlaceRef
+  - serviceArrival
+properties:
+  stopPlaceRef:
+    $ref: ./StopPlaceRef.yml
+  replacedPlaceRef:
+    description: >-
+      reference to the original place in case of a replacement (e.g. bus stop of
+      a replacement bus for a train)
+    $ref: ./StopPlaceRef.yml
+  serviceArrival:
+    $ref: ./ServiceTime.yml

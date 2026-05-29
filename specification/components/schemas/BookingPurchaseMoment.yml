@@ -1,0 +1,38 @@
+description: |
+  used to indicate booking options not provided via the OSDM app.
+  Provided by OJP.
+  - 'ON_RESERVATION'
+  description: must be made on reservation in advance of travel
+  - 'IN_ADVANCE'
+  description: can be made in advance of travel
+  - 'IN_ADVANCE_ONLY'
+  description: can only be made in advance of travel 
+  - 'BEFORE_BOARDING'
+  description: can be made before boarding transport vehicle
+  - 'BEFORE_BOARDING_ONLY'
+  description: must be made before boarding transport vehicle
+  - 'ON_BOARDING'
+  description: be made when boarding the transport vehicle
+  - 'ON_BOARDING_ONLY'
+  description: can only be made when boarding the transport vehicle
+  - 'AFTER_BOARDING'
+  description: can be made after boarding transport vehicle
+  - 'ON_CHECKIN'
+  description: can be made on entering transport system
+  - 'ON_CHECKOUT'
+  description: can be made on leaving transport system
+  - 'SUBSCRIPTION_ONLY'
+  description: can only be made on subscription
+type: string
+x-extensible-enum:
+  - ON_RESERVATION
+  - IN_ADVANCE
+  - IN_ADVANCE_ONLY
+  - BEFORE_BOARDING
+  - BEFORE_BOARDING_ONLY
+  - ON_BOARDING
+  - ON_BOARDING_ONLY
+  - AFTER_BOARDING
+  - ON_CHECKIN
+  - ON_CHECKOUT
+  - SUBSCRIPTION_ONLY

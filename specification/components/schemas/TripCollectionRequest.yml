@@ -1,0 +1,10 @@
+type: object
+additionalProperties: false
+description: >
+  You must define only one of tripSearchCriteria or tripSearchCriteriaMultiOd,
+  they are mutually exclusive.
+properties:
+  tripSearchCriteria:
+    $ref: ./TripSearchCriteria.yml
+  tripSearchCriteriaMultiOd:
+    $ref: ./TripSearchCriteriaMultiOD.yml

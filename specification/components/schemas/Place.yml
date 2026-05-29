@@ -1,0 +1,72 @@
+type: object
+additionalProperties: false
+description: >
+  A geographic place of any type which may be specified as the origin or
+  destination of a trip. Provided by OJP.
+discriminator:
+  propertyName: objectType
+  mapping:
+    Address: ./Address.yml
+    FareConnectionPoint: ./FareConnectionPoint.yml
+    PointOfInterest: ./PointOfInterest.yml
+    StopPlace: ./StopPlace.yml
+required:
+  - objectType
+  - id
+  - name
+properties:
+  objectType:
+    description: Attribute is used as discriminator for inheritance between data types.
+    type: string
+  name:
+    description: |
+      Name of this stop place for use in passenger information.
+    type: string
+    examples:
+      - Zürich HB
+  id:
+    description: >
+      id  defining the place. The code is provided as URN, relative URNs are
+      allowed with base path urn:uic:stn '0850000'
+    type: string
+    examples:
+      - urn:uic:stn:8500000
+      - NL:1916200000022621
+  alternativeIds:
+    description: >
+      For a place with ids in different reference systems, the alternative ids
+      can be returned. 
+
+      The reference system is encoded in the string. E.g.: 'urn:uic:std:80000',
+      'x_swe:stn:10000', 'ch:1:sloid:343434'
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  geoPosition:
+    $ref: ./GeoPosition.yml
+  validity:
+    description: |
+      The date range where the place is usable for travel.
+    $ref: ./MasterDataValidity.yml
+  modes:
+    description: |
+      List of Transport modes calling the place.
+    type: array
+    items:
+      $ref: ./Mode.yml
+  ref:
+    description: >
+      Reference to another a place, e.g. to link address information. Provided
+      by OJP.
+    $ref: ./PlaceRef.yml
+  attributes:
+    type: array
+    items:
+      $ref: ./GeneralAttribute.yml
+  area:
+    description: area of the place described as a polygon of geo-coordinates
+    $ref: ./Polygon.yml
+  _links:
+    $ref: ./Links.yml

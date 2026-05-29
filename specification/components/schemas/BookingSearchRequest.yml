@@ -1,0 +1,40 @@
+type: object
+additionalProperties: false
+properties:
+  origin:
+    $ref: ./PlaceRef.yml
+  destination:
+    $ref: ./PlaceRef.yml
+  passenger:
+    $ref: ./PersonSearchRequest.yml
+  purchaser:
+    $ref: ./PurchaserSearchRequest.yml
+  bookingId:
+    type:
+      - string
+      - 'null'
+  bookingCode:
+    description: |
+      reference to the booking in the downstream distributor system
+    type:
+      - string
+      - 'null'
+  externalRef:
+    description: reference to the booking in the retailer system
+    type:
+      - string
+      - 'null'
+  fulfillmentId:
+    type:
+      - string
+      - 'null'
+  fulfillmentControlNumber:
+    type:
+      - string
+      - 'null'
+  travelDateRange:
+    $ref: ./DateRange.yml
+  purchaseDateRange:
+    $ref: ./DateRange.yml
+  parameters:
+    $ref: ./BookingSearchParameters.yml

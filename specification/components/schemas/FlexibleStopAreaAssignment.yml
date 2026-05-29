@@ -1,0 +1,16 @@
+type: object
+additionalProperties: false
+description: |
+  flexible are for boarding, e.g. a pickup area for cars
+properties:
+  aimedAreaName:
+    description: >-
+      last communicated area, used to indicate platform changes if different
+      from estimated quai
+    type: string
+  estimatedAreaName:
+    type: string
+  actualAreaName:
+    type: string
+  area:
+    $ref: ./Polygon.yml

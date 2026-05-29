@@ -1,0 +1,22 @@
+type: object
+additionalProperties: false
+properties:
+  compensationAmount:
+    $ref: ./Price.yml
+  refundVoucher:
+    $ref: ./FulfillmentDocument.yml
+  decisionType:
+    $ref: ./DecisionType.yml
+  explanation:
+    $ref: ./SupportingDocument.yml
+  shortExplanation:
+    type:
+      - string
+      - 'null'
+  delayedJourney:
+    description: >
+      Allocator or fare provider view on the delays. This might differ from the
+      customer view.
+    type: array
+    items:
+      $ref: ./Trip.yml

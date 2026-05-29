@@ -1,0 +1,11 @@
+description: >
+  [Vehicle types from code list of on-demand vehicle
+  types](https://osdm.io/spec/catalog-of-code-lists/#OnDemandVehicleTypes)
+type: string
+x-extensible-enum:
+  - BICYCLE
+  - ELECTRIC_BICYCLE
+  - CARGO_BICYCLE
+  - SCOOTER
+  - TAXI
+  - SELF_DRIVING_CAR

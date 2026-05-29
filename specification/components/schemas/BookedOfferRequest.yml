@@ -1,0 +1,22 @@
+type: object
+description: >-
+  adding an offer to a booking as pre-booked. additional passengers that were
+  not already in the booking are added in additional passengers existing
+  passengers are referenced in passengerRef.
+additionalProperties: false
+required:
+  - offers
+properties:
+  offers:
+    type: array
+    items:
+      $ref: ./OfferSelection.yml
+    minItems: 1
+  additionalPassengerSpecifications:
+    type: array
+    items:
+      $ref: ./PassengerSpecification.yml
+  promotionCodes:
+    type: array
+    items:
+      $ref: ./PromotionCode.yml

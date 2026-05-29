@@ -1,0 +1,71 @@
+description: >
+  A descriptive data associated with a place that can be used to describe the
+  unique geographical context of a
+
+  place for the purposes of identifying it. may be refined as either a road
+  address, a postal address or both.
+
+  Provided by OJP.
+allOf:
+  - $ref: ./Place.yml
+  - type: object
+    additionalProperties: false
+    properties:
+      countryName:
+        description: |
+          Country of the address.
+        type:
+          - string
+          - 'null'
+        examples:
+          - The Netherlands
+      countryCode:
+        $ref: ./CountryCode.yml
+      postCode:
+        description: |
+          Postal code of the address.
+        type:
+          - string
+          - 'null'
+        examples:
+          - 2265CA
+      city:
+        description: |
+          City name
+        type:
+          - string
+          - 'null'
+        examples:
+          - Leidschendam
+      topographicPlaceName:
+        description: >
+          TopographicPlace name of the address. If set it should at least
+          contain the city name.
+        type:
+          - string
+          - 'null'
+        examples:
+          - Leidschendam
+      street:
+        description: |
+          Street name of the address. Can also contain the house number.
+        type:
+          - string
+          - 'null'
+        examples:
+          - Oude Trambaan
+      houseNumber:
+        description: >
+          House number of the address. House number can either be in this
+          separate field, or can be
+
+          contained in the street field.
+        type:
+          - string
+          - 'null'
+        examples:
+          - '7'
+      crossroad:
+        type: string
+        examples:
+          - Oude Trambaan corner Newe Trambahn

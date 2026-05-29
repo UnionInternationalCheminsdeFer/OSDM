@@ -1,0 +1,11 @@
+description: >
+  Values from the [Ancillary Sub Type
+  List](https://osdm.io/spec/catalog-of-code-lists/#AncillarySubTypes)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - LUNCH
+  - DINNER
+  - WIFI
+  - MUSICAL_INSTRUMENT

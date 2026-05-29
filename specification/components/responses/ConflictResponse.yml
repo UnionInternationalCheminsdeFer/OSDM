@@ -1,0 +1,6 @@
+description: |
+  Conflict (409)
+content:
+  application/problem+json:
+    schema:
+      $ref: ../schemas/Problem.yml

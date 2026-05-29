@@ -1,0 +1,15 @@
+description: >
+  Known Values:
+
+  - 'BANK_ACCOUNT'
+
+  - 'SETTLED_TIME_LIMIT_EXCEEDED': A distributor settled the claim as the fare
+  provided did not reply in due time. The compensation amount debited is
+  provided.
+
+  - 'PASSENGER_CHANGE'
+type: string
+x-extensible-enum:
+  - BANK_ACCOUNT
+  - SETTLED_TIME_LIMIT_EXCEEDED
+  - PASSENGER_CHANGE

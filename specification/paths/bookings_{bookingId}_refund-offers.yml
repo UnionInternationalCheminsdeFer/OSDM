@@ -1,0 +1,58 @@
+post:
+  tags:
+    - Refund
+  summary: Initiates a refund process by creating a refundOffer resource.
+  description: >
+    The RefundOffer contains the required information on the potential
+    operation. One refund offer can then be
+
+    accepted via a PATCH, deleted or left to die at the end of its lifetime.
+  operationId: postRefundOffers
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - $ref: ../components/parameters/idempotencyKey.yml
+    - $ref: ../components/parameters/acceptNamespace.yml
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking.
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/vnd.uic.osdm+json:
+        schema:
+          $ref: ../components/schemas/RefundOfferRequest.yml
+  responses:
+    '200':
+      description: |
+        refund offer created
+      content:
+        application/vnd.uic.osdm+json:
+          schema:
+            $ref: ../components/schemas/RefundOfferCollectionResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

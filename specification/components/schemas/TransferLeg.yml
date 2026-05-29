@@ -1,0 +1,57 @@
+type: object
+additionalProperties: false
+description: >
+  A leg which links other legs of a trip where a transfer between different
+  places is required.
+
+  Provided by OJP.
+required:
+  - start
+  - end
+properties:
+  type:
+    $ref: ./TransferType.yml
+  start:
+    $ref: ./PlaceRef.yml
+  end:
+    $ref: ./PlaceRef.yml
+  description:
+    description: human readable description of the leg
+    type: string
+  timeWindowStart:
+    description: |
+      Time at which window begins.
+    type:
+      - string
+      - 'null'
+    format: date-time
+  timeWindowEnd:
+    description: |
+      Time at which window ends.
+    type:
+      - string
+      - 'null'
+    format: date-time
+  duration:
+    description: |
+      Overall duration of this interchange.
+    type:
+      - string
+      - 'null'
+    format: duration
+    examples:
+      - PT20M
+  feasibility:
+    $ref: ./TripFeasibility.yml
+  attributes:
+    type: array
+    items:
+      $ref: ./GeneralAttribute.yml
+  pathGuidance:
+    $ref: ./PathGuidance.yml
+  situationRefs:
+    type: array
+    items:
+      $ref: ./SituationRef.yml
+  co2Emission:
+    $ref: ./Quantity.yml

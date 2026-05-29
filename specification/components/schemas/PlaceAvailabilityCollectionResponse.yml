@@ -1,0 +1,13 @@
+type: object
+additionalProperties: false
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  availablePlaces:
+    type: array
+    items:
+      $ref: ./AvailablePlace.yml
+  _links:
+    $ref: ./Links.yml

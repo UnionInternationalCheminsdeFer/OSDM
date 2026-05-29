@@ -1,0 +1,31 @@
+type: object
+description: |
+  Section on a guidance for a path, provided by OJP 2.0
+additionalProperties: false
+properties:
+  track:
+    $ref: ./LegTrackSection.yml
+  turnDescription:
+    type: string
+  turnAction:
+    $ref: ./PathGuidanceTurnAction.yml
+  advice:
+    $ref: ./PathGuidanceAdvice.yml
+  roadName:
+    type: string
+  follow:
+    $ref: ./PathGuidanceFollow.yml
+  directionHint:
+    type: string
+  absoluteBearing:
+    description: azimuth, 0 = north
+    type: integer
+    format: int32
+    minimum: 0
+    maximum: 360
+  situationRefs:
+    type: array
+    items:
+      $ref: ./SituationRef.yml
+  pathLink:
+    $ref: ./PathGuidancePathLink.yml

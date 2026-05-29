@@ -1,0 +1,49 @@
+type: object
+additionalProperties: false
+description: |
+  Defines the model according to which the fares can be combined.
+required:
+  - model
+properties:
+  model:
+    description: >
+      A distributor needs to support the following models:  SEPARATE_TICKET,
+      SEPARATE_CONTRACT, CLUSTERING, COMBINING.
+    type: string
+  combinableCarriers:
+    description: >
+      List of all carriers where the model can be applied, in case the list is
+      empty
+
+      all combinations are allowed.
+    type: array
+    items:
+      $ref: ./CompanyRef.yml
+  isValidOnlyWhenCombined:
+    description: >
+      This combination model applies only in case the fare is combined with
+      another carrier
+    type:
+      - boolean
+      - 'null'
+  referenceCluster:
+    description: |
+      In case of CLUSTERING model: the cluster to which the fare belongs
+    type:
+      - string
+      - 'null'
+  allowedClusters:
+    description: |
+      In case of CLUSTERING model: the other clusters that allow a combination
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  allowedCommonContracts:
+    description: >
+      List of carriers where a common contract with separate fulfillments are
+      allowed.
+    type: array
+    items:
+      $ref: ./CompanyRef.yml

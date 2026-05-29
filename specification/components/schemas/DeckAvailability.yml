@@ -1,0 +1,22 @@
+type: object
+additionalProperties: false
+description: |
+  A coach deck
+properties:
+  layoutId:
+    description: >
+      Identifies the coach deck layout. It is recommended to import coach deck
+      layout master data periodically by calling GET /coach-deck-layouts
+    type:
+      - string
+      - 'null'
+  compartments:
+    description: >
+      Only compartments that match a requested place restriction must be
+      returned (e.g. only return bike hook compartments if availabilities for a
+      bicycle reservation offer were requested). Empty if the whole deck
+      contains no compartments (e.g. traction unit) or no places that matches a
+      requested place restriction.
+    type: array
+    items:
+      $ref: ./CompartmentAvailability.yml

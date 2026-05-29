@@ -1,0 +1,22 @@
+type: object
+additionalProperties: false
+description: >
+  Reservation based place selection criteria. Each requested place selection
+  criterion will only be considered if it is covered by the referenced
+  reservation offerPart/bookingPart. E.g. place selection criterion
+  serviceClass=HIGH will only be considered if reservationRef references a
+  first/high class offer.
+required:
+  - reservationRef
+properties:
+  reservationRef:
+    type: string
+  serviceClass:
+    $ref: ./ServiceClassType.yml
+  accommodationSubTypes:
+    description: >
+      Specifies the accommodation sub types for which place availabilities shall
+      be returned.
+    type: array
+    items:
+      $ref: ./AccommodationSubType.yml

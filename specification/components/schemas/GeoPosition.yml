@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+description: |
+  WGS84 coordinates position. Provided by OJP.
+required:
+  - longitude
+  - latitude
+properties:
+  longitude:
+    $ref: ./Longitude.yml
+  latitude:
+    $ref: ./Latitude.yml

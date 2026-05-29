@@ -1,0 +1,29 @@
+type: object
+additionalProperties: false
+required:
+  - offerId
+  - passengerRefs
+properties:
+  offerId:
+    type: string
+    maxLength: 32768
+  ancillaryOfferIds:
+    type: array
+    minItems: 1
+    items:
+      type: string
+      maxLength: 32768
+  placeSelections:
+    type: array
+    minItems: 1
+    items:
+      $ref: ./PlaceSelection.yml
+  passengerRefs:
+    type: array
+    items:
+      type: string
+    minItems: 1
+  tripCoverage:
+    $ref: ./TripCoverage.yml
+  inboundTripCoverage:
+    $ref: ./TripCoverage.yml

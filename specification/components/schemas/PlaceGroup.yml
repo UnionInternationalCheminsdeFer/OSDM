@@ -1,0 +1,43 @@
+type: object
+additionalProperties: false
+description: >
+  A place group groups places by service class and optionally by accommodation
+  sub type. A place group not necessarily needs to be visualized (e.g. as a
+  rectangle). Visualization can be done using ServiceIcons and GraphicElements.
+   
+  Nevertheless, a place group can be useful for rendering of coach decks/places
+  for which no place availabilities were returned, as further information
+  (service class, accommodation sub type) can be displayed .
+   
+  If availabilities were returned for a certain place, travel class and
+  accommodation sub type values returned in the availability response must be
+  displayed (they replace the static travel class / accommodation sub type
+  defined on the place group). Reason: travel class and accommodation sub type
+  values can dynamically change for each vehicle run.
+   
+  Example 1: Class upgrade
+
+  A customer with a second class reservation ticket might be placed on a first
+  class seat.
+   
+  Example 2: New/more specific AccommodationSubType
+
+  AccommodationSubType=BUSINESS defined in static master data might be changed
+  into AccommodationSubType=BUSINESS_COMFORT on certain vehicle runs.
+required:
+  - serviceClass
+  - places
+properties:
+  serviceClass:
+    $ref: ./ServiceClassType.yml
+  accommodationType:
+    $ref: ./AccommodationType.yml
+  accommodationSubType:
+    $ref: ./AccommodationSubType.yml
+  places:
+    description: |
+      Seats or bicycle hooks in a coach compartment.
+    type: array
+    items:
+      $ref: ./PlaceLayout.yml
+    minItems: 1

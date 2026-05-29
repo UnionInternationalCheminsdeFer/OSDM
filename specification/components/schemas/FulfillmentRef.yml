@@ -1,0 +1,30 @@
+description: >
+  reference to a fulfillment including the status and related bookingPart
+  references
+required:
+  - id
+  - status
+  - summary
+  - bookingParts
+  - fulfillmentType
+properties:
+  id:
+    type: string
+  status:
+    $ref: ./FulfillmentStatus.yml
+  summary:
+    description: |
+      A human-readable description of the fulfillment.
+    type:
+      - string
+      - 'null'
+  bookingParts:
+    type: array
+    items:
+      $ref: ./BookingPartReference.yml
+    minItems: 1
+  fulfillmentType:
+    $ref: ./FulfillmentType.yml
+  createdOn:
+    type: string
+    format: date-time

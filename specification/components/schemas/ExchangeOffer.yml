@@ -1,0 +1,111 @@
+type: object
+additionalProperties: false
+required:
+  - exchangeFee
+  - exchangePrice
+  - refundableAmount
+  - fulfillmentRefs
+  - offerId
+  - createdOn
+  - preBookableUntil
+  - admissionOfferParts
+properties:
+  exchangeFee:
+    $ref: ./Price.yml
+  accountingRef:
+    description: |
+      Accounting information for the exchange fee
+    $ref: ./AccountingRef.yml
+  exchangePrice:
+    description: |
+      price of the new booking parts
+    $ref: ./Price.yml
+  refundableAmount:
+    description: >
+      amount to be paid to the purchaser in case the new products are less
+      expensive. There can not be an amountToBePaid at the same time.
+    $ref: ./Price.yml
+  amountToBePaid:
+    description: >
+      amount to be paid by the purchaser in case the new products are more
+      expensive. There can not be a refundableAmount at the same time.
+    $ref: ./Price.yml
+  appliedOverruleCode:
+    $ref: ./OverruleCode.yml
+  fulfillmentRefs:
+    type: array
+    items:
+      $ref: ./FulfillmentRefs.yml
+    minItems: 1
+  offerId:
+    type: string
+    maxLength: 32768
+  summary:
+    description: |
+      A human-readable description of the offer.
+    type: string
+  offerSummary:
+    description: >-
+      The offerSummary must be provided for product based offers. It is not
+      needed for fares.
+    $ref: ./OfferSummary.yml
+  createdOn:
+    type: string
+    format: date-time
+  preBookableUntil:
+    description: >
+      time until the offer can be pre-booked, however its availability is not
+      guaranteed
+    type: string
+    format: date-time
+  passengerRefs:
+    description: >
+      providing the passengerRefs is required for passenger transport. There are
+      uses cases (e.g. sale of merchandising articles) where no passenger is
+      involved. Only in these cases it is allowed to omit the passengerRefs.
+    type: array
+    items:
+      type: string
+    minItems: 1
+  products:
+    description: >
+      products must be provided in case they are referenced. Some offer parts
+      (e.g. fares)
+
+      do not have products assigned.
+    type: array
+    items:
+      $ref: ./Product.yml
+  tripCoverage:
+    type: array
+    items:
+      $ref: ./TripCoverage.yml
+  exchangeOfferBreakdown:
+    description: >
+      Breakdown of the exchange offer, including the exchange price, exchange
+      fee, and refundable amount.
+    type: array
+    items:
+      $ref: ./ExchangeBreakdownItem.yml
+  admissionOfferParts:
+    type: array
+    items:
+      $ref: ./AdmissionOfferPart.yml
+  reservationOfferParts:
+    type: array
+    items:
+      $ref: ./ReservationOfferPart.yml
+  ancillaryOfferParts:
+    type: array
+    items:
+      $ref: ./AncillaryOfferPart.yml
+  fees:
+    type: array
+    items:
+      $ref: ./Fee.yml
+  fares:
+    type: array
+    items:
+      $ref: ./FareOfferPart.yml
+  _links:
+    $ref: ./Links.yml

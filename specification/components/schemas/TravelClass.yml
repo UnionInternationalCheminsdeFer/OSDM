@@ -1,0 +1,7 @@
+description: |
+  Traditional first and second class.
+type: string
+x-extensible-enum:
+  - FIRST
+  - SECOND
+  - ANY_CLASS

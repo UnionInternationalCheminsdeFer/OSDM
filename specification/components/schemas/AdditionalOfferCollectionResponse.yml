@@ -1,0 +1,11 @@
+type: object
+additionalProperties: false
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  offers:
+    type: array
+    items:
+      $ref: ./Offer.yml

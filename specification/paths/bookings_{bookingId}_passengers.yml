@@ -1,0 +1,128 @@
+get:
+  tags:
+    - Passengers
+  summary: Returns all the passenger's in the booking.
+  operationId: getBookingPassengers
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: |
+        passengers found
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/PassengersCollectionResponse.yml
+      headers:
+        Content-Language:
+          schema:
+            type: string
+            description: >
+              The language of translatable strings in the response (see
+              RFC2616-sec14.12).
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []
+patch:
+  tags:
+    - Passengers
+  summary: Allows updating a set of passengers in a batch at booking step.
+  operationId: patchBookingPassengers
+  parameters:
+    - $ref: ../components/parameters/requestor.yml
+    - $ref: ../components/parameters/acceptLanguage.yml
+    - $ref: ../components/parameters/traceParent.yml
+    - $ref: ../components/parameters/traceState.yml
+    - name: bookingId
+      in: path
+      description: |
+        id of the booking the passenger is in.
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/PassengersBatchUpdateRequest.yml
+  responses:
+    '200':
+      description: |
+        all passengers successfully patched
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/PassengersCollectionResponse.yml
+      headers:
+        Content-Language:
+          schema:
+            type: string
+            description: >
+              The language of translatable strings in the response (see
+              RFC2616-sec14.12).
+    '207':
+      description: >
+        Partial success – some updates failed. updatedPassengers contains
+        successfully updates. Failed updates are listed in the problems with at
+        least following attributes:
+
+        * problem.status indicates the http code of the encountered error for
+        the specific request item, f ex "404" if the given passenger Id is not
+        found
+
+        * requestPointer indicates the specific request item the error relates
+        to, f ex: #/passengerBatchUpdateRequest/passengers[2]/id
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/PassengersCollectionResponse.yml
+    '400':
+      $ref: ../components/responses/BadRequestResponse.yml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yml
+    '403':
+      $ref: ../components/responses/ForbiddenResponse.yml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yml
+    '409':
+      $ref: ../components/responses/ConflictResponse.yml
+    '415':
+      $ref: ../components/responses/UnsupportedMediaTypeResponse.yml
+    '500':
+      $ref: ../components/responses/InternalServerErrorResponse.yml
+    '501':
+      $ref: ../components/responses/NotImplementedResponse.yml
+    '503':
+      $ref: ../components/responses/ServiceUnavailableResponse.yml
+    default:
+      $ref: ../components/responses/DefaultErrorResponse.yml
+  security:
+    - oAuth2ClientCredentials: []

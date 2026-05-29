@@ -1,0 +1,18 @@
+type: object
+additionalProperties: false
+description: |
+  Filter for in/exclusion of carriers. Provided by OJP.
+properties:
+  exclude:
+    description: |
+      Whether carrier in list are to include or exclude from search.
+    type:
+      - boolean
+      - 'null'
+    default: true
+  carriers:
+    description: |
+      Reference to carrier
+    type: array
+    items:
+      $ref: ./CompanyRef.yml

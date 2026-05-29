@@ -1,0 +1,19 @@
+description: >
+  Influences whether referenced resources are returned in full or as references
+  only.
+type: string
+enum:
+  - ALL
+  - BOOKING
+  - BOOKING_PASSENGERS
+  - BOOKING_PURCHASER
+  - BOOKING_TRIPS
+  - BOOKING_BOOKEDOFFERS
+  - BOOKING_FULFILLMENTS
+  - BOOKING_DOCUMENTS
+  - BOOKING_REFUNDOFFERS
+  - BOOKING_RELEASEOFFERS
+  - BOOKING_CANCELFULFILLMENTSOFFER
+  - BOOKING_EXCHANGEOPERATIONS
+  - NONE
+default: ALL

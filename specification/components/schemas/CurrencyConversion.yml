@@ -1,0 +1,32 @@
+description: |
+  details on a currency conversion applied
+required:
+  - originalCurrency
+  - originalAmount
+properties:
+  description:
+    description: >
+      description of the conversion, e.g. rate, rounding rules, reference to
+      rules
+    type: string
+  originalCurrency:
+    $ref: ./Currency.yml
+  originalAmount:
+    description: |
+      amount in cents
+    type: integer
+    format: int32
+  scale:
+    description: |
+      scale of the amount - the number of positions after the comma
+    type:
+      - integer
+      - 'null'
+    format: int32
+    default: 2
+  appliedRate:
+    type: number
+  originalVats:
+    type: array
+    items:
+      $ref: ./VAT.yml

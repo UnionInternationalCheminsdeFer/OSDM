@@ -1,0 +1,49 @@
+type: object
+additionalProperties: false
+description: >
+  The trip coverage defines which part of the trip is covered by the offer,
+  offer part, booking or booking part, respectively.
+
+
+  If neither coveredLegIds nor coveredSections are defined, the complete trip is
+  covered.
+
+  coveredLegIds and coveredSections are mutually exclusive, i.e. only one of the
+  structures can be present.
+
+
+  If either coveredLegIds or coveredSections is defined, the sectionIndex field
+  must be filled to indicate which part of the trip is covered
+
+  by the respective OfferPart or BookingPart
+required:
+  - coveredTripId
+properties:
+  coveredTripId:
+    type: string
+    maxLength: 32768
+  sectionIndex:
+    description: >
+      Describes which part of the trip (in order) is covered by the
+      OfferPart/BookingPart which contains this TripCoverage structure.
+
+
+      This needs to be filled if either coveredLegIds or coveredSections is
+      present.
+    type:
+      - integer
+      - 'null'
+    format: int32
+    minimum: 1
+  coveredLegIds:
+    description: |
+      Indicate which legs are covered by the specific offer. Not used for fares.
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  coveredSections:
+    type: array
+    items:
+      $ref: ./Section.yml

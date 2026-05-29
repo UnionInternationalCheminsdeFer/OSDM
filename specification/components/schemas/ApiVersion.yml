@@ -1,0 +1,30 @@
+type: object
+description: >
+  Version of the API.
+
+  The version is used to indicate the version of the API that is being used.
+
+  The version is in semantic versioning format, e.g. "3.0.0" and it is a version
+  released at osdm.io.
+required:
+  - version
+properties:
+  version:
+    type: string
+    description: |
+      Version of the API
+    examples:
+      - 3.0.0
+  sunset:
+    type:
+      - string
+      - 'null'
+    format: date-time
+    description: |
+      Date after which the API version will no longer be available.
+    examples:
+      - '2024-12-31T23:59:59+01:00'
+  nextVersion:
+    anyOf:
+      - $ref: ./ApiNextVersion.yml
+      - type: 'null'

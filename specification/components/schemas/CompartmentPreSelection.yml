@@ -1,0 +1,16 @@
+type: object
+additionalProperties: false
+description: |
+  A preselected compartment
+required:
+  - coach
+  - compartment
+properties:
+  coach:
+    description: |
+      Coach number
+    type: string
+  compartment:
+    description: |
+      Compartment number as indicated at the compartment in the coach.
+    type: string

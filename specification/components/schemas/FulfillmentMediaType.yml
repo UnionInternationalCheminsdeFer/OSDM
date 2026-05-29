@@ -1,0 +1,16 @@
+description: >
+  Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
+
+  Values from the [Fulfillment Media Type Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#FulfillmentMediaType)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - PDF_A4
+  - RCCST
+  - RCT2
+  - TICKETLESS
+  - APPLICATION
+  - WALLET
+  - CHIP_CARD

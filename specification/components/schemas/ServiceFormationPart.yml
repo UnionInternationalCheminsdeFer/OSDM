@@ -1,0 +1,51 @@
+type: object
+additionalProperties: false
+description: |
+  formation of a service at a stop on arrival or departure
+required:
+  - id
+  - publishedName
+properties:
+  id:
+    description: >-
+      id of the part references in assignments. unique within the context of a
+      Leg
+    type: string
+  publishedName:
+    type: string
+    examples:
+      - ICE 4711
+      - '12'
+  detailedDescription:
+    type: string
+  containedPartRefs:
+    description: ordered references to contained formation parts
+    type: array
+    items:
+      type: string
+  serviceClasses:
+    type: array
+    items:
+      $ref: ./ServiceClass.yml
+  partType:
+    type: array
+    items:
+      $ref: ./ServiceFormationPartType.yml
+  entireRoute:
+    description: >
+      entier route of the service independent from the route of the leg. Used to
+      provide indications on the end station displayed at the platform.
+    $ref: ./ServiceFormationRoute.yml
+  statusInformation:
+    $ref: ./ServiceFormationPartStatus.yml
+  entireLeg:
+    description: >
+      indicates if a formation part serves the whole leg. Service parts that do
+      not service the whole leg are included to provide complete information on
+      the parts at a platform.
+    type: boolean
+    default: true
+  facilities:
+    type: array
+    items:
+      $ref: ./FacilityEnum.yml

@@ -1,0 +1,20 @@
+type: object
+additionalProperties: false
+description: |
+  Contains the newly created booking
+required:
+  - bookingId
+properties:
+  bookingId:
+    type: string
+  passengerIds:
+    description: >
+      Ids of the passengers
+
+      Providing the passengerIds is required for passenger transport. There are
+      uses cases (e.g. sale of merchandising articles) where no passenger is
+      involved. Only in these cases it is allowed to omit the passengerIds.
+    type: array
+    items:
+      type: string
+    minItems: 1

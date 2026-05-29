@@ -1,0 +1,20 @@
+type: object
+additionalProperties: false
+description: >
+  service description of services running in parallel to the defined main
+  service (OJP 2.0)
+
+  - different service numbers for train parts 
+
+  - different service produc categories / service brands along a leg
+required:
+  - service
+properties:
+  service:
+    $ref: ./DatedJourney.yml
+  section:
+    $ref: ./Section.yml
+  replacesMainService:
+    description: the parallel service description replaces the main service (not in OJP)
+    type: boolean
+    default: false

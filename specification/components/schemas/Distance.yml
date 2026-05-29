@@ -1,0 +1,6 @@
+description: Distance in meters
+type:
+  - integer
+  - 'null'
+format: int32
+minimum: 0

@@ -1,0 +1,6 @@
+type: string
+x-extensible-enum:
+  - BOOKING
+  - TRIP
+  - OFFERPART
+  - SEAT_SELECTION

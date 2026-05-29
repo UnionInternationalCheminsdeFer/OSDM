@@ -1,0 +1,9 @@
+type:
+  - string
+  - 'null'
+description: |
+  Especially on regional traffic, a vehicle is defined by a line number.
+  E.g. the line numbers of 'S 52' or 'B 19'.
+examples:
+  - '52'
+  - B 19

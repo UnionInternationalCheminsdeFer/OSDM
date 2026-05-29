@@ -1,0 +1,9 @@
+type: object
+additionalProperties: false
+description: |
+  Changes the fulfillment to status FULFILLED.
+properties:
+  fulfillmentUpdates:
+    type: array
+    items:
+      $ref: ./FulfillmentId.yml

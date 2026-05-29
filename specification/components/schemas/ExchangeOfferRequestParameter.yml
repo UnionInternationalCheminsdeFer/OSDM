@@ -1,0 +1,36 @@
+type: object
+additionalProperties: false
+description: |
+  Basic request parameters for all exchange offer requests.
+properties:
+  overruleCode:
+    $ref: ./OverruleCode.yml
+  corporateCodes:
+    type: array
+    items:
+      $ref: ./CorporateCode.yml
+  promotionCodes:
+    type: array
+    items:
+      $ref: ./PromotionCode.yml
+  offerMode:
+    $ref: ./OfferMode.yml
+  currency:
+    $ref: ./Currency.yml
+  requestedFulfillmentOptions:
+    type: array
+    items:
+      $ref: ./FulfillmentOption.yml
+  exchangeFee:
+    description: >
+      In some business models the distributor has the right to define the
+      exchange fee amount for a fare provided by the fare prvider. This need to
+      be indicated in the fare after sales rules to be applied. In this case the
+      ditributor submits the amount to the fare provider in exchange fee amount
+      and the fare provider uses this amount to create the fees including the
+      VAT split.
+    $ref: ./CurrencyAmount.yml
+  embed:
+    type: array
+    items:
+      $ref: ./OfferCollectionResponseContent.yml

@@ -1,0 +1,30 @@
+type: object
+description: >
+  Next version of the API.
+
+  The next version is used to indicate the next version of the API that is being
+  used.
+
+  The version is in semantic versioning format, e.g. "4.0.0" and it is a version
+  released at osdm.io.
+properties:
+  version:
+    type: string
+    description: |
+      Version of the next API.
+    examples:
+      - 4.0.0
+  availableAt:
+    type: string
+    format: url
+    examples:
+      - https://api.next.example.com
+  availableFrom:
+    type:
+      - string
+      - 'null'
+    format: date-time
+    description: |
+      Date from which the next version is available.
+    examples:
+      - '2025-01-01T00:00:00+01:00'

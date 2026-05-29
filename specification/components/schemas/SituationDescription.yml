@@ -1,0 +1,14 @@
+type: object
+additionalProperties: false
+description: situation description
+properties:
+  summary:
+    type: string
+  description:
+    type: string
+  details:
+    type: string
+  advice:
+    type: string
+  _links:
+    $ref: ./Links.yml

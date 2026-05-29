@@ -1,0 +1,11 @@
+description: |
+  Reference to a Point of Interest. Provided by OJP.
+allOf:
+  - $ref: ./PlaceRef.yml
+  - type: object
+    additionalProperties: false
+    required:
+      - pointOfInterestRef
+    properties:
+      pointOfInterestRef:
+        type: string

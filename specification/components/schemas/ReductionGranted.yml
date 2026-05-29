@@ -1,0 +1,33 @@
+type: object
+additionalProperties: false
+description: >
+  reductions granted by a reduction card type. Either carrier or country must be
+  provided.
+required:
+  - description
+properties:
+  carrier:
+    $ref: ./CompanyRef.yml
+  country:
+    $ref: ./CountryCode.yml
+  transportModes:
+    description: >-
+      transport modes where the reduction is granted, any mode of the carrier in
+      case the list is not provided.
+    type: array
+    items:
+      $ref: ./Mode.yml
+  serviceBrands:
+    description: >-
+      ServiceBrands where the reduction is granted, any service brand of the
+      carrier in case the list is not provided.
+    type: array
+    items:
+      $ref: ./ServiceBrandCode.yml
+  description:
+    description: >-
+      text describing the reduction granted. In the context of master data
+      translations should be provided.
+    $ref: ./Text.yml
+  percentage:
+    $ref: ./Percentage.yml

@@ -1,0 +1,35 @@
+type: object
+additionalProperties: false
+description: >
+  Definition of a zone used to define regional validity. The area of the zone
+  can be defined via a
+
+  geo-polygon, a complete list of all contained stations or area codes from the
+  NUTS code list.
+
+  The carrier is either the carrier or transport authority responsible for the
+  definition.
+required:
+  - id
+  - carrier
+properties:
+  id:
+    type: string
+  name:
+    type:
+      - string
+      - 'null'
+  carrier:
+    $ref: ./CompanyRef.yml
+  polygon:
+    $ref: ./Polygon.yml
+  nutsCodes:
+    type:
+      - array
+      - 'null'
+    items:
+      type: string
+  places:
+    type: array
+    items:
+      $ref: ./PlaceRef.yml

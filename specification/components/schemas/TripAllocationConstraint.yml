@@ -1,0 +1,34 @@
+type: object
+additionalProperties: false
+description: |
+  constraint on the use of a multiple trip ticket
+required:
+  - allocationUnit
+  - requiredProcesses
+properties:
+  allocationUnit:
+    $ref: ./TripAllocationUnit.yml
+  maxUnits:
+    description: |
+      maximum number of allowed units to be allocated
+    type:
+      - integer
+      - 'null'
+    format: int32
+  durationUnit:
+    description: |
+      multiples of this duration can be allocated
+    type:
+      - string
+      - 'null'
+    format: duration
+    examples:
+      - PT30M
+  requiredProcesses:
+    description: >
+      one of the listed processes is required for the allocation of a single
+      trip
+    type: array
+    items:
+      $ref: ./TripAllocationProcess.yml
+    minItems: 1

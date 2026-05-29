@@ -1,0 +1,54 @@
+type: object
+additionalProperties: false
+description: >
+  The offer summary indicates the most relevant service class, level,
+  flexibility or accommodation
+
+  that describe this offer, but this does not imply that these values exactly
+  apply to all parts of
+
+  the offer.
+
+  Let's consider, as a simplified example, a trip composed of two legs, one with
+  both 1st and
+
+  2nd class, and one with only 2nd.
+
+  On this trip, the railway is expected to propose one offer with
+  overallServiceClass FIRST composed
+
+  of one admission in 1st class on the first legs and one admission in 2nd class
+  on the second one,
+
+  plus a second offer with overallServiceClass SECOND composed of two second
+  class admissions.
+
+  Likewise for all 'overall' attributes. The purpose of these attributes is to
+  convey to the client
+
+  system the service class, level, flexibility and accommodation that best
+  represent this offer so to
+
+  facilitate presentation to the final user.
+
+  The offerSummary must be provided for product based offers. It is not needed
+  for fares.
+required:
+  - minimalPrice
+  - overallServiceClass
+  - overallFlexibility
+properties:
+  minimalPrice:
+    $ref: ./Price.yml
+  overallServiceClass:
+    $ref: ./ServiceClass.yml
+  overallTravelClass:
+    $ref: ./TravelClass.yml
+  overallAccommodationType:
+    $ref: ./AccommodationType.yml
+  overallAccommodationSubType:
+    $ref: ./AccommodationSubType.yml
+  overallFlexibility:
+    $ref: ./Flexibility.yml
+  minimalIndicatedUsage:
+    $ref: ./IndicatedUsage.yml

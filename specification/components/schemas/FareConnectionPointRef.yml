@@ -1,0 +1,14 @@
+description: |
+  Reference to a Fare Connection Point.
+allOf:
+  - $ref: ./PlaceRef.yml
+  - type: object
+    required:
+      - fareConnectionPoint
+    properties:
+      fareConnectionPoint:
+        $ref: ./FareConnectionPoint.yml
+      name:
+        type:
+          - string
+          - 'null'

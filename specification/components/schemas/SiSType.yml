@@ -1,0 +1,11 @@
+description: >
+  Type of the exchange of control data for security in system implementations.
+
+  Values from the [Control Data Exchange Type Code
+  List](https://osdm.io/spec/catalog-of-code-lists/#ControlDataExchangeType)
+
+  Listed values here are examples.
+type: string
+x-extensible-enum:
+  - REGISTRY
+  - PEER2PEER

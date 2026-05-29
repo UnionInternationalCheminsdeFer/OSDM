@@ -1,0 +1,20 @@
+description: >
+  Type of descriptive text.
+
+  Valid Values:
+
+  - INFORMATION: pure informational text (product/fulfillment).
+
+  - MANDATORY: must be displayed to the customer prior to purchase (product).
+
+  - MANDATORY_WITH_CONFIRMATION: must be confirmed, e.g. by checking a checkbox,
+  prior to purchase (product).
+
+  - TICKET_VALIDITY: any text on the ticket regarding it's validity (other than
+  information which can be retrieved from the booking)
+type: string
+enum:
+  - INFORMATION
+  - MANDATORY
+  - MANDATORY_WITH_CONFIRMATION
+  - TICKET_VALIDITY

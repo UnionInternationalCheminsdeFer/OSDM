@@ -1,0 +1,11 @@
+type: object
+additionalProperties: false
+description: parameters to change a trip at a leg
+properties:
+  changeLegRef:
+    type: string
+  additionaWaitingTime:
+    type: string
+    format: duration
+  tripParameter:
+    $ref: ./TripParameters.yml

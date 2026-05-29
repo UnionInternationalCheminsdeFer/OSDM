@@ -1,0 +1,16 @@
+description: >
+  reference to accounting data in case the accounting is not provided by the API
+  provider
+type: object
+required:
+  - accountingCompany
+properties:
+  accountingCompany:
+    $ref: ./CompanyRef.yml
+  accountingIds:
+    description: >
+      ids of accounting data used to link the booking part with accounting data
+      in the billing send by the accounting company
+    type: array
+    items:
+      type: string

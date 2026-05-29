@@ -1,0 +1,36 @@
+type: object
+additionalProperties: false
+description: >
+  In distributor mode, travel validity data is needed to create barcode and
+  control data (IRS 90918-4) even in case they have been checked during the
+  on-line sale.
+required:
+  - validityRange
+properties:
+  validTravelDates:
+    $ref: ./Calendar.yml
+  validityRange:
+    $ref: ./ValidityRange.yml
+  excludedTimeRanges:
+    description: |
+      time ranges excluded from the validity (e.g. off peak fulfillments)
+    type: array
+    items:
+      $ref: ./ExcludedTimeRange.yml
+  numberOfTravelDays:
+    description: |
+      number of allowed travel days (e.g. 3 travel days within 2 weeks)
+    type:
+      - integer
+      - 'null'
+    format: int32
+  returnConstraint:
+    $ref: ./ReturnConstraint.yml
+  trainValidity:
+    $ref: ./TrainValidity.yml
+  validityType:
+    $ref: ./ValidityType.yml
+  tripAllocationConstraint:
+    $ref: ./TripAllocationConstraint.yml
+  tripInterruptionConstraint:
+    $ref: ./TripInterruptionConstraint.yml

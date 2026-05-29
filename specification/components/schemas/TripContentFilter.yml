@@ -1,0 +1,13 @@
+description: |
+  Options to control the response contents.
+  Provided by OJP.
+type: object
+additionalProperties: false
+properties:
+  filters:
+    type: array
+    items:
+      $ref: ./TripContentFilterItem.yml
+  tripSummaryOnly:
+    type: boolean
+    default: false

@@ -1,0 +1,21 @@
+description: types of a guidance advices, provided by OJP 2.0
+type: string
+x-extensible-enum:
+  - ORIGIN
+  - DESTINATION
+  - CONTINUE
+  - KEEP
+  - TURN
+  - LEAVE
+  - ENTER
+  - ENTER_ROUNDABOUT
+  - STAY_IN_ROUNDABOUT
+  - LEAVE_ROUNDABOUT
+  - ENTER_BUILD_UP_AREA
+  - LEAVE_BUILD_UP_AREA
+  - FREEWAY_ACCESS_RAMP
+  - UNKNOWN_LANE_CHOICE
+  - LEFT_LANE
+  - MIDDLE_LANE
+  - RIGHT_LANE
+  - UNKNOWN_TURNING_KIND

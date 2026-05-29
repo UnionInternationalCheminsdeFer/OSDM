@@ -1,0 +1,43 @@
+type: object
+description: >
+  Passenger Category predefines a set of passenger specification properties that
+  result to offer of a specific passenger type. 
+
+  `title` is the localized name of the passenger category and `specification`
+  describes exact passenger specification that may results into offer for
+  selected
+
+  passenger category. Passenger category specification doesn't guarante
+  availability of expected passenger type on offered trip.
+  `appliedPassengerType` must always be checked in the offer response.
+additionalProperties: false
+required:
+  - title
+  - specification
+properties:
+  base:
+    type:
+      - boolean
+      - 'null'
+    default: false
+    description: |
+      Indicate whether this passenger category should be preselected 
+      as a default option in the passenger selection. Usually results 
+      to a "full fare" or "adult fare" offers.
+  additional:
+    type:
+      - boolean
+      - 'null'
+    default: false
+    description: >
+      Indicate whether this passenger category should be always visible in UI or
+      folded into "additional" section.
+  title:
+    description: |
+      Default and localized name of the passenger category.
+    $ref: ./Text.yml
+  specification:
+    description: >
+      Exact passenger specification to be used in order to request an offer for
+      given passenger category.
+    $ref: ./AnonymousPassengerSpecification.yml

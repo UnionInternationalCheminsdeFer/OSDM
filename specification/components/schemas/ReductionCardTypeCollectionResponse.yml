@@ -1,0 +1,13 @@
+type: object
+additionalProperties: false
+properties:
+  problems:
+    type: array
+    items:
+      $ref: ./Problem.yml
+  reductionCardTypes:
+    type: array
+    items:
+      $ref: ./ReductionCardType.yml
+  _links:
+    $ref: ./Links.yml

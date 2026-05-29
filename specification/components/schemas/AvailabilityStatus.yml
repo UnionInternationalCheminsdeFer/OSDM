@@ -1,0 +1,8 @@
+description: |
+  status of the place or coach
+type: string
+enum:
+  - ALLOCATED
+  - FREE
+  - RESTRICTED
+default: FREE

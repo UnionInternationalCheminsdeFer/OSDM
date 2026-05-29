@@ -1,0 +1,10 @@
+description: |
+  Symbology to use when rendering the binary data.
+type: string
+enum:
+  - AZTEC
+  - Code128A
+  - Code128B
+  - Code128C
+  - QR
+  - TEXT
