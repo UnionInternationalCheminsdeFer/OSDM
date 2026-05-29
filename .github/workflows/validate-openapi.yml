@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - dev-osdm-v4
+  workflow_dispatch:
 
 jobs:
   validate:
