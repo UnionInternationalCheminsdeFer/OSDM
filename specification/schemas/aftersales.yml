@@ -211,16 +211,16 @@ ConfirmedRefund:
       items:
         $ref: '#/RefundedFulfillmentSpecification'
       minItems: 1
-    issuedFulfillmentIds:
+    issuedFulfillmentRefs:
       description: |
-        IDs of the new fulfillments issued with this refund
+        new fulfillments issued with this refund (only available after confirmation)
       type: array
       items:
-        type: string
-    issuedVouchers:
+        $ref: ./fulfillment.yml#/FulfillmentRef
+    issuedVoucherRefs:
       type: array
       items:
-        $ref: ./_common.yml#/VoucherInformation
+        $ref: ./fulfillment.yml#/VoucherRef
     refundFeeRefs:
       description: |
         reference to Applied Fees covering the refund fee. Providing the reference
@@ -540,10 +540,10 @@ ExchangeOperation:
       type: array
       items:
         $ref: ./fulfillment.yml#/FulfillmentRefs
-    issuedVouchers:
+    issuedVoucherRefs:
       type: array
       items:
-        $ref: ./_common.yml#/VoucherInformation
+        $ref: ./fulfillment.yml#/VoucherRef
     trips:
       type: array
       items:

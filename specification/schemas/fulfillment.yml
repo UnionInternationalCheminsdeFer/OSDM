@@ -202,12 +202,14 @@ Fulfillment:
       $ref: '#/FulfillmentUsage'
     issuer:
       $ref: ./_common.yml#/CompanyRef
-    fulfillmentDocuments:
+    fulfillmentDocumentRefs:
       description: |
-        Final document created for fulfillment.
+        References to the fulfillment documents.
       type: array
       items:
-        $ref: '#/FulfillmentDocument'
+        type: string
+        description: |
+          Fulfillment document ID
     issuingLanguage:
       type: string
       description: the issuing language (ISO-639-1 language code).
@@ -244,10 +246,16 @@ FulfillmentCollectionResponse:
       type: array
       items:
         $ref: '#/Fulfillment'
-    issuedVouchers:
+    fulfillmentDocuments:
       type: array
       items:
-        $ref: ./_common.yml#/VoucherInformation
+        $ref: '#/FulfillmentDocument'
+    issuedVoucherRefs:
+      type: array
+      items:
+        $ref: '#/VoucherRef'
+    _links:
+      $ref: ./_common.yml#/Links
 FulfillmentConstraint:
   type: object
   additionalProperties: false
@@ -289,10 +297,15 @@ FulfillmentDocument:
     Document created for fulfillment. Either downloadLink + downloadExpiry or content must
     be provided.
   required:
+  - id
   - medium
   - type
   - format
   properties:
+    id:
+      type: string
+      description: |
+        Technical reference. Required for referencing from fulfillment.fulfillmentDocumentRefs
     medium:
       $ref: '#/FulfillmentMediaType'
     type:
@@ -562,6 +575,12 @@ FulfillmentResponse:
         $ref: ./_common.yml#/Problem
     fulfillment:
       $ref: '#/Fulfillment'
+    fulfillmentDocuments:
+      description: |
+        Final document created for fulfillment.
+      type: array
+      items:
+        $ref: '#/FulfillmentDocument'
 FulfillmentsPatchRequest:
   type: object
   additionalProperties: false
@@ -687,3 +706,22 @@ SiSType:
   x-extensible-enum:
   - REGISTRY
   - PEER2PEER
+VoucherRef:
+  type: object
+  description: |
+    reference to a voucher issued during the sales process
+  additionalProperties: false
+  required:
+  - issuer
+  - code
+  properties:
+    issuer:
+      $ref: ./_common.yml#/CompanyRef
+    code:
+      description: |
+        voucher code provided by the issuer
+      type: string
+    fulfillmentRef:
+      description: |
+        reference to the fulfillment of the voucher.
+      $ref: '#/FulfillmentRefs'
