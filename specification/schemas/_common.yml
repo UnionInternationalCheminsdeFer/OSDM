@@ -1,3 +1,7 @@
+AccountingId:
+  description: id used as reference to OSDM in the settlement data exchange
+  type: string
+  maxLength: 256
 AccountingRef:
   description: |
     reference to accounting data in case the accounting is not provided by the API provider
@@ -12,7 +16,7 @@ AccountingRef:
         ids of accounting data used to link the booking part with accounting data in the billing send by the accounting company
       type: array
       items:
-        type: string
+         $ref: '#/AccountingId'
 ApiNextVersion:
   type: object
   description: |
