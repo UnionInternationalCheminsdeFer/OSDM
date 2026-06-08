@@ -7354,6 +7354,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Product'
+        exchangedBookedOfferRefs:
+          $ref: ./booking.yml#/ExchangedBookedOfferRefs
 
     BookedOfferAncillaryRequest:
       type: object
@@ -10122,6 +10124,57 @@ components:
           type: array
           items:
             type: string
+
+    ExchangedBookedOfferRefs:
+      description: |
+        OfferId for the exchanged offers
+      properties:
+        offerId:
+          type: string
+          maxLength: 32768
+          nullable: false
+        admissionIds:
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+          nullable: true
+        reservationIds:
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+          nullable: true
+        ancillaryIds:
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+          nullable: true
+        passengerIds:
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+          nullable: true
+        fareIds:
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+          nullable: true
+        continuousServiceIds:
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+          nullable: true
+        feeIds:
+          type: array
+          items:
+            type: string
+            maxLength: 32768
+          nullable: true
 
     ExchangeOffer:
       type: object
