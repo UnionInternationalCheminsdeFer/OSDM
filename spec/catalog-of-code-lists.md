@@ -1126,6 +1126,7 @@ Other cards should start with the RICS code of the issuer.
 | `MD`                                        |  terms and conditions according to SMPS regulation   |
 | `EU_PRR`                                    |  terms and conditions according to EU-PRR regulation |
 | `CIT_AJC`                                   |  `CIT Agreement on Journey Continuation` applies     |
+| `RAILTEAM_HOTNAT`                           |  Railteam agreement Hop On The Next Available Train  |
 
 ## Reservation Preference Group <a name="ReservationPreferenceGroup">
 
