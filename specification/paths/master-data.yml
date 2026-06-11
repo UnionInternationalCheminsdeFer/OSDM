@@ -17,6 +17,14 @@
       - $ref: ../OSDM-online-api.yml#/components/parameters/ifNoneMatch
       - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
       - $ref: ../OSDM-online-api.yml#/components/parameters/page
+      - name: layoutIds
+          in: query
+          description: |
+            optional list of layout Ids to be retrieved. If missing or empty all layouts are requested.
+          schema:
+            type: array
+            items:
+              type: string       
     responses:
       '200':
         description: |
