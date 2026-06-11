@@ -271,6 +271,11 @@ CoachDeckLayout:
       type: string
       maxLength: 255
       nullable: false
+   nameTranslation
+     description: Translations for the name
+     type: array
+     items: 
+        $ref: ./_common.yml#/Translation   
     dimension:
       $ref: '#/GridDimension'
     lowFloorEntry:
