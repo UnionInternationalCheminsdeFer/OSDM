@@ -9,8 +9,8 @@ required:
   - deckLevel
 properties:
   name:
-    type: string
-    maxLength: 255
+    type:
+      $ref:  ./_common.yml#/Text
   dimension:
     $ref: ./GridDimension.yml
   lowFloorEntry:
