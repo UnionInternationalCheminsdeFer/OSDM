@@ -1026,8 +1026,9 @@ PlaceSelection:
       items:
         $ref: '#/SelectedCompartment'
     tripLegCoverage:
-      $ref: ./trip.yml#/TripLegCoverage
       deprecated: true
+      $ref: ./trip.yml#/TripLegCoverage
+
 PlaceSelectionFlow:
   description: |
     Known Values:
