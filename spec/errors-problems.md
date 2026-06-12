@@ -151,19 +151,19 @@ implementations:
 
 | **Code**                  | **Description**                                                                               |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
-| `RESOURCE_NOT_FOUND`      | The requested (sub) resource could not be found. Could be deleted or expired                  |
-| `OPERATION_NOT_PERMITTED` | Trying to perform an operation that is not permitted.                                         |
-| `NO_RESULTS`              | The search did not return any result                                                          |
-| `VALIDATION_ERROR`        | The request contains incorrect information                                                    |
-| `MALFORMED_REQUEST`       | The request does not match the OSDM specification. Possible version mismatch                  |
-| `MISSING_INFORMATION`     | Missing information. Provide the mandatory information and try again                          |
-| `PARAMETER_NOT_SUPPORTED` | A request parameter or parameter value is not supported and has been ignored                  |
-| `INVALID_INPUT`           | Provided input is invalid.                                                                    |
-| `UNKNOWN_ERROR`           | Unexpected or unspecified error occurred                                                      |
-| `PROPERTY_SUBSTITUTED`    | Requested property is not available and is substituted. Check the response for the substitute |
-| `PARTIAL_SUCCESS`         | The request could not be fully processed and is partially processed                           |
-| `SERVICE_UNAVAILABLE`     | The service is currently not available                                                        |
-| `UNAUTHORIZED`            | Client is not authorized                                                                      |
+| `RESOURCE_NOT_FOUND`      <a name="RESOURCE_NOT_FOUND">     | The requested (sub) resource could not be found. Could be deleted or expired                  |
+| `OPERATION_NOT_PERMITTED` <a name="OPERATION_NOT_PERMITTED"> | Trying to perform an operation that is not permitted.                                         |
+| `NO_RESULTS`              <a name="NO_RESULTS"> | The search did not return any result                                                          |
+| `VALIDATION_ERROR`        <a name="VALIDATION_ERROR"> | The request contains incorrect information                                                    |
+| `MALFORMED_REQUEST`       <a name="MALFORMED_REQUEST"> | The request does not match the OSDM specification. Possible version mismatch                  |
+| `MISSING_INFORMATION`     <a name="MISSING_INFORMATION"> | Missing information. Provide the mandatory information and try again                          |
+| `PARAMETER_NOT_SUPPORTED` <a name="PARAMETER_NOT_SUPPORTED"> | A request parameter or parameter value is not supported and has been ignored                  |
+| `INVALID_INPUT`           <a name="INVALID_INPUT"> | Provided input is invalid.                                                                    |
+| `UNKNOWN_ERROR`           <a name="UNKNOWN_ERROR"> | Unexpected or unspecified error occurred                                                      |
+| `PROPERTY_SUBSTITUTED`    <a name="PROPERTY_SUBSTITUTED"> | Requested property is not available and is substituted. Check the response for the substitute |
+| `PARTIAL_SUCCESS`         <a name="PARTIAL_SUCCESS"> | The request could not be fully processed and is partially processed                           |
+| `SERVICE_UNAVAILABLE`     <a name="SERVICE_UNAVAILABLE"> | The service is currently not available                                                        |
+| `UNAUTHORIZED`            <a name="UNAUTHORIZED"> | Client is not authorized                                                                      |
 
 ### Standardized Functional Errors <a name="StandardizedFunctionalErrors">
 
@@ -173,43 +173,44 @@ implementations:
 
 | **Functional area** | **Code**                                     | **Title**                                                                                                                                                 |
 | ------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Places              | `PLACE_INVALID_CHARACTERS`                   | Invalid characters in the search string                                                                                                                   |
-| Places              | `PLACE_NO_RESULTS`                           | The search did not return any result                                                                                                                      |
-| Trips               | `TRIP_INVALID_CHARACTERS`                    | A search criteria value contains invalid value or invalid characters                                                                                      |
-| Trips               | `TRIP_SEARCH_CRITERIA_OUTSIDE_BOUNDARY`      | A search criteria lies outside accepted boundaries                                                                                                        |
-| Trips               | `TRIP_PLACE_UNKNOWN`                         | A provided place is not known                                                                                                                             |
-| Trips               | `TRIP_NO_SEARCH_RESULT`                      | The search did not return any result                                                                                                                      |
-| Trips               | `TRIP_SPECIFICATION_AMBIGUOUS`               | The trip specification in a request contains ambiguous services. This might occure in case the indication of the carrier is missing.                    |
-| Offers              | `OFFER_TRIP_NOT_FOUND`                       | The referenced trip cannot be found (expired ?)                                                                                                           |
-| Offers              | `OFFER_INVALID_CHARACTERS`                   | A search criteria value contains invalid value or invalid characters                                                                                      |
-| Offers              | `OFFER_SEARCH_CRITERIA_OUT_OF_BOUNDS`        | A search criteria lies outside accepted boundaries                                                                                                        |
-| Offers              | `OFFER_PLACE_UNKNOWN`                        | A provided place is not known                                                                                                                             |
-| Offers              | `OFFER_SCHEDULE_MISMATCH`                    | Schedule mismatch between systems                                                                                                                         |
-| Offers              | `OFFER_INVALID_PASSENGER_SPECIFICATION`      | At least one passenger specification is invalid                                                                                                           |
-| Offers              | `BOOKING_RESERVATION_OPTION_NOT_AVAILABLE`   | The requested reservation option is not available on this vehicle                                                                                         |
-| Offers              | `BOOKING_PASSENGER_PROPERTY_NOT_MODIFIABLE`  | Attempted to modify a read-only property (passenger)                                                                                                      |
-| Offers              | `BOOKING_OFFERPART_PROPERTY_NOT_MODIFIABLE`  | Attempted to modify a read-only property (reservation, ancillary or fare)                                                                                 |
-| Offers              | `ALTERNATIVE_SYSTEM_PROPOSAL`                | The current system cannot provide an offer for the requested trip, but identifies one or more OSDM/918.1 systems that might be able to fulfill the request|
-| Booking             | `BOOKING_OFFER_NOT_FOUND`                    | Referenced Offer or offer part not found (offer expired ?)                                                                                                |
-| Booking             | `BOOKING_INCOMPATIBLE_OFFER_PART`            | Incompatible offer part with the offer                                                                                                                    |
-| Booking             | `BOOKING_INFORMATION_MISSING`                | Missing information                                                                                                                                       |
-| Booking             | `BOOKING_INSUFFICIENT_AVAILABILITY`          | Insufficient availability for one of the requested products                                                                                               |
-| Booking             | `BOOKING_PLACE_NOT_AVAILABLE`                | The requested place is not available                                                                                                                      |
-| Booking             | `BOOKING_MODIFY_READ_ONLY_PROPERTY`          | Attempted to modify a read-only property                                                                                                                  |
-| Booking             | `BOOKING_BOOKING_ALREADY_CONFIRMED`          | The booking is already confirmed                                                                                                                          |
-| Booking             | `BOOKING_BOOKING_ALREADY_CANCELLED`          | The booking is already cancelled                                                                                                                          |
-| Booking             | `BOOKING_MODIFICATION_NOT_ALLOWED`           | The booking and does not allow modifications                                                                                                              |
-| Booking             | `BOOKING_VEHICLE_TOO_HEAVY`                  | A vehicle is too heavy to be transported by car carriage. This relates to the current load of the train or coach, so booking might be possible at another |
-| Booking             | `BOOKING_VEHICLE_WEIGHT_MISSING`             | A vehicle is not possible without providing the weight of the vehicle                                                                                     |
-| Fulfillment Check / Confirmation Check | `CONFIRMATION_CHECK_FAILED` | Any of checks on Booking or Refund Offer failed, and it can't be advanced in the Confirmation step. |
-| Confirm             | `CONFIRMATION_PARTIAL_SUCCESS`               | Partial success                                                                                                                                           |
-| Confirm             | `CONFIRMATION_OPERATION_NOT_SUPPORTED`       | Operation not supported on one of the offer parts                                                                                                         |
-| Confirm             | `CONFIRMATION_UNKNOWN_ERROR`                 | Unknown error on provider side                                                                                                                            |
-| Confirm             | `CONFIRMATION_INFORMATION_MISSING`           | Missing information in the booking                                                                                                                        |
-| Confirm             | `CONFIRMATION_FULFILLMENT_TYPE_NOT_SELECTED` | Fulfillment type not selected                                                                                                                             |
-| Confirm             | `CONFIRMATION_BOOKING_ALREADY_CONFIRMED`     | Booking already confirmed                                                                                                                                 |
-| Confirm             | `CONFIRMATION_BOOKING_ALREADY_FULFILLED`     | Booking already fulfilled                                                                                                                                 |
-| Confirm             | `CONFIRMATION_BOOKING_ALREADY_CANCELLED`     | Booking already cancelled                                                                                                                                 |
+| Places              | `PLACE_INVALID_CHARACTERS`        <a name="PLACE_INVALID_CHARACTERS"> | Invalid characters in the search string                                                                                                                   |
+| Places              | `PLACE_NO_RESULTS`                 <a name="PLACE_NO_RESULTS">           | The search did not return any result                                                                                                                      |
+| Trips               | `TRIP_INVALID_CHARACTERS`          <a name="TRIP_INVALID_CHARACTERS">           | A search criteria value contains invalid value or invalid characters                                                                                      |
+| Trips               | `TRIP_SEARCH_CRITERIA_OUTSIDE_BOUNDARY`  <a name="TRIP_SEARCH_CRITERIA_OUTSIDE_BOUNDARY">     | A search criteria lies outside accepted boundaries                                                                                                        |
+| Trips               | `TRIP_PLACE_UNKNOWN`          <a name="TRIP_PLACE_UNKNOWN">                | A provided place is not known                                                                                                                             |
+| Trips               | `TRIP_NO_SEARCH_RESULT`        <a name="TRIP_NO_SEARCH_RESULT">                | The search did not return any result                                                                                                                      |
+| Trips               | `TRIP_SPECIFICATION_AMBIGUOUS`    <a name="TRIP_SPECIFICATION_AMBIGUOUS">            | The trip specification in a request contains ambiguous services. This might occure in case the indication of the carrier is missing.                    |
+| Offers              | `OFFER_TRIP_NOT_FOUND`            <a name="OFFER_TRIP_NOT_FOUND">            | The referenced trip cannot be found (expired ?)                                                                                                           |
+| Offers              | `OFFER_INVALID_CHARACTERS`       <a name="OFFER_INVALID_CHARACTERS">             | A search criteria value contains invalid value or invalid characters                                                                                      |
+| Offers              | `OFFER_SEARCH_CRITERIA_OUT_OF_BOUNDS`     <a name="OFFER_SEARCH_CRITERIA_OUT_OF_BOUNDS">    | A search criteria lies outside accepted boundaries                                                                                                        |
+| Offers              | `OFFER_PLACE_UNKNOWN`                <a name="OFFER_PLACE_UNKNOWN">         | A provided place is not known                                                                                                                             |
+| Offers              | `OFFER_SCHEDULE_MISMATCH`             <a name="OFFER_SCHEDULE_MISMATCH">        | Schedule mismatch between systems                                                                                                                         |
+| Offers              | `OFFER_INVALID_PASSENGER_SPECIFICATION`    <a name="OFFER_INVALID_PASSENGER_SPECIFICATION">   | At least one passenger specification is invalid                                                                                                           |
+| Offers              | `BOOKING_RESERVATION_OPTION_NOT_AVAILABLE`  <a name="BOOKING_RESERVATION_OPTION_NOT_AVAILABLE">  | The requested reservation option is not available on this vehicle                                                                                         |
+| Offers              | `BOOKING_PASSENGER_PROPERTY_NOT_MODIFIABLE`  <a name="BOOKING_PASSENGER_PROPERTY_NOT_MODIFIABLE">  | Attempted to modify a read-only property (passenger)                                                                                                      |
+| Offers              | `BOOKING_OFFERPART_PROPERTY_NOT_MODIFIABLE`  <a name="BOOKING_OFFERPART_PROPERTY_NOT_MODIFIABLE">  | Attempted to modify a read-only property (reservation, ancillary or fare)                                                                                 |
+| Offers              | `ALTERNATIVE_SYSTEM_PROPOSAL`               <a name="ALTERNATIVE_SYSTEM_PROPOSAL"> | The current system cannot provide an offer for the requested trip, but identifies one or more OSDM/918.1 systems that might be able to fulfill the request|
+
+| Booking             | `BOOKING_OFFER_NOT_FOUND`                    <a name="BOOKING_OFFER_NOT_FOUND"> | Referenced Offer or offer part not found (offer expired ?)                                                                                                |
+| Booking             | `BOOKING_INCOMPATIBLE_OFFER_PART`           <a name="BOOKING_INCOMPATIBLE_OFFER_PART">  | Incompatible offer part with the offer                                                                                                                    |
+| Booking             | `BOOKING_INFORMATION_MISSING`              <a name="BOOKING_INFORMATION_MISSING">   | Missing information                                                                                                                                       |
+| Booking             | `BOOKING_INSUFFICIENT_AVAILABILITY`         <a name="BOOKING_INSUFFICIENT_AVAILABILITY">  | Insufficient availability for one of the requested products                                                                                               |
+| Booking             | `BOOKING_PLACE_NOT_AVAILABLE`               <a name="BOOKING_PLACE_NOT_AVAILABLE"> | The requested place is not available                                                                                                                      |
+| Booking             | `BOOKING_MODIFY_READ_ONLY_PROPERTY`        <a name="BOOKING_MODIFY_READ_ONLY_PROPERTY">   | Attempted to modify a read-only property                                                                                                                  |
+| Booking             | `BOOKING_BOOKING_ALREADY_CONFIRMED`        <a name="BOOKING_BOOKING_ALREADY_CONFIRMED">   | The booking is already confirmed                                                                                                                          |
+| Booking             | `BOOKING_BOOKING_ALREADY_CANCELLED`        <a name="BOOKING_BOOKING_ALREADY_CANCELLED">   | The booking is already cancelled                                                                                                                          |
+| Booking             | `BOOKING_MODIFICATION_NOT_ALLOWED`          <a name="BOOKING_MODIFICATION_NOT_ALLOWED">  | The booking and does not allow modifications                                                                                                              |
+| Booking             | `BOOKING_VEHICLE_TOO_HEAVY`                <a name="BOOKING_VEHICLE_TOO_HEAVY">   | A vehicle is too heavy to be transported by car carriage. This relates to the current load of the train or coach, so booking might be possible at another |
+| Booking             | `BOOKING_VEHICLE_WEIGHT_MISSING`          <a name="BOOKING_VEHICLE_WEIGHT_MISSING">    | A vehicle is not possible without providing the weight of the vehicle                                                                                     |
+| Fulfillment Check / Confirmation Check | `CONFIRMATION_CHECK_FAILED`  <a name="CONFIRMATION_CHECK_FAILED">| Any of checks on Booking or Refund Offer failed, and it can't be advanced in the Confirmation step. |
+| Confirm             | `CONFIRMATION_PARTIAL_SUCCESS`               <a name="CONFIRMATION_PARTIAL_SUCCESS"> | Partial success                                                                                                                                           |
+| Confirm             | `CONFIRMATION_OPERATION_NOT_SUPPORTED`       <a name="CONFIRMATION_OPERATION_NOT_SUPPORTED"> | Operation not supported on one of the offer parts                                                                                                         |
+| Confirm             | `CONFIRMATION_UNKNOWN_ERROR`              <a name="CONFIRMATION_UNKNOWN_ERROR">    | Unknown error on provider side                                                                                                                            |
+| Confirm             | `CONFIRMATION_INFORMATION_MISSING`         <a name="CONFIRMATION_INFORMATION_MISSING">   | Missing information in the booking                                                                                                                        |
+| Confirm             | `CONFIRMATION_FULFILLMENT_TYPE_NOT_SELECTED`  <a name="CONFIRMATION_FULFILLMENT_TYPE_NOT_SELECTED">| Fulfillment type not selected                                                                                                                             |
+| Confirm             | `CONFIRMATION_BOOKING_ALREADY_CONFIRMED`      <a name="CONFIRMATION_BOOKING_ALREADY_CONFIRMED">| Booking already confirmed                                                                                                                                 |
+| Confirm             | `CONFIRMATION_BOOKING_ALREADY_FULFILLED`      <a name="CONFIRMATION_BOOKING_ALREADY_FULFILLED"> | Booking already fulfilled                                                                                                                                 |
+| Confirm             | `CONFIRMATION_BOOKING_ALREADY_CANCELLED`     <a name="CONFIRMATION_BOOKING_ALREADY_CANCELLED"> | Booking already cancelled                                                                                                                                 |
 
 The lists can be extended by an implementor but at least these errors must be
 captured and they must be presented with the codes listed here above.
@@ -227,17 +228,17 @@ all implementations:
 
 | **Functional area** | **Code**                             | **Title**                                                                        |
 | ------------------- | ------------------------------------ | -------------------------------------------------------------------------------- |
-| Reservation         | `PLACE_PROPERTY_NOT_RESPECTED`       | Place property not respected                                                     |
-| Offers              | `OFFER_NO_RESULTS`                   | The trip search did not return any result                                        |
-| Offers              | `RETURN_OFFER_LIST_TRUNCATED`        | The offer search for return offers could not return all requested combinations   |
-| Trips               | `FULLY_BOOKED`                       | The trip is fully booked                                                         |
-| Trips/Offers        | `BOOKING_NOT_YET_OPEN`               | Booking of the requested products is not yet open                                |
-| Trips/Offers        | `BOOKING_ALREADY_CLOSED`             | Booking of the requested products is already closed                              |
-| Trips/Offers        | `BOOKING_TEMPORARILY_CLOSED`         | Booking of the requested products is temporarily closed                          |
-| Trips/Offers        | `VALUE_NOT_SUPPORTED`                | A request parameter value is not supported and has been ignored                  |
-| Offers/Booking      | `OFFER_PART_PRICE_CHANGE`            | A request to confirm an offer results in bookedofferparts with a price change    |       
-| Booking             | `OVERRULE_CODE_NOT_ACCEPTED`         | The overrule code provided was not accepted                                      |
-| Booking             | `OVERRULE_CODE_NOT_SUPPORTED`        | The overrule code provided is not supported                                      |
+| Reservation         | `PLACE_PROPERTY_NOT_RESPECTED`     <a name="PLACE_PROPERTY_NOT_RESPECTED">    | Place property not respected                                                     |
+| Offers              | `OFFER_NO_RESULTS`                 <a name="OFFER_NO_RESULTS">   | The trip search did not return any result                                        |
+| Offers              | `RETURN_OFFER_LIST_TRUNCATED`      <a name="RETURN_OFFER_LIST_TRUNCATED">   | The offer search for return offers could not return all requested combinations   |
+| Trips               | `FULLY_BOOKED`                     <a name="FULLY_BOOKED">    | The trip is fully booked                                                         |
+| Trips/Offers        | `BOOKING_NOT_YET_OPEN`             <a name="BOOKING_NOT_YET_OPEN">   | Booking of the requested products is not yet open                                |
+| Trips/Offers        | `BOOKING_ALREADY_CLOSED`           <a name="BOOKING_ALREADY_CLOSED">   | Booking of the requested products is already closed                              |
+| Trips/Offers        | `BOOKING_TEMPORARILY_CLOSED`       <a name="BOOKING_TEMPORARILY_CLOSED">  | Booking of the requested products is temporarily closed                          |
+| Trips/Offers        | `VALUE_NOT_SUPPORTED`              <a name="VALUE_NOT_SUPPORTED">   | A request parameter value is not supported and has been ignored                  |
+| Offers/Booking      | `OFFER_PART_PRICE_CHANGE`          <a name="OFFER_PART_PRICE_CHANGE">   | A request to confirm an offer results in bookedofferparts with a price change    |       
+| Booking             | `OVERRULE_CODE_NOT_ACCEPTED`       <a name="OVERRULE_CODE_NOT_ACCEPTED">  | The overrule code provided was not accepted                                      |
+| Booking             | `OVERRULE_CODE_NOT_SUPPORTED`      <a name="OVERRULE_CODE_NOT_SUPPORTED">  | The overrule code provided is not supported                                      |
 
 As for the warnings, an implementor is required to use these warning codes and
 descriptions for the situations identified in order to be compliant.
