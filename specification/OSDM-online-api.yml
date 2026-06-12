@@ -126,6 +126,8 @@ paths:
     $ref: ./paths/places.yml#/~1places~1{placeId}
   /trips-collection:
     $ref: ./paths/trips.yml#/~1trips-collection
+  /trips-collections:
+    $ref: ./paths/trips.yml#/~1trips-collections
   /trips-collections/{tripsCollectionId}:
     $ref: ./paths/trips.yml#/~1trips-collections~1{tripsCollectionId}
   /trips:
