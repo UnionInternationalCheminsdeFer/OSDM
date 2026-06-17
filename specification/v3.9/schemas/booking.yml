@@ -216,6 +216,8 @@ BookedOffer:
       type: array
       items:
         $ref: ./product.yml#/Product
+    exchangedBookedOfferRefs:
+      $ref: ./booking.yml#/ExchangedBookedOfferRefs
 BookedOfferAncillaryRequest:
   type: object
   additionalProperties: false
@@ -973,6 +975,56 @@ ContinuousServiceBookingPart:
         description: id of the tip for staff (e.g. taxi)
         type: string
         maxLength: 1024
+ExchangedBookedOfferRefs:
+  description: |
+    OfferId for the exchanged offers
+  properties:
+    offerId:
+      type: string
+      maxLength: 32768
+      nullable: false
+    admissionIds:
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+      nullable: true
+    reservationIds:
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+      nullable: true
+    ancillaryIds:
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+      nullable: true
+    passengerIds:
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+      nullable: true
+    fareIds:
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+      nullable: true
+    continuousServiceIds:
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+      nullable: true
+    feeIds:
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+      nullable: true
 PartReference:
   type: object
   description: reference to a fare or offerPart
