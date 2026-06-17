@@ -13524,7 +13524,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Method of payment used by the customer to the distributor. On input of voucher the remaining sum attribute and the applied voucher amount are not present.
+        Method of payment used by the customer to the distributor.
       required:
         - type
       properties:
@@ -13533,8 +13533,14 @@ components:
         voucherInformation:
           $ref: '#/components/schemas/VoucherInformation'
         remainingVoucherAmount:
+          description: |
+            Remaining amount on the voucher after payment.
+          readOnly: true
           $ref: '#/components/schemas/Price'
         appliedVoucherAmount:
+          description: |
+            Voucher amount applied to the payment.
+          readOnly: true
           $ref: '#/components/schemas/Price'
         transactionId:
           type:
