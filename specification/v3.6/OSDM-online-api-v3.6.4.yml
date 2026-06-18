@@ -159,7 +159,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       responses:
         '200':
           description: |
@@ -397,7 +396,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
         - name: embed
           in: query
           description: |
@@ -1167,7 +1165,7 @@ paths:
                 description: |
                   The language of translatable strings in the response (see RFC2616-sec14.12).
         '207':
-          description: | 
+          description: |
             Partial success – some updates failed. updatedPassengers contains successfully updates. Failed updates are listed in the problems with at least following attributes:
             * problem.status indicates the http code of the encountered error for the specific request item, f ex "404" if the given passenger Id is not found
             * requestPointer indicates the specific request item the error relates to, f ex: #/passengerBatchUpdateRequest/passengers[2]/id
@@ -1198,6 +1196,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
   /bookings/{bookingId}/purchaser:
     get:
       tags:
@@ -2248,7 +2247,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       requestBody:
         required: true
         content:
@@ -2920,11 +2918,11 @@ paths:
       tags:
         - Refund
       summary: Deletes a refundOffer without waiting for expiry.
-      description: | 
-               In case the unconfimed refund offer is not sored in the booking 
-               object the delete request must return an ok (http 204). In case the 
-               refund offer is already confirmed and can not be deleted the reply 
-               must be an error (http 409 conflict).
+      description: |
+        In case the unconfimed refund offer is not sored in the booking 
+        object the delete request must return an ok (http 204). In case the 
+        refund offer is already confirmed and can not be deleted the reply 
+        must be an error (http 409 conflict).
       operationId: deleteRefundOffers
       parameters:
         - $ref: '#/components/parameters/requestor'
@@ -4072,7 +4070,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       responses:
         '200':
           description: |
@@ -4225,7 +4222,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       responses:
         '200':
           description: |
@@ -4284,7 +4280,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       responses:
         '200':
           description: |
@@ -5098,7 +5093,7 @@ paths:
       operationId: getAvailabilitiesContinuousServices
       parameters:
         - $ref: '#/components/parameters/requestor'
-        - $ref: '#/components/parameters/acceptLanguage'        
+        - $ref: '#/components/parameters/acceptLanguage'
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - name: contextId
@@ -5180,7 +5175,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
         - name: productCode
           in: query
           description: the product code
@@ -5778,6 +5772,7 @@ components:
             $ref: '#/components/schemas/PromotionCode'
         appliedReductions:
           type: array
+          deprecated: true
           items:
             $ref: '#/components/schemas/CardReference'
         indicatedConsumption:
@@ -6395,6 +6390,11 @@ components:
           type: boolean
           nullable: true
           default: false
+        isProviderFee:
+          description: |
+            The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
+          type: boolean
+          default: true
 
     AfterSalesOverrideDetails:
       description: |
@@ -6666,7 +6666,7 @@ components:
           format: date-time
           description: |
             Date from which the next version is available.
-          example: "2025-01-01T00:00:00+01:00"
+          example: '2025-01-01T00:00:00+01:00'
           nullable: true
 
     ApiVersion:
@@ -6689,7 +6689,7 @@ components:
           description: |
             Date after which the API version will no longer be available.
           nullable: true
-          example: "2024-12-31T23:59:59+01:00"
+          example: '2024-12-31T23:59:59+01:00'
         nextVersion:
           $ref: '#/components/schemas/ApiNextVersion'
           nullable: true
@@ -9197,6 +9197,29 @@ components:
       nullable: false
       example: 'CHF'
 
+    CurrencyAmount:
+      type: object
+      description: amount in a currency used when not VAT can be provided
+      additionalProperties: false
+      required:
+        - currency
+        - amount
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        amount:
+          description: |
+            amount in cents
+          type: integer
+          format: int32
+        scale:
+          description: |
+            scale of the amount - the number of positions after the comma
+          type: integer
+          nullable: true
+          format: int32
+          default: 2
+
     CustomerComplaint:
       type: object
       additionalProperties: false
@@ -9339,7 +9362,7 @@ components:
           $ref: '#/components/schemas/StopPlaceRef'
         stopPlaceName:
           description: |
-                  Name of the station where the direction changes
+            Name of the station where the direction changes
           type: string
           nullable: false
 
@@ -9359,6 +9382,21 @@ components:
         - 'LEFT'
         - 'UP'
         - 'DOWN'
+
+    DistributionMode:
+      description: |
+        booking parts in product mode are provided as complete products where the tickets and 
+        conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assambled 
+        into tickes on the OSDM client side. In fare mode the conditions are defined on the client 
+        side the restrictions on conditions and combinability layed down in the booking part (fare). 
+        By definition admissions and ancillaries are in PRODUCT_MODE and fares are in _MODE. Reservation 
+        might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
+        requested in the offer part type list.
+      type: string
+      enum:
+        - 'PRODUCT_MODE'
+        - 'FARE_MODE'
+      default: 'PRODUCT_MODE'
 
     Document:
       type: object
@@ -9617,7 +9655,9 @@ components:
           type: string
           nullable: true
         offerSummary:
-          description:  The offerSummary must be provided for product based offers. It is not needed for fares.
+          description:
+            The offerSummary must be provided for product based offers. It is
+            not needed for fares.
           $ref: '#/components/schemas/OfferSummary'
         createdOn:
           type: string
@@ -9758,6 +9798,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentOption'
+        exchangeFee:
+          description: |
+            In some business models the distributor has the right to define the exchange fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditributor submits the amount to the fare provider in exchange fee amount and the fare provider uses this amount to create the fees including the VAT split.
+          $ref: '#/components/schemas/CurrencyAmount'
         embed:
           type: array
           items:
@@ -10014,12 +10058,15 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidity'
         availablePlaces:
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlace'
         placeSelection:
+          deprecated: true
           $ref: '#/components/schemas/PlaceSelection'
         placeAllocation:
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/PlaceAllocation'
@@ -10057,6 +10104,7 @@ components:
         luggageConstraint:
           $ref: '#/components/schemas/LuggageConstraint'
         availablePreferences:
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlacePreferences'
@@ -10144,7 +10192,7 @@ components:
             - fareConnectionPoint
           properties:
             fareConnectionPoint:
-              $ref: '#/components/schemas/FareConnectionPoint'          
+              $ref: '#/components/schemas/FareConnectionPoint'
             name:
               type: string
               nullable: true
@@ -10212,6 +10260,11 @@ components:
           $ref: '#/components/schemas/ApplicabilityType'
         transactionContext:
           $ref: '#/components/schemas/TransactionContextType'
+        isProviderFee:
+          description: |
+            The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
+          type: boolean
+          default: true
         status:
           $ref: '#/components/schemas/FeeStatus'
         distributorBookingRef:
@@ -10288,7 +10341,10 @@ components:
           type: string
           nullable: true
         bookingParts:
-          description: reference to all booking parts that contributed to this fulfillment. If the fulfillment is made based on booking parts these references must be provided.
+          description:
+            reference to all booking parts that contributed to this fulfillment.
+            If the fulfillment is made based on booking parts these references
+            must be provided.
           type: array
           items:
             $ref: '#/components/schemas/BookingPartReference'
@@ -10545,6 +10601,7 @@ components:
         - 'RCT2'
         - 'UIC_PDF'
         - 'TICKETLESS'
+        - 'WALLET'
 
     FulfillmentOption:
       type: object
@@ -11670,7 +11727,9 @@ components:
           type: string
           nullable: true
         offerSummary:
-          description: The offerSummary must be provided for product based offers. It is not needed for fares.
+          description:
+            The offerSummary must be provided for product based offers. It is
+            not needed for fares.
           $ref: '#/components/schemas/OfferSummary'
         createdOn:
           type: string
@@ -12386,9 +12445,9 @@ components:
         - 'COACH_GROUP'
         - 'SHIP'
         - 'BUS'
-        - 'ON_DEMAND_SERVICE'  
-        - 'BICYCLE' 
-        - 'SCOOTER' 
+        - 'ON_DEMAND_SERVICE'
+        - 'BICYCLE'
+        - 'SCOOTER'
         - 'TAXI'
 
     Passenger:
@@ -12606,7 +12665,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Method of payment used by the customer to the distributor. On input of voucher the remaining sum attribute and the applied voucher amount are not present.
+        Method of payment used by the customer to the distributor. On input of voucher the remaining sum attribute is not present.
       required:
         - type
       properties:
@@ -12615,8 +12674,6 @@ components:
         voucherInformation:
           $ref: '#/components/schemas/VoucherInformation'
         remainingVoucherAmount:
-          $ref: '#/components/schemas/Price'
-        appliedVoucherAmount:
           $ref: '#/components/schemas/Price'
         transactionId:
           type: string
@@ -12890,14 +12947,14 @@ components:
       additionalProperties: false
       description: |
         A place group groups places by service class and optionally by accommodation sub type. A place group not necessarily needs to be visualized (e.g. as a rectangle). Visualization can be done using ServiceIcons and GraphicElements.
-         
+        
         Nevertheless, a place group can be useful for rendering of coach decks/places for which no place availabilities were returned, as further information (service class, accommodation sub type) can be displayed .
-         
+        
         If availabilities were returned for a certain place, travel class and accommodation sub type values returned in the availability response must be displayed (they replace the static travel class / accommodation sub type defined on the place group). Reason: travel class and accommodation sub type values can dynamically change for each vehicle run.
-         
+        
         Example 1: Class upgrade
         A customer with a second class reservation ticket might be placed on a first class seat.
-         
+        
         Example 2: New/more specific AccommodationSubType
         AccommodationSubType=BUSINESS defined in static master data might be changed into AccommodationSubType=BUSINESS_COMFORT on certain vehicle runs.
       required:
@@ -13143,6 +13200,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SelectedAccommodation'
+        compartments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedCompartment'
         places:
           type: array
           items:
@@ -14372,6 +14433,10 @@ components:
           description: ids of passengers to be removed from the fulfillment
           items:
             type: string
+        refundFee:
+          description: |
+            In some business models the distributor has the right to define the refund fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditsributor submits the amount to the fare provider in refund fee amount and the fare provider uses this amount to create the fees including the VAT split.
+          $ref: '#/components/schemas/CurrencyAmount'
 
     RefundStatus:
       type: string
@@ -14788,6 +14853,10 @@ components:
         - type: object
           additionalProperties: false
           properties:
+            distributionMode:
+              description:
+                indication of a reservation to be used as a fare or as a product
+              $ref: '#/components/schemas/DistributionMode'
             placeSelection:
               $ref: '#/components/schemas/PlaceSelection'
             placeAllocation:
@@ -14852,6 +14921,10 @@ components:
         - type: object
           additionalProperties: false
           properties:
+            distributionMode:
+              description:
+                indication of a reservation to be used as a fare or as a product
+              $ref: '#/components/schemas/DistributionMode'
             ancillaries:
               type: array
               items:
@@ -15195,6 +15268,29 @@ components:
             type: string
           nullable: true
 
+    SelectedCompartment:
+      type: object
+      additionalProperties: false
+      description: |
+        selected compartment in case of graphical booking
+      required:
+        - coachNumber
+        - compartmentNumber
+        - passengerRefs
+      properties:
+        coachNumber:
+          type: string
+          nullable: false
+        compartmentNumber:
+          type: string
+          nullable: false
+        passengerRefs:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          nullable: false
+
     SelectedPlace:
       type: object
       additionalProperties: false
@@ -15480,7 +15576,7 @@ components:
         - 'REAL_BOARDING_ALIGHTING'
       default: 'ORIGIN_DESTINATION_ONLY'
       description: |
-         Influences what stops are to be returned in response (ORIGIN_DESTINATION_ONLY returns no intermediate stops; REAL_BOARDING_ALIGHTING returns all stops except virtual stops). Default value: ORIGIN_DESTINATION_ONLY
+        Influences what stops are to be returned in response (ORIGIN_DESTINATION_ONLY returns no intermediate stops; REAL_BOARDING_ALIGHTING returns all stops except virtual stops). Default value: ORIGIN_DESTINATION_ONLY
 
     StopCallStatus:
       type: object
@@ -15756,10 +15852,10 @@ components:
           $ref: '#/components/schemas/DatedJourney'
 
     TimeFrameSegmentation:
-     type: string
-     enum:
-      - 'HOUR'
-      - 'DAY'
+      type: string
+      enum:
+        - 'HOUR'
+        - 'DAY'
 
     Tip:
       type: object
@@ -16014,11 +16110,11 @@ components:
       type: string
       x-extensible-enum:
         - 'PET'
-        - 'DOG' 
-        - 'ACCOMP_DOG'        
+        - 'DOG'
+        - 'ACCOMP_DOG'
         - 'BICYCLE'
-        - 'LUGGAGE'        
-        - 'PRAM'        
+        - 'LUGGAGE'
+        - 'PRAM'
         - 'CAR'
         - 'MOTOCYCLE'
         - 'TRAILER'
@@ -17052,7 +17148,7 @@ components:
             $ref: '#/components/schemas/CoachAvailability'
         directionChanges:
           description: |
-            List of direction changes (in direction of travel). 
+            List of direction changes (in direction of travel).
           type: array
           items:
             $ref: '#/components/schemas/DirectionChange'
