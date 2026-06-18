@@ -326,14 +326,14 @@ paths:
           $ref: '#/components/responses/DefaultErrorResponse'
       security:
         - oAuth2ClientCredentials: []
-  /trips-collection:
+  /trips-collections:
     post:
       tags:
         - Trips
       summary: returns a collection of trips for a given OJP trip request
       description: |
         Returns trips for a given trip request based on the OJP specification.
-      operationId: postTrips
+      operationId: postTripsCollections
       parameters:
         - $ref: '#/components/parameters/requestor'
         - $ref: '#/components/parameters/acceptLanguage'
