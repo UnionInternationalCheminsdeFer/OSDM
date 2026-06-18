@@ -6,7 +6,8 @@ info:
   title: UIC 90918-10 - OSDM webhooks
   version: 3.8.0
   description: |
-    Specifications for the OSDM API standard. The OSDM webhook specification allows an allocator to inform a distributor about changes to a booking or a complaint.
+    Specifications for the OSDM API standard. The OSDM webhook specification allows an 
+    allocator to inform a distributor about changes to a booking or a complaint.
   contact:
     name: OSDM Working Group
     url: "https://osdm.io"
@@ -47,6 +48,12 @@ webhooks:
         content:
           application/json:
             schema:
+              discriminator:
+                propertyName: objectType
+                mapping:
+                  BookingEvent: "#/components/schemas/BookingEvent"
+                  ComplaintEvent: "#/components/schemas/ComplaintEvent"
+                  ReimbursementEvent: "#/components/schemas/ReimbursementEvent"
               oneOf:
                 - $ref: "#/components/schemas/BookingEvent"
                 - $ref: "#/components/schemas/ComplaintEvent"
@@ -84,50 +91,74 @@ components:
           scopes: {}
 
   schemas:
-    BookingEvent:
+    AbstractEvent:
       type: object
-      description: An event that has occurred on a booking.
+      description: Abstract base schema for all webhook events.
       required:
         - objectType
         - summary
-        - type
         - revision
-        - bookingId
         - resources
       properties:
         objectType:
           type: string
-          enum:
-            - BookingEvent
-          default: BookingEvent
+          description: Discriminator field identifying the concrete event type.
+        id:
+          type: string
+          description: ID of the event
+        resourceId:
+          type: string
+          description: ID of the resource
+        timeStamp:
+          type: string
+          format: date-time
+        requestor:
+          type: string
+        messageVersion:
+          type: string
+          default: "1.0.0"
+          description: version of the event message
+        reason:
+          type: string
+          description: reason why the resource was edited
+          examples:
+            - "Tunderstorm"
+            - "Strike"
         summary:
           type: string
-          description: >-
-            Human readable description of what has changed on the booking. e.g.
-            "Train ICE 34 at 2021-12-22 13:30 has been cancelled".
-        type:
-          $ref: "#/components/schemas/BookingChangeType"
-        revision:
-          $ref: "#/components/schemas/Revision"
-        bookingId:
-          type: string
-          description: The ID of the booking that has changed.
-        affectedBookingPartIds:
-          description: list of ids of affected booking parts 
-          type: array
-          items:
-            type: string
-        affectedFulfillmentIds:
-          description: list of ids of affected fulillments 
-          type: array
-          items:
-            type: string
+          description: Human readable description of what has changed.
         resources:
-          description: >-
-            Resources to be called by receiver to update a booking.
+          description: Resources to be called by receiver to update the object.
           type: array
           items:
             $ref: "#/components/schemas/Resource"
+
+    BookingEvent:
+      description: An event that has occurred on a booking.
+      allOf:
+        - $ref: "#/components/schemas/AbstractEvent"
+        - type: object
+          required:
+            - type
+            - bookingId
+          properties:
+            objectType:
+              type: string
+              enum:
+                - BookingEvent
+              default: BookingEvent
+            type:
+              $ref: "#/components/schemas/BookingChangeType"
+            affectedBookingPartIds:
+              description: list of ids of affected booking parts 
+              type: array
+              items:
+                type: string
+            affectedFulfillmentIds:
+              description: list of ids of affected fulillments 
+              type: array
+              items:
+                type: string
 
     BookingChangeType:
       type: string
@@ -166,76 +197,38 @@ components:
       example: FULFILLMENT_REFUNDED
 
     ComplaintEvent:
-      type: object
-      description: >-
-        An event that has occurred on a complaint.
-      required:
-        - objectType
-        - summary
-        - type
-        - revision
-        - complaintId
-        - resources
-      properties:
-        objectType:
-          type: string
-          enum:
-            - ComplaintEvent
-          default: ComplaintEvent
-        summary:
-          type: string
-          description: >-
-            Human readable description of what has changed on the complaint.
-            E.g. "Complaint 123456 has been settled".
-        type:
-          $ref: "#/components/schemas/BackOfficeChangeType"
-        revision:
-          $ref: "#/components/schemas/Revision"
-        complaintId:
-          type: string
-          description: The ID of the complaint.
-        resources:
-          description: >-
-            Resources to be called by receiver to update a complaint.
-          type: array
-          items:
-            $ref: "#/components/schemas/Resource"
+      description: An event that has occurred on a complaint.
+      allOf:
+        - $ref: "#/components/schemas/AbstractEvent"
+        - type: object
+          required:
+            - type
+            - complaintId
+          properties:
+            objectType:
+              type: string
+              enum:
+                - ComplaintEvent
+              default: ComplaintEvent
+            type:
+              $ref: "#/components/schemas/BackOfficeChangeType"
 
     ReimbursementEvent:
-      type: object
-      description: >-
-        An event that has occurred on a reimbursement.
-      required:
-        - objectType
-        - summary
-        - type
-        - revision
-        - reimbursementId
-        - resources
-      properties:
-        objectType:
-          type: string
-          enum:
-            - ReimbursementEvent
-          default: ReimbursementEvent
-        summary:
-          type: string
-          description: >-
-            Human readable description of what has changed on the reimbursement.
-            E.g. "Reimbursement 456-xyz has been settled".
-        type:
-          $ref: "#/components/schemas/BackOfficeChangeType"
-        revision:
-          $ref: "#/components/schemas/Revision"
-        reimbursementId:
-          type: string
-          description: The ID of the reimbursement.
-        resources:
-          description: >-
-            Resources to be called by receiver to update a reimbursement.
-          type: array
-          items:
-            $ref: "#/components/schemas/Resource"
+      description: An event that has occurred on a reimbursement.
+      allOf:
+        - $ref: "#/components/schemas/AbstractEvent"
+        - type: object
+          required:
+            - type
+            - reimbursementId
+          properties:
+            objectType:
+              type: string
+              enum:
+                - ReimbursementEvent
+              default: ReimbursementEvent
+            type:
+              $ref: "#/components/schemas/BackOfficeChangeType"
 
     BackOfficeChangeType:
       type: string
@@ -250,20 +243,6 @@ components:
         - INITIATED
 
     ##
-
-    Revision:
-      type: object
-      description: The revision of the event.
-      required:
-        - name
-        - timestamp
-      properties:
-        name:
-          type: string
-          example: 1
-        timestamp:
-          type: string
-          format: date-time
 
     Resource:
       type: object
