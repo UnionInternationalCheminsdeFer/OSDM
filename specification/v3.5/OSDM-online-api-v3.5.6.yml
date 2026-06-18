@@ -32,7 +32,7 @@ servers:
       benerail Sandbox
   - url: https://api.sandbox.turnit.tech/retailer
     description: |
-      Turnit Sandbox      
+      Turnit Sandbox
 
 tags:
   - name: Places
@@ -357,7 +357,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
         - name: embed
           in: query
           description: |
@@ -933,6 +932,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailableResponse'
         'default':
           $ref: '#/components/responses/DefaultErrorResponse'
+
 
   /bookings/{bookingId}/passengers:
     get:
@@ -2107,7 +2107,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       requestBody:
         required: true
         content:
@@ -3909,7 +3908,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       responses:
         '200':
           description: |
@@ -4026,7 +4024,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       responses:
         '200':
           description: |
@@ -4085,7 +4082,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
       responses:
         '200':
           description: |
@@ -4980,7 +4976,6 @@ paths:
           in: query
           schema:
             type: string
-          deprecated: true
         - name: productCode
           in: query
           description: the product code
@@ -6211,7 +6206,7 @@ components:
           description: |
             The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
           type: boolean
-          default: true          
+          default: true
 
     AfterSalesOverrideDetails:
       description: |
@@ -8964,7 +8959,7 @@ components:
           type: integer
           nullable: true
           format: int32
-          default: 2   
+          default: 2
 
     CustomerComplaint:
       type: object
@@ -9112,18 +9107,18 @@ components:
 
     DistributionMode:
       description: |
-         booking parts in product mode are provided as complete products where the tickets and 
-         conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assambled 
-         into tickes on the OSDM client side. In fare mode the conditions are defined on the client 
-         side the restrictions on conditions and combinability layed down in the booking part (fare). 
-         By definition admissions and ancillaries are in PRODUCT_MODE and fares are in FARE_MODE. Reservation 
-         might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
-         requested in the offer part type list.
+        Booking parts in product mode are provided as complete products where the tickets and 
+        conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assembled 
+        into tickets on the OSDM client side. In fare mode the conditions are defined on the client 
+        side the restrictions on conditions and combinability laid down in the booking part (fare). 
+        By definition admissions and ancillaries are in PRODUCT_MODE and fares are in FARE_MODE. Reservation 
+        might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
+        requested in the offer part type list.
       type: string
       enum:
         - 'PRODUCT_MODE'
         - 'FARE_MODE'
-      default:  'PRODUCT_MODE'   
+      default: 'PRODUCT_MODE'
 
     Document:
       type: object
@@ -9498,8 +9493,8 @@ components:
           $ref: '#/components/schemas/TripSearchCriteria'
         exchangeFee:
           description: |
-            In some business models the distributor has the right to define the exchange fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditributor submits the amount to the fare provider in exchange fee amount and the fare provider uses this amount to create the fees including the VAT split. 
-          $ref: '#/components/schemas/CurrencyAmount'          
+            In some business models the distributor has the right to define the exchange fee amount for a fare provided by the fare provider. This need to be indicated in the fare after sales rules to be applied. In this case the distributors submits the amount to the fare provider in exchange fee amount and the fare provider uses this amount to create the fees including the VAT split.
+          $ref: '#/components/schemas/CurrencyAmount'
         nonTripSearchCriteria:
           $ref: '#/components/schemas/NonTripSearchCriteria'
         requestedSections:
@@ -9781,15 +9776,15 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidity'
         availablePlaces:
-          deprecated: true           
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlace'
         placeSelection:
-          deprecated: true           
+          deprecated: true
           $ref: '#/components/schemas/PlaceSelection'
         placeAllocation:
-          deprecated: true           
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/PlaceAllocation'
@@ -9827,7 +9822,7 @@ components:
         luggageConstraint:
           $ref: '#/components/schemas/LuggageConstraint'
         availablePreferences:
-          deprecated: true           
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlacePreferences'
@@ -9915,10 +9910,10 @@ components:
             - fareConnectionPoint
           properties:
             fareConnectionPoint:
-              $ref: '#/components/schemas/FareConnectionPoint'          
+              $ref: '#/components/schemas/FareConnectionPoint'
             name:
               type: string
-              nullable: true          
+              nullable: true
 
     FareReferenceStation:
       type: object
@@ -9987,7 +9982,7 @@ components:
           description: |
             The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
           type: boolean
-          default: true          
+          default: true
         status:
           $ref: '#/components/schemas/FeeStatus'
         distributorBookingRef:
@@ -10319,6 +10314,7 @@ components:
         - 'RCT2'
         - 'UIC_PDF'
         - 'TICKETLESS'
+        - 'WALLET'
 
     FulfillmentOption:
       type: object
@@ -12487,14 +12483,14 @@ components:
       additionalProperties: false
       description: |
         A place group groups places by service class and optionally by accommodation sub type. A place group not necessarily needs to be visualized (e.g. as a rectangle). Visualization can be done using ServiceIcons and GraphicElements.
-         
+        
         Nevertheless, a place group can be useful for rendering of coach decks/places for which no place availabilities were returned, as further information (service class, accommodation sub type) can be displayed .
-         
+        
         If availabilities were returned for a certain place, travel class and accommodation sub type values returned in the availability response must be displayed (they replace the static travel class / accommodation sub type defined on the place group). Reason: travel class and accommodation sub type values can dynamically change for each vehicle run.
-         
+        
         Example 1: Class upgrade
         A customer with a second class reservation ticket might be placed on a first class seat.
-         
+        
         Example 2: New/more specific AccommodationSubType
         AccommodationSubType=BUSINESS defined in static master data might be changed into AccommodationSubType=BUSINESS_COMFORT on certain vehicle runs.
       required:
@@ -12744,6 +12740,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SelectedPlace'
+        compartments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedCompartment'
         tripLegCoverage:
           $ref: '#/components/schemas/TripLegCoverage'
           deprecated: true
@@ -13951,9 +13951,9 @@ components:
             type: string
         refundFee:
           description: |
-            In some business models the distributor has the right to define the refund fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditsributor submits the amount to the fare provider in refund fee amount and the fare provider uses this amount to create the fees including the VAT split. 
-          $ref: '#/components/schemas/CurrencyAmount'   
-          
+            In some business models the distributor has the right to define the refund fee amount for a fare provided by the fare provider. This need to be indicated in the fare after sales rules to be applied. In this case the distributor submits the amount to the fare provider in refund fee amount and the fare provider uses this amount to create the fees including the VAT split.
+          $ref: '#/components/schemas/CurrencyAmount'
+
     RefundStatus:
       type: string
       enum:
@@ -14370,8 +14370,9 @@ components:
           additionalProperties: false
           properties:
             distributionMode:
-              description: indication of a reservation to be used as a fare or as a product
-              $ref: '#/components/schemas/DistributionMode'            
+              description:
+                indication of a reservation to be used as a fare or as a product
+              $ref: '#/components/schemas/DistributionMode'
             placeSelection:
               $ref: '#/components/schemas/PlaceSelection'
             placeAllocation:
@@ -14437,8 +14438,9 @@ components:
           additionalProperties: false
           properties:
             distributionMode:
-              description: indication of a reservation to be used as a fare or as a product
-              $ref: '#/components/schemas/DistributionMode'            
+              description:
+                indication of a reservation to be used as a fare or as a product
+              $ref: '#/components/schemas/DistributionMode'
             ancillaries:
               type: array
               items:
@@ -14781,6 +14783,29 @@ components:
           items:
             type: string
           nullable: true
+
+    SelectedCompartment:
+      type: object
+      additionalProperties: false
+      description: |
+        selected compartment in case of graphical booking
+      required:
+        - coachNumber
+        - compartmentNumber
+        - passengerRefs
+      properties:
+        coachNumber:
+          type: string
+          nullable: false
+        compartmentNumber:
+          type: string
+          nullable: false
+        passengerRefs:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          nullable: false
 
     SelectedPlace:
       type: object
@@ -15589,11 +15614,11 @@ components:
       type: string
       x-extensible-enum:
         - 'PET'
-        - 'DOG' 
-        - 'ACCOMP_DOG'        
+        - 'DOG'
+        - 'ACCOMP_DOG'
         - 'BICYCLE'
-        - 'LUGGAGE'        
-        - 'PRAM'        
+        - 'LUGGAGE'
+        - 'PRAM'
         - 'CAR'
         - 'MOTOCYCLE'
         - 'TRAILER'
