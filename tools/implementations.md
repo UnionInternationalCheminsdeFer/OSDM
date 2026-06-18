@@ -16,7 +16,7 @@ overview of known OSDM implementations and their status (**January 2026**).
 | Arenaways               | Retailer, Distributor & Provider         | 3.0.5    | in production | [Link](https://arenaways.com/)                                                                                          |
 | Benerail                | Product Provider                         | 3.0.2    | in production | [Link](https://benerail.com/sandbox_osdm_api/)                                                                          |
 | Benerail                | Retailer                                 | 3.4      | in production | [Link](https://benerail.com/sandbox_osdm_api/)                                                                          |
-| Bileto                  | Solution Provider, Distributor, Retailer | 3.7      | in production | [Link](https://www.bileto.com/en/blog/bileto-launches-europes-first-osdm-implementation-to-enable-next-gen-reservation) |
+| Bileto                  | Solution Provider, Distributor, Retailer | 3.10      | in production | [Link](https://www.bileto.com/en/blog/bileto-launches-europes-first-osdm-implementation-to-enable-next-gen-reservation) |
 | ČD                      | Retailer, Distributor & Fare Provider    | 3.8      | implemented  | [Link](https://www.cd.cz/)                                                                                              |
 | DB	                    | Retailer, Provider                       | 3.2.2    | in production | [Link](https://www.bahn.de)                                                                                             |
 | DB	                    | Retailer, Provider                       | 3.4      | in production | [Link](https://www.bahn.de)                                                                                             |
@@ -24,6 +24,8 @@ overview of known OSDM implementations and their status (**January 2026**).
 | Etihad Rail Mobility    | Retailer, Distributor & Provider         | 3.0.5    | implementing  | [Link](https://www.etihadrail.ae/)                                                                                      |
 | Eurail                  | Retailer, Distributor & Fare Provider    | 3.6      | implementing  | [Link](https://www.eurail.com/)                                                                                         |
 | Flygbussarna            | Retailer, Distributor & Provider         | 3.0.5    | in production | [Link](https://www.flygbussarna.se/)                                                                                    |
+| IDESKA (JIKORD)          | Provider, Distributor                               | 3.10     | implementing  | [Link](https://www.ideska.info/) |
+| IDZK (KOVED)          | Provider, Distributor, Retailer                               | 3.10     | implementing  | [Link](https://www.idzk.cz/) |
 | Hellenic Train          | Provider	                               | 3.6    	| implementing  |                                                                                                                         |
 | HitRail                 | H2O Converter                            | 2.0      | in production | [Link](https://www.hitrail.com/osdm-platform)                                                                           |
 | HitRail                 | H2O Converter                            | 3.4      | implementing  | [Link](https://www.hitrail.com/osdm-platform)                                                                           |
