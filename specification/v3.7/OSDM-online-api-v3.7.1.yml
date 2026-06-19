@@ -6912,90 +6912,6 @@ components:
         transportable:
           $ref: '#/components/schemas/TransportableSpecification'  
 
-    AlternativeSystemProposal:
-      description: |
-        This type can only be used in offer responses inside OfferCollectionResponse when the problem has the following values:
-        * Type is https://osdm.io/errors/alternative_system_proposal
-        * Code is urn:uic:problem:ALTERNATIVE_SYSTEM_PROPOSAL
-        * Status (HTTP) is 200
-        The OSDM Offer API returns an alternative system proposal when the current system cannot provide an
-        offer for the requested trip, but identifies one or more other OSDM/90918.1-capable systems that might be able
-        to fulfill the request.
-        The proposal should be returned as part of the problems section in the OfferCollectionResponse.
-        If only some of the legs or products are affected, for example in a multi-leg trip:
-        * The available offers should be returned to the caller
-        * One or more AlternativeSystemProposals should be returned as part of
-          OfferCollectionResponse's problems structure
-        * The problem pointer structure should be filled to identify the affected Leg(s) or OfferPart(s).
-          * It must contain a problem pointer for the affected trip legs, which should be priced or booked
-            in other systems. The problem pointer's responsePointer field should contain a link to the
-            affected leg inside the given trip (e.g. #/trips[1]/legs[1]/id).
-          * The scope structure may be filled with the leg's vehicle (train) number.
-          * If a partial offer is returned for a leg, then it might contain a response problem pointer pointing
-            to the affected offer parts. For example, if the system can provide an admission offer for the whole trip,
-            but the reservation offer part is missing for one leg, then the following responsePointer could be returned:
-            #/offers[1]/reservationOfferParts
-      type: object
-      required:
-      - systemOperatorCode
-      properties:
-        reservationSystemId:
-          description: |
-            The 90918.1 code of the alternative reservation system.
-          type: integer
-          example: 80
-        systemOperatorCode:
-          description: |
-            The company code (e.g. RICS code) of the alternative reservation system's operator.
-          $ref: '#/components/schemas/CompanyRef'
-          nullable: false
-          example: 'urn:uic:rics:1185'
-        scope:
-          type: array
-          items:
-            $ref: '#/components/schemas/AlternativeSystemProposalScope'
-          minItems: 0
-        priority:
-          description: |
-            If multiple alternative system proposals are returned, the provider might define a
-            priority order between them. The requestor should first use the proposal with the
-            lowest priority that matches the requestor's case based on the proposal's scope
-            and problem pointer.
-          type: integer
-          example: 1
-    AlternativeSystemProposalScope:
-      description: |
-        Defines a scope for an alternative system proposal. This object specifies the routing
-        logic for:
-        * Trips or trains hosted across multiple OSDM/UIC 918.1 reservation systems, identifying which
-          system to connect to for specific travel classes or accommodation (sub)types.
-          For example, the problem returned for a RailJet might contain two proposals: one for business class
-          pointing to ÖBB, and another pointing to MAV for first and second class (using two scopes).
-          In a more complex case, it might contain three AlternativeSystemProposals:
-              * One with business class scope pointing to ÖBB
-              * Another with first and second class scope and priority "1", also pointing to ÖBB
-              * A third with first and second class scope and priority "2", pointing to MAV, indicating
-                that the requestor should first ask ÖBB, but if an ÖBB offer is not available, for example
-                because it has run out of spaces, MAV may also be used.
-        * Offers for trips containing multiple legs. In this case, the vehicleNumber also helps the
-          requestor identify which system to connect to for each leg or journey.
-      type: object
-      required:
-      - vehicleNumber
-      properties:
-        vehicleNumber:
-          description: |
-            Vehicle number, such as the train number, for which the alternative system proposal is valid.
-          type: string
-          nullable: false
-          example: "462"
-        travelClass:
-          $ref: '#/components/schemas/TravelClass'
-        accommodationType:
-          $ref: '#/components/schemas/AccommodationType'
-        accommodationSubType:
-          $ref: '#/components/schemas/AccommodationSubType'
-
     ApplicabilityType:
       type: string
       x-extensible-enum:
@@ -14010,12 +13926,6 @@ components:
           items:
             $ref: '#/components/schemas/ProblemPointer'
             nullable: true
-          minItems: 0
-
-        alternativeSystemProposals:
-          type: array
-          items:
-            $ref: '#/components/schemas/AlternativeSystemProposal'
           minItems: 0
 
     ProblemPointer:
