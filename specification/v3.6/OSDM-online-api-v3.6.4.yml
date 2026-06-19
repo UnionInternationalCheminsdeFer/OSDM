@@ -159,6 +159,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       responses:
         '200':
           description: |
@@ -396,6 +397,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
         - name: embed
           in: query
           description: |
@@ -2247,6 +2249,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       requestBody:
         required: true
         content:
@@ -4070,6 +4073,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       responses:
         '200':
           description: |
@@ -4222,6 +4226,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       responses:
         '200':
           description: |
@@ -4280,6 +4285,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
       responses:
         '200':
           description: |
@@ -5175,6 +5181,7 @@ paths:
           in: query
           schema:
             type: string
+          deprecated: true
         - name: productCode
           in: query
           description: the product code
@@ -6750,7 +6757,7 @@ components:
           format: date-time
           description: |
             Date from which the next version is available.
-          example: '2025-01-01T00:00:00+01:00'
+          example: "2025-01-01T00:00:00+01:00"
           nullable: true
 
     ApiVersion:
@@ -6773,7 +6780,7 @@ components:
           description: |
             Date after which the API version will no longer be available.
           nullable: true
-          example: '2024-12-31T23:59:59+01:00'
+          example: "2024-12-31T23:59:59+01:00"
         nextVersion:
           $ref: '#/components/schemas/ApiNextVersion'
           nullable: true
