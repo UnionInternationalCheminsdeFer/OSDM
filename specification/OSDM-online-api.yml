@@ -1037,6 +1037,8 @@ components:
       $ref: ./schemas/_common.yml#/RegulatoryCondition
     Reimbursement:
       $ref: ./schemas/complaint.yml#/Reimbursement
+    ReimbursementBreakdownItem:
+      $ref: ./schemas/aftersales.yml#/ReimbursementBreakdownItem
     ReimbursementDecision:
       $ref: ./schemas/complaint.yml#/ReimbursementDecision
     ReimbursementMethod:
