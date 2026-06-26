@@ -291,6 +291,15 @@ ExchangeOffer:
       type: array
       items:
         $ref: '#/ExchangeBreakdownItem'
+    reimbursementBreakdown:
+      description: |
+        Per-channel breakdown of the amount to be reimbursed to the purchaser
+        (the refundableAmount), supporting split reimbursements (e.g. part to a
+        voucher, part to the original payment mean). Lets the reimbursable split
+        be seen at quotation stage, before the exchange is confirmed.
+      type: array
+      items:
+        $ref: '#/ReimbursementBreakdownItem'
     admissionOfferParts:
       type: array
       items:
@@ -443,6 +452,15 @@ ExchangeOperation:
       type: array
       items:
         $ref: ./_common.yml#/VoucherInformation
+    reimbursementBreakdown:
+      description: |
+        Per-channel breakdown of the amount reimbursed to the purchaser,
+        supporting split reimbursements (e.g. part to a voucher, part to the
+        original payment mean). Each voucher channel carries its voucher
+        information and amount inline.
+      type: array
+      items:
+        $ref: '#/ReimbursementBreakdownItem'
     trips:
       type: array
       items:
@@ -461,6 +479,13 @@ ExchangeOperationPatchRequest:
       $ref: ./fulfillment.yml#/FulfillmentType
     preferredFulfillmentMedia:
       $ref: ./fulfillment.yml#/FulfillmentMediaType
+    usedPaymentMethods:
+      description: |
+        Payment methods used to settle the exchange surcharge (the
+        amountToBePaid of the selected exchange offer).
+      type: array
+      items:
+        $ref: ./_common.yml#/PaymentMethod
     embed:
       description: |
         Influences whether referenced resources are returned in full or as references only.
@@ -599,6 +624,17 @@ RefundOffer:
       type: array
       items:
         $ref: '#/RefundOfferBreakdownItem'
+    reimbursementBreakdown:
+      description: |
+        Per-channel breakdown of the amount reimbursed to the purchaser (the
+        refundableAmount), supporting split reimbursements (e.g. part to a
+        voucher, part to the original payment mean). Each voucher channel
+        carries its voucher information and amount inline. This is authoritative
+        for the realized per-channel amounts; reimbursementMethod only states
+        the offer's headline channel.
+      type: array
+      items:
+        $ref: '#/ReimbursementBreakdownItem'
     reimbursementMethod:
       $ref: ./complaint.yml#/ReimbursementMethod
     _links:
@@ -727,6 +763,38 @@ RefundType:
   - 'YES'
   - 'NO'
   - WITH_CONDITION
+ReimbursementBreakdownItem:
+  type: object
+  additionalProperties: false
+  description: |
+    One channel through which (part of) the reimbursable amount is returned to
+    the purchaser. A list of these expresses split reimbursements (e.g. part to
+    a voucher, part to the original payment mean), which the singular
+    reimbursementMethod cannot represent.
+  required:
+  - type
+  properties:
+    type:
+      $ref: ./_common.yml#/PaymentType
+    reimbursementAmount:
+      description: |
+        Amount returned to the purchaser through this channel. Authoritative for
+        the VOUCHER channel, where the system knows the credited amount (mirroring
+        appliedVoucherAmount on PaymentMethod). For other channels such as
+        ORIGINAL_ACCOUNT the amount is declarative and may be omitted when the
+        system cannot state it.
+      allOf:
+      - $ref: ./_common.yml#/Price
+    voucherInformation:
+      description: |
+        Identifies the voucher this amount is credited to when type is VOUCHER.
+        This is the per-voucher key that lets a specific amount be attached to a
+        specific voucher (which issuedVouchers cannot express). A voucher that
+        also appears in issuedVouchers is newly issued; one that appears here but
+        not in issuedVouchers is a re-credit of an existing voucher. Provided once
+        the voucher is known; not available at quotation stage.
+      allOf:
+      - $ref: ./_common.yml#/VoucherInformation
 ReleaseOffer:
   type: object
   additionalProperties: false
