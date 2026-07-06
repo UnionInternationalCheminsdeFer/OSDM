@@ -24,9 +24,6 @@ servers:
   - url: https://osdm-5.platform.bileto.zone/api
     description: |
       Bileto Sandbox (osdm.cz)
-  - url: https://benerail-stg-apim.azure-api.net
-    description: |
-      benerail Sandbox
   - url: https://api.sandbox.turnit.tech/retailer
     description: |
       Turnit Sandbox
