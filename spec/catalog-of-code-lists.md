@@ -319,9 +319,9 @@ of by the customer.
 | `UPPER_BED`               | N                      | Y                | Y              | Upper bed or couchette                                                                                              | `PLACE_OR_COMPARTMENT_LOCATION`  |
 | `UPPER_DECK`              | N                      | Y                | Y              | Upper deck in a double deck train                                                                                   | `PLACE_OR_COMPARTMENT_LOCATION`  |
 | `VIDEO`                   | N                      | Y                | Y              | Place with video entertainment                                                                                      | `PLACE_OR_COMPARTMENT_FEATURE`   |
-| `WHEELCHAIR`              | Y                      | Y                | Y              | Wheelchair place                                                                                                    | `SPECIAL_COMPARTMENT_TYPE`       |
 | `WHEELCHAIR_AND_SEAT`     | Y                      | Y                | Y              | Wheelchair place with additional seat                                                                               | `SPECIAL_COMPARTMENT_TYPE`       |
 | `WHEELCHAIR_NO_SEAT`      | Y                      | Y                | Y              | Wheelchair space without additional seat                                                                            | `SPECIAL_COMPARTMENT_TYPE`       |
+| `COMPANION_SEAT`          | Y                      | Y                | Y              | Seat close by a wheelchair space for the companion of a passenger with a wheelchair                                 | `SPECIAL_COMPARTMENT_TYPE`       |
 | `WIFI`                    | N                      | Y                | Y              | Place with WiFi access point                                                                                        | `PLACE_OR_COMPARTMENT_FEATURE`   |
 | `WINDOW_SEAT`             | N                      | Y                | Y              | Place at the window                                                                                                 | `PLACE_OR_COMPARTMENT_LOCATION`  |
 | `RESTRICTED_VIEW`         | N                      | N                | Y              | Place at the window with restricted view                                                                            | `PLACE_OR_COMPARTMENT_LOCATION`  |
@@ -938,17 +938,12 @@ units. E.g.:
 | `ADULT`        | Adult defined by the carrier depending on the age                                                                                                               |                    | X              |                | X            | adult                                         |
 | `SENIOR`       | Senior defined by the carrier depending on the age                                                                                                              |                    | X              |                | X            | senior                                        |
 | `FAMILY_CHILD` | Child associated with a family traveling together                                                                                                               |                    | X              | X              | X            | freeAddonChild                                |
-| `ACCOMP_PRM`   | Accompanying Person for PRM                                                                                                                                     |                    | X              |                | X            | adult                                         |
-| `PRM_CHILD`    | Handicapped young child accompanied by one person where the usual child according to the age price would be zero and the accompanying person would also be free |                    | X              |                | X            | child + flag passengerWithReducedMobility     |
-| `WHEELCHAIR`   | Passenger with wheel-chair                                                                                                                                      |                    |                | X              |              | wheelchair indication in the reservation data |
 | `PERSON`       | Used in requests together with date of birth and in replies in case of products that might include a change of passenger type along the route                   |                    |                | X              | X            |                                               |
-| `PRM`          | Person with reduced mobility - to be used in case of accompanying person or dog, date of birth must be provided additionally                                    |                    |                | X              |              | flag passengerWithReducedMobility             |
 | `DOG`          | A dog                                                                                                                                                           | DOG                | X              | X              | X            | dog                                           |
 | `PET`          | A pet but not a dog                                                                                                                                             | PET                | X              | X              | X            |                                               |
 | `LUGGAGE`      | Over-size luggage                                                                                                                                               | LUGGAGE            | X              | X              | X            | special luggage data                          |
 | `BICYCLE`      | A bicycle                                                                                                                                                       | BICYCLE            | X              | X              | X            | bicycle                                       |
 | `PRAM`         | A pram                                                                                                                                                          | PRAM               | X              | X              | X            | special code in the reservation data          |
-| `ACCOMP_DOG`   | An accompanying dog for a PRM                                                                                                                                   | ACCOMP_DOG         | X              | X              | X            | dog                                           |
 | `CAR`          | A car for car-carriage trains                                                                                                                                   | CAR                | X              | X              | X            | special car carriage data                     |
 | `MOTOCYCLE`    | A motorcycle for car carriage trains                                                                                                                            | MOTOCYCLE          | X              | X              | X            | special car carriage data                     |
 | `TRAILER`      | A trailer for car carriage trains                                                                                                                               | TRAILER            | X              | X              | X            | special car carriage data                     |
@@ -998,8 +993,8 @@ required.
 
 ## Personal data transfer types <a name="PersonalDataTransferType">
 
-| Code           | Description                                                                            |
-| -------------- | -------------------------------------------------------------------------------------- |
+| Code           | Description                                                                             |
+| -------------- | --------------------------------------------------------------------------------------- |
 | `BOOKING`      | The data will be transferred via the booking services                                   |
 | `PRE_BOOOKING` | The data will be transferred via the pre-booking (offer) services                       |
 | `SIS_CONTROL`  | The data will be transferred via security in system control data exchange (IRS 90918-4) |
@@ -1016,13 +1011,13 @@ required.
 
 ## PRM Need Type <a name="PRMNeedType">
 
-| Code               | Description |
-| ------------------ | ----------- |
-| `NEED_PRM_SUPPORT` |             |
-| `WHEELCHAIR`       |             |
-| `ACCOMPANYING_DOG` |             |
-| `COMPANION_SEAT`   |             |
-| `COMPANION`        |             |
+| Code               | Description                                         |
+| ------------------ | --------------------------------------------------- |
+| `WHEELCHAIR`       | Passenger with a wheelchair                         |
+| `OTHER_PRM`        | Passenger with disability not needing a wheelchair  |
+| `NEED_PRM_SUPPORT` | Passenger in need of support at the location        |
+| `COMPANION`        | Passenger accompanying a PRM passenger              |
+| `ACCOMPANYING_DOG` | Dog accompanying a PRM passenger                    |
 
 ## Product Tags <a name="ProductTags">
 
