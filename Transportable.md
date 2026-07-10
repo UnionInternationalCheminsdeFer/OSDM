@@ -20,19 +20,19 @@ Optional Output:
 
 ### Business Rule
 
-- In international rail output types are **not** needed.
+- SPG decided that in international rail output types are **not** needed.
 
 ## (Humans with Reduced Mobility) - solved 
 
 - `PRM`
 - `PRM_CHILD`
-- `WHEELCHAIR` + a Human
+- `WHEELCHAIR`
 
 ## 2. Pets
 
 - `ACCOMP_DOG`
-- `DOG`  -> `PET`
-- `PET` -> `PET_IN_CAGE`
+- `PET`          # formerly DOG
+- `PET_IN_CAGE`  # formerly PET
 
 ### Requirements on Pets
 
