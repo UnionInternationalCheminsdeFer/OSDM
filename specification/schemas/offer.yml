@@ -306,12 +306,19 @@ AncillaryOfferPart:
         items:
           $ref: '#/OfferPartReference'
       category:
+        deprecated: true
         description: |
           Categorization of the ancillary such as 'Meal' or 'Gift'.
+          Deprecated in favor to category2
         type: string
         nullable: true
+      category2:
+        $ref: '#/AncillaryCategory'
       type:
+        deprecated: true
         $ref: '#/AncillaryType'
+      subType:
+        $ref: '#/AncillarySubType'
       reservations:
         type: array
         items:
@@ -353,9 +360,11 @@ AncillarySelection:
       minItems: 1
       nullable: false
 AncillaryType:
+  deprecated: true
   description: |
     Values from the [Ancillary Category Code List](https://osdm.io/spec/catalog-of-code-lists/#AncillaryCategory)
     Listed values here are examples.
+    Deprecated in favor to AncillaryCategory
   type: string
   x-extensible-enum:
   - PAYMENT_VOUCHER
@@ -369,6 +378,67 @@ AncillaryType:
   - DRINKS_ON_BOARD
   - WIFI
   - PARKING
+AncillaryCategory:
+  description: |
+    Values from the [Ancillary Category Code List](https://osdm.io/spec/catalog-of-code-lists/#AncillaryCategory)
+    Listed values here are examples.
+  type: string
+  x-extensible-enum:
+    - PAYMENT_VOUCHER
+    - PRODUCT_ACCESS
+    - MERCHANDISE_PRODUCT
+    - LUGGAGE
+    - LUGGAGE_TRANSFER
+    - ON_BOARD_SERVICE
+    - STATION_SERVICE
+    - FOOD_ON_BOARD
+    - DRINKS_ON_BOARD
+    - WIFI
+    - PARKING
+    - ENTERTAINMENT
+    - PETS
+    - ASSISTANT
+AncillarySubType:
+  deprecated: true
+  description: |
+    Values from the [Ancillary SubType Code List](https://osdm.io/spec/catalog-of-code-lists/#ancillary-sub-types-)
+    Listed values here are examples.
+  type: string
+  x-extensible-enum:
+    - EXTRA_LARGE_SEAT
+    - SINGLE_SEAT
+    - UNCHECKED_PET
+    - CHECKED_PET
+    - ASSISTANCE_ANIMAL
+    - BREAKFAST
+    - LUNCH
+    - DINNER
+    - SNACK
+    - DRINKS_NO_ALCOHOL
+    - DRINKS_ALCOHOL
+    - FOOD_VOUCHER
+    - BIKE_NORMAL
+    - BIKE_FOLDABLE
+    - EBIKE_NO_CHARGE
+    - EBIKE_WITH_CHARGE
+    - SCOOTER
+    - BAG_SMALL
+    - BAG_LARGE
+    - CAR_SEAT
+    - BABY_COT
+    - PRAM_FOLDABLE
+    - WALKER
+    - WHEELCHAIR_FOLDED
+    - SPORTS_EQUIPMENT
+    - TRANSFER_NEXT_SERVICE
+    - HOME_DELIVERY
+    - CAR
+    - MOTORBIKE
+    - SPECIAL_VEHICLE
+    - TRAILER
+    - WIFI_STANDARD
+    - ESCORT_PMR
+    - ESCORT_MINOR
 CombinationTag:
   type: object
   additionalProperties: false
