@@ -1,6 +1,6 @@
 # On Transportables
 
-Lets' divide and conqur.
+Divide et impera.
 
 ## 1. Passenger
 
@@ -15,7 +15,7 @@ Optional Output:
 - `YOUTH`
 - `ADULT`
 - `SENIOR`
-- (`FAMILY_CHILD`) -- no longer needed
+- (`FAMILY_CHILD`) - no longer needed
 - `ACCOMP_PRM`, links to `PRM` or `PRM_CHILD`
 
 ### Business Rule
@@ -31,8 +31,8 @@ Optional Output:
 ## 2. Pets
 
 - `ACCOMP_DOG`
-- `DOG`  --> `PET`
-- `PET` --> `PET_IN_CAGE`
+- `DOG`  -> `PET`
+- `PET` -> `PET_IN_CAGE`
 
 ### Requirements on Pets
 
@@ -77,12 +77,12 @@ We add four `TranportableType`
 
 Relatioship between types: Which 
 
-|     | PT        | AT       | PBT      | VT       |
-|-----|-----------|----------|----------|----------|
-| PT  |  can have | can have | can have | can have |
-| AT  |  needs a  |          |          |          |
-| PBT |  needs a  |          |          |          |
-| VT  |  needs a  |          |          |          |
+|                         | Passenger Type   | Pet Type | PBT      | Vehivle Type       |
+|-------------------------|------------------|----------|----------|----------|
+| Passenger Type          |  needs a & can have | can have | can have | can have |
+| Pet Type                |  needs a        |          |          |          |
+| Personal Belonging Type |  needs a        |          |          |          |
+| Vehicle Type            |  needs a        |          |          |          |
 
 Existing Classes
 
@@ -111,13 +111,19 @@ PetType:
 
 PassengerType:
     type: string
-    ...
+    x-enum:
+       - `YOUNG_CHILD`
+       - `CHILD` 
+       - `YOUTH`
+       - `ADULT`
+       - `SENIOR`
+       - (`ACCOMP_PRM`)  # TBC
 
 PersonalBelongingType:
     type: string
     x-enum:
         - `BICYCLE`
-        - `DANDY_HORSE` ## for a PRM
+        - `DANDY_HORSE` # for a PRM
         - `LUGGAGE`
         - `PRAM`
         - `TANDEM_BIKE`
@@ -125,7 +131,10 @@ PersonalBelongingType:
 VehicleType:
     type: string
     x-enum:
-        ..
+      - `CAR`
+      - `MOTOCYCLE`
+      - `SPECIAL_VEHICLE`  # needs to be placed at special places in a transport train 
+      - `TRAILER`
 
 ## Classes
 
@@ -145,7 +154,7 @@ Passenger:
         type:
             $ref: PassengerType
         accompaniedPassengerRef:
-            $ref: option passenger reference
+            $ref: PassengerRef
 
 Pet:
     type: object
@@ -155,7 +164,7 @@ Pet:
         type:
             $ref: PetType
         accompaniedPassengerRef: 
-            $ref: optional passenger reference
+            $ref: PassengerRef
 
 PersonalBelonging:
     type: object
@@ -165,7 +174,7 @@ PersonalBelonging:
         type:   
             $ref: PersonalBelongingType
         accompaniedPassengerRef: 
-            $ref: optional passenger reference
+            $ref: PassengerRef
 
 Vehicle:
     type: object
@@ -173,7 +182,7 @@ Vehicle:
         - type
     properties:
         type:
-            $ref: VehcileType
+            $ref: VehicleType
         accompaniedPassengerRef:
-            $ref: option passenger reference
+            $ref: PassengerRef
 ```
