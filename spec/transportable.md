@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Transportables (Draft 10.07.2026)
+title: Transportable (Draft 10.07.2026)
 hide_hero: true
-permalink: /spec/transportables/
+permalink: /spec/transportable/
 ---
 
 ## 1. Passenger
