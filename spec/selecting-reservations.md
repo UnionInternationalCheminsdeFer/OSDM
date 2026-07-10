@@ -107,7 +107,7 @@ passenger directly.
 
 ## Fare Reservations and Interoperability with IRS 90918-1
 
-OSDM supporets product based saes and fare based sales. Also reservations are supported in the two business models:
+OSDM supports product based saes and fare based sales. Also reservations are supported in the two business models:
 
 **Product Based Model:**
 - Complete products are provided
@@ -120,11 +120,11 @@ OSDM supporets product based saes and fare based sales. Also reservations are su
 - Tickets are build by the consumer
 - Reservation fees are managed by the consumer (as a Distributor)
 
-The old IRS 90918-1 specification impleented reservations in the fare based model only. Reservations obtained via an converter (H2O converter) from 90918-1 implementations are also in the fare based model.
+The old IRS 90918-1 specification implemented reservations in the fare based model only. Reservations obtained via an converter (H2O converter) from 90918-1 implementations are also in the fare based model.
 
-The modelling of fare based reservations in OSDM has changed over the different versions. 
+The modeling of fare based reservations in OSDM has changed over the different versions. 
 
-With version 3.8 onwards fare based reservatiosn use the same reservation and reservationOfferPart objects as product based reservations. They are indicated by the 'OfferPartType' 'FARE_RESERVATION'.
+With version 3.8 onwards fare based reservations use the same reservation and reservationOfferPart objects as product based reservations. They are indicated by the 'OfferPartType' 'FARE_RESERVATION'.
 
 In the offer request one specifies the requested part type:   OfferSearchCriteria.requestedOfferParts.OfferPartType = FARE_RESERVATION 
 In the reply the fare reservation offer part is indicated by:
