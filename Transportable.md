@@ -2,11 +2,11 @@
 
 Lets' divide and conqur.
 
-## 1. Person
+## 1. Passenger
 
 Input:
 
-- (`Person`,  age)
+- (`Passenger`,  age)
 
 Optional Output:
 
@@ -22,19 +22,19 @@ Optional Output:
 
 - In international rail output types are **not** needed.
 
-## (Living Things: Humans with Reduced Mobility) - solved 
+## (Humans with Reduced Mobility) - solved 
 
 - `PRM`
 - `PRM_CHILD`
 - `WHEELCHAIR` + a Human
 
-## 2. Animals
+## 2. Pets
 
 - `ACCOMP_DOG`
-- `DOG`  --> `ANIMAL`
-- `PET` --> `ANIMAL_IN_CAGE`
+- `DOG`  --> `PET`
+- `PET` --> `PET_IN_CAGE`
 
-### Requirements
+### Requirements on Pets
 
 - Needs an Owner, i,e, Human
 
@@ -45,7 +45,7 @@ Optional Output:
 - `BICYCLE`
 - `PRAM`
 
-### Requirements
+### Requirements on Personal Belongings
 
 - Can not travel alone
 - Needs an Owner, i,e, Human (tbd)
@@ -59,36 +59,36 @@ Are transported on a car carrying vehicle
 - `SPECIAL_VEHICLE` - needs to be placed at special places in a transport train
 - `TRAILER`
 
-### Requirements
+### Requirements on Vehciles
 
 - Needs an Owner, i,e, Human
 - Needs a Licence Plate
-- Needs Dimensions (Height, Width, Length)
-- Neeeds Weight
+- Needs dimensions (height, width, length)
+- Needs Weight
 
 ## Solution Draft
 
 We add four `TranportableType`
 
 1. `PassengerType`
-2. `AnimalType`
+2. `PetType`
 3. `PersonalBelongingType`
 4. `VehicleType`
 
 Relatioship between types: Which 
 
-|     | PT         | AT       | PBT      | VT       |
-|-----|------------|----------|----------|----------|
-| PT  |  can have  | can have | can have | can have |
-| AT  |  needs a   |          |          |          |
-| PBT |  needs a   |          |          |          |
-| VT  |  needs a   |          |          |          |
+|     | PT        | AT       | PBT      | VT       |
+|-----|-----------|----------|----------|----------|
+| PT  |  can have | can have | can have | can have |
+| AT  |  needs a  |          |          |          |
+| PBT |  needs a  |          |          |          |
+| VT  |  needs a  |          |          |          |
 
 Existing Classes
 
 - `PERSON`/`PASSENGER`
 - not yet: `PERSONALBELONGING`
-- not yet: `ANIMAL`
+- not yet: `PET`
 - `VEHICLE`/ `TRANSPORTABLE`
 
 ### Proposal 
@@ -98,16 +98,16 @@ Existing Classes
 
 TranportableType:
     oneOf:
-        - $ref: AnimalType
+        - $ref: PetType
         - $ref: PassengerType
         - $ref: PersonalBelongingType
         - $ref: VehicleType
 
-AnimalType:
+PetType:
     type: string
     x-enum:
-        - `ANIMAL`
-        - `ANIMAL_IN_CAGE`
+        - `PET`
+        - `PET_IN_CAGE`
 
 PassengerType:
     type: string
@@ -117,7 +117,7 @@ PersonalBelongingType:
     type: string
     x-enum:
         - `BICYCLE`
-        - `DANDY_HORSE` - for a PRM
+        - `DANDY_HORSE` ## for a PRM
         - `LUGGAGE`
         - `PRAM`
         - `TANDEM_BIKE`
@@ -132,45 +132,48 @@ VehicleType:
 AbstractTransportable:
     type: object
     required:
-        -type
+        - type
+    properties:
+        type:
+            $ref: TransportableType
 
 Passenger:
     type: object
     required:
-      - type
+        - type
     properties:
         type:
             $ref: PassengerType
         accompaniedPassengerRef:
             $ref: option passenger reference
 
-Animal:
+Pet:
     type: object
     required:
-      - type
+        - type
     properties:
         type:
-            $ref: AnimalType
+            $ref: PetType
         accompaniedPassengerRef: 
             $ref: optional passenger reference
 
 PersonalBelonging:
     type: object
     required:
-      - type
+        - type
     properties:
         type:   
-            PersonalBelongingType
+            $ref: PersonalBelongingType
         accompaniedPassengerRef: 
             $ref: optional passenger reference
 
 Vehicle:
     type: object
     required:
-        -type
+        - type
     properties:
         type:
-            Vehcile
+            $ref: VehcileType
         accompaniedPassengerRef:
             $ref: option passenger reference
 ```
