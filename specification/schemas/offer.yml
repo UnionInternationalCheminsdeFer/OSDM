@@ -309,7 +309,7 @@ AncillaryOfferPart:
         deprecated: true
         description: |
           Categorization of the ancillary such as 'Meal' or 'Gift'.
-          Deprecated in favor to category2
+          Deprecated; use category2 instead
         type: string
         nullable: true
       category2:
@@ -364,7 +364,7 @@ AncillaryType:
   description: |
     Values from the [Ancillary Category Code List](https://osdm.io/spec/catalog-of-code-lists/#AncillaryCategory)
     Listed values here are examples.
-    Deprecated in favor to AncillaryCategory
+    Deprecated; use AncillaryCategory instead
   type: string
   x-extensible-enum:
   - PAYMENT_VOUCHER
