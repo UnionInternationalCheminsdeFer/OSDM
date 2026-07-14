@@ -1,0 +1,10 @@
+[default]
+extend-ignore-re = [
+    # ignore the value of IDs
+    '"id":\s*"[^"]*"'
+]
+
+extend-ignore-identifiers-re = [
+    "OT",
+    "FulFillment_00l"
+]
