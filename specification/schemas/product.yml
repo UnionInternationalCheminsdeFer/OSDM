@@ -73,7 +73,7 @@ Product:
       type: string
       nullable: true
     serviceConstraintTextTranslations:
-      description: Translations of the service constaint text attribute
+      description: Translations of the service constraint text attribute
       type: array
       items:
         $ref: ./_common.yml#/Translation
@@ -81,7 +81,7 @@ Product:
       type: string
       nullable: true
     carrierConstraintTextTranslations:
-      description: Translations of the carrier constaint text attribute
+      description: Translations of the carrier constraint text attribute
       type: array
       items:
         $ref: ./_common.yml#/Translation

@@ -34,8 +34,8 @@ by [WireMock Mappings](./mappings/sale-core-mappings.json).
 Use `./startMock.sh` to run mock which will run on [https://localhost:8080](https://localhost:8080).
 
 To query the mocked interface a [Postman Collection](OSDM-API.postman_collection.json) is
-provided. Additionally, [Postman Environnement](OSDM-API.postman_collection.json) is used to
-configure the [Postman](https://www.postman.com) environnement.
+provided. Additionally, [Postman Environment](OSDM-API.postman_collection.json) is used to
+configure the [Postman](https://www.postman.com) environment.
 
 ### Ids Used for Scenario 1
 

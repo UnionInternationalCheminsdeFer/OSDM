@@ -303,7 +303,7 @@ LuggageDimensionEnum:
   description: |
     Type of the dimension. Combined sizes are the sum of the sizes.
 
-    Explanation:  WIDTH_HEIGHT_LENGTH = sum of width, hight and length in cm (= linear equivalent).
+    Explanation:  WIDTH_HEIGHT_LENGTH = sum of width, height and length in cm (= linear equivalent).
   type: string
   enum:
   - HEIGHT

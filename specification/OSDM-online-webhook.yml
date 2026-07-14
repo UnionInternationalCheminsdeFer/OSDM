@@ -40,7 +40,7 @@ security:
 webhooks:
   events:
     post:
-      summary: Event occured
+      summary: Event occurred
       description: An event has occurred
       operationId: postEvent
       requestBody:
@@ -185,7 +185,7 @@ components:
         - RELEASE_INITIATED
         - CANCEL_INITIATED
         - ON_HOLD_INITIATED
-        - AFTERSALES_OVERRIDEN
+        - AFTERSALES_OVERRIDDEN
         - CONTINUOUS_SERVICE_UPDATE
         - CONTINUOUS_SERVICE_USAGE_BLOCKED
         - CONTINUOUS_SERVICE_USAGE_UNBLOCKED
