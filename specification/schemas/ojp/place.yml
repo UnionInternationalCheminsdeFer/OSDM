@@ -47,7 +47,7 @@ Place:
       description: |
         List of Transport modes calling the place.
 
-        This field is added in later OJP 2.0, used here as propertary for forward compatibility.
+        This field is added in later OJP 2.0, used here as property for forward compatibility.
       type: array
       items:
         $ref: ./_common.yml#/Mode

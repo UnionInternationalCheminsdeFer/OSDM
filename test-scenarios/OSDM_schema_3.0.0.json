@@ -3,8 +3,8 @@
 "$id": "http://uic.org//schemas/osdm/v3.0.0/onlineOSDM.json",
 "title": "OSDM Online Schemas for schema validation",
 "description": "OSDM Online Schemas for schema validation",
-"definitions": {	
-	
+"definitions": {
+
   "BadRequestResponse": {
     "description": "Bad Request (400)\n",
     "content": {
@@ -666,7 +666,7 @@
         "minimum": 0
       },
       "legs": {
-        "description": "Legs ot the trip\n",
+        "description": "Legs of the trip\n",
         "type": "array",
         "items": {
           "$ref": "#/definitions/TripLeg"
@@ -8292,7 +8292,7 @@
   "EventType": {
     "type": "string",
     "enum": [
-      "BOOKING_REAL_TIME_EVENT_OCCURED",
+      "BOOKING_REAL_TIME_EVENT_OCCURRED",
       "BOOKING_REACOMMODATED",
       "BOOKING_TRIP_CHANGED",
       "BOOKING_TRIP_CONFIRMED",
@@ -8570,7 +8570,7 @@
     }
   },
   "LuggageDimensionEnum": {
-    "description": "Type of the dimension. Combined sizes are the sum of the sizes.\n\nExplanation:  WIDTH_HEIGHT_LENGTH = sum of width, hight and length in cm (= linear equivalent).\n",
+    "description": "Type of the dimension. Combined sizes are the sum of the sizes.\n\nExplanation:  WIDTH_HEIGHT_LENGTH = sum of width, height and length in cm (= linear equivalent).\n",
     "type": "string",
     "enum": [
       "HEIGHT",

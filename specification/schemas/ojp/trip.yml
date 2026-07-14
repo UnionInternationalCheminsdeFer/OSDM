@@ -507,7 +507,7 @@ Trip:
       nullable: true
     legs:
       description: |
-        Legs ot the trip
+        Legs of the trip
       type: array
       items:
         $ref: '#/TripLeg'
@@ -822,4 +822,3 @@ TripVia:
       example: PT30M
     dataFilter:
       $ref: '#/TripDataFilter'
-

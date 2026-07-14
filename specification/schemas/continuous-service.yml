@@ -90,7 +90,7 @@ ContinuousServicesAvailabilityResponse:
       minItems: 1
       maxItems: 500
 ContinuousServiceUsage:
-  description: Usage of a continuos service vehicle
+  description: Usage of a continuous service vehicle
   type: object
   additionalProperties: false
   required:
@@ -137,7 +137,7 @@ ContinuousServiceUsage:
       type: string
       format: date-time
 ContinuousServiceUsagePatchRequest:
-  description: Usage of a continuos service vehicle
+  description: Usage of a continuous service vehicle
   type: object
   additionalProperties: false
   required:
