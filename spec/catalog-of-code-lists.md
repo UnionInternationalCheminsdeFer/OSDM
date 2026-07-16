@@ -947,6 +947,7 @@ units. E.g.:
 | `PET`          | A pet but not a dog                                                                                                                                             | PET                | X              | X              | X            |                                               |
 | `LUGGAGE`      | Over-size luggage                                                                                                                                               | LUGGAGE            | X              | X              | X            | special luggage data                          |
 | `BICYCLE`      | A bicycle                                                                                                                                                       | BICYCLE            | X              | X              | X            | bicycle                                       |
+| `PRM_SWIFTWALKER`      | A swift walker (aka Dandy Horse) of a PRM                                                                                                               | PRM_SWIFTWALKER    | X              | X              | X            |        |
 | `PRAM`         | A pram                                                                                                                                                          | PRAM               | X              | X              | X            | special code in the reservation data          |
 | `ACCOMP_DOG`   | An accompanying dog for a PRM                                                                                                                                   | ACCOMP_DOG         | X              | X              | X            | dog                                           |
 | `CAR`          | A car for car-carriage trains                                                                                                                                   | CAR                | X              | X              | X            | special car carriage data                     |
@@ -1020,6 +1021,7 @@ required.
 | ------------------ | ----------- |
 | `NEED_PRM_SUPPORT` |             |
 | `WHEELCHAIR`       |             |
+| `SWIFTWALKER`      | Swiftwalker (aka Dandy Horse)            |
 | `ACCOMPANYING_DOG` |             |
 | `COMPANION_SEAT`   |             |
 | `COMPANION`        |             |
