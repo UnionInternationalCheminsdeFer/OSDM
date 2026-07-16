@@ -1093,6 +1093,7 @@ by a specific carrier:
 | `UIC_RIT_2_2`                        | \*     | RIT reduction for RIT 2 members Second Class                | REDUCTION_CARD |                                   |
 | `UIC_RIT_3_2`                        | \*     | RIT reduction for RIT 3 members Second Class                | REDUCTION_CARD |                                   |
 | `UIC_EU_DISABILITY_CARD`             | \*     | EU Disabled Card                                            |                |                                   |
+| `UIC_EU_DISABILITY_CARD_A`           | \*     | EU Disabled Card for persons that need assistance  <br/> Note: cards with the indication "A" might not be issued in all countries and might not be accepted as category `A` in all countries. |                |                                   |
 | `UIC_EU_DISABILITY_CARD_BLIND`       | \*     | EU Disabled Card for a blind person                         |                |                                   |
 | `UIC_EU_DISABILITY_CARD_WHEELCHAIR`  | \*     | EU Disabled Card for a person using a wheelchair            |                |                                   |
 | `UIC_INT_DISABILITY_CARD`            | \*     | International Disabled Card                                 | REDUCTION_CARD | UIC_EU_DISABILITY_CARD            |
