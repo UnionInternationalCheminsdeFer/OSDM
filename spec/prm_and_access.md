@@ -77,7 +77,7 @@ The provider system should, if this is specified, request the seats appropriate
 for the wheelchair users from the seat inventory. If no more appropriate seats
 are available on a given trip or section, no offer should be returned.
 
-In a multi-person offer request, the value `COMPANION_SEAT` in
+In a multi-person offer request, the value `COMPANION` in
 `AnonymousPassengerSpecification.prmNeeds` can be used to specify who will be
 assigned the seat beside the wheelchair seat. It is not appropriate to use this
 value when no person with `prmNeeds = WHEELCHAIR` is included in the party for
