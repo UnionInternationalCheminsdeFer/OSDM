@@ -31,11 +31,12 @@ Optional Output:
 - `PRM_CHILD`
 - `WHEELCHAIR`
 
-## 2. Pets
+## 2. Animals
 
 - `ACCOMP_DOG`
-- `PET`           # formerly DOG
-- `PET_IN_CAGE`   # formerly PET
+- `ANIMALS`           # formerly DOG
+- `ANIMALS_IN_CAGE`   # formerly PET
+- `DOG`
 
 ### Requirements on Pets
 
@@ -59,6 +60,7 @@ Are transported on a car carrying vehicle
 
 - `CAR`
 - `MOTOCYCLE`       # TODO: fix typo
+- `MOTORCYCLE`      # TODO: fix typo
 - `SPECIAL_VEHICLE` # needs to be placed at special places in a transport train
 - `TRAILER`
 
@@ -71,7 +73,7 @@ Are transported on a car carrying vehicle
 
 ## Solution Draft
 
-We add four `TransportableType`
+We add an abstract `TransportableType` consisting of four concrete types:
 
 1. `PassengerType`
 2. `PetType`
@@ -80,10 +82,10 @@ We add four `TransportableType`
 
 Relationship between classes:
 
-|                     | `Passenger`         | `Pet`.   | `Personal` | `Vehicle` |
+|                     | `Passenger`         | `Animal` | `PersonalBelonging` | `Vehicle` |
 |---------------------|---------------------|----------|------------|-----------|
 | `Passenger`         |  needs a & can have | can have | can have   | can have  |
-| `Pet`               |  needs a            |          |            |           |
+| `Animal`            |  needs a            |          |            |           |
 | `PersonalBelonging` |  needs a            |          |            |           |
 | `Vehicle`           |  needs a            |          |            |           |
 
@@ -91,7 +93,7 @@ Existing Classes
 
 - `Passenger`
 - not yet: `PersonalBelonging`
-- not yet: `Pet`
+- not yet: `Animal`
 - `Vehicle`
 
 ## YAML Proposal
@@ -101,16 +103,16 @@ Existing Classes
 schema:
     TransportableType:
         oneOf:  # ToDo:  add proper inheritance
-        - $ref: PetType
+        - $ref: AnimalType
         - $ref: PassengerType
         - $ref: PersonalBelongingType
         - $ref: VehicleType
 
-    PetType:
+    AnimalType:
         type: string
         x-enum:
-        - `PET`
-        - `PET_IN_CAGE`
+        - `ANIMAL`
+        - `ANIMAL_IN_CAGE`
 
     PassengerType:
         type: string
@@ -153,19 +155,21 @@ schema:
         type: object
         required:
             - type
+            - ....
         properties:
             type:
                 $ref: PassengerType
             accompaniedPassengerRef:
                 $ref: PassengerRef
+            ...
 
-    Pet:
+    Animal:
         type: object
         required:
             - type
         properties:
             type:
-                $ref: PetType
+                $ref: AnimalType
             accompaniedPassengerRef: 
                 $ref: PassengerRef
 
@@ -183,9 +187,11 @@ schema:
         type: object
         required:
             - type
+            - ...
         properties:
             type:
                 $ref: VehicleType
             accompaniedPassengerRef:
                 $ref: PassengerRef
+            ...
 ```
