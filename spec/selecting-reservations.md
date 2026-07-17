@@ -15,6 +15,7 @@ permalink: /spec/handling-reservations/
 - [Reservation Fees](#reservation-fees)
 - [Selecting Places](#selecting-places)
 - [Place Reallocation](#place-reallocation)
+- [Fare Reservations and Interoperability with IRS 90918-1](#Fare-Reservations-and-Interoperability-with-IRS-90918-1)
 
 ## Introduction
 
@@ -99,7 +100,47 @@ of the offer.
 
 ## Place Reallocation
 
-Due to change of material a carrier might have to change the reserved seats.
+Due to change of vehicles a carrier might have to change the reserved seats.
 This is indicated via an Event of type `BOOKING_REACCOMMODATED`. In case the
-passengers e-mail address has been provided the carrier will usually inform the
+passengers e-mail address has been provided the carrier should inform the
 passenger directly.
+
+## Fare Reservations and Interoperability with IRS 90918-1
+
+OSDM supports product based and fare based sales. Also reservations are supported in the two business models:
+
+**Product Based Model:**
+- Complete products are provided
+- Tickets are provided by the provider
+- Reservation fees are managed by the provider (as a Distributor)
+
+**Fare Based Model:**
+- Parts of products are provided
+- Products are build by the consumer
+- Tickets are build by the consumer
+- Reservation fees are managed by the consumer (as a Distributor)
+
+The old IRS 90918-1 specification implemented reservations in the fare based model only. Reservations obtained 
+via an converter (H2O converter) from 90918-1 implementations are also in the fare based model.
+
+The modeling of fare based reservations in OSDM has changed over the different versions. 
+
+With version 3.8 onwards fare based reservations use the same objects from `Reservation` and `ReservationOfferPart` 
+objects as product based reservations. They are indicated by the `OfferPartType`: `FARE_RESERVATION`.
+
+In the offer request one specifies the requested part type: 
+
+```js
+OfferSearchCriteria.requestedOfferParts.OfferPartType = FARE_RESERVATION 
+```
+
+In the reply the fare reservation offer part is indicated by:
+
+  - `ReservationOfferPart.distributionMode = FARE_MODE`   (versions 3.8, .. 3.xx)
+  - `ReservationOfferPart.partType = FARE_RESERVATION`  (version 4.0)
+  - `Reservation.distributionMode = FARE_MODE`  (versions 3.8, .. 3.xx)
+  - `Reservation.partType = FARE_RESERVATION` (version 4.0)
+
+In this case, the client produces the fulfillment. On servers side, there is a `fulfillmentId` only. 
+Consequently, a call of `GET /fulfillments/{fulfillmentId}`will either return an error or an empty 
+fulfillment.
