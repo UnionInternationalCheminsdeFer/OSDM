@@ -238,6 +238,11 @@ Fulfillment:
       $ref: ./trip.yml#/TripCoverage
     continuousServiceUsage:
       $ref: ./continuous-service.yml#/ContinuousServiceUsage
+    billingReferences:
+      description: References to the fare billing information in case of Fare Approach
+      type: array
+      items:
+        $ref: ./_common.yml#/BillingReferences
     _links:
       $ref: ./_common.yml#/Links
 FulfillmentActivationPatchRequest:
