@@ -6289,7 +6289,7 @@ components:
         serviceArrival:
           $ref: '#/components/schemas/ServiceTime'
         status:
-          $ref: '#/components/schemas/StopCallStatusSpecification'
+          $ref: '#/components/schemas/StopCallStatus'
 
     Ancillary:
       allOf:
@@ -6729,7 +6729,7 @@ components:
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
         status:
-          $ref: '#/components/schemas/StopCallStatusSpecification'
+          $ref: '#/components/schemas/StopCallStatus'
 
     BookedOffer:
       type: object
@@ -10856,7 +10856,7 @@ components:
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
         status:
-          $ref: '#/components/schemas/StopCallStatusSpecification'
+          $ref: '#/components/schemas/StopCallStatus'
 
     JourneyRef:
       type: string
@@ -15127,31 +15127,6 @@ components:
           type: boolean
           nullable: true
           default: false
-        noBoardingAtStop:
-          description: |
-            Boarding will not be allowed at this stop of this journey.
-          type: boolean
-          nullable: true
-          default: false
-        noAlightingAtStop:
-          description: |
-            Alighting will not be allowed at this stop of this journey.
-          type: boolean
-          nullable: true
-          default: false
-        isBorderPoint:
-          description: |
-            Indicates whether the stop is recognized by the system as a border point between two or more countries.
-          type: boolean
-          nullable: true
-          default: false
-
-    StopCallStatusSpecification:
-      type: object
-      additionalProperties: false
-      description: |
-        Status properties for the vehicle call at this stop. Provided by OJP.
-      properties:
         noBoardingAtStop:
           description: |
             Boarding will not be allowed at this stop of this journey.
