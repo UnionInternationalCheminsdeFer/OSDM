@@ -15834,6 +15834,11 @@ components:
         coachNumber:
           type: string
           nullable: false
+        deckLevel:
+          description: |
+            Deck of the coach on which the reserved place is located. Relevant for multi-deck coaches, where the coach number alone does not identify the deck (a double-deck coach exposes two layouts under a single coach number, and place numbers are only unique per deck).
+          allOf:
+          - $ref: '#/components/schemas/CoachDeckLevel'
         compartmentNumber:
           description: |
             Compartment number as indicated at the compartment in the coach. A compartment number must be set if the compartment is selectable as a whole only.
