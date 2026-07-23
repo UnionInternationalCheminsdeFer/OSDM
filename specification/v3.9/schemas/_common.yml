@@ -209,6 +209,17 @@ BarCodeType:
   - TLB
   - SSB
   - DOSIPAS
+BillingReferences:
+  type: object
+  additionalProperties: false
+  required:
+  - accountingRef
+  - price
+  properties:
+    accountingRef:
+      $ref: '#/AccountingRef'
+    price:
+      $ref: '#/Price'
 Calendar:
   type: object
   additionalProperties: false
