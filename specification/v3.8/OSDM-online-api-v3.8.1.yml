@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 3.8.0
+  version: 3.8.1
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two modes of operation: Retailer Mode and Distributor Mode. The API works identically in both modes, except that in distributor mode the API also returns fare information.
 
@@ -8237,6 +8237,18 @@ components:
           format: int32
           nullable: true
 
+    BillingReferences:
+      type: object
+      additionalProperties: false
+      required:
+      - accountingRef
+      - price
+      properties:
+        accountingRef:
+          $ref: '#/components/schemas/AccountingRef'
+        price:
+          $ref: '#/components/schemas/Price'
+
     Calendar:
       type: object
       additionalProperties: false
@@ -11009,6 +11021,11 @@ components:
           $ref: '#/components/schemas/TripCoverage'
         continuousServiceUsage:
           $ref: '#/components/schemas/ContinuousServiceUsage'
+        billingReferences:
+          description: References to the fare billing information in case of Fare Approach
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingReferences'
         _links:
           $ref: '#/components/schemas/Links'
 
