@@ -209,7 +209,7 @@ BarCodeType:
   - TLB
   - SSB
   - DOSIPAS
-BillingReferences:
+BillingReference:
   type: object
   additionalProperties: false
   required:
