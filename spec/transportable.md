@@ -71,34 +71,34 @@ We add an abstract `TransportableType` consisting of four concrete types:
 1. `PassengerType`
 2. `PetType`
 3. `PersonalBelongingType`
-4. `RoadVehicleType`
+4. `TransportedVehilceType`
 
 Relationship between classes:
 
-|                     | `Passenger`         | `Animal` | `PersonalBelonging` | `RoadVehicle` |
-|---------------------|---------------------|----------|------------|-----------|
-| `Passenger`         |  needs a & can have | can have | can have   | can have  |
-| `Animal`            |  needs a            |          |            |           |
-| `PersonalBelonging` |  needs a            |          |            |           |
-| `RoadVehicle`       |  needs a            |          |            |           |
+|                       | `Passenger`         | `Animal` | `PersonalBelonging` | `TransportedVehilce` |
+|-----------------------|---------------------|----------|------------|-----------|
+| `Passenger`           |  needs a & can have | can have | can have   | can have  |
+| `Animal`              |  needs a            |          |            |           |
+| `PersonalBelonging`   |  needs a            |          |            |           |
+| `TransportedVehilce`  |  needs a            |          |            |           |
 
 Existing Classes
 
 - `Passenger` - needs small extension only
 - not yet: `PersonalBelonging`
 - not yet: `Animal`
-- `RoadVehicle` - invented by Sir Adam Kertesz
+- `TransportedVehilce` - invented by Sir Adam Kertesz
 
 ## Type of Offer returned for a Given Type of Transportable (tbc)
 
 *Aim*: standardize what type of offer is returned for a given transportable request (normative).
 
-|  Type of Transportable  | Type of Offer (`OfferType`)    |
-|-------------------------|--------------------------------|
-| `PassengerType`         |  Admission, Reservation        |
-| `AnimalType`            |  Admission + opt. Ancillary    |
-| `PersonalBelongingType` |  Ancillary                     |
-| `RoadVehicleType`       |  Reservation + opt. Ancillary  |
+|  Type of Transportable    | Type of Offer (`OfferType`)    |
+|---------------------------|--------------------------------|
+| `PassengerType`           |  Admission, Reservation        |
+| `AnimalType`              |  Admission + opt. Ancillary    |
+| `PersonalBelongingType`   |  Ancillary                     |
+| `TransportedVehilceType`  |  Reservation + opt. Ancillary  |
 
 ### Example for SBB
 
@@ -119,7 +119,7 @@ schema:
         - $ref: AnimalType
         - $ref: PassengerType
         - $ref: PersonalBelongingType
-        - $ref: RoadVehicleType
+        - $ref: TransportedVehilceType
 
     AnimalType:
         type: string
@@ -197,13 +197,13 @@ schema:
             accompaniedPassengerRef: 
                 $ref: PassengerRef
 
-    RoadVehicle:
+    TransportedVehilce:
         type: object
         required:
             - type
         properties:
             type:
-                $ref: RoadVehicleType
+                $ref: TransportedVehilceType
             accompaniedPassengerRef:
                 $ref: PassengerRef
 ```
