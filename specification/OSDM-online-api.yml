@@ -276,6 +276,12 @@ components:
       $ref: ./components/parameters.yml#/acceptNamespace
     page:
       $ref: ./components/parameters.yml#/page
+    issuingLanguage:
+      $ref: ./components/parameters.yml#/issuingLanguage
+    preferredFulfillmentMedia:
+      $ref: ./components/parameters.yml#/preferredFulfillmentMedia
+    requestedFulfillmentType:
+      $ref: ./components/parameters.yml#/requestedFulfillmentType
   responses:
     SeeOtherResponse:
       $ref: ./components/responses.yml#/SeeOtherResponse
