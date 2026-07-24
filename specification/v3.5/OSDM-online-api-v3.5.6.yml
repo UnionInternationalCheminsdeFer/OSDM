@@ -7512,7 +7512,7 @@ components:
           format: int32
           nullable: true
 
-    BillingReferences:
+    BillingReference:
       type: object
       additionalProperties: false
       required:
@@ -10111,7 +10111,7 @@ components:
           description: References to the fare billing information in case of Fare Approach
           type: array
           items:
-            $ref: '#/components/schemas/BillingReferences'
+            $ref: '#/components/schemas/BillingReference'
         _links:
           description: |
 
