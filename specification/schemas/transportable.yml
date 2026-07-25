@@ -1,13 +1,25 @@
+AbstractTransportable:
+  type: object
+  additionalProperties: false
+  description: |
+    Common base for transportables which are handled similar to passengers, e.g. animals.
+  properties:
+    type:
+      accompaniedBy:
+        description: |
+          The transportable is accompanied by a passenger. The value is the passenger type of the accompanying passenger.
+        $ref: '#/PersonRef'
+
 AbstractTransportableVehicleSpecification:
   type: object
   additionalProperties: false
   required:
-  - weight
-  - length
-  - width
-  - height
-  - model
-  - brand
+    - weight
+    - length
+    - width
+    - height
+    - model
+    - brand
   properties:
     weight:
       description: weight in kg
@@ -37,32 +49,58 @@ AbstractTransportableVehicleSpecification:
       description: |
         Free text description of the model (e.g. X5)
       type: string
+
+Animal:
+  allOf:
+    - $ref: '#/AbstractTransportable'
+    - type: object
+      additionalProperties: false
+      required:
+        - type
+      properties:
+        type:
+          $ref: '#/AnimalType'
+        personRef:
+          description: |
+            Reference to the accompanying passenger. The reference is used to link the animal to the passenger.
+          $ref: '#/PersonRef'
+
+AnimalType:
+  description: |
+    Type of animal. The list is not exhaustive and can be extended.
+  type: string
+  x-extensible-enum:
+    - ANIMAL
+    - ANIMAL_IN_CAGE
+    - DOG
+    - PET
+
 AttachableItemType:
   description: |
     Indication of items attached to the car
   type: string
   x-extensible-enum:
-  - ROOF_RACK
-  - BICYCLE_STAND
+    - ROOF_RACK
+    - BICYCLE_STAND
 Car:
   allOf:
-  - $ref: '#/CarSpecification'
-  - type: object
-    additionalProperties: false
-    required:
-    - licensePlate
-    properties:
-      contactName:
-        description: |
-          Name of a contact person or company in case the car transport is booked stand alone.
-        type: string
-      contactDetail:
-        $ref: ./_common.yml#/ContactDetail
-      licensePlate:
-        description: |
-          The license plate is a personal data item and must not be provided in an offer request.
-          It must be patched into the offer after the customer accepted the offer for booking.
-        type: string
+    - $ref: '#/CarSpecification'
+    - type: object
+      additionalProperties: false
+      required:
+        - licensePlate
+      properties:
+        contactName:
+          description: |
+            Name of a contact person or company in case the car transport is booked stand alone.
+          type: string
+        contactDetail:
+          $ref: ./_common.yml#/ContactDetail
+        licensePlate:
+          description: |
+            The license plate is a personal data item and must not be provided in an offer request.
+            It must be patched into the offer after the customer accepted the offer for booking.
+          type: string
 CarRack:
   description: |
     a rack on a car
@@ -72,13 +110,13 @@ CarRack:
     mounting:
       type: string
       x-extensible-enum:
-      - REAR
-      - TOP
+        - REAR
+        - TOP
     type:
       type: string
       x-extensible-enum:
-      - LUGGAGE_RACK
-      - ROOF_RAILING
+        - LUGGAGE_RACK
+        - ROOF_RAILING
     additionalHeight:
       description: additional height in cm
       type: integer
@@ -101,42 +139,42 @@ CarSpecification:
   description: |
     car, trailer or special vehicle to be transported (car carriage trains)
   allOf:
-  - $ref: '#/AbstractTransportableVehicleSpecification'
-  - type: object
-    additionalProperties: false
-    required:
-    - roofWidth
-    properties:
-      specialType:
-        type: string
-        nullable: true
-        x-extensible-enum:
-        - TRIKE
-        - QUAD
-        - MOTOCYCLE_WITH_SIDECAR
-      roofWidth:
-        type: integer
-        format: int32
-        minimum: 0
-        nullable: false
-      textileRoof:
-        description: indication that the car has a textile rook only
-        type: boolean
-      rack:
-        $ref: '#/CarRack'
-      attachedItems:
-        description: Indication of items attached to the car
-        type: array
-        items:
-          $ref: '#/AttachableItemType'
+    - $ref: '#/AbstractTransportableVehicleSpecification'
+    - type: object
+      additionalProperties: false
+      required:
+        - roofWidth
+      properties:
+        specialType:
+          type: string
+          nullable: true
+          x-extensible-enum:
+            - TRIKE
+            - QUAD
+            - MOTOCYCLE_WITH_SIDECAR
+        roofWidth:
+          type: integer
+          format: int32
+          minimum: 0
+          nullable: false
+        textileRoof:
+          description: indication that the car has a textile rook only
+          type: boolean
+        rack:
+          $ref: '#/CarRack'
+        attachedItems:
+          description: Indication of items attached to the car
+          type: array
+          items:
+            $ref: '#/AttachableItemType'
 DirectionChange:
   type: object
   additionalProperties: false
   description: |
     A StopPlace where the direction of a train changes
   required:
-  - stopPlaceRef
-  - stopPlaceName
+    - stopPlaceRef
+    - stopPlaceName
   properties:
     stopPlaceRef:
       description: |
@@ -148,71 +186,67 @@ DirectionChange:
       type: string
       nullable: false
 DirectionType:
-  description: "Direction of a place, defined optional as it might be omitted in\ncase of berths in future. \nCode list according\
-    \ to UIC90918-1\nValid Values:\n- RIGHT: to right, RIGHT is the default. In case of walls it indicates a wall parallel\
-    \ with the x axis.\n- LEFT: to left\n- UP: up (from right side of a coach pointing to the middle of the aisle)\n- DOWN:\
+  description: "Direction of a place, defined optional as it might be omitted
+    in\ncase of berths in future. \nCode list according\
+    \ to UIC90918-1\nValid Values:\n- RIGHT: to right, RIGHT is the default. In
+    case of walls it indicates a wall parallel\
+    \ with the x axis.\n- LEFT: to left\n- UP: up (from right side of a coach
+    pointing to the middle of the aisle)\n- DOWN:\
     \ down (from right side of the coach pointing to the middle of the aisle)\n"
   type: string
   enum:
-  - RIGHT
-  - LEFT
-  - UP
-  - DOWN
+    - RIGHT
+    - LEFT
+    - UP
+    - DOWN
 MotorCycle:
   allOf:
-  - $ref: '#/MotorcycleSpecification'
-  - type: object
-    additionalProperties: false
-    required:
-    - contactName
-    - licensePlate
-    properties:
-      contactName:
-        description: |
-          Name of a contact person or company in case the car transport is booked stand alone.
-        type: string
-      contactDetail:
-        $ref: ./_common.yml#/ContactDetail
-      licensePlate:
-        description: |
-          The license plate is a personal data item and must not be provided in an offer request.
-          It must be patched into the offer after the customer accepted the offer for booking
-        type: string
+    - $ref: '#/MotorcycleSpecification'
+    - type: object
+      additionalProperties: false
+      required:
+        - contactName
+        - licensePlate
+      properties:
+        contactName:
+          description: |
+            Name of a contact person or company in case the car transport is booked stand alone.
+          type: string
+        contactDetail:
+          $ref: ./_common.yml#/ContactDetail
+        licensePlate:
+          description: |
+            The license plate is a personal data item and must not be provided in an offer request.
+            It must be patched into the offer after the customer accepted the offer for booking
+          type: string
 MotorcycleSpecification:
   allOf:
-  - $ref: '#/AbstractTransportableVehicleSpecification'
-  - type: object
-    properties:
-      isSideCarIncluded:
-        description: deprecated use car of type SPECIAL_VEHICLE instead
-        deprecated: true
-        type: boolean
-        nullable: true
-        default: false
+    - $ref: '#/AbstractTransportableVehicleSpecification'
+    - type: object
+      properties:
+        isSideCarIncluded:
+          description: deprecated use car of type SPECIAL_VEHICLE instead
+          deprecated: true
+          type: boolean
+          nullable: true
+          default: false
 MountingType:
   type: string
   enum:
-  - UPPER_BORDER
-  - LOWER_BORDER
-  - UPPER_TO_LOWER_BORDER
-  - FREE
-Transportable:
-  type: object
-  additionalProperties: false
-  description: |
-    Transportables which are handled similar to passengers like dogs, bicycles, car transport.
-    These transportables might need a ticket or reservation.
-  required:
-  - type
-  properties:
-    type:
-      $ref: '#/TransportableType'
-    car:
-      $ref: '#/Car'
-    motorCycle:
-      $ref: '#/MotorCycle'
-    trailer:
-      $ref: '#/Car'
+    - UPPER_BORDER
+    - LOWER_BORDER
+    - UPPER_TO_LOWER_BORDER
+    - FREE
+TransportableType:
+  type: string
+  description: "Subset of the values from \nthe [Passenger Type Code
+    List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)\n\
+    Listed values here are examples.\n"
+  oneOf:
+    - $ref: '#/AnimalType'
+    - $ref: '#/PassengerType'
+    - $ref: '#/PersonalBelongingType'
+    - $ref: '#/TransportedVehicleType'
 TransportableSpecification:
   type: object
   additionalProperties: false
@@ -220,7 +254,7 @@ TransportableSpecification:
     Transportables which are handled similar to passengers like dogs, bicycles, car transport.
     These transportables might need a ticket or reservation. The Transportable specification does not include personal data (e.g. a license plate.)
   required:
-  - type
+    - type
   properties:
     type:
       $ref: '#/TransportableType'
@@ -230,21 +264,30 @@ TransportableSpecification:
       $ref: '#/MotorcycleSpecification'
     trailer:
       $ref: '#/CarSpecification'
-TransportableType:
-  description: "Subset of the values from \nthe [Passenger Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PassengerType)\n\
-    Listed values here are examples.\n"
+PersonalBelonging:
+  allOf:
+    - $ref: '#/AbstractTransportable'
+    - type: object
+      additionalProperties: false
+      required:
+        - type
+      properties:
+        type:
+          $ref: '#/PersonalBelongingType'
+        personRef:
+          description: |
+            Reference to the accompanying passenger. The reference is used to link the personal belonging to the passenger.
+          $ref: '#/PersonRef'
+PersonalBelongingType:
+  description: |
+    Things belonging to a passenger which are transported in the same vehicle as the passenger. Examples are luggage, prams or bicycles.
   type: string
   x-extensible-enum:
-  - PET
-  - DOG
-  - ACCOMP_DOG
-  - BICYCLE
-  - LUGGAGE
-  - PRAM
-  - CAR
-  - SPECIAL_VEHICLE
-  - MOTOCYCLE
-  - TRAILER
+    - BICYCLE
+    - DANDY_HORSE
+    - LUGGAGE
+    - PRAM
+
 Vehicle:
   type: object
   additionalProperties: false
@@ -257,9 +300,12 @@ Vehicle:
       items:
         $ref: ./place.yml#/Coach
     reservationRefs:
-      description: "References to the reservations/fares for which all places in the vehicle can be selected. \nThe reservation\
-        \ ids must be part of the list of reservation ids for which the consumer has\nrequested the available places and the\
-        \ consumer must accept a list by setting \nsingleSelectionMapsRequired to false\n"
+      description:
+        'References to the reservations/fares for which all places in the
+        vehicle can be selected. The reservation  ids must be part of the list
+        of reservation ids for which the consumer has requested the available
+        places and the consumer must accept a list by setting
+        singleSelectionMapsRequired to false.'
       type: array
       items:
         type: string
@@ -319,3 +365,28 @@ VehicleNumber:
     to 5 characters. If's longer, it is not possible to use the H2O converter.
   nullable: true
   example: 9218, 9340, 15
+
+TransportedVehicle:
+  allOf:
+    - $ref: '#/AbstractTransportable'
+    - type: object
+      additionalProperties: false
+      required:
+        - type
+      properties:
+        type:
+          $ref: '#/TransportedVehicleType'
+        personRef:
+          description: |
+            Reference to the accompanying passenger. The reference is used to link the transported vehicle to the passenger.
+          $ref: '#/PersonRef'
+
+TransportedVehicleType:
+  description: |
+    Type of vehicle. The list is not exhaustive and can be extended.
+  type: string
+  x-extensible-enum:
+    - CAR
+    - MOTORCYCLE
+    - SPECIAL_VEHICLE
+    - TRAILER
