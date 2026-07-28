@@ -14,6 +14,8 @@ AlightSpecification:
       $ref: './ojp/trip.yml#/StopPlaceRef'
     serviceArrival:
       $ref: ./_common.yml#/ServiceTime
+    status:
+      $ref: './ojp/trip.yml#/StopCallStatus'
 BoardSpecification:
   type: object
   additionalProperties: false
@@ -30,6 +32,8 @@ BoardSpecification:
       $ref: './ojp/trip.yml#/StopPlaceRef'
     serviceDeparture:
       $ref: ./_common.yml#/ServiceTime
+    status:
+      $ref: './ojp/trip.yml#/StopCallStatus'
 IntermediateSpecification:
   type: object
   additionalProperties: false
@@ -46,6 +50,8 @@ IntermediateSpecification:
       $ref: ./_common.yml#/ServiceTime
     serviceDeparture:
       $ref: ./_common.yml#/ServiceTime
+    status:
+      $ref: './ojp/trip.yml#/StopCallStatus'
 NonTripSearchCriteria:
   type: object
   additionalProperties: false
