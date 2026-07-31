@@ -2314,6 +2314,9 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
+        - $ref: '#/components/parameters/issuingLanguage'
+        - $ref: '#/components/parameters/preferredFulfillmentMedia'
+        - $ref: '#/components/parameters/requestedFulfillmentType'
         - name: bookingId
           in: query
           schema:
