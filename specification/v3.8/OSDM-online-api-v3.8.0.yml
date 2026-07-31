@@ -2663,6 +2663,9 @@ paths:
         - $ref: '#/components/parameters/traceParent'
         - $ref: '#/components/parameters/traceState'
         - $ref: '#/components/parameters/acceptNamespace'
+        - $ref: '#/components/parameters/issuingLanguage'
+        - $ref: '#/components/parameters/preferredFulfillmentMedia'
+        - $ref: '#/components/parameters/requestedFulfillmentType'
         - name: fulfillmentId
           in: path
           description: |
@@ -5795,6 +5798,38 @@ components:
       schema:
         type: string
 
+    issuingLanguage:
+      name: issuingLanguage
+      in: query
+      description: |
+        The desired issuing language (ISO-639-1 language code) for the document(s) produced by this call.
+        Relevant for providers that generate the fulfillment lazily when this endpoint is called.
+      required: false
+      schema:
+        type: string
+
+    preferredFulfillmentMedia:
+      name: preferredFulfillmentMedia
+      in: query
+      description: |
+        Preferred media type for the document(s) produced by this call. Relevant for providers that generate
+        the fulfillment lazily when this endpoint is called. Applies to this call only and does not persist any
+        booking state.
+      required: false
+      schema:
+        $ref: '#/components/schemas/FulfillmentMediaType'
+
+    requestedFulfillmentType:
+      name: requestedFulfillmentType
+      in: query
+      description: |
+        The requested fulfillment type (e.g. paper or e-ticket) for the document(s) produced by this call.
+        Relevant for providers that generate the fulfillment lazily when this endpoint is called. Applies to
+        this call only and does not persist any booking state.
+      required: false
+      schema:
+        $ref: '#/components/schemas/FulfillmentType'
+
   responses:
     SeeOtherResponse:
       description: |
@@ -7928,9 +7963,19 @@ components:
           items:
             $ref: '#/components/schemas/PlaceSelection'
         requestedFulfillmentType:
-          $ref: '#/components/schemas/FulfillmentType'
+          deprecated: true
+          description: |
+            DEPRECATED — will be removed in 4.0.0. Express the fulfillment type where the document is produced:
+            on POST/PATCH /bookings/{bookingId}/fulfillments, or as a query parameter on GET /fulfillments/{fulfillmentId}.
+          allOf:
+            - $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
-          $ref: '#/components/schemas/FulfillmentMediaType'
+          deprecated: true
+          description: |
+            DEPRECATED — will be removed in 4.0.0. Express the preferred media where the document is produced:
+            on POST/PATCH /bookings/{bookingId}/fulfillments, or as a query parameter on GET /fulfillments/{fulfillmentId}.
+          allOf:
+            - $ref: '#/components/schemas/FulfillmentMediaType'
         usedPaymentMethods:
           type: array
           items:
@@ -7964,9 +8009,19 @@ components:
           items:
             $ref: '#/components/schemas/PromotionCode'
         requestedFulfillmentType:
-          $ref: '#/components/schemas/FulfillmentType'
+          deprecated: true
+          description: |
+            DEPRECATED — will be removed in 4.0.0. Instead, express the fulfillment type where the document is produced:
+            on POST/PATCH /bookings/{bookingId}/fulfillments, or as a query parameter on GET /fulfillments/{fulfillmentId}.
+          allOf:
+            - $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
-          $ref: '#/components/schemas/FulfillmentMediaType'
+          deprecated: true
+          description: |
+            DEPRECATED — will be removed in 4.0.0. Instead, express the preferred media where the document is produced:
+            on POST/PATCH /bookings/{bookingId}/fulfillments, or as a query parameter on GET /fulfillments/{fulfillmentId}.
+          allOf:
+            - $ref: '#/components/schemas/FulfillmentMediaType'
         embed:
           description: |
             Influences whether referenced resources are returned in full or as references only.
@@ -10514,9 +10569,19 @@ components:
          * Provisionally exchanging some of the fulfillments in the booking
       properties:
         requestedFulfillmentType:
-          $ref: '#/components/schemas/FulfillmentType'
+          deprecated: true
+          description: |
+            DEPRECATED — will be removed in 4.0.0. Express the fulfillment type where the document is produced:
+            on POST/PATCH /bookings/{bookingId}/fulfillments, or as a query parameter on GET /fulfillments/{fulfillmentId}.
+          allOf:
+            - $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
-          $ref: '#/components/schemas/FulfillmentMediaType'
+          deprecated: true
+          description: |
+            DEPRECATED — will be removed in 4.0.0. Express the preferred media where the document is produced:
+            on POST/PATCH /bookings/{bookingId}/fulfillments, or as a query parameter on GET /fulfillments/{fulfillmentId}.
+          allOf:
+            - $ref: '#/components/schemas/FulfillmentMediaType'
         embed:
           description: |
             Influences whether referenced resources are returned in full or as references only.
@@ -11318,6 +11383,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentId'
+        issuingLanguage:
+          type: string
+          description: |
+            The desired issuing language (ISO-639-1 language code) for the document(s) produced by this call.
+            Same semantics as FulfillmentPostRequest.issuingLanguage, for providers that produce the document
+            at finalization time.
+        preferredFulfillmentMedia:
+          description: |
+            Preferred media type for the document(s) produced by this call. It applies to this call only and
+            does not persist any booking state.
+          $ref: '#/components/schemas/FulfillmentMediaType'
+        requestedFulfillmentType:
+          description: |
+            The requested fulfillment type (e.g. paper or e-ticket) for the document(s) produced by this call.
+            It applies to this call only and does not persist any booking state.
+          $ref: '#/components/schemas/FulfillmentType'
 
     FulfillmentPostRequest:
       type: object
@@ -11331,6 +11412,16 @@ components:
             the desired issuing language (ISO-639-1 language code). If not
             provided or not available, will default to (one of) the language(s)
             of the issuing country
+        preferredFulfillmentMedia:
+          description: |
+            Preferred media type for the document(s) produced by this call. It applies to this call only and
+            does not persist any booking state.
+          $ref: '#/components/schemas/FulfillmentMediaType'
+        requestedFulfillmentType:
+          description: |
+            The requested fulfillment type (e.g. paper or e-ticket) for the document(s) produced by this call.
+            It applies to this call only and does not persist any booking state.
+          $ref: '#/components/schemas/FulfillmentType'
 
     FulfillmentResponse:
       type: object
