@@ -535,6 +535,22 @@ FulfillmentPatchRequest:
       type: array
       items:
         $ref: '#/FulfillmentId'
+    issuingLanguage:
+      type: string
+      description: |
+        The desired issuing language (ISO-639-1 language code) for the document(s) produced by this call.
+        Same semantics as FulfillmentPostRequest.issuingLanguage, for providers that produce the document
+        at finalization time.
+    preferredFulfillmentMedia:
+      description: |
+        Preferred media type for the document(s) produced by this call. It applies to this call only and
+        does not persist any booking state.
+      $ref: '#/FulfillmentMediaType'
+    requestedFulfillmentType:
+      description: |
+        The requested fulfillment type (e.g. paper or e-ticket) for the document(s) produced by this call.
+        It applies to this call only and does not persist any booking state.
+      $ref: '#/FulfillmentType'
 FulfillmentPostRequest:
   type: object
   additionalProperties: false
@@ -545,6 +561,16 @@ FulfillmentPostRequest:
       type: string
       description: the desired issuing language (ISO-639-1 language code). If not provided or not available, will default
         to (one of) the language(s) of the issuing country
+    preferredFulfillmentMedia:
+      description: |
+        Preferred media type for the document(s) produced by this call. It applies to this call only and
+        does not persist any booking state.
+      $ref: '#/FulfillmentMediaType'
+    requestedFulfillmentType:
+      description: |
+        The requested fulfillment type (e.g. paper or e-ticket) for the document(s) produced by this call.
+        It applies to this call only and does not persist any booking state.
+      $ref: '#/FulfillmentType'
 FulfillmentResponse:
   type: object
   additionalProperties: false
