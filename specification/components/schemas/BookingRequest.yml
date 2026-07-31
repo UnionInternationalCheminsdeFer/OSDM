@@ -26,10 +26,6 @@ properties:
     type: array
     items:
       $ref: ./PromotionCode.yml
-  requestedFulfillmentType:
-    $ref: ./FulfillmentType.yml
-  preferredFulfillmentMedia:
-    $ref: ./FulfillmentMediaType.yml
   embed:
     description: >
       Influences whether referenced resources are returned in full or as

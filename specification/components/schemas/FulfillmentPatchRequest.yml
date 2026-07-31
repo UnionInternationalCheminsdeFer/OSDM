@@ -49,3 +49,19 @@ properties:
     description: |
       selection of a pick-up place and vehicle type for continuous services.
     $ref: ./ContinuousServiceVehicleSelection.yml
+  issuingLanguage:
+    type: string
+    description: |
+      The desired issuing language (ISO-639-1 language code) for the document(s) produced by this call.
+      Same semantics as FulfillmentPostRequest.issuingLanguage, for providers that produce the document
+      at finalization time.
+  preferredFulfillmentMedia:
+    description: |
+      Preferred media type for the document(s) produced by this call. It applies to this call only and
+      does not persist any booking state.
+    $ref: ./FulfillmentMediaType.yml
+  requestedFulfillmentType:
+    description: |
+      The requested fulfillment type (e.g. paper or e-ticket) for the document(s) produced by this call.
+      It applies to this call only and does not persist any booking state.
+    $ref: ./FulfillmentType.yml

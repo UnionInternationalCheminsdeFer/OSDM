@@ -1,9 +1,8 @@
 type: object
 additionalProperties: false
 description: |
-  Allows setting the required fulfillment type, e.g. value paper
-  or e-ticket and preferred fulfillment media.
-  The latter is optional and relevant in some cases only.
+  Allows modifying general settings of the booking, e.g. the external
+  reference, the selected places or the payment methods used.
 properties:
   externalRef:
     type:
@@ -16,10 +15,6 @@ properties:
     type: array
     items:
       $ref: ./PlaceSelection.yml
-  requestedFulfillmentType:
-    $ref: ./FulfillmentType.yml
-  preferredFulfillmentMedia:
-    $ref: ./FulfillmentMediaType.yml
   usedPaymentMethods:
     type: array
     items:
