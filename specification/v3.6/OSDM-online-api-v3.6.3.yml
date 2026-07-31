@@ -5655,6 +5655,7 @@ components:
             $ref: '#/components/schemas/PromotionCode'
         appliedReductions:
           type: array
+          deprecated: true
           items:
             $ref: '#/components/schemas/CardReference'
         indicatedConsumption:
@@ -6272,6 +6273,11 @@ components:
           type: boolean
           nullable: true
           default: false
+        isProviderFee:
+          description: |
+            The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
+          type: boolean
+          default: true            
 
     AfterSalesOverrideDetails:
       description: |
@@ -9074,6 +9080,29 @@ components:
       nullable: false
       example: 'CHF'
 
+    CurrencyAmount:
+      type: object
+      description: amount in a currency used when not VAT can be provided
+      additionalProperties: false
+      required:
+        - currency
+        - amount
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        amount:
+          description: |
+            amount in cents
+          type: integer
+          format: int32
+        scale:
+          description: |
+            scale of the amount - the number of positions after the comma
+          type: integer
+          nullable: true
+          format: int32
+          default: 2    
+
     CustomerComplaint:
       type: object
       additionalProperties: false
@@ -9236,6 +9265,21 @@ components:
         - 'LEFT'
         - 'UP'
         - 'DOWN'
+
+    DistributionMode:
+      description: |
+         booking parts in product mode are provided as complete products where the tickets and 
+         conditions are prepared by the OSDM provider. Booking parts in fare mode need to be assambled 
+         into tickes on the OSDM client side. In fare mode the conditions are defined on the client 
+         side the restrictions on conditions and combinability layed down in the booking part (fare). 
+         By definition admissions and ancillaries are in PRODUCT_MODE and fares are in _MODE. Reservation 
+         might be in PRODUCT_MODE or in FARE_MODE. Offers in FARE_MODE must not be provided unless they are
+         requested in the offer part type list.
+      type: string
+      enum:
+        - 'PRODUCT_MODE'
+        - 'FARE_MODE'
+      default:  'PRODUCT_MODE'   
 
     Document:
       type: object
@@ -9635,6 +9679,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentOption'
+        exchangeFee:
+          description: |
+            In some business models the distributor has the right to define the exchange fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditributor submits the amount to the fare provider in exchange fee amount and the fare provider uses this amount to create the fees including the VAT split. 
+          $ref: '#/components/schemas/CurrencyAmount'                 
         embed:
           type: array
           items:
@@ -9891,12 +9939,15 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidity'
         availablePlaces:
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlace'
         placeSelection:
+          deprecated: true
           $ref: '#/components/schemas/PlaceSelection'
         placeAllocation:
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/PlaceAllocation'
@@ -9934,6 +9985,7 @@ components:
         luggageConstraint:
           $ref: '#/components/schemas/LuggageConstraint'
         availablePreferences:
+          deprecated: true
           type: array
           items:
             $ref: '#/components/schemas/AvailablePlacePreferences'
@@ -10089,6 +10141,11 @@ components:
           $ref: '#/components/schemas/ApplicabilityType'
         transactionContext:
           $ref: '#/components/schemas/TransactionContextType'
+        isProviderFee:
+          description: |
+            The after sales fees are attributed to the provider. In some business models used with fares the fees are attributed to the distributor.
+          type: boolean
+          default: true                
         status:
           $ref: '#/components/schemas/FeeStatus'
         distributorBookingRef:
@@ -12483,7 +12540,7 @@ components:
       type: object
       additionalProperties: false
       description: |
-        Method of payment used by the customer to the distributor. On input of voucher the remaining sum attribute and the applied voucher amount are not present.
+        Method of payment used by the customer to the distributor. On input of voucher the remaining sum attribute is not present.
       required:
         - type
       properties:
@@ -12492,8 +12549,6 @@ components:
         voucherInformation:
           $ref: '#/components/schemas/VoucherInformation'
         remainingVoucherAmount:
-          $ref: '#/components/schemas/Price'
-        appliedVoucherAmount:
           $ref: '#/components/schemas/Price'
         transactionId:
           type: string
@@ -14227,6 +14282,10 @@ components:
           description: ids of passengers to be removed from the fulfillment
           items:
             type: string
+        refundFee:
+          description: |
+            In some business models the distributor has the right to define the refund fee amount for a fare provided by the fare prvider. This need to be indicated in the fare after sales rules to be applied. In this case the ditsributor submits the amount to the fare provider in refund fee amount and the fare provider uses this amount to create the fees including the VAT split. 
+          $ref: '#/components/schemas/CurrencyAmount'   
 
     RefundStatus:
       type: string
@@ -14643,6 +14702,9 @@ components:
         - type: object
           additionalProperties: false
           properties:
+            distributionMode:
+              description: indication of a reservation to be used as a fare or as a product
+              $ref: '#/components/schemas/DistributionMode'             
             placeSelection:
               $ref: '#/components/schemas/PlaceSelection'
             placeAllocation:
@@ -14707,6 +14769,9 @@ components:
         - type: object
           additionalProperties: false
           properties:
+            distributionMode:
+              description: indication of a reservation to be used as a fare or as a product
+              $ref: '#/components/schemas/DistributionMode'             
             ancillaries:
               type: array
               items:
