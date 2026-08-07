@@ -9,3 +9,14 @@ properties:
       the desired issuing language (ISO-639-1 language code). If not provided or
       not available, will default to (one of) the language(s) of the issuing
       country
+  preferredFulfillmentMedia:
+    description: >-
+      Preferred media type for the document(s) produced by this call. It applies
+      to this call only and does not persist any booking state.
+    $ref: ./FulfillmentMediaType.yml
+  requestedFulfillmentType:
+    description: >-
+      The requested fulfillment type (e.g. paper or e-ticket) for the
+      document(s) produced by this call. It applies to this call only and does
+      not persist any booking state.
+    $ref: ./FulfillmentType.yml

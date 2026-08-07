@@ -15,6 +15,32 @@ get:
       in: query
       schema:
         type: string
+    - name: issuingLanguage
+      in: query
+      description: |
+        The desired issuing language (ISO-639-1 language code) for the document(s) produced by this call.
+        Relevant for providers that generate the fulfillment lazily when this endpoint is called.
+      required: false
+      schema:
+        type: string
+    - name: preferredFulfillmentMedia
+      in: query
+      description: |
+        Preferred media type for the document(s) produced by this call. Relevant for providers that generate
+        the fulfillment lazily when this endpoint is called. Applies to this call only and does not persist any
+        booking state.
+      required: false
+      schema:
+        $ref: ../components/schemas/FulfillmentMediaType.yml
+    - name: requestedFulfillmentType
+      in: query
+      description: |
+        The requested fulfillment type (e.g. paper or e-ticket) for the document(s) produced by this call.
+        Relevant for providers that generate the fulfillment lazily when this endpoint is called. Applies to
+        this call only and does not persist any booking state.
+      required: false
+      schema:
+        $ref: ../components/schemas/FulfillmentType.yml
   responses:
     '200':
       description: |
