@@ -353,6 +353,12 @@ CardReference:
       - 'null'
       format: byte
       maxLength: 4194304
+    cardValidation:
+      description: | 
+          indication, that the card was verified during the sale. A provider might request this element amd the consumer then needs to verify the existence and confirms this by an update.
+      type: string
+      x-extensible-enum:
+      - VERIFIED       
 CardTypeReference:
   type: object
   additionalProperties: false
