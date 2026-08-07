@@ -458,9 +458,19 @@ ExchangeOperationPatchRequest:
      * Provisionally exchanging some of the fulfillments in the booking
   properties:
     requestedFulfillmentType:
-      $ref: ./fulfillment.yml#/FulfillmentType
+      deprecated: true
+      description: |
+        DEPRECATED — will be removed in 4.0.0. Express the fulfillment type where the document is produced:
+        on POST/PATCH /bookings/{bookingId}/fulfillments, or as a query parameter on GET /fulfillments/{fulfillmentId}.
+      allOf:
+      - $ref: ./fulfillment.yml#/FulfillmentType
     preferredFulfillmentMedia:
-      $ref: ./fulfillment.yml#/FulfillmentMediaType
+      deprecated: true
+      description: |
+        DEPRECATED — will be removed in 4.0.0. Express the preferred media where the document is produced:
+        on POST/PATCH /bookings/{bookingId}/fulfillments, or as a query parameter on GET /fulfillments/{fulfillmentId}.
+      allOf:
+      - $ref: ./fulfillment.yml#/FulfillmentMediaType
     embed:
       description: |
         Influences whether referenced resources are returned in full or as references only.
