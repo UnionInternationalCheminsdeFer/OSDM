@@ -376,7 +376,6 @@ AncillaryType:
   - WIFI
   - PARKING
 AncillarySubType:
-  deprecated: true
   description: |
     Values from the [Ancillary SubType Code List](https://osdm.io/spec/catalog-of-code-lists/#ancillary-sub-types-)
     Listed values here are examples.
