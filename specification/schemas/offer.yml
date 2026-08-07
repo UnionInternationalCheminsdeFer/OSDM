@@ -370,19 +370,9 @@ AncillarySelection:
       items:
         type: string
       minItems: 1
-AncillarySubType:
-  description: |
-    Values from the [Ancillary Sub Type List](https://osdm.io/spec/catalog-of-code-lists/#AncillarySubTypes)
-    Listed values here are examples.
-  type: string
-  x-extensible-enum:
-  - LUNCH
-  - DINNER
-  - WIFI
-  - MUSICAL_INSTRUMENT
 AncillaryType:
   description: |
-    Values from the [Ancillary Category Code List](https://osdm.io/spec/catalog-of-code-lists/#AncillaryCategory)
+    Values from the [Ancillary Type Code List](https://osdm.io/spec/catalog-of-code-lists/#AncillaryType)
     Listed values here are examples.
   type: string
   x-extensible-enum:
@@ -397,6 +387,46 @@ AncillaryType:
   - DRINKS_ON_BOARD
   - WIFI
   - PARKING
+AncillarySubType:
+  description: |
+    Values from the [Ancillary SubType Code List](https://osdm.io/spec/catalog-of-code-lists/#ancillary-sub-types-)
+    Listed values here are examples.
+  type: string
+  x-extensible-enum:
+    - EXTRA_LARGE_SEAT
+    - SINGLE_SEAT
+    - UNCHECKED_PET
+    - CHECKED_PET
+    - ASSISTANCE_ANIMAL
+    - BREAKFAST
+    - LUNCH
+    - DINNER
+    - SNACK
+    - DRINKS_NO_ALCOHOL
+    - DRINKS_ALCOHOL
+    - FOOD_VOUCHER
+    - BIKE_NORMAL
+    - BIKE_FOLDABLE
+    - EBIKE_NO_CHARGE
+    - EBIKE_WITH_CHARGE
+    - SCOOTER
+    - BAG_SMALL
+    - BAG_LARGE
+    - CAR_SEAT
+    - BABY_COT
+    - PRAM_FOLDABLE
+    - WALKER
+    - WHEELCHAIR_FOLDED
+    - SPORTS_EQUIPMENT
+    - TRANSFER_NEXT_SERVICE
+    - HOME_DELIVERY
+    - CAR
+    - MOTORBIKE
+    - SPECIAL_VEHICLE
+    - TRAILER
+    - WIFI_STANDARD
+    - ESCORT_PMR
+    - ESCORT_MINOR
 CombinationTag:
   type: object
   additionalProperties: false
