@@ -682,9 +682,19 @@ BookingPatchRequest:
       items:
         $ref: ./place.yml#/PlaceSelection
     requestedFulfillmentType:
-      $ref: ./fulfillment.yml#/FulfillmentType
+      deprecated: true
+      description: |
+        DEPRECATED — will be removed in 4.0.0. Express the fulfillment type where the document is produced:
+        on POST/PATCH /bookings/{bookingId}/fulfillments, or as a query parameter on GET /fulfillments/{fulfillmentId}.
+      allOf:
+      - $ref: ./fulfillment.yml#/FulfillmentType
     preferredFulfillmentMedia:
-      $ref: ./fulfillment.yml#/FulfillmentMediaType
+      deprecated: true
+      description: |
+        DEPRECATED — will be removed in 4.0.0. Express the preferred media where the document is produced:
+        on POST/PATCH /bookings/{bookingId}/fulfillments, or as a query parameter on GET /fulfillments/{fulfillmentId}.
+      allOf:
+      - $ref: ./fulfillment.yml#/FulfillmentMediaType
     usedPaymentMethods:
       type: array
       items:
@@ -717,9 +727,19 @@ BookingRequest:
       items:
         $ref: ./_common.yml#/PromotionCode
     requestedFulfillmentType:
-      $ref: ./fulfillment.yml#/FulfillmentType
+      deprecated: true
+      description: |
+        DEPRECATED — will be removed in 4.0.0. Instead, express the fulfillment type where the document is produced:
+        on POST/PATCH /bookings/{bookingId}/fulfillments, or as a query parameter on GET /fulfillments/{fulfillmentId}.
+      allOf:
+      - $ref: ./fulfillment.yml#/FulfillmentType
     preferredFulfillmentMedia:
-      $ref: ./fulfillment.yml#/FulfillmentMediaType
+      deprecated: true
+      description: |
+        DEPRECATED — will be removed in 4.0.0. Instead, express the preferred media where the document is produced:
+        on POST/PATCH /bookings/{bookingId}/fulfillments, or as a query parameter on GET /fulfillments/{fulfillmentId}.
+      allOf:
+      - $ref: ./fulfillment.yml#/FulfillmentMediaType
     embed:
       description: |
         Influences whether referenced resources are returned in full or as references only.

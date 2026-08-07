@@ -184,6 +184,9 @@
     - $ref: ../OSDM-online-api.yml#/components/parameters/traceParent
     - $ref: ../OSDM-online-api.yml#/components/parameters/traceState
     - $ref: ../OSDM-online-api.yml#/components/parameters/acceptNamespace
+    - $ref: ../OSDM-online-api.yml#/components/parameters/issuingLanguage
+    - $ref: ../OSDM-online-api.yml#/components/parameters/preferredFulfillmentMedia
+    - $ref: ../OSDM-online-api.yml#/components/parameters/requestedFulfillmentType
     - name: fulfillmentId
       in: path
       description: |
