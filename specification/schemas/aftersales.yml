@@ -114,6 +114,107 @@ CancelFulfillmentsOfferCollectionResponse:
         $ref: '#/CancelFulfillmentsOffer'
     _links:
       $ref: ./_common.yml#/Links
+ExchangeOffer:
+  type: object
+  additionalProperties: false
+  required:
+  - exchangeFee
+  - exchangePrice
+  - refundableAmount
+  - fulfillmentRefs
+  - offerId
+  - createdOn
+  - preBookableUntil
+  properties:
+    exchangeFee:
+      $ref: ./_common.yml#/Price
+    accountingRef:
+      description: |
+        Accounting information for the exchange fee
+      $ref: ./_common.yml#/AccountingRef
+    exchangePrice:
+      description: |
+        price of the new booking parts
+      $ref: ./_common.yml#/Price
+    refundableAmount:
+      description: |
+        amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.
+      $ref: ./_common.yml#/Price
+    amountToBePaid:
+      description: |
+        amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.
+      $ref: ./_common.yml#/Price
+    appliedOverruleCode:
+      $ref: ./_common.yml#/OverruleCode
+    fulfillmentRefs:
+      type: array
+      items:
+        $ref: ./fulfillment.yml#/FulfillmentRefs
+      minItems: 1
+    offerId:
+      type: string
+      maxLength: 32768
+    summary:
+      description: |
+        A human-readable description of the offer.
+      type: string
+    offerSummary:
+      description: The offerSummary must be provided for product based offers. It is not needed for fares.
+      $ref: ./offer.yml#/OfferSummary
+    createdOn:
+      type: string
+      format: date-time
+    preBookableUntil:
+      description: |
+        time until the offer can be pre-booked, however its availability is not guaranteed
+      type: string
+      format: date-time
+    passengerRefs:
+      description: |
+        providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.
+      type: array
+      items:
+        type: string
+      minItems: 1
+    products:
+      description: |
+        products must be provided in case they are referenced. Some offer parts (e.g. fares)
+        do not have products assigned.
+      type: array
+      items:
+        $ref: ./product.yml#/Product
+    tripCoverage:
+      type: array
+      items:
+        $ref: ./trip.yml#/TripCoverage
+    exchangeOfferBreakdown:
+      description: |
+        Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
+      type: array
+      items:
+        $ref: '#/ExchangeBreakdownItem'
+    admissionOfferParts:
+      type: array
+      items:
+        $ref: ./offer.yml#/AdmissionOfferPart
+    reservationOfferParts:
+      type: array
+      items:
+        $ref: ./offer.yml#/ReservationOfferPart
+    ancillaryOfferParts:
+      type: array
+      items:
+        $ref: ./offer.yml#/AncillaryOfferPart
+    fees:
+      type: array
+      items:
+        $ref: ./_common.yml#/Fee
+    fares:
+      type: array
+      items:
+        $ref: ./offer.yml#/FareOfferPart
+    _links:
+      $ref: ./_common.yml#/Links      
 CancelFulfillmentsOfferPatchRequest:
   type: object
   additionalProperties: false
@@ -305,7 +406,6 @@ ExchangeOffer:
   - offerId
   - createdOn
   - preBookableUntil
-  - admissionOfferParts
   properties:
     exchangeFee:
       $ref: ./_common.yml#/Price
@@ -498,10 +598,11 @@ ExchangeOperation:
       type: string
     status:
       $ref: '#/ExchangeStatus'
-    exchangeOffers:
-      type: array
-      items:
-        $ref: '#/ExchangeOffer'
+    bookedOfferRef:
+      type: string
+      maxLength: 32768
+      description: |
+            ID of the new offer booked by the exchange.
     appliedFeesRefs:
       description: |
         references to the fees applied with this exchange operation. It is mandatory to
@@ -510,14 +611,21 @@ ExchangeOperation:
       items:
         type: string
         maxLength: 1024
+    exchangeOfferBreakdown:
+       description: |
+         Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
+       type: array
+       items:
+           $ref: '#/components/schemas/ExchangeBreakdownItem'        
     ticketTimeLimit:
+      decription: for convenientce, identical to the TTL in teh new bookedOffer
       type:
       - string
       - 'null'
       format: date-time
     fulfillmentRefs:
       description: |
-        references to the fulfillments affeted by the exchange operation.
+        references to the fulfillments replaced by the exchange operation. New Fulfillments will be in the new bookedOffer
       type: array
       items:
         $ref: ./fulfillment.yml#/FulfillmentRefs
