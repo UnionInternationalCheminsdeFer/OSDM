@@ -16,7 +16,7 @@ permalink: /spec/catalog-of-code-lists/
 - [Code Lists ](#accommodation-type-)
   - [Accommodation Type ](#accommodation-type-) 
   - [Accommodation Sub Type, Place Property, Reservation Place Preference ](#accommodation-sub-type-place-property-reservation-place-preference-)
-  - [Ancillary category ](#ancillary-category-)
+  - [Ancillary Type ](#ancillary-type-)
   - [Ancillary Sub Types ](#ancillary-sub-types-)
   - [Attachable Item Type ](#attachable-item-type-)
   - [BarcodeType ](#barcodetype-)
@@ -130,7 +130,7 @@ mandates it to be always lower case.
 |     |                      provider specific values allowed / no provider specific values allowed / code list managed by external organization          |
 | [Accommodation Type](#accommodation-type-) | no provider specific values allowed     | 
 | [Accommodation Sub Type, Place Property, Reservation Place Preference  ](#accommodation-sub-type-place-property-reservation-place-preference-) |   no provider specific values allowed    | 
-| [Ancillary category  ](#ancillary-category-) |  no provider specific values allowed     | 
+| [Ancillary type  ](#ancillary-type-) |  no provider specific values allowed     | 
 | [Ancillary Sub Types  ](#ancillary-sub-types-) |   no provider specific values allowed    | 
 | [Attachable Item Type  ](#attachable-item-type-) |  no provider specific values allowed     | 
 | [BarcodeType  ](#barcodetype-) |   no provider specific values allowed    | 
@@ -330,7 +330,7 @@ of by the customer.
 | `WITHOUT_ANIMALS`         | Y                      | Y                | Y              | Place in an area where animals are not allowed                                                                      | `SPECIAL_COMPARTMENT_TYPE`       |
 | `WITHOUT_TRAY_TABLE`      | N                      | N                | Y              | Place without a tray table                                                                                               | `PLACE_OR_COMPARTMENT_FEATURE`       |
 
-## Ancillary category <a name="AncillaryCategory">
+## Ancillary type <a name="AncillaryCategory"><a name="AncillaryType">
 
 | Code                  | Description                                                          |
 | --------------------- | -------------------------------------------------------------------- |
