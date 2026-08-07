@@ -6483,6 +6483,8 @@ components:
           $ref: '#/components/schemas/StopPlaceRef'
         serviceArrival:
           $ref: '#/components/schemas/ServiceTime'
+        status:
+          $ref: '#/components/schemas/StopCallStatus'
 
     Ancillary:
       allOf:
@@ -7064,6 +7066,8 @@ components:
           $ref: '#/components/schemas/StopPlaceRef'
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
+        status:
+          $ref: '#/components/schemas/StopCallStatus'
 
     BookedOffer:
       type: object
@@ -11247,6 +11251,8 @@ components:
           $ref: '#/components/schemas/ServiceTime'
         serviceDeparture:
           $ref: '#/components/schemas/ServiceTime'
+        status:
+          $ref: '#/components/schemas/StopCallStatus'
 
     JourneyRef:
       type: string
