@@ -13185,10 +13185,7 @@ components:
         problems:
           type: array
           items:
-            $ref: '#/components/schemas/Problem'
-        bookedOffer:
-          $ref: '#/components/schemas/BookedOffer'
-          deprecated: true            
+            $ref: '#/components/schemas/Problem'       
         bookedOfferIds:
           type: array
           items:
