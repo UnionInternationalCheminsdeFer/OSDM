@@ -110,6 +110,8 @@
       link: spec/constructing-products-from-fares/
     - name: Handling Reservations
       link: spec/handling-reservations/
+    - name: Handling Return Trips
+      link: spec/handling-return-trips/            
     - name: Collective and Individual Ticketing
       link: spec/collective-individual-ticketing/      
     - name: Persons with reduced mobility (PRM) and accessability
