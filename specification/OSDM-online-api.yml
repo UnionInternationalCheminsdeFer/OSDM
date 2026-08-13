@@ -13185,7 +13185,7 @@ components:
         problems:
           type: array
           items:
-            $ref: '#/components/schemas/Problem'
+            $ref: '#/components/schemas/Problem'       
         bookedOfferIds:
           type: array
           items:
