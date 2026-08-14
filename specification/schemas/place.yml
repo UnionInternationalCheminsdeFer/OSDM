@@ -871,7 +871,8 @@ PlaceLayout:
   properties:
     number:
       description: |
-        The place number (unique per coach deck).
+        The place number. There might be cases where the place number is not unique 
+        per coach (e.g. same place number for a seat and associated bicycle hook, same place numbers on upper and lower deck)
       type: string
       nullable: false
     rectangle:
