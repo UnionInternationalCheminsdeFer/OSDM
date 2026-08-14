@@ -36,6 +36,18 @@ The ExchangeProcess will document the used payment methods during the exchange p
 As the status of the exchange is changed by call on the level of the booking by 'POST /bookings/{bookingId}/fulfillments' it is not allowed to have two ongoing ExchangProcesses at the same time.
 
 
+ - Step 1: request exchange offers 'POST /bookings/{bookingId}/exchange-offers'
+    - creates an exchange-offer
+ - Step 2: select and prebook an exchange offer: 'POST /bookings/{bookingId}/exchange-process'
+    - creates an exchange process
+    - creates fee objects on the old booked offer
+    - creates a new bookd offer in prebooked state
+ - Step 3: add additional information and seat selections on the new tarnsportables and passengers in the new booked offer
+ - Step 4: confirm the exchange by 'POST /bookings/{bookingId}/fulfillments'
+
+To interrupt the process and restart with a new exchange offer before the ticket time limit is reached you need to delete the exchange process. 
+    
+
 
 
 
