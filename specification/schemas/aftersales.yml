@@ -128,10 +128,6 @@ ExchangeOffer:
   properties:
     exchangeFee:
       $ref: ./_common.yml#/Price
-    accountingRef:
-      description: |
-        Accounting information for the exchange fee
-      $ref: ./_common.yml#/AccountingRef
     exchangePrice:
       description: |
         price of the new booking parts
@@ -491,22 +487,41 @@ ExchangeOperation:
   description: |
     The exchange operation bundles the exchange starting with the acceptance of an exchange offer. It includes the references to the new booked offer and the 
     exchanged booking parts and fulfillments of the old booked offer. The object will be kept in the old booked offer to document the history of the change.
+    The provided amounts in exchangeFee, exchangePrice and refundable amount are given for convenience and correspond to the sums of the 
+    exchanged booking parts and fees in the old and new booking during the exchange. 
   type: object
   additionalProperties: false
   required:
   - id
   - status
   - bookedOfferId
+  - exchangeFee
+  - exchangePrice
+  - refundableAmount
   properties:
     id:
       type: string
     status:
       $ref: '#/ExchangeStatus'
     bookedOfferId:
+      description: |
+            ID of the new offer booked in the exchange.
       type: string
       maxLength: 32768
+    exchangeFee:
+      $ref: ./_common.yml#/Price
+    exchangePrice:
       description: |
-            ID of the new offer booked by the exchange.
+        price of the new booking parts
+      $ref: ./_common.yml#/Price
+    refundableAmount:
+      description: |
+        amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.
+      $ref: ./_common.yml#/Price
+    amountToBePaid:
+      description: |
+        amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.
+      $ref: ./_common.yml#/Price
     appliedFeeIds:
       description: |
         references to the fees applied with this exchange operation. It is mandatory to
@@ -516,7 +531,7 @@ ExchangeOperation:
         type: string
         maxLength: 1024     
     ticketTimeLimit:
-      decription: for convenience, identical to the TTL in the new bookedOffer
+      decription: provided for convenience, identical to the TTL in the new bookedOffer
       type:
       - string
       - 'null'
@@ -549,30 +564,6 @@ ExchangeOperation:
        type: array
        items:
            $ref: '#/components/schemas/ExchangeBreakdownItem'  
-ExchangeOperationPatchRequest:
-  type: object
-  additionalProperties: false
-  description: |
-    Allows modifying a general setting for the booking:
-     * setting the required fulfillment type, e.g. value paper
-       or e-ticket and preferred fulfillment media.
-       The latter is optional and relevant in some cases only.
-     * Provisionally exchanging some of the fulfillments in the booking
-  properties:
-    requestedFulfillmentType:
-      $ref: ./fulfillment.yml#/FulfillmentType
-    preferredFulfillmentMedia:
-      $ref: ./fulfillment.yml#/FulfillmentMediaType
-    usedPaymentMethods:
-      type: array
-      items:
-        $ref: ./_common.yml#/PaymentMethod
-    embed:
-      description: |
-        Influences whether referenced resources are returned in full or as references only.
-      type: array
-      items:
-        $ref: '#/ExchangeOperationResponseContent'
 ExchangeOperationRequest:
   type: object
   additionalProperties: false
@@ -598,13 +589,6 @@ ExchangeOperationResponse:
         $ref: ./_common.yml#/Problem
     exchangeOperation:
       $ref: '#/ExchangeOperation'
-    appliedFees:
-      description: "applied fees referenced in the exchange operation. Providing the applied fees is \nmandatory in case the\
-        \ an exchange operation is returned. The applied fees are stored in the booking and are returned here additionally\
-        \ for convenience.\n"
-      type: array
-      items:
-        $ref: ./_common.yml#/AppliedFee
 ExchangeOperationResponseContent:
   description: |
     Influences whether referenced resources are returned in full or as references only.
@@ -612,8 +596,6 @@ ExchangeOperationResponseContent:
   enum:
   - ALL
   - EXCHANGEOPERATION
-  - EXCHANGEOPERATION_EXCHANGEOFFERS
-  - EXCHANGEOPERATION_FULFILLMENTS
   default: ALL
 ExchangeParts:
   description: specification of parts to be exchanged
