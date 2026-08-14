@@ -166,7 +166,7 @@ FareConnectionPointRef:
         $ref: '#/FareConnectionPoint'
       name:
         type:
-        - string
+        - $ref: ./common.yml#/Text
         - 'null'
 FareReferenceStation:
   type: object
@@ -183,7 +183,7 @@ FareReferenceStation:
   - stations
   properties:
     name:
-      type: string
+      $ref: ./common.yml#/Text
     code:
       type: string
     carrier:
@@ -474,7 +474,7 @@ Zone:
       $ref: ./_common.yml#/CompanyRef
     name:
       type:
-      - string
+      - $ref: ./_common.yml#/Text
       - 'null'
     entryStation:
       $ref: ./ojp/trip.yml#/StopPlace
@@ -534,7 +534,7 @@ ZoneDefinition:
       type: string
     name:
       type:
-      - string
+      - $ref: ./common.yml#/Text
       - 'null'
     carrier:
       $ref: ./_common.yml#/CompanyRef
@@ -569,7 +569,7 @@ ZoneSpecification:
       $ref: ./product.yml#/MasterDataValidity
     name:
       type:
-      - string
+      - $ref: ./common.yml#/Text
       - 'null'
     carrier:
       $ref: ./_common.yml#/CompanyRef

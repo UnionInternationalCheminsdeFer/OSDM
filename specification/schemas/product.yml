@@ -212,7 +212,7 @@ Product:
       description: |
         A human-readable description of the product.
       type:
-      - string
+      - $ref: ./_common.yml#/Text
       - 'null'
     type:
       $ref: '#/ProductType'
@@ -227,7 +227,7 @@ Product:
       description: |
         Textual description of the product.
       type:
-      - string
+      - $ref: ./_common.yml#/Text
       - 'null'
     owner:
       $ref: ./_common.yml#/CompanyRef
@@ -259,11 +259,11 @@ Product:
       default: false
     serviceConstraintText:
       type:
-      - string
+      - $ref: ./_common.yml#/Text
       - 'null'
     carrierConstraintText:
       type:
-      - string
+      - $ref: ./_common.yml#/Text
       - 'null'
     descriptiveTexts:
       type: array

@@ -73,7 +73,7 @@ CancelFulfillmentsOffer:
       description: |
         A human-readable description of the refund offer.
       type:
-      - string
+      - $ref: ./_common.yml#/Text
       - 'null'
     createdOn:
       type: string

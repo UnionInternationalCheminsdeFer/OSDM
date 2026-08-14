@@ -391,13 +391,12 @@ Condition:
     description:
       description: |
         human readable documentation of the text.
-      type: string
-      minLength: 1
+      $ref: ./_common.yml#/Text
     shortDescription:
       description: |
         short description of the condition no longer than 64 characters
       type:
-      - string
+      - $ref: ./_common.yml#/Text
       - 'null'
 ConditionType:
   type: string
@@ -676,7 +675,7 @@ GeneralAttribute:
     text:
       description: text to be displayed to the user
       type:
-      - string
+      - $ref: ./_common.yml#/Text
       - 'null'
     code:
       type:
@@ -1556,14 +1555,11 @@ TextElement:
     description:
       description: |
         Full version of the text for display when sufficient space is available.
-      type: string
-      minLength: 1
-      maxLength: 32768
+      $ref: ./_common.yml#/Text
     shortDescription:
       description: |
         Brief version of the text for display in space restricted environments, e.g. mobile phone. No longer than 64 characters.
-      type: string
-      minLength: 1
+      $ref: ./_common.yml#/Text
     textElementType:
       $ref: '#/TextElementType'
 TextElementType:
