@@ -1021,6 +1021,8 @@ components:
       $ref: ./schemas/aftersales.yml#/RefundOfferRequest
     RefundOfferResponse:
       $ref: ./schemas/aftersales.yml#/RefundOfferResponse
+    RefundPaymentBreakdownItem:
+      $ref: ./schemas/aftersales.yml#/RefundPaymentBreakdownItem
     RefundSpecification:
       $ref: ./schemas/aftersales.yml#/RefundSpecification
     RefundStatus:
@@ -1037,8 +1039,6 @@ components:
       $ref: ./schemas/_common.yml#/RegulatoryCondition
     Reimbursement:
       $ref: ./schemas/complaint.yml#/Reimbursement
-    ReimbursementBreakdownItem:
-      $ref: ./schemas/aftersales.yml#/ReimbursementBreakdownItem
     ReimbursementDecision:
       $ref: ./schemas/complaint.yml#/ReimbursementDecision
     ReimbursementMethod:
