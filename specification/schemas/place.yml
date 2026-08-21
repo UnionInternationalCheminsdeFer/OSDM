@@ -166,7 +166,7 @@ AvailablePlacesDetail:
   - legCoverage
   properties:
     id:
-      description: identifier of the available places corresponding to thisdetail description
+      description: identifier of the available places corresponding to this detail description
       type: string
     description:
       description: human readable description of the places in this place detail
@@ -174,7 +174,8 @@ AvailablePlacesDetail:
     accommodationType:
       $ref: '#/AccommodationType'
     accommodationSubTypes:
-      description: accommodation subtypes of the palces in this detail. All places in this Available places details have these subtypes.
+      description: accommodation subtypes of the places in this detail. All places in this Available places details have these subtypes. For
+        fare reservations providing the accommodation sybtypes s mandatory.
       type:
       - array
       - 'null'
