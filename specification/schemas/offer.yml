@@ -1144,7 +1144,9 @@ Reservation:
       placeSelection:
         $ref: ./place.yml#/PlaceSelection
       placeAllocation:
-        $ref: ./place.yml#/PlaceAllocation
+        type: array
+        items:      
+          $ref: ./place.yml#/PlaceAllocation
       feeRefs:
         type: array
         items:
@@ -1180,7 +1182,7 @@ ReservationOfferPart:
       availablePlaces:
         type: array
         items:
-          $ref: ./place.yml#/AvailablePlace
+          $ref: ./place.yml#/AvailablePlacesDetail
       availablePlacePreferences:
         type: array
         items:
