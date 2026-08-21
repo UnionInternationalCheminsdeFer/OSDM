@@ -1182,7 +1182,7 @@ ReservationOfferPart:
       availablePlaces:
         type: array
         items:
-          $ref: ./place.yml#/AvailablePlaceDetail
+          $ref: ./place.yml#/AvailablePlacesDetail
       availablePlacePreferences:
         type: array
         items:
