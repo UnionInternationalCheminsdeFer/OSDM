@@ -160,11 +160,13 @@ AvailablePlacesDetail:
   description: |
     Describes the details of the available places.
   required:
+  - id
+  - description
   - accommodationType
   - legCoverage
   properties:
     id:
-      description: identifier of the abailablePlaces
+      description: identifier of the available places corresponding to thisdetail description
       type: string
     description:
       description: human readable description of the places in this place detail
@@ -172,6 +174,7 @@ AvailablePlacesDetail:
     accommodationType:
       $ref: '#/AccommodationType'
     accommodationSubTypes:
+      description: accommodation subtypes of the palces in this detail. All places in this Available places details have these subtypes.
       type:
       - array
       - 'null'
@@ -179,22 +182,23 @@ AvailablePlacesDetail:
         $ref: '#/AccommodationSubType'
     placeProperties:
       description: |
-        Selectable place properties for the offer. For AccommodationSubType=ANY_SEAT all available and bookable properties need to be returned to give a sales tool a list of possible selections.
+        Selectable place properties for the offer. Selecting one of these properties will not change the price of the offer part. 
+        For AccommodationSubType=ANY_SEAT all available and bookable properties need to be returned to give a sales tool a list of possible selections.
       type:
       - array
       - 'null'
       items:
         $ref: '#/PlaceProperty'
-    numberOfItems:
+    numberOfOfferedItems:
       description: |
-        number of items described in this detail that are offered 
+        number of places described that are offered.
       type:
       - integer
       - 'null'
       format: int32    
     numericAvailability:
       description: |
-        For the AccommodationSubType=ANY_SEAT the total amount of places for the combination of AccommodationType and AccommodationSubTypes needs to returned.
+        The total amount of places for the combination of AccommodationType and AccommodationSubTypes available in general
       type:
       - integer
       - 'null'
@@ -380,8 +384,12 @@ CompartmentAvailability:
       $ref: ./_common.yml#/ServiceClassType
     accommodationType:
       $ref: '#/AccommodationType'
-    accommodationSubType:
-      $ref: '#/AccommodationSubType'
+    accommodationSubTypes:
+      type:
+      - array
+      - 'null'
+      items:   
+        $ref: '#/AccommodationSubType'
     places:
       description: |
         Seats or bicycle hooks in a coach compartment that are covered by a requested reservation fare/offerPart/bookingPart. No place availabilities must be returned for places that are NOT covered by a requested offer.
@@ -687,15 +695,36 @@ PlaceAllocation:
   description: |
     Describes the details of the reserved place(s).
   required:
+  - id
+  - description
   - accommodationType
-  - accommodationSubType
   - reservedPlaces
   - legCoverage
   properties:
+    id:
+      description: identifier of the abailablePlaces
+      type: string
+    description:
+      description: human readable description of the places in this place detail
+      type: string
     accommodationType:
       $ref: '#/AccommodationType'
-    accommodationSubType:
-      $ref: '#/AccommodationSubType'
+    accommodationSubTypes:
+      type:
+      - array
+      - 'null'
+      items:    
+        $ref: '#/AccommodationSubType'  
+    accommodationType:
+      $ref: '#/AccommodationType'
+    numberOfOfferedItems:
+      description: |
+        in prebooked state the number of places which that are to be allocated. 
+        This will be removed in a confirmed reservation when the reservedPlaces are added.
+      type:
+      - integer
+      - 'null'
+      format: int32          
     reservedPlaces:
       description: |
         Reserved places in a confirmed reservation.
@@ -720,7 +749,7 @@ PlaceAvailabilityCollectionResponse:
     availablePlaces:
       type: array
       items:
-        $ref: '#/AvailablePlace'
+        $ref: '#/AvailablePlacesDetail'
     _links:
       $ref: ./_common.yml#/Links
 PlaceAvailabilityMapRequest:
@@ -767,8 +796,12 @@ PlaceGroup:
       $ref: ./_common.yml#/ServiceClassType
     accommodationType:
       $ref: '#/AccommodationType'
-    accommodationSubType:
-      $ref: '#/AccommodationSubType'
+    accommodationSubTypes:
+      type:
+      - array
+      - 'null'
+      items:      
+        $ref: '#/AccommodationSubType'
     places:
       description: |
         Seats or bicycle hooks in a coach compartment.
@@ -1155,8 +1188,7 @@ SelectedAccommodation:
     Place selection of places for reservation linked to passengers.
   required:
   - passengerRefs
-  - accommodationType
-  - accommodationSubType
+  - accommodationRef
   properties:
     passengerRefs:
       description: |
@@ -1165,10 +1197,9 @@ SelectedAccommodation:
       items:
         type: string
       minItems: 1
-    accommodationType:
-      $ref: '#/AccommodationType'
-    accommodationSubType:
-      $ref: '#/AccommodationSubType'
+    accommodationRef:
+       description: id of the referenced available place detail or allocated places object
+       type: string
     placeProperties:
       description: |
         Properties of places as defined in 90810-10.
