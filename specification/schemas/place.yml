@@ -154,20 +154,29 @@ AvailabilityStatus:
   - FREE
   - RESTRICTED
   default: FREE
-AvailablePlace:
+AvailablePlacesDetail:
   type: object
   additionalProperties: false
   description: |
     Describes the details of the available places.
   required:
   - accommodationType
-  - accommodationSubType
   - legCoverage
   properties:
+    id:
+      description: identifier of the abailablePlaces
+      type: string
+    description:
+      description: human readable description of the places in this place detail
+      type: string
     accommodationType:
       $ref: '#/AccommodationType'
-    accommodationSubType:
-      $ref: '#/AccommodationSubType'
+    accommodationSubTypes:
+      type:
+      - array
+      - 'null'
+      items:    
+        $ref: '#/AccommodationSubType'
     placeProperties:
       description: |
         Selectable place properties for the offer. For AccommodationSubType=ANY_SEAT all available and bookable properties need to be returned to give a sales tool a list of possible selections.
@@ -176,9 +185,16 @@ AvailablePlace:
       - 'null'
       items:
         $ref: '#/PlaceProperty'
+    numberOfItems:
+      description: |
+        number of items described in this detail that are offered 
+      type:
+      - integer
+      - 'null'
+      format: int32    
     numericAvailability:
       description: |
-        For the AccommodationSubType=ANY_SEAT the total amount of places for the combination of AccommodationType and AccommodationSubType needs to returned.
+        For the AccommodationSubType=ANY_SEAT the total amount of places for the combination of AccommodationType and AccommodationSubTypes needs to returned.
       type:
       - integer
       - 'null'
