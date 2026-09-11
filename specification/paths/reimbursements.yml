@@ -47,6 +47,8 @@
         $ref: ../OSDM-online-api.yml#/components/responses/NotFoundResponse
       '406':
         $ref: ../OSDM-online-api.yml#/components/responses/NotAcceptableResponse
+      '409':
+        $ref: ../OSDM-online-api.yml#/components/responses/ConflictResponse        
       '415':
         $ref: ../OSDM-online-api.yml#/components/responses/UnsupportedMediaTypeResponse
       '500':
