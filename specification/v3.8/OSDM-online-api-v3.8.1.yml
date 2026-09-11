@@ -10354,6 +10354,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExchangeBreakdownItem'
+        refundPaymentBreakdown:
+          description: |
+            Per-channel breakdown of the amount to be refunded to the purchaser
+            (the refundableAmount), supporting split reimbursements (e.g. part to a
+            voucher, part to the original payment mean). Lets the reimbursable split
+            be seen at quotation stage, before the exchange is confirmed.
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundPaymentBreakdownItem'
         admissionOfferParts:
           type: array
           items:
@@ -10510,6 +10519,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VoucherInformation'
+        refundPaymentBreakdown:
+          description: |
+            Per-channel breakdown of the amount refunded to the purchaser,
+            supporting split reimbursements (e.g. part to a voucher, part to the
+            original payment mean). Each voucher channel carries its voucher
+            information and amount inline.
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundPaymentBreakdownItem'
         trips:
           type: array
           items:
@@ -10529,6 +10547,13 @@ components:
           $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
           $ref: '#/components/schemas/FulfillmentMediaType'
+        usedPaymentMethods:
+          description: |
+            Payment methods used to settle the exchange surcharge (the
+            amountToBePaid of the selected exchange offer).
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethod'
         embed:
           description: |
             Influences whether referenced resources are returned in full or as references only.
@@ -15118,6 +15143,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RefundOfferBreakdownItem'
+        refundPaymentBreakdown:
+          description: |
+            Per-channel breakdown of the amount refunded to the purchaser (the
+            refundableAmount), supporting split reimbursements (e.g. part to a
+            voucher, part to the original payment mean). Each voucher channel
+            carries its voucher information and amount inline. This is authoritative
+            for the realized per-channel amounts; reimbursementMethod only states
+            the offer's headline channel.
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundPaymentBreakdownItem'
         reimbursementMethod:
           $ref: '#/components/schemas/ReimbursementMethod'
         _links:
@@ -15216,6 +15252,38 @@ components:
             $ref: '#/components/schemas/Problem'
         refundOffer:
           $ref: '#/components/schemas/RefundOffer'
+
+    RefundPaymentBreakdownItem:
+      type: object
+      additionalProperties: false
+      description: |
+        One channel through which (part of) the refundable amount is returned to
+        the purchaser. A list of these expresses split reimbursements (e.g. part to
+        a voucher, part to the original payment mean), which the singular
+        reimbursementMethod cannot represent.
+      required:
+        - type
+      properties:
+        type:
+          $ref: '#/components/schemas/PaymentType'
+        refundableAmount:
+          description: |
+            Amount returned to the purchaser through this channel. Authoritative for
+            the VOUCHER channel, where the system knows the credited amount (mirroring
+            appliedVoucherAmount on PaymentMethod). For other channels such as
+            ORIGINAL_ACCOUNT the amount is declarative and may be omitted when the
+            system cannot state it.
+          allOf:
+            - $ref: '#/components/schemas/Price'
+        voucherInformation:
+          description: |
+            Identifies the voucher this amount is credited to when type is VOUCHER.
+            This is the per-voucher key that lets a specific amount be attached to a
+            specific voucher (which issuedVouchers cannot express). A voucher that
+            also appears in issuedVouchers is newly issued; one that appears here but
+            not in issuedVouchers is a re-credit of an existing voucher.
+          allOf:
+            - $ref: '#/components/schemas/VoucherInformation'
 
     RefundSpecification:
       type: object
