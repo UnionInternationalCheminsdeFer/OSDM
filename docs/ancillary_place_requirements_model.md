@@ -20,7 +20,7 @@ places it requires.
 | Field | Type | Meaning |
 |---|---|---|
 | `id` | string, required | Unique within the offer. Referenced by the place map. |
-| `placeProperties` | `PlaceProperty[]`, required | Properties shared by the places concerned. |
+| `placeProperty` | `PlaceProperty`, required | Property of the places concerned. |
 | `ancillaryRefs` | `OfferPartReference[]`, required | Ancillaries requiring one of these places. |
 | `isReservedForAncillaries` | boolean, default `false` | If true, these places require one of `ancillaryRefs`. |
 
@@ -31,12 +31,15 @@ Additive only. The place-map request and `status` are unchanged.
 
 ```json
 "ancillaryPlaceRequirements": [
-  { "id": "req-power", "placeProperties": ["POWER"],
+  { "id": "req-power", "placeProperty": "POWER",
     "ancillaryRefs": [{ "id": "anc-power" }] },
-  { "id": "req-bike", "placeProperties": ["NEAR_BICYCLE_AREA"],
+  { "id": "req-bike", "placeProperty": "NEAR_BICYCLE_AREA",
     "ancillaryRefs": [{ "id": "anc-bike" }, { "id": "anc-luggage" }], "isReservedForAncillaries": true }
 ]
 ```
+
+An ancillary needing several properties (e.g. a work pack needing a power socket and a table) is referenced by one
+requirement per property.
 
 ## Rule for the consumer
 
@@ -66,7 +69,7 @@ The offer contains one reservation and three optional ancillaries:
 
 `res-1.ancillaryPlaceRequirements`:
 
-| `id` | `placeProperties` | `ancillaryRefs` | `isReservedForAncillaries` | Meaning for the distributor |
+| `id` | `placeProperty` | `ancillaryRefs` | `isReservedForAncillaries` | Meaning for the distributor |
 |---|---|---|---|---|
 | `req-power` | `POWER` | `anc-power` | `false` | A passenger booking the power ancillary must sit on a `POWER` seat. Other passengers can take these seats too. |
 | `req-bike` | `NEAR_BICYCLE_AREA` | `anc-bike`, `anc-luggage` | `true` | A passenger booking the bike or the luggage ancillary must sit near the bicycle area. Only these passengers can take these seats. |

@@ -337,7 +337,7 @@ AncillaryPlaceRequirement:
     the selected places against the booked ancillaries when the booking is created.
   required:
   - id
-  - placeProperties
+  - placeProperty
   - ancillaryRefs
   properties:
     id:
@@ -345,17 +345,12 @@ AncillaryPlaceRequirement:
         Id of the requirement, unique within the offer.
       type: string
       nullable: false
-    placeProperties:
-      description: |
-        Place properties shared by all places concerned by the requirement.
-      type: array
-      items:
-        $ref: ./place.yml#/PlaceProperty
-      minItems: 1
+    placeProperty:
+      $ref: ./place.yml#/PlaceProperty
     ancillaryRefs:
       description: |
-        Ancillary offer parts of the offer requiring one of the places concerned. An ancillary offer part is
-        referenced by at most one requirement.
+        Ancillary offer parts of the offer requiring one of the places concerned. An ancillary requiring several
+        place properties is referenced by one requirement per property.
       type: array
       items:
         $ref: '#/OfferPartReference'
