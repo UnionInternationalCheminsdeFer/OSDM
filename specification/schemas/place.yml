@@ -1190,6 +1190,7 @@ SpecificPlaceAvailability:
     ancillaryPlaceRequirementIds:
       description: |
         Ids of the ancillaryPlaceRequirements of the referenced reservation offer parts that concern the place.
+        Empty or absent if the place is concerned by no requirement.
       type: array
       items:
         type: string

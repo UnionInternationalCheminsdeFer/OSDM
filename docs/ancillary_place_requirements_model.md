@@ -24,8 +24,8 @@ places it requires.
 | `ancillaryRefs` | `OfferPartReference[]`, required | Ancillaries requiring one of these places. |
 | `isReservedForAncillaries` | boolean, default `false` | If true, these places require one of `ancillaryRefs`. |
 
-**`SpecificPlaceAvailability.ancillaryPlaceRequirementIds`**: the requirements that concern the place. This sits
-next to `selectionFee`, as agreed in the WG.
+**`SpecificPlaceAvailability.ancillaryPlaceRequirementIds`**: the requirements that concern the place, empty or
+absent if none does. This sits next to `selectionFee`, as agreed in the WG.
 
 Additive only. The place-map request and `status` are unchanged.
 
