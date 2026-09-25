@@ -652,7 +652,7 @@
 					}
 				},
 				"allowedDistributors": {
-					"description": "List of allowed distrubutors. If the list is empty all distrubutors with a sales contract are allowed.",
+					"description": "List of allowed distributors. If the list is empty all distributors with a sales contract are allowed.",
 					"type": "array",
 					"items": {
 						"$ref": "#/definitions/CompanyDef"
@@ -2140,7 +2140,7 @@
 					"default": false
 				},
 				"involvedTCOs": {
-					"description": "ticket controling organizations involved in the control. Used to provide TCOs access to the ticket in the contraol data (IRS 90918-4)",
+					"description": "ticket controlling organizations involved in the control. Used to provide TCOs access to the ticket in the contraol data (IRS 90918-4)",
 					"type": "array",
 					"items": {
 						"$ref": "#/definitions/CompanyDef"
@@ -2497,7 +2497,7 @@
 			"type": "object",
 			"properties": {
 				"dimension": {
-					"description": "type of the restriction. weight in kg, length in cm, volume in liter. Combined sizes are the sum of the sizes  WIDTH_HEIGHT_LENGTH = sum of width, hight and length in cm (linear equivalent).",
+					"description": "type of the restriction. weight in kg, length in cm, volume in liter. Combined sizes are the sum of the sizes  WIDTH_HEIGHT_LENGTH = sum of width, height and length in cm (linear equivalent).",
 					"type": "string",
 					"enum": [
 						"WIDTH",
@@ -2528,7 +2528,7 @@
 					"type": "string"
 				},
 				"code": {
-					"description": "stable code for the product accross different versions",
+					"description": "stable code for the product across different versions",
 					"type": "string"
 				},
 				"name": {
