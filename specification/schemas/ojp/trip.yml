@@ -458,6 +458,8 @@ Trip:
         A human-readable description of the trip.
       type: string
       nullable: true
+    tripPatternRef:
+      $ref: '../trip.yml#/TripPatternRef'
     duration:
       description: |
         Overall duration of the trip
