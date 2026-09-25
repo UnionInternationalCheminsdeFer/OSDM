@@ -322,6 +322,52 @@ AncillaryOfferPart:
         type: array
         items:
           $ref: '#/ReservationRelation'
+AncillaryPlaceRequirement:
+  type: object
+  additionalProperties: false
+  description: |
+    Links ancillaries of the offer to the places of the reservation they require.
+    The place map lists the id of the requirement on every place it concerns.
+    A passenger can select a place only if:
+    - the place is concerned by every requirement referencing an ancillary booked by the passenger, and
+    - for every requirement concerning the place with isReservedForAncillaries set to true, the passenger books at
+      least one of its ancillaries.
+    Ancillaries not referenced by any requirement do not restrict the places.
+    The status returned by the place map for a reservation offer part ignores the requirements. The provider checks
+    the selected places against the booked ancillaries when the booking is created.
+  required:
+  - id
+  - placeProperties
+  - ancillaryRefs
+  properties:
+    id:
+      description: |
+        Id of the requirement, unique within the offer.
+      type: string
+      nullable: false
+    placeProperties:
+      description: |
+        Place properties shared by all places concerned by the requirement.
+      type: array
+      items:
+        $ref: ./place.yml#/PlaceProperty
+      minItems: 1
+    ancillaryRefs:
+      description: |
+        Ancillary offer parts of the offer requiring one of the places concerned. An ancillary offer part is
+        referenced by at most one requirement.
+      type: array
+      items:
+        $ref: '#/OfferPartReference'
+      minItems: 1
+    isReservedForAncillaries:
+      description: |
+        If true, only a passenger booking at least one of the ancillaries in ancillaryRefs can select the places
+        concerned. If false, any passenger can select them.
+        The provider sets the value when it creates the offer, e.g. it may open these places to any passenger close
+        to departure.
+      type: boolean
+      default: false
 AncillaryRelation:
   type: object
   additionalProperties: false
@@ -1138,6 +1184,13 @@ ReservationOfferPart:
         type: array
         items:
           $ref: ./place.yml#/AvailablePlace
+      ancillaryPlaceRequirements:
+        description: |
+          Places of this reservation required by ancillaries of the offer. Lets the consumer find the places each
+          passenger can select, given their ancillaries.
+        type: array
+        items:
+          $ref: '#/AncillaryPlaceRequirement'
       availablePlacePreferences:
         type: array
         items:

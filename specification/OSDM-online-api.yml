@@ -360,6 +360,8 @@ components:
       $ref: ./schemas/offer.yml#/AncillaryGroup
     AncillaryOfferPart:
       $ref: ./schemas/offer.yml#/AncillaryOfferPart
+    AncillaryPlaceRequirement:
+      $ref: ./schemas/offer.yml#/AncillaryPlaceRequirement
     AncillaryRelation:
       $ref: ./schemas/offer.yml#/AncillaryRelation
     AncillarySelection:

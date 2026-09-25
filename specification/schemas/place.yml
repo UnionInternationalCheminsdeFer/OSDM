@@ -1187,4 +1187,10 @@ SpecificPlaceAvailability:
       minItems: 1
     selectionFee:
       $ref: ./_common.yml#/SelectionFee
+    ancillaryPlaceRequirementIds:
+      description: |
+        Ids of the ancillaryPlaceRequirements of the referenced reservation offer parts that concern the place.
+      type: array
+      items:
+        type: string
 
