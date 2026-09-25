@@ -46,6 +46,27 @@ IntermediateSpecification:
       $ref: ./_common.yml#/ServiceTime
     serviceDeparture:
       $ref: ./_common.yml#/ServiceTime
+
+TripPatternRef:
+  type: object
+  description: |
+    Reference to Trip Pattern (Itinerary) external to the provider system.
+  required:
+    - tripPatternId
+  properties:
+    tripPatternId:
+      type: string
+      description: |
+        Reference id to Trip Pattern created in external system.
+    order:
+      description: |
+        Position of this trip within overall external trip pattern.
+      type: integer
+      format: int32
+      minimum: 0
+      default: 0
+      nullable: true
+
 NonTripSearchCriteria:
   type: object
   additionalProperties: false
