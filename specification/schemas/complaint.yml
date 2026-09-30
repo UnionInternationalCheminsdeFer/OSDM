@@ -1,0 +1,360 @@
+ClaimedJourneyDetails:
+  type: object
+  additionalProperties: false
+  properties:
+    impact:
+      $ref: '#/ImpactType'
+    finalDelay:
+      type: string
+      format: duration
+      nullable: true
+      example: PT30M
+    onReturn:
+      type: boolean
+      nullable: true
+      default: false
+    delayedJourney:
+      type: array
+      items:
+        $ref: '#/ClaimedLeg'
+ClaimedLeg:
+  type: object
+  additionalProperties: false
+  properties:
+    trainNumber:
+      type: string
+      nullable: true
+    connectionMissed:
+      description: |
+        connection missed due to a delay on the previous leg
+      type: boolean
+      nullable: true
+    serviceDegradation:
+      type: array
+      items:
+        $ref: ./_common.yml#/ServiceDegradation
+    departureStation:
+      $ref: ./ojp/place.yml#/Place
+    arrivalStation:
+      $ref: ./ojp/place.yml#/Place
+    plannedDepartureTime:
+      type: string
+      format: date-time
+      nullable: true
+    timetabledArrivalTime:
+      type: string
+      format: date-time
+      nullable: true
+    observedArrivalTime:
+      type: string
+      format: date-time
+      nullable: true
+Complaint:
+  type: object
+  additionalProperties: false
+  required:
+  - id
+  - status
+  properties:
+    id:
+      type: string
+      nullable: false
+    status:
+      $ref: ./_common.yml#/BackOfficeStatus
+    customerComplaint:
+      $ref: '#/CustomerComplaint'
+    missingInformation:
+      description: |
+        indication of missing customer information
+      type: array
+      items:
+        type: string
+        maxLength: 32768
+      nullable: true
+    decision:
+      $ref: '#/ComplaintDecision'
+    _links:
+      $ref: ./_common.yml#/Links
+ComplaintChangeReason:
+  description: |
+    Known Values:
+    - 'BANK_ACCOUNT'
+    - 'SETTLED_TIME_LIMIT_EXCEEDED': A distributor settled the claim as the fare provided did not reply in due time. The compensation amount debited is provided.
+    - 'PASSENGER_CHANGE'
+  type: string
+  x-extensible-enum:
+  - BANK_ACCOUNT
+  - SETTLED_TIME_LIMIT_EXCEEDED
+  - PASSENGER_CHANGE
+ComplaintDecision:
+  type: object
+  additionalProperties: false
+  properties:
+    compensationAmount:
+      $ref: ./_common.yml#/Price
+    refundVoucher:
+      $ref: ./fulfillment.yml#/FulfillmentDocument
+    decisionType:
+      $ref: '#/DecisionType'
+    explanation:
+      $ref: ./_common.yml#/SupportingDocument
+    shortExplanation:
+      type: string
+      nullable: true
+    delayedJourney:
+      description: |
+        Allocator or fare provider view on the delays. This might differ from the customer view.
+      type: array
+      items:
+        $ref: ./ojp/trip.yml#/Trip
+ComplaintPatchRequest:
+  type: object
+  additionalProperties: false
+  description: |
+    Changes to a claim already made.
+    This covers upload of additional supporting documents, changes to  the passenger and claim manager data.
+    The patch of the compensation amount requires an agreement between the involved parties and is used in
+    case the legal time line for deciding the claim is passed.
+  properties:
+    reason:
+      $ref: '#/ComplaintChangeReason'
+    compensationAmount:
+      $ref: ./_common.yml#/Price
+    claimManager:
+      $ref: ./person.yml#/PersonDetail
+    affectedPassengers:
+      type: array
+      items:
+        $ref: ./person.yml#/Passenger
+    supportingDocuments:
+      type: array
+      items:
+        $ref: ./_common.yml#/SupportingDocument
+    bankAccount:
+      $ref: ./_common.yml#/BankAccountReference
+ComplaintResponse:
+  type: object
+  additionalProperties: false
+  required:
+  - complaint
+  properties:
+    complaint:
+      $ref: '#/Complaint'
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+CustomerComplaint:
+  type: object
+  additionalProperties: false
+  description: |
+    complaint details provided by the passengers
+  properties:
+    applicationTime:
+      description: |
+        date and time when the claim was made. This starts the legal time line to process the claim
+      type: string
+      format: date-time
+      nullable: true
+    journeyDetails:
+      $ref: '#/ClaimedJourneyDetails'
+    claimManager:
+      $ref: ./person.yml#/PersonDetail
+    affectedPassengers:
+      type: array
+      items:
+        $ref: ./person.yml#/Passenger
+    supportingDocuments:
+      type: array
+      items:
+        $ref: ./_common.yml#/SupportingDocument
+    bookingIds:
+      description: |
+        list of booking Ids
+      type: array
+      items:
+        type: string
+      nullable: true
+    ticketControlNumber:
+      description: |
+        list of ticket control number (visible ticket identification for the customer)
+      type: array
+      items:
+        type: string
+      nullable: true
+    requestedPaymentType:
+      $ref: ./_common.yml#/PaymentType
+    bankAccount:
+      $ref: ./_common.yml#/BankAccountReference
+DecisionType:
+  description: |
+    Summary result of decision on a complaint
+
+    - `ACCEPTED`: the complaint is accepted and refund or compensation will be paid
+    - `REJECTED`: the complaint is rejected and no refund or compensation will be paid
+    - `GOOD_WILL`: a good will compensation is offered, no legal obligation
+      to pay refund or compensation exists
+    - `PARTIALLY_ACCEPTED`: the complaint is partially accepted, e.g. for
+      part of the journey or part of the passengers
+  type: string
+  enum:
+  - ACCEPTED
+  - REJECTED
+  - GOOD_WILL
+  - PARTIALLY_ACCEPTED
+ImpactType:
+  description: |
+    Known Values:
+    - DELAY: delayed arrival
+    - JOURNEY_ABANDONED: trip way abandoned during the travel
+    - JOURNEY_NOT_STARTED: trip was not started due to the delay
+    - SERVICE_DEGRADED: e.g. service class not provided
+  type: string
+  x-extensible-enum:
+  - DELAY
+  - JOURNEY_ABANDONED
+  - JOURNEY_NOT_STARTED
+  - SERVICE_DEGRADED
+Reimbursement:
+  type: object
+  additionalProperties: false
+  description: |
+    Customers who have bought a ticket which allows reimbursement and which have not traveled or traveled partially only can claim to be reimbursed. The customer must prove that he has not or only partially used the ticket. A partial use might be a only a part of the trip was traveled or only some of the travelers were traveling or a combination of both.
+  required:
+  - id
+  - request
+  - status
+  properties:
+    id:
+      type: string
+      nullable: false
+    request:
+      $ref: '#/ReimbursementRequest'
+    status:
+      $ref: ./_common.yml#/BackOfficeStatus
+    missingInformation:
+      type: array
+      items:
+        type: string
+      nullable: true
+    decision:
+      $ref: '#/ReimbursementDecision'
+    _links:
+      $ref: ./_common.yml#/Links
+ReimbursementDecision:
+  type: object
+  additionalProperties: false
+  description: |
+    Decision whether or not the reimbursement is granted. Contains information on the amount reimbursed.
+  properties:
+    amount:
+      $ref: ./_common.yml#/Price
+    voucher:
+      $ref: ./fulfillment.yml#/FulfillmentDocument
+    explanation:
+      $ref: ./_common.yml#/SupportingDocument
+    shortExplanation:
+      type: string
+      nullable: true
+ReimbursementMethod:
+  description: |
+    reimbursement methods to inform on restrictions of the payment method
+  type: object
+  properties:
+    paymentMethod:
+      description: |
+        payment method to be used for the reimbursement
+      type: string
+      x-extensible-enum:
+      - VOUCHER
+      - ORIGINAL_ACCOUNT
+ReimbursementPatchRequest:
+  type: object
+  additionalProperties: false
+  required:
+  - additionalDocuments
+  - updatedStatus
+  properties:
+    additionalDocuments:
+      type: array
+      items:
+        $ref: ./_common.yml#/SupportingDocument
+      minItems: 1
+    updatedStatus:
+      $ref: ./_common.yml#/BackOfficeStatus
+ReimbursementReason:
+  description: |
+    Reason why the booking should be reimbursed.
+  type: string
+  x-extensible-enum:
+  - STRIKE
+  - TICKET_NOT_USED
+  - CONTINUOUS_SERVICE_VEHICLE_BATTERY_EMPTY
+  - CONTINUOUS_SERVICE_VEHICLE_BROKEN
+  - CONTINUOUS_SERVICE_VEHICLE_NOT_FOUND
+  - CONTINUOUS_SERVICE_VEHICLE_DID_NOT_ARRIVE
+  - CONTINUOUS_SERVICE_USAGE_STARTING_FAILED
+  - CONTINUOUS_SERVICE_USAGE_ENDING_FAILED
+  - CONTINUOUS_SERVICE_USAGE_REPORT_WRONG
+ReimbursementRequest:
+  type: object
+  additionalProperties: false
+  description: |
+    The reimbursement process is used to support refunds which are not covered by the online refund/exchange processes, e.g.: Partial refund of a trip (Trip was Hamburg - Munich, but only Hamburg - Kassel was used), Refund outside of rules due to good will. This is a manual back office process within the provider's organization which is triggered by this request. State changes can be signaled by web hook events.
+  required:
+  - reimbursementReason
+  - reimbursedPassengerIds
+  - fulfillmentIds
+  properties:
+    reimbursementReason:
+      $ref: '#/ReimbursementReason'
+    reimbursementDate:
+      type: string
+      format: date-time
+      nullable: true
+    reimbursedPassengerIds:
+      type: array
+      items:
+        type: string
+      minItems: 1
+      nullable: false
+    tripSections:
+      type: array
+      items:
+        $ref: ./_common.yml#/TripSection
+    fulfillmentIds:
+      type: array
+      items:
+        type: string
+      minItems: 1
+      nullable: false
+    supportingDocuments:
+      type: array
+      items:
+        $ref: ./_common.yml#/SupportingDocument
+ReimbursementResponse:
+  type: object
+  additionalProperties: false
+  description: |
+    Response to a reimbursement request, containing a state and a decision.
+  required:
+  - reimbursement
+  properties:
+    reimbursement:
+      $ref: '#/Reimbursement'
+    warnings:
+      deprecated: true
+      $ref: ./_common.yml#/WarningCollection
+    problems:
+      type: array
+      items:
+        $ref: ./_common.yml#/Problem
+ReimbursementStatus:
+  type: string
+  enum:
+  - IMMEDIATE
+  - DELAYED
+  default: IMMEDIATE

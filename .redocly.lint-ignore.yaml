@@ -1,28 +1,2 @@
 # This file instructs Redocly's linter to ignore the rules contained for specific parts of your API.
 # See https://redocly.com/docs/cli/ for more information.
-specification/v3.5/OSDM-online-api-v3.5.0.yml:
-  no-required-schema-properties-undefined:
-    - '#/components/schemas/ProductTagsResponse/required/1'
-    - '#/components/schemas/ProductTagsResponse/required/2'
-  no-unused-components:
-    - '#/components/schemas/IndicatedTravelAccountConsumption'
-specification/v3.5/OSDM-online-api-v3.5.1.yml:
-  no-required-schema-properties-undefined:
-    - '#/components/schemas/ProductTagsResponse/required/1'
-    - '#/components/schemas/ProductTagsResponse/required/2'
-  no-unused-components:
-    - '#/components/schemas/IndicatedTravelAccountConsumption'
-specification/v3.5/OSDM-online-webhook-v3.5.0.yml:
-  no-server-example.com:
-    - '#/servers/0/url'
-  operation-4xx-response:
-    - '#/paths/~1ping/get/responses'
-  operation-operationId:
-    - '#/webhooks/events/post/operationId'
-  operation-summary:
-    - '#/webhooks/events/post/summary'
-  struct:
-    - '#/webhooks/events/post/requestBody/content/application~1json/discriminator'
-  security-defined:
-    - '#/paths/~1ping/get'
-    - '#/webhooks/events/post'

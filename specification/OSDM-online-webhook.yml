@@ -1,0 +1,263 @@
+openapi: 3.1.0
+servers:
+  - description: No server provided
+    url: /
+info:
+  title: UIC 90918-10 - OSDM webhooks
+  version: 3.8.0
+  description: |
+    Specifications for the OSDM API standard. The OSDM webhook specification allows an 
+    allocator to inform a distributor about changes to a booking or a complaint.
+  contact:
+    name: OSDM Working Group
+    url: "https://osdm.io"
+    email: osdm@uic.org
+  license:
+    name: Apache 2.0
+    url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+
+paths:
+  # OpenAPI documents all need a path element
+  /ping:
+    get:
+      summary: ping
+      operationId: ping
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "500":
+          description: internal server error
+        "501":
+          description: not implemented
+        "503":
+          description: service unavailable
+
+security:
+  - oAuth2ClientCredentials: []
+
+webhooks:
+  events:
+    post:
+      summary: Event occurred
+      description: An event has occurred
+      operationId: postEvent
+      requestBody:
+        description: Information about the event
+        content:
+          application/json:
+            schema:
+              discriminator:
+                propertyName: objectType
+                mapping:
+                  BookingEvent: "#/components/schemas/BookingEvent"
+                  ComplaintEvent: "#/components/schemas/ComplaintEvent"
+                  ReimbursementEvent: "#/components/schemas/ReimbursementEvent"
+              oneOf:
+                - $ref: "#/components/schemas/BookingEvent"
+                - $ref: "#/components/schemas/ComplaintEvent"
+                - $ref: "#/components/schemas/ReimbursementEvent"
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: bad input parameter
+        "401":
+          description: unauthorized
+        "403":
+          description: forbidden
+        "404":
+          description: no place information found
+        "500":
+          description: internal server error
+        "501":
+          description: not implemented
+        "503":
+          description: service unavailable
+
+##
+
+components:
+  securitySchemes:
+    oAuth2ClientCredentials:
+      type: oauth2
+      description: |
+        See https://swagger.io/docs/specification/authentication/oauth2/
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://login.microsoftonline.com/tbd'
+          refreshUrl: 'https://refresh.url/tbd'
+          scopes: {}
+
+  schemas:
+    AbstractEvent:
+      type: object
+      description: Abstract base schema for all webhook events.
+      required:
+        - objectType
+        - summary
+        - revision
+        - resources
+      properties:
+        objectType:
+          type: string
+          description: Discriminator field identifying the concrete event type.
+        id:
+          type: string
+          description: ID of the event
+        resourceId:
+          type: string
+          description: ID of the resource
+        timeStamp:
+          type: string
+          format: date-time
+        requestor:
+          type: string
+        messageVersion:
+          type: string
+          default: "1.0.0"
+          description: version of the event message
+        reason:
+          type: string
+          description: reason why the resource was edited
+          examples:
+            - "Tunderstorm"
+            - "Strike"
+        summary:
+          type: string
+          description: Human readable description of what has changed.
+        resources:
+          description: Resources to be called by receiver to update the object.
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
+
+    BookingEvent:
+      description: An event that has occurred on a booking.
+      allOf:
+        - $ref: "#/components/schemas/AbstractEvent"
+        - type: object
+          required:
+            - type
+            - bookingId
+          properties:
+            objectType:
+              type: string
+              enum:
+                - BookingEvent
+              default: BookingEvent
+            type:
+              $ref: "#/components/schemas/BookingChangeType"
+            affectedBookingPartIds:
+              description: list of ids of affected booking parts 
+              type: array
+              items:
+                type: string
+            affectedFulfillmentIds:
+              description: list of ids of affected fulillments 
+              type: array
+              items:
+                type: string
+
+    BookingChangeType:
+      type: string
+      description: >-
+        The type of change that has occurred on the booking.
+      enum:
+        - BOOKING_REAL_TIME_EVENT_OCCURRED
+        - BOOKING_REACCOMMODATED
+        - BOOKING_TRIP_CHANGED
+        - BOOKING_TRIP_CONFIRMED
+        - BOOKING_ON_HOLD
+        - DOCUMENT_AVAILABLE
+        - FULFILLMENT_AVAILABLE
+        - FULFILLMENT_REFUNDED
+        - FULFILLMENT_EXCHANGED
+        - FULFILLMENT_CANCELLED
+        - FULFILLMENT_RELEASED
+        - FULFILLMENT_CONTROLLED
+        - ACCOMMODATION_RELEASED
+        - PURCHASER_CHANGED
+        - PASSENGER_CHANGED
+        - REFUND_INITIATED
+        - EXCHANGE_INITIATED
+        - RELEASE_INITIATED
+        - CANCEL_INITIATED
+        - ON_HOLD_INITIATED
+        - AFTERSALES_OVERRIDDEN
+        - CONTINUOUS_SERVICE_UPDATE
+        - CONTINUOUS_SERVICE_USAGE_BLOCKED
+        - CONTINUOUS_SERVICE_USAGE_UNBLOCKED
+        - CONTINUOUS_SERVICE_USAGE_STARTED
+        - CONTINUOUS_SERVICE_USAGE_EDED
+        - CONTINUOUS_SERVICE_USAGE_UPDATE
+        - POST_PAYMENT_PRICING_UPDATE
+        - PRE_PAYMENT_PRICING_UPDATE                
+      example: FULFILLMENT_REFUNDED
+
+    ComplaintEvent:
+      description: An event that has occurred on a complaint.
+      allOf:
+        - $ref: "#/components/schemas/AbstractEvent"
+        - type: object
+          required:
+            - type
+            - complaintId
+          properties:
+            objectType:
+              type: string
+              enum:
+                - ComplaintEvent
+              default: ComplaintEvent
+            type:
+              $ref: "#/components/schemas/BackOfficeChangeType"
+
+    ReimbursementEvent:
+      description: An event that has occurred on a reimbursement.
+      allOf:
+        - $ref: "#/components/schemas/AbstractEvent"
+        - type: object
+          required:
+            - type
+            - reimbursementId
+          properties:
+            objectType:
+              type: string
+              enum:
+                - ReimbursementEvent
+              default: ReimbursementEvent
+            type:
+              $ref: "#/components/schemas/BackOfficeChangeType"
+
+    BackOfficeChangeType:
+      type: string
+      description: The type of change that has occurred.
+      enum:
+        - INITIATED
+        - EVALUATING
+        - DECIDED
+        - SETTLED
+        - INFORMATION_MISSING
+      default:
+        - INITIATED
+
+    ##
+
+    Resource:
+      type: object
+      description: >-
+        The resource to be called by receiver to update a booking, a complaint
+        or a reimbursement.
+      required:
+        - href
+      properties:
+        title:
+          type: string
+          description: >-
+            Intended for labelling the link with a human-readable identifier (as
+            defined  by [RFC5988]).
+        href:
+          type: string
+          format: url
+          example: "https://db.de/osdm/bookings/2345/fulfillments/ASBV"

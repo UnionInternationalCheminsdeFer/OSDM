@@ -1,0 +1,9 @@
+oAuth2ClientCredentials:
+  type: oauth2
+  description: |
+    See https://swagger.io/docs/specification/authentication/oauth2/
+  flows:
+    clientCredentials:
+      tokenUrl: https://login.microsoftonline.com/tbd
+      refreshUrl: https://refresh.url/tbd
+      scopes: {}

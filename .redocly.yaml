@@ -1,0 +1,6 @@
+apis:
+  osdm-master:
+    root: specification/OSDM-online-api.yml
+
+extends:
+  - recommended
