@@ -16,7 +16,7 @@ permalink: /spec/catalog-of-code-lists/
 - [Code Lists ](#accommodation-type-)
   - [Accommodation Type ](#accommodation-type-) 
   - [Accommodation Sub Type, Place Property, Reservation Place Preference ](#accommodation-sub-type-place-property-reservation-place-preference-)
-  - [Ancillary category ](#ancillary-category-)
+  - [Ancillary Type ](#ancillary-type-)
   - [Ancillary Sub Types ](#ancillary-sub-types-)
   - [Attachable Item Type ](#attachable-item-type-)
   - [BarcodeType ](#barcodetype-)
@@ -130,7 +130,7 @@ mandates it to be always lower case.
 |     |                      provider specific values allowed / no provider specific values allowed / code list managed by external organization          |
 | [Accommodation Type](#accommodation-type-) | no provider specific values allowed     | 
 | [Accommodation Sub Type, Place Property, Reservation Place Preference  ](#accommodation-sub-type-place-property-reservation-place-preference-) |   no provider specific values allowed    | 
-| [Ancillary category  ](#ancillary-category-) |  no provider specific values allowed     | 
+| [Ancillary type  ](#ancillary-type-) |  no provider specific values allowed     | 
 | [Ancillary Sub Types  ](#ancillary-sub-types-) |   no provider specific values allowed    | 
 | [Attachable Item Type  ](#attachable-item-type-) |  no provider specific values allowed     | 
 | [BarcodeType  ](#barcodetype-) |   no provider specific values allowed    | 
@@ -298,6 +298,7 @@ of by the customer.
 | `PRAM`                    | Y                      | N                | Y              | Place for a Pram                                                                                                    | `SPECIAL_COMPARTMENT_TYPE`       |
 | `PRAM_WITH_SEAT`          | Y                      | N                | Y              | Seat with space for a pram                                                                                          | `SPECIAL_COMPARTMENT_TYPE`       |
 | `PREMIUM`                 | Y                      | Y                | Y              | Seat with premium comfort (higher than first class)                                                                 | `SPECIAL_COMPARTMENT_TYPE`       |
+| `PRESTIGE`                | Y                      | Y                | Y              | Seat with prestige comfort (higher than first class and different from premium)                                                               | `SPECIAL_COMPARTMENT_TYPE`       |
 | `RESTAURANT`              | Y                      | Y                | Y              | Restaurant (places in a dining car)                                                                                 | `COMPARTMENT_TYPE`               |
 | `SALON`                   | Y                      | Y                | Y              | Salon (6 seats facing in a separate compartment)                                                                    | `COMPARTMENT_TYPE`               |
 | `SILENCE`                 | Y                      | Y                | Y              | Quiet Compartment (Seat)                                                                                            | `PLACE_OR_COMPARTMENT_POSITION`  |
@@ -330,7 +331,7 @@ of by the customer.
 | `WITHOUT_ANIMALS`         | Y                      | Y                | Y              | Place in an area where animals are not allowed                                                                      | `SPECIAL_COMPARTMENT_TYPE`       |
 | `WITHOUT_TRAY_TABLE`      | N                      | N                | Y              | Place without a tray table                                                                                               | `PLACE_OR_COMPARTMENT_FEATURE`       |
 
-## Ancillary category <a name="AncillaryCategory">
+## Ancillary type <a name="AncillaryCategory"><a name="AncillaryType">
 
 | Code                  | Description                                                          |
 | --------------------- | -------------------------------------------------------------------- |
@@ -1090,6 +1091,7 @@ by a specific carrier:
 | `UIC_RIT_2_2`                        | \*     | RIT reduction for RIT 2 members Second Class                | REDUCTION_CARD |                                   |
 | `UIC_RIT_3_2`                        | \*     | RIT reduction for RIT 3 members Second Class                | REDUCTION_CARD |                                   |
 | `UIC_EU_DISABILITY_CARD`             | \*     | EU Disabled Card                                            |                |                                   |
+| `UIC_EU_DISABILITY_CARD_A`           | \*     | EU Disabled Card for persons that need assistance  <br/> Note: cards with the indication "A" might not be issued in all countries and might not be accepted as category `A` in all countries. |                |                                   |
 | `UIC_EU_DISABILITY_CARD_BLIND`       | \*     | EU Disabled Card for a blind person                         |                |                                   |
 | `UIC_EU_DISABILITY_CARD_WHEELCHAIR`  | \*     | EU Disabled Card for a person using a wheelchair            |                |                                   |
 | `UIC_INT_DISABILITY_CARD`            | \*     | International Disabled Card                                 | REDUCTION_CARD | UIC_EU_DISABILITY_CARD            |
