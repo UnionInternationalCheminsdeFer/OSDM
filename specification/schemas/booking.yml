@@ -65,6 +65,24 @@ AbstractBookingPart:
       $ref: ./trip.yml#/TripCoverage
     inboundTripCoverage:
       $ref: ./trip.yml#/TripCoverage
+    tripTags:
+      description: |
+        Copied from the booked offer part. List of tags (and their type) that allow identifying sets of compatible
+        parts covering one single trip. At least one (not all) tripTags must be in common to identify compatible parts.
+      type: array
+      items:
+        type: string
+      nullable: true
+    returnTags:
+      description: |
+        Copied from the booked offer part. List of tags (and their type) that allow identifying sets of compatible
+        parts of a return trip involving return-specific fares. All returnTags must be present in the counterpart part.
+      type: array
+      items:
+        type: string
+      nullable: true
+    offerTag:
+      $ref: ./offer.yml#/OfferTag
     summaryProductId:
       type: string
       description: |
