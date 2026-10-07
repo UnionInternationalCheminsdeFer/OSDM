@@ -1,0 +1,40 @@
+name: Release OpenAPI Documents
+
+on:
+  push:
+    tags:
+      - 'v3.*'
+      - 'v[4-9].*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: latest
+
+      - name: Install redocly cli
+        run: npm i -g @redocly/cli@latest
+
+      - name: Build and lint
+        run: ./build.sh "${GITHUB_REF_NAME#v}"
+        env:
+          REF: WORKTREE
+          LINT_FORMAT: github-actions
+
+      - name: Create GitHub release
+        run: |
+          prerelease=""
+          case "$GITHUB_REF_NAME" in *-*) prerelease="--prerelease" ;; esac
+          gh release create "$GITHUB_REF_NAME" build/* \
+            --title "OSDM ${GITHUB_REF_NAME#v}" \
+            --generate-notes $prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
