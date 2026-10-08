@@ -7481,7 +7481,9 @@ components:
           items:
             $ref: '#/components/schemas/Product'
         exchangedBookedOfferRefs:
-          $ref: '#/components/schemas/ExchangedBookedOfferRefs'
+          type: array
+          items:
+            $ref: '#/components/schemas/ExchangedBookedOfferRefs'
 
     BookedOfferAncillaryRequest:
       type: object
@@ -10266,6 +10268,7 @@ components:
     ExchangedBookedOfferRefs:
       description: |
         OfferId for the exchanged offers
+      type: object
       properties:
         offerId:
           type: string
