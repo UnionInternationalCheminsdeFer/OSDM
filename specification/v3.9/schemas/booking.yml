@@ -217,7 +217,9 @@ BookedOffer:
       items:
         $ref: ./product.yml#/Product
     exchangedBookedOfferRefs:
-      $ref: ./booking.yml#/ExchangedBookedOfferRefs
+      type: array
+      items:
+        $ref: ./booking.yml#/ExchangedBookedOfferRefs
 BookedOfferAncillaryRequest:
   type: object
   additionalProperties: false
@@ -998,6 +1000,7 @@ ContinuousServiceBookingPart:
 ExchangedBookedOfferRefs:
   description: |
     OfferId for the exchanged offers
+  type: object
   properties:
     offerId:
       type: string
