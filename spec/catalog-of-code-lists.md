@@ -33,8 +33,6 @@ permalink: /spec/catalog-of-code-lists/
   - [FulfillmentMediaType ](#fulfillmentmediatype-)
   - [Gender ](#gender-)
   - [Graphics Items ](#graphics-items-)
-    - [Graphical Elements ](#graphical-elements-)
-    - [External Service Icons ](#external-service-icons-)
   - [Interface Type ](#interface-type-)
   - [Language ](#language-) 
   - [Leg Attributes ](#leg-attributes-)
@@ -698,7 +696,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
 ### Graphical Elements <a name="GraphicalElements">
 
-See https://osdm.io/spec/graphical-place-reservation/#CoachDeckLayoutCollection
+See https://osdm.io/spec/graphical-place-reservation#CoachDeckLayoutCollection
 
 ## Interface Type <a name="InterfaceType">
 
