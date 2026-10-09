@@ -38,6 +38,19 @@ areas:
 These requirements and their relationship to the OSDM standard are covered in
 this document.
 
+## Usage in OSDM online
+
+From the Passenger Type code list use only values that are marked as usable in "Online Request".
+To specify PRM-related information, use the PRM Need Type code list.
+
+Example request for a wheelchair traveler and a companion:
+- Passenger Type: PERSON + PRM Need: WHEELCHAIR
+- Passenger Type: PERSON + PRM Need: COMPANION
+
+Example response (the Fare Provider will map the request to an applicable passenger type and may return):
+- Passenger Type: ADULT
+- Passenger Type: ACCOMP_PRM
+
 ## Companion requirements <a name="companion">
 
 If a permanent companion is required for a person with disabilities, the person
