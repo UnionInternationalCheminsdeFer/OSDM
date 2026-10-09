@@ -696,7 +696,7 @@ Legacy reservation code defined in UIC 90918-1 / TAP TSI B.5.51.2.
 
 ### Graphical Elements <a name="GraphicalElements">
 
-See https://osdm.io/spec/graphical-place-reservation#CoachDeckLayoutCollection
+See [Grahical Place Reservation](https://osdm.io/spec/graphical-place-reservation#CoachDeckLayoutCollection)
 
 ## Interface Type <a name="InterfaceType">
 
