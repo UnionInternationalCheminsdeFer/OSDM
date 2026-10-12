@@ -114,7 +114,7 @@ AbstractBookingPart:
     bookingPartCode:
       type: string
       description: |
-        The unique booking code for the part in the provider system.
+        The unique booking code for the part in the provider system. In the case of a fare reservation booking, this field should be filled with the IRS 90918.1 reservation reference number.
     distributorBookingRef:
       description: |
         reference to the booking in the downstream distributor system
