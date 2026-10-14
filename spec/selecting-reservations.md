@@ -144,3 +144,5 @@ In the reply the fare reservation offer part is indicated by:
 In this case, the client produces the fulfillment. On servers side, there is a `fulfillmentId` only. 
 Consequently, a call of `GET /fulfillments/{fulfillmentId}`will either return an error or an empty 
 fulfillment.
+
+Handling of the IRS 90918.1 reference number for OSDM purposes: this legacy number is numeric and 12 digits long. It consists of the reservation system number and a 10-digit ID. Since this number is still used on some reservation tickets and is also used for accounting purposes, it should be stored in the booking under bookedOffers[]/reservations[]/bookingPartCode. This requires a 1:1 relationship between a bookedOffers[]/reservations[] entry and the corresponding reservation in the inventory system.

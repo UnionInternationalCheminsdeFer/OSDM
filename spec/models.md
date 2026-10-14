@@ -392,6 +392,14 @@ time-to-live and save significant bandwidth. It also allows for a "product
 catalog" functionality to be built by the API consumer, should he want to do
 that.
 
+**Difference between product id and product code**
+- Product id: a general identifier of the resource within the API and responses (for example, a UUID). It is primarily an implementation identifier used to uniquely reference the resource in the system.
+- Product code: a stable business identifier for the product object, consistent across multiple sales processes and systems. It represents the commercial identity of the product and is intended to remain stable over time.
+
+**Use guidance**
+- Use the product id when you need an unambiguous reference for API operations.
+- Use the product code when you need the business-facing identifier that persists across sales and external systems.
+
 ### Fares <a name="fares">
 
 Fares should be seen as the counter part of `OfferParts` in case of interactions
