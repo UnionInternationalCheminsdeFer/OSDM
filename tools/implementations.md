@@ -35,7 +35,8 @@ overview of known OSDM implementations and their status (**January 2026**).
 | Koleje Dolnośląskie     | Retailer                                 | 3.5      | in production | [Link](https://www.kolejedolnoslaskie.pl/)                                                                              |
 | MAV-START	              | Retailer, Distributor	                 | 3.8	    | implementing  | | 
 | NS                      | Retailer, Distributor & Fare Provider    | 3.8    | in production | [Link](https://www.ns.nl/)                                                                                              |
-| öBB                     | Retailer, Distributor & Fare Provider    | 3.3      | implemented   | [Link](https://www.oebb.at/)                                                                                            |
+| ÖBB                     | Retailer, Distributor                    | 3.8      | implemented   | [Link](https://www.oebb.at/)                                                                                            |
+| ÖBB                     | Fare Provider                            | 3.8      | implementing   | [Link](https://www.oebb.at/)                                                                                            |
 | paxone                  | Solution Provider                        | 3.6      | implemented   | [Link](https://www.wiremind.io/passenger/paxone)                                                                        |
 | Red Coach               | Retailer, Distributor & Provider         | 3.0.5    | in production | [Link](https://www.redcoachusa.com/)                                                                                    |
 | Region Sud -France      | Retailer, Distributor & Provider         | 3.7      | implementing  | [Link](https://www.maregionsud.fr/)                                                                                     |
