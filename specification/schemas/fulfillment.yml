@@ -466,12 +466,13 @@ FulfillmentOption:
     media:
       $ref: '#/FulfillmentMediaType'
     applications:
-      description: "list of applications that can \nhandle the fulfillment. This is required in case of media `APPLICATION`.\n\
-        The applications might be modules on a vending machine to handle chop cards or smartphone apps handling NFC communication.\n"
+      description: |
+        list of applications that can handle the fulfillment. This is required in case of media `APPLICATION`. minItems >= 1 is applicable on business logic level exclusively for this media type.
+
+        The applications might be modules on a vending machine to handle chop cards or smartphone apps handling NFC communication.
       type: array
       items:
         type: string
-      minItems: 1
     specification:
       description: accepted fulfillment specifications in case the fulfillment via `APPLICATION` or `CHIP_CARD` is not not
         limited to a specific application.
