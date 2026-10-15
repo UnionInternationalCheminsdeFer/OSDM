@@ -2,7 +2,7 @@
 layout: page
 title: Handling Exchange
 hide_hero: true
-permalink: /spec/account-based-ticketing/
+permalink: /spec/handling-exchange/
 ---
 
 ## Table of contents
