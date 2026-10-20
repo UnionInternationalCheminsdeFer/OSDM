@@ -563,7 +563,7 @@ ExchangeOperation:
          Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
        type: array
        items:
-           $ref: '#/components/schemas/ExchangeBreakdownItem'  
+           $ref: '#/ExchangeBreakdownItem'
 ExchangeOperationRequest:
   type: object
   additionalProperties: false

@@ -290,7 +290,7 @@ CoachDeckLayout:
   - deckLevel
   properties:
     name:
-      $ref: ./common.yml#/Text
+      $ref: ./_common.yml#/Text
     dimension:
       $ref: '#/GridDimension'
     lowFloorEntry:
