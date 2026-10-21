@@ -24,6 +24,8 @@
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/gh-pages/specification/v3.9/OSDM-online-api-v3.9.0.bundled.yml
     - name: Online API v3.10.0 (stable version) - Swagger
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/gh-pages/specification/v3.10/OSDM-online-api-v3.10.0.bundled.yml
+    - name: Online API v3.11.0 (stable version) - Swagger
+      link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/gh-pages/specification/v3.11/OSDM-online-api-v3.11.0.bundled.yml
     - name: Online API v4.0.0 (draft version) - Swagger
       link: https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/gh-pages/specification/v4.0/OSDM-online-api-v4.0.0-bundled.yml
 - name: APIs (Redoc)
@@ -66,6 +68,8 @@
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/gh-pages/specification/v3.9/OSDM-online-api-v3.9.0.bundled.yml&nocors
     - name: Online API v3.10.0 (stable version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/gh-pages/specification/v3.10/OSDM-online-api-v3.10.0.bundled.yml&nocors
+    - name: Online API v3.11.0 (stable version) - Redoc
+      link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/gh-pages/specification/v3.11/OSDM-online-api-v3.11.0.bundled.yml&nocors
     - name: Online API v4.0.0 (draft version) - Redoc
       link: https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/gh-pages/specification/v4.0/OSDM-online-api-v4.0.0-bundled.yml&nocors
 
