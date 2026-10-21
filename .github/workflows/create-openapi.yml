@@ -3,10 +3,10 @@ name: Create OpenAPI Documents
 on:
   push:
     branches:
-      - master
+      - patches-osdm-v3.10
   pull_request:
     branches:
-      - master
+      - patches-osdm-v3.10
   workflow_dispatch:
     inputs:
       version:
