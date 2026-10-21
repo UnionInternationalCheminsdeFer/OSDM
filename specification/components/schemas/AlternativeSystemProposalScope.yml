@@ -1,0 +1,35 @@
+description: >
+  Defines a scope for an alternative system proposal. This object specifies the
+  routing logic for:
+   * Trips or trains hosted across multiple OSDM/UIC 918.1 reservation systems,
+     identifying which system to connect to for specific travel classes or
+     accommodation (sub)types. For example, the problem returned for a RailJet
+     might contain two proposals: one for business class pointing to ÖBB, and
+     another pointing to MAV for first and second class (using two scopes).
+     In a more complex case, it might contain three AlternativeSystemProposals:
+        * One with business class scope pointing to ÖBB
+        * Another with first and second class scope and priority "1", also
+          pointing to ÖBB
+        * A third with first and second class scope and priority "2", pointing
+          to MAV, indicating that the requestor should first ask ÖBB, but if an
+          ÖBB offer is not available, for example because it has run out of
+          spaces, MAV may also be used.
+   * Offers for trips containing multiple legs. In this case, the vehicleNumber
+     also helps the requestor identify which system to connect to for each leg
+     or journey.
+type: object
+required:
+  - vehicleNumber
+properties:
+  vehicleNumber:
+    description: >
+      Vehicle number, such as the train number, for which the alternative system
+      proposal is valid.
+    type: string
+    example: '462'
+  travelClass:
+    $ref: ./TravelClass.yml
+  accommodationType:
+    $ref: ./AccommodationType.yml
+  accommodationSubType:
+    $ref: ./AccommodationSubType.yml
