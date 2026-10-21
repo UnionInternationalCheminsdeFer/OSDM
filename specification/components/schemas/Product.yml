@@ -16,9 +16,9 @@ properties:
   summary:
     description: |
       A human-readable description of the product.
-    type:
-      - string
-      - 'null'
+    oneOf:
+      - $ref: ./Text.yml
+      - type: 'null'
   type:
     $ref: ./ProductType.yml
   code:
@@ -31,9 +31,9 @@ properties:
   description:
     description: |
       Textual description of the product.
-    type:
-      - string
-      - 'null'
+    oneOf:
+      - $ref: ./Text.yml
+      - type: 'null'
   owner:
     $ref: ./CompanyRef.yml
   conditions:
@@ -63,13 +63,13 @@ properties:
       - 'null'
     default: false
   serviceConstraintText:
-    type:
-      - string
-      - 'null'
+    oneOf:
+      - $ref: ./Text.yml
+      - type: 'null'
   carrierConstraintText:
-    type:
-      - string
-      - 'null'
+    oneOf:
+      - $ref: ./Text.yml
+      - type: 'null'
   descriptiveTexts:
     type: array
     items:

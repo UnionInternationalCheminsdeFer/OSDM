@@ -1,42 +1,89 @@
+description: >
+  The exchange operation bundles the exchange starting with the acceptance of an
+  exchange offer. It includes the references to the new booked offer and the
+  exchanged booking parts and fulfillments of the old booked offer. The object
+  will be kept in the old booked offer to document the history of the change.
+
+  The provided amounts in exchangeFee, exchangePrice and refundable amount are
+  given for convenience and correspond to the sums of the exchanged booking
+  parts and fees in the old and new booking during the exchange.
 type: object
 additionalProperties: false
 required:
   - id
+  - status
+  - bookedOfferId
+  - exchangeFee
+  - exchangePrice
+  - refundableAmount
 properties:
   id:
     type: string
   status:
     $ref: ./ExchangeStatus.yml
-  exchangeOffers:
-    type: array
-    items:
-      $ref: ./ExchangeOffer.yml
-  appliedFeesRefs:
+  bookedOfferId:
+    description: |
+      ID of the new offer booked in the exchange.
+    type: string
+    maxLength: 32768
+  exchangeFee:
+    $ref: ./Price.yml
+  exchangePrice:
+    description: |
+      price of the new booking parts
+    $ref: ./Price.yml
+  refundableAmount:
+    description: >
+      amount to be paid to the purchaser in case the new products are less
+      expensive. There can not be an amountToBePaid at the same time.
+    $ref: ./Price.yml
+  amountToBePaid:
+    description: >
+      amount to be paid by the purchaser in case the new products are more
+      expensive. There can not be a refundableAmount at the same time.
+    $ref: ./Price.yml
+  appliedFeeIds:
     description: >
       references to the fees applied with this exchange operation. It is
-      mandatory to
-
-      provide the refs when the fees have been applied.
+      mandatory to provide the refs when the fees have been applied.
     type: array
     items:
       type: string
       maxLength: 1024
   ticketTimeLimit:
+    description: provided for convenience, identical to the TTL in the new bookedOffer
     type:
       - string
       - 'null'
     format: date-time
   fulfillmentRefs:
-    description: |
-      references to the fulfillments affeted by the exchange operation.
+    description: >
+      references to the fulfillments replaced by the exchange operation. New
+      Fulfillments will be in the new bookedOffer
     type: array
     items:
       $ref: ./FulfillmentRefs.yml
+  exchangedBookedOfferPartIds:
+    description: >
+      Ids of booking parts exchanged. The new booking will not contain these
+      parts.
+    type: array
+    maxItems: 1024
+    items:
+      type: string
+      maxLength: 32768
+  usedPaymentMethods:
+    type: array
+    items:
+      $ref: ./PaymentMethod.yml
   issuedVoucherRefs:
     type: array
     items:
       $ref: ./VoucherRef.yml
-  trips:
+  exchangeOfferBreakdown:
+    description: >
+      Breakdown of the exchange offer, including the exchange price, exchange
+      fee, and refundable amount.
     type: array
     items:
-      $ref: ./Trip.yml
+      $ref: ./ExchangeBreakdownItem.yml

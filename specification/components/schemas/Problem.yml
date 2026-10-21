@@ -68,3 +68,8 @@ properties:
       - 'null'
     items:
       $ref: ./ProblemPointer.yml
+  alternativeSystemProposals:
+    type: array
+    items:
+      $ref: ./AlternativeSystemProposal.yml
+    minItems: 0

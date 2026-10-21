@@ -16,9 +16,9 @@ properties:
   summary:
     description: |
       A human-readable description of the refund offer.
-    type:
-      - string
-      - 'null'
+    oneOf:
+      - $ref: ./Text.yml
+      - type: 'null'
   createdOn:
     type: string
     format: date-time

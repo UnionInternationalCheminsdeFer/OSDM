@@ -16,9 +16,9 @@ properties:
   id:
     type: string
   name:
-    type:
-      - string
-      - 'null'
+    oneOf:
+      - $ref: ./Text.yml
+      - type: 'null'
   carrier:
     $ref: ./CompanyRef.yml
   polygon:

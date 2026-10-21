@@ -21,9 +21,9 @@ properties:
       the possible start of a travel.
     $ref: ./MasterDataValidity.yml
   name:
-    type:
-      - string
-      - 'null'
+    oneOf:
+      - $ref: ./Text.yml
+      - type: 'null'
   carrier:
     $ref: ./CompanyRef.yml
   polygon:
