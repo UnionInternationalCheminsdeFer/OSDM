@@ -12,7 +12,7 @@ required:
   - stations
 properties:
   name:
-    type: string
+    $ref: ./Text.yml
   code:
     type: string
   carrier:

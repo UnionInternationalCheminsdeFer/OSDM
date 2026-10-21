@@ -14,11 +14,10 @@ properties:
   description:
     description: |
       human readable documentation of the text.
-    type: string
-    minLength: 1
+    $ref: ./Text.yml
   shortDescription:
     description: |
       short description of the condition no longer than 64 characters
-    type:
-      - string
-      - 'null'
+    oneOf:
+      - $ref: ./Text.yml
+      - type: 'null'

@@ -6,9 +6,9 @@ required:
 properties:
   text:
     description: text to be displayed to the user
-    type:
-      - string
-      - 'null'
+    oneOf:
+      - $ref: ./Text.yml
+      - type: 'null'
   code:
     type:
       - string

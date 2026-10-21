@@ -23,9 +23,9 @@ properties:
   carrier:
     $ref: ./CompanyRef.yml
   name:
-    type:
-      - string
-      - 'null'
+    oneOf:
+      - $ref: ./Text.yml
+      - type: 'null'
   entryStation:
     $ref: ./StopPlace.yml
   terminalStation:
