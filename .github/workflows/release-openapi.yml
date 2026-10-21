@@ -1,0 +1,83 @@
+name: Release OpenAPI Documents
+
+on:
+  push:
+    tags:
+      - 'v3.*'
+      - 'v[4-9].*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # Fails fast with an explicit message when the tag was pushed without
+      # bumping info.version first, instead of letting build.sh report the
+      # generic "no OSDM-online-api.yml for X found".
+      - name: Check tag against spec version
+        id: version
+        run: |
+          # Drop any pre-release suffix: v3.11.0-rc1 builds version 3.11.0.
+          version="${GITHUB_REF_NAME#v}"
+          version="${version%%-*}"
+          minor="$(cut -d. -f1,2 <<<"$version")"
+          hub="specification/v$minor/OSDM-online-api.yml"
+          if [ ! -f "$hub" ]; then
+            hub="specification/OSDM-online-api.yml"
+          fi
+          if [ ! -f "$hub" ]; then
+            echo "::error::no OSDM-online-api.yml found for $version (looked in specification/v$minor/ and specification/)"
+            exit 1
+          fi
+          spec_version="$(awk '/^info:/ {i=1; next} i && /^  version:/ {print $2; exit}' "$hub" | tr -d "\"'")"
+          ok=0
+          case "$version" in
+            *.*.*)
+              if [ "$spec_version" = "$version" ]; then ok=1; fi
+              ;;
+            *)
+              case "$spec_version" in "$minor".*) ok=1 ;; esac
+              ;;
+          esac
+          if [ "$ok" != 1 ]; then
+            echo "::error::tag $GITHUB_REF_NAME does not match info.version '$spec_version' in $hub. Bump info.version, merge it, then re-tag (see 'Adding a New Spec Version' in CLAUDE.md)."
+            exit 1
+          fi
+          echo "tag $GITHUB_REF_NAME matches info.version $spec_version in $hub"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: latest
+
+      - name: Install redocly cli
+        run: npm i -g @redocly/cli@latest
+
+      - name: Build and lint
+        run: ./build.sh "${{ steps.version.outputs.version }}"
+        env:
+          REF: WORKTREE
+          LINT_FORMAT: github-actions
+
+      # Creating a release in the GitHub UI publishes the tag and the release
+      # together, so this workflow cannot assume it owns release creation:
+      # upload into an existing release rather than failing on it.
+      - name: Create or update GitHub release
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            echo "release $GITHUB_REF_NAME already exists; uploading assets"
+            gh release upload "$GITHUB_REF_NAME" build/* --clobber
+          else
+            prerelease=""
+            case "$GITHUB_REF_NAME" in *-*) prerelease="--prerelease" ;; esac
+            gh release create "$GITHUB_REF_NAME" build/* \
+              --title "OSDM ${GITHUB_REF_NAME#v}" \
+              --generate-notes $prerelease
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}

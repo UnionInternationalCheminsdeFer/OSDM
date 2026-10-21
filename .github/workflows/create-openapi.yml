@@ -1,0 +1,50 @@
+name: Create OpenAPI Documents
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to build, e.g. 3.9 or 3.9.0 (default is the version in the spec hub)
+        required: false
+
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: latest
+
+      - name: Install redocly cli
+        run: npm i -g @redocly/cli@latest
+
+      - name: Determine version
+        id: version
+        run: |
+          version="${{ inputs.version }}"
+          if [ -z "$version" ]; then
+            version=$(awk '/^info:/ {i=1; next} i && /^  version:/ {print $2; exit}' specification/OSDM-online-api.yml)
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Build and lint
+        run: ./build.sh "${{ steps.version.outputs.version }}"
+        env:
+          REF: WORKTREE
+          LINT_FORMAT: github-actions
+
+      - name: Upload compiled specification
+        uses: actions/upload-artifact@v4
+        with:
+          name: osdm-${{ steps.version.outputs.version }}
+          path: build/
