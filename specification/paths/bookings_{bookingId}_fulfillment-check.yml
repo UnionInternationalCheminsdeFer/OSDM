@@ -1,6 +1,6 @@
 get:
   tags:
-    - Bookings
+    - Fulfillments
   summary: >-
     Check step (step 1 in a two phase commit process) to run before the
     effective fulfillment endpoint. Provider do all checks to "guarantee" that

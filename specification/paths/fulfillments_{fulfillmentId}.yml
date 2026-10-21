@@ -79,7 +79,7 @@ get:
     - oAuth2ClientCredentials: []
 patch:
   tags:
-    - Bookings
+    - Fulfillments
   summary: >-
     Activates a fulfillment, i.e. changes the status from AVAILABLE to
     FULFILLED.

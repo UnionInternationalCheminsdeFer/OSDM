@@ -1,6 +1,6 @@
 post:
   tags:
-    - Bookings
+    - Fulfillments
   summary: |
     Confirms the booking a triggers the fulfillment of the booking
     synchronously or asynchronously.
@@ -74,7 +74,7 @@ post:
     - oAuth2ClientCredentials: []
 patch:
   tags:
-    - Bookings
+    - Fulfillments
   summary: Optionally finalizes the fulfillments in asynchronous mode.
   description: >
     Optionally finalizes the fulfillment in case of an asynchronous fulfillment
