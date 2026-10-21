@@ -1,6 +1,17 @@
 name: Bundle OpenAPI Specification
 
+# Keeps specification/OSDM-online-api.bundled.yml in the branch up to date.
+# osdm.io links the v4 draft straight at a file in this branch, so the
+# single-file bundle has to be committed, not just built: the hub on its own
+# is an entrypoint of relative $refs that a viewer would have to fetch one
+# request at a time.
 on:
+  push:
+    branches:
+      - dev-osdm-v4
+    paths:
+      - 'specification/**'
+      - '.github/workflows/bundle-openapi.yml'
   workflow_dispatch:
 
 jobs:
@@ -28,5 +39,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add specification/OSDM-online-api.bundled.yml
-          git diff --cached --quiet || git commit -m "chore: update bundled OpenAPI spec"
+          if git diff --cached --quiet; then
+            echo "bundle unchanged; nothing to commit"
+            exit 0
+          fi
+          # [skip ci] so this commit does not start a second run of this workflow.
+          git commit -m "chore: update bundled OpenAPI spec [skip ci]"
           git push

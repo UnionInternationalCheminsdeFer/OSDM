@@ -29,3 +29,13 @@ jobs:
 
       - name: Validate OpenAPI documents
         run: redocly lint --format=github-actions specification/*.yml
+
+      # The bundle was being built and thrown away. Publish it so the combined
+      # file is downloadable from every push and pull request, the way
+      # create-openapi.yml does it on master.
+      - name: Upload bundled specification
+        uses: actions/upload-artifact@v4
+        with:
+          name: osdm-online-api-bundled
+          path: specification/OSDM-online-api.bundled.yml
+          if-no-files-found: error
