@@ -2173,7 +2173,7 @@ paths:
   /bookings/{bookingId}/fulfillments:
     post:
       tags:
-        - Bookings
+        - Fulfillments
       summary: |
         Confirms the booking a triggers the fulfillment of the booking
         synchronously or asynchronously.
@@ -2241,7 +2241,7 @@ paths:
         - oAuth2ClientCredentials: []
     patch:
       tags:
-        - Bookings
+        - Fulfillments
       summary: Optionally finalizes the fulfillments in asynchronous mode.
       description: |
         Optionally finalizes the fulfillment in case of an asynchronous fulfillment mode when the provider doesn't complete the asynchronous fulfillment automatically.
@@ -2459,7 +2459,7 @@ paths:
         - oAuth2ClientCredentials: []
     patch:
       tags:
-        - Bookings
+        - Fulfillments
       summary: Activates a fulfillment, i.e. changes the status from AVAILABLE to FULFILLED.
       description: |
         Changes the fulfillment from status AVAILABLE to FULFILLED. In the case of multi-trip product
@@ -2523,7 +2523,7 @@ paths:
   /bookings/{bookingId}/fulfillment-check:
     get:
       tags:
-        - Bookings
+        - Fulfillments
       summary: Check step (step 1 in a two phase commit process) to run before the effective fulfillment endpoint. Provider do all checks to "guarantee" that fulfillment will work.
       description: |
         Step 1 in a two phase commit process. An aggregator can use this to secure that all underlaying provider systems are up and running and the provider booking is ready to be fulfilled.
@@ -5267,6 +5267,190 @@ components:
             - 'null'
           examples:
             - IMS1
+    CompanyRef:
+      type: string
+      description: |
+        Identifies a company. For rail, a RICS company code or compatible ERA company code are used. 
+        examples:
+            - 'urn:uic:rics:1185:000011'
+    TravelClass:
+      description: |
+        Traditional first and second class.
+      type: string
+      x-extensible-enum:
+        - FIRST
+        - SECOND
+        - ANY_CLASS
+    AccommodationType:
+      type: string
+      description: |
+        Accommodation type definition out of the 
+        [Accommodation Type Code List](https://osdm.io/spec/catalog-of-code-lists/#AccomodationType)
+        Listed values here are examples.
+      default: SEAT
+      x-extensible-enum:
+        - SEAT
+        - COUCHETTE
+        - BERTH
+        - VEHICLE
+        - STORAGE
+    AccommodationSubType:
+      type: string
+      description: |
+        Accommodation sub type definition out of the 
+        [Accommodation Sub Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
+        Listed values here are examples.
+      default: ANY_SEAT
+      x-extensible-enum:
+        - ANY_SEAT
+        - BISTRO
+        - BICYCLE
+        - BICYCLE_LOW
+        - BICYCLE_MIDDLE
+        - BICYCLE_HIGH
+        - BUSINESS
+        - BUSINESS_COMFORT
+        - CABIN8
+        - CAR_LARGE
+        - CAR_SMALL
+        - CARRE
+        - CHILDREN_AREA
+        - CLUB
+        - CLUB_2
+        - CLUB_4
+        - COMPARTMENT
+        - COUCHETTE_2
+        - COUCHETTE_4
+        - COUCHETTE_5
+        - COUCHETTE_6
+        - COUCHETTE_COMFORT_4
+        - COUCHETTE_COMFORT_5
+        - COUCHETTE_COMFORT_6
+        - COUCHETTE_PRM_2
+        - COUCHETTE_PRM_3
+        - COUCHETTE_PRM_4
+        - DOUBLE
+        - DOUBLE_WC
+        - DOUBLE_SWC
+        - DOUBLE_S
+        - EASY_ACCESS
+        - EXCELLENCE
+        - FAMILY
+        - FRONT_VIEW
+        - HISTORIC_COACH
+        - KIOSQUE
+        - MINI_SUITE
+        - MOTOR_CYCLE
+        - MOTOR_CYCLE_SC
+        - NEAR_ANIMALS
+        - NEAR_ASSISTANT_DOG_AREA
+        - NEAR_DINING
+        - NEAR_PLAY_AREA
+        - NEAR_BICYCLE_AREA
+        - NEAR_WHEELCHAIR
+        - OPEN_SPACE
+        - PANORAMA
+        - PRAM
+        - PRAM_WITH_SEAT
+        - PREMIUM
+        - RESTAURANT
+        - SALON
+        - SILENCE
+        - SINGLE
+        - SINGLE_WC
+        - SINGLE_SWC
+        - SLEEPERETTE
+        - SOLO
+        - SOLO_COM
+        - SPECIAL_SLEEPER
+        - TANDEM
+        - TOURIST_SLEEPER_2
+        - TOURIST_SLEEPER_3
+        - TOURIST_SLEEPER_3_WC
+        - TOURIST_SLEEPER_3_SWC
+        - TOURIST_SLEEPER_4
+        - WHEELCHAIR
+        - WHEELCHAIR_AND_SEAT
+        - WHEELCHAIR_NO_SEAT
+        - WITH_ANIMALS
+        - WITH_SMALL_CHILDREN
+        - WITHOUT_ANIMALS
+    AlternativeSystemProposalScope:
+      description: |
+        Defines a scope for an alternative system proposal. This object specifies the routing logic for:
+         * Trips or trains hosted across multiple OSDM/UIC 918.1 reservation systems,
+           identifying which system to connect to for specific travel classes or
+           accommodation (sub)types. For example, the problem returned for a RailJet
+           might contain two proposals: one for business class pointing to ÖBB, and
+           another pointing to MAV for first and second class (using two scopes).
+           In a more complex case, it might contain three AlternativeSystemProposals:
+              * One with business class scope pointing to ÖBB
+              * Another with first and second class scope and priority "1", also
+                pointing to ÖBB
+              * A third with first and second class scope and priority "2", pointing
+                to MAV, indicating that the requestor should first ask ÖBB, but if an
+                ÖBB offer is not available, for example because it has run out of
+                spaces, MAV may also be used.
+         * Offers for trips containing multiple legs. In this case, the vehicleNumber
+           also helps the requestor identify which system to connect to for each leg
+           or journey.
+      type: object
+      required:
+        - vehicleNumber
+      properties:
+        vehicleNumber:
+          description: |
+            Vehicle number, such as the train number, for which the alternative system proposal is valid.
+          type: string
+          example: '462'
+        travelClass:
+          $ref: '#/components/schemas/TravelClass'
+        accommodationType:
+          $ref: '#/components/schemas/AccommodationType'
+        accommodationSubType:
+          $ref: '#/components/schemas/AccommodationSubType'
+    AlternativeSystemProposal:
+      description: |
+        This type can only be used in offer responses inside OfferCollectionResponse when the problem has the following values: * Type is https://osdm.io/errors/alternative_system_proposal * Code is urn:uic:problem:ALTERNATIVE_SYSTEM_PROPOSAL * Status (HTTP) is 200
+        The OSDM Offer API returns an alternative system proposal when the current system cannot provide an offer for the requested trip, but identifies one or more other OSDM/90918.1-capable systems that might be able to fulfill the request. The proposal should be returned as part of the problems section in the OfferCollectionResponse.
+        If only some of the legs or products are affected, for example in a multi-leg trip: * The available offers should be returned to the caller * One or more AlternativeSystemProposals should be returned as part of
+          OfferCollectionResponse's problems structure
+        * The problem pointer structure should be filled to identify the affected
+          Leg(s) or OfferPart(s).
+          * It must contain a problem pointer for the affected trip legs, which should
+            be priced or booked in other systems. The problem pointer's
+            responsePointer field should contain a link to the affected leg inside the
+            given trip (e.g. #/trips[1]/legs[1]/id).
+          * The scope structure may be filled with the leg's vehicle (train) number.
+          * If a partial offer is returned for a leg, then it might contain a response
+            problem pointer pointing to the affected offer parts. For example, if the
+            system can provide an admission offer for the whole trip, but the
+            reservation offer part is missing for one leg, then the following
+            responsePointer could be returned: #/offers[1]/reservationOfferParts
+      type: object
+      required:
+        - systemOperatorCode
+      properties:
+        reservationSystemId:
+          description: |
+            The 90918.1 code of the alternative reservation system.
+          type: integer
+          example: 80
+        systemOperatorCode:
+          description: |
+            The company code (e.g. RICS code) of the alternative reservation system's operator.
+          $ref: '#/components/schemas/CompanyRef'
+          example: urn:uic:rics:1185
+        scope:
+          type: array
+          items:
+            $ref: '#/components/schemas/AlternativeSystemProposalScope'
+          minItems: 0
+        priority:
+          description: |
+            If multiple alternative system proposals are returned, the provider might define a priority order between them. The requestor should first use the proposal with the lowest priority that matches the requestor's case based on the proposal's scope and problem pointer.
+          type: integer
+          example: 1
     Problem:
       type: object
       additionalProperties: false
@@ -5338,6 +5522,11 @@ components:
             - 'null'
           items:
             $ref: '#/components/schemas/ProblemPointer'
+        alternativeSystemProposals:
+          type: array
+          items:
+            $ref: '#/components/schemas/AlternativeSystemProposal'
+          minItems: 0
     Place:
       type: object
       additionalProperties: false
@@ -5736,6 +5925,44 @@ components:
           type:
             - string
             - 'null'
+    Translation:
+      type: object
+      additionalProperties: false
+      required:
+        - language
+        - text
+      properties:
+        language:
+          description: |
+            ISO-639-1 language code
+          type: string
+        text:
+          type: string
+        shortText:
+          type:
+            - string
+            - 'null'
+    Text:
+      type: object
+      additionalProperties: false
+      description: |
+        Directly included text in case of online services. Text must be encoded in UTF-8 format.
+      required:
+        - text
+      properties:
+        id:
+          type: string
+        translations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Translation'
+        text:
+          type: string
+          maxLength: 32768
+        shortText:
+          type:
+            - string
+            - 'null'
     FacilityEnum:
       description: |
         all kinds of Facilities
@@ -5947,9 +6174,9 @@ components:
       properties:
         text:
           description: text to be displayed to the user
-          type:
-            - string
-            - 'null'
+          oneOf:
+            - $ref: '#/components/schemas/Text'
+            - type: 'null'
         code:
           type:
             - string
@@ -6083,12 +6310,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ServiceBrandCode'
-    CompanyRef:
-      type: string
-      description: |
-        Identifies a company. For rail, a RICS company code or compatible ERA company code are used. 
-        examples:
-            - 'urn:uic:rics:1185:000011'
     CarrierFilter:
       type: object
       additionalProperties: false
@@ -6209,44 +6430,6 @@ components:
           $ref: '#/components/schemas/InitialPlaceInput'
         restrictions:
           $ref: '#/components/schemas/PlaceParam'
-    Translation:
-      type: object
-      additionalProperties: false
-      required:
-        - language
-        - text
-      properties:
-        language:
-          description: |
-            ISO-639-1 language code
-          type: string
-        text:
-          type: string
-        shortText:
-          type:
-            - string
-            - 'null'
-    Text:
-      type: object
-      additionalProperties: false
-      description: |
-        Directly included text in case of online services. Text must be encoded in UTF-8 format.
-      required:
-        - text
-      properties:
-        id:
-          type: string
-        translations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Translation'
-        text:
-          type: string
-          maxLength: 32768
-        shortText:
-          type:
-            - string
-            - 'null'
     GeneralAttributeMasterData:
       type: object
       additionalProperties: false
@@ -8683,9 +8866,9 @@ components:
         id:
           type: string
         name:
-          type:
-            - string
-            - 'null'
+          oneOf:
+            - $ref: '#/components/schemas/Text'
+            - type: 'null'
         carrier:
           $ref: '#/components/schemas/CompanyRef'
         polygon:
@@ -8803,14 +8986,6 @@ components:
         - FULL_FLEXIBLE
         - SEMI_FLEXIBLE
         - NON_FLEXIBLE
-    TravelClass:
-      description: |
-        Traditional first and second class.
-      type: string
-      x-extensible-enum:
-        - FIRST
-        - SECOND
-        - ANY_CLASS
     OfferMode:
       description: |
         Offer mode applied to provide offers for given criteria. 
@@ -8924,6 +9099,12 @@ components:
           $ref: '#/components/schemas/CompanyRef'
         type:
           $ref: '#/components/schemas/TravelAccountType'
+        cardValidation:
+          description: |
+            indication, that the card was verified during the sale. A provider might request this element amd the consumer then needs to verify the existence and confirms this by an update.
+          type: string
+          x-extensible-enum:
+            - VERIFIED
         chipCardContentFormat:
           type: string
           x-extensible-enum:
@@ -9521,100 +9702,6 @@ components:
             $ref: '#/components/schemas/VAT'
         appliedCurrenyConversion:
           $ref: '#/components/schemas/CurrencyConversion'
-    AccommodationType:
-      type: string
-      description: |
-        Accommodation type definition out of the 
-        [Accommodation Type Code List](https://osdm.io/spec/catalog-of-code-lists/#AccomodationType)
-        Listed values here are examples.
-      default: SEAT
-      x-extensible-enum:
-        - SEAT
-        - COUCHETTE
-        - BERTH
-        - VEHICLE
-        - STORAGE
-    AccommodationSubType:
-      type: string
-      description: |
-        Accommodation sub type definition out of the 
-        [Accommodation Sub Type Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty)
-        Listed values here are examples.
-      default: ANY_SEAT
-      x-extensible-enum:
-        - ANY_SEAT
-        - BISTRO
-        - BICYCLE
-        - BICYCLE_LOW
-        - BICYCLE_MIDDLE
-        - BICYCLE_HIGH
-        - BUSINESS
-        - BUSINESS_COMFORT
-        - CABIN8
-        - CAR_LARGE
-        - CAR_SMALL
-        - CARRE
-        - CHILDREN_AREA
-        - CLUB
-        - CLUB_2
-        - CLUB_4
-        - COMPARTMENT
-        - COUCHETTE_2
-        - COUCHETTE_4
-        - COUCHETTE_5
-        - COUCHETTE_6
-        - COUCHETTE_COMFORT_4
-        - COUCHETTE_COMFORT_5
-        - COUCHETTE_COMFORT_6
-        - COUCHETTE_PRM_2
-        - COUCHETTE_PRM_3
-        - COUCHETTE_PRM_4
-        - DOUBLE
-        - DOUBLE_WC
-        - DOUBLE_SWC
-        - DOUBLE_S
-        - EASY_ACCESS
-        - EXCELLENCE
-        - FAMILY
-        - FRONT_VIEW
-        - HISTORIC_COACH
-        - KIOSQUE
-        - MINI_SUITE
-        - MOTOR_CYCLE
-        - MOTOR_CYCLE_SC
-        - NEAR_ANIMALS
-        - NEAR_ASSISTANT_DOG_AREA
-        - NEAR_DINING
-        - NEAR_PLAY_AREA
-        - NEAR_BICYCLE_AREA
-        - NEAR_WHEELCHAIR
-        - OPEN_SPACE
-        - PANORAMA
-        - PRAM
-        - PRAM_WITH_SEAT
-        - PREMIUM
-        - RESTAURANT
-        - SALON
-        - SILENCE
-        - SINGLE
-        - SINGLE_WC
-        - SINGLE_SWC
-        - SLEEPERETTE
-        - SOLO
-        - SOLO_COM
-        - SPECIAL_SLEEPER
-        - TANDEM
-        - TOURIST_SLEEPER_2
-        - TOURIST_SLEEPER_3
-        - TOURIST_SLEEPER_3_WC
-        - TOURIST_SLEEPER_3_SWC
-        - TOURIST_SLEEPER_4
-        - WHEELCHAIR
-        - WHEELCHAIR_AND_SEAT
-        - WHEELCHAIR_NO_SEAT
-        - WITH_ANIMALS
-        - WITH_SMALL_CHILDREN
-        - WITHOUT_ANIMALS
     AbstractTravelAccountUnit:
       type: object
       additionalProperties: false
@@ -9760,14 +9847,13 @@ components:
         description:
           description: |
             human readable documentation of the text.
-          type: string
-          minLength: 1
+          $ref: '#/components/schemas/Text'
         shortDescription:
           description: |
             short description of the condition no longer than 64 characters
-          type:
-            - string
-            - 'null'
+          oneOf:
+            - $ref: '#/components/schemas/Text'
+            - type: 'null'
     TextElementType:
       description: |
         Type of descriptive text.
@@ -9795,14 +9881,11 @@ components:
         description:
           description: |
             Full version of the text for display when sufficient space is available.
-          type: string
-          minLength: 1
-          maxLength: 32768
+          $ref: '#/components/schemas/Text'
         shortDescription:
           description: |
             Brief version of the text for display in space restricted environments, e.g. mobile phone. No longer than 64 characters.
-          type: string
-          minLength: 1
+          $ref: '#/components/schemas/Text'
         textElementType:
           $ref: '#/components/schemas/TextElementType'
     CombinationTag:
@@ -9845,9 +9928,9 @@ components:
         summary:
           description: |
             A human-readable description of the product.
-          type:
-            - string
-            - 'null'
+          oneOf:
+            - $ref: '#/components/schemas/Text'
+            - type: 'null'
         type:
           $ref: '#/components/schemas/ProductType'
         code:
@@ -9860,9 +9943,9 @@ components:
         description:
           description: |
             Textual description of the product.
-          type:
-            - string
-            - 'null'
+          oneOf:
+            - $ref: '#/components/schemas/Text'
+            - type: 'null'
         owner:
           $ref: '#/components/schemas/CompanyRef'
         conditions:
@@ -9892,13 +9975,13 @@ components:
             - 'null'
           default: false
         serviceConstraintText:
-          type:
-            - string
-            - 'null'
+          oneOf:
+            - $ref: '#/components/schemas/Text'
+            - type: 'null'
         carrierConstraintText:
-          type:
-            - string
-            - 'null'
+          oneOf:
+            - $ref: '#/components/schemas/Text'
+            - type: 'null'
         descriptiveTexts:
           type: array
           items:
@@ -10191,9 +10274,9 @@ components:
         carrier:
           $ref: '#/components/schemas/CompanyRef'
         name:
-          type:
-            - string
-            - 'null'
+          oneOf:
+            - $ref: '#/components/schemas/Text'
+            - type: 'null'
         entryStation:
           $ref: '#/components/schemas/StopPlace'
         terminalStation:
@@ -10272,7 +10355,7 @@ components:
         - stations
       properties:
         name:
-          type: string
+          $ref: '#/components/schemas/Text'
         code:
           type: string
         carrier:
@@ -12470,6 +12553,10 @@ components:
           $ref: '#/components/schemas/ExchangeableType'
         initialRefundType:
           $ref: '#/components/schemas/RefundType'
+    AccountingId:
+      description: id used as reference to OSDM in the settlement data exchange
+      type: string
+      maxLength: 256
     AccountingRef:
       description: |
         reference to accounting data in case the accounting is not provided by the API provider
@@ -12484,7 +12571,7 @@ components:
             ids of accounting data used to link the booking part with accounting data in the billing send by the accounting company
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/AccountingId'
     Offer:
       type: object
       additionalProperties: false
@@ -14317,9 +14404,9 @@ components:
         summary:
           description: |
             A human-readable description of the refund offer.
-          type:
-            - string
-            - 'null'
+          oneOf:
+            - $ref: '#/components/schemas/Text'
+            - type: 'null'
         createdOn:
           type: string
           format: date-time
@@ -14377,25 +14464,31 @@ components:
           type: array
           items:
             type: string
-    ExchangeOffer:
+    ExchangeOperation:
+      description: |
+        The exchange operation bundles the exchange starting with the acceptance of an exchange offer. It includes the references to the new booked offer and the exchanged booking parts and fulfillments of the old booked offer. The object will be kept in the old booked offer to document the history of the change.
+        The provided amounts in exchangeFee, exchangePrice and refundable amount are given for convenience and correspond to the sums of the exchanged booking parts and fees in the old and new booking during the exchange.
       type: object
       additionalProperties: false
       required:
+        - id
+        - status
+        - bookedOfferId
         - exchangeFee
         - exchangePrice
         - refundableAmount
-        - fulfillmentRefs
-        - offerId
-        - createdOn
-        - preBookableUntil
-        - admissionOfferParts
       properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/ExchangeStatus'
+        bookedOfferId:
+          description: |
+            ID of the new offer booked in the exchange.
+          type: string
+          maxLength: 32768
         exchangeFee:
           $ref: '#/components/schemas/Price'
-        accountingRef:
-          description: |
-            Accounting information for the exchange fee
-          $ref: '#/components/schemas/AccountingRef'
         exchangePrice:
           description: |
             price of the new booking parts
@@ -14408,118 +14501,47 @@ components:
           description: |
             amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.
           $ref: '#/components/schemas/Price'
-        appliedOverruleCode:
-          $ref: '#/components/schemas/OverruleCode'
-        fulfillmentRefs:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentRefs'
-          minItems: 1
-        offerId:
-          type: string
-          maxLength: 32768
-        summary:
+        appliedFeeIds:
           description: |
-            A human-readable description of the offer.
-          type: string
-        offerSummary:
-          description: The offerSummary must be provided for product based offers. It is not needed for fares.
-          $ref: '#/components/schemas/OfferSummary'
-        createdOn:
-          type: string
-          format: date-time
-        preBookableUntil:
-          description: |
-            time until the offer can be pre-booked, however its availability is not guaranteed
-          type: string
-          format: date-time
-        passengerRefs:
-          description: |
-            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.
-          type: array
-          items:
-            type: string
-          minItems: 1
-        products:
-          description: |
-            products must be provided in case they are referenced. Some offer parts (e.g. fares)
-            do not have products assigned.
-          type: array
-          items:
-            $ref: '#/components/schemas/Product'
-        tripCoverage:
-          type: array
-          items:
-            $ref: '#/components/schemas/TripCoverage'
-        exchangeOfferBreakdown:
-          description: |
-            Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
-          type: array
-          items:
-            $ref: '#/components/schemas/ExchangeBreakdownItem'
-        admissionOfferParts:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdmissionOfferPart'
-        reservationOfferParts:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReservationOfferPart'
-        ancillaryOfferParts:
-          type: array
-          items:
-            $ref: '#/components/schemas/AncillaryOfferPart'
-        fees:
-          type: array
-          items:
-            $ref: '#/components/schemas/Fee'
-        fares:
-          type: array
-          items:
-            $ref: '#/components/schemas/FareOfferPart'
-        _links:
-          $ref: '#/components/schemas/Links'
-    ExchangeOperation:
-      type: object
-      additionalProperties: false
-      required:
-        - id
-      properties:
-        id:
-          type: string
-        status:
-          $ref: '#/components/schemas/ExchangeStatus'
-        exchangeOffers:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExchangeOffer'
-        appliedFeesRefs:
-          description: |
-            references to the fees applied with this exchange operation. It is mandatory to
-            provide the refs when the fees have been applied.
+            references to the fees applied with this exchange operation. It is mandatory to provide the refs when the fees have been applied.
           type: array
           items:
             type: string
             maxLength: 1024
         ticketTimeLimit:
+          description: provided for convenience, identical to the TTL in the new bookedOffer
           type:
             - string
             - 'null'
           format: date-time
         fulfillmentRefs:
           description: |
-            references to the fulfillments affeted by the exchange operation.
+            references to the fulfillments replaced by the exchange operation. New Fulfillments will be in the new bookedOffer
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentRefs'
+        exchangedBookedOfferPartIds:
+          description: |
+            Ids of booking parts exchanged. The new booking will not contain these parts.
+          type: array
+          maxItems: 1024
+          items:
+            type: string
+            maxLength: 32768
+        usedPaymentMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethod'
         issuedVoucherRefs:
           type: array
           items:
             $ref: '#/components/schemas/VoucherRef'
-        trips:
+        exchangeOfferBreakdown:
+          description: |
+            Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
           type: array
           items:
-            $ref: '#/components/schemas/Trip'
+            $ref: '#/components/schemas/ExchangeBreakdownItem'
     Booking:
       type: object
       additionalProperties: false
@@ -15689,6 +15711,108 @@ components:
           $ref: '#/components/schemas/ExchangeServiceOfferRequestSpecification'
         exchangeTrip:
           $ref: '#/components/schemas/ExchangeTripOfferRequestSpecification'
+    ExchangeOffer:
+      type: object
+      additionalProperties: false
+      required:
+        - exchangeFee
+        - exchangePrice
+        - refundableAmount
+        - fulfillmentRefs
+        - offerId
+        - createdOn
+        - preBookableUntil
+        - admissionOfferParts
+      properties:
+        exchangeFee:
+          $ref: '#/components/schemas/Price'
+        accountingRef:
+          description: |
+            Accounting information for the exchange fee
+          $ref: '#/components/schemas/AccountingRef'
+        exchangePrice:
+          description: |
+            price of the new booking parts
+          $ref: '#/components/schemas/Price'
+        refundableAmount:
+          description: |
+            amount to be paid to the purchaser in case the new products are less expensive. There can not be an amountToBePaid at the same time.
+          $ref: '#/components/schemas/Price'
+        amountToBePaid:
+          description: |
+            amount to be paid by the purchaser in case the new products are more expensive. There can not be a refundableAmount at the same time.
+          $ref: '#/components/schemas/Price'
+        appliedOverruleCode:
+          $ref: '#/components/schemas/OverruleCode'
+        fulfillmentRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentRefs'
+          minItems: 1
+        offerId:
+          type: string
+          maxLength: 32768
+        summary:
+          description: |
+            A human-readable description of the offer.
+          type: string
+        offerSummary:
+          description: The offerSummary must be provided for product based offers. It is not needed for fares.
+          $ref: '#/components/schemas/OfferSummary'
+        createdOn:
+          type: string
+          format: date-time
+        preBookableUntil:
+          description: |
+            time until the offer can be pre-booked, however its availability is not guaranteed
+          type: string
+          format: date-time
+        passengerRefs:
+          description: |
+            providing the passengerRefs is required for passenger transport. There are uses cases (e.g. sale of merchandising articles) where no passenger is involved. Only in these cases it is allowed to omit the passengerRefs.
+          type: array
+          items:
+            type: string
+          minItems: 1
+        products:
+          description: |
+            products must be provided in case they are referenced. Some offer parts (e.g. fares)
+            do not have products assigned.
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        tripCoverage:
+          type: array
+          items:
+            $ref: '#/components/schemas/TripCoverage'
+        exchangeOfferBreakdown:
+          description: |
+            Breakdown of the exchange offer, including the exchange price, exchange fee, and refundable amount.
+          type: array
+          items:
+            $ref: '#/components/schemas/ExchangeBreakdownItem'
+        admissionOfferParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdmissionOfferPart'
+        reservationOfferParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReservationOfferPart'
+        ancillaryOfferParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AncillaryOfferPart'
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fee'
+        fares:
+          type: array
+          items:
+            $ref: '#/components/schemas/FareOfferPart'
+        _links:
+          $ref: '#/components/schemas/Links'
     ExchangeOfferCollectionResponse:
       type: object
       additionalProperties: false
@@ -16304,8 +16428,7 @@ components:
         - deckLevel
       properties:
         name:
-          type: string
-          maxLength: 255
+          $ref: '#/components/schemas/Text'
         dimension:
           $ref: '#/components/schemas/GridDimension'
         lowFloorEntry:
@@ -16530,9 +16653,9 @@ components:
             Validity of the zone definition for travel. The date range is related to the possible start of a travel.
           $ref: '#/components/schemas/MasterDataValidity'
         name:
-          type:
-            - string
-            - 'null'
+          oneOf:
+            - $ref: '#/components/schemas/Text'
+            - type: 'null'
         carrier:
           $ref: '#/components/schemas/CompanyRef'
         polygon:
@@ -17343,85 +17466,6 @@ components:
             $ref: '#/components/schemas/Problem'
         _links:
           $ref: '#/components/schemas/Links'
-    Revision:
-      type: object
-      description: The revision of the event.
-      required:
-        - name
-        - timestamp
-      properties:
-        name:
-          type: string
-          examples:
-            - '1'
-        timestamp:
-          type: string
-          format: date-time
-    NotificationEvent:
-      type: object
-      description: |
-        Notification on an event that occured on the provider side and changed a resource. Base event for inheritance.
-      discriminator:
-        propertyName: objectType
-      required:
-        - objectType
-        - summary
-        - revision
-        - resources
-      properties:
-        objectType:
-          description: |
-            Attribute is used as discriminator for inheritance between data types.
-          type: string
-          enum:
-            - BookingEvent
-            - ComplaintEvent
-            - ReimbursementEvent
-        summary:
-          type: string
-          description: Human readable description of what has changed on the booking. e.g. "Train ICE 34 at 2021-12-22 13:30 has been cancelled", "Complaint 123456 has been settled", "Reimbursement 456-xyz has been settled".
-        revision:
-          $ref: '#/components/schemas/Revision'
-        resources:
-          description: Resources to be called by receiver to update a booking.
-          type: array
-          items:
-            $ref: '#/components/schemas/Resource'
-    BookingChangeType:
-      type: string
-      description: The type of change that has occurred on the booking.
-      enum:
-        - BOOKING_REAL_TIME_EVENT_OCCURRED
-        - BOOKING_REACCOMMODATED
-        - BOOKING_TRIP_CHANGED
-        - BOOKING_TRIP_CONFIRMED
-        - BOOKING_ON_HOLD
-        - DOCUMENT_AVAILABLE
-        - FULFILLMENT_AVAILABLE
-        - FULFILLMENT_REFUNDED
-        - FULFILLMENT_EXCHANGED
-        - FULFILLMENT_CANCELLED
-        - FULFILLMENT_RELEASED
-        - FULFILLMENT_CONTROLLED
-        - ACCOMMODATION_RELEASED
-        - PURCHASER_CHANGED
-        - PASSENGER_CHANGED
-        - REFUND_INITIATED
-        - EXCHANGE_INITIATED
-        - RELEASE_INITIATED
-        - CANCEL_INITIATED
-        - ON_HOLD_INITIATED
-        - AFTERSALES_OVERRIDEN
-        - CONTINUOUS_SERVICE_UPDATE
-        - CONTINUOUS_SERVICE_USAGE_BLOCKED
-        - CONTINUOUS_SERVICE_USAGE_UNBLOCKED
-        - CONTINUOUS_SERVICE_USAGE_STARTED
-        - CONTINUOUS_SERVICE_USAGE_EDED
-        - CONTINUOUS_SERVICE_USAGE_UPDATE
-        - POST_PAYMENT_PRICING_UPDATE
-        - PRE_PAYMENT_PRICING_UPDATE
-      examples:
-        - FULFILLMENT_REFUNDED
     BookingEvent:
       type: object
       description: An event that has occurred on a booking.
@@ -17448,6 +17492,40 @@ components:
               type: array
               items:
                 type: string
+    NotificationEvent:
+      type: object
+      description: |
+        Notification on an event that occured on the provider side and changed a resource. Base event for inheritance.
+      discriminator:
+        propertyName: objectType
+        mapping:
+          BookingEvent: '#/components/schemas/BookingEvent'
+          ComplaintEvent: '#/components/schemas/ComplaintEvent'
+          ReimbursementEvent: '#/components/schemas/ReimbursementEvent'
+      required:
+        - objectType
+        - summary
+        - revision
+        - resources
+      properties:
+        objectType:
+          description: |
+            Attribute is used as discriminator for inheritance between data types.
+          type: string
+          enum:
+            - BookingEvent
+            - ComplaintEvent
+            - ReimbursementEvent
+        summary:
+          type: string
+          description: Human readable description of what has changed on the booking. e.g. "Train ICE 34 at 2021-12-22 13:30 has been cancelled", "Complaint 123456 has been settled", "Reimbursement 456-xyz has been settled".
+        revision:
+          $ref: '#/components/schemas/Revision'
+        resources:
+          description: Resources to be called by receiver to update a booking.
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
     BackOfficeChangeType:
       type: string
       description: The type of change that has occurred.
@@ -17490,6 +17568,55 @@ components:
             reimbursementId:
               type: string
               description: The ID of the reimbursement.
+    Revision:
+      type: object
+      description: The revision of the event.
+      required:
+        - name
+        - timestamp
+      properties:
+        name:
+          type: string
+          examples:
+            - '1'
+        timestamp:
+          type: string
+          format: date-time
+    BookingChangeType:
+      type: string
+      description: The type of change that has occurred on the booking.
+      enum:
+        - BOOKING_REAL_TIME_EVENT_OCCURRED
+        - BOOKING_REACCOMMODATED
+        - BOOKING_TRIP_CHANGED
+        - BOOKING_TRIP_CONFIRMED
+        - BOOKING_ON_HOLD
+        - DOCUMENT_AVAILABLE
+        - FULFILLMENT_AVAILABLE
+        - FULFILLMENT_REFUNDED
+        - FULFILLMENT_EXCHANGED
+        - FULFILLMENT_CANCELLED
+        - FULFILLMENT_RELEASED
+        - FULFILLMENT_CONTROLLED
+        - ACCOMMODATION_RELEASED
+        - PURCHASER_CHANGED
+        - PASSENGER_CHANGED
+        - REFUND_INITIATED
+        - EXCHANGE_INITIATED
+        - RELEASE_INITIATED
+        - CANCEL_INITIATED
+        - ON_HOLD_INITIATED
+        - AFTERSALES_OVERRIDEN
+        - CONTINUOUS_SERVICE_UPDATE
+        - CONTINUOUS_SERVICE_USAGE_BLOCKED
+        - CONTINUOUS_SERVICE_USAGE_UNBLOCKED
+        - CONTINUOUS_SERVICE_USAGE_STARTED
+        - CONTINUOUS_SERVICE_USAGE_EDED
+        - CONTINUOUS_SERVICE_USAGE_UPDATE
+        - POST_PAYMENT_PRICING_UPDATE
+        - PRE_PAYMENT_PRICING_UPDATE
+      examples:
+        - FULFILLMENT_REFUNDED
   responses:
     UnauthorizedResponse:
       description: |
