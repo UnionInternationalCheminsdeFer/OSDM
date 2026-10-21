@@ -12,9 +12,9 @@ post:
       application/json:
         schema:
           oneOf:
-            - $ref: ../schemas/booking.yml#/BookingEvent
-            - $ref: ../schemas/complaint.yml#/ComplaintEvent
-            - $ref: ../schemas/complaint.yml#/ReimbursementEvent
+            - $ref: ../components/schemas/BookingEvent.yml
+            - $ref: ../components/schemas/ComplaintEvent.yml
+            - $ref: ../components/schemas/ReimbursementEvent.yml
   responses:
     "200":
       description: OK

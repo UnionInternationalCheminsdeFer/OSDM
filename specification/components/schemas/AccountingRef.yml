@@ -13,4 +13,4 @@ properties:
       in the billing send by the accounting company
     type: array
     items:
-      type: string
+      $ref: ./AccountingId.yml
