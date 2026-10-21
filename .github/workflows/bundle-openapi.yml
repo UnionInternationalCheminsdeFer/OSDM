@@ -1,10 +1,18 @@
 name: Bundle OpenAPI Specification
 
-# Keeps specification/OSDM-online-api.bundled.yml in the branch up to date.
-# osdm.io links the v4 draft straight at a file in this branch, so the
-# single-file bundle has to be committed, not just built: the hub on its own
-# is an entrypoint of relative $refs that a viewer would have to fetch one
-# request at a time.
+# Builds the single-file bundle from the modular hub and publishes it to the
+# site:
+#
+#   gh-pages:specification/v4.0/OSDM-online-api-v4.0.0-bundled.yml
+#
+# osdm.io serves every version from gh-pages. Released versions are published
+# there once; v4 is a moving draft, so it is republished on each change and the
+# site always shows the edge spec. What gets published has to be the bundle:
+# the hub on its own is an entrypoint of relative $refs that a viewer would
+# have to fetch one request at a time.
+#
+# The bundle is generated output and is not committed to this branch. The
+# modular tree under specification/ is the source of truth.
 on:
   push:
     branches:
@@ -13,6 +21,11 @@ on:
       - 'specification/**'
       - '.github/workflows/bundle-openapi.yml'
   workflow_dispatch:
+
+# Two runs publishing to gh-pages at once would race; queue them instead.
+concurrency:
+  group: bundle-openapi
+  cancel-in-progress: false
 
 jobs:
   bundle:
@@ -34,15 +47,35 @@ jobs:
       - name: Bundle modular spec
         run: redocly bundle specification/OSDM-online-api.yml --output specification/OSDM-online-api.bundled.yml
 
-      - name: Commit bundled spec
+      # The gh-pages push is what triggers the Pages deploy that rebuilds the
+      # site, so no [skip ci] here. Nothing is pushed to this branch, so this
+      # workflow cannot retrigger itself.
+      - name: Publish edge bundle to gh-pages
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add specification/OSDM-online-api.bundled.yml
-          if git diff --cached --quiet; then
-            echo "bundle unchanged; nothing to commit"
-            exit 0
-          fi
-          # [skip ci] so this commit does not start a second run of this workflow.
-          git commit -m "chore: update bundled OpenAPI spec [skip ci]"
-          git push
+          src="$PWD/specification/OSDM-online-api.bundled.yml"
+          dest="specification/v4.0/OSDM-online-api-v4.0.0-bundled.yml"
+          git fetch --no-tags --depth=1 origin gh-pages
+          git worktree add -B gh-pages ../gh-pages FETCH_HEAD
+          cd ../gh-pages
+          for attempt in 1 2 3; do
+            mkdir -p "$(dirname "$dest")"
+            cp "$src" "$dest"
+            git add "$dest"
+            if git diff --cached --quiet; then
+              echo "published bundle already current; nothing to do"
+              exit 0
+            fi
+            git commit -m "chore: publish v4 edge bundle from dev-osdm-v4@${GITHUB_SHA:0:7}"
+            if git push origin HEAD:gh-pages; then
+              echo "published to gh-pages"
+              exit 0
+            fi
+            echo "push rejected (attempt $attempt); refreshing gh-pages and retrying"
+            git fetch --no-tags --depth=1 origin gh-pages
+            git reset --hard FETCH_HEAD
+          done
+          echo "could not publish to gh-pages after 3 attempts" >&2
+          exit 1
