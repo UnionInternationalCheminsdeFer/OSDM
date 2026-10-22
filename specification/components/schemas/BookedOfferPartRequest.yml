@@ -13,6 +13,12 @@ properties:
     items:
       type: string
       maxLength: 32768
+  reservationOfferIds:
+    type: array
+    minItems: 1
+    items:
+      type: string
+      maxLength: 32768      
   placeSelections:
     type: array
     minItems: 1
