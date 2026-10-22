@@ -49,6 +49,8 @@ The fulfillment content state describes the general state of the content of a fu
 
 The difference between CREATED and COMPLETE referes to the case of content that requires an additional activation to be created (e.g. multi journey tickets where individual tickets need to be activated). If the last multi journey ticket is created the fulfillment is complete.
 
+Note: in version 4 the status has been renamed to FulfillmentContentStatus.
+
 ### Fulfillment State Model with Activation <a name="fulfillmentActivation">
 
 In case of multi-journey products, a fulfillment needs to be activated before,
