@@ -5364,7 +5364,8 @@ components:
           description: |
             The company code (e.g. RICS code) of the alternative reservation system's operator.
           $ref: '#/components/schemas/CompanyRef'
-          example: urn:uic:rics:1185
+          examples:
+            - urn:uic:rics:1185
         scope:
           type: array
           items:
