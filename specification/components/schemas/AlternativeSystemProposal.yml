@@ -36,7 +36,8 @@ properties:
     description: |
       The 90918.1 code of the alternative reservation system.
     type: integer
-    example: 80
+    examples: 
+      - 80
   systemOperatorCode:
     description: >
       The company code (e.g. RICS code) of the alternative reservation system's
