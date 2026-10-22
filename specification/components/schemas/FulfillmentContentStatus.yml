@@ -1,0 +1,7 @@
+description: |
+  status of the fulfillment content [State Model:](https://osdm.io/spec/state-models/#fulfillmentContent)
+type: string
+x-extensible-enum:
+  - PENDING
+  - CREATED
+  - COMPLETE
