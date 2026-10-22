@@ -43,7 +43,8 @@ properties:
       The company code (e.g. RICS code) of the alternative reservation system's
       operator.
     $ref: ./CompanyRef.yml
-    example: urn:uic:rics:1185
+    examples: 
+      - urn:uic:rics:1185
   scope:
     type: array
     items:
