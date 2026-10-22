@@ -12,10 +12,11 @@ permalink: /spec/state-models/
    2. [Booking State Model](#booking)
    3. [Booking Part State Model](#bookingPart)
    4. [Fulfillment State Model](#fulfillment)
-   5. [Fulfillment State Model with Activation](#fulfillmentActivation)
-   6. [Refund State Model](#refund)
-   7. [Exchange State Model](#exchange)
-   8. [Complaint State Model](#complaint)
+   5. [Fulfillment Summary / Content State Model](#fulfillmentContent)
+   6. [Fulfillment State Model with Activation](#fulfillmentActivation)
+   7. [Refund State Model](#refund)
+   8. [Exchange State Model](#exchange)
+   9. [Complaint State Model](#complaint)
 
 ## State Models <a name="stateModels">
 
