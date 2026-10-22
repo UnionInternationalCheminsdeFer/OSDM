@@ -5375,7 +5375,8 @@ components:
           description: |
             If multiple alternative system proposals are returned, the provider might define a priority order between them. The requestor should first use the proposal with the lowest priority that matches the requestor's case based on the proposal's scope and problem pointer.
           type: integer
-          example: 1
+          examples:
+            - 1
     Problem:
       type: object
       additionalProperties: false
