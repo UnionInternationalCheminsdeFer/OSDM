@@ -39,6 +39,16 @@ The status applies to the booking parts, no booking state exists.
 
 ![Fulfillment State Model](../../images/models/fulfillment-state-model.png)
 
+### Fulfillment Content State Model <a name="fulfillmentContent">
+
+The fulfillment content state describes the general state of the content of a fulfillment generated in asynchronous mode. In the Booking object it describes a summary:
+
+        - PENDING   some content of the fulfillment is not jet generated. In a booking it indicates that for at least one fulfillment not all content has jet been generated.
+        - CREATED   all requested content in a fulfillment is created. In a booking it indicates that all the requested content of all fulfillments has been generated. 
+        - COMPLETE  all possible content in a fulfillment is created. In a booking it indicates that all the possible content of all fulfillments has been generated. 
+
+The difference between CREATED and COMPLETE referes to the case of content that requires an additional activation to be created (e.g. multi journey tickets where individual tickets need to be activated). If the last multi journey ticket is created the fulfillment is complete.
+
 ### Fulfillment State Model with Activation <a name="fulfillmentActivation">
 
 In case of multi-journey products, a fulfillment needs to be activated before,
