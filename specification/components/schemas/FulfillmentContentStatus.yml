@@ -1,6 +1,6 @@
 description: |
-  status of a fulfillment
-type: string
+  status of the fulfillment content
+ type: string
 x-extensible-enum:
   - PENDING
   - CREATED
