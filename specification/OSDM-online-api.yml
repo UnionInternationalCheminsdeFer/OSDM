@@ -211,8 +211,6 @@ paths:
     $ref: paths/bookings_{bookingId}_split.yml
   /bookings/{bookingId}/fulfillments:
     $ref: paths/bookings_{bookingId}_fulfillments.yml
-  /fulfillments:
-    $ref: paths/fulfillments.yml
   /fulfillments/{fulfillmentId}:
     $ref: paths/fulfillments_{fulfillmentId}.yml
   /bookings/{bookingId}/fulfillment-check:
