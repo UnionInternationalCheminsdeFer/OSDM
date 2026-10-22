@@ -74,7 +74,7 @@ properties:
     items:
       $ref: ./FulfillmentRefs.yml
   fulfillmentStatus:
-    $ref: ./FulfillmentSummaryStatus.yml
+    $ref: ./FulfillmentContentStatus.yml
   issuedVouchers:
     type: array
     items:
