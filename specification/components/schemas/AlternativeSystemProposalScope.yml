@@ -26,7 +26,8 @@ properties:
       Vehicle number, such as the train number, for which the alternative system
       proposal is valid.
     type: string
-    example: '462'
+    examples: 
+      - '462'
   travelClass:
     $ref: ./TravelClass.yml
   accommodationType:
