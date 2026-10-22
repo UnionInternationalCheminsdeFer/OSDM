@@ -1,5 +1,5 @@
 description: |
-  status of the fulfillment content
+  status of the fulfillment content [State Model:](https://osdm.io/spec/state-models/#FulfillmentContent)
 type: string
 x-extensible-enum:
   - PENDING
