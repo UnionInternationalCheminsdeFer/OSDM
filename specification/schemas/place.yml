@@ -1088,7 +1088,8 @@ SelectedAccommodation:
       $ref: '#/AccommodationSubType'
     placeProperties:
       description: |
-        Place preferences requested for the passengers, chosen among the `availablePlacePreferences` of the reservation offer part (at most one per preference group).
+        Place preferences requested for the passengers (at most one per preference group), chosen among the `availablePlacePreferences` of the reservation referenced by the `reservationId` of the place selection:
+        of the reservation offer part when an offer is booked, or of the booked reservation when the place selection is made or changed after the pre-booking with `PATCH /bookings/{bookingId}`.
         Values from the [Place Property Code List](https://osdm.io/spec/catalog-of-code-lists/#PlaceProperty).
         The properties of the allocated places are returned in `ReservedPlace.placeProperties`.
       type: array
