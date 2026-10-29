@@ -4,7 +4,8 @@ properties:
   preferenceGroups:
     description: >
       possible preferences to be requested in reservation without changing the
-      fare
+      fare. The chosen preferences are sent in
+      `PlaceSelection.accommodations[].preferences`.
     type: array
     items:
       $ref: ./PlacePreferenceGroup.yml

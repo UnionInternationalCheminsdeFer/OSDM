@@ -3,7 +3,7 @@ additionalProperties: false
 description: |
   Place selection options and selected options in an offer
   - reference place for adjacent reservation
-  - selected optional place properties
+  - selected place preferences
   - selected places from a graphical place selection
 required:
   - reservationId
