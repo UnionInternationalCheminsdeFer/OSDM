@@ -1031,7 +1031,9 @@ Reservation:
         items:
           $ref: ./booking.yml#/BookingPartReference
       availablePlacePreferences:
-        description: options for place selection in case the place selection is made after the pre-booking.
+        description: |
+          options for place selection in case the place selection is made after the pre-booking.
+          The chosen preferences are sent in `placeSelections` of `PATCH /bookings/{bookingId}`.
         type: array
         items:
           $ref: ./place.yml#/AvailablePlacePreferences
