@@ -18,7 +18,8 @@ allOf:
       availablePlacePreferences:
         description: >-
           options for place selection in case the place selection is made after
-          the pre-booking.
+          the pre-booking. The chosen preferences are sent in `placeSelections`
+          of `PATCH /bookings/{bookingId}`.
         type: array
         items:
           $ref: ./AvailablePlacePreferences.yml
