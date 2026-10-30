@@ -11509,7 +11509,7 @@ components:
       properties:
         preferenceGroups:
           description: |
-            possible preferences to be requested in reservation without changing the fare
+            possible preferences to be requested in reservation without changing the fare. The chosen preferences are sent in `PlaceSelection.accommodations[].preferences`.
           type: array
           items:
             $ref: '#/components/schemas/PlacePreferenceGroup'
@@ -12249,10 +12249,11 @@ components:
           $ref: '#/components/schemas/AccommodationType'
         accommodationSubType:
           $ref: '#/components/schemas/AccommodationSubType'
-        placeProperties:
+        preferences:
           description: |
-            Properties of places as defined in 90810-10.
-            selection from the optional place properties provided in the offer
+            Place preferences requested for the passengers (at most one per preference group), chosen among the `availablePlacePreferences` of the reservation referenced by the `reservationId` of the place selection:
+            of the reservation offer part when an offer is booked, or of the booked reservation when the place selection is made or changed after the pre-booking with `PATCH /bookings/{bookingId}`.
+            The properties of the allocated places are returned in `ReservedPlace.placeProperties`.
           type:
             - array
             - 'null'
@@ -12282,7 +12283,7 @@ components:
       description: |
         Place selection options and selected options in an offer
         - reference place for adjacent reservation
-        - selected optional place properties
+        - selected place preferences
         - selected places from a graphical place selection
       required:
         - reservationId
@@ -12433,7 +12434,7 @@ components:
               items:
                 $ref: '#/components/schemas/BookingPartReference'
             availablePlacePreferences:
-              description: options for place selection in case the place selection is made after the pre-booking.
+              description: options for place selection in case the place selection is made after the pre-booking. The chosen preferences are sent in `placeSelections` of `PATCH /bookings/{bookingId}`.
               type: array
               items:
                 $ref: '#/components/schemas/AvailablePlacePreferences'
