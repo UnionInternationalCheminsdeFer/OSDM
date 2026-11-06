@@ -95,15 +95,15 @@ outbound trip. The inbound trip coverage must be provided.
 A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of
 combinations was limited for technical reasons.
 
-#### Using trip ids and trip search parameter
+#### Using trip ids and trip search criteria
 
-The return trip search parameters are used to provide the search parameters for
+The return trip search parameters are used to provide the search criteria for
 the inbound trips additionally to the outbound trips provided by its id.
 
 The inbound trip provides the additional travel dates and times and might
 include different parameters and via stations.
 
-The return trip search parameters with the full set of parameters were added in
+The return trip search criteria with the full set of parameters were added in
 version 3.7.0.
 
 A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of
