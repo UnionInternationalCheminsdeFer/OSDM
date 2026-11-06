@@ -90,7 +90,8 @@ specifications.
 The inbound trip specifications were added in version 3.7.0.
 
 Dedicated return offers that can not be separated must include the inbound and
-outbound trip. The inbound trip coverage must be provided.
+outbound trip. The inbound trip coverage must be provided. The attribute `returnSearchParameters`
+shouldn't be used with `InboundTripSpecifications`.
 
 A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of
 combinations was limited for technical reasons.
