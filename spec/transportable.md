@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Transportable (Draft 17.07.2026)
+title: Transportable (Draft 06.11.2026)
 hide_hero: true
 permalink: /spec/transportable/
 ---
@@ -9,9 +9,9 @@ permalink: /spec/transportable/
 
 Input:
 
-- (passenger,  age)
+- (passenger, age)
 
-Optional Output: 
+Optional Output:
 
 - `YOUNG_CHILD`, `CHILD`, `YOUTH`, `ADULT`,`SENIOR`.
 
@@ -28,7 +28,7 @@ Optional Output:
 ## 2. Animal
 
 - `ANIMAL`
-- `ANIMAL_IN_CAGE`   # formerly PET
+- `ANIMAL_IN_CAGE` # formerly PET
 - `DOG`
 
 ### Requirements on Passenger
@@ -37,7 +37,7 @@ Optional Output:
 
 ## 3. Personal Belonging
 
-- `DANDY_HORSE`  # for PRM
+- `DANDY_HORSE` # for PRM
 - `LUGGAGE`
 - `BICYCLE`
 - `PRAM`
@@ -52,7 +52,7 @@ Optional Output:
 Road vehicle are transported on a carrying vehicle:
 
 - `CAR`
-- `MOTOCYCLE`       # typo
+- `MOTOCYCLE` # typo
 - `MOTORCYCLE`
 - `SPECIAL_VEHICLE` # needs to be placed at special places in a transport train
 - `TRAILER`
@@ -71,40 +71,42 @@ We add an abstract `TransportableType` consisting of four concrete types:
 1. `PassengerType`
 2. `PetType`
 3. `PersonalBelongingType`
-4. `TransportedVehilceType`
+4. `TransportedVehicleType`
 
 Relationship between classes:
 
-|                       | `Passenger`         | `Animal` | `PersonalBelonging` | `TransportedVehilce` |
-|-----------------------|---------------------|----------|------------|-----------|
-| `Passenger`           |  needs a & can have | can have | can have   | can have  |
-| `Animal`              |  needs a            |          |            |           |
-| `PersonalBelonging`   |  needs a            |          |            |           |
-| `TransportedVehilce`  |  needs a            |          |            |           |
+|                      | `Passenger`        | `Animal` | `PersonalBelonging` | `TransportedVehicle` |
+| -------------------- | ------------------ | -------- | ------------------- | -------------------- |
+| `Passenger`          | needs a & can have | can have | can have            | can have             |
+| `Animal`             | needs a            |          |                     |                      |
+| `PersonalBelonging`  | needs a            |          |                     |                      |
+| `TransportedVehicle` | needs a            |          |                     |                      |
 
 Existing Classes
 
 - `Passenger` - needs small extension only
 - not yet: `PersonalBelonging`
 - not yet: `Animal`
-- `TransportedVehilce` - invented by Sir Adam Kertesz
+- `TransportedVehicle` - invented by Sir Adam Kertesz
 
 ## Type of Offer returned for a Given Type of Transportable (tbc)
 
-*Aim*: standardize what type of offer is returned for a given transportable request (normative).
+_Aim_: standardize what type of offer is returned for a given transportable
+request (normative).
 
-|  Type of Transportable    | Type of Offer (`OfferType`)    |
-|---------------------------|--------------------------------|
-| `PassengerType`           |  Admission, Reservation        |
-| `AnimalType`              |  Admission + opt. Ancillary    |
-| `PersonalBelongingType`   |  Ancillary                     |
-| `TransportedVehilceType`  |  Reservation + opt. Ancillary  |
+| Type of Transportable    | Type of Offer (`OfferType`)  |
+| ------------------------ | ---------------------------- |
+| `PassengerType`          | Admission, Reservation       |
+| `AnimalType`             | Admission + opt. Ancillary   |
+| `PersonalBelongingType`  | Ancillary                    |
+| `TransportedVehicleType` | Reservation + opt. Ancillary |
 
 ### Example for SBB
 
-E.g. for SBB, a product manager needs to map its internal products to an official OSDM type offer type.
+E.g. for SBB, a product manager needs to map its internal products to an
+official OSDM type offer type.
 
-- Product 125  --> Admission
+- Product 125 --> Admission
 - Product 2003 --> Reservation
 - Product 343434 --> Admission
 
@@ -119,7 +121,7 @@ schema:
         - $ref: AnimalType
         - $ref: PassengerType
         - $ref: PersonalBelongingType
-        - $ref: TransportedVehilceType
+        - $ref: TransportedVehicleType
 
     AnimalType:
         type: string
@@ -132,7 +134,7 @@ schema:
         type: string
         x-enum:
         - `YOUNG_CHILD`
-        - `CHILD` 
+        - `CHILD`
         - `YOUTH`
         - `ADULT`
         - `SENIOR`
@@ -152,7 +154,7 @@ schema:
         - `CAR`
         - `MOTOCYCLE` # Typo
         - `MOTORCYCLE`
-        - `SPECIAL_VEHICLE`  # needs to be placed at special places in a transport train 
+        - `SPECIAL_VEHICLE`  # needs to be placed at special places in a transport train
         - `TRAILER`
 
     ## Classes (ToDo: Properly model inheritance)
@@ -184,7 +186,7 @@ schema:
         properties:
             type:
                 $ref: AnimalType
-            accompaniedPassengerRef: 
+            accompaniedPassengerRef:
                 $ref: PassengerRef
 
     PersonalBelonging:
@@ -192,18 +194,18 @@ schema:
         required:
             - type
         properties:
-            type:   
+            type:
                 $ref: PersonalBelongingType
-            accompaniedPassengerRef: 
+            accompaniedPassengerRef:
                 $ref: PassengerRef
 
-    TransportedVehilce:
+    TransportedVehicle:
         type: object
         required:
             - type
         properties:
             type:
-                $ref: TransportedVehilceType
+                $ref: TransportedVehicleType
             accompaniedPassengerRef:
                 $ref: PassengerRef
 ```
