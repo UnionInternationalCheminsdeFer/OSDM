@@ -584,24 +584,24 @@ FulfillmentRef:
     - bookingParts
     - fulfillmentType
   properties:
-    id:
-      type: string
-    status:
-      $ref: '#/FulfillmentStatus'
-    summary:
-      description: |
-        A human-readable description of the fulfillment.
-     type: string
-   bookingParts:
-     type: array
-     items:
-        $ref: ./booking.yml#/BookingPartReference
-     minItems: 1
-   fulfillmentType:
-     $ref: '#/FulfillmentType'
-   createdOn:
-     type: string
-     format: date-time
+     id:
+       type: string
+     status:
+       $ref: '#/FulfillmentStatus'
+     summary:
+       description: |
+          A human-readable description of the fulfillment.
+       type: string
+     bookingParts:
+       type: array
+       items:
+          $ref: ./booking.yml#/BookingPartReference
+       minItems: 1
+     fulfillmentType:
+       $ref: '#/FulfillmentType'
+     createdOn:
+       type: string
+       format: date-time
 FulfillmentRefs:
    description: |
      references to fulfillments including the status and related bookingPart references
