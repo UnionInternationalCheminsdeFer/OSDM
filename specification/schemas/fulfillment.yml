@@ -738,16 +738,16 @@ VoucherRef:
     reference to a voucher issued during the sales process
   additionalProperties: false
   required:
-     - issuer
-     - code
-   properties:
-     issuer:
-       $ref:  ./_common.yml#/CompanyRef
-     code:
-       description: |
-         voucher code provided by the issuer
-       type: string
-     fulfillmentRefs:
-       description: |
-         reference to the fulfillment(s) of the voucher.
-       $ref: '#/FulfillmentRefs'
+    - issuer
+    - code
+  properties:
+    issuer:
+      $ref:  ./_common.yml#/CompanyRef
+    code:
+      description: |
+        voucher code provided by the issuer
+      type: string
+    fulfillmentRefs:
+      description: |
+        reference to the fulfillment(s) of the voucher.
+      $ref: '#/FulfillmentRefs'
