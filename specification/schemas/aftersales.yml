@@ -440,7 +440,7 @@ ExchangeOperation:
       type: string
       maxLength: 3276      
     exchangeOffers:
-      deprectaed: true
+      deprecated: true
       type: array
       items:
         $ref: '#/ExchangeOffer'
@@ -472,7 +472,7 @@ ExchangeOperation:
     fulfillmentType:
       $ref: ./fulfillment.yml#/FulfillmentType
     fulfillments:
-      deprectated: true
+      deprecated: true
       type: array
       items:
         $ref: ./fulfillment.yml#/Fulfillment
