@@ -574,6 +574,45 @@ FulfillmentPostRequest:
         The requested fulfillment type (e.g. paper or e-ticket) for the document(s) produced by this call.
         It applies to this call only and does not persist any booking state.
       $ref: '#/FulfillmentType'
+FulfillmentRef:
+  description: |
+    reference to a fulfillment including the status and related bookingPart references
+  required:
+    - id
+    - status
+    - summary
+    - bookingParts
+    - fulfillmentType
+  properties:
+    id:
+      type: string
+    status:
+      $ref: '#/FulfillmentStatus'
+    summary:
+      description: |
+        A human-readable description of the fulfillment.
+     type: string
+   bookingParts:
+     type: array
+     items:
+        $ref: ./booking.yml#/BookingPartReference
+     minItems: 1
+   fulfillmentType:
+     $ref: '#/FulfillmentType'
+   createdOn:
+     type: string
+     format: date-time
+FulfillmentRefs:
+   description: |
+     references to fulfillments including the status and related bookingPart references
+   required:
+     - fulfillmentRefs
+   properties:
+     fulfillmentRefs:
+       type: array
+       items:
+         $ref: '#/FulfillmentRef'
+       minItems: 1
 FulfillmentResponse:
   type: object
   additionalProperties: false
