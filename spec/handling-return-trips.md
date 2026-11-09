@@ -69,6 +69,8 @@ were added in version 3.7.0, in previous versions the return parameters were mor
 A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of
 combinations was limited for technical reasons.
 
+Return trip search parameters (`returnSearchParameters`) must not be used on the inbvound trip.
+
 #### Using trip ids
 
 The trips have been requested via independent trip searches beforehand.
