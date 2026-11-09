@@ -270,6 +270,8 @@ tripSpecifications are provided in the usual trip search parameter, ids and
 specifications. The return search parameters, ids and specifications are
 provided in dedicated return parameters.
 
+![see also the related deep dive on handling return trips:](../handling-return-trips.md)
+
 #### Using trip search parameters
 
 The return trip search parameters are used to provide the search parameters for
