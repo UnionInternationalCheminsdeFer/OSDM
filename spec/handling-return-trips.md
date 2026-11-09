@@ -56,7 +56,7 @@ Inbound and outbound trip are provided in the search for offers.
 This is the main approach for version 3.7 onwards.
 
 
-### Using trip search parameters
+### Using return trip search parameter
 
 The return trip search parameters are used to provide the search parameters for
 the inbound trip additionally to the outbound trip search parameters in the
@@ -98,7 +98,7 @@ combinations was limited for technical reasons.
 
 #### Using trip ids and trip search criteria
 
-The return trip search parameters are used to provide the search criteria for
+The return trip search critreia are used to provide the search criteria for
 the inbound trips additionally to the outbound trips provided by its id.
 
 The inbound trip provides the additional travel dates and times and might
@@ -110,7 +110,7 @@ version 3.7.0.
 A warning `RETURN_OFFER_LIST_TRUNCATED` is provided in case the number of
 combinations was limited for technical reasons.
 
-#### Using outbound offer id in the trip search parameter
+#### Using outbound offer id in the return trip search parameter
 
 The return trip search parameters are used to provide the search parameters for
 the inbound trips additionally to an outbound offer referenced by its id. 
