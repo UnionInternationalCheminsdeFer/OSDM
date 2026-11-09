@@ -8,5 +8,4 @@ description: >
 type: string
 x-extensible-enum:
   - ADMISSION
-  - RESERVATION
   - ANCILLARY
