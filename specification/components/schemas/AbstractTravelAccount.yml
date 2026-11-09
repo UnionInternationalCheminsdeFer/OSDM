@@ -28,8 +28,9 @@ properties:
     format: date-time
   number:
     type: string
-    agreementId:
-      description: | 
-        in the case that generic account ids (=number) are used (e.g. accountIds based on the creditt card id or id card) 
-        the account might exist in different account based ticketing schemes and an additional identifier is needed to identify the current scheme agreement.
-      type: string    
+  agreementId:
+    description: | 
+      in the case that generic account ids (=number) are used (e.g. accountIds based on the creditt card id or id card) 
+      the account might exist in different account based ticketing schemes and an additional identifier is needed to identify the current scheme agreement.
+    type: string    
+    maxLength: 1024
