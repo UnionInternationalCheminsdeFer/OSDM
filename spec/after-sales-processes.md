@@ -227,7 +227,7 @@ It is a good practice to execute
 terminate the exchange operation without confirmation and release booked offers
 from the operation.
 
-See also the relevant [State Models](../state-models).
+See also the relevant [State Models](../state-models) and [Deep Dive Handling Exchange](../handling-exchange).
 
 ### Complaint <a name="complaint">
 
