@@ -499,6 +499,13 @@ ExchangeOperation:
       type: array
       items:
         $ref: ./_common.yml#/VoucherInformation
+    usedPaymentMethods:
+      description: |
+        Payment methods used to settle the exchange surcharge (the
+        amountToBePaid of the selected exchange offer).
+      type: array
+      items:
+        $ref: ./_common.yml#/PaymentMethod        
     refundPaymentBreakdown:
       description: |
         Per-channel breakdown of the amount refunded to the purchaser,
