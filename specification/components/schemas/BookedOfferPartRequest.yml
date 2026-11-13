@@ -14,6 +14,7 @@ properties:
       type: string
       maxLength: 32768
   reservationOfferIds:
+    description: reservation offer ids in case no place is selected.
     type: array
     minItems: 1
     items:
