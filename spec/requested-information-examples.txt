@@ -1,7 +1,9 @@
-passengerSpecifications[<ref>].detail.contact.phoneNumber
+passengerSpecifications[0].detail.contact.phoneNumber
 
-passengerSpecifications[<ref>].detail.firstName AND passengerSpecifications[<ref>].detail.lastName
+passengerSpecifications[1].detail.firstName AND passengerSpecifications[1].detail.lastName
 
-passengerSpecifications[<ref>].detail.firstName AND passengerSpecifications[<ref>].detail.lastName AND (passengerSpecifications[<ref>].detail.contact.email OR passengerSpecifications[<ref>].detail.contact.phoneNumber)
+passengerSpecifications[0].detail.firstName AND passengerSpecifications[0].detail.lastName AND (passengerSpecifications[0].detail.contact.email OR passengerSpecifications[0].detail.contact.phoneNumber)
 
 passengerSpecifications[ANY].detail.contact.phoneNumber
+
+purchaser.detail.firstName AND purchaser.detail.lastName
