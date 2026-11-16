@@ -613,10 +613,13 @@ The `RequestedInformation` property will provide the details of what needs to be
 specified in order to book a given offer. These details are provided under the
 form of a boolean expression, referring to the passenger model elements using
 dot notation (with the `TripOffer` as the root). For example, if it is required
-that last name and first name are set to proceed`RequestedInformation` would be
-:
+that last name and first name are set to proceed, `RequestedInformation` would be:
 
-`passengerSpecifications[<uuid>].detail.firstName AND passengerSpecifiations[<uuid>].detail.lastName`
+`passengerSpecifications[0].detail.firstName AND passengerSpecifications[0].detail.lastName`
+
+The index is the position of the passenger in the `passengerSpecifications`
+array, starting from `0`. `ANY` requests the information for every passenger,
+and elements that are not arrays, such as the `purchaser`, take no index.
 
 The concept of _leading passenger_ is also expressed using such requested
 information. Though the API doesn't include boolean indicator which passenger is
@@ -629,7 +632,7 @@ for this role, or system doesn't support change of the leading passenger.
 Another example, if on top of first and last names, at least one email or one
 phone number is needed:
 
-`(passengerSpecifiations[0].detail.firstName AND passengerSpecifications[0].detail.lastName AND (passengerSpecifications[0].detail.contact.email OR passengerSpecifications[0].detail.contact.phone))`
+`(passengerSpecifications[0].detail.firstName AND passengerSpecifications[0].detail.lastName AND (passengerSpecifications[0].detail.contact.email OR passengerSpecifications[0].detail.contact.phoneNumber))`
 
 By parsing this structure, the API consumer is able to identify the elements
 that need to be filled-in to proceed. The [grammar for required
