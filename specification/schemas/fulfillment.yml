@@ -685,8 +685,8 @@ LocalSecurityData:
       type: string
 
 DosipasLevel2Security:
-  - allOf:
-    $ref: ./LocalSecurityData
+  allOf:
+  - $ref: #/LocalSecurityData
   - type: object
     additionalProperties: false
     description: |
