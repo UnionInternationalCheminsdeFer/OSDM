@@ -554,6 +554,10 @@ FulfillmentPatchRequest:
         The requested fulfillment type (e.g. paper or e-ticket) for the document(s) produced by this call.
         It applies to this call only and does not persist any booking state.
       $ref: '#/FulfillmentType'
+    localSecurityData:
+      type: array
+      items:
+        $ref: '#/LocalSecurityData'
 FulfillmentPostRequest:
   type: object
   additionalProperties: false
@@ -574,6 +578,10 @@ FulfillmentPostRequest:
         The requested fulfillment type (e.g. paper or e-ticket) for the document(s) produced by this call.
         It applies to this call only and does not persist any booking state.
       $ref: '#/FulfillmentType'
+    localSecurityData:
+      type: array
+      items:
+        $ref: '#/LocalSecurityData'      
 FulfillmentResponse:
   type: object
   additionalProperties: false
@@ -658,6 +666,43 @@ FulfillmentUsage:
       type: array
       items:
         $ref: ./fare.yml#/ZoneDefinition
+
+LocalSecurityData:
+  type: object
+  additionalProperties: false
+  description: |
+    data on local security features to be integrated in the fulfillment by the provider
+  required:
+    - securityType
+  discriminator:
+    propertyName: securitytype
+  mapping:
+    DOSIPAS: '#/DosipasLevel2Security'
+  properties:
+    securitytype:
+      type: string
+
+DosipasLevel2Security:
+  type: object
+  additionalProperties: false
+  description: |
+    information on the local DOSIPAS security to be included in the barcode data of the provider
+  required:
+    - level2KeyAlgorithm
+    - level2SignatureAlgorithm
+    - level2PublicKey
+  properties:  
+     level2KeyAlgorithm:
+       type: string
+       pattern: "^([0-1](\\.[0-3]?[0-9])?|2(\\.(0|[1-9][0-9]*))?)(\\.(0|[1-9][0-9]*))*$"
+     level2SignatureAlgorithm:
+       type: string
+       pattern: "^([0-1](\\.[0-3]?[0-9])?|2(\\.(0|[1-9][0-9]*))?)(\\.(0|[1-9][0-9]*))*$"
+     level2PublicKey:
+       type: string
+       format: binary
+  
+        
 SecurityElementFormat:
   type: string
   enum:
@@ -666,6 +711,7 @@ SecurityElementFormat:
   - SVG
   - BINARY
   - TEXT
+  - DOSIPAS_LEVEL1_DATA_V1
 SecurityElementType:
   type: string
   enum:
