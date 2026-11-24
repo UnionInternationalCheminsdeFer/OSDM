@@ -558,6 +558,7 @@ FulfillmentPatchRequest:
       type: array
       items:
         $ref: '#/LocalSecurityData'
+        
 FulfillmentPostRequest:
   type: object
   additionalProperties: false
@@ -581,7 +582,8 @@ FulfillmentPostRequest:
     localSecurityData:
       type: array
       items:
-        $ref: '#/LocalSecurityData'      
+        $ref: '#/LocalSecurityData'
+        
 FulfillmentResponse:
   type: object
   additionalProperties: false
@@ -675,11 +677,11 @@ LocalSecurityData:
   required:
     - securityType
   discriminator:
-    propertyName: securitytype
+    propertyName: securityType
     mapping:
       'DOSIPAS': '#/DosipasLevel2Security'
   properties:
-    securitytype:
+    securityType:
       type: string
 
 DosipasLevel2Security:
