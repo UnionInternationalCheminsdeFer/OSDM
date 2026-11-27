@@ -5,6 +5,16 @@ hide_hero: true
 permalink: /spec/transportable/
 ---
 
+## Context
+
+Historically, a passenger not only be a human, but could also be an animal or a
+personal belonging that requires transport.
+
+With the introduction of the `TransportableType` abstraction, we can now
+categorize all entities that require transport under a unified framework, making
+it easier to handle different types of passengers, animals, personal belongings,
+and vehicles consistently.
+
 ## 1. Passenger (Human)
 
 Input:
@@ -18,12 +28,6 @@ Optional Output:
 ### Business Rule for Passenger
 
 - SPG decided that in international rail output types are **not** needed.
-
-## (Humans with Reduced Mobility) - solved
-
-- `PRM`
-- `PRM_CHILD`
-- `WHEELCHAIR`
 
 ## 2. Animal
 
@@ -82,6 +86,34 @@ Relationship between classes:
 | `PersonalBelonging`  | needs a            |          |                     |                      |
 | `TransportedVehicle` | needs a            |          |                     |                      |
 
+## Changes in `/offers` Payload
+
+In `/offers`, this
+
+```json
+  "anonymousTransportEntitySpecifications": [
+    {
+      "externalRef": "string",
+      "dateOfBirth": "2026-11-06",
+      "age": 0,
+      "type": "PERSON",
+      "prmNeeds": [
+        "string"
+      ],
+      "cards": [..],
+      "gender": "MALE",
+      "residency": "DE",
+      "transportable": {
+        "type": ...,
+        "car": ...,
+        "motorcycle": ...,
+        "trailer": ...
+      }
+    }
+  ],
+
+```
+
 Existing Classes
 
 - `Passenger` - needs small extension only
@@ -116,7 +148,7 @@ official OSDM type offer type.
 schema:
     ## Types
 
-    TransportableType:
+    TransportEntityType:
         oneOf:  # ToDo:  add proper inheritance
         - $ref: AnimalType
         - $ref: PassengerType
@@ -159,13 +191,13 @@ schema:
 
     ## Classes (ToDo: Properly model inheritance)
 
-    AbstractTransportable:
+    AbstractTransportEntity:
         type: object
         required:
             - type
         properties:
             type:
-                $ref: TransportableType
+                $ref: TransportEntityType
 
     Passenger:
         type: object
@@ -175,8 +207,15 @@ schema:
         properties:
             type:
                 $ref: PassengerType
-            accompaniedPassengerRef:
-                $ref: PassengerRef
+            externalRef: "string",
+            dateOfBirth: "2026-11-06",
+            age: 0,
+            prmNeeds: [
+              "string"
+            ],
+            cards: [..],
+            gender: "MALE",
+            residency: "DE",
             ...
 
     Animal:
