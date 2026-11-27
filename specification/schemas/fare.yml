@@ -257,7 +257,6 @@ FareType:
   type: string
   x-extensible-enum:
   - ADMISSION
-  - RESERVATION
   - ANCILLARY
 LuggageConstraint:
   type: object
