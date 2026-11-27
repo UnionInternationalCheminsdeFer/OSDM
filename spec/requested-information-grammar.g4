@@ -18,20 +18,26 @@ requested_information
     ;
 
 class_index_attribute
-    : Attribute Opening_Index_Bracket Identifier Closing_Index_Bracket (Point Attribute)+
+    : Attribute (Opening_Index_Bracket index Closing_Index_Bracket)? (Point Attribute)+
+    ;
+
+index
+    : Any
+    | Number
+    ;
+
+// Any and Number must be declared before Attribute: ANTLR resolves
+// equally long matches in favour of the rule declared first.
+Any
+    : 'ANY'
+    ;
+
+Number
+    : [0-9]+
     ;
 
 Attribute
     : [a-zA-Z_]+
-    ;
-
-Identifier
-    : 'ANY'
-    ;
-
-boolean_operator
-    : And_Operator
-    | Or_Operator
     ;
 
 WS
