@@ -48,7 +48,7 @@ Split the monolith into **domain-aligned modules** while:
 The structure breaks the monolith into **hub, paths, schemas, and components**,
 making it easier to navigate and maintain.
 
-![Domain Modularization](../images/modularization/domain-aligned-modules.png)
+![Domain Modularization](../../images/modularization/domain-aligned-modules.png)
 
 ## The Hub File
 
@@ -145,7 +145,6 @@ The original `product.yml` (38 schemas) mixed two concerns — split into:
 and travel-account — a distinct dependency cluster. Product schemas serve the
 catalog API.
 
-
 ## Packages per Role — Summary Table
 
 | Package                         | Fare Provider |  Distributor  |   Retailer    |
@@ -159,8 +158,6 @@ catalog API.
 | `aftersales`                    | **mandatory** | **mandatory** |   optional    |
 | `place`, `transportable`        |   optional    |   optional    |   optional    |
 | `complaint`, `travel-account`   |     _n/a_     |   optional    |   optional    |
-
-
 
 ## CI Pipeline Update
 
