@@ -7,20 +7,19 @@ permalink: /spec/modularization/
 
 ## Table of Contents
 
-1. [The Challenge](#the-challenge)
-2. [The Goal](#the-goal)
-3. [The Hub File](#the-hub-file)
-4. [Schema Domains (14 core + 5 OJP files)](#schema-domains-14-core--5-ojp-files)
-5. [OJP Schemas (5 files, 54 schemas)](#ojp-schemas-5-files-54-schemas)
-6. [Path Domains (24 files)](#path-domains-24-files)
-7. [How `$ref` Linking Works](#how-ref-linking-works)
-8. [Fare / Product Separation](#fare--product-separation)
-9. [Booking Lifecycle — API Flow](#booking-lifecycle--api-flow)
-10. [Packages per Role — Summary Table](#packages-per-role--summary-table)
-11. [Build Pipeline](#build-pipeline)
-12. [CI Pipeline Update](#ci-pipeline-update)
-13. [What Changes for Consumers?](#what-changes-for-consumers)
-14. [What Changes for Maintainers?](#what-changes-for-maintainers)
+- [Table of Contents](#table-of-contents)
+- [The Challenge](#the-challenge)
+- [The Goal](#the-goal)
+- [The Hub File](#the-hub-file)
+- [Schema Domains (14 core + 5 OJP files)](#schema-domains-14-core--5-ojp-files)
+- [OJP Schemas (5 files, 54 schemas)](#ojp-schemas-5-files-54-schemas)
+- [Path Domains (24 files)](#path-domains-24-files)
+- [How `$ref` Linking Works](#how-ref-linking-works)
+- [Fare / Product Separation](#fare--product-separation)
+- [Packages per Role — Summary Table](#packages-per-role--summary-table)
+- [CI Pipeline Update](#ci-pipeline-update)
+- [What Changes for Consumers?](#what-changes-for-consumers)
+- [What Changes for Maintainers?](#what-changes-for-maintainers)
 
 ## The Challenge
 
@@ -49,22 +48,7 @@ Split the monolith into **domain-aligned modules** while:
 The structure breaks the monolith into **hub, paths, schemas, and components**,
 making it easier to navigate and maintain.
 
-```mermaid
-graph LR
-
-
-    subgraph "v3.9 — Modular"
-        HUB["OSDM-online-api.yml<br/>~1,300 lines · hub/entrypoint"]
-        P["paths/<br/>24 files"]
-        S["schemas/<br/>14 + 5 OJP files"]
-        C["components/<br/>3 files"]
-        HUB --> P
-        HUB --> S
-        HUB --> C
-    end
-
-    HUB -.->|"redocly bundle"| BUNDLED["OSDM-online-api-v3.9.0.bundled.yml<br/>(single file for consumers)"]
-```
+![Domain Modularization](../images/modularization/domain-aligned-modules.png)
 
 ## The Hub File
 
@@ -161,62 +145,6 @@ The original `product.yml` (38 schemas) mixed two concerns — split into:
 and travel-account — a distinct dependency cluster. Product schemas serve the
 catalog API.
 
-## Booking Lifecycle — API Flow
-
-```mermaid
-sequenceDiagram
-    actor R as Retailer
-    participant D as Distributor
-    participant F as Fare Provider
-
-    rect rgb(232, 244, 253)
-    note over R,D: Search & Discovery
-    R->>D: POST /trips (origin, destination, date)
-    D-->>R: TripCollectionResponse (Trip[])
-    R->>D: GET /places?name=...
-    D-->>R: PlaceRef[]
-    end
-
-    rect rgb(232, 245, 233)
-    note over R,F: Offer
-    R->>D: POST /offers (tripId, passengers)
-    D->>F: POST /offers (delegated)
-    F-->>D: OfferCollectionResponse (with Fares)
-    D-->>R: OfferCollectionResponse (no Fares in retailer mode)
-    end
-
-    rect rgb(255, 243, 224)
-    note over R,D: Booking
-    R->>D: POST /bookings (selectedOffers)
-    D-->>R: BookingResponse (bookingId)
-    R->>D: PATCH /bookings/{id}/passengers
-    D-->>R: PassengerResponse
-    R->>D: PUT /bookings/{id}/purchaser
-    D-->>R: PurchaserResponse
-    end
-
-    rect rgb(237, 231, 246)
-    note over R,F: Fulfillment
-    R->>D: POST /bookings/{id}/fulfillments
-    D->>F: POST /fulfillments (delegated)
-    F-->>D: FulfillmentResponse
-    D-->>R: FulfillmentResponse (fulfillmentId)
-    R->>D: GET /bookings/{id}/fulfillments/{fId}/documents
-    D-->>R: Document[] (PDF, PKPass, ...)
-    end
-
-    rect rgb(252, 228, 236)
-    note over R,F: After-Sales (optional for retailer)
-    R->>D: POST /bookings/{id}/refund-offers
-    D->>F: POST /refund-offers (delegated)
-    F-->>D: RefundOfferCollectionResponse
-    D-->>R: RefundOfferCollectionResponse
-    R->>D: PATCH /bookings/{id}/refund-offers/{rId} (confirm)
-    D->>F: PATCH /refund-offers/{rId} (confirm)
-    F-->>D: RefundOfferResponse
-    D-->>R: RefundOfferResponse
-    end
-```
 
 ## Packages per Role — Summary Table
 
@@ -232,39 +160,7 @@ sequenceDiagram
 | `place`, `transportable`        |   optional    |   optional    |   optional    |
 | `complaint`, `travel-account`   |     _n/a_     |   optional    |   optional    |
 
----
 
-## Build Pipeline
-
-```mermaid
-graph TD
-    subgraph "Source (maintainers work here)"
-        SRC["specification/v3.9/<br/>~45 modular YAML files"]
-    end
-
-    subgraph "CI Pipeline"
-        LINT["redocly lint<br/>validate each file"]
-        BUNDLE["redocly bundle<br/>resolve all $ref"]
-        LINT2["redocly lint<br/>validate bundled output"]
-        DIFF["diff check<br/>semantic equivalence"]
-    end
-
-    subgraph "Output (consumers use this)"
-        BUNDLED["OSDM-online-api-v3.9.0.bundled.yml<br/>single monolithic file"]
-        SWAGGER["Swagger UI on osdm.io"]
-        REDOC["Redoc on osdm.io"]
-    end
-
-    SRC --> LINT --> BUNDLE --> LINT2 --> DIFF
-    BUNDLE --> BUNDLED
-    BUNDLED --> SWAGGER
-    BUNDLED --> REDOC
-```
-
-Prior versions (`v1.4` through `v3.8`) are **untouched** — no risk to existing
-specs.
-
----
 
 ## CI Pipeline Update
 
