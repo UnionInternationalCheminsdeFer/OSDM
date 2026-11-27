@@ -3,7 +3,7 @@ title: OSDM
 subtitle: Open Sales and Distribution Model
 layout: page
 show_sidebar: true
-hero_link: https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v3.6/IRS-90918-10-v3.6.0.pdf
+hero_link: https://editor.swagger.io/?url=https://raw.githubusercontent.com/UnionInternationalCheminsdeFer/OSDM/gh-pages/specification/v3.11/OSDM-online-api-v3.11.0.bundled.yml
 hero_link_text: Download Specification
 ---
 
@@ -28,6 +28,10 @@ the Retailer Mode only in that additionally to **Admissions (aka. tickets)**,
 **Reservations**, or **Ancillaries** also **Fares (a.k.a priced segments)** are
 offered and can be booked.
 
+It is designed to be [modular and extensible](spec/modularization/), allowing
+for easy integration with various distribution systems and adaptation to
+different business models.
+
 The OSDM API and documents are **Open Source** and freely available to all
 parties interested. The OSDM-Online API is modelled in `YAML`, fully supporting
 the `REST paradigm`.
@@ -48,6 +52,11 @@ The OSDM Model is split between roles participants can take:
 
 A railway/public transport company or a system provider can support more than
 one role.
+
+## Implementation
+
+We have more than 48 [implementations](tools/implementations/) of the OSDM
+Online API across various railway, public transport and technology companies.
 
 ## Design Goals
 
