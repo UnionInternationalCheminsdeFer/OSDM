@@ -636,11 +636,11 @@ Currency codes used in OSDM are based on the [ISO
 
 ## FareType <a name="FareType">
 
-| Code          | Description                                |
-| ------------- | ------------------------------------------ |
-| `ADMISSION`   | transport contract                         |
-| `RESERVATION` | seat allocation might include a supplement |
-| `ANCILLARY`   | ancillary                                  |
+| Code                                       | Description                                |
+| ------------------------------------------ | ------------------------------------------ |
+| `ADMISSION`                                | transport contract                         |
+| `ANCILLARY`                                | ancillary                                  |
+| `RESERVATION` deprectated with version 3.8 | seat allocation might include a supplement |
 
 ## Fare CoachType <a name="FareCoachType">
 
